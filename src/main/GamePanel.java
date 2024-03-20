@@ -1,7 +1,7 @@
 package main;
 
 import entity.Player;
-import tile.TileManager;
+// import tile.TileManager;
 
 import javax.swing.JPanel;
 import java.awt.*;
@@ -36,18 +36,18 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void startGameThread() {
-
         gameThread = new Thread(this);
         gameThread.start();
     }
     public void run(){
+
 
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while(gameThread != null){
 
             update();
-
+            
             repaint();
 
             try {
@@ -63,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
@@ -83,6 +84,6 @@ public class GamePanel extends JPanel implements Runnable{
 
         player.draw(g2);
 
-        g2.dispose();
+        // g2.dispose();
     }
 }
