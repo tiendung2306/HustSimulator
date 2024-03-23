@@ -1,7 +1,9 @@
 package main;
 
 import entity.Player;
-import tile.TileManager;
+import sound.Sound;
+// import tile.TileManager;
+import sound.SoundManager;
 
 import javax.swing.JPanel;
 import java.awt.*;
@@ -22,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     Player player = new Player(this, keyH);
+    SoundManager soundManager = new SoundManager();
 
     double FPS = 60;
 
@@ -41,7 +44,12 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();
     }
     public void run(){
+        soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
+        // soundManager.loopSound("piano_music");
 
+        soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
+        // soundManager.loopSound("guitar_music");
+        
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while(gameThread != null){
