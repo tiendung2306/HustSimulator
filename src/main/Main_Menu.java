@@ -7,6 +7,7 @@ import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Main_Menu extends JPanel implements Runnable {
@@ -50,17 +51,17 @@ public class Main_Menu extends JPanel implements Runnable {
     }
     public void getPlayerImage(){
         try {
-            imgBackGround = ImageIO.read(getClass().getResourceAsStream("/tile/BackGround.png"));
-            HUST = ImageIO.read(getClass().getResourceAsStream("/tile/HUST.png"));
-            simulator = ImageIO.read(getClass().getResourceAsStream("/tile/Simulator.png"));
-            play1 = ImageIO.read(getClass().getResourceAsStream("/tile/play.png"));
-            exit1 = ImageIO.read(getClass().getResourceAsStream("/tile/exit.png"));
-            play2 = ImageIO.read(getClass().getResourceAsStream("/tile/play1.png"));
-            exit2 = ImageIO.read(getClass().getResourceAsStream("/tile/exit1.png"));
-            playImg = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
-            exitImg = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
-            setting1 = ImageIO.read(getClass().getResourceAsStream("/tile/settingbutton1.png"));
-            setting2 = ImageIO.read(getClass().getResourceAsStream("/tile/settingbutton2.png"));
+            imgBackGround = ImageIO.read(new FileInputStream("res/tile/BackGround.png"));
+            HUST = ImageIO.read(new FileInputStream("res/tile/HUST.png"));
+            simulator = ImageIO.read(new FileInputStream("res/tile/Simulator.png"));
+            play1 = ImageIO.read(new FileInputStream("res/tile/play.png"));
+            exit1 = ImageIO.read(new FileInputStream("res/tile/exit.png"));
+            play2 = ImageIO.read(new FileInputStream("res/tile/play1.png"));
+            exit2 = ImageIO.read(new FileInputStream("res/tile/exit1.png"));
+            playImg = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
+            exitImg = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
+            setting1 = ImageIO.read(new FileInputStream("res/tile/settingbutton1.png"));
+            setting2 = ImageIO.read(new FileInputStream("res/tile/settingbutton2.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

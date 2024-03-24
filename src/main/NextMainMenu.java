@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class NextMainMenu extends JPanel implements Runnable {
@@ -32,15 +33,15 @@ public class NextMainMenu extends JPanel implements Runnable {
     }
     public void getPlayerImage(){
         try {
-            NextBackGround = ImageIO.read(getClass().getResourceAsStream("/tile/NextMainMenu.png"));
-            tutorial1 = ImageIO.read(getClass().getResourceAsStream("/tile/tutorial1.png"));
-            tutorial2 = ImageIO.read(getClass().getResourceAsStream("/tile/tutorial2.png"));
-            newgame1 = ImageIO.read(getClass().getResourceAsStream("/tile/newgame1.png"));
-            newgame2 = ImageIO.read(getClass().getResourceAsStream("/tile/newgame2.png"));
-            setting1 = ImageIO.read(getClass().getResourceAsStream("/tile/settingbutton1.png"));
-            setting2 = ImageIO.read(getClass().getResourceAsStream("/tile/settingbutton2.png"));
-            playImg = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
-            back = ImageIO.read(getClass().getResourceAsStream("/tile/backicon.png"));
+            NextBackGround = ImageIO.read(new FileInputStream("res/tile/NextMainMenu.png"));
+            tutorial1 = ImageIO.read(new FileInputStream("res/tile/tutorial1.png"));
+            tutorial2 = ImageIO.read(new FileInputStream("res/tile/tutorial2.png"));
+            newgame1 = ImageIO.read(new FileInputStream("res/tile/newgame1.png"));
+            newgame2 = ImageIO.read(new FileInputStream("res/tile/newgame2.png"));
+            setting1 = ImageIO.read(new FileInputStream("res/tile/settingbutton1.png"));
+            setting2 = ImageIO.read(new FileInputStream("res/tile/settingbutton2.png"));
+            playImg = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
+            back = ImageIO.read(new FileInputStream("res/tile/backicon.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Setting extends JPanel implements Runnable {
@@ -33,14 +34,14 @@ public class Setting extends JPanel implements Runnable {
     }
     public void getPlayerImage(){
         try {
-            SettingBackGround = ImageIO.read(getClass().getResourceAsStream("/tile/settingbackground.png"));
-            audio1 = ImageIO.read(getClass().getResourceAsStream("/tile/audiosetting1.png"));
-            audio2 = ImageIO.read(getClass().getResourceAsStream("/tile/audiosetting2.png"));
-            video1 = ImageIO.read(getClass().getResourceAsStream("/tile/videosetting11.png"));
-            video2 = ImageIO.read(getClass().getResourceAsStream("/tile/videosetting2.png"));
-            key1 = ImageIO.read(getClass().getResourceAsStream("/tile/keysetting1.png"));
-            key2 = ImageIO.read(getClass().getResourceAsStream("/tile/keysetting2.png"));
-            back = ImageIO.read(getClass().getResourceAsStream("/tile/backicon.png"));
+            SettingBackGround = ImageIO.read(new FileInputStream("res/tile/settingbackground.png"));
+            audio1 = ImageIO.read(new FileInputStream("res/tile/audiosetting1.png"));
+            audio2 = ImageIO.read(new FileInputStream("res/tile/audiosetting2.png"));
+            video1 = ImageIO.read(new FileInputStream("res/tile/videosetting11.png"));
+            video2 = ImageIO.read(new FileInputStream("res/tile/videosetting2.png"));
+            key1 = ImageIO.read(new FileInputStream("res/tile/keysetting1.png"));
+            key2 = ImageIO.read(new FileInputStream("res/tile/keysetting2.png"));
+            back = ImageIO.read(new FileInputStream("res/tile/backicon.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
