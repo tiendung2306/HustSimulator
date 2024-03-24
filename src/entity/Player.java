@@ -8,23 +8,33 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
-
+    public int screenX, screenY;
     public Player(GamePanel gp, KeyHandler keyH){
 
         this.gp = gp;
         this.keyH = keyH;
+
+        screenX = gp.screenWidth/2 - gp.tileSize/2;
+        screenY = gp.screenHeight/2 - gp.tileSize/2;
+
+        validArea = new Rectangle();
+        validArea.x = gp.tileSize / 6;
+        validArea.y = gp.tileSize / 3;
+        validArea.width = gp.tileSize - validArea.y;
+        validArea.height = gp.tileSize - validArea.y;
 
         setDefaultValues();
         getPlayerImage();
     }
     public void setDefaultValues(){
 
-        x = 100;
-        y = 100;
+        mapX = 500;
+        mapY = 500;
         speed = 4;
         direction = "down";
     }
@@ -47,69 +57,73 @@ public class Player extends Entity{
         if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             if (keyH.upPressed){
                 direction = "up";
-                y -= speed;
             }
             else if (keyH.downPressed){
                 direction = "down";
-                y += speed;
             }
             else if (keyH.leftPressed){
                 direction = "left";
-                x -= speed;
             }
-            else if (keyH.rightPressed){
+            else {
                 direction = "right";
-                x += speed;
             }
-            spriteCounter++;
-            if (spriteCounter > 8){
-                if (spriteNum == 1){
-                    spriteNum = 2;
+            collisionOn = 0;
+            gp.checkCollision.checkTile(this);
+            if (collisionOn == 0)
+            {
+                switch (direction){
+                    case "up": mapY -= speed; break;
+                    case "down": mapY += speed; break;
+                    case "left": mapX -= speed; break;
+                    case "right": mapX += speed; break;
                 }
-                else if (spriteNum == 2){
-                    spriteNum = 1;
+                stepCounter++;
+                if (stepCounter > 8){
+                    stepNum = 3 - stepNum;
+                    stepCounter = 0;
                 }
-                spriteCounter = 0;
             }
-         }
+        }
 
     }
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         switch (direction) {
             case "up":
-                if (spriteNum == 1){
+                if (stepNum == 1){
                     image = up1;
                 }
-                if (spriteNum == 2){
+                if (stepNum == 2){
                     image = up2;
                 }
                 break;
             case "down":
-                if (spriteNum == 1){
+                if (stepNum == 1){
                     image = down1;
                 }
-                if (spriteNum == 2){
+                if (stepNum == 2){
                     image = down2;
                 }
                 break;
             case "left":
-                if (spriteNum == 1){
+                if (stepNum == 1){
                     image = left1;
                 }
-                if (spriteNum == 2){
+                if (stepNum == 2){
                     image = left2;
                 }
                 break;
             case "right":
-                if (spriteNum == 1){
+                if (stepNum == 1){
                     image = right1;
                 }
-                if (spriteNum == 2){
+                if (stepNum == 2){
                     image = right2;
                 }
                 break;
         }
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        int posX = screenX;
+        int posY = screenY;
+        g2.drawImage(image, posX, posY, gp.tileSize, gp.tileSize, null);
     }
 }
