@@ -8,12 +8,15 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 public class Sound {
     Clip clip;
 
     String soundName = "";
+    String url_str;
     URL soundURL;
+    FloatControl floatControl;
 
     public Sound() {
 
@@ -21,12 +24,18 @@ public class Sound {
 
     public Sound(String name, String url) {
         this.soundName = name;
+        this.url_str = url;
         try {
             File f = new File(url);
             this.soundURL = f.toURI().toURL();
+            // floatControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getUrl_str() {
+        return url_str;
     }
 
     public void setURL(String url) {
@@ -51,6 +60,7 @@ public class Sound {
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);
             clip = AudioSystem.getClip();
             clip.open(ais);
+            floatControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -68,7 +78,8 @@ public class Sound {
     }
 
     public void stop() {
-        if(this.clip != null)
+        if (this.clip != null) {
             clip.stop();
+        }
     }
 }
