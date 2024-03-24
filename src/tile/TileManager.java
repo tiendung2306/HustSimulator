@@ -27,19 +27,19 @@ public class TileManager {
         try {
 
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(new FileInputStream("res/tile/grass.png"));
+            tile[0].image = ImageIO.read(new FileInputStream("res/tile/ban_gv.png"));
             tile[0].typeCollision = 0;
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new FileInputStream("res/tile/wall.png"));
+            tile[1].image = ImageIO.read(new FileInputStream("res/tile/ban_gv.png"));
             tile[1].typeCollision = 1;
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(new FileInputStream("res/tile/water.png"));
+            tile[2].image = ImageIO.read(new FileInputStream("res/tile/ban_gv.png"));
             tile[2].typeCollision = 2;
 
             tile[3] = new Tile();
-            tile[3].image = ImageIO.read(new FileInputStream("res/tile/tree.png"));
+            tile[3].image = ImageIO.read(new FileInputStream("res/tile/ban_gv.png"));
             tile[3].typeCollision = 3;
 
         } catch(IOException e) {

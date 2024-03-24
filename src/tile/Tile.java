@@ -1,4 +1,4 @@
-package phong_hoc;
+package tile;
 
 import java.awt.image.BufferedImage;
 
