@@ -7,6 +7,7 @@ public class KeyHandler implements KeyListener{
 
     public boolean upPressed, downPressed, leftPressed, rightPressed;
 
+
     public void keyTyped(KeyEvent e){
 
     }
