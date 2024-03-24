@@ -1,3 +1,9 @@
+/*
+ * soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
+ * soundManager.loopSound("piano_music");
+ */
+
+
 package sound;
 
 import java.util.ArrayList;
@@ -23,7 +29,7 @@ public class SoundManager {
         sounds.remove(sound);
     }
 
-    public void playSound(String name) {
+    public void playSound(String name) { //Phat am thanh 1 lan
         for (Sound s : sounds) {
             if (s.soundName.equals(name)) {
                 String url = s.getUrl_str();
@@ -34,7 +40,7 @@ public class SoundManager {
         }
     }
 
-    public void loopSound(String name) {
+    public void loopSound(String name) { // phat am thanh vo han lan
         for (Sound s : sounds) {
             if (s.soundName.equals(name)) {
                 String url = s.getUrl_str();
@@ -46,7 +52,7 @@ public class SoundManager {
         }
     }
 
-    public void stopSound(String name) {
+    public void stopSound(String name) { // dung am thanh
         ArrayList<Sound> deleted_sound = new ArrayList<Sound>();
         for (int i = 0; i < currRunningSounds.size(); i++) {
             Sound s = currRunningSounds.get(i);
@@ -71,6 +77,8 @@ public class SoundManager {
             currRunningSounds.remove(s);
         }
     }
+
+    // 0.0 -> 1.0
 
     public void volumeUp() {
         currVolume += 1.0f;
