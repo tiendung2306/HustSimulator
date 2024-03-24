@@ -52,13 +52,13 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-        this.Mouse();
+        // this.Mouse();
     }
 
-    public void Mouse() {
-        this.addMouseMotionListener(mouseMotionListener);
-        this.addMouseListener(mouseListener);
-    }
+    // public void Mouse() {
+    //     this.addMouseMotionListener(mouseMotionListener);
+    //     this.addMouseListener(mouseListener);
+    // }
 
 
     public void startGameThread() {
@@ -100,16 +100,16 @@ public class GamePanel extends JPanel implements Runnable{
     //=================================================================================================================
     public void update() {
         player.update();
-        if (Main.Gametime == "MainMenu")
-        {
-            mainMenu.update();
-        }
-        else if (Main.Gametime == "NextMainMenu")
-        {
-            nextMainMenu.update();
-        } else if (Main.Gametime == "Setting") {
-            setting.update();
-        }
+        // if (Main.Gametime == "MainMenu")
+        // {
+        //     mainMenu.update();
+        // }
+        // else if (Main.Gametime == "NextMainMenu")
+        // {
+        //     nextMainMenu.update();
+        // } else if (Main.Gametime == "Setting") {
+        //     setting.update();
+        // }
     }
     //=================================================================================================================
 
@@ -125,15 +125,15 @@ public class GamePanel extends JPanel implements Runnable{
         tileM4.draw(g2);
 
         player.draw(g2);
-        if (Main.Gametime == "MainMenu")
-        {
-            mainMenu.draw(g2);
-        }
-        else if (Main.Gametime == "NextMainMenu")
-        {
-            nextMainMenu.draw(g2);
-        }else if (Main.Gametime == "Setting")
-            setting.draw(g2);
+        // if (Main.Gametime == "MainMenu")
+        // {
+        //     mainMenu.draw(g2);
+        // }
+        // else if (Main.Gametime == "NextMainMenu")
+        // {
+        //     nextMainMenu.draw(g2);
+        // }else if (Main.Gametime == "Setting")
+        //     setting.draw(g2);
 
         g2.dispose();
     }
