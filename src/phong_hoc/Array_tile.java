@@ -13,9 +13,6 @@ public class Array_tile {
 
     public void getTileImage() {
         try {
-            File f = new File(".");
-            System.out.println(f.getAbsolutePath());
-
             tile[0]= new Tile();
             tile[0].image = ImageIO.read(new FileInputStream("res/tile/tuong01.png"));
 
