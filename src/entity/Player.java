@@ -6,6 +6,7 @@ import main.KeyHandler;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Player extends Entity{
@@ -29,18 +30,18 @@ public class Player extends Entity{
     }
     public void getPlayerImage(){
 
-        // try{
-        //     // up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
-        //     // up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png"));
-        //     // down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
-        //     // down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png"));
-        //     // left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
-        //     // left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
-        //     // right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
-        //     // right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
-        // } catch(IOException e){
-        //     e.printStackTrace();
-        // }
+         try{
+              up1 = ImageIO.read(new FileInputStream("res/player/boy_up_1.png"));
+              up2 = ImageIO.read(new FileInputStream("res/player/boy_up_2.png"));
+              down1 = ImageIO.read(new FileInputStream("res/player/boy_down_1.png"));
+              down2 = ImageIO.read(new FileInputStream("res/player/boy_down_2.png"));
+              left1 = ImageIO.read(new FileInputStream("res/player/boy_left_1.png"));
+              left2 = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
+              right1 = ImageIO.read(new FileInputStream("res/player/boy_right_1.png"));
+              right2 = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
+         } catch(IOException e){
+             e.printStackTrace();
+         }
     }
     public void update(){
         if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {

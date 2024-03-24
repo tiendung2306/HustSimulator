@@ -1,7 +1,10 @@
 package main;
 
 import entity.Player;
-import tile.TileManager;
+import phong_hoc.Classroom01;
+import phong_hoc.Classroom02;
+import phong_hoc.Svd;
+import phong_hoc.Thu_vien;
 
 import javax.swing.JPanel;
 import java.awt.*;
@@ -22,6 +25,12 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     Player player = new Player(this, keyH);
+
+    // Khai báo lớp Classroom01 vào GamePanel
+    Classroom01 tileM = new Classroom01(this);
+    Classroom02 tileM2 = new Classroom02(this);
+    Thu_vien tileM3 = new Thu_vien(this);
+    Svd tileM4 = new Svd(this);
 
     double FPS = 60;
 
@@ -79,7 +88,10 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
-        // tileM.draw(g2);
+        //tileM.draw(g2);
+        //tileM2.draw(g2);
+       // tileM3.draw(g2);
+        tileM4.draw(g2);
 
         player.draw(g2);
 
