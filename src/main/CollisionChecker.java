@@ -19,6 +19,7 @@ public class CollisionChecker {
         int entityTopRow = entityTopMapY / gamePanel.tileSize;
         int entityBottomRow = entityBottomMapY / gamePanel.tileSize;
         int tile1, tile2;
+        
         switch (entity.direction) {
             case "up":
                 if (entityTopMapY - entity.speed <= 0)
