@@ -80,7 +80,6 @@ public class GamePanel extends JPanel implements Runnable{
 
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
-        
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while(gameThread != null){
@@ -108,6 +107,10 @@ public class GamePanel extends JPanel implements Runnable{
     //=================================================================================================================
     public void update() {
         player.update();
+
+        soundManager.update();
+        // System.out.println(soundManager.currRunningSounds);
+        
         // if (Main.Gametime == "MainMenu")
         // {
         //     mainMenu.update();
