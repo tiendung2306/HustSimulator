@@ -1,7 +1,8 @@
-package main;
+package DeveloperTest;
 
 import MainMenu.*;
 import entity.Player;
+import main.Main;
 import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
@@ -13,7 +14,7 @@ import phong_hoc.Thu_vien;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable{
+public class Thai extends JPanel implements Runnable{
 
     //SCREEN SETTINGS
     public final int originalTileSize = 16;
@@ -32,42 +33,42 @@ public class GamePanel extends JPanel implements Runnable{
     public final int mapWidth = tileSize * maxMapCol;
     public final int mapHeight = tileSize * maxMapRow;
 
-    TileManager tileManager = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+    //TileManager tileManager = new TileManager(this);
+    //KeyHandler keyH = new KeyHandler();
     Thread gameThread;
 
     SoundManager soundManager = new SoundManager();
 
-     Main_Menu mainMenu = new Main_Menu();
-     NextMainMenu nextMainMenu = new NextMainMenu();
-     Setting setting = new Setting();
-     //MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
-     //MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting);
+    Main_Menu mainMenu = new Main_Menu();
+    NextMainMenu nextMainMenu = new NextMainMenu();
+    Setting setting = new Setting();
+    MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
+    MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting);
 //     Khai báo lớp Classroom01 vào GamePanel
 
     // Classroom01 tileM = new Classroom01(this);
     // Classroom02 tileM2 = new Classroom02(this);
     // Thu_vien tileM3 = new Thu_vien(this);
     // Svd tileM4 = new Svd(this);
-    public CollisionChecker checkCollision = new CollisionChecker(this);
-    public Player player = new Player(this, keyH);
+    //public CollisionChecker checkCollision = new CollisionChecker(this);
+    //public Player player = new Player(this, keyH);
 
     double FPS = 60;
 
     //=================================================================================================================
-    public GamePanel(){
+    public Thai(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        this.addKeyListener(keyH);
+        //this.addKeyListener(keyH);
         this.setFocusable(true);
- //       this.Mouse();
+        this.Mouse();
     }
 
-//     public void Mouse() {
-//         this.addMouseMotionListener(mouseMotionListenerMainmenu);
-//         this.addMouseListener(mouseListenerMainmenu);
-//     }
+    public void Mouse() {
+        this.addMouseMotionListener(mouseMotionListenerMainmenu);
+        this.addMouseListener(mouseListenerMainmenu);
+    }
 
 
     public void startGameThread() {
@@ -108,17 +109,17 @@ public class GamePanel extends JPanel implements Runnable{
 
     //=================================================================================================================
     public void update() {
-         player.update();
-         if (Main.topGameState() == "MainMenu")
-         {
-             mainMenu.update();
-         }
-         else if (Main.topGameState() == "NextMainMenu")
-         {
-             nextMainMenu.update();
-         } else if (Main.topGameState() == "Setting") {
-             setting.update();
-         }
+        //player.update();
+        if (Main.topGameState() == "MainMenu")
+        {
+            mainMenu.update();
+        }
+        else if (Main.topGameState() == "NextMainMenu")
+        {
+            nextMainMenu.update();
+        } else if (Main.topGameState() == "Setting") {
+            setting.update();
+        }
     }
     //=================================================================================================================
 
@@ -134,16 +135,16 @@ public class GamePanel extends JPanel implements Runnable{
         //tileM3.draw(g2);
         //tileM4.draw(g2);
 
-         player.draw(g2);
-         if (Main.topGameState() == "MainMenu")
-         {
-             mainMenu.draw(g2);
-         }
-         else if (Main.topGameState() == "NextMainMenu")
-         {
-             nextMainMenu.draw(g2);
-         }else if (Main.topGameState() == "Setting")
-             setting.draw(g2);
+        //player.draw(g2);
+        if (Main.topGameState() == "MainMenu")
+        {
+            mainMenu.draw(g2);
+        }
+        else if (Main.topGameState() == "NextMainMenu")
+        {
+            nextMainMenu.draw(g2);
+        }else if (Main.topGameState() == "Setting")
+            setting.draw(g2);
 
         g2.dispose();
     }

@@ -1,4 +1,4 @@
-package main;
+package MainMenu;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -51,17 +51,17 @@ public class Main_Menu extends JPanel implements Runnable {
     }
     public void getPlayerImage(){
         try {
-            imgBackGround = ImageIO.read(new FileInputStream("res/tile/BackGround.png"));
-            HUST = ImageIO.read(new FileInputStream("res/tile/HUST.png"));
-            simulator = ImageIO.read(new FileInputStream("res/tile/Simulator.png"));
-            play1 = ImageIO.read(new FileInputStream("res/tile/play.png"));
-            exit1 = ImageIO.read(new FileInputStream("res/tile/exit.png"));
-            play2 = ImageIO.read(new FileInputStream("res/tile/play1.png"));
-            exit2 = ImageIO.read(new FileInputStream("res/tile/exit1.png"));
+            imgBackGround = ImageIO.read(new FileInputStream("res/MainmenuImage/BackGround.png"));
+            HUST = ImageIO.read(new FileInputStream("res/MainmenuImage/HUST.png"));
+            simulator = ImageIO.read(new FileInputStream("res/MainmenuImage/Simulator.png"));
+            play1 = ImageIO.read(new FileInputStream("res/MainmenuImage/play.png"));
+            exit1 = ImageIO.read(new FileInputStream("res/MainmenuImage/exit.png"));
+            play2 = ImageIO.read(new FileInputStream("res/MainmenuImage/play1.png"));
+            exit2 = ImageIO.read(new FileInputStream("res/MainmenuImage/exit1.png"));
             playImg = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
             exitImg = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
-            setting1 = ImageIO.read(new FileInputStream("res/tile/settingbutton1.png"));
-            setting2 = ImageIO.read(new FileInputStream("res/tile/settingbutton2.png"));
+            setting1 = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbutton1.png"));
+            setting2 = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbutton2.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

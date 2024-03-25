@@ -1,4 +1,4 @@
-package main;
+package MainMenu;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class NextMainMenu extends JPanel implements Runnable {
     Thread gameThread;
-    public BufferedImage NextBackGround, tutorial, tutorial1, tutorial2, newgame, newgame1, newgame2, setting, setting1, setting2, playImg, player, back, tutorialicon, tutorialicon1, Continue, Continue1, Continue2, continueicon, continueicon1;
+    public BufferedImage exitImg, exitImg1, NextBackGround, tutorial, tutorial1, tutorial2, newgame, newgame1, newgame2, setting, setting1, setting2, playImg, player, back, tutorialicon, tutorialicon1, Continue, Continue1, Continue2, continueicon, continueicon1;
     private String check = null;
     public NextMainMenu()
     {
@@ -33,19 +33,21 @@ public class NextMainMenu extends JPanel implements Runnable {
     }
     public void getPlayerImage(){
         try {
-            NextBackGround = ImageIO.read(new FileInputStream("res/tile/NextMainMenu.png"));
-            tutorial1 = ImageIO.read(new FileInputStream("res/tile/tutorial1.png"));
-            tutorial2 = ImageIO.read(new FileInputStream("res/tile/tutorial2.png"));
-            newgame1 = ImageIO.read(new FileInputStream("res/tile/newgame1.png"));
-            newgame2 = ImageIO.read(new FileInputStream("res/tile/newgame2.png"));
-            setting1 = ImageIO.read(new FileInputStream("res/tile/settingbutton1.png"));
-            setting2 = ImageIO.read(new FileInputStream("res/tile/settingbutton2.png"));
+            NextBackGround = ImageIO.read(new FileInputStream("res/MainmenuImage/NextMainMenu.png"));
+            tutorial1 = ImageIO.read(new FileInputStream("res/MainmenuImage/tutorial1.png"));
+            tutorial2 = ImageIO.read(new FileInputStream("res/MainmenuImage/tutorial2.png"));
+            newgame1 = ImageIO.read(new FileInputStream("res/MainmenuImage/newgame1.png"));
+            newgame2 = ImageIO.read(new FileInputStream("res/MainmenuImage/newgame2.png"));
+            setting1 = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbutton1.png"));
+            setting2 = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbutton2.png"));
             playImg = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
-            back = ImageIO.read(new FileInputStream("res/tile/backicon.png"));
-            tutorialicon1 = ImageIO.read(new FileInputStream("res/tile/tutorialicon.png"));
-            Continue1 = ImageIO.read(new FileInputStream("res/tile/continue1.png"));
-            Continue2 = ImageIO.read(new FileInputStream("res/tile/continue2.png"));
-            continueicon1 = ImageIO.read(new FileInputStream("res/tile/continueicon.png"));
+            back = ImageIO.read(new FileInputStream("res/MainmenuImage/backicon.png"));
+            tutorialicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/tutorialicon.png"));
+            Continue1 = ImageIO.read(new FileInputStream("res/MainmenuImage/continue1.png"));
+            Continue2 = ImageIO.read(new FileInputStream("res/MainmenuImage/continue2.png"));
+            continueicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/continueicon.png"));
+            exitImg1 = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,6 +60,9 @@ public class NextMainMenu extends JPanel implements Runnable {
     }
     public void buttonSettingEnter() {
         check = "buttonSettingEnter";
+    }
+    public void buttonReturnEnter() {
+        check = "buttonReturnEnter";
     }
     public void buttonContinueEnter() {
         check = "buttonContinueEnter";
@@ -74,12 +79,13 @@ public class NextMainMenu extends JPanel implements Runnable {
         } else if (check == "buttonNewgameEnter") {
             newgame = newgame2;
             player = playImg;
-
         } else if (check == "buttonSettingEnter") {
             setting = setting2;
         } else if (check == "buttonContinueEnter") {
             Continue = Continue2;
             continueicon = continueicon1;
+        }else if (check == "buttonReturnEnter") {
+            exitImg = exitImg1;
         } else {
             tutorial = tutorial1;
             newgame = newgame1;
@@ -88,6 +94,7 @@ public class NextMainMenu extends JPanel implements Runnable {
             player = null;
             tutorialicon = null;
             continueicon = null;
+            exitImg = null;
         }
     }
     public void draw(Graphics2D g2) {
@@ -97,11 +104,13 @@ public class NextMainMenu extends JPanel implements Runnable {
         g2.drawImage(setting,710, 13, 40,40, null);
         g2.drawImage(player,540, 210, 40,40, null);
         g2.drawImage(back, 10, 10, 40, 40, null);
+        g2.drawImage(exitImg, 60, 15, 30, 30, null);
         g2.drawImage(tutorialicon, 520, 330, 40,40, null);
-        g2.drawImage(Continue, 260, 270, 247,40, null);
+        g2.drawImage(Continue, 260, 270, 247,45, null);
         g2.drawImage(continueicon, 520, 270, 45,45, null);
         super.paintComponent(g2);
     }
+
 
 
 }

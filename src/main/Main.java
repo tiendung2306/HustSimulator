@@ -1,5 +1,9 @@
 package main;
 
+import DeveloperTest.Khai;
+import DeveloperTest.Son;
+import DeveloperTest.Thai;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -7,81 +11,135 @@ import java.awt.event.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class Main{
-    public static String Gametime = "MainMenu";
+    public static Stack<String> GameState = new Stack<>();
+    public static void pushGameState(String a){
+        GameState.push(a);
+    }
+    public static String popGameState(){
+        return GameState.pop();
+    }
+    public static String topGameState(){
+        return GameState.peek();
+    }
+
 
     public static void main(String[] args) {
+        pushGameState("MainMenu");
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("2D Adventure");
+        window.setTitle("Chọn nguồn code");
+        window.setPreferredSize(new Dimension(500, 500));
+        window.setBackground(Color.black);
+        window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
         GamePanel gamePanel = new GamePanel();
+         JButton button1 = new JButton("Thai");
+         window.add(button1);
+         button1.addActionListener(new ButtonClicked(button1.getText(), gamePanel));
 
-        window.add(gamePanel);
-        // window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
-        // JButton button1 = new JButton("Start Loop Song 1");
-        // window.add(button1);
-        // button1.addActionListener(new ButtonClicked(button1.getText(), gamePanel));
+         JButton button2 = new JButton("Dung");
+         window.add(button2);
+         button2.addActionListener(new ButtonClicked(button2.getText(), gamePanel));
 
-        // JButton button2 = new JButton("Start Loop Song 2");
-        // window.add(button2);
-        // button2.addActionListener(new ButtonClicked(button2.getText(), gamePanel));
+         JButton button3 = new JButton("Khai");
+         window.add(button3);
+         button3.addActionListener(new ButtonClicked(button3.getText(), gamePanel));
 
-        // JButton button3 = new JButton("Stop");
-        // window.add(button3);
-        // button3.addActionListener(new ButtonClicked(button3.getText(), gamePanel));
+         JButton button4 = new JButton("Tuan");
+         window.add(button4);
+         button4.addActionListener(new ButtonClicked(button4.getText(), gamePanel));
 
-        // JButton button4 = new JButton("Volume Up");
-        // window.add(button4);
-        // button4.addActionListener(new ButtonClicked(button4.getText(), gamePanel));
+         JButton button5 = new JButton("Son");
+         window.add(button5);
+         button5.addActionListener(new ButtonClicked(button5.getText(), gamePanel));
 
-        // JButton button5 = new JButton("Volume Down");
-        // window.add(button5);
-        // button5.addActionListener(new ButtonClicked(button5.getText(), gamePanel));
 
-        // JButton button6 = new JButton("Volume Mute");
-        // window.add(button6);
-        // button6.addActionListener(new ButtonClicked(button6.getText(), gamePanel));
-
+        // window.add(gamePanel);
         // window.pack();
-
         // window.setSize(400, 400);
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        gamePanel.startGameThread();
+        //gamePanel.startGameThread();
     }
 
 }
 
-// class ButtonClicked implements ActionListener {
+ class ButtonClicked implements ActionListener {
 
-//     String buttonName = "";
-//     GamePanel gamePanel = new GamePanel();
+     String buttonName = "";
+     GamePanel gamePanel = new GamePanel();
 
-//     public ButtonClicked(String buttonName, GamePanel gamePanel) {
-//         this.buttonName = buttonName;
-//         this.gamePanel = gamePanel;
-//     }
+     public ButtonClicked(String buttonName, GamePanel gamePanel) {
+         this.buttonName = buttonName;
+         this.gamePanel = gamePanel;
+     }
 
-//     public void actionPerformed(ActionEvent e) {
-//         if (this.buttonName == "Start Loop Song 1") {
-//             this.gamePanel.soundManager.loopSound("piano_music");
-//             // System.out.println("start loop");
-//         } else if (this.buttonName == "Start Loop Song 2") {
-//             this.gamePanel.soundManager.loopSound("guitar_music");
-//             // System.out.println("start loop");
-//         } else if (this.buttonName == "Stop") {
-//             this.gamePanel.soundManager.stopAllSound();
-//             // System.out.println("stop");
-//         } else if (this.buttonName == "Volume Up") {
-//             this.gamePanel.soundManager.volumeUp();
-//         } else if (this.buttonName == "Volume Down") {
-//             this.gamePanel.soundManager.volumeDown();
-//         } else if (this.buttonName == "Volume Mute") {
-//             this.gamePanel.soundManager.volumeMute();
-//         }
-//         System.out.println("You have clicked the ACTIVE button " + this.buttonName);
-//     }
-// }
+     public void actionPerformed(ActionEvent e) {
+         if (this.buttonName == "Thai") {
+             JFrame window = new JFrame();
+             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             window.setResizable(false);
+             window.setTitle("2D Adventure");
+             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
+             Thai thai = new Thai();
+             window.add(thai);
+             window.pack();
+             window.setLocationRelativeTo(null);
+             window.setVisible(true);
+             thai.startGameThread();
+         } else if (this.buttonName == "Dung") {
+             JFrame window = new JFrame();
+             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             window.setResizable(false);
+             window.setTitle("2D Adventure");
+             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
+             Thai thai = new Thai();
+             window.add(thai);
+             window.pack();
+             window.setLocationRelativeTo(null);
+             window.setVisible(true);
+             thai.startGameThread();
+         } else if (this.buttonName == "Khai") {
+             JFrame window = new JFrame();
+             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             window.setResizable(false);
+             window.setTitle("2D Adventure");
+             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
+             Thai thai = new Thai();
+             window.add(thai);
+             window.pack();
+             window.setLocationRelativeTo(null);
+             window.setVisible(true);
+             thai.startGameThread();
+         } else if (this.buttonName == "Tuan") {
+             JFrame window = new JFrame();
+             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             window.setResizable(false);
+             window.setTitle("2D Adventure");
+             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
+             Thai thai = new Thai();
+             window.add(thai);
+             window.pack();
+             window.setLocationRelativeTo(null);
+             window.setVisible(true);
+             thai.startGameThread();
+         } else if (this.buttonName == "Son") {
+             JFrame window = new JFrame();
+             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             window.setResizable(false);
+             window.setTitle("2D Adventure");
+             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
+             Thai thai = new Thai();
+             window.add(thai);
+             window.pack();
+             window.setLocationRelativeTo(null);
+             window.setVisible(true);
+             thai.startGameThread();
+         }
+     }
+ }
