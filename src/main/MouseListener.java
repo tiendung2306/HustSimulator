@@ -20,29 +20,23 @@ public class MouseListener implements java.awt.event.MouseListener {
             if ((x_click > 340) && (y_click > 481) && (x_click < 420) && (y_click < 501)) {
                 System.exit(0);
             } else if ((x_click > 311) && (y_click > 425) && (x_click < 456) && (y_click < 464)) {
-                Main.Backtime = Main.Gametime;
                 Main.Gametime = "NextMainMenu";
             } else if ((x_click > 710) && (y_click > 13) && (x_click < 750) && (y_click < 53)) {
-                Main.Backtime = Main.Gametime;
                 Main.Gametime = "Setting";
             } else if ((x_click > 260) && (y_click > 299) && (x_click < 507) && (y_click < 337)) {
-                Main.Backtime = Main.Gametime;
                 Main.Gametime = "Tutorial";
             } else if ((x_click > 244) && (y_click > 237) && (x_click < 527) && (y_click < 276)) {
-                Main.Backtime = Main.Gametime;
                 Main.Gametime = "NewGame";
             }
         }
          else if (Main.Gametime == "NextMainMenu") {
             if ((x_click > 710) && (y_click > 13) && (x_click < 750) && (y_click < 53))
             {
-                Main.Backtime = Main.Gametime;
                 Main.Gametime = "Setting";
             }
-
             else if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
             {
-                Main.Gametime = Main.Backtime;
+
             }
         }
 

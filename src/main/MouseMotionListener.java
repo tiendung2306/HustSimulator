@@ -6,10 +6,12 @@ public class MouseMotionListener implements java.awt.event.MouseMotionListener {
     GamePanel gamePanel;
     Main_Menu mainMenu;
     NextMainMenu nextMainMenu;
-    public MouseMotionListener(GamePanel gamePanel, Main_Menu mainMenu, NextMainMenu nextMainMenu) {
+    Setting setting = new Setting();
+    public MouseMotionListener(GamePanel gamePanel, Main_Menu mainMenu, NextMainMenu nextMainMenu, Setting setting) {
         this.gamePanel = gamePanel;
         this.mainMenu = mainMenu;
         this.nextMainMenu = nextMainMenu;
+        this.setting = setting;
     }
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -32,15 +34,26 @@ public class MouseMotionListener implements java.awt.event.MouseMotionListener {
             }
         }
         else if (Main.Gametime == "NextMainMenu") {
-            if ((x_enter > 260) && (y_enter > 299) && (x_enter < 507) && (y_enter < 337)) {
+            if ((x_enter > 260) && (y_enter > 330) && (x_enter < 507) && (y_enter < 367)) {
                 nextMainMenu.buttonTutorialEnter();
-            } else if ((x_enter > 244) && (y_enter > 237) && (x_enter < 527) && (y_enter < 276)) {
+            } else if ((x_enter > 244) && (y_enter > 210) && (x_enter < 527) && (y_enter < 246)) {
                 nextMainMenu.buttonNewgameEnter();
             }else if ((x_enter > 710) && (y_enter > 13) && (x_enter < 750) && (y_enter < 53)) {
                 nextMainMenu.buttonSettingEnter();
+            } else if ((x_enter > 260) && (y_enter > 270) && (x_enter < 507) && (y_enter < 310)) {
+                nextMainMenu.buttonContinueEnter();
             } else
                 nextMainMenu.rollbacknext();
-
+        }
+        else if (Main.Gametime == "Setting") {
+            if ((x_enter > 200) && (y_enter > 192) && (x_enter < 567) && (y_enter < 226)) {
+                setting.buttonVideoEnter();
+            } else if ((x_enter > 200) && (y_enter > 251) && (x_enter < 566) && (y_enter < 290)) {
+                setting.buttonAudioEnter();
+            } else if ((x_enter > 249) && (y_enter > 312) && (x_enter < 516) && (y_enter < 347)) {
+                setting.buttonKeyEnter();
+            } else
+                setting.rollbacksetting();
         }
     }
 }

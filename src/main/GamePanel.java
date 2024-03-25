@@ -37,12 +37,12 @@ public class GamePanel extends JPanel implements Runnable{
 
     SoundManager soundManager = new SoundManager();
 
-    // Main_Menu mainMenu = new Main_Menu();
-    // NextMainMenu nextMainMenu = new NextMainMenu();
-    // Setting setting = new Setting();
-    // MouseListener mouseListener = new MouseListener(this);
-    // MouseMotionListener mouseMotionListener = new MouseMotionListener(this, mainMenu, nextMainMenu);
-    // Khai báo lớp Classroom01 vào GamePanel
+     Main_Menu mainMenu = new Main_Menu();
+     NextMainMenu nextMainMenu = new NextMainMenu();
+     Setting setting = new Setting();
+     MouseListener mouseListener = new MouseListener(this);
+     MouseMotionListener mouseMotionListener = new MouseMotionListener(this, mainMenu, nextMainMenu, setting);
+//     Khai báo lớp Classroom01 vào GamePanel
 
     // Classroom01 tileM = new Classroom01(this);
     // Classroom02 tileM2 = new Classroom02(this);
@@ -60,13 +60,13 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-        // this.Mouse();
+        this.Mouse();
     }
 
-    // public void Mouse() {
-    //     this.addMouseMotionListener(mouseMotionListener);
-    //     this.addMouseListener(mouseListener);
-    // }
+     public void Mouse() {
+         this.addMouseMotionListener(mouseMotionListener);
+         this.addMouseListener(mouseListener);
+     }
 
 
     public void startGameThread() {
@@ -108,16 +108,16 @@ public class GamePanel extends JPanel implements Runnable{
     //=================================================================================================================
     public void update() {
         player.update();
-        // if (Main.Gametime == "MainMenu")
-        // {
-        //     mainMenu.update();
-        // }
-        // else if (Main.Gametime == "NextMainMenu")
-        // {
-        //     nextMainMenu.update();
-        // } else if (Main.Gametime == "Setting") {
-        //     setting.update();
-        // }
+         if (Main.Gametime == "MainMenu")
+         {
+             mainMenu.update();
+         }
+         else if (Main.Gametime == "NextMainMenu")
+         {
+             nextMainMenu.update();
+         } else if (Main.Gametime == "Setting") {
+             setting.update();
+         }
     }
     //=================================================================================================================
 
@@ -127,22 +127,22 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
-        tileManager.draw(g2);
+//        tileManager.draw(g2);
         //tileM.draw(g2);
         //tileM2.draw(g2);
        // tileM3.draw(g2);
         // tileM4.draw(g2);
 
-        player.draw(g2);
-        // if (Main.Gametime == "MainMenu")
-        // {
-        //     mainMenu.draw(g2);
-        // }
-        // else if (Main.Gametime == "NextMainMenu")
-        // {
-        //     nextMainMenu.draw(g2);
-        // }else if (Main.Gametime == "Setting")
-        //     setting.draw(g2);
+         player.draw(g2);
+         if (Main.Gametime == "MainMenu")
+         {
+             mainMenu.draw(g2);
+         }
+         else if (Main.Gametime == "NextMainMenu")
+         {
+             nextMainMenu.draw(g2);
+         }else if (Main.Gametime == "Setting")
+             setting.draw(g2);
 
         g2.dispose();
     }
