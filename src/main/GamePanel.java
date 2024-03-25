@@ -44,10 +44,10 @@ public class GamePanel extends JPanel implements Runnable{
     // MouseMotionListener mouseMotionListener = new MouseMotionListener(this, mainMenu, nextMainMenu);
     // Khai báo lớp Classroom01 vào GamePanel
 
-    // Classroom01 tileM = new Classroom01(this);
-    // Classroom02 tileM2 = new Classroom02(this);
-    // Thu_vien tileM3 = new Thu_vien(this);
-    // Svd tileM4 = new Svd(this);
+     Classroom01 classroom01 = new Classroom01(this);
+     Classroom02 classroom02 = new Classroom02(this);
+     Thu_vien thuVien = new Thu_vien(this);
+     Svd svd = new Svd(this);
     public CollisionChecker checkCollision = new CollisionChecker(this);
     public Player player = new Player(this, keyH);
 
@@ -127,11 +127,11 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
-        tileManager.draw(g2);
-        //tileM.draw(g2);
-        //tileM2.draw(g2);
-       // tileM3.draw(g2);
-        // tileM4.draw(g2);
+        //tileManager.draw(g2);
+        //classroom01.draw(g2);
+         //classroom02.draw(g2);
+        //thuVien.draw(g2);
+         svd.draw(g2);
 
         player.draw(g2);
         // if (Main.Gametime == "MainMenu")
