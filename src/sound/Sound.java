@@ -17,6 +17,7 @@ public class Sound {
     String url_str;
     URL soundURL;
     FloatControl floatControl;
+    boolean runned = false;
 
     public Sound() {
 
@@ -80,6 +81,18 @@ public class Sound {
     public void stop() {
         if (this.clip != null) {
             clip.stop();
+            clip.close();
         }
+    }
+
+    public boolean checkStop() {
+        if(this.clip != null) {
+            if(this.clip.isRunning())   this.runned = true;
+            if(this.runned && !this.clip.isRunning()) {
+                clip.close();
+                return true;
+            }
+        }
+        return false;
     }
 }

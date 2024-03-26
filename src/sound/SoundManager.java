@@ -3,7 +3,6 @@
  * soundManager.loopSound("piano_music");
  */
 
-
 package sound;
 
 import java.util.ArrayList;
@@ -25,11 +24,11 @@ public class SoundManager {
         sounds.add(sound);
     }
 
-    public void removeSound(Sound sound) {
+    public void removeSound(Sound sound) { //cam thang nao dung`, thang nao muon dung` ham` nay phai hoi t truoc
         sounds.remove(sound);
     }
 
-    public void playSound(String name) { //Phat am thanh 1 lan
+    public void playSound(String name) { // Phat am thanh 1 lan
         for (Sound s : sounds) {
             if (s.soundName.equals(name)) {
                 String url = s.getUrl_str();
@@ -71,15 +70,31 @@ public class SoundManager {
         for (int i = 0; i < currRunningSounds.size(); i++) {
             Sound s = currRunningSounds.get(i);
             s.stop();
-                deleted_sound.add(s);
+            deleted_sound.add(s);
         }
         for (Sound s : deleted_sound) {
             currRunningSounds.remove(s);
         }
     }
 
-    // 0.0 -> 1.0
+    public void update() {
+        ArrayList<Sound> deleted_sound = new ArrayList<Sound>();
+        for (int i = 0; i < currRunningSounds.size(); i++) {
+            Sound s = currRunningSounds.get(i);
+            if (s.checkStop()) {
+                // System.out.println(s.clip.isRunning());
+                // System.out.println(s.getSoundName());
+                // System.out.println("da xoa!!!");
+                deleted_sound.add(s);
+            }
+        }
+        for (Sound s : deleted_sound) {
+            currRunningSounds.remove(s);
+        }
+    }
 
+
+    // 0.0 -> 1.0
     public void volumeUp() {
         currVolume += 1.0f;
         if (currVolume > 6.0f)

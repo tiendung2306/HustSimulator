@@ -13,6 +13,10 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import Keyboard.KeyboardManager;
+import java.awt.event.KeyEvent;
+
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -36,10 +40,14 @@ public class GamePanel extends JPanel implements Runnable{
     public final int mapWidth = tileSize * maxMapCol;
     public final int mapHeight = tileSize * maxMapRow;
 
-    TileManager tileManager = new TileManager(this);
+    public TileManager tileManager = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
+    public CollisionPlayer collisionPlayer = new CollisionPlayer(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
+
+    KeyboardManager keyboardManager = new KeyboardManager();
+
     // Main_Menu mainMenu = new Main_Menu();
     // NextMainMenu nextMainMenu = new NextMainMenu();
     // Setting setting = new Setting();
@@ -47,12 +55,12 @@ public class GamePanel extends JPanel implements Runnable{
     // MouseMotionListener mouseMotionListener = new MouseMotionListener(this, mainMenu, nextMainMenu);
     // Khai báo lớp Classroom01 vào GamePanel
 
-    // Classroom01 tileM = new Classroom01(this);
+     Classroom01 tileM = new Classroom01(this);
     // Classroom02 tileM2 = new Classroom02(this);
     // Thu_vien tileM3 = new Thu_vien(this);
     // Svd tileM4 = new Svd(this);
-    public CollisionChecker checkCollision = new CollisionChecker(this);
-    public Player player = new Player(this, keyH);
+    //public CollisionChecker checkCollision = new CollisionChecker(this);
+    public Player player = new Player(this, keyH, null);
 
     double FPS = 60;
 
@@ -76,13 +84,20 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread = new Thread(this);
         gameThread.start();
     }
-    
-    public void run(){
+
+    public void Init() {
+        keyboardManager.init();
+        
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
         // soundManager.loopSound("piano_music");
 
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
+    }
+    
+    public void run(){
+
+        Init();
         
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
@@ -111,6 +126,10 @@ public class GamePanel extends JPanel implements Runnable{
     //=================================================================================================================
     public void update() {
         player.update();
+
+        soundManager.update();
+        // System.out.println(soundManager.currRunningSounds);
+        
         // if (Main.Gametime == "MainMenu")
         // {
         //     mainMenu.update();
@@ -130,8 +149,8 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
-        tileManager.draw(g2);
-        //tileM.draw(g2);
+        //tileManager.draw(g2);
+        tileM.draw(g2);
         //tileM2.draw(g2);
        // tileM3.draw(g2);
         // tileM4.draw(g2);
