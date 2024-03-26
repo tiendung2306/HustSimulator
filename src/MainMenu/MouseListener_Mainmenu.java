@@ -1,12 +1,17 @@
-package main;
+package MainMenu;
+
+//import DeveloperTest.Thai;
+//import main.GamePanel;
+import main.GamePanel;
+import main.Main;
 
 import java.awt.event.MouseEvent;
 
-public class MouseListener implements java.awt.event.MouseListener {
+public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     GamePanel gamePanel;
     Main_Menu mainMenu = new Main_Menu();
     NextMainMenu nextMainMenu = new NextMainMenu();
-    public MouseListener(GamePanel gamePanel) {
+    public MouseListener_Mainmenu(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
@@ -16,33 +21,31 @@ public class MouseListener implements java.awt.event.MouseListener {
         int y_click = (int) e.getPoint().getY();
         System.out.println(x_click);
         System.out.println(y_click);
-        if (Main.Gametime == "MainMenu") {
-            if ((x_click > 340) && (y_click > 481) && (x_click < 420) && (y_click < 501)) {
+        if (Main.topGameState() == "MainMenu") {
+            if ((x_click > 340) && (y_click > 478) && (x_click < 420) && (y_click < 501)) {
                 System.exit(0);
             } else if ((x_click > 311) && (y_click > 425) && (x_click < 456) && (y_click < 464)) {
-                Main.Backtime = Main.Gametime;
-                Main.Gametime = "NextMainMenu";
+                Main.pushGameState("NextMainMenu");
             } else if ((x_click > 710) && (y_click > 13) && (x_click < 750) && (y_click < 53)) {
-                Main.Backtime = Main.Gametime;
-                Main.Gametime = "Setting";
+                Main.pushGameState("Setting");
             } else if ((x_click > 260) && (y_click > 299) && (x_click < 507) && (y_click < 337)) {
-                Main.Backtime = Main.Gametime;
-                Main.Gametime = "Tutorial";
+                Main.pushGameState("Tutorial");
             } else if ((x_click > 244) && (y_click > 237) && (x_click < 527) && (y_click < 276)) {
-                Main.Backtime = Main.Gametime;
-                Main.Gametime = "NewGame";
+                Main.pushGameState("NewGame");
             }
         }
-         else if (Main.Gametime == "NextMainMenu") {
-            if ((x_click > 710) && (y_click > 13) && (x_click < 750) && (y_click < 53))
-            {
-                Main.Backtime = Main.Gametime;
-                Main.Gametime = "Setting";
+         else if (Main.topGameState() == "NextMainMenu") {
+            if ((x_click > 710) && (y_click > 13) && (x_click < 750) && (y_click < 53)) {
+                Main.pushGameState("Setting");
             }
-
             else if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
             {
-                Main.Gametime = Main.Backtime;
+                Main.popGameState();
+            }
+        } else if (Main.topGameState() == "Setting") {
+            if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
+            {
+                Main.popGameState();
             }
         }
 
