@@ -10,6 +10,10 @@ import phong_hoc.Svd;
 import phong_hoc.Thu_vien;
 
 import javax.swing.*;
+
+import Keyboard.KeyboardManager;
+import java.awt.event.KeyEvent;
+
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -36,6 +40,8 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
 
     SoundManager soundManager = new SoundManager();
+
+    KeyboardManager keyboardManager = new KeyboardManager();
 
     // Main_Menu mainMenu = new Main_Menu();
     // NextMainMenu nextMainMenu = new NextMainMenu();
@@ -73,13 +79,21 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread = new Thread(this);
         gameThread.start();
     }
-    
-    public void run(){
+
+    public void Init() {
+        keyboardManager.init();
+        
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
         // soundManager.loopSound("piano_music");
 
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
+    }
+    
+    public void run(){
+
+        Init();
+        
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while(gameThread != null){
