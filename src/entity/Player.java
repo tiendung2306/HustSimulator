@@ -37,19 +37,17 @@ public class Player extends Entity{
         validArea.width = gamepanel.tileSize - validArea.y;
         validArea.height = gamepanel.tileSize - validArea.y;
 
-        getPlayerImage();
         setDefaultValues();
     }
 
+
     public void setDefaultValues() {
-        x = 600;
-        y = 300;
+        mapX = 600;
+        mapY = 300;
         speed = 4;
         direction = "stand_right";
         speedSlant = 3;
 
-        curr_animation_player = animation_player_stand_RIGHT;
-    }
 
         animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, validArea);
 
@@ -58,8 +56,9 @@ public class Player extends Entity{
         animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8, validArea);
         animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, validArea);
 
-    }
+        curr_animation_player = animation_player_stand_RIGHT;
 
+    }
     
     public void update(){
         int countPressed = 0;

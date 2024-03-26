@@ -10,8 +10,8 @@ import java.awt.*;
 
 
 public class Classroom01 extends Map {
-    GamePanel gp;
-    TileManager tileManager ;
+    GamePanel gp; 
+    TileManager tileManager;
 
     public Classroom01(GamePanel gp) {
         super();
@@ -19,7 +19,8 @@ public class Classroom01 extends Map {
         numTileContainer = 9;
         tileContainer_classroom01 = new Tile[50];
         //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
-        this.tileManager.getTileImage();
+        tileManager = new TileManager(gp);
+        this.tileManager.getTileImage(); 
         tileManager.loadMap("/txt/phong_hoc.txt");
     }
 
