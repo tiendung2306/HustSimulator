@@ -1,18 +1,18 @@
 package MainMenu;
 
-import DeveloperTest.Thai;
+//import DeveloperTest.Thai;
 import main.GamePanel;
 import main.Main;
 
 import java.awt.event.MouseEvent;
 
 public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionListener {
-    Thai thai;
+    GamePanel gamePanel;
     Main_Menu mainMenu;
     NextMainMenu nextMainMenu;
     Setting setting = new Setting();
-    public MouseMotionListener_Mainmenu(Thai thai, Main_Menu mainMenu, NextMainMenu nextMainMenu, Setting setting) {
-        this.thai = thai;
+    public MouseMotionListener_Mainmenu(GamePanel gamePanel, Main_Menu mainMenu, NextMainMenu nextMainMenu, Setting setting) {
+        this.gamePanel = gamePanel;
         this.mainMenu = mainMenu;
         this.nextMainMenu = nextMainMenu;
         this.setting = setting;

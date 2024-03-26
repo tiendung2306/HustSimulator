@@ -1,8 +1,6 @@
 package main;
 
-import DeveloperTest.Khai;
-import DeveloperTest.Son;
-import DeveloperTest.Thai;
+//import DeveloperTest.Thai;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,6 +13,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class Main{
+    public static int nguoncode;
     public static Stack<String> GameState = new Stack<>();
     public static void pushGameState(String a){
         GameState.push(a);
@@ -81,65 +80,25 @@ public class Main{
 
      public void actionPerformed(ActionEvent e) {
          if (this.buttonName == "Thai") {
-             JFrame window = new JFrame();
-             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             window.setResizable(false);
-             window.setTitle("2D Adventure");
-             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
-             Thai thai = new Thai();
-             window.add(thai);
-             window.pack();
-             window.setLocationRelativeTo(null);
-             window.setVisible(true);
-             thai.startGameThread();
+             Main.nguoncode = 1;
          } else if (this.buttonName == "Dung") {
-             JFrame window = new JFrame();
-             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             window.setResizable(false);
-             window.setTitle("2D Adventure");
-             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
-             Thai thai = new Thai();
-             window.add(thai);
-             window.pack();
-             window.setLocationRelativeTo(null);
-             window.setVisible(true);
-             thai.startGameThread();
+             Main.nguoncode = 2;
          } else if (this.buttonName == "Khai") {
-             JFrame window = new JFrame();
-             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             window.setResizable(false);
-             window.setTitle("2D Adventure");
-             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
-             Thai thai = new Thai();
-             window.add(thai);
-             window.pack();
-             window.setLocationRelativeTo(null);
-             window.setVisible(true);
-             thai.startGameThread();
+             Main.nguoncode = 3;
          } else if (this.buttonName == "Tuan") {
-             JFrame window = new JFrame();
-             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             window.setResizable(false);
-             window.setTitle("2D Adventure");
-             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
-             Thai thai = new Thai();
-             window.add(thai);
-             window.pack();
-             window.setLocationRelativeTo(null);
-             window.setVisible(true);
-             thai.startGameThread();
+             Main.nguoncode = 4;
          } else if (this.buttonName == "Son") {
-             JFrame window = new JFrame();
-             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             window.setResizable(false);
-             window.setTitle("2D Adventure");
-             window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
-             Thai thai = new Thai();
-             window.add(thai);
-             window.pack();
-             window.setLocationRelativeTo(null);
-             window.setVisible(true);
-             thai.startGameThread();
+             Main.nguoncode = 5;
          }
+         JFrame window = new JFrame();
+         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+         window.setResizable(false);
+         window.setTitle("2D Adventure");
+         window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
+         window.add(gamePanel);
+         window.pack();
+         window.setLocationRelativeTo(null);
+         window.setVisible(true);
+         gamePanel.startGameThread();
      }
  }

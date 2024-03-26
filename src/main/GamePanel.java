@@ -41,14 +41,13 @@ public class GamePanel extends JPanel implements Runnable{
      Main_Menu mainMenu = new Main_Menu();
      NextMainMenu nextMainMenu = new NextMainMenu();
      Setting setting = new Setting();
-     //MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
-     //MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting);
-//     Khai báo lớp Classroom01 vào GamePanel
-
-    // Classroom01 tileM = new Classroom01(this);
-    // Classroom02 tileM2 = new Classroom02(this);
-    // Thu_vien tileM3 = new Thu_vien(this);
-    // Svd tileM4 = new Svd(this);
+     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
+     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting);
+     //Khai báo lớp Classroom01 vào GamePanel
+     Classroom01 tileM = new Classroom01(this);
+     Classroom02 tileM2 = new Classroom02(this);
+     Thu_vien tileM3 = new Thu_vien(this);
+     Svd tileM4 = new Svd(this);
     public CollisionChecker checkCollision = new CollisionChecker(this);
     public Player player = new Player(this, keyH);
 
@@ -61,13 +60,13 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
- //       this.Mouse();
+        this.Mouse();
     }
 
-//     public void Mouse() {
-//         this.addMouseMotionListener(mouseMotionListenerMainmenu);
-//         this.addMouseListener(mouseListenerMainmenu);
-//     }
+     public void Mouse() {
+         this.addMouseMotionListener(mouseMotionListenerMainmenu);
+         this.addMouseListener(mouseListenerMainmenu);
+     }
 
 
     public void startGameThread() {
@@ -108,17 +107,21 @@ public class GamePanel extends JPanel implements Runnable{
 
     //=================================================================================================================
     public void update() {
-         player.update();
-         if (Main.topGameState() == "MainMenu")
+         //player.update();
+         if (Main.nguoncode == 1)
          {
-             mainMenu.update();
+             if (Main.topGameState() == "MainMenu")
+             {
+                 mainMenu.update();
+             }
+             else if (Main.topGameState() == "NextMainMenu")
+             {
+                 nextMainMenu.update();
+             } else if (Main.topGameState() == "Setting") {
+                 setting.update();
+             }
          }
-         else if (Main.topGameState() == "NextMainMenu")
-         {
-             nextMainMenu.update();
-         } else if (Main.topGameState() == "Setting") {
-             setting.update();
-         }
+
     }
     //=================================================================================================================
 
@@ -134,16 +137,20 @@ public class GamePanel extends JPanel implements Runnable{
         //tileM3.draw(g2);
         //tileM4.draw(g2);
 
-         player.draw(g2);
-         if (Main.topGameState() == "MainMenu")
+         //player.draw(g2);
+         if (Main.nguoncode == 1)
          {
-             mainMenu.draw(g2);
+             if (Main.topGameState() == "MainMenu")
+             {
+                 mainMenu.draw(g2);
+             }
+             else if (Main.topGameState() == "NextMainMenu")
+             {
+                 nextMainMenu.draw(g2);
+             }else if (Main.topGameState() == "Setting")
+                 setting.draw(g2);
          }
-         else if (Main.topGameState() == "NextMainMenu")
-         {
-             nextMainMenu.draw(g2);
-         }else if (Main.topGameState() == "Setting")
-             setting.draw(g2);
+
 
         g2.dispose();
     }

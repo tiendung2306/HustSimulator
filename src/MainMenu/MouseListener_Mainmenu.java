@@ -1,17 +1,18 @@
 package MainMenu;
 
-import DeveloperTest.Thai;
+//import DeveloperTest.Thai;
 //import main.GamePanel;
+import main.GamePanel;
 import main.Main;
 
 import java.awt.event.MouseEvent;
 
 public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
-    Thai thai;
+    GamePanel gamePanel;
     Main_Menu mainMenu = new Main_Menu();
     NextMainMenu nextMainMenu = new NextMainMenu();
-    public MouseListener_Mainmenu(Thai thai) {
-        this.thai = thai;
+    public MouseListener_Mainmenu(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
     }
 
     @Override
