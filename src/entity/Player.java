@@ -18,12 +18,17 @@ public class Player extends Entity{
     KeyHandler keyhandler;
     public int screenX, screenY;
 
+    public Animation_player animation_player_stand_RIGHT;
+
+
     public Animation_player animation_player_UP ;
     public Animation_player animation_player_DOWN;
     public Animation_player animation_player_RIGHT;
     public Animation_player animation_player_LEFT;
 
     public Animation_player curr_animation_player;
+
+    // public String state; 
 
 
     public Player(GamePanel gamepanel, KeyHandler keyhandler){
@@ -48,39 +53,18 @@ public class Player extends Entity{
         mapX = 500;
         mapY = 500;
         speed = 4;
-        direction = "right";
-        curr_animation_player = animation_player_RIGHT;
+        direction = "stand_right";
+        curr_animation_player = animation_player_stand_RIGHT;
     }
     public void getPlayerImage(){
 
-        // animation_player_UP ;
+        animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, validArea);
+
+        animation_player_UP = new Animation_player(gamepanel, "res/player/character_move_up ", 4, 0.8, validArea);
         animation_player_DOWN = new Animation_player(gamepanel, "res/player/character_move_down ", 4, 0.8, validArea);
         animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8, validArea);
-        // animation_player_LEFT;
+        animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, validArea);
 
-        // try{
-            
-        //     stand_up = ImageIO.read(new FileInputStream("res/player/boy_up_1.png"));
-        //     up1 = ImageIO.read(new FileInputStream("res/player/boy_up_1.png"));
-        //     up2 = ImageIO.read(new FileInputStream("res/player/boy_up_2.png"));
-        //     up3 = ImageIO.read(new FileInputStream("res/player/boy_up_2.png"));
-
-        //     down1 = ImageIO.read(new FileInputStream("res/player/boy_down_1.png"));
-        //     down2 = ImageIO.read(new FileInputStream("res/player/boy_down_2.png"));
-        //     down3 = ImageIO.read(new FileInputStream("res/player/boy_down_2.png"));
-
-        //     left1 = ImageIO.read(new FileInputStream("res/player/boy_left_1.png"));
-        //     left2 = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
-        //     left3 = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
-
-        //     right1 = ImageIO.read(new FileInputStream("res/player/boy_right_1.png"));
-        //     right2 = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
-        //     right3 = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
-
-
-        // } catch(IOException e){
-        //     e.printStackTrace();
-        // }
     }
     public void update(){
         if (keyhandler.upPressed || keyhandler.downPressed || keyhandler.leftPressed || keyhandler.rightPressed) {
@@ -104,57 +88,21 @@ public class Player extends Entity{
                     case "up": curr_animation_player = animation_player_UP; break;
                     case "down": curr_animation_player = animation_player_DOWN; break;
                     case "left": curr_animation_player = animation_player_LEFT; break;
-                    case "right": curr_animation_player = animation_player_RIGHT; break;
-                }
-                stepCounter++;
-                if (stepCounter > 8){
-                    stepNum = 3 - stepNum;
-                    stepCounter = 0;
+                    case "right": 
+                        curr_animation_player = animation_player_RIGHT;
+                        break;
+
+                    case "stand_right": 
+                        curr_animation_player = animation_player_stand_RIGHT; 
+                        break;
+
                 }
             }
         }
 
     }
-    public void draw(Graphics2D g2){
+    public void draw(Graphics g2){
         curr_animation_player.operation(g2);
 
-        // BufferedImage image = null;
-        // switch (direction) {
-        //     case "up":
-        //         if (stepNum == 1){
-        //             image = up1;
-        //         }
-        //         if (stepNum == 2){
-        //             image = up2;
-        //         }
-        //         break;
-        //     case "down":
-        //         if (stepNum == 1){
-        //             image = down1;
-        //         }
-        //         if (stepNum == 2){
-        //             image = down2;
-        //         }
-        //         break;
-        //     case "left":
-        //         if (stepNum == 1){
-        //             image = left1;
-        //         }
-        //         if (stepNum == 2){
-        //             image = left2;
-        //         }
-        //         break;
-        //     case "right":
-        //         if (stepNum == 1){
-        //             image = right1;
-        //         }
-        //         if (stepNum == 2){
-        //             image = right2;
-        //         }
-        //         break;
-        // }
-        // int posX = screenX;
-        // int posY = screenY;
-        // g2.drawImage(image, posX, posY, gamepanel.tileSize, gamepanel.tileSize, null);
     }
 }

@@ -8,9 +8,14 @@ import phong_hoc.Classroom01;
 import phong_hoc.Classroom02;
 import phong_hoc.Svd;
 import phong_hoc.Thu_vien;
+import java.awt.image.BufferedImage;
 
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -35,7 +40,6 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
-
     // Main_Menu mainMenu = new Main_Menu();
     // NextMainMenu nextMainMenu = new NextMainMenu();
     // Setting setting = new Setting();
@@ -143,6 +147,9 @@ public class GamePanel extends JPanel implements Runnable{
         // }else if (Main.Gametime == "Setting")
         //     setting.draw(g2);
 
+        
+        
+        
         g2.dispose();
     }
 }
