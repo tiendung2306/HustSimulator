@@ -4,9 +4,14 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
     public BufferedImage image;
-    int LeftX, RightX, BottomY, TopY;
+    int LeftX;
+    int RightX;
+    int BottomY;
+    int TopY;
     int speed;
     String direction;
+
+
     public int getLeftX() {
         return LeftX;
     }
@@ -38,4 +43,5 @@ public class Tile {
     public void setTopY(int topY) {
         TopY = topY;
     }
+
 }

@@ -1,78 +1,78 @@
 package phong_hoc;
 
 import main.GamePanel;
-import tile.Tile;
+import map.Map;
 import tile.TileManager;
+import tile.Tile;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
-public class Classroom01 extends JPanel {
+
+public class Classroom01 extends Map {
     GamePanel gp;
-    TileManager tileManager;
-    Tile[] tile;
-    int[][] mapTileNum;
+    TileManager tileManager ;
+
     public Classroom01(GamePanel gp) {
+        super();
         this.gp = gp;
-        tileManager = new TileManager(gp);
-        this.tile = tileManager.tile;
-        this.tileManager.loadMap("src/phong_hoc/phong_hoc.txt");
-        this.mapTileNum = tileManager.typeTile;
+        numTileContainer = 9;
+        tileContainer_classroom01 = new Tile[50];
+        //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+        this.tileManager.getTileImage();
+        tileManager.loadMap("/txt/phong_hoc.txt");
     }
 
 
-    //int[][] mapTileNum = tileManager.typeTile;
 
-    //Phương thức đọc dữ liệu trong file.txt
-
-    // Phương thức vẽ map
     public void draw(Graphics2D g2) {
-        int mapCol = 0, mapRow = 0;
+        int col = 0;
+        int row = 0;
+        int x = 0;
+        int y = 0;
 
-        while (mapCol < gp.maxMapCol && mapRow < gp.maxMapRow) {
-
-            int mapX = mapCol * gp.tileSize;
-            int mapY = mapRow * gp.tileSize;
-
-            int screenX = mapX - gp.player.getMapX() + gp.player.screenX;
-            int screenY = mapY - gp.player.getMapY() + gp.player.screenY;
-            if     (mapX + gp.tileSize > gp.player.getMapX() - gp.player.screenX &&
-                    mapX - gp.tileSize < gp.player.getMapX() + gp.player.screenX &&
-                    mapY + gp.tileSize > gp.player.getMapY() - gp.player.screenY &&
-                    mapY - gp.tileSize < gp.player.getMapY() + gp.player.screenY) {
-                g2.drawImage(tile[mapTileNum[mapCol][mapRow]].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-
-            }
-
-            ++mapCol;
-            if (mapCol == gp.maxMapCol) {
-                mapCol = 0;
-                ++mapRow;
+        while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
+            int tileNum = tileManager.typeTile[col][row];
+            //Lệnh để vẽ 1 ô
+            g2.drawImage(tileManager.tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            col++;
+            x += gp.tileSize;
+            if (col == gp.maxScreenCol) {
+                col = 0;
+                x = 0;
+                row++;
+                y += gp.tileSize;
             }
         }
-//        g2.drawImage(tileManager.tile[4].image,25* gp.scale,4*gp.scale,50*gp.scale,16*gp.scale,null);
-//        g2.drawImage(tileManager.tile[4].image,98*gp.scale,4*gp.scale,50*gp.scale, 16*gp.scale,null);
-//        g2.drawImage(tileManager.tile[4].image,174*gp.scale,4*gp.scale,50*gp.scale, 16*gp.scale,null);
-//        g2.drawImage(tileManager.tile[9].image,0,77*gp.scale,256*gp.scale, 3*gp.scale,null);
-//        g2.drawImage(tileManager.tile[6].image,16*gp.scale,29*gp.scale,41*gp.scale, 51*gp.scale,null);
-//        g2.drawImage(tileManager.tile[6].image,204*gp.scale,29*gp.scale,41*gp.scale, 51*gp.scale,null);
-//        g2.drawImage(tileManager.tile[7].image,25*gp.scale,87*gp.scale,16*gp.scale, 42*gp.scale,null);
-//      g2.drawImage(tileManager.tile[7].image,60*gp.scale,87*gp.scale,16*gp.scale, 42*gp.scale,null);
-//        g2.drawImage(tileManager.tile[7].image,95*gp.scale,87*gp.scale,16*gp.scale, 42*gp.scale,null);4
 
-//        g2.drawImage(tileManager.tile[7].image,130*gp.scale,87*gp.scale,16*gp.scale, 42*gp.scale,null);
-//        g2.drawImage(tileManager.tile[7].image,165*gp.scale,87*gp.scale,16*gp.scale, 42*gp.scale,null);
-//        g2.drawImage(tileManager.tile[7].image,25*gp.scale,151*gp.scale,16*gp.scale, 42*gp.scale,null);
-//        g2.drawImage(tileManager.tile[7].image,60*gp.scale,151*gp.scale,16*gp.scale, 42*gp.scale,null);
-//        g2.drawImage(tileManager.tile[7].image,95*gp.scale,151*gp.scale,16*gp.scale, 42*gp.scale,null);
-//        g2.drawImage(tileManager.tile[7].image,130*gp.scale,151*gp.scale,16*gp.scale, 42*gp.scale,null);
-//        g2.drawImage(tileManager.tile[7].image,165*gp.scale,151*gp.scale,16*gp.scale, 42*gp.scale,null);
-//        g2.drawImage(tileManager.tile[8].image,210*gp.scale,134*gp.scale,24*gp.scale, 58*gp.scale,null);
-//        g2.drawImage(tileManager.tile[5].image,83*gp.scale,26*gp.scale,38*gp.scale, 40*gp.scale,null);
-//        g2.drawImage(tileManager.tile[5].image,140*gp.scale,26*gp.scale,38*gp.scale, 40*gp.scale,null);
-
+        g2.drawImage(tileManager.tile[2].image,25* gp.scale,4*gp.scale,50*gp.scale,16*gp.scale,null);
+        g2.drawImage(tileManager.tile[2].image,98*gp.scale,4*gp.scale,50*gp.scale, 16*gp.scale,null);
+        g2.drawImage(tileManager.tile[2].image,174*gp.scale,4*gp.scale,50*gp.scale, 16*gp.scale,null);
+        g2.drawImage(tileManager.tile[6].image,0,77*gp.scale,256*gp.scale, 3*gp.scale,null);
+        g2.drawImage(tileManager.tile[39].image,16*gp.scale,29*gp.scale,41*gp.scale, 51*gp.scale,null);
+        g2.drawImage(tileManager.tile[39].image,204*gp.scale,29*gp.scale,41*gp.scale, 51*gp.scale,null);
+        g2.drawImage(tileManager.tile[5].image,209*gp.scale,130*gp.scale,26*gp.scale, 62*gp.scale,null);
+        g2.drawImage(tileManager.tile[3].image,83*gp.scale,26*gp.scale,38*gp.scale, 40*gp.scale,null);
+        g2.drawImage(tileManager.tile[3].image,140*gp.scale,26*gp.scale,38*gp.scale, 40*gp.scale,null);
+        int dem=0;
+        int x_ban=32,y_ban=96;
+        while(true) {
+            dem++;
+            if(dem<=5) {
+                g2.drawImage(tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale, null);
+                x_ban += 32;
+            }
+            if(dem == 5) {
+                x_ban=x_ban-32;
+            }
+            if(dem>5) {
+                y_ban=160;
+                g2.drawImage(tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale, null);
+                x_ban -= 32;
+            }
+            if(dem==10) {
+                break;
+            }
+        }
     }
 }

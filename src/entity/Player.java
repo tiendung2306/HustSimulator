@@ -1,3 +1,4 @@
+
 package entity;
 import main.GamePanel;
 import main.KeyHandler;
@@ -39,17 +40,16 @@ public class Player extends Entity{
         getPlayerImage();
         setDefaultValues();
     }
-    public void setDefaultValues(){
 
-        mapX = 500;
-        mapY = 500;
+    public void setDefaultValues() {
+        x = 600;
+        y = 300;
         speed = 4;
         direction = "stand_right";
         speedSlant = 3;
 
         curr_animation_player = animation_player_stand_RIGHT;
     }
-    public void getPlayerImage(){
 
         animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, validArea);
 
@@ -141,9 +141,9 @@ public class Player extends Entity{
                 }
             }
         }
-
     }
     public void draw(Graphics g2){
         curr_animation_player.operation(g2);
     }
 }
+
