@@ -1,16 +1,20 @@
 package phong_hoc;
 
 import main.GamePanel;
+import map.Map;
+import tile.Tile;
 import tile.TileManager;
 
 import java.awt.*;
 
-public class Svd {
+public class Svd extends Map {
     GamePanel gp;
     TileManager tileManager ;
     public Svd(GamePanel gp) {
         this.gp=gp;
         tileManager = new TileManager(gp);
+        numTileContainer = 12;
+        tileContainer_svd = new Tile[50];
         //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         this.tileManager.getTileImage();
     }

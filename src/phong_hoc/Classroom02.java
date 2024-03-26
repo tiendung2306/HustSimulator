@@ -1,17 +1,21 @@
 package phong_hoc;
 
 import main.GamePanel;
+import map.Map;
+import tile.Tile;
 import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Classroom02 extends JPanel {
+public class Classroom02 extends Map {
     GamePanel gp;
     TileManager tileManager ;
     public Classroom02(GamePanel gp) {
         this.gp=gp;
         tileManager = new TileManager(gp);
+        numTileContainer = 10;
+        tileContainer_classroom02 = new Tile[50];
         //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         this.tileManager.getTileImage();
         tileManager.loadMap("/txt/phong_hoc.txt");
