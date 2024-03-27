@@ -35,7 +35,11 @@ public class Main{
         window.setPreferredSize(new Dimension(500, 500));
         window.setBackground(Color.black);
         window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
+        System.out.println("1");
+
         GamePanel gamePanel = new GamePanel();
+        System.out.println("2");
+
          JButton button1 = new JButton("Thai");
          window.add(button1);
          button1.addActionListener(new ButtonClicked(button1.getText(), gamePanel));
@@ -55,6 +59,7 @@ public class Main{
          JButton button5 = new JButton("Son");
          window.add(button5);
          button5.addActionListener(new ButtonClicked(button5.getText(), gamePanel));
+         System.out.println("3");
 
 
         // window.add(gamePanel);
@@ -66,6 +71,7 @@ public class Main{
         // window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+
         //gamePanel.startGameThread();
     }
 
@@ -74,7 +80,7 @@ public class Main{
  class ButtonClicked implements ActionListener {
 
      String buttonName = "";
-     GamePanel gamePanel = new GamePanel();
+     GamePanel gamePanel;
 
      public ButtonClicked(String buttonName, GamePanel gamePanel) {
          this.buttonName = buttonName;
