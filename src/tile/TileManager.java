@@ -3,6 +3,7 @@ package tile;
 import main.GamePanel;
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.PublicKey;
@@ -171,30 +172,14 @@ public class TileManager {
             e.printStackTrace();
         }
     }
-//    public void draw(Graphics2D g2) {
-//
-//        int mapCol = 0, mapRow = 0;
-//
-//        while (mapCol < gp.maxMapCol && mapRow < gp.maxMapRow) {
-//
-//            int mapX = mapCol * gp.tileSize;
-//            int mapY = mapRow * gp.tileSize;
-//
-//            int screenX = mapX - gp.player.mapX + gp.player.screenX;
-//            int screenY = mapY - gp.player.mapY + gp.player.screenY;
-//            if     (mapX + gp.tileSize > gp.player.mapX - gp.player.screenX &&
-//                    mapX - gp.tileSize < gp.player.mapX + gp.player.screenX &&
-//                    mapY + gp.tileSize > gp.player.mapY - gp.player.screenY &&
-//                    mapY - gp.tileSize < gp.player.mapY + gp.player.screenY) {
-//                g2.drawImage(tile[typeTile[mapCol][mapRow]].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-//
-//            }
-//
-//            ++mapCol;
-//            if (mapCol == gp.maxMapCol) {
-//                mapCol = 0;
-//                ++mapRow;
-//            }
-//        }
-//    }
+    public void draw(Graphics2D g2, BufferedImage image, int mapX, int mapY, int width, int height) {
+            int screenX = mapX - gp.player.getMapX() + gp.player.screenX;
+            int screenY = mapY - gp.player.getMapY() + gp.player.screenY;
+            if     (mapX + gp.player.getBoundingBoxX() > gp.player.getMapX() - gp.player.screenX &&
+                    mapX - gp.player.getBoundingBoxX() < gp.player.getMapX() + gp.player.screenX &&
+                    mapY + gp.player.getBoundingBoxY() > gp.player.getMapY() - gp.player.screenY &&
+                    mapY - gp.player.getBoundingBoxY() < gp.player.getMapY() + gp.player.screenY) {
+                g2.drawImage(image, screenX, screenY, width, height, null);
+            }
+        }
 }
