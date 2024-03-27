@@ -14,8 +14,8 @@ public class Svd extends Map {
         this.gp=gp;
         tileManager = new TileManager(gp);
         numTileContainer = 12;
-        tileContainer_svd = new Tile[50];
-        //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+        mapIndex = 4;
+        tileContainer = new Tile[50][50];
         this.tileManager.getTileImage();
     }
 

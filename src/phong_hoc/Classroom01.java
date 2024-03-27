@@ -4,22 +4,25 @@ import main.GamePanel;
 import map.Map;
 import tile.TileManager;
 import tile.Tile;
+import tile.tileClassroom01.TileTable01;
 
-import javax.swing.*;
 import java.awt.*;
 
 
 public class Classroom01 extends Map {
     GamePanel gp; 
     TileManager tileManager;
+    TileTable01 tileTable01;
 
     public Classroom01(GamePanel gp) {
         super();
         this.gp = gp;
         numTileContainer = 9;
-        tileContainer_classroom01 = new Tile[50];
-        //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+        mapIndex = 1;
+        tileContainer = new Tile[50][50];
         tileManager = new TileManager(gp);
+        tileTable01 = new TileTable01(gp,32,96);
+
         this.tileManager.getTileImage(); 
         tileManager.loadMap("/txt/phong_hoc.txt");
     }
@@ -55,25 +58,41 @@ public class Classroom01 extends Map {
         g2.drawImage(tileManager.tile[5].image,209*gp.scale,130*gp.scale,26*gp.scale, 62*gp.scale,null);
         g2.drawImage(tileManager.tile[3].image,83*gp.scale,26*gp.scale,38*gp.scale, 40*gp.scale,null);
         g2.drawImage(tileManager.tile[3].image,140*gp.scale,26*gp.scale,38*gp.scale, 40*gp.scale,null);
-        int dem=0;
-        int x_ban=32,y_ban=96;
-        while(true) {
-            dem++;
-            if(dem<=5) {
-                g2.drawImage(tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale, null);
-                x_ban += 32;
-            }
-            if(dem == 5) {
-                x_ban=x_ban-32;
-            }
-            if(dem>5) {
-                y_ban=160;
-                g2.drawImage(tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale, null);
-                x_ban -= 32;
-            }
-            if(dem==10) {
-                break;
-            }
-        }
+        tileTable01.draw(g2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        int dem=0;
+//        int x_ban=32,y_ban=96;
+//        while(true) {
+//            dem++;
+//            if(dem<=5) {
+//                g2.drawImage(tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale, null);
+//                x_ban += 32;
+//            }
+//            if(dem == 5) {
+//                x_ban=x_ban-32;
+//            }
+//            if(dem>5) {
+//                y_ban=160;
+//                g2.drawImage(tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale, null);
+//                x_ban -= 32;
+//            }
+//            if(dem==10) {
+//                break;
+//            }
+//        }
     }
 }

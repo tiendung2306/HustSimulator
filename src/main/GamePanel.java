@@ -53,10 +53,10 @@ public class GamePanel extends JPanel implements Runnable{
      MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
      MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting);
      //Khai báo lớp Classroom01 vào GamePanel
-     Classroom01 tileM = new Classroom01(this);
-     Classroom02 tileM2 = new Classroom02(this);
-     Thu_vien tileM3 = new Thu_vien(this);
-     Svd tileM4 = new Svd(this);
+     Classroom01 classroom01 = new Classroom01(this);
+     Classroom02 classroom02 = new Classroom02(this);
+     Thu_vien thuVien = new Thu_vien(this);
+     Svd svd = new Svd(this);
     public Player player = new Player(this, keyH, null); 
     KeyboardManager keyboardManager = new KeyboardManager();
 
@@ -146,13 +146,6 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
-        //tileManager.draw(g2);
-        //tileM.draw(g2);
-        //tileM2.draw(g2);
-        //tileM3.draw(g2);
-        //tileM4.draw(g2);
-
-         //player.draw(g2);
          if (Main.nguoncode == 1)
          {
              if (Main.topGameState() == "MainMenu")
@@ -165,6 +158,12 @@ public class GamePanel extends JPanel implements Runnable{
              }else if (Main.topGameState() == "Setting")
                  setting.draw(g2);
          }
+        if (Main.nguoncode == 5)
+        {
+            classroom01.draw(g2);
+            player.draw(g2);
+
+        }
 
 
         

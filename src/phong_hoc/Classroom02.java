@@ -15,8 +15,8 @@ public class Classroom02 extends Map {
         this.gp=gp;
         tileManager = new TileManager(gp);
         numTileContainer = 10;
-        tileContainer_classroom02 = new Tile[50];
-        //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+        mapIndex = 2;
+        tileContainer = new Tile[50][50];
         this.tileManager.getTileImage();
         tileManager.loadMap("/txt/phong_hoc.txt");
     }
