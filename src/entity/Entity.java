@@ -10,8 +10,6 @@ public class Entity {
     int speedSlant;
     BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, standstill, upright1, upright2, upleft1, upleft2, downleft1, downleft2, downright1, downright2;
     String direction;
-    int stepCounter = 0;
-    int stepNum = 1;
     boolean collisionOn = false;
     public int getMapX() {
         return mapX;
@@ -54,4 +52,5 @@ public class Entity {
     }
 
     Rectangle validArea;
+    Rectangle boundingBox;
 }

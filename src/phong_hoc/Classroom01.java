@@ -17,7 +17,7 @@ public class Classroom01 extends Map {
         super();
         this.gp = gp;
         numTileContainer = 9;
-        tileContainer_classroom01 = new Tile[50];
+        tileContainer = new Tile[50];
         //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         tileManager = new TileManager(gp);
         this.tileManager.getTileImage(); 
@@ -29,24 +29,30 @@ public class Classroom01 extends Map {
     public void draw(Graphics2D g2) {
         int col = 0;
         int row = 0;
-        int x = 0;
-        int y = 0;
+        int mapX = 0;
+        int mapY = 0;
 
-        while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
+        while (col < gp.maxMapCol && row < gp.maxMapRow) {
             int tileNum = tileManager.typeTile[col][row];
             //Lệnh để vẽ 1 ô
-            g2.drawImage(tileManager.tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            int screenX = mapX - gp.player.getMapX() + gp.player.screenX;
+            int screenY = mapY - gp.player.getMapY() + gp.player.screenY;
+            g2.drawImage(tileManager.tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             col++;
-            x += gp.tileSize;
+            mapX += gp.tileSize;
             if (col == gp.maxScreenCol) {
                 col = 0;
-                x = 0;
+                mapX = 0;
                 row++;
-                y += gp.tileSize;
+                mapY += gp.tileSize;
             }
         }
-
-        g2.drawImage(tileManager.tile[2].image,25* gp.scale,4*gp.scale,50*gp.scale,16*gp.scale,null);
+        //int screenX = mapX - gp.player.getMapX() + gp.player.screenX;
+        //int screenY = mapY - gp.player.getMapY() + gp.player.screenY;
+        //System.out.println(screenX);
+        //System.out.println(screenY);
+        //g2.drawImage(tileManager.tile[6].image, screenX, screenY, 4 * gp.scale, 50 * gp.scale, null);
+        /*g2.drawImage(tileManager.tile[2].image,25* gp.scale,4*gp.scale,50*gp.scale,16*gp.scale,null);
         g2.drawImage(tileManager.tile[2].image,98*gp.scale,4*gp.scale,50*gp.scale, 16*gp.scale,null);
         g2.drawImage(tileManager.tile[2].image,174*gp.scale,4*gp.scale,50*gp.scale, 16*gp.scale,null);
         g2.drawImage(tileManager.tile[6].image,0,77*gp.scale,256*gp.scale, 3*gp.scale,null);
@@ -74,6 +80,6 @@ public class Classroom01 extends Map {
             if(dem==10) {
                 break;
             }
-        }
+        }*/
     }
 }

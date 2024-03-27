@@ -28,14 +28,18 @@ public class Player extends Entity{
         this.gamepanel = gamepanel;
         this.keyhandler = keyhandler;
 
-        screenX = gamepanel.screenWidth/2 - gamepanel.tileSize/2;
-        screenY = gamepanel.screenHeight/2 - gamepanel.tileSize/2;
-
         validArea = new Rectangle();
+        boundingBox = new Rectangle();
         validArea.x = gamepanel.tileSize / 6;
         validArea.y = gamepanel.tileSize / 3;
         validArea.width = gamepanel.tileSize - validArea.y;
         validArea.height = gamepanel.tileSize - validArea.y;
+        boundingBox.width = gamepanel.tileSize * 3;
+        boundingBox.height = gamepanel.tileSize * 3;
+        screenX = gamepanel.screenWidth/2 - boundingBox.width/2;
+        screenY = gamepanel.screenHeight/2 - boundingBox.height/2;
+        boundingBox.x = screenX;
+        boundingBox.y = screenY;
 
         setDefaultValues();
     }
@@ -49,12 +53,12 @@ public class Player extends Entity{
         speedSlant = 3;
 
 
-        animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, validArea);
+        animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, boundingBox);
 
-        animation_player_UP = new Animation_player(gamepanel, "res/player/character_move_up ", 4, 0.8, validArea);
-        animation_player_DOWN = new Animation_player(gamepanel, "res/player/character_move_down ", 4, 0.8, validArea);
-        animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8, validArea);
-        animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, validArea);
+        animation_player_UP = new Animation_player(gamepanel, "res/player/character_move_up ", 4, 0.8, boundingBox);
+        animation_player_DOWN = new Animation_player(gamepanel, "res/player/character_move_down ", 4, 0.8, boundingBox);
+        animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8, boundingBox);
+        animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, boundingBox);
 
         curr_animation_player = animation_player_stand_RIGHT;
 
@@ -119,26 +123,30 @@ public class Player extends Entity{
                 }
             }
             //gp.collisionPlayer.findTile(this, map);
-            if (true){
+            if (false) {
                 switch (direction) {
                     case "up":
                         mapY += speed;
-                        curr_animation_player = animation_player_UP; 
                         break;
                     case "down":
                         mapY -= speed;
-                        curr_animation_player = animation_player_DOWN; 
                         break;
                     case "left":
                         mapX += speed;
-                        curr_animation_player = animation_player_LEFT; 
                         break;
                     case "right":
                         mapX -= speed;
-                        curr_animation_player = animation_player_RIGHT; 
                         break;
                 }
             }
+            else {
+                switch (direction) {
+                    case "up": curr_animation_player = animation_player_UP;break;
+                    case "down": curr_animation_player = animation_player_DOWN;break;
+                    case "left": curr_animation_player = animation_player_LEFT;break;
+                    case "right": curr_animation_player = animation_player_RIGHT;break;
+                    }
+                }
         }
     }
     public void draw(Graphics g2){

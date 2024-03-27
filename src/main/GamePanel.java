@@ -165,6 +165,11 @@ public class GamePanel extends JPanel implements Runnable{
              }else if (Main.topGameState() == "Setting")
                  setting.draw(g2);
          }
+         if (Main.nguoncode == 3){
+             tileM.draw(g2);
+             player.draw(g2);
+
+         }
 
 
         

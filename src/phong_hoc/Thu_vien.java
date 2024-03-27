@@ -15,7 +15,7 @@ public class Thu_vien extends Map {
         this.gp=gp;
         tileManager = new TileManager(gp);
         numTileContainer =10;
-        tileContainer_thu_vien = new Tile[50];
+        tileContainer = new Tile[50];
         //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         this.tileManager.getTileImage();
         tileManager.loadMap("/txt/thu_vien.txt");
