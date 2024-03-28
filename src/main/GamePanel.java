@@ -5,22 +5,17 @@ import entity.Player;
 import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
-import phong_hoc.Classroom01;
-import phong_hoc.Classroom02;
-import phong_hoc.Svd;
-import phong_hoc.Thu_vien;
-import java.awt.image.BufferedImage;
+import area.NormalClassroom;
+import area.ComputerRoom;
+import area.Stadium;
+import area.Library;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Keyboard.KeyboardManager;
-import java.awt.event.KeyEvent;
 
 import java.awt.*;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -52,11 +47,11 @@ public class GamePanel extends JPanel implements Runnable{
      Setting setting = new Setting();
      MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
      MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting);
-     //Khai báo lớp Classroom01 vào GamePanel
-     Classroom01 classroom01 = new Classroom01(this);
-     Classroom02 classroom02 = new Classroom02(this);
-     Thu_vien thuVien = new Thu_vien(this);
-     Svd svd = new Svd(this);
+     //Khai báo lớp NormalClassroom vào GamePanel
+     NormalClassroom normalClassroom = new NormalClassroom(this);
+     ComputerRoom computerRoom = new ComputerRoom(this);
+     Library library = new Library(this);
+     Stadium stadium = new Stadium(this);
     public Player player = new Player(this, keyH, null); 
     KeyboardManager keyboardManager = new KeyboardManager();
 
@@ -160,7 +155,10 @@ public class GamePanel extends JPanel implements Runnable{
          }
         if (Main.nguoncode == 5)
         {
-            classroom01.draw(g2);
+            //normalClassroom.draw(g2);
+            //computerRoom.draw(g2);
+            //library.draw(g2);
+            stadium.draw(g2);
             player.draw(g2);
 
         }

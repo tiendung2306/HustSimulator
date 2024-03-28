@@ -1,27 +1,26 @@
 package map;
 
+import area.NormalClassroom;
 import main.GamePanel;
-import phong_hoc.Classroom01;
-import phong_hoc.Classroom02;
-import phong_hoc.Svd;
-import phong_hoc.Thu_vien;
-import tile.Tile;
+import area.ComputerRoom;
+import area.Stadium;
+import area.Library;
 import tile.TileManager;
 
 public class MapManager {
     GamePanel gamePanel;
 
-    Classroom01 classroom01;
-    Classroom02 classroom02;
-    Thu_vien thuVien;
-    Svd svd;
+    NormalClassroom classroom01;
+    ComputerRoom classroom02;
+    Library thuVien;
+    Stadium svd;
     TileManager tileManager;
     public MapManager(GamePanel gamePanel) {
         this.gamePanel=gamePanel;
-        classroom01 = new Classroom01(gamePanel);
-        classroom02 = new Classroom02(gamePanel);
-        thuVien = new Thu_vien(gamePanel);
-        svd = new Svd(gamePanel);
+        classroom01 = new NormalClassroom(gamePanel);
+        classroom02 = new ComputerRoom(gamePanel);
+        thuVien = new Library(gamePanel);
+        svd = new Stadium(gamePanel);
         tileManager = new TileManager(gamePanel);
     }
 
