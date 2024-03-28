@@ -74,7 +74,7 @@ public class Main{
  class ButtonClicked implements ActionListener {
 
      String buttonName = "";
-     GamePanel gamePanel = new GamePanel();
+     GamePanel gamePanel ;
 
      public ButtonClicked(String buttonName, GamePanel gamePanel) {
          this.buttonName = buttonName;

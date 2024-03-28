@@ -9,6 +9,7 @@ import phong_hoc.Classroom01;
 import phong_hoc.Classroom02;
 import phong_hoc.Svd;
 import phong_hoc.Thu_vien;
+import area_selection.*;
 import java.awt.image.BufferedImage;
 
 
@@ -26,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     //SCREEN SETTINGS
     public final int originalTileSize = 16;
-    public final int scale = 3;
+    public final int scale = 6;
     public final int tileSize = originalTileSize * scale;
     public final int maxScreenCol = 16;
     public final int maxScreenRow = 12;
@@ -170,9 +171,6 @@ public class GamePanel extends JPanel implements Runnable{
              player.draw(g2);
 
          }
-
-
-        
         
         
         g2.dispose();
