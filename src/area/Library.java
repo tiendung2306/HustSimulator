@@ -23,7 +23,7 @@ public class Library extends Map {
     public Library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         tileManager = new TileManager(gamePanel);
-        numTileContainer = 10;
+        numTileContainer = 6;
         mapIndex = 3;
         tileContainer = new Tile[50][50];
         this.tileManager.getTileImage();
