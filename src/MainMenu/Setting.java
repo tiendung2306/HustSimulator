@@ -45,7 +45,7 @@ public class Setting extends JPanel implements Runnable {
             audioicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/audioicon.png"));
             keyicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/keyboardicon.png"));
             videoicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/videosetting11.png"));
-            exitImg1 = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
+            exitImg1 = ImageIO.read(new FileInputStream("res/player/character_move_left (1).png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,11 +95,10 @@ public class Setting extends JPanel implements Runnable {
         g2.drawImage(audio, 200, 250, 367,40, null);
         g2.drawImage(video, 200, 190, 367,40, null);
         g2.drawImage(back, 10, 10, 40, 40, null);
-        g2.drawImage(exitImg, 60, 15, 30, 30, null);
+        g2.drawImage(exitImg, 60, 12, 40, 40, null);
         g2.drawImage(keyicon, 530, 305, 45,45, null);
         g2.drawImage(audioicon, 580, 250, 45,45, null);
         g2.drawImage(videoicon, 580, 190, 45,45, null);
-
         super.paintComponent(g2);
     }
 }

@@ -2,6 +2,8 @@ package main;
 
 //import DeveloperTest.Thai;
 
+import MainMenu.AudioSetting;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,8 +26,6 @@ public class Main{
     public static String topGameState(){
         return GameState.peek();
     }
-
-
     public static void main(String[] args) {
         pushGameState("MainMenu");
         JFrame window = new JFrame();
@@ -72,18 +72,18 @@ public class Main{
 }
 
  class ButtonClicked implements ActionListener {
-
      String buttonName = "";
-     GamePanel gamePanel = new GamePanel();
-
+     GamePanel gamePanel;
      public ButtonClicked(String buttonName, GamePanel gamePanel) {
          this.buttonName = buttonName;
          this.gamePanel = gamePanel;
      }
-
      public void actionPerformed(ActionEvent e) {
+         JFrame window = new JFrame();
          if (this.buttonName == "Thai") {
              Main.nguoncode = 1;
+             if (Main.topGameState() == "audiosetting")
+                window.add(new AudioSetting());
          } else if (this.buttonName == "Dung") {
              Main.nguoncode = 2;
          } else if (this.buttonName == "Khai") {
@@ -93,7 +93,7 @@ public class Main{
          } else if (this.buttonName == "Son") {
              Main.nguoncode = 5;
          }
-         JFrame window = new JFrame();
+
          window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
          window.setResizable(false);
          window.setTitle("2D Adventure");

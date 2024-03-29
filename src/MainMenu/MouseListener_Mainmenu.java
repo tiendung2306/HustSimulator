@@ -11,6 +11,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     GamePanel gamePanel;
     Main_Menu mainMenu = new Main_Menu();
     NextMainMenu nextMainMenu = new NextMainMenu();
+    AudioSetting audioSetting = new AudioSetting();
     public MouseListener_Mainmenu(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
@@ -41,11 +42,26 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             else if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
             {
                 Main.popGameState();
+            } else if ((x_click > 262) && (y_click > 331) && (x_click < 504) && (y_click < 366)) {
+                Main.pushGameState("tutorial");
             }
         } else if (Main.topGameState() == "Setting") {
             if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
-            {
                 Main.popGameState();
+            else if ((x_click > 200) && (y_click > 192) && (x_click < 565) && (y_click < 226)) {
+                Main.pushGameState("videosetting");
+            } else if ((x_click > 201) && (y_click > 253) && (x_click < 566) && (y_click < 287)) {
+                Main.pushGameState("audiosetting");
+            } else if ((x_click > 251) && (y_click > 313) && (x_click < 514) && (y_click < 345)) {
+                Main.pushGameState("keysetting");
+            }
+        } else if (Main.topGameState() == "audiosetting") {
+            if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
+                Main.popGameState();
+            else if ((x_click > 200) && (y_click > 221) && (x_click < 567) && (y_click < 262)) {
+                audioSetting.volumesliderpointX(x_click - 30);
+            } else if ((x_click > 169) && (y_click > 260) && (x_click < 204) && (y_click < 296)) {
+                AudioSetting.checkmute = (-1)*AudioSetting.checkmute;
             }
         }
 

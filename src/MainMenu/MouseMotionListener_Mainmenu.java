@@ -10,22 +10,32 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
     GamePanel gamePanel;
     Main_Menu mainMenu;
     NextMainMenu nextMainMenu;
-    Setting setting = new Setting();
-    public MouseMotionListener_Mainmenu(GamePanel gamePanel, Main_Menu mainMenu, NextMainMenu nextMainMenu, Setting setting) {
+    Setting setting;
+    AudioSetting audioSetting;
+    public MouseMotionListener_Mainmenu(GamePanel gamePanel, Main_Menu mainMenu, NextMainMenu nextMainMenu, Setting setting, AudioSetting audioSetting) {
         this.gamePanel = gamePanel;
         this.mainMenu = mainMenu;
         this.nextMainMenu = nextMainMenu;
         this.setting = setting;
+        this.audioSetting = audioSetting;
     }
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        int x_drag = e.getX();
+        int y_drag = e.getY();
+        if (Main.topGameState() == "audiosetting") {
+            if (AudioSetting.checkenterslider == true) {
+                if ((x_drag >= 240) && (x_drag <= 600))
+                audioSetting.volumesliderpointX(x_drag - 23);
+            }
+        }
+        
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        int x_enter = (int) e.getX();
-        int y_enter = (int) e.getY();
+        int x_enter = e.getX();
+        int y_enter = e.getY();
         if (Main.topGameState() == "MainMenu") {
             if ((x_enter > 311) && (y_enter > 425) && (x_enter < 456) && (y_enter < 464)) {
                 mainMenu.buttonPlayEnter();
@@ -36,8 +46,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
             } else {
                 mainMenu.rollback();
             }
-        }
-        else if (Main.topGameState() == "NextMainMenu") {
+        } else if (Main.topGameState() == "NextMainMenu") {
             if ((x_enter > 260) && (y_enter > 330) && (x_enter < 507) && (y_enter < 367)) {
                 nextMainMenu.buttonTutorialEnter();
             } else if ((x_enter > 244) && (y_enter > 210) && (x_enter < 527) && (y_enter < 246)) {
@@ -50,8 +59,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                 nextMainMenu.buttonReturnEnter();
             } else
                 nextMainMenu.rollbacknext();
-        }
-        else if (Main.topGameState() == "Setting") {
+        } else if (Main.topGameState() == "Setting") {
             if ((x_enter > 200) && (y_enter > 192) && (x_enter < 567) && (y_enter < 226)) {
                 setting.buttonVideoEnter();
             } else if ((x_enter > 200) && (y_enter > 251) && (x_enter < 566) && (y_enter < 290)) {
@@ -62,6 +70,19 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                 setting.buttonReturnEnter();
             } else
                 setting.rollbacksetting();
+        } else if (Main.topGameState() == "audiosetting") {
+            if ((x_enter > 220) && (y_enter > 251) && (x_enter < 620) && (y_enter < 297)) {
+                AudioSetting.checkenterslider = true;
+                audioSetting.checkcomment();
+            } else if ((x_enter > 10) && (y_enter > 10) && (x_enter < 50) && (y_enter < 50)) {
+                audioSetting.buttonReturnEnter();
+                AudioSetting.checkenterslider = false;
+            } else if ((x_enter > 169) && (y_enter > 260) && (x_enter < 204) && (y_enter < 296)) {
+                audioSetting.muteEnter();
+            } else {
+                AudioSetting.checkenterslider = false;
+                audioSetting.audiorollback();
+            }
         }
     }
 }

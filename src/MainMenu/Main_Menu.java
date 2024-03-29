@@ -58,8 +58,8 @@ public class Main_Menu extends JPanel implements Runnable {
             exit1 = ImageIO.read(new FileInputStream("res/MainmenuImage/exit.png"));
             play2 = ImageIO.read(new FileInputStream("res/MainmenuImage/play1.png"));
             exit2 = ImageIO.read(new FileInputStream("res/MainmenuImage/exit1.png"));
-            playImg = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
-            exitImg = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
+            playImg = ImageIO.read(new FileInputStream("res/player/character_move_right (1).png"));
+            exitImg = ImageIO.read(new FileInputStream("res/player/character_move_left (1).png"));
             setting1 = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbutton1.png"));
             setting2 = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbutton2.png"));
         } catch (IOException e) {
@@ -70,19 +70,19 @@ public class Main_Menu extends JPanel implements Runnable {
         if (c_check == "buttonPlayEnter")
         {
             play = play2;
-            x_size = 40;
-            y_size = 40;
-            x_player = 460;
-            y_player = 427;
+            x_size = 50;
+            y_size = 50;
+            x_player = 455;
+            y_player = 417;
             playerImg = playImg;
         }
         else if (c_check == "buttonExitEnter")
         {
             exit = exit2;
-            x_size = 25;
-            y_size = 25;
-            x_player = 310;
-            y_player = 480;
+            x_size = 30;
+            y_size = 30;
+            x_player = 308;
+            y_player = 475;
             playerImg = exitImg;
 
         } else if (c_check == "buttonSettingEnter") {

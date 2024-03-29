@@ -50,8 +50,9 @@ public class GamePanel extends JPanel implements Runnable{
      Main_Menu mainMenu = new Main_Menu();
      NextMainMenu nextMainMenu = new NextMainMenu();
      Setting setting = new Setting();
+     AudioSetting audioSetting = new AudioSetting();
      MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
-     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting);
+     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting, audioSetting);
      //Khai báo lớp Classroom01 vào GamePanel
      Classroom01 tileM = new Classroom01(this);
      Classroom02 tileM2 = new Classroom02(this);
@@ -120,61 +121,45 @@ public class GamePanel extends JPanel implements Runnable{
 
     //=================================================================================================================
     public void update() { 
-         player.update();
-
-         soundManager.update();
-         if (Main.nguoncode == 1)
-         {
+         //player.update();
+         //soundManager.update();
+         if (Main.nguoncode == 1) {
              if (Main.topGameState() == "MainMenu")
-             {
                  mainMenu.update();
-             }
              else if (Main.topGameState() == "NextMainMenu")
-             {
                  nextMainMenu.update();
-             } else if (Main.topGameState() == "Setting") {
+             else if (Main.topGameState() == "Setting")
                  setting.update();
+             else if (Main.topGameState() == "audiosetting") {
+                 audioSetting.update();
              }
          }
-
     }
     //=================================================================================================================
 
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
-
         Graphics2D g2 = (Graphics2D)g;
-
         //tileManager.draw(g2);
         //tileM.draw(g2);
         //tileM2.draw(g2);
         //tileM3.draw(g2);
         //tileM4.draw(g2);
-
          //player.draw(g2);
-         if (Main.nguoncode == 1)
-         {
+         if (Main.nguoncode == 1) {
              if (Main.topGameState() == "MainMenu")
-             {
                  mainMenu.draw(g2);
-             }
              else if (Main.topGameState() == "NextMainMenu")
-             {
                  nextMainMenu.draw(g2);
-             }else if (Main.topGameState() == "Setting")
+             else if (Main.topGameState() == "Setting")
                  setting.draw(g2);
+             else if (Main.topGameState() == "audiosetting")
+                 audioSetting.draw(g2);
          }
          if (Main.nguoncode == 3){
              tileM.draw(g2);
              player.draw(g2);
-
          }
-
-
-        
-        
-        
         g2.dispose();
     }
 }
