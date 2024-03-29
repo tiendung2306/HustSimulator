@@ -51,14 +51,16 @@ public class GamePanel extends JPanel implements Runnable{
      NextMainMenu nextMainMenu = new NextMainMenu();
      Setting setting = new Setting();
      AudioSetting audioSetting = new AudioSetting();
+     KeySetting keySetting = new KeySetting();
+     VideoSetting videoSetting = new VideoSetting();
      MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
-     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting, audioSetting);
+     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu (this, mainMenu, nextMainMenu, setting, audioSetting, keySetting, videoSetting);
      //Khai báo lớp Classroom01 vào GamePanel
      Classroom01 tileM = new Classroom01(this);
      Classroom02 tileM2 = new Classroom02(this);
      Thu_vien tileM3 = new Thu_vien(this);
      Svd tileM4 = new Svd(this);
-    public Player player = new Player(this, keyH, null); 
+    public Player player = new Player(this, keyH, null);
     KeyboardManager keyboardManager = new KeyboardManager();
 
     double FPS = 60;
@@ -130,9 +132,12 @@ public class GamePanel extends JPanel implements Runnable{
                  nextMainMenu.update();
              else if (Main.topGameState() == "Setting")
                  setting.update();
-             else if (Main.topGameState() == "audiosetting") {
+             else if (Main.topGameState() == "audiosetting")
                  audioSetting.update();
-             }
+             else if (Main.topGameState() == "keysetting")
+                 keySetting.update();
+             else if (Main.topGameState() == "videosetting")
+                 videoSetting.update();
          }
     }
     //=================================================================================================================
@@ -155,6 +160,10 @@ public class GamePanel extends JPanel implements Runnable{
                  setting.draw(g2);
              else if (Main.topGameState() == "audiosetting")
                  audioSetting.draw(g2);
+             else if (Main.topGameState() == "keysetting")
+                 keySetting.draw(g2);
+             else if (Main.topGameState() == "videosetting")
+                 videoSetting.draw(g2);
          }
          if (Main.nguoncode == 3){
              tileM.draw(g2);

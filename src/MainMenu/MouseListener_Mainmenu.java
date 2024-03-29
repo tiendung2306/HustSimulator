@@ -23,47 +23,48 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
         System.out.println(x_click);
         System.out.println(y_click);
         if (Main.topGameState() == "MainMenu") {
-            if ((x_click > 340) && (y_click > 478) && (x_click < 420) && (y_click < 501)) {
+            if ((x_click > 340*Main.ex) && (y_click > 478*Main.ex) && (x_click < 420*Main.ex) && (y_click < 501*Main.ex)) {
                 System.exit(0);
-            } else if ((x_click > 311) && (y_click > 425) && (x_click < 456) && (y_click < 464)) {
+            } else if ((x_click > 311*Main.ex) && (y_click > 425*Main.ex) && (x_click < 456*Main.ex) && (y_click < 464*Main.ex)) {
                 Main.pushGameState("NextMainMenu");
-            } else if ((x_click > 710) && (y_click > 13) && (x_click < 750) && (y_click < 53)) {
+            } else if ((x_click > 710*Main.ex) && (y_click > 13*Main.ex) && (x_click < 750*Main.ex) && (y_click < 53*Main.ex)) {
                 Main.pushGameState("Setting");
-            } else if ((x_click > 260) && (y_click > 299) && (x_click < 507) && (y_click < 337)) {
+            } else if ((x_click > 260*Main.ex) && (y_click > 299*Main.ex) && (x_click < 507*Main.ex) && (y_click < 337*Main.ex)) {
                 Main.pushGameState("Tutorial");
-            } else if ((x_click > 244) && (y_click > 237) && (x_click < 527) && (y_click < 276)) {
+            } else if ((x_click > 244*Main.ex) && (y_click > 237*Main.ex) && (x_click < 527*Main.ex) && (y_click < 276*Main.ex)) {
                 Main.pushGameState("NewGame");
             }
         }
          else if (Main.topGameState() == "NextMainMenu") {
-            if ((x_click > 710) && (y_click > 13) && (x_click < 750) && (y_click < 53)) {
+            if ((x_click > 710*Main.ex) && (y_click > 13*Main.ex) && (x_click < 750*Main.ex) && (y_click < 53*Main.ex))
                 Main.pushGameState("Setting");
-            }
-            else if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
-            {
+            else if ((x_click > 10*Main.ex) && (y_click > 10*Main.ex) && (x_click < 50*Main.ex) && (y_click < 50*Main.ex))
                 Main.popGameState();
-            } else if ((x_click > 262) && (y_click > 331) && (x_click < 504) && (y_click < 366)) {
+            else if ((x_click > 262*Main.ex) && (y_click > 331*Main.ex) && (x_click < 504*Main.ex) && (y_click < 366*Main.ex))
                 Main.pushGameState("tutorial");
-            }
         } else if (Main.topGameState() == "Setting") {
-            if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
+            if ((x_click > 10*Main.ex) && (y_click > 10*Main.ex) && (x_click < 50*Main.ex) && (y_click < 50*Main.ex))
                 Main.popGameState();
-            else if ((x_click > 200) && (y_click > 192) && (x_click < 565) && (y_click < 226)) {
+            else if ((x_click > 200*Main.ex) && (y_click > 192*Main.ex) && (x_click < 565*Main.ex) && (y_click < 226*Main.ex))
                 Main.pushGameState("videosetting");
-            } else if ((x_click > 201) && (y_click > 253) && (x_click < 566) && (y_click < 287)) {
+            else if ((x_click > 201*Main.ex) && (y_click > 253*Main.ex) && (x_click < 566*Main.ex) && (y_click < 287*Main.ex))
                 Main.pushGameState("audiosetting");
-            } else if ((x_click > 251) && (y_click > 313) && (x_click < 514) && (y_click < 345)) {
+            else if ((x_click > 251*Main.ex) && (y_click > 313*Main.ex) && (x_click < 514*Main.ex) && (y_click < 345*Main.ex))
                 Main.pushGameState("keysetting");
-            }
         } else if (Main.topGameState() == "audiosetting") {
-            if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
+            if ((x_click > 10*Main.ex) && (y_click > 10*Main.ex) && (x_click < 50*Main.ex) && (y_click < 50*Main.ex))
                 Main.popGameState();
-            else if ((x_click > 220) && (y_click > 251) && (x_click < 620) && (y_click < 297))
-                AudioSetting.volumesliderpointX = (x_click - 23);
-            else if ((x_click > 169) && (y_click > 260) && (x_click < 204) && (y_click < 296))
+            else if ((x_click > 220*Main.ex) && (y_click > 251*Main.ex) && (x_click < 620*Main.ex) && (y_click < 297*Main.ex))
+                AudioSetting.volumesliderpointX = (x_click - 23*Main.ex);
+            else if ((x_click > 169*Main.ex) && (y_click > 260*Main.ex) && (x_click < 204*Main.ex) && (y_click < 296*Main.ex))
                 AudioSetting.checkmute = (-1)*AudioSetting.checkmute;
+        } else if (Main.topGameState() == "keysetting") {
+            if ((x_click > 10*Main.ex) && (y_click > 10*Main.ex) && (x_click < 50*Main.ex) && (y_click < 50*Main.ex))
+                Main.popGameState();
+        } else if (Main.topGameState() == "videosetting") {
+            if ((x_click > 10*Main.ex) && (y_click > 10*Main.ex) && (x_click < 50*Main.ex) && (y_click < 50*Main.ex))
+                Main.popGameState();
         }
-
     }
     @Override
     public void mousePressed(MouseEvent e) {

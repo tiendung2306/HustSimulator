@@ -9,19 +9,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.event.*;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.Scanner;
 import java.util.Stack;
 
 public class Main{
     public static int nguoncode;
+    public static int ex = 1;
     public static Stack<String> GameState = new Stack<>();
     public static void pushGameState(String a){
         GameState.push(a);
     }
-    public static String popGameState(){
-        return GameState.pop();
+    public static void popGameState(){
+        GameState.pop();
     }
     public static String topGameState(){
         return GameState.peek();
