@@ -52,7 +52,8 @@ public class AudioSetting extends JPanel implements Runnable {
             e.printStackTrace();
         }
     }
-    public int volumesliderpointX = 230, mute_unmutestring = 163;
+    public static int volumesliderpointX = 230;
+    public int mute_unmutestring = 163;
     public static boolean checkenterslider = false;
     public static int checkmute = 1;
     private String check = null, mutestring, mutestring1;

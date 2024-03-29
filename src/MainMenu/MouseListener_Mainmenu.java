@@ -58,11 +58,10 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
         } else if (Main.topGameState() == "audiosetting") {
             if ((x_click > 10) && (y_click > 10) && (x_click < 50) && (y_click < 50))
                 Main.popGameState();
-            else if ((x_click > 200) && (y_click > 221) && (x_click < 567) && (y_click < 262)) {
-                audioSetting.volumesliderpointX(x_click - 30);
-            } else if ((x_click > 169) && (y_click > 260) && (x_click < 204) && (y_click < 296)) {
+            else if ((x_click > 220) && (y_click > 251) && (x_click < 620) && (y_click < 297))
+                AudioSetting.volumesliderpointX = (x_click - 23);
+            else if ((x_click > 169) && (y_click > 260) && (x_click < 204) && (y_click < 296))
                 AudioSetting.checkmute = (-1)*AudioSetting.checkmute;
-            }
         }
 
     }
