@@ -6,8 +6,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.security.PublicKey;
-import java.util.Objects;
 import java.io.*;
 
 public class TileManager {
@@ -16,8 +14,6 @@ public class TileManager {
     public Tile[] tile;
     public int[][] typeTile;
 
-    public int[][] fixedTile, movableTile;
-    public Tile[] numToTile;
     public TileManager(GamePanel gp) {
 
         this.gp = gp;
@@ -33,6 +29,7 @@ public class TileManager {
             InputStream is = getClass().getResourceAsStream(filePath);
             //System.out.println("1");
             //Khai báo biến để đọc pfile vừa nhập
+            assert is != null;
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
@@ -43,7 +40,7 @@ public class TileManager {
                 String line = br.readLine();
 
                 while (col < gp.maxScreenCol) {
-                    String numbers[] = line.split(" ");
+                    String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
                     typeTile[col][row] = num;
@@ -56,7 +53,7 @@ public class TileManager {
             }
             br.close();
 
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
 

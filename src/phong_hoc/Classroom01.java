@@ -47,7 +47,7 @@ public class Classroom01 extends Map {
                 mapY += gp.tileSize;
             }
         }
-        tileManager.draw(g2, tileManager.tile[2].image,25* gp.scale,4*gp.scale,50*gp.scale,16*gp.scale);
+        tileManager.draw(g2, tileManager.tile[2].image,25*gp.scale,4*gp.scale,50*gp.scale,16*gp.scale);
         tileManager.draw(g2, tileManager.tile[2].image,98*gp.scale,4*gp.scale,50*gp.scale, 16*gp.scale);
         tileManager.draw(g2, tileManager.tile[2].image,174*gp.scale,4*gp.scale,50*gp.scale, 16*gp.scale);
         tileManager.draw(g2, tileManager.tile[6].image,0,77*gp.scale,256*gp.scale, 3*gp.scale);
@@ -58,23 +58,20 @@ public class Classroom01 extends Map {
         tileManager.draw(g2, tileManager.tile[3].image,140*gp.scale,26*gp.scale,38*gp.scale, 40*gp.scale);
         int dem=0;
         int x_ban=32,y_ban=96;
-        while(true) {
+        do {
             dem++;
-            if(dem<=5) {
+            if (dem <= 5) {
                 tileManager.draw(g2, tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale);
                 x_ban += 32;
             }
-            if(dem == 5) {
-                x_ban=x_ban-32;
+            if (dem == 5) {
+                x_ban = x_ban - 32;
             }
-            if(dem>5) {
-                y_ban=160;
+            if (dem > 5) {
+                y_ban = 160;
                 tileManager.draw(g2, tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale);
                 x_ban -= 32;
             }
-            if(dem==10) {
-                break;
-            }
-        }
+        } while (dem != 10);
     }
 }

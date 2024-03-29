@@ -54,9 +54,9 @@ public class GamePanel extends JPanel implements Runnable{
      MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting);
      //Khai báo lớp Classroom01 vào GamePanel
      Classroom01 classroom01 = new Classroom01(this);
-     Classroom02 classroom02 = new Classroom02(this);
-     Thu_vien thuVien = new Thu_vien(this);
-     Svd svd = new Svd(this);
+     //Classroom02 classroom02 = new Classroom02(this);
+     //Thu_vien thuVien = new Thu_vien(this);
+     //Svd svd = new Svd(this);
     public Player player = new Player(this, keyH, null); 
     KeyboardManager keyboardManager = new KeyboardManager();
 
@@ -125,14 +125,14 @@ public class GamePanel extends JPanel implements Runnable{
          soundManager.update();
          if (Main.nguoncode == 1)
          {
-             if (Main.topGameState() == "MainMenu")
+             if (Main.topGameState().equals("MainMenu"))
              {
                  mainMenu.update();
              }
-             else if (Main.topGameState() == "NextMainMenu")
+             else if (Main.topGameState().equals("NextMainMenu"))
              {
                  nextMainMenu.update();
-             } else if (Main.topGameState() == "Setting") {
+             } else if (Main.topGameState().equals("Setting")) {
                  setting.update();
              }
          }
@@ -148,14 +148,14 @@ public class GamePanel extends JPanel implements Runnable{
 
          if (Main.nguoncode == 1)
          {
-             if (Main.topGameState() == "MainMenu")
+             if (Main.topGameState().equals("MainMenu"))
              {
                  mainMenu.draw(g2);
              }
-             else if (Main.topGameState() == "NextMainMenu")
+             else if (Main.topGameState().equals("NextMainMenu"))
              {
                  nextMainMenu.draw(g2);
-             }else if (Main.topGameState() == "Setting")
+             }else if (Main.topGameState().equals("Setting"))
                  setting.draw(g2);
          }
         if (Main.nguoncode == 3 || Main.nguoncode == 5)

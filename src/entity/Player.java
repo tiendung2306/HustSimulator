@@ -141,7 +141,7 @@ public class Player extends Entity{
                     }
                 }
             }
-            //gp.collisionPlayer.findTile(this, map);
+            //gamepanel.scanCollision.findTile(this, map);
             if (false) {
                 switch (direction) {
                     case "up":
