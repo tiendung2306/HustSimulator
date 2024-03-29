@@ -7,6 +7,9 @@ import animation.Animation_player;
 
 import java.awt.*;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 public class Player extends Entity{
 
     public Animation_player animation_player_stand_RIGHT;
@@ -14,6 +17,7 @@ public class Player extends Entity{
     KeyHandler keyhandler;
     Map map;
     public int screenX, screenY;
+    boolean leftBorder, rightBorder, topBorder, bottomBorder;
 
     public Animation_player animation_player_UP ;
     public Animation_player animation_player_DOWN;
@@ -27,6 +31,10 @@ public class Player extends Entity{
         this.map = map;
         this.gamepanel = gamepanel;
         this.keyhandler = keyhandler;
+        leftBorder = false;
+        rightBorder = false;
+        bottomBorder = false;
+        topBorder = false;
 
         validArea = new Rectangle();
         boundingBox = new Rectangle();
@@ -51,7 +59,6 @@ public class Player extends Entity{
         speed = 4;
         direction = "stand_right";
         speedSlant = 3;
-
 
         animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, boundingBox);
 
@@ -78,19 +85,23 @@ public class Player extends Entity{
             if (countPressed == 1){
                 if (keyhandler.upPressed) {
                     direction = "up";
-                    mapY -= speed;
+                    if (!topBorder)
+                        mapY -= speed;
                 }
                 if (keyhandler.downPressed) {
                     direction = "down";
-                    mapY += speed;
+                    if (!bottomBorder)
+                        mapY += speed;
                 }
                 if (keyhandler.leftPressed) {
                     direction = "left";
-                    mapX -= speed;
+                    if (!leftBorder)
+                        mapX -= speed;
                 }
                 if (keyhandler.rightPressed) {
                     direction = "right";
-                    mapX += speed;
+                    if (!rightBorder)
+                        mapX += speed;
                 }
             }
             else {
@@ -99,26 +110,34 @@ public class Player extends Entity{
                     if (keyhandler.upPressed && keyhandler.leftPressed)
                     {
                         direction = "upleft";
-                        mapY -= speedSlant;
-                        mapX -= speedSlant;
+                        if (!topBorder)
+                            mapY -= speedSlant;
+                        if (!leftBorder)
+                            mapX -= speedSlant;
                     }
                     if (keyhandler.upPressed && keyhandler.rightPressed)
                     {
                         direction = "upright";
-                        mapY -= speedSlant;
-                        mapX += speedSlant;
+                        if (!topBorder)
+                            mapY -= speedSlant;
+                        if (!rightBorder)
+                            mapX += speedSlant;
                     }
                     if (keyhandler.downPressed && keyhandler.leftPressed)
                     {
                         direction = "downleft";
-                        mapY += speedSlant;
-                        mapX -= speedSlant;
+                        if (!bottomBorder)
+                            mapY += speedSlant;
+                        if (!leftBorder)
+                            mapX -= speedSlant;
                     }
                     if (keyhandler.downPressed && keyhandler.rightPressed)
                     {
                         direction = "downright";
-                        mapY += speedSlant;
-                        mapX += speedSlant;
+                        if (!bottomBorder)
+                            mapY += speedSlant;
+                        if (!rightBorder)
+                            mapX += speedSlant;
                     }
                 }
             }
@@ -126,16 +145,16 @@ public class Player extends Entity{
             if (false) {
                 switch (direction) {
                     case "up":
-                        mapY += speed;
+                        if (!topBorder) mapY += speed;
                         break;
                     case "down":
-                        mapY -= speed;
+                        if (!bottomBorder) mapY -= speed;
                         break;
                     case "left":
-                        mapX += speed;
+                        if (!leftBorder) mapX += speed;
                         break;
                     case "right":
-                        mapX -= speed;
+                        if (!rightBorder) mapX -= speed;
                         break;
                 }
             }
@@ -148,6 +167,17 @@ public class Player extends Entity{
                     }
                 }
         }
+        boundingBox.x = min(screenX, mapX);
+        boundingBox.y = min(screenY, mapY);
+        boundingBox.x += max(0,mapX - (gamepanel.mapWidth - gamepanel.screenWidth / 2) + boundingBox.width);
+        boundingBox.y += max(0,mapY - (gamepanel.mapHeight - gamepanel.screenWidth / 2) + boundingBox.height);
+        System.out.print(gamepanel.screenWidth);
+        System.out.print(" ");
+        System.out.println(boundingBox.x);
+        leftBorder = (boundingBox.x <= 0);
+        rightBorder = (boundingBox.x >= gamepanel.screenWidth - boundingBox.width);
+        topBorder = (boundingBox.y <= 0);
+        bottomBorder = (boundingBox.y >= gamepanel.screenHeight - boundingBox.height);
     }
     public void draw(Graphics g2){
         curr_animation_player.operation(g2);

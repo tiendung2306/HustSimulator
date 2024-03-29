@@ -173,12 +173,12 @@ public class TileManager {
         }
     }
     public void draw(Graphics2D g2, BufferedImage image, int mapX, int mapY, int width, int height) {
-            int screenX = mapX - gp.player.getMapX() + gp.player.screenX;
-            int screenY = mapY - gp.player.getMapY() + gp.player.screenY;
-            if     (mapX + gp.player.getBoundingBoxX() > gp.player.getMapX() - gp.player.screenX &&
-                    mapX - gp.player.getBoundingBoxX() < gp.player.getMapX() + gp.player.screenX &&
-                    mapY + gp.player.getBoundingBoxY() > gp.player.getMapY() - gp.player.screenY &&
-                    mapY - gp.player.getBoundingBoxY() < gp.player.getMapY() + gp.player.screenY) {
+            int screenX = mapX - gp.player.getMapX() + gp.player.getBoundingBoxX();
+            int screenY = mapY - gp.player.getMapY() + gp.player.getBoundingBoxY();
+            if     (mapX + gp.player.getBoundingBoxX() + gp.screenWidth > gp.player.getMapX() - gp.player.screenX &&
+                    mapX - gp.player.getBoundingBoxX() - gp.screenWidth  < gp.player.getMapX() + gp.player.screenX &&
+                    mapY + gp.player.getBoundingBoxY() + gp.screenHeight > gp.player.getMapY() - gp.player.screenY &&
+                    mapY - gp.player.getBoundingBoxY() - gp.screenHeight < gp.player.getMapY() + gp.player.screenY) {
                 g2.drawImage(image, screenX, screenY, width, height, null);
             }
         }

@@ -4,7 +4,6 @@ import main.GamePanel;
 import map.Map;
 import tile.TileManager;
 import tile.Tile;
-import tile.tileClassroom01.TileTable01;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,7 +12,6 @@ import java.awt.image.BufferedImage;
 public class Classroom01 extends Map {
     GamePanel gp; 
     TileManager tileManager;
-    TileTable01 tileTable01;
 
     public Classroom01(GamePanel gp) {
         super();
@@ -22,7 +20,6 @@ public class Classroom01 extends Map {
         tileContainer = new Tile[50];
         //mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         tileManager = new TileManager(gp);
-        tileTable01 = new TileTable01(gp,32,96);
 
         this.tileManager.getTileImage(); 
         tileManager.loadMap("/txt/phong_hoc.txt");
@@ -43,7 +40,7 @@ public class Classroom01 extends Map {
             tileManager.draw(g2, image, mapX, mapY, gp.tileSize, gp.tileSize);
             col++;
             mapX += gp.tileSize;
-            if (col == gp.maxScreenCol) {
+            if (col == gp.maxMapCol) {
                 col = 0;
                 mapX = 0;
                 row++;

@@ -49,7 +49,7 @@ public class CollisionPlayer {
     public void findTile(Entity entity, Map map){
 
         for (int  i = 0; i < map.numTileContainer; ++i) {
-            Tile considerTile = map.tileContainer[i][map.mapIndex]; //?????????
+            Tile considerTile = map.tileContainer[i];
             int tileLeftX = considerTile.getLeftX();
             int tileRightX = considerTile.getRightX();
             int tileTopY = considerTile.getTopY();
