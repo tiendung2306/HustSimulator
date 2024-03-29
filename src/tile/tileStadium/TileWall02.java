@@ -28,6 +28,6 @@ public class TileWall02 extends Tile {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[16].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 79 * gamePanel.scale, 46 * gamePanel.scale, null);
+        tileManager.draw(g2, tileManager.tile[16].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 79 * gamePanel.scale, 46 * gamePanel.scale);
     }
 }

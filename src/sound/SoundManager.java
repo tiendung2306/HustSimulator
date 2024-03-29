@@ -106,7 +106,7 @@ public class SoundManager {
 
             }
         }
-        System.out.println(currVolume);
+        // System.out.println(currVolume);
     }
 
     public void volumeDown() {
@@ -120,7 +120,7 @@ public class SoundManager {
 
             }
         }
-        System.out.println(currVolume);
+        // System.out.println(currVolume);
     }
 
     public void volumeMute() {
@@ -146,7 +146,7 @@ public class SoundManager {
             }
             mute = false;
         }
-        System.out.println(currVolume);
+        // System.out.println(currVolume);
     }
 
 }

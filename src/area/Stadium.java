@@ -23,7 +23,7 @@ public class Stadium extends Map {
         tileManager = new TileManager(gamePanel);
         numTileContainer = 12;
         mapIndex = 4;
-        tileContainer = new Tile[50][50];
+        tileContainer = new Tile[50];
         this.tileManager.getTileImage();
         tileWall01 = new TileWall01(gamePanel,0,70);
         tileWall02 = new TileWall02(gamePanel,241,69);
@@ -44,8 +44,8 @@ public class Stadium extends Map {
         if(x_car_red > 350) {
             x_car_red = -70;
         }
-        System.out.println(tileCar01.getLeftX());
-        g2.drawImage(tileManager.tile[18].image,0,0,320*gamePanel.scale,240*gamePanel.scale,null);
+        // System.out.println(tileCar01.getLeftX());
+        tileManager.draw(g2, tileManager.tile[18].image,0,0,320*gamePanel.scale,240*gamePanel.scale);
         tileWall01.draw(g2);
         tileWall02.draw(g2);
         tileCar01.draw(g2);

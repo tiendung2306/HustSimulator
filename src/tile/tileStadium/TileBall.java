@@ -28,6 +28,6 @@ public class TileBall extends Tile {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[12].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 14 * gamePanel.scale, 14 * gamePanel.scale, null);
+        tileManager.draw(g2, tileManager.tile[12].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 14 * gamePanel.scale, 14 * gamePanel.scale);
     }
 }

@@ -28,6 +28,6 @@ public class TileDoorClassroom extends Tile {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[14].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 41 * gamePanel.scale, 51 * gamePanel.scale, null);
+        tileManager.draw(g2, tileManager.tile[14].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 41 * gamePanel.scale, 51 * gamePanel.scale);
     }
 }

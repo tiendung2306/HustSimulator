@@ -25,7 +25,7 @@ public class Library extends Map {
         tileManager = new TileManager(gamePanel);
         numTileContainer = 6;
         mapIndex = 3;
-        tileContainer = new Tile[50][50];
+        tileContainer = new Tile[50];
         this.tileManager.getTileImage();
         tileBookcase01_1 = new TileBookcase01(gamePanel,40,34);
         tileBookcase01_2 = new TileBookcase01(gamePanel,44,53);
@@ -70,7 +70,7 @@ public class Library extends Map {
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[19].image,0,0,320*gamePanel.scale,240*gamePanel.scale,null);
+        tileManager.draw(g2, tileManager.tile[19].image,0,0,320*gamePanel.scale,240*gamePanel.scale);
         tileBookcase01_1.draw(g2);
         tileBookcase01_2.draw(g2);
         tileBookcase02.draw(g2);

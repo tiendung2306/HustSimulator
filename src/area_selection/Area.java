@@ -22,6 +22,6 @@ class Area {
     }
 
     protected void OnHover(){
-        System.out.println("vpa");
+        // System.out.println("vpa");
     }
 }

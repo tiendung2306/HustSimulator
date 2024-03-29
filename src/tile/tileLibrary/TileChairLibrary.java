@@ -28,6 +28,6 @@ public class TileChairLibrary extends Tile {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[6].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 16 * gamePanel.scale, 16 * gamePanel.scale, null);
+        tileManager.draw(g2, tileManager.tile[6].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 16 * gamePanel.scale, 16 * gamePanel.scale);
     }
 }

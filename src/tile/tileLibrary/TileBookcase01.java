@@ -28,6 +28,6 @@ public class TileBookcase01 extends Tile {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[7].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 78 * gamePanel.scale, 59 * gamePanel.scale, null);
+        tileManager.draw(g2, tileManager.tile[7].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 78 * gamePanel.scale, 59 * gamePanel.scale);
     }
 }

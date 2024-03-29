@@ -27,7 +27,7 @@ public class ComputerRoom extends Map {
         this.gamePanel = gamePanel;
         numTileContainer = 5;
         mapIndex = 2;
-        tileContainer = new Tile[50][50];
+        tileContainer = new Tile[50];
         tileManager = new TileManager(gamePanel);
         this.tileManager.getTileImage();
         tileTable = new TileTableClassroom[10];
@@ -76,7 +76,7 @@ public class ComputerRoom extends Map {
 
     public void draw(Graphics2D g2) {
 
-        g2.drawImage(tileManager.tile[17].image,0,0,320*gamePanel.scale,240*gamePanel.scale,null);
+        tileManager.draw(g2, tileManager.tile[17].image,0,0,320*gamePanel.scale,240*gamePanel.scale);
         for(int i = 0; i < 10; i++) {
             tileTable[i].draw(g2);
         }

@@ -165,7 +165,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         }
         if (Main.nguoncode == 3) {
-            classroom01.draw(g2);
+            normalClassroom.draw(g2);
             player.draw(g2);
 
         }
