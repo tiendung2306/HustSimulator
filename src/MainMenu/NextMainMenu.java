@@ -1,5 +1,7 @@
 package MainMenu;
 
+import main.Main;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -40,13 +42,13 @@ public class NextMainMenu extends JPanel implements Runnable {
             newgame2 = ImageIO.read(new FileInputStream("res/MainmenuImage/newgame2.png"));
             setting1 = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbutton1.png"));
             setting2 = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbutton2.png"));
-            playImg = ImageIO.read(new FileInputStream("res/player/boy_right_2.png"));
+            playImg = ImageIO.read(new FileInputStream("res/player/character_move_right (1).png"));
             back = ImageIO.read(new FileInputStream("res/MainmenuImage/backicon.png"));
             tutorialicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/tutorialicon.png"));
             Continue1 = ImageIO.read(new FileInputStream("res/MainmenuImage/continue1.png"));
             Continue2 = ImageIO.read(new FileInputStream("res/MainmenuImage/continue2.png"));
             continueicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/continueicon.png"));
-            exitImg1 = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
+            exitImg1 = ImageIO.read(new FileInputStream("res/player/character_move_left (1).png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -98,16 +100,16 @@ public class NextMainMenu extends JPanel implements Runnable {
         }
     }
     public void draw(Graphics2D g2) {
-        g2.drawImage(NextBackGround, 0, 0, 768, 576, null);
-        g2.drawImage(tutorial, 260, 330, 247,40, null);
-        g2.drawImage(newgame, 240, 210, 287,45, null);
-        g2.drawImage(setting,710, 13, 40,40, null);
-        g2.drawImage(player,540, 210, 40,40, null);
-        g2.drawImage(back, 10, 10, 40, 40, null);
-        g2.drawImage(exitImg, 60, 15, 30, 30, null);
-        g2.drawImage(tutorialicon, 520, 330, 40,40, null);
-        g2.drawImage(Continue, 260, 270, 247,45, null);
-        g2.drawImage(continueicon, 520, 270, 45,45, null);
+        g2.drawImage(NextBackGround, 0, 0, 768* Main.ex, 576*Main.ex, null);
+        g2.drawImage(tutorial, 260*Main.ex, 330*Main.ex, 247*Main.ex,40*Main.ex, null);
+        g2.drawImage(newgame, 240*Main.ex, 210*Main.ex, 287*Main.ex,45*Main.ex, null);
+        g2.drawImage(setting,710*Main.ex, 13*Main.ex, 40*Main.ex,40*Main.ex, null);
+        g2.drawImage(player,530*Main.ex, 200*Main.ex, 60*Main.ex,60*Main.ex, null);
+        g2.drawImage(back, 10*Main.ex, 10*Main.ex, 40*Main.ex, 40*Main.ex, null);
+        g2.drawImage(exitImg, 60*Main.ex, 12*Main.ex, 40*Main.ex, 40*Main.ex, null);
+        g2.drawImage(tutorialicon, 520*Main.ex, 330*Main.ex, 40*Main.ex,40*Main.ex, null);
+        g2.drawImage(Continue, 260*Main.ex, 270*Main.ex, 247*Main.ex,45*Main.ex, null);
+        g2.drawImage(continueicon, 520*Main.ex, 270*Main.ex, 45*Main.ex,45*Main.ex, null);
         super.paintComponent(g2);
     }
 

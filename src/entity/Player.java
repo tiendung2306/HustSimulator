@@ -7,6 +7,9 @@ import animation.Animation_player;
 
 import java.awt.*;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 public class Player extends Entity{
 
     public Animation_player animation_player_stand_RIGHT;
@@ -14,6 +17,7 @@ public class Player extends Entity{
     KeyHandler keyhandler;
     Map map;
     public int screenX, screenY;
+    boolean leftBorder, rightBorder, topBorder, bottomBorder;
 
     public Animation_player animation_player_UP ;
     public Animation_player animation_player_DOWN;
@@ -27,15 +31,23 @@ public class Player extends Entity{
         this.map = map;
         this.gamepanel = gamepanel;
         this.keyhandler = keyhandler;
-
-        screenX = gamepanel.screenWidth/2 - gamepanel.tileSize/2;
-        screenY = gamepanel.screenHeight/2 - gamepanel.tileSize/2;
+        leftBorder = false;
+        rightBorder = false;
+        bottomBorder = false;
+        topBorder = false;
 
         validArea = new Rectangle();
+        boundingBox = new Rectangle();
         validArea.x = gamepanel.tileSize / 6;
         validArea.y = gamepanel.tileSize / 3;
         validArea.width = gamepanel.tileSize - validArea.y;
         validArea.height = gamepanel.tileSize - validArea.y;
+        boundingBox.width = gamepanel.tileSize * 3;
+        boundingBox.height = gamepanel.tileSize * 3;
+        screenX = gamepanel.screenWidth/2 - boundingBox.width/2;
+        screenY = gamepanel.screenHeight/2 - boundingBox.height/2;
+        boundingBox.x = screenX;
+        boundingBox.y = screenY;
 
         setDefaultValues();
     }
@@ -48,13 +60,12 @@ public class Player extends Entity{
         direction = "stand_right";
         speedSlant = 3;
 
+        animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, boundingBox);
 
-        animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, validArea);
-
-        animation_player_UP = new Animation_player(gamepanel, "res/player/character_move_up ", 4, 0.8, validArea);
-        animation_player_DOWN = new Animation_player(gamepanel, "res/player/character_move_down ", 4, 0.8, validArea);
-        animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8, validArea);
-        animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, validArea);
+        animation_player_UP = new Animation_player(gamepanel, "res/player/character_move_up ", 4, 0.8, boundingBox);
+        animation_player_DOWN = new Animation_player(gamepanel, "res/player/character_move_down ", 4, 0.8, boundingBox);
+        animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8, boundingBox);
+        animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, boundingBox);
 
         curr_animation_player = animation_player_stand_RIGHT;
 
@@ -74,19 +85,23 @@ public class Player extends Entity{
             if (countPressed == 1){
                 if (keyhandler.upPressed) {
                     direction = "up";
-                    mapY -= speed;
+                    if (!topBorder)
+                        mapY -= speed;
                 }
                 if (keyhandler.downPressed) {
                     direction = "down";
-                    mapY += speed;
+                    if (!bottomBorder)
+                        mapY += speed;
                 }
                 if (keyhandler.leftPressed) {
                     direction = "left";
-                    mapX -= speed;
+                    if (!leftBorder)
+                        mapX -= speed;
                 }
                 if (keyhandler.rightPressed) {
                     direction = "right";
-                    mapX += speed;
+                    if (!rightBorder)
+                        mapX += speed;
                 }
             }
             else {
@@ -95,51 +110,74 @@ public class Player extends Entity{
                     if (keyhandler.upPressed && keyhandler.leftPressed)
                     {
                         direction = "upleft";
-                        mapY -= speedSlant;
-                        mapX -= speedSlant;
+                        if (!topBorder)
+                            mapY -= speedSlant;
+                        if (!leftBorder)
+                            mapX -= speedSlant;
                     }
                     if (keyhandler.upPressed && keyhandler.rightPressed)
                     {
                         direction = "upright";
-                        mapY -= speedSlant;
-                        mapX += speedSlant;
+                        if (!topBorder)
+                            mapY -= speedSlant;
+                        if (!rightBorder)
+                            mapX += speedSlant;
                     }
                     if (keyhandler.downPressed && keyhandler.leftPressed)
                     {
                         direction = "downleft";
-                        mapY += speedSlant;
-                        mapX -= speedSlant;
+                        if (!bottomBorder)
+                            mapY += speedSlant;
+                        if (!leftBorder)
+                            mapX -= speedSlant;
                     }
                     if (keyhandler.downPressed && keyhandler.rightPressed)
                     {
                         direction = "downright";
-                        mapY += speedSlant;
-                        mapX += speedSlant;
+                        if (!bottomBorder)
+                            mapY += speedSlant;
+                        if (!rightBorder)
+                            mapX += speedSlant;
                     }
                 }
             }
-            //gp.collisionPlayer.findTile(this, map);
-            if (true){
+            //gamepanel.scanCollision.findTile(this, map);
+            if (false) {
                 switch (direction) {
                     case "up":
-                        mapY += speed;
-                        curr_animation_player = animation_player_UP; 
+                        if (!topBorder) mapY += speed;
                         break;
                     case "down":
-                        mapY -= speed;
-                        curr_animation_player = animation_player_DOWN; 
+                        if (!bottomBorder) mapY -= speed;
                         break;
                     case "left":
-                        mapX += speed;
-                        curr_animation_player = animation_player_LEFT; 
+                        if (!leftBorder) mapX += speed;
                         break;
                     case "right":
-                        mapX -= speed;
-                        curr_animation_player = animation_player_RIGHT; 
+                        if (!rightBorder) mapX -= speed;
                         break;
                 }
             }
+            else {
+                switch (direction) {
+                    case "up": curr_animation_player = animation_player_UP;break;
+                    case "down": curr_animation_player = animation_player_DOWN;break;
+                    case "left": curr_animation_player = animation_player_LEFT;break;
+                    case "right": curr_animation_player = animation_player_RIGHT;break;
+                    }
+                }
         }
+        boundingBox.x = min(screenX, mapX);
+        boundingBox.y = min(screenY, mapY);
+        boundingBox.x += max(0,mapX - (gamepanel.mapWidth - gamepanel.screenWidth / 2) + boundingBox.width);
+        boundingBox.y += max(0,mapY - (gamepanel.mapHeight - gamepanel.screenWidth / 2) + boundingBox.height);
+        // System.out.print(gamepanel.screenWidth);
+        // System.out.print(" ");
+        // System.out.println(boundingBox.x);
+        leftBorder = (boundingBox.x <= 0);
+        rightBorder = (boundingBox.x >= gamepanel.screenWidth - boundingBox.width);
+        topBorder = (boundingBox.y <= 0);
+        bottomBorder = (boundingBox.y >= gamepanel.screenHeight - boundingBox.height);
     }
     public void draw(Graphics g2){
         curr_animation_player.operation(g2);

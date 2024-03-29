@@ -26,6 +26,7 @@ public class CollisionPlayer {
     }
 
     Tile[] collisionTile;
+    String[] typeCollision;
     TileManager tileManager;
     public CollisionPlayer(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -36,17 +37,39 @@ public class CollisionPlayer {
     boolean checkInside(int pointX, int pointY, int tileLeftX, int tileRightX, int tileBottomY, int tileTopY) {
         return (pointX >= tileLeftX && pointX <= tileRightX && pointY >= tileBottomY && pointY <= tileTopY);
     }
-    public boolean checkCollision(int tileLeftX, int tileRightX, int tileBottomY, int tileTopY, int entityLeftX, int entityRightX, int entityTopY, int entityBottomY) {
-        return ( checkInside(entityLeftX, entityBottomY, tileLeftX, tileRightX, tileBottomY, tileTopY) ||
-                checkInside(entityLeftX, entityTopY, tileLeftX, tileRightX, tileBottomY, tileTopY) ||
-                checkInside(entityRightX, entityBottomY, tileLeftX, tileRightX, tileBottomY, tileTopY) ||
-                checkInside(entityRightX, entityTopY, tileLeftX, tileRightX, tileBottomY, tileTopY)  ||
-                checkInside(tileLeftX, tileBottomY, entityLeftX, entityRightX, entityBottomY, entityTopY) ||
-                checkInside(tileLeftX, tileTopY, entityLeftX, entityRightX, entityBottomY, entityTopY) ||
-                checkInside(tileRightX, tileBottomY, entityLeftX, entityRightX, entityBottomY, entityTopY) ||
-                checkInside(tileRightX, tileTopY, entityLeftX, entityRightX, entityBottomY, entityTopY) );
+    public String defineType(int entityLeftX, int entityRightX, int entityBottomY, int entityTopY, int targetLeftX, int targetRightX, int targetBottomY, int targetTopY) {
+
+        boolean cornerLeftTop = checkInside(entityLeftX, entityTopY, targetLeftX, targetRightX, targetBottomY, targetTopY);
+        boolean cornerRightTop = checkInside(entityRightX, entityTopY, targetLeftX, targetRightX, targetBottomY, targetTopY);
+        boolean cornerLeftBottom = checkInside(entityLeftX, entityBottomY, targetLeftX, targetRightX, targetBottomY, targetTopY);
+        boolean cornerRightBottom = checkInside(entityRightX, entityBottomY, targetLeftX, targetRightX, targetBottomY, targetTopY);
+
+        boolean reCornerLeftTop =  checkInside(targetLeftX, targetTopY, entityLeftX, entityRightX, entityBottomY, entityTopY);
+        boolean reCornerRightTop =  checkInside(targetRightX, targetTopY, entityLeftX, entityRightX, entityBottomY, entityTopY);
+        boolean reCornerLeftBottom =  checkInside(targetRightX, targetTopY, entityLeftX, entityRightX, entityBottomY, entityTopY);
+        boolean reCornerRightBottom =  checkInside(targetRightX, targetTopY, entityLeftX, entityRightX, entityBottomY, entityTopY);
+
+        if (cornerLeftTop && cornerRightTop && cornerLeftBottom && cornerRightBottom)
+            return "inside";
+        if ((cornerLeftTop && cornerRightTop) || (reCornerLeftBottom && reCornerRightBottom))
+            return "top";
+        if ((cornerLeftTop && cornerLeftBottom) || (reCornerRightBottom && reCornerRightTop))
+            return "left";
+        if ((cornerLeftBottom && cornerRightBottom) || (reCornerLeftTop && reCornerRightTop))
+            return "bottom";
+        if ((cornerRightTop && cornerRightBottom) || (reCornerLeftBottom && reCornerLeftTop))
+            return "right";
+        if (cornerLeftTop)
+            return "left-top";
+        if (cornerRightTop)
+            return "right-top";
+        if (cornerLeftBottom)
+            return "left-bottom";
+        if (cornerRightBottom)
+            return "right-bottom";
+        return "no-collision";
     }
-    public void findTile(Entity entity, Map map){
+    public void scanCollision(Entity entity, Map map){
 
         for (int  i = 0; i < map.numTileContainer; ++i) {
             Tile considerTile = map.tileContainer[i];
@@ -60,8 +83,12 @@ public class CollisionPlayer {
             int entityTopY = entity.getMapY() + entity.getValidArea().y;
             int entityBottomY = entity.getMapY() + entity.getValidArea().y + entity.getValidArea().height;
 
-            if (checkCollision(tileLeftX, tileRightX, tileBottomY, tileTopY, entityLeftX, entityRightX, entityTopY, entityBottomY))
+            String type = defineType(entityLeftX, entityRightX, entityTopY, entityBottomY, tileLeftX, tileRightX, tileBottomY, tileTopY);
+
+            if (!type.equals("no-collision")) {
                 collisionTile[++numCollision] = considerTile;
+                typeCollision[numCollision] = type;
+            }
         }
     }
 }

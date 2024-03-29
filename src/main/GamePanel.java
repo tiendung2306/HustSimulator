@@ -5,26 +5,24 @@ import entity.Player;
 import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
-import phong_hoc.Classroom01;
-import phong_hoc.Classroom02;
-import phong_hoc.Svd;
-import phong_hoc.Thu_vien;
+import area_selection.*;
 import java.awt.image.BufferedImage;
 
-
 import javax.imageio.ImageIO;
+import area.NormalClassroom;
+import area.ComputerRoom;
+import area.Stadium;
+import area.Library;
+
 import javax.swing.*;
 
 import Keyboard.KeyboardManager;
-import java.awt.event.KeyEvent;
 
 import java.awt.*;
-import java.io.FileInputStream;
-import java.io.IOException;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
 
-    //SCREEN SETTINGS
+    // SCREEN SETTINGS
     public final int originalTileSize = 16;
     public final int scale = 3;
     public final int tileSize = originalTileSize * scale;
@@ -33,9 +31,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
-
-    //=================================================================================================================
-    //MAP SETTINGS
+    // =================================================================================================================
+    // MAP SETTINGS
     public final int maxMapCol = 50;
     public final int maxMapRow = 50;
     public final int mapWidth = tileSize * maxMapCol;
@@ -47,24 +44,29 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
 
-     Main_Menu mainMenu = new Main_Menu();
-     NextMainMenu nextMainMenu = new NextMainMenu();
-     Setting setting = new Setting();
-     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
-     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu, nextMainMenu, setting);
-     //Khai báo lớp Classroom01 vào GamePanel
-     Classroom01 tileM = new Classroom01(this);
-     Classroom02 tileM2 = new Classroom02(this);
-     Thu_vien tileM3 = new Thu_vien(this);
-     Svd tileM4 = new Svd(this);
-    public Player player = new Player(this, keyH, null); 
+    Main_Menu mainMenu = new Main_Menu();
+    NextMainMenu nextMainMenu = new NextMainMenu();
+    Setting setting = new Setting();
+    AudioSetting audioSetting = new AudioSetting();
+    KeySetting keySetting = new KeySetting();
+    VideoSetting videoSetting = new VideoSetting();
+    MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
+    MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
+            nextMainMenu, setting, audioSetting, keySetting, videoSetting);
+    // Khai báo lớp NormalClassroom vào GamePanel
+    NormalClassroom normalClassroom = new NormalClassroom(this);
+    ComputerRoom computerRoom = new ComputerRoom(this);
+    Library library = new Library(this);
+    Stadium stadium = new Stadium(this);
+    public Player player = new Player(this, keyH, null);
     KeyboardManager keyboardManager = new KeyboardManager();
 
     double FPS = 60;
 
-    //=================================================================================================================
-    public GamePanel(){
+    // =================================================================================================================
+    public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setSize(320, 240);
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
@@ -72,11 +74,10 @@ public class GamePanel extends JPanel implements Runnable{
         this.Mouse();
     }
 
-     public void Mouse() {
-         this.addMouseMotionListener(mouseMotionListenerMainmenu);
-         this.addMouseListener(mouseListenerMainmenu);
-     }
-
+    public void Mouse() {
+        this.addMouseMotionListener(mouseMotionListenerMainmenu);
+        this.addMouseListener(mouseListenerMainmenu);
+    }
 
     public void startGameThread() {
         gameThread = new Thread(this);
@@ -86,17 +87,18 @@ public class GamePanel extends JPanel implements Runnable{
     public void Init() {
         keyboardManager.init();
     }
-    public void run(){
+
+    public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
         // soundManager.loopSound("piano_music");
 
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
         Init();
-        
+
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
-        while(gameThread != null){
+        while (gameThread != null) {
 
             update();
 
@@ -106,7 +108,7 @@ public class GamePanel extends JPanel implements Runnable{
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime /= 1000000;
 
-                if (remainingTime < 0){
+                if (remainingTime < 0) {
                     remainingTime = 0;
                 }
 
@@ -115,61 +117,69 @@ public class GamePanel extends JPanel implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
-    //=================================================================================================================
-    public void update() { 
-         player.update();
+    // =================================================================================================================
+    public void update() {
+        player.update();
 
-         soundManager.update();
-         if (Main.nguoncode == 1)
-         {
-             if (Main.topGameState() == "MainMenu")
-             {
-                 mainMenu.update();
-             }
-             else if (Main.topGameState() == "NextMainMenu")
-             {
-                 nextMainMenu.update();
-             } else if (Main.topGameState() == "Setting") {
-                 setting.update();
-             }
-         }
-
+        soundManager.update();
+        if (Main.nguoncode == 1) {
+            if (Main.topGameState().equals("MainMenu")) {
+                mainMenu.update();
+            } else if (Main.topGameState().equals("NextMainMenu")) {
+                nextMainMenu.update();
+            } else if (Main.topGameState().equals("Setting")) {
+                setting.update();
+            } else if (Main.topGameState() == "audiosetting")
+                audioSetting.update();
+            else if (Main.topGameState() == "keysetting")
+                keySetting.update();
+            else if (Main.topGameState() == "videosetting")
+                videoSetting.update();
+        }
     }
-    //=================================================================================================================
+    // =================================================================================================================
 
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
 
-        Graphics2D g2 = (Graphics2D)g;
+        if (Main.nguoncode == 1) {
+            if (Main.topGameState().equals("MainMenu")) {
+                mainMenu.draw(g2);
+            } else if (Main.topGameState().equals("NextMainMenu")) {
+                nextMainMenu.draw(g2);
+            } else if (Main.topGameState().equals("Setting"))
+                setting.draw(g2);
+            else if (Main.topGameState() == "audiosetting")
+                audioSetting.draw(g2);
+            else if (Main.topGameState() == "keysetting")
+                keySetting.draw(g2);
+            else if (Main.topGameState() == "videosetting")
+                videoSetting.draw(g2);
+        }
+        if (Main.nguoncode == 2) {
 
-        //tileManager.draw(g2);
-        //tileM.draw(g2);
-        //tileM2.draw(g2);
-        //tileM3.draw(g2);
-        //tileM4.draw(g2);
+        }
+        if (Main.nguoncode == 3) {
+            normalClassroom.draw(g2);
+            player.draw(g2);
 
-         //player.draw(g2);
-         if (Main.nguoncode == 1)
-         {
-             if (Main.topGameState() == "MainMenu")
-             {
-                 mainMenu.draw(g2);
-             }
-             else if (Main.topGameState() == "NextMainMenu")
-             {
-                 nextMainMenu.draw(g2);
-             }else if (Main.topGameState() == "Setting")
-                 setting.draw(g2);
-         }
+        }
+        if (Main.nguoncode == 4) {
 
+        }
+        if (Main.nguoncode == 5) {
+            //normalClassroom.draw(g2);
+            //computerRoom.draw(g2);
+            //library.draw(g2);
+            stadium.draw(g2);
+            player.draw(g2);
 
-        
-        
-        
+        }
         g2.dispose();
     }
 }

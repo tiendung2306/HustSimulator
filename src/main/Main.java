@@ -2,30 +2,29 @@ package main;
 
 //import DeveloperTest.Thai;
 
+import MainMenu.AudioSetting;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.event.*;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.Scanner;
 import java.util.Stack;
 
 public class Main{
     public static int nguoncode;
+    public static int ex = 1;
     public static Stack<String> GameState = new Stack<>();
     public static void pushGameState(String a){
         GameState.push(a);
     }
-    public static String popGameState(){
-        return GameState.pop();
+    public static void popGameState(){
+        GameState.pop();
     }
     public static String topGameState(){
         return GameState.peek();
     }
-
-
     public static void main(String[] args) {
         pushGameState("MainMenu");
         JFrame window = new JFrame();
@@ -78,7 +77,6 @@ public class Main{
 }
 
  class ButtonClicked implements ActionListener {
-
      String buttonName = "";
      GamePanel gamePanel;
 
@@ -86,10 +84,12 @@ public class Main{
          this.buttonName = buttonName;
          this.gamePanel = gamePanel;
      }
-
      public void actionPerformed(ActionEvent e) {
+         JFrame window = new JFrame();
          if (this.buttonName == "Thai") {
              Main.nguoncode = 1;
+             if (Main.topGameState() == "audiosetting")
+                window.add(new AudioSetting());
          } else if (this.buttonName == "Dung") {
              Main.nguoncode = 2;
          } else if (this.buttonName == "Khai") {
@@ -99,7 +99,7 @@ public class Main{
          } else if (this.buttonName == "Son") {
              Main.nguoncode = 5;
          }
-         JFrame window = new JFrame();
+
          window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
          window.setResizable(false);
          window.setTitle("2D Adventure");

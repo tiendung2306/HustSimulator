@@ -1,5 +1,7 @@
 package MainMenu;
 
+import main.Main;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +22,6 @@ public class Setting extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
     }
-
     public void run() {
         while (gameThread != null) {
             update();
@@ -45,7 +46,7 @@ public class Setting extends JPanel implements Runnable {
             audioicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/audioicon.png"));
             keyicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/keyboardicon.png"));
             videoicon1 = ImageIO.read(new FileInputStream("res/MainmenuImage/videosetting11.png"));
-            exitImg1 = ImageIO.read(new FileInputStream("res/player/boy_left_2.png"));
+            exitImg1 = ImageIO.read(new FileInputStream("res/player/character_move_left (1).png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,16 +91,15 @@ public class Setting extends JPanel implements Runnable {
 
     }
     public void draw(Graphics2D g2) {
-        g2.drawImage(SettingBackGround, 0, 0, 768, 576, null);
-        g2.drawImage(key, 250, 310, 267,40, null);
-        g2.drawImage(audio, 200, 250, 367,40, null);
-        g2.drawImage(video, 200, 190, 367,40, null);
-        g2.drawImage(back, 10, 10, 40, 40, null);
-        g2.drawImage(exitImg, 60, 15, 30, 30, null);
-        g2.drawImage(keyicon, 530, 305, 45,45, null);
-        g2.drawImage(audioicon, 580, 250, 45,45, null);
-        g2.drawImage(videoicon, 580, 190, 45,45, null);
-
+        g2.drawImage(SettingBackGround, 0, 0, 768*Main.ex, 576*Main.ex, null);
+        g2.drawImage(key, 250*Main.ex, 310*Main.ex, 267*Main.ex,40*Main.ex, null);
+        g2.drawImage(audio, 200*Main.ex, 250*Main.ex, 367*Main.ex,40*Main.ex, null);
+        g2.drawImage(video, 200*Main.ex, 190*Main.ex, 367*Main.ex,40*Main.ex, null);
+        g2.drawImage(back, 10*Main.ex, 10*Main.ex, 40*Main.ex, 40*Main.ex, null);
+        g2.drawImage(exitImg, 60*Main.ex, 12*Main.ex, 40*Main.ex, 40*Main.ex, null);
+        g2.drawImage(keyicon, 530*Main.ex, 305*Main.ex, 45*Main.ex,45*Main.ex, null);
+        g2.drawImage(audioicon, 580*Main.ex, 250*Main.ex, 45*Main.ex,45*Main.ex, null);
+        g2.drawImage(videoicon, 580*Main.ex, 190*Main.ex, 45*Main.ex,45*Main.ex, null);
         super.paintComponent(g2);
     }
 }
