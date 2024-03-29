@@ -50,7 +50,10 @@ public class Entity {
     public void setValidArea(Rectangle validArea) {
         this.validArea = validArea;
     }
-
+    public int getBoundingBoxX(){ return boundingBox.x;}
+    public int getBoundingBoxY(){ return boundingBox.y;}
+    public int getBoundingBoxWidth(){ return boundingBox.width;}
+    public int getBoundingBoxHeight(){ return boundingBox.height;}
     Rectangle validArea;
-    Rectangle boundingBox;
+    public Rectangle boundingBox;
 }

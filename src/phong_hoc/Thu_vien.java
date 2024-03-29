@@ -46,9 +46,9 @@ public class Thu_vien extends Map {
 
         g2.drawImage(tileManager.tile[34].image,94* gp.scale,13*gp.scale,92*gp.scale,35*gp.scale,null);
         g2.drawImage(tileManager.tile[16].image,16* gp.scale,2*gp.scale,46*gp.scale,26*gp.scale,null);
-        g2.drawImage(tileManager.tile[12].image,209* gp.scale,1*gp.scale,29*gp.scale,29*gp.scale,null);
+        g2.drawImage(tileManager.tile[12].image,209* gp.scale,1,29*gp.scale,29*gp.scale,null);
         g2.drawImage(tileManager.tile[13].image,33* gp.scale,35*gp.scale,78*gp.scale,59*gp.scale,null);
-        g2.drawImage(tileManager.tile[14].image,0* gp.scale,54*gp.scale,15*gp.scale,130*gp.scale,null);
+        g2.drawImage(tileManager.tile[14].image,0,54*gp.scale,15*gp.scale,130*gp.scale,null);
         g2.drawImage(tileManager.tile[15].image,33* gp.scale,128*gp.scale,81*gp.scale,61*gp.scale,null);
         g2.drawImage(tileManager.tile[10].image,145* gp.scale,65*gp.scale,31*gp.scale,31*gp.scale,null);
         g2.drawImage(tileManager.tile[10].image,145* gp.scale,113*gp.scale,31*gp.scale,31*gp.scale,null);

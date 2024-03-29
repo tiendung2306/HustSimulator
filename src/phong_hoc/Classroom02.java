@@ -55,33 +55,30 @@ public class Classroom02 extends Map {
         int dem=0;
         int x_ban=32,y_ban=96;
         int x_mt_hs=33,y_mt_hs_1=95,y_mt_hs_2=109;
-        while(true) {
+        do {
             dem++;
-            if(dem<=5) {
+            if (dem <= 5) {
                 g2.drawImage(tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale, null);
-                g2.drawImage(tileManager.tile[7].image,x_mt_hs*gp.scale,y_mt_hs_1*gp.scale,13*gp.scale, 13*gp.scale,null);
-                g2.drawImage(tileManager.tile[7].image,x_mt_hs*gp.scale,y_mt_hs_2*gp.scale,13*gp.scale, 13*gp.scale,null);
-                x_mt_hs+=32;
+                g2.drawImage(tileManager.tile[7].image, x_mt_hs * gp.scale, y_mt_hs_1 * gp.scale, 13 * gp.scale, 13 * gp.scale, null);
+                g2.drawImage(tileManager.tile[7].image, x_mt_hs * gp.scale, y_mt_hs_2 * gp.scale, 13 * gp.scale, 13 * gp.scale, null);
+                x_mt_hs += 32;
                 x_ban += 32;
             }
-            if(dem == 5) {
-                x_ban=x_ban-32;
-                x_mt_hs=x_mt_hs-32;
+            if (dem == 5) {
+                x_ban = x_ban - 32;
+                x_mt_hs = x_mt_hs - 32;
             }
-            if(dem>5) {
-                y_ban=160;
-                y_mt_hs_1=159;
-                y_mt_hs_2=173;
+            if (dem > 5) {
+                y_ban = 160;
+                y_mt_hs_1 = 159;
+                y_mt_hs_2 = 173;
                 g2.drawImage(tileManager.tile[4].image, x_ban * gp.scale, y_ban * gp.scale, 16 * gp.scale, 32 * gp.scale, null);
-                g2.drawImage(tileManager.tile[7].image,x_mt_hs*gp.scale,y_mt_hs_1*gp.scale,13*gp.scale, 13*gp.scale,null);
-                g2.drawImage(tileManager.tile[7].image,x_mt_hs*gp.scale,y_mt_hs_2*gp.scale,13*gp.scale, 13*gp.scale,null);
+                g2.drawImage(tileManager.tile[7].image, x_mt_hs * gp.scale, y_mt_hs_1 * gp.scale, 13 * gp.scale, 13 * gp.scale, null);
+                g2.drawImage(tileManager.tile[7].image, x_mt_hs * gp.scale, y_mt_hs_2 * gp.scale, 13 * gp.scale, 13 * gp.scale, null);
                 x_ban -= 32;
-                x_mt_hs-=32;
+                x_mt_hs -= 32;
             }
-            if(dem==10) {
-                break;
-            }
-        }
+        } while (dem != 10);
         g2.drawImage(tileManager.tile[8].image,208*gp.scale,137*gp.scale,28*gp.scale, 28*gp.scale,null);
 
     }
