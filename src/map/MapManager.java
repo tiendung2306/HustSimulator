@@ -1,81 +1,58 @@
 package map;
 
+import area.NormalClassroom;
 import main.GamePanel;
-import phong_hoc.Classroom01;
-import phong_hoc.Classroom02;
-import phong_hoc.Svd;
-import phong_hoc.Thu_vien;
-import tile.Tile;
+import area.ComputerRoom;
+import area.Stadium;
+import area.Library;
 import tile.TileManager;
 
 public class MapManager {
     GamePanel gamePanel;
 
-    Classroom01 classroom01;
-    Classroom02 classroom02;
-    Thu_vien thuVien;
-    Svd svd;
+    NormalClassroom classroom01;
+    ComputerRoom classroom02;
+    Library thuVien;
+    Stadium svd;
     TileManager tileManager;
     public MapManager(GamePanel gamePanel) {
         this.gamePanel=gamePanel;
-        classroom01 = new Classroom01(gamePanel);
-        classroom02 = new Classroom02(gamePanel);
-        thuVien = new Thu_vien(gamePanel);
-        svd = new Svd(gamePanel);
+        classroom01 = new NormalClassroom(gamePanel);
+        classroom02 = new ComputerRoom(gamePanel);
+        thuVien = new Library(gamePanel);
+        svd = new Stadium(gamePanel);
         tileManager = new TileManager(gamePanel);
     }
 
-    public void setupTileClassroom01() {
-        classroom01.tileContainer[0]=tileManager.tile[0];
-        classroom01.tileContainer[1]=tileManager.tile[1];
-        classroom01.tileContainer[2]=tileManager.tile[32];
-        classroom01.tileContainer[3]=tileManager.tile[2];
-        classroom01.tileContainer[4]=tileManager.tile[6];
-        classroom01.tileContainer[5]=tileManager.tile[39];
-        classroom01.tileContainer[6]=tileManager.tile[5];
-        classroom01.tileContainer[7]=tileManager.tile[3];
-        classroom01.tileContainer[8]=tileManager.tile[4];
+    public void setupTileNormalClassroom() {
+        classroom01.tileContainer[0] = tileManager.tile[1];
+        classroom01.tileContainer[1] = tileManager.tile[2];
+        classroom01.tileContainer[2] = tileManager.tile[14];
     }
 
     public void setupTileClassroom02 () {
-        classroom02.tileContainer[0]=tileManager.tile[0];
-        classroom02.tileContainer[1]=tileManager.tile[1];
-        classroom02.tileContainer[2]=tileManager.tile[32];
-        classroom02.tileContainer[3]=tileManager.tile[2];
-        classroom02.tileContainer[4]=tileManager.tile[6];
-        classroom02.tileContainer[5]=tileManager.tile[39];
-        classroom02.tileContainer[6]=tileManager.tile[5];
-        classroom02.tileContainer[7]=tileManager.tile[3];
-        classroom02.tileContainer[8]=tileManager.tile[4];
-        classroom02.tileContainer[9]=tileManager.tile[7];
+        classroom02.tileContainer[0] = tileManager.tile[1];
+        classroom02.tileContainer[1] = tileManager.tile[2];
+        classroom02.tileContainer[2] = tileManager.tile[14];
+        classroom02.tileContainer[3] = tileManager.tile[3];
+        classroom02.tileContainer[4] = tileManager.tile[4];
     }
 
 
-    public void setupTileThuVIen() {
-        classroom01.tileContainer[0]=tileManager.tile[9];
-        classroom01.tileContainer[1]=tileManager.tile[38];
-        classroom01.tileContainer[2]=tileManager.tile[34];
-        classroom01.tileContainer[3]=tileManager.tile[16];
-        classroom01.tileContainer[4]=tileManager.tile[12];
-        classroom01.tileContainer[5]=tileManager.tile[13];
-        classroom01.tileContainer[6]=tileManager.tile[14];
-        classroom01.tileContainer[7]=tileManager.tile[15];
-        classroom01.tileContainer[8]=tileManager.tile[10];
-        classroom01.tileContainer[9]=tileManager.tile[11];
+    public void setupTileLibrary() {
+        classroom01.tileContainer[0] = tileManager.tile[5];
+        classroom01.tileContainer[1] = tileManager.tile[6];
+        classroom01.tileContainer[2] = tileManager.tile[7];
+        classroom01.tileContainer[3] = tileManager.tile[8];
+        classroom01.tileContainer[4] = tileManager.tile[9];
+        classroom01.tileContainer[5] = tileManager.tile[13];
     }
 
-    public void setupTileSvd() {
-        classroom01.tileContainer[0]=tileManager.tile[36];
-        classroom01.tileContainer[1]=tileManager.tile[35];
-        classroom01.tileContainer[2]=tileManager.tile[37];
-        classroom01.tileContainer[3]=tileManager.tile[20];
-        classroom01.tileContainer[4]=tileManager.tile[17];
-        classroom01.tileContainer[5]=tileManager.tile[21];
-        classroom01.tileContainer[6]=tileManager.tile[22];
-        classroom01.tileContainer[7]=tileManager.tile[40];
-        classroom01.tileContainer[8]=tileManager.tile[18];
-        classroom01.tileContainer[9]=tileManager.tile[19];
-        classroom01.tileContainer[10]=tileManager.tile[23];
-        classroom01.tileContainer[11]=tileManager.tile[31];
+    public void setupTileStadium() {
+        classroom01.tileContainer[20] = tileManager.tile[10];
+        classroom01.tileContainer[21] = tileManager.tile[11];
+        classroom01.tileContainer[22] = tileManager.tile[12];
+        classroom01.tileContainer[23] = tileManager.tile[15];
+        classroom01.tileContainer[24] = tileManager.tile[16];
     }
 }

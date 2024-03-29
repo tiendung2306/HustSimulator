@@ -5,22 +5,20 @@ import entity.Player;
 import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
-import phong_hoc.Classroom01;
-import phong_hoc.Classroom02;
-import phong_hoc.Svd;
-import phong_hoc.Thu_vien;
 import area_selection.*;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import area.NormalClassroom;
+import area.ComputerRoom;
+import area.Stadium;
+import area.Library;
+
 import javax.swing.*;
 
 import Keyboard.KeyboardManager;
-import java.awt.event.KeyEvent;
 
 import java.awt.*;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -55,11 +53,11 @@ public class GamePanel extends JPanel implements Runnable {
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
             nextMainMenu, setting, audioSetting, keySetting, videoSetting);
-    // Khai báo lớp Classroom01 vào GamePanel
-    Classroom01 classroom01 = new Classroom01(this);
-    // Classroom02 classroom02 = new Classroom02(this);
-    // Thu_vien thuVien = new Thu_vien(this);
-    // Svd svd = new Svd(this);
+    // Khai báo lớp NormalClassroom vào GamePanel
+    NormalClassroom normalClassroom = new NormalClassroom(this);
+    ComputerRoom computerRoom = new ComputerRoom(this);
+    Library library = new Library(this);
+    Stadium stadium = new Stadium(this);
     public Player player = new Player(this, keyH, null);
     KeyboardManager keyboardManager = new KeyboardManager();
 
@@ -68,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
     // =================================================================================================================
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setSize(320, 240);
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
@@ -118,6 +117,7 @@ public class GamePanel extends JPanel implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
@@ -129,14 +129,11 @@ public class GamePanel extends JPanel implements Runnable {
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals("MainMenu")) {
                 mainMenu.update();
-            } 
-            else if (Main.topGameState().equals("NextMainMenu")) {
+            } else if (Main.topGameState().equals("NextMainMenu")) {
                 nextMainMenu.update();
-            } 
-            else if (Main.topGameState().equals("Setting")) {
+            } else if (Main.topGameState().equals("Setting")) {
                 setting.update();
-            } 
-            else if (Main.topGameState() == "audiosetting")
+            } else if (Main.topGameState() == "audiosetting")
                 audioSetting.update();
             else if (Main.topGameState() == "keysetting")
                 keySetting.update();
@@ -176,6 +173,11 @@ public class GamePanel extends JPanel implements Runnable {
 
         }
         if (Main.nguoncode == 5) {
+            //normalClassroom.draw(g2);
+            //computerRoom.draw(g2);
+            //library.draw(g2);
+            stadium.draw(g2);
+            player.draw(g2);
 
         }
         g2.dispose();
