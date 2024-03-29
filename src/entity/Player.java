@@ -171,9 +171,9 @@ public class Player extends Entity{
         boundingBox.y = min(screenY, mapY);
         boundingBox.x += max(0,mapX - (gamepanel.mapWidth - gamepanel.screenWidth / 2) + boundingBox.width);
         boundingBox.y += max(0,mapY - (gamepanel.mapHeight - gamepanel.screenWidth / 2) + boundingBox.height);
-        System.out.print(gamepanel.screenWidth);
-        System.out.print(" ");
-        System.out.println(boundingBox.x);
+        // System.out.print(gamepanel.screenWidth);
+        // System.out.print(" ");
+        // System.out.println(boundingBox.x);
         leftBorder = (boundingBox.x <= 0);
         rightBorder = (boundingBox.x >= gamepanel.screenWidth - boundingBox.width);
         topBorder = (boundingBox.y <= 0);
