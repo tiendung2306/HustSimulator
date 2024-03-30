@@ -44,12 +44,13 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
 
-    Main_Menu mainMenu = new Main_Menu();
-    NextMainMenu nextMainMenu = new NextMainMenu();
-    Setting setting = new Setting();
-    AudioSetting audioSetting = new AudioSetting();
-    KeySetting keySetting = new KeySetting();
-    VideoSetting videoSetting = new VideoSetting();
+    public static Main_Menu mainMenu = new Main_Menu();
+    public static NextMainMenu nextMainMenu = new NextMainMenu();
+    public static Setting setting = new Setting();
+    public static AudioSetting audioSetting = new AudioSetting();
+    public static KeySetting keySetting = new KeySetting();
+    public static VideoSetting videoSetting = new VideoSetting();
+    
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
             nextMainMenu, setting, audioSetting, keySetting, videoSetting);
@@ -127,17 +128,18 @@ public class GamePanel extends JPanel implements Runnable {
 
         soundManager.update();
         if (Main.nguoncode == 1) {
-            if (Main.topGameState().equals("MainMenu")) {
+            if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
-            } else if (Main.topGameState().equals("NextMainMenu")) {
+            } else if (Main.topGameState().equals(Main.states[1])) {
                 nextMainMenu.update();
-            } else if (Main.topGameState().equals("Setting")) {
+            } else if (Main.topGameState().equals(Main.states[2])) {
                 setting.update();
-            } else if (Main.topGameState() == "audiosetting")
+            } else if (Main.topGameState().equals(Main.states[3])) {
                 audioSetting.update();
-            else if (Main.topGameState() == "keysetting")
+            }
+            else if (Main.topGameState().equals(Main.states[4]))
                 keySetting.update();
-            else if (Main.topGameState() == "videosetting")
+            else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
         }
     }
@@ -148,17 +150,17 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         if (Main.nguoncode == 1) {
-            if (Main.topGameState().equals("MainMenu")) {
+            if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.draw(g2);
-            } else if (Main.topGameState().equals("NextMainMenu")) {
+            } else if (Main.topGameState().equals(Main.states[1])) {
                 nextMainMenu.draw(g2);
-            } else if (Main.topGameState().equals("Setting"))
+            } else if (Main.topGameState().equals(Main.states[2]))
                 setting.draw(g2);
-            else if (Main.topGameState() == "audiosetting")
+            else if (Main.topGameState().equals(Main.states[3]))
                 audioSetting.draw(g2);
-            else if (Main.topGameState() == "keysetting")
+            else if (Main.topGameState().equals(Main.states[4]))
                 keySetting.draw(g2);
-            else if (Main.topGameState() == "videosetting")
+            else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.draw(g2);
         }
         if (Main.nguoncode == 2) {
@@ -173,9 +175,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         }
         if (Main.nguoncode == 5) {
-            //normalClassroom.draw(g2);
-            //computerRoom.draw(g2);
-            //library.draw(g2);
+            // normalClassroom.draw(g2);
+            // computerRoom.draw(g2);
+            // library.draw(g2);
             stadium.draw(g2);
             player.draw(g2);
 

@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Main_Menu extends JPanel implements Runnable {
+public class Main_Menu extends JPanel {
 
     Thread gameThread;
     public BufferedImage imgBackGround, HUST, simulator, play, exit, setting;
@@ -23,12 +23,7 @@ public class Main_Menu extends JPanel implements Runnable {
     private int x_size = 48 * Main.ex, y_size = 48 * Main.ex;
 
     public Main_Menu() {
-        getPlayerImage();
-    }
-
-    public void startGameThread() {
-        gameThread = new Thread(this);
-        gameThread.start();
+        getImage();
     }
 
     public void run() {
@@ -56,7 +51,7 @@ public class Main_Menu extends JPanel implements Runnable {
         c_check = "buttonSettingEnter";
     }
 
-    public void getPlayerImage() {
+    public void getImage() {
         try {
             imgBackGround = ImageIO.read(new FileInputStream("res/MainmenuImage/BackGround.png"));
             HUST = ImageIO.read(new FileInputStream("res/MainmenuImage/HUST.png"));

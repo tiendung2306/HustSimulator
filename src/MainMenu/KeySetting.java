@@ -9,25 +9,23 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class KeySetting extends JPanel implements Runnable {
+public class KeySetting extends JPanel {
 
     Thread gameThread;
     private BufferedImage SettingBackGround, back, exitImg, exitImg1;
-    public KeySetting()
-    {
-        getPlayerImage();
+
+    public KeySetting() {
+        getImage();
     }
-    public void startGameThread() {
-        gameThread = new Thread(this);
-        gameThread.start();
-    }
+
     public void run() {
         while (gameThread != null) {
             update();
             repaint();
         }
     }
-    public void getPlayerImage(){
+
+    public void getImage() {
         try {
             SettingBackGround = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbackground.png"));
             back = ImageIO.read(new FileInputStream("res/MainmenuImage/backicon.png"));
@@ -37,13 +35,17 @@ public class KeySetting extends JPanel implements Runnable {
             e.printStackTrace();
         }
     }
-   private String check = null;
+
+    private String check = null;
+
     public void Keysettingrollback() {
         check = null;
     }
+
     public void buttonReturnEnter() {
         check = "buttonReturnEnter";
     }
+
     public void update() {
         if (check == "buttonReturnEnter") {
             exitImg = exitImg1;
@@ -52,15 +54,17 @@ public class KeySetting extends JPanel implements Runnable {
         }
     }
 
+    public void Init() {
+        check = "";
+    }
+
     public void draw(Graphics2D g2) {
-        g2.drawImage(SettingBackGround, 0, 0, 768*Main.ex, 576*Main.ex, null);
-        g2.drawImage(back, 10*Main.ex, 10*Main.ex, 40*Main.ex, 40*Main.ex, null);
-        g2.drawImage(exitImg, 60*Main.ex, 12*Main.ex, 40*Main.ex, 40*Main.ex, null);
-        g2.setFont(new Font("Arial", Font.BOLD, 14*Main.ex));
+        g2.drawImage(SettingBackGround, 0, 0, 768 * Main.ex, 576 * Main.ex, null);
+        g2.drawImage(back, 10 * Main.ex, 10 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
+        g2.drawImage(exitImg, 60 * Main.ex, 12 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
+        g2.setFont(new Font("Arial", Font.BOLD, 14 * Main.ex));
         g2.setColor(Color.white);
 
         super.paintComponent(g2);
     }
 }
-
-
