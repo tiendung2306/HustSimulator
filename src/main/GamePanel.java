@@ -2,10 +2,11 @@ package main;
 
 import MainMenu.*;
 import entity.Player;
+import section_selection.*;
 import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
-import area_selection.*;
+
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -28,8 +29,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int tileSize = originalTileSize * scale;
     public final int maxScreenCol = 16;
     public final int maxScreenRow = 12;
-    public final int screenWidth = tileSize * maxScreenCol;
-    public final int screenHeight = tileSize * maxScreenRow;
+    public final int screenWidth = 1920;
+    public final int screenHeight = 1080;
 
     // =================================================================================================================
     // MAP SETTINGS
@@ -60,6 +61,8 @@ public class GamePanel extends JPanel implements Runnable {
     Stadium stadium = new Stadium(this);
     public Player player = new Player(this, keyH, null);
     KeyboardManager keyboardManager = new KeyboardManager();
+
+    Section_selection se = new Section_selection(this);
 
     double FPS = 60;
 
@@ -123,23 +126,23 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
-        player.update();
+        // player.update();
 
-        soundManager.update();
-        if (Main.nguoncode == 1) {
-            if (Main.topGameState().equals("MainMenu")) {
-                mainMenu.update();
-            } else if (Main.topGameState().equals("NextMainMenu")) {
-                nextMainMenu.update();
-            } else if (Main.topGameState().equals("Setting")) {
-                setting.update();
-            } else if (Main.topGameState() == "audiosetting")
-                audioSetting.update();
-            else if (Main.topGameState() == "keysetting")
-                keySetting.update();
-            else if (Main.topGameState() == "videosetting")
-                videoSetting.update();
-        }
+        // soundManager.update();
+        // if (Main.nguoncode == 1) {
+        //     if (Main.topGameState().equals("MainMenu")) {
+        //         mainMenu.update();
+        //     } else if (Main.topGameState().equals("NextMainMenu")) {
+        //         nextMainMenu.update();
+        //     } else if (Main.topGameState().equals("Setting")) {
+        //         setting.update();
+        //     } else if (Main.topGameState() == "audiosetting")
+        //         audioSetting.update();
+        //     else if (Main.topGameState() == "keysetting")
+        //         keySetting.update();
+        //     else if (Main.topGameState() == "videosetting")
+        //         videoSetting.update();
+        // }
     }
     // =================================================================================================================
 
@@ -170,6 +173,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         }
         if (Main.nguoncode == 4) {
+            se.operation(g);
 
         }
         if (Main.nguoncode == 5) {
