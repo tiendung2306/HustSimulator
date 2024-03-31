@@ -30,7 +30,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
     public void mouseDragged(MouseEvent e) {
         int x_drag = e.getX();
         // int y_drag = e.getY();
-        if (Main.topGameState().equals("audiosetting")) {
+        if (Main.topGameState().equals(Main.states[3])) {
             if (AudioSetting.checkenterslider) {
                 if ((x_drag >= 240 * Main.ex) && (x_drag <= 600 * Main.ex))
                     audioSetting.volumesliderpointX(x_drag - 23 * Main.ex);
