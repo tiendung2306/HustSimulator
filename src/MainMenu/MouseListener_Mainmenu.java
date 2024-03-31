@@ -20,7 +20,6 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
         this.gamePanel = gamePanel;
     }
 
-    @Override
     public void mouseClicked(MouseEvent e) {
         int x_click = (int) e.getPoint().getX();
         int y_click = (int) e.getPoint().getY();
@@ -38,12 +37,6 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     && (y_click < 53 * Main.ex)) {
                 Main.pushGameState(Main.states[2]);
                 setting.Init();
-            } else if ((x_click > 260 * Main.ex) && (y_click > 299 * Main.ex) && (x_click < 507 * Main.ex)
-                    && (y_click < 337 * Main.ex)) {
-                Main.pushGameState(Main.states[6]);
-            } else if ((x_click > 244 * Main.ex) && (y_click > 237 * Main.ex) && (x_click < 527 * Main.ex)
-                    && (y_click < 276 * Main.ex)) {
-                Main.pushGameState(Main.states[7]);
             }
         } else if (Main.topGameState().equals(Main.states[1])) {
             if ((x_click > 710 * Main.ex) && (y_click > 13 * Main.ex) && (x_click < 750 * Main.ex)
@@ -56,6 +49,13 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             else if ((x_click > 262 * Main.ex) && (y_click > 331 * Main.ex) && (x_click < 504 * Main.ex)
                     && (y_click < 366 * Main.ex))
                 Main.pushGameState(Main.states[6]);
+            else if ((x_click > 260 * Main.ex) && (y_click > 299 * Main.ex) && (x_click < 507 * Main.ex)
+                    && (y_click < 337 * Main.ex)) {
+                Main.pushGameState(Main.states[6]);
+            } else if ((x_click > 244 * Main.ex) && (y_click > 237 * Main.ex) && (x_click < 527 * Main.ex)
+                    && (y_click < 276 * Main.ex)) {
+                Main.pushGameState(Main.states[7]);
+            }
         } else if (Main.topGameState().equals(Main.states[2])) {
             if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 * Main.ex) // neu an back
                     && (y_click < 50 * Main.ex))
@@ -94,21 +94,17 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
         }
     }
 
-    @Override
     public void mousePressed(MouseEvent e) {
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
 
     }
 
-    @Override
     public void mouseEntered(MouseEvent e) {
 
     }
 
-    @Override
     public void mouseExited(MouseEvent e) {
 
     }

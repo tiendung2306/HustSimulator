@@ -5,6 +5,7 @@ import entity.Player;
 import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
+import Mouse.MouseManager;
 import area_selection.*;
 import java.awt.image.BufferedImage;
 
@@ -60,6 +61,8 @@ public class GamePanel extends JPanel implements Runnable {
     Library library = new Library(this);
     Stadium stadium = new Stadium(this);
     public Player player = new Player(this, keyH, null);
+
+    MouseManager mouseManager = new MouseManager();
     KeyboardManager keyboardManager = new KeyboardManager();
 
     double FPS = 60;
@@ -78,6 +81,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void Mouse() {
         this.addMouseMotionListener(mouseMotionListenerMainmenu);
         this.addMouseListener(mouseListenerMainmenu);
+        this.addMouseListener(mouseManager);
+
+        this.addKeyListener(keyboardManager);
     }
 
     public void startGameThread() {
@@ -124,6 +130,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
+        // System.out.println(MouseManager.lastClickedX);
+        // System.out.println(MouseManager.lastClickedY);
+
         player.update();
 
         soundManager.update();

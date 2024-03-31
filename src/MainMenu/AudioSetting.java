@@ -146,7 +146,7 @@ public class AudioSetting extends JPanel {
         g2.drawImage(SettingBackGround, 0, 0, 768 * Main.ex, 576 * Main.ex, null);
         g2.drawImage(back, 10 * Main.ex, 10 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
         g2.drawImage(exitImg, 60 * Main.ex, 12 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(line, 240 * Main.ex, 250 * Main.ex, 360 * Main.ex, 60 * Main.ex, null);
+        g2.drawImage(line, 240 * Main.ex, 240 * Main.ex, 360 * Main.ex, 70 * Main.ex, null);
         g2.drawImage(player, volumesliderpointX, 250 * Main.ex, 50 * Main.ex, 50 * Main.ex, null);
         g2.setFont(new Font("Arial", Font.BOLD, 14 * Main.ex));
         g2.setColor(Color.white);
