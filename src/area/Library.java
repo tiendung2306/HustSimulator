@@ -23,8 +23,6 @@ public class Library extends Map {
     public Library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         tileManager = new TileManager(gamePanel);
-        numTileContainer = 6;
-        mapIndex = 3;
         tileContainer = new Tile[50];
         this.tileManager.getTileImage();
         tileBookcase01_1 = new TileBookcase01(gamePanel,40,34);
@@ -34,7 +32,19 @@ public class Library extends Map {
         tileChairLibrary = new TileChairLibrary[6];
         tileTableLibrary = new TileTableLibrary[6];
         tileDoorLibrary = new TileDoorLibrary(gamePanel,127,12);
-        this.setUpTable();
+        setUpTable();
+        setUpTileLibrary();
+    }
+
+    public void setUpTileLibrary() {
+        numTileContainer = 6;
+        mapIndex = 3;
+        tileContainer[0] = tileManager.tile[5];
+        tileContainer[1] = tileManager.tile[6];
+        tileContainer[2] = tileManager.tile[7];
+        tileContainer[3] = tileManager.tile[8];
+        tileContainer[4] = tileManager.tile[9];
+        tileContainer[5] = tileManager.tile[13];
     }
 
     private void setUpTable() {
@@ -44,7 +54,7 @@ public class Library extends Map {
         int y2 = 97;
         int count =0;
         for(int i = 0; i < 6; i++) {
-            count ++;
+            count++;
             if(count<=3) {
                 tileTableLibrary[i] = new TileTableLibrary(gamePanel,x1,y1);
                 tileChairLibrary[i] = new TileChairLibrary(gamePanel,x2,y2);

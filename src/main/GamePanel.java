@@ -2,6 +2,7 @@ package main;
 
 import MainMenu.*;
 import entity.Player;
+import map.Map;
 import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
@@ -41,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public TileManager tileManager = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
-    public CollisionPlayer collisionPlayer = new CollisionPlayer(this);
+    public CollisionPlayer collision = new CollisionPlayer(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
 
@@ -60,10 +61,11 @@ public class GamePanel extends JPanel implements Runnable {
     ComputerRoom computerRoom = new ComputerRoom(this);
     Library library = new Library(this);
     Stadium stadium = new Stadium(this);
-    public Player player = new Player(this, keyH, null);
 
     MouseManager mouseManager = new MouseManager();
+    public Map presentMap = normalClassroom;
     KeyboardManager keyboardManager = new KeyboardManager();
+    public Player player = new Player(this, keyH , tileManager);
 
     double FPS = 60;
 
@@ -92,6 +94,20 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void Init() {
+        switch (Main.nguoncode) {
+            case 4 -> {
+                presentMap = normalClassroom;
+            }
+            case 5 -> {
+                presentMap = computerRoom;
+            }
+            case 6 -> {
+                presentMap = stadium;
+            }
+            case 7 -> {
+                presentMap = library;
+            }
+        }
         keyboardManager.init();
     }
 
@@ -158,38 +174,43 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if (Main.nguoncode == 1) {
-            if (Main.topGameState().equals(Main.states[0])) {
-                mainMenu.draw(g2);
-            } else if (Main.topGameState().equals(Main.states[1])) {
-                nextMainMenu.draw(g2);
-            } else if (Main.topGameState().equals(Main.states[2]))
-                setting.draw(g2);
-            else if (Main.topGameState().equals(Main.states[3]))
-                audioSetting.draw(g2);
-            else if (Main.topGameState().equals(Main.states[4]))
-                keySetting.draw(g2);
-            else if (Main.topGameState().equals(Main.states[5]))
-                videoSetting.draw(g2);
-        }
-        if (Main.nguoncode == 2) {
+        switch (Main.nguoncode) {
+            case 1 -> {
+                if (Main.topGameState().equals(Main.states[0])) {
+                    mainMenu.draw(g2);
+                } else if (Main.topGameState().equals(Main.states[1])) {
+                    nextMainMenu.draw(g2);
+                } else if (Main.topGameState().equals(Main.states[2]))
+                    setting.draw(g2);
+                else if (Main.topGameState().equals(Main.states[3]))
+                    audioSetting.draw(g2);
+                else if (Main.topGameState().equals(Main.states[4]))
+                    keySetting.draw(g2);
+                else if (Main.topGameState().equals(Main.states[5]))
+                    videoSetting.draw(g2);
+            }
+            case 2 -> {
 
-        }
-        if (Main.nguoncode == 3) {
-            normalClassroom.draw(g2);
-            player.draw(g2);
+            }
+            case 3 -> {
 
-        }
-        if (Main.nguoncode == 4) {
-
-        }
-        if (Main.nguoncode == 5) {
-            // normalClassroom.draw(g2);
-            // computerRoom.draw(g2);
-            // library.draw(g2);
-            stadium.draw(g2);
-            player.draw(g2);
-
+            }
+            case 4 -> {
+                normalClassroom.draw(g2);
+                player.draw(g2);
+            }
+            case 5 -> {
+                computerRoom.draw(g2);
+                player.draw(g2);
+            }
+            case 6 -> {
+                stadium.draw(g2);
+                player.draw(g2);
+            }
+            case 7 -> {
+                library.draw(g2);
+                player.draw(g2);
+            }
         }
         g2.dispose();
     }

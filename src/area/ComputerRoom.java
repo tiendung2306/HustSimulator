@@ -25,8 +25,6 @@ public class ComputerRoom extends Map {
     public ComputerRoom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
-        numTileContainer = 5;
-        mapIndex = 2;
         tileContainer = new Tile[50];
         tileManager = new TileManager(gamePanel);
         this.tileManager.getTileImage();
@@ -36,8 +34,19 @@ public class ComputerRoom extends Map {
         tileDoor01 = new TileDoorClassroom(gamePanel,30,28);
         tileDoor02 = new TileDoorClassroom(gamePanel,261,28);
         tileTableTeacher = new TileTableTeacherClassroom(gamePanel,273,177);
-        this.setUpTable();
+        setUpTable();
+        setUpTileComputerRoom();
 
+    }
+
+    public void setUpTileComputerRoom() {
+        numTileContainer = 5;
+        mapIndex = 2;
+        tileContainer[0] = tileManager.tile[1];
+        tileContainer[1] = tileManager.tile[2];
+        tileContainer[2] = tileManager.tile[14];
+        tileContainer[3] = tileManager.tile[3];
+        tileContainer[4] = tileManager.tile[4];
     }
 
     private void setUpTable() {
@@ -47,7 +56,7 @@ public class ComputerRoom extends Map {
 
         int count =0;
         for(int i = 0; i < 10; i++) {
-            count ++;
+            ++count;
             if(count<=5) {
                 tileTable[i] = new TileTableClassroom(gamePanel,x1,y1);
                 tileComputerStudents[2*i] = new TileComputerStudent(gamePanel,x_mt,y1_mt);

@@ -21,13 +21,13 @@ public class TileBookcase01 extends Tile {
     }
 
     public void BoundingBox() {
-        setLeftX(x);
-        setTopY(y);
-        setRightX(x+78);
-        setBottomY(y+59);
+        setLeftX(x * gamePanel.scale);
+        setTopY(y * gamePanel.scale);
+        setRightX((x+78) * gamePanel.scale);
+        setBottomY((y+59) * gamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {
-        tileManager.draw(g2, tileManager.tile[7].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 78 * gamePanel.scale, 59 * gamePanel.scale);
+        tileManager.draw(g2, tileManager.tile[7].image,  getLeftX(),  getTopY(), 78 * gamePanel.scale, 59 * gamePanel.scale);
     }
 }

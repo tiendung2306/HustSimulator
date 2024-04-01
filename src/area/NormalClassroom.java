@@ -21,17 +21,22 @@ public class NormalClassroom extends Map {
     public NormalClassroom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
-        numTileContainer = 3;
-        mapIndex = 1;
         tileContainer = new Tile[50];
         tileManager = new TileManager(gamePanel);
-        this.tileManager.getTileImage();
         tileTable = new TileTableClassroom[10];
         tileDoor01 = new TileDoorClassroom(gamePanel, 30, 28);
         tileDoor02 = new TileDoorClassroom(gamePanel, 261, 28);
         tileTableTeacher = new TileTableTeacherClassroom(gamePanel, 273, 177);
-        this.setUpTable();
-
+        setUpTable();
+        setUpTileNormalClassroom();
+    }
+    public void setUpTileNormalClassroom() {
+        numTileContainer = 13;
+        mapIndex = 1;
+        tileContainer[0] = tileTableTeacher;
+        tileContainer[1] = tileDoor01;
+        tileContainer[2] = tileDoor02;
+        System.arraycopy(tileTable, 0, tileContainer, 3, 10);
     }
 
     private void setUpTable() {

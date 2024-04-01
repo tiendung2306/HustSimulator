@@ -17,17 +17,17 @@ public class TileCar02 extends Tile {
 
         this.gamePanel=gamePanel;
         tileManager = new TileManager(gamePanel);
-        this.BoundingBox();
+        BoundingBox();
     }
 
     public void BoundingBox() {
-        setLeftX(x);
-        setTopY(y);
-        setRightX(x+77);
-        setBottomY(y+33);
+        setLeftX(x * gamePanel.scale);
+        setTopY(y * gamePanel.scale);
+        setRightX((x+77) * gamePanel.scale);
+        setBottomY((y+33) * gamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {
-        tileManager.draw(g2, tileManager.tile[11].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 77 * gamePanel.scale, 33 * gamePanel.scale);
+        tileManager.draw(g2, tileManager.tile[11].image,  getLeftX(),  getTopY(), 77 * gamePanel.scale, 33 * gamePanel.scale);
     }
 }
