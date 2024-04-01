@@ -35,7 +35,7 @@ public class Main {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("Chọn nguồn code");
+        window.setTitle("Chon nguon code");
         window.setPreferredSize(new Dimension(500, 500));
         window.setBackground(Color.black);
         window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));

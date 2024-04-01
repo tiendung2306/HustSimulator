@@ -1,10 +1,10 @@
 package Mouse;
 
-import javafx.scene.paint.Color;
+// import javafx.scene.paint.Color;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javafx.util.*;
+// import javafx.util.*;
 
 public class MouseManager implements MouseListener {
 
