@@ -34,11 +34,7 @@ public class Main{
         window.setPreferredSize(new Dimension(500, 500));
         window.setBackground(Color.black);
         window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.Y_AXIS));
-        System.out.println("1");
-
         GamePanel gamePanel = new GamePanel();
-        System.out.println("2");
-
          JButton button1 = new JButton("Thai");
          window.add(button1);
          button1.addActionListener(new ButtonClicked(button1.getText(), gamePanel));
@@ -47,19 +43,25 @@ public class Main{
          window.add(button2);
          button2.addActionListener(new ButtonClicked(button2.getText(), gamePanel));
 
-         JButton button3 = new JButton("Khai");
+         JButton button3 = new JButton("Tuan");
          window.add(button3);
          button3.addActionListener(new ButtonClicked(button3.getText(), gamePanel));
 
-         JButton button4 = new JButton("Tuan");
+         JButton button4 = new JButton("NormalClassRoom");
          window.add(button4);
          button4.addActionListener(new ButtonClicked(button4.getText(), gamePanel));
 
-         JButton button5 = new JButton("Son");
+         JButton button5 = new JButton("ComputerRoom");
          window.add(button5);
          button5.addActionListener(new ButtonClicked(button5.getText(), gamePanel));
-         System.out.println("3");
 
+        JButton button6 = new JButton("Stadium");
+        window.add(button6);
+        button6.addActionListener(new ButtonClicked(button6.getText(), gamePanel));
+
+        JButton button7 = new JButton("Library");
+        window.add(button7);
+        button7.addActionListener(new ButtonClicked(button7.getText(), gamePanel));
 
         // window.add(gamePanel);
         // window.pack();
@@ -77,7 +79,7 @@ public class Main{
 }
 
  class ButtonClicked implements ActionListener {
-     String buttonName = "";
+     String buttonName;
      GamePanel gamePanel;
 
      public ButtonClicked(String buttonName, GamePanel gamePanel) {
@@ -86,18 +88,18 @@ public class Main{
      }
      public void actionPerformed(ActionEvent e) {
          JFrame window = new JFrame();
-         if (this.buttonName == "Thai") {
-             Main.nguoncode = 1;
-             if (Main.topGameState() == "audiosetting")
-                window.add(new AudioSetting());
-         } else if (this.buttonName == "Dung") {
-             Main.nguoncode = 2;
-         } else if (this.buttonName == "Khai") {
-             Main.nguoncode = 3;
-         } else if (this.buttonName == "Tuan") {
-             Main.nguoncode = 4;
-         } else if (this.buttonName == "Son") {
-             Main.nguoncode = 5;
+         switch (this.buttonName) {
+             case "Thai" -> {
+                 Main.nguoncode = 1;
+                 if (Main.topGameState().equals("audiosetting"))
+                     window.add(new AudioSetting());
+             }
+             case "Dung" -> Main.nguoncode = 2;
+             case "Tuan" -> Main.nguoncode = 3;
+             case "NormalClassRoom" -> Main.nguoncode = 4;
+             case "ComputerRoom" -> Main.nguoncode = 5;
+             case "Stadium" -> Main.nguoncode = 6;
+             case "Library" -> Main.nguoncode = 7;
          }
 
          window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

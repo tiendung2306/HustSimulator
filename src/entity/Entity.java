@@ -8,7 +8,6 @@ public class Entity {
     int mapX, mapY;
     int speed;
     int speedSlant;
-    BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, standstill, upright1, upright2, upleft1, upleft2, downleft1, downleft2, downright1, downright2;
     String direction;
     boolean collisionOn = false;
     public int getMapX() {
@@ -43,17 +42,17 @@ public class Entity {
         this.direction = direction;
     }
 
-    public Rectangle getValidArea() {
-        return validArea;
+    public Rectangle getHitArea() {
+        return hitArea;
     }
 
-    public void setValidArea(Rectangle validArea) {
-        this.validArea = validArea;
+    public void setHitArea(Rectangle validArea) {
+        this.hitArea = validArea;
     }
     public int getBoundingBoxX(){ return boundingBox.x;}
     public int getBoundingBoxY(){ return boundingBox.y;}
     public int getBoundingBoxWidth(){ return boundingBox.width;}
     public int getBoundingBoxHeight(){ return boundingBox.height;}
-    Rectangle validArea;
+    Rectangle hitArea;
     public Rectangle boundingBox;
 }

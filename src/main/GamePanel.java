@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public TileManager tileManager = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
-    public CollisionPlayer collisionPlayer = new CollisionPlayer(this);
+    public CollisionPlayer collision = new CollisionPlayer(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
 
@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
     ComputerRoom computerRoom = new ComputerRoom(this);
     Library library = new Library(this);
     Stadium stadium = new Stadium(this);
-    public Player player = new Player(this, keyH, null);
+    public Player player = new Player(this, keyH, stadium, tileManager);
     KeyboardManager keyboardManager = new KeyboardManager();
 
     double FPS = 60;
@@ -133,11 +133,11 @@ public class GamePanel extends JPanel implements Runnable {
                 nextMainMenu.update();
             } else if (Main.topGameState().equals("Setting")) {
                 setting.update();
-            } else if (Main.topGameState() == "audiosetting")
+            } else if (Main.topGameState().equals("audiosetting"))
                 audioSetting.update();
-            else if (Main.topGameState() == "keysetting")
+            else if (Main.topGameState().equals("keysetting"))
                 keySetting.update();
-            else if (Main.topGameState() == "videosetting")
+            else if (Main.topGameState().equals("videosetting"))
                 videoSetting.update();
         }
     }
@@ -147,38 +147,43 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if (Main.nguoncode == 1) {
-            if (Main.topGameState().equals("MainMenu")) {
-                mainMenu.draw(g2);
-            } else if (Main.topGameState().equals("NextMainMenu")) {
-                nextMainMenu.draw(g2);
-            } else if (Main.topGameState().equals("Setting"))
-                setting.draw(g2);
-            else if (Main.topGameState() == "audiosetting")
-                audioSetting.draw(g2);
-            else if (Main.topGameState() == "keysetting")
-                keySetting.draw(g2);
-            else if (Main.topGameState() == "videosetting")
-                videoSetting.draw(g2);
-        }
-        if (Main.nguoncode == 2) {
+        switch (Main.nguoncode) {
+            case 1 -> {
+                if (Main.topGameState().equals("MainMenu")) {
+                    mainMenu.draw(g2);
+                } else if (Main.topGameState().equals("NextMainMenu")) {
+                    nextMainMenu.draw(g2);
+                } else if (Main.topGameState().equals("Setting"))
+                    setting.draw(g2);
+                else if (Main.topGameState().equals("audiosetting"))
+                    audioSetting.draw(g2);
+                else if (Main.topGameState().equals("keysetting"))
+                    keySetting.draw(g2);
+                else if (Main.topGameState().equals("videosetting"))
+                    videoSetting.draw(g2);
+            }
+            case 2 -> {
 
-        }
-        if (Main.nguoncode == 3) {
-            normalClassroom.draw(g2);
-            player.draw(g2);
+            }
+            case 3 -> {
 
-        }
-        if (Main.nguoncode == 4) {
-
-        }
-        if (Main.nguoncode == 5) {
-            //normalClassroom.draw(g2);
-            //computerRoom.draw(g2);
-            //library.draw(g2);
-            stadium.draw(g2);
-            player.draw(g2);
-
+            }
+            case 4 -> {
+                normalClassroom.draw(g2);
+                player.draw(g2);
+            }
+            case 5 -> {
+                computerRoom.draw(g2);
+                player.draw(g2);
+            }
+            case 6 -> {
+                stadium.draw(g2);
+                player.draw(g2);
+            }
+            case 7 -> {
+                library.draw(g2);
+                player.draw(g2);
+            }
         }
         g2.dispose();
     }

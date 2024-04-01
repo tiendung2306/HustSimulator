@@ -21,13 +21,13 @@ public class TileChairLibrary extends Tile {
     }
 
     public void BoundingBox() {
-        setLeftX(x);
-        setTopY(y);
-        setRightX(x+16);
-        setBottomY(y+16);
+        setLeftX(x * gamePanel.scale);
+        setTopY(y * gamePanel.scale);
+        setRightX((x+16) * gamePanel.scale);
+        setBottomY((y+16) * gamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {
-        tileManager.draw(g2, tileManager.tile[6].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 16 * gamePanel.scale, 16 * gamePanel.scale);
+        tileManager.draw(g2, tileManager.tile[6].image,  getLeftX(),  getTopY(), 16 * gamePanel.scale, 16 * gamePanel.scale);
     }
 }

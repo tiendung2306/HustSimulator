@@ -10,16 +10,16 @@ import java.io.*;
 
 public class TileManager {
 
-    GamePanel gp;
+    GamePanel gamePanel;
     public Tile[] tile;
     public int[][] typeTile;
 
-    public TileManager(GamePanel gp) {
+    public TileManager(GamePanel gamePanel) {
 
-        this.gp = gp;
+        this.gamePanel = gamePanel;
 
         tile = new Tile[60];
-        typeTile = new int[gp.maxMapCol][gp.maxMapRow];
+        typeTile = new int[gamePanel.maxMapCol][gamePanel.maxMapRow];
         getTileImage();
     }
 
@@ -36,17 +36,17 @@ public class TileManager {
             int row = 0;
 
             //Vòng lặp để đọc file và tách xâu thnahf các số để đưa vào mảng 2 chiều mapTileNum
-            while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
+            while (col < gamePanel.maxScreenCol && row < gamePanel.maxScreenRow) {
                 String line = br.readLine();
 
-                while (col < gp.maxScreenCol) {
+                while (col < gamePanel.maxScreenCol) {
                     String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
                     typeTile[col][row] = num;
                     col++;
                 }
-                if (col == gp.maxScreenCol) {
+                if (col == gamePanel.maxScreenCol) {
                     col = 0;
                     row++;
                 }
@@ -125,13 +125,25 @@ public class TileManager {
         }
     }
     public void draw(Graphics2D g2, BufferedImage image, int mapX, int mapY, int width, int height) {
-            int screenX = mapX - gp.player.getMapX() + gp.player.getBoundingBoxX();
-            int screenY = mapY - gp.player.getMapY() + gp.player.getBoundingBoxY();
-            if     (mapX + gp.player.getBoundingBoxX() + gp.screenWidth > gp.player.getMapX() - gp.player.screenX &&
-                    mapX - gp.player.getBoundingBoxX() - gp.screenWidth  < gp.player.getMapX() + gp.player.screenX &&
-                    mapY + gp.player.getBoundingBoxY() + gp.screenHeight > gp.player.getMapY() - gp.player.screenY &&
-                    mapY - gp.player.getBoundingBoxY() - gp.screenHeight < gp.player.getMapY() + gp.player.screenY) {
+            int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
+            int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
+            if     (mapX + gamePanel.player.getBoundingBoxX() + gamePanel.screenWidth > gamePanel.player.getMapX() - gamePanel.player.screenX &&
+                    mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth  < gamePanel.player.getMapX() + gamePanel.player.screenX &&
+                    mapY + gamePanel.player.getBoundingBoxY() + gamePanel.screenHeight > gamePanel.player.getMapY() - gamePanel.player.screenY &&
+                    mapY - gamePanel.player.getBoundingBoxY() - gamePanel.screenHeight < gamePanel.player.getMapY() + gamePanel.player.screenY) {
                 g2.drawImage(image, screenX, screenY, width, height, null);
+                g2.drawRect(screenX, screenY, width, height);
             }
         }
+    public void drawRect(Graphics2D g2, int mapX, int mapY, int width, int height) {
+        int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
+        int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
+        if     (mapX + gamePanel.player.getBoundingBoxX() + gamePanel.screenWidth > gamePanel.player.getMapX() - gamePanel.player.screenX &&
+                mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth  < gamePanel.player.getMapX() + gamePanel.player.screenX &&
+                mapY + gamePanel.player.getBoundingBoxY() + gamePanel.screenHeight > gamePanel.player.getMapY() - gamePanel.player.screenY &&
+                mapY - gamePanel.player.getBoundingBoxY() - gamePanel.screenHeight < gamePanel.player.getMapY() + gamePanel.player.screenY) {
+            g2.drawRect(screenX, screenY, width, height);
+        }
+    }
+
 }

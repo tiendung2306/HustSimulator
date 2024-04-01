@@ -1,6 +1,5 @@
 package tile;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Tile {
@@ -9,8 +8,6 @@ public class Tile {
     int RightX ;
     int TopY;
     int BottomY;
-    int speed;
-    String direction;
 
     public Tile() {
 
