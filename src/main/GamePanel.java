@@ -2,6 +2,7 @@ package main;
 
 import MainMenu.*;
 import entity.Player;
+import javafx.stage.WindowEvent;
 import map.Map;
 import sound.Sound;
 import tile.TileManager;
@@ -19,6 +20,7 @@ import area.Library;
 import javax.swing.*;
 
 import Keyboard.KeyboardManager;
+
 
 import java.awt.*;
 
@@ -52,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     public static AudioSetting audioSetting = new AudioSetting();
     public static KeySetting keySetting = new KeySetting();
     public static VideoSetting videoSetting = new VideoSetting();
-    
+
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
             nextMainMenu, setting, audioSetting, keySetting, videoSetting);
@@ -65,9 +67,12 @@ public class GamePanel extends JPanel implements Runnable {
     MouseManager mouseManager = new MouseManager();
     public Map presentMap = normalClassroom;
     KeyboardManager keyboardManager = new KeyboardManager();
-    public Player player = new Player(this, keyH , tileManager);
+    public Player player = new Player(this, keyH, tileManager);
+
+    public boolean isRunning = false;
 
     double FPS = 60;
+
 
     // =================================================================================================================
     public GamePanel() {
@@ -91,21 +96,27 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
+        isRunning = true;
     }
 
     public void Init() {
+
         switch (Main.nguoncode) {
-            case 4 -> {
+            case 4: {
                 presentMap = normalClassroom;
+                break;
             }
-            case 5 -> {
+            case 5: {
                 presentMap = computerRoom;
+                break;
             }
-            case 6 -> {
+            case 6: {
                 presentMap = stadium;
+                break;
             }
-            case 7 -> {
+            case 7: {
                 presentMap = library;
+                break;
             }
         }
         keyboardManager.init();
@@ -121,7 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
-        while (gameThread != null) {
+        while (gameThread != null && isRunning == true) {
 
             update();
 
@@ -161,8 +172,7 @@ public class GamePanel extends JPanel implements Runnable {
                 setting.update();
             } else if (Main.topGameState().equals(Main.states[3])) {
                 audioSetting.update();
-            }
-            else if (Main.topGameState().equals(Main.states[4]))
+            } else if (Main.topGameState().equals(Main.states[4]))
                 keySetting.update();
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
@@ -175,7 +185,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         switch (Main.nguoncode) {
-            case 1 -> {
+            case 1: {
                 if (Main.topGameState().equals(Main.states[0])) {
                     mainMenu.draw(g2);
                 } else if (Main.topGameState().equals(Main.states[1])) {
@@ -188,28 +198,33 @@ public class GamePanel extends JPanel implements Runnable {
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
+                break;
             }
-            case 2 -> {
-
+            case 2: {
+                break;
             }
-            case 3 -> {
-
+            case 3: {
+                break;
             }
-            case 4 -> {
+            case 4: {
                 normalClassroom.draw(g2);
                 player.draw(g2);
+                break;
             }
-            case 5 -> {
+            case 5: {
                 computerRoom.draw(g2);
                 player.draw(g2);
+                break;
             }
-            case 6 -> {
+            case 6: {
                 stadium.draw(g2);
                 player.draw(g2);
+                break;
             }
-            case 7 -> {
+            case 7: {
                 library.draw(g2);
                 player.draw(g2);
+                break;
             }
         }
         g2.dispose();
