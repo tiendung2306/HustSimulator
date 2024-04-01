@@ -10,15 +10,12 @@ import java.awt.*;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-
-import tile.Tile;
 import tile.TileManager;
 public class Player extends Entity{
 
     public Animation_player animation_player_stand_RIGHT;
     GamePanel gamepanel;
     KeyHandler keyhandler;
-    Map map;
     CollisionPlayer collision;
     public int screenX, screenY;
     boolean leftBorder, rightBorder, topBorder, bottomBorder;
@@ -31,13 +28,11 @@ public class Player extends Entity{
     public Animation_player curr_animation_player;
     TileManager tileManager;
 
-    public Player(GamePanel gamepanel, KeyHandler keyhandler, Map map, TileManager tilemanager){
-        
-        this.map = map;
+    public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager){
         this.gamepanel = gamepanel;
         this.keyhandler = keyhandler;
         this.collision = gamepanel.collision;
-        this . tileManager = tilemanager;
+        this.tileManager = tilemanager;
         leftBorder = false;
         rightBorder = false;
         bottomBorder = false;
@@ -78,13 +73,6 @@ public class Player extends Entity{
     }
     
     public void update(){
-        System.out.print(hitArea.x);
-        System.out.print(" ");
-        System.out.print(hitArea.x + hitArea.width);
-        System.out.print(" ");
-        System.out.print(hitArea.y);
-        System.out.print(" ");
-        System.out.println(hitArea.y + hitArea.height);
         int countPressed = 0;
         if (keyhandler.upPressed)
             ++countPressed;
@@ -155,10 +143,16 @@ public class Player extends Entity{
                     }
                 }
             }
-            hitArea.x = newMapX + boundingBox.width / 4;
-            hitArea.y = newMapY + boundingBox.height / 2;
-            collision.scanCollision(this, map);
-            if (collision.getNumCollision() == 0){
+            boolean checkBug = false;
+            collision.scanCollision(this, gamepanel.presentMap);
+            if (collision.getNumCollision() == 0) {
+                hitArea.x = newMapX + boundingBox.width / 4;
+                hitArea.y = newMapY + boundingBox.height / 2;
+                collision.scanCollision(this, gamepanel.presentMap);
+            }
+            else checkBug = true;
+            //System.out.println(collision.getNumCollision());
+            if (checkBug || collision.getNumCollision() == 0){
                 mapX = newMapX;
                 mapY = newMapY;
                 switch (direction) {

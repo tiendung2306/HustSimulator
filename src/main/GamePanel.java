@@ -2,6 +2,7 @@ package main;
 
 import MainMenu.*;
 import entity.Player;
+import map.Map;
 import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
@@ -58,8 +59,9 @@ public class GamePanel extends JPanel implements Runnable {
     ComputerRoom computerRoom = new ComputerRoom(this);
     Library library = new Library(this);
     Stadium stadium = new Stadium(this);
-    public Player player = new Player(this, keyH, stadium, tileManager);
+    public Map presentMap = normalClassroom;
     KeyboardManager keyboardManager = new KeyboardManager();
+    public Player player = new Player(this, keyH , tileManager);
 
     double FPS = 60;
 
@@ -85,6 +87,20 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void Init() {
+        switch (Main.nguoncode) {
+            case 4 -> {
+                presentMap = normalClassroom;
+            }
+            case 5 -> {
+                presentMap = computerRoom;
+            }
+            case 6 -> {
+                presentMap = stadium;
+            }
+            case 7 -> {
+                presentMap = library;
+            }
+        }
         keyboardManager.init();
     }
 

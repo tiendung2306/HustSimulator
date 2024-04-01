@@ -31,11 +31,12 @@ public class NormalClassroom extends Map {
         setUpTileNormalClassroom();
     }
     public void setUpTileNormalClassroom() {
-        numTileContainer = 3;
+        numTileContainer = 13;
         mapIndex = 1;
-        tileContainer[0] = tileManager.tile[1];
-        tileContainer[1] = tileManager.tile[2];
-        tileContainer[2] = tileManager.tile[14];
+        tileContainer[0] = tileTableTeacher;
+        tileContainer[1] = tileDoor01;
+        tileContainer[2] = tileDoor02;
+        System.arraycopy(tileTable, 0, tileContainer, 3, 10);
     }
 
     private void setUpTable() {
@@ -62,9 +63,9 @@ public class NormalClassroom extends Map {
     public void draw(Graphics2D g2) {
 
         tileManager.draw(g2, tileManager.tile[17].image, 0, 0, 320 * gamePanel.scale, 240 * gamePanel.scale);
-        //for (int i = 0; i < 10; i++) {
-            tileTable[0].draw(g2);
-        //}
+        for (int i = 0; i < 10; i++) {
+            tileTable[i].draw(g2);
+        }
         tileDoor01.draw(g2);
         tileDoor02.draw(g2);
         tileTableTeacher.draw(g2);
