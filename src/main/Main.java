@@ -16,8 +16,8 @@ public class Main {
     public static int nguoncode;
     public static int ex = 1;
     public static Stack<String> GameState = new Stack<>();
-    public static String states[] = { "MainMenu", "PlayMenu", "Setting", "AudioSetting", "KeySetting", "VideoSetting",
-            "Tutorial", "GamePlay" };
+    public static String[] states = { "MainMenu", "PlayMenu", "Setting", "AudioSetting", "KeySetting", "VideoSetting",
+            "Tutorial", "GamePlay", "GamePause", "Dialogue"};
 
     public static void pushGameState(String a) {
         GameState.push(a);

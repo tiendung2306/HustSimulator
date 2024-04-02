@@ -14,8 +14,8 @@ public class TileChairLibrary extends Tile {
     public TileChairLibrary(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Chair Library";
         tileManager = new TileManager(gamePanel);
         this.BoundingBox();
     }

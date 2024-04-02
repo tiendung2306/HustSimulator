@@ -63,17 +63,23 @@ public class GamePanel extends JPanel implements Runnable {
     Library library = new Library(this);
     Stadium stadium = new Stadium(this);
 
-    MouseManager mouseManager = new MouseManager();
     public Map presentMap = normalClassroom;
+
+    //==================================================================================================================
+
+    MouseManager mouseManager = new MouseManager();
     KeyboardManager keyboardManager = new KeyboardManager();
-    public Player player = new Player(this, keyH, tileManager);
+    public UI ui = new UI(this);
+    public Player player = new Player(this, keyH, tileManager, ui);
 
     public boolean isRunning = false;
+
+    //==================================================================================================================
 
     double FPS = 60;
 
 
-    // =================================================================================================================
+    //==================================================================================================================
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setSize(400, 400);
@@ -158,9 +164,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         // System.out.println(MouseManager.lastClickedX);
         // System.out.println(MouseManager.lastClickedY);
-
-        player.update();
-
         soundManager.update();
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
@@ -175,6 +178,11 @@ public class GamePanel extends JPanel implements Runnable {
                 keySetting.update();
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
+        }
+        if (Main.nguoncode >= 4) {
+            if (!Main.topGameState().equals("GamePause")) {
+                player.update();
+            }
         }
     }
     // =================================================================================================================
@@ -208,21 +216,25 @@ public class GamePanel extends JPanel implements Runnable {
             case 4: {
                 normalClassroom.draw(g2);
                 player.draw(g2);
+                ui.draw(g2);
                 break;
             }
             case 5: {
                 computerRoom.draw(g2);
                 player.draw(g2);
+                ui.draw(g2);
                 break;
             }
             case 6: {
                 stadium.draw(g2);
                 player.draw(g2);
+                ui.draw(g2);
                 break;
             }
             case 7: {
                 library.draw(g2);
                 player.draw(g2);
+                ui.draw(g2);
                 break;
             }
         }

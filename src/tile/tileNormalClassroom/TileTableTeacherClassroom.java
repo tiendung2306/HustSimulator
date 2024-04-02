@@ -13,8 +13,8 @@ public class TileTableTeacherClassroom extends Tile {
     public TileTableTeacherClassroom(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Teacher Table Classroom";
         tileManager = new TileManager(gamePanel);
         BoundingBox();
     }

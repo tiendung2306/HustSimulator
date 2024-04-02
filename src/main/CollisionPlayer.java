@@ -16,14 +16,14 @@ public class CollisionPlayer {
         return collisionTile;
     }
 
-    public void setCollisionTile(Tile[] collisionTile) {
-        this.collisionTile = collisionTile;
-    }
+    public String[] getTypeCollision(){ return typeCollision; }
 
     Tile[] collisionTile;
     String[] typeCollision;
     public CollisionPlayer(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        collisionTile = new Tile[50];
+        typeCollision = new String[50];
     }
     boolean checkInside(int pointX, int pointY, int tileLeftX, int tileRightX, int tileTopY, int tileBottomY) {
         return (pointX >= tileLeftX && pointX <= tileRightX && pointY >= tileTopY && pointY <= tileBottomY);
@@ -62,8 +62,6 @@ public class CollisionPlayer {
     }
     public void scanCollision(Entity entity, Map map){
         numCollision = 0;
-        collisionTile = new Tile[50];
-        typeCollision = new String[50];
         for (int  i = 0; i < map.numTileContainer; ++i) {
             Tile considerTile = map.tileContainer[i];
             int tileLeftX = considerTile.getLeftX();
@@ -78,8 +76,8 @@ public class CollisionPlayer {
 
             String type = defineType(entityLeftX, entityRightX, entityTopY, entityBottomY, tileLeftX, tileRightX, tileTopY, tileBottomY);
             if (!type.equals("no-collision")) {
-                collisionTile[++numCollision] = considerTile;
-                typeCollision[numCollision] = type;
+                collisionTile[numCollision] = considerTile;
+                typeCollision[numCollision++] = type;
             }
         }
     }

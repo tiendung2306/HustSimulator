@@ -118,8 +118,6 @@ public class TileManager {
             tile[19].image = ImageIO.read(new FileInputStream("res/tile/background_library.png"));
 
 
-
-
         }catch (IOException e) {
             e.printStackTrace();
         }

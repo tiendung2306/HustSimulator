@@ -15,6 +15,7 @@ public class TileComputerStudent extends Tile {
         this.x = x;
         this.y = y;
         this.gamePanel=gamePanel;
+        Name = "Student Computer";
         tileManager = new TileManager(gamePanel);
         this.BoundingBox();
     }

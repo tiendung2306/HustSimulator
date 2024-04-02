@@ -13,8 +13,8 @@ public class TileComputerTeacher extends Tile {
     public TileComputerTeacher(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Teacher Computer";
         tileManager = new TileManager(gamePanel);
         this.BoundingBox();
     }

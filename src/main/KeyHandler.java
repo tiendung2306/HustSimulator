@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
-
     public boolean upPressed, downPressed, leftPressed, rightPressed;
     KeyboardManager keyboardManager = new KeyboardManager();
 
@@ -29,6 +28,12 @@ public class KeyHandler implements KeyListener{
         }
         if(code == keyboardManager.getKey("RIGHT")){
             rightPressed = true;
+        }
+        if(code == keyboardManager.getKey("PAUSE")){
+            if (Main.topGameState().equals("GamePause")){
+                Main.popGameState();
+            }
+            else Main.pushGameState("GamePause");
         }
     }
 

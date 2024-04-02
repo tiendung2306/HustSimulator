@@ -14,8 +14,8 @@ public class TileTableLibrary extends Tile {
     public TileTableLibrary(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Table Library";
         tileManager = new TileManager(gamePanel);
         this.BoundingBox();
     }

@@ -14,8 +14,8 @@ public class TileCar01 extends Tile {
     public TileCar01(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Car 01";
         tileManager = new TileManager(gamePanel);
         BoundingBox();
     }
