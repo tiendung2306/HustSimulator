@@ -2,7 +2,6 @@ package main;
 
 import MainMenu.*;
 import entity.Player;
-import javafx.stage.WindowEvent;
 import map.Map;
 import sound.Sound;
 import tile.TileManager;

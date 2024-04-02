@@ -37,14 +37,15 @@ public class Library extends Map {
     }
 
     public void setUpTileLibrary() {
-        numTileContainer = 6;
+        numTileContainer = 17;
         mapIndex = 3;
-        tileContainer[0] = tileManager.tile[5];
-        tileContainer[1] = tileManager.tile[6];
-        tileContainer[2] = tileManager.tile[7];
-        tileContainer[3] = tileManager.tile[8];
-        tileContainer[4] = tileManager.tile[9];
-        tileContainer[5] = tileManager.tile[13];
+        tileContainer[0] = tileBookcase01_1;
+        tileContainer[1] = tileBookcase01_2;
+        tileContainer[2] = tileBookcase02;
+        tileContainer[3] = tileBookcase03;
+        tileContainer[4] = tileDoorLibrary;
+        System.arraycopy(tileChairLibrary, 0, tileContainer, 5, 6);
+        System.arraycopy(tileTableLibrary, 0, tileContainer, 11, 6);
     }
 
     private void setUpTable() {

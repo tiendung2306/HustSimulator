@@ -27,7 +27,7 @@ public class ComputerRoom extends Map {
         this.gamePanel = gamePanel;
         tileContainer = new Tile[50];
         tileManager = new TileManager(gamePanel);
-        this.tileManager.getTileImage();
+        tileManager.getTileImage();
         tileTable = new TileTableClassroom[10];
         tileComputerStudents = new TileComputerStudent[20];
         tileComputerTeacher = new TileComputerTeacher(gamePanel,274,182);
@@ -40,13 +40,14 @@ public class ComputerRoom extends Map {
     }
 
     public void setUpTileComputerRoom() {
-        numTileContainer = 5;
+        numTileContainer = 34;
         mapIndex = 2;
-        tileContainer[0] = tileManager.tile[1];
-        tileContainer[1] = tileManager.tile[2];
-        tileContainer[2] = tileManager.tile[14];
-        tileContainer[3] = tileManager.tile[3];
-        tileContainer[4] = tileManager.tile[4];
+        tileContainer[0] = tileDoor01;
+        tileContainer[1] = tileDoor02;
+        tileContainer[2] = tileComputerTeacher;
+        tileContainer[3] = tileTableTeacher;
+        System.arraycopy(tileTable, 0, tileContainer, 4, 10);
+        System.arraycopy(tileComputerStudents, 0, tileContainer, 14, 20);
     }
 
     private void setUpTable() {
@@ -57,10 +58,10 @@ public class ComputerRoom extends Map {
         int count =0;
         for(int i = 0; i < 10; i++) {
             ++count;
-            if(count<=5) {
+            if(count <= 5) {
                 tileTable[i] = new TileTableClassroom(gamePanel,x1,y1);
-                tileComputerStudents[2*i] = new TileComputerStudent(gamePanel,x_mt,y1_mt);
-                tileComputerStudents[2*i+1] = new TileComputerStudent(gamePanel,x_mt,y2_mt);
+                tileComputerStudents[2 * i] = new TileComputerStudent(gamePanel, x_mt, y1_mt);
+                tileComputerStudents[2 * i + 1] = new TileComputerStudent(gamePanel, x_mt, y2_mt);
                 x1 += 42;
                 x_mt += 42;
             }
@@ -73,8 +74,8 @@ public class ComputerRoom extends Map {
             }
             if(count > 5) {
                 tileTable[i] = new TileTableClassroom(gamePanel,x1,y1);
-                tileComputerStudents[2*i] = new TileComputerStudent(gamePanel,x_mt,y1_mt);
-                tileComputerStudents[2*i+1] = new TileComputerStudent(gamePanel,x_mt,y2_mt);
+                tileComputerStudents[2 * i] = new TileComputerStudent(gamePanel, x_mt, y1_mt);
+                tileComputerStudents[2 * i + 1] = new TileComputerStudent(gamePanel, x_mt, y2_mt);
                 x1 += 42;
                 x_mt += 42;
             }
