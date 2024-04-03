@@ -108,18 +108,26 @@ public class GamePanel extends JPanel implements Runnable {
 
         switch (Main.nguoncode) {
             case 4: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
                 presentMap = normalClassroom;
                 break;
             }
             case 5: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
                 presentMap = computerRoom;
                 break;
             }
             case 6: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
                 presentMap = stadium;
                 break;
             }
             case 7: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
                 presentMap = library;
                 break;
             }
@@ -178,10 +186,16 @@ public class GamePanel extends JPanel implements Runnable {
                 keySetting.update();
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
-        }
-        if (Main.nguoncode >= 4) {
-            if (!Main.topGameState().equals("GamePause")) {
-                player.update();
+        } else {
+            if (Main.topGameState().equals("GamePlay")) {
+                if (player.ButtonInteract && keyH.interactShow){
+                    player.collisionHandling();
+                    Main.pushGameState("Dialogue");
+                } else player.update();
+            }
+            else if (Main.topGameState().equals("Dialogue")){
+                if (!keyH.interactShow)
+                    Main.popGameState();
             }
         }
     }
@@ -211,6 +225,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 3: {
+                //====
                 break;
             }
             case 4: {

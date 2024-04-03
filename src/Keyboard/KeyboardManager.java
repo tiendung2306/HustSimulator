@@ -16,7 +16,7 @@ public class KeyboardManager implements KeyListener {
         keys.add(new Key(KeyEvent.VK_A, "LEFT"));
         keys.add(new Key(KeyEvent.VK_S, "DOWN"));
         keys.add(new Key(KeyEvent.VK_D, "RIGHT"));
-        keys.add(new Key(KeyEvent.VK_E, "Interact"));
+        keys.add(new Key(KeyEvent.VK_F, "INTERACT"));
         keys.add(new Key(KeyEvent.VK_ESCAPE, "PAUSE"));
     }
 

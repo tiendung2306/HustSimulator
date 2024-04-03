@@ -21,6 +21,11 @@ public class UI {
         if (Main.topGameState().equals("Dialogue")){
             drawDialogueScreen();
         }
+        if (Main.topGameState().equals("GamePlay")) {
+            if (gamePanel.player.ButtonInteract){
+                drawInteractButton();
+            }
+        }
     }
     public void drawPauseScreen(){
         String text = "PAUSED";
@@ -63,6 +68,17 @@ public class UI {
         if (strSize > 0)
             g2.drawString(str, x, y);
     }
+    public void drawInteractButton(){
+        String text =  "F";
+        g2.setColor(Color.BLACK);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 11));
+        int x = gamePanel.player.getBoundingBoxX() + gamePanel.player.getBoundingBoxWidth();
+        int y = gamePanel.player.getBoundingBoxY();
+        int width = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + gamePanel.tileSize - 8 * gamePanel.scale;
+        int height = gamePanel.tileSize / 2;
+        drawSubInteractButton(x - gamePanel.tileSize / 2 + 4 * gamePanel.scale,y - height / 2 - gamePanel.scale,width,height);
+        g2.drawString(text, x, y);
+    }
     public void drawSubWindow(int x, int y, int width, int height){
         Color c = new Color(0,0,0, 100);
         g2.setColor(c);
@@ -72,5 +88,15 @@ public class UI {
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+    }
+    public void drawSubInteractButton(int x, int y, int width, int height){
+        Color c = new Color(0,0,0, 100);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 25, 25);
+
+        c = new Color(255,255,255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(2));
+        g2.drawRoundRect(x + 2, y + 2, width - 4, height - 4, 25, 25);
     }
 }

@@ -1,7 +1,6 @@
 
 package entity;
 import main.*;
-import map.Map;
 import animation.Animation_player;
 
 import java.awt.*;
@@ -20,6 +19,7 @@ public class Player extends Entity{
     UI ui;
     public int screenX, screenY;
     boolean leftBorder, rightBorder, topBorder, bottomBorder;
+    public boolean ButtonInteract;
 
     public Animation_player animation_player_UP ;
     public Animation_player animation_player_DOWN;
@@ -39,6 +39,7 @@ public class Player extends Entity{
         rightBorder = false;
         bottomBorder = false;
         topBorder = false;
+        ButtonInteract = false;
 
         dialogue = new String[10];
 
@@ -82,11 +83,9 @@ public class Player extends Entity{
     }
     //=============================================================================================================================================
     public void collisionHandling(){
-        int numCollision = collision.getNumCollision();;
+        int numCollision = collision.getNumCollision();
         Tile[] collisionTile = collision.getCollisionTile();
-        String[] typeCollision = collision.getTypeCollision();
         ui.currentDialogue = dialogue[0];
-        Main.pushGameState("Dialogue");
         for (int i = 0; i < numCollision; ++i){
             if (i > 0)
                 ui.currentDialogue += " and ";
@@ -106,8 +105,8 @@ public class Player extends Entity{
             ++countPressed;
         int newMapX = mapX, newMapY = mapY;
         if (countPressed > 0) {
-            if (Main.topGameState().equals("Dialogue"))
-                Main.popGameState();
+            if (ButtonInteract)
+                ButtonInteract = false;
             if (countPressed == 1){
                 if (keyhandler.upPressed) {
                     direction = "up";
@@ -185,9 +184,7 @@ public class Player extends Entity{
                     case "right": curr_animation_player = animation_player_RIGHT;break;
                     }
             }
-            else {
-                collisionHandling();
-            }
+            else ButtonInteract = true;
         }
         else {
             direction = "stand_right";

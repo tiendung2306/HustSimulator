@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, interactShow;
     KeyboardManager keyboardManager = new KeyboardManager();
 
     public void keyTyped(KeyEvent e){
@@ -34,6 +34,9 @@ public class KeyHandler implements KeyListener{
                 Main.popGameState();
             }
             else Main.pushGameState("GamePause");
+        }
+        if(code == keyboardManager.getKey("INTERACT")){
+            interactShow = !interactShow;
         }
     }
 
