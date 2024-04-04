@@ -10,24 +10,25 @@ public class TileBall extends Tile {
     public int x,y;
     GamePanel gamePanel;
     TileManager tileManager;
+    int scale;
 
     public TileBall(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
+        this.scale = gamePanel.scale;
 
         this.gamePanel=gamePanel;
         tileManager = new TileManager(gamePanel);
-        this.BoundingBox();
+        BoundingBox();
     }
-
     public void BoundingBox() {
-        setLeftX(x);
-        setTopY(y);
-        setRightX(x+14);
-        setBottomY(y+14);
+        setLeftX(x * scale);
+        setTopY(y * scale);
+        setRightX((x + 14) * scale);
+        setBottomY((y + 14) * scale);
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[12].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 14 * gamePanel.scale, 14 * gamePanel.scale, null);
+        tileManager.draw(g2, tileManager.tile[12].image,  getLeftX(),  getTopY(), 14 * scale, 14 * scale);
     }
 }

@@ -21,13 +21,13 @@ public class TileDoorLibrary extends Tile {
     }
 
     public void BoundingBox() {
-        setLeftX(x);
-        setTopY(y);
-        setRightX(x+92);
-        setBottomY(y+37);
+        setLeftX(x * gamePanel.scale);
+        setTopY(y * gamePanel.scale);
+        setRightX((x+92) * gamePanel.scale);
+        setBottomY((y+37) * gamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[13].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 92 * gamePanel.scale, 37 * gamePanel.scale, null);
+        tileManager.draw(g2, tileManager.tile[13].image,  getLeftX(),  getTopY(), 92 * gamePanel.scale, 37 * gamePanel.scale);
     }
 }

@@ -16,17 +16,17 @@ public class TileTableClassroom extends Tile {
 
         this.gamePanel=gamePanel;
         tileManager = new TileManager(gamePanel);
-        this.BoundingBox();
+        BoundingBox();
     }
 
     public void BoundingBox() {
-        setLeftX(x);
-        setTopY(y);
-        setRightX(x+20);
-        setBottomY(y+46);
+        setLeftX(x * gamePanel.scale);
+        setTopY(y * gamePanel.scale);
+        setRightX((x+20) * gamePanel.scale);
+        setBottomY((y+46) * gamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[1].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 20 * gamePanel.scale, 46 * gamePanel.scale, null);
+        tileManager.draw(g2, tileManager.tile[1].image,  getLeftX(),  getTopY(), 20 * gamePanel.scale, 46 * gamePanel.scale);
     }
 }

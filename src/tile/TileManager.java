@@ -3,26 +3,23 @@ package tile;
 import main.GamePanel;
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.security.PublicKey;
-import java.util.Objects;
 import java.io.*;
 
 public class TileManager {
 
-    GamePanel gp;
+    GamePanel gamePanel;
     public Tile[] tile;
     public int[][] typeTile;
 
-    public int[][] fixedTile, movableTile;
-    public Tile[] numToTile;
-    public TileManager(GamePanel gp) {
+    public TileManager(GamePanel gamePanel) {
 
-        this.gp = gp;
+        this.gamePanel = gamePanel;
 
         tile = new Tile[60];
-        typeTile = new int[gp.maxMapCol][gp.maxMapRow];
+        typeTile = new int[gamePanel.maxMapCol][gamePanel.maxMapRow];
         getTileImage();
     }
 
@@ -32,30 +29,31 @@ public class TileManager {
             InputStream is = getClass().getResourceAsStream(filePath);
             //System.out.println("1");
             //Khai báo biến để đọc pfile vừa nhập
+            assert is != null;
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
             int row = 0;
 
             //Vòng lặp để đọc file và tách xâu thnahf các số để đưa vào mảng 2 chiều mapTileNum
-            while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
+            while (col < gamePanel.maxScreenCol && row < gamePanel.maxScreenRow) {
                 String line = br.readLine();
 
-                while (col < gp.maxScreenCol) {
-                    String numbers[] = line.split(" ");
+                while (col < gamePanel.maxScreenCol) {
+                    String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
                     typeTile[col][row] = num;
                     col++;
                 }
-                if (col == gp.maxScreenCol) {
+                if (col == gamePanel.maxScreenCol) {
                     col = 0;
                     row++;
                 }
             }
             br.close();
 
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
 
@@ -126,30 +124,26 @@ public class TileManager {
             e.printStackTrace();
         }
     }
-//    public void draw(Graphics2D g2) {
-//
-//        int mapCol = 0, mapRow = 0;
-//
-//        while (mapCol < gp.maxMapCol && mapRow < gp.maxMapRow) {
-//
-//            int mapX = mapCol * gp.tileSize;
-//            int mapY = mapRow * gp.tileSize;
-//
-//            int screenX = mapX - gp.player.mapX + gp.player.screenX;
-//            int screenY = mapY - gp.player.mapY + gp.player.screenY;
-//            if     (mapX + gp.tileSize > gp.player.mapX - gp.player.screenX &&
-//                    mapX - gp.tileSize < gp.player.mapX + gp.player.screenX &&
-//                    mapY + gp.tileSize > gp.player.mapY - gp.player.screenY &&
-//                    mapY - gp.tileSize < gp.player.mapY + gp.player.screenY) {
-//                g2.drawImage(tile[typeTile[mapCol][mapRow]].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-//
-//            }
-//
-//            ++mapCol;
-//            if (mapCol == gp.maxMapCol) {
-//                mapCol = 0;
-//                ++mapRow;
-//            }
-//        }
-//  }
+    public void draw(Graphics2D g2, BufferedImage image, int mapX, int mapY, int width, int height) {
+            int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
+            int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
+            if     (mapX + gamePanel.player.getBoundingBoxX() + gamePanel.screenWidth > gamePanel.player.getMapX() - gamePanel.player.screenX &&
+                    mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth  < gamePanel.player.getMapX() + gamePanel.player.screenX &&
+                    mapY + gamePanel.player.getBoundingBoxY() + gamePanel.screenHeight > gamePanel.player.getMapY() - gamePanel.player.screenY &&
+                    mapY - gamePanel.player.getBoundingBoxY() - gamePanel.screenHeight < gamePanel.player.getMapY() + gamePanel.player.screenY) {
+                g2.drawImage(image, screenX, screenY, width, height, null);
+                g2.drawRect(screenX, screenY, width, height);
+            }
+        }
+    public void drawRect(Graphics2D g2, int mapX, int mapY, int width, int height) {
+        int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
+        int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
+        if     (mapX + gamePanel.player.getBoundingBoxX() + gamePanel.screenWidth > gamePanel.player.getMapX() - gamePanel.player.screenX &&
+                mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth  < gamePanel.player.getMapX() + gamePanel.player.screenX &&
+                mapY + gamePanel.player.getBoundingBoxY() + gamePanel.screenHeight > gamePanel.player.getMapY() - gamePanel.player.screenY &&
+                mapY - gamePanel.player.getBoundingBoxY() - gamePanel.screenHeight < gamePanel.player.getMapY() + gamePanel.player.screenY) {
+            g2.drawRect(screenX, screenY, width, height);
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 
 package entity;
+import main.CollisionPlayer;
 import main.GamePanel;
 import main.KeyHandler;
 import map.Map;
@@ -7,13 +8,17 @@ import animation.Animation_player;
 
 import java.awt.*;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import tile.TileManager;
 public class Player extends Entity{
 
     public Animation_player animation_player_stand_RIGHT;
     GamePanel gamepanel;
     KeyHandler keyhandler;
-    Map map;
+    CollisionPlayer collision;
     public int screenX, screenY;
+    boolean leftBorder, rightBorder, topBorder, bottomBorder;
 
     public Animation_player animation_player_UP ;
     public Animation_player animation_player_DOWN;
@@ -21,22 +26,30 @@ public class Player extends Entity{
     public Animation_player animation_player_LEFT;
 
     public Animation_player curr_animation_player;
+    TileManager tileManager;
 
-    public Player(GamePanel gamepanel, KeyHandler keyhandler,  Map map){
-        
-        this.map = map;
+    public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager){
         this.gamepanel = gamepanel;
         this.keyhandler = keyhandler;
+        this.collision = gamepanel.collision;
+        this.tileManager = tilemanager;
+        leftBorder = false;
+        rightBorder = false;
+        bottomBorder = false;
+        topBorder = false;
 
-        screenX = gamepanel.screenWidth/2 - gamepanel.tileSize/2;
-        screenY = gamepanel.screenHeight/2 - gamepanel.tileSize/2;
-
-        validArea = new Rectangle();
-        validArea.x = gamepanel.tileSize / 6;
-        validArea.y = gamepanel.tileSize / 3;
-        validArea.width = gamepanel.tileSize - validArea.y;
-        validArea.height = gamepanel.tileSize - validArea.y;
-
+        hitArea = new Rectangle();
+        boundingBox = new Rectangle();
+        boundingBox.width = gamepanel.tileSize * 2;
+        boundingBox.height = gamepanel.tileSize * 2;
+        hitArea.x = boundingBox.width / 4;
+        hitArea.y = boundingBox.height / 2;
+        hitArea.width = boundingBox.width / 2;
+        hitArea.height = boundingBox.height / 2;
+        screenX = gamepanel.screenWidth/2 - boundingBox.width/2;
+        screenY = gamepanel.screenHeight/2 - boundingBox.height/2;
+        boundingBox.x = screenX;
+        boundingBox.y = screenY;
         setDefaultValues();
     }
 
@@ -48,13 +61,12 @@ public class Player extends Entity{
         direction = "stand_right";
         speedSlant = 3;
 
+        animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, boundingBox);
 
-        animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5, validArea);
-
-        animation_player_UP = new Animation_player(gamepanel, "res/player/character_move_up ", 4, 0.8, validArea);
-        animation_player_DOWN = new Animation_player(gamepanel, "res/player/character_move_down ", 4, 0.8, validArea);
-        animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8, validArea);
-        animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, validArea);
+        animation_player_UP = new Animation_player(gamepanel, "res/player/character_move_up ", 4, 0.8, boundingBox);
+        animation_player_DOWN = new Animation_player(gamepanel, "res/player/character_move_down ", 4, 0.8, boundingBox);
+        animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8, boundingBox);
+        animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, boundingBox);
 
         curr_animation_player = animation_player_stand_RIGHT;
 
@@ -70,23 +82,28 @@ public class Player extends Entity{
             ++countPressed;
         if (keyhandler.rightPressed)
             ++countPressed;
+        int newMapX = mapX, newMapY = mapY;
         if (countPressed > 0) {
             if (countPressed == 1){
                 if (keyhandler.upPressed) {
                     direction = "up";
-                    mapY -= speed;
+                    if (!topBorder)
+                        newMapY -= speed;
                 }
                 if (keyhandler.downPressed) {
                     direction = "down";
-                    mapY += speed;
+                    if (!bottomBorder)
+                        newMapY += speed;
                 }
                 if (keyhandler.leftPressed) {
                     direction = "left";
-                    mapX -= speed;
+                    if (!leftBorder)
+                        newMapX -= speed;
                 }
                 if (keyhandler.rightPressed) {
                     direction = "right";
-                    mapX += speed;
+                    if (!rightBorder)
+                        newMapX += speed;
                 }
             }
             else {
@@ -95,53 +112,74 @@ public class Player extends Entity{
                     if (keyhandler.upPressed && keyhandler.leftPressed)
                     {
                         direction = "upleft";
-                        mapY -= speedSlant;
-                        mapX -= speedSlant;
+                        if (!topBorder)
+                            newMapY -= speedSlant;
+                        if (!leftBorder)
+                            newMapX -= speedSlant;
                     }
                     if (keyhandler.upPressed && keyhandler.rightPressed)
                     {
                         direction = "upright";
-                        mapY -= speedSlant;
-                        mapX += speedSlant;
+                        if (!topBorder)
+                            newMapY -= speedSlant;
+                        if (!rightBorder)
+                            newMapX += speedSlant;
                     }
                     if (keyhandler.downPressed && keyhandler.leftPressed)
                     {
                         direction = "downleft";
-                        mapY += speedSlant;
-                        mapX -= speedSlant;
+                        if (!bottomBorder)
+                            newMapY += speedSlant;
+                        if (!leftBorder)
+                            newMapX -= speedSlant;
                     }
                     if (keyhandler.downPressed && keyhandler.rightPressed)
                     {
                         direction = "downright";
-                        mapY += speedSlant;
-                        mapX += speedSlant;
+                        if (!bottomBorder)
+                            newMapY += speedSlant;
+                        if (!rightBorder)
+                            newMapX += speedSlant;
                     }
                 }
             }
-            //gp.collisionPlayer.findTile(this, map);
-            if (true){
-                switch (direction) {
-                    case "up":
-                        mapY += speed;
-                        curr_animation_player = animation_player_UP; 
-                        break;
-                    case "down":
-                        mapY -= speed;
-                        curr_animation_player = animation_player_DOWN; 
-                        break;
-                    case "left":
-                        mapX += speed;
-                        curr_animation_player = animation_player_LEFT; 
-                        break;
-                    case "right":
-                        mapX -= speed;
-                        curr_animation_player = animation_player_RIGHT; 
-                        break;
-                }
+            boolean checkBug = false;
+            collision.scanCollision(this, gamepanel.presentMap);
+            if (collision.getNumCollision() == 0) {
+                hitArea.x = newMapX + boundingBox.width / 4;
+                hitArea.y = newMapY + boundingBox.height / 2;
+                collision.scanCollision(this, gamepanel.presentMap);
             }
+            else checkBug = true;
+            //System.out.println(collision.getNumCollision());
+            if (checkBug || collision.getNumCollision() == 0){
+                mapX = newMapX;
+                mapY = newMapY;
+                switch (direction) {
+                    case "up": curr_animation_player = animation_player_UP;break;
+                    case "down": curr_animation_player = animation_player_DOWN;break;
+                    case "left": curr_animation_player = animation_player_LEFT;break;
+                    case "right": curr_animation_player = animation_player_RIGHT;break;
+                    }
+                }
         }
+        else {
+            direction = "stand_right";
+            curr_animation_player = animation_player_stand_RIGHT;
+        }
+        boundingBox.x = min(screenX, mapX);
+        boundingBox.y = min(screenY, mapY);
+        boundingBox.x += max(0,mapX - (gamepanel.mapWidth - gamepanel.screenWidth / 2) + boundingBox.width);
+        boundingBox.y += max(0,mapY - (gamepanel.mapHeight - gamepanel.screenWidth / 2) + boundingBox.height);
+        hitArea.x = mapX + boundingBox.width / 4;
+        hitArea.y = mapY + boundingBox.height / 2;
+        leftBorder = (boundingBox.x <= 0);
+        rightBorder = (boundingBox.x >= gamepanel.screenWidth - boundingBox.width);
+        topBorder = (boundingBox.y <= 0);
+        bottomBorder = (boundingBox.y >= gamepanel.screenHeight - boundingBox.height);
     }
-    public void draw(Graphics g2){
+    public void draw(Graphics2D g2){
+        tileManager.drawRect(g2, hitArea.x, hitArea.y, hitArea.width, hitArea.height);
         curr_animation_player.operation(g2);
     }
 }

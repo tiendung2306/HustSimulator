@@ -20,13 +20,13 @@ public class TileComputerTeacher extends Tile {
     }
 
     public void BoundingBox() {
-        setLeftX(x);
-        setTopY(y);
-        setRightX(x+28);
-        setBottomY(y+28);
+        setLeftX(x * gamePanel.scale);
+        setTopY(y * gamePanel.scale);
+        setRightX((x+28) * gamePanel.scale);
+        setBottomY((y+28) * gamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(tileManager.tile[4].image,  getLeftX() * gamePanel.scale,  getTopY() * gamePanel.scale, 28 * gamePanel.scale, 28 * gamePanel.scale, null);
+        tileManager.draw(g2, tileManager.tile[4].image,  getLeftX(),  getTopY(), 28 * gamePanel.scale, 28 * gamePanel.scale);
     }
 }

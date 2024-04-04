@@ -1,7 +1,6 @@
 package main;
 
 import entity.Entity;
-import tile.TileManager;
 import tile.Tile;
 import map.Map;
 
@@ -13,10 +12,6 @@ public class CollisionPlayer {
         return numCollision;
     }
 
-    public void setNumCollision(int numCollision) {
-        this.numCollision = numCollision;
-    }
-
     public Tile[] getCollisionTile() {
         return collisionTile;
     }
@@ -26,42 +21,66 @@ public class CollisionPlayer {
     }
 
     Tile[] collisionTile;
-    TileManager tileManager;
+    String[] typeCollision;
     public CollisionPlayer(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        tileManager = new TileManager(gamePanel);
+    }
+    boolean checkInside(int pointX, int pointY, int tileLeftX, int tileRightX, int tileTopY, int tileBottomY) {
+        return (pointX >= tileLeftX && pointX <= tileRightX && pointY >= tileTopY && pointY <= tileBottomY);
+    }
+    public String defineType(int entityLeftX, int entityRightX, int entityTopY, int entityBottomY, int targetLeftX, int targetRightX, int targetTopY, int targetBottomY) {
+
+        boolean cornerLeftTop = checkInside(entityLeftX, entityTopY, targetLeftX, targetRightX, targetTopY, targetBottomY);
+        boolean cornerRightTop = checkInside(entityRightX, entityTopY, targetLeftX, targetRightX, targetTopY, targetBottomY);
+        boolean cornerLeftBottom = checkInside(entityLeftX, entityBottomY, targetLeftX, targetRightX, targetTopY, targetBottomY);
+        boolean cornerRightBottom = checkInside(entityRightX, entityBottomY, targetLeftX, targetRightX, targetTopY, targetBottomY);
+
+        boolean reCornerLeftTop =  checkInside(targetLeftX, targetTopY, entityLeftX, entityRightX, entityTopY, entityBottomY);
+        boolean reCornerRightTop =  checkInside(targetRightX, targetTopY, entityLeftX, entityRightX, entityTopY, entityBottomY);
+        boolean reCornerLeftBottom =  checkInside(targetLeftX, targetBottomY, entityLeftX, entityRightX, entityTopY, entityBottomY);
+        boolean reCornerRightBottom =  checkInside(targetRightX, targetBottomY, entityLeftX, entityRightX, entityTopY, entityBottomY);
+
+        if (cornerLeftTop && cornerRightTop && cornerLeftBottom && cornerRightBottom)
+            return "inside";
+        if ((cornerLeftTop && cornerRightTop) || (reCornerLeftBottom && reCornerRightBottom))
+            return "top";
+        if ((cornerLeftTop && cornerLeftBottom) || (reCornerRightBottom && reCornerRightTop))
+            return "left";
+        if ((cornerLeftBottom && cornerRightBottom) || (reCornerLeftTop && reCornerRightTop))
+            return "bottom";
+        if ((cornerRightTop && cornerRightBottom) || (reCornerLeftBottom && reCornerLeftTop))
+            return "right";
+        if (cornerLeftTop)
+            return "left-top";
+        if (cornerRightTop)
+            return "right-top";
+        if (cornerLeftBottom)
+            return "left-bottom";
+        if (cornerRightBottom)
+            return "right-bottom";
+        return "no-collision";
+    }
+    public void scanCollision(Entity entity, Map map){
         numCollision = 0;
         collisionTile = new Tile[50];
-    }
-    boolean checkInside(int pointX, int pointY, int tileLeftX, int tileRightX, int tileBottomY, int tileTopY) {
-        return (pointX >= tileLeftX && pointX <= tileRightX && pointY >= tileBottomY && pointY <= tileTopY);
-    }
-    public boolean checkCollision(int tileLeftX, int tileRightX, int tileBottomY, int tileTopY, int entityLeftX, int entityRightX, int entityTopY, int entityBottomY) {
-        return ( checkInside(entityLeftX, entityBottomY, tileLeftX, tileRightX, tileBottomY, tileTopY) ||
-                checkInside(entityLeftX, entityTopY, tileLeftX, tileRightX, tileBottomY, tileTopY) ||
-                checkInside(entityRightX, entityBottomY, tileLeftX, tileRightX, tileBottomY, tileTopY) ||
-                checkInside(entityRightX, entityTopY, tileLeftX, tileRightX, tileBottomY, tileTopY)  ||
-                checkInside(tileLeftX, tileBottomY, entityLeftX, entityRightX, entityBottomY, entityTopY) ||
-                checkInside(tileLeftX, tileTopY, entityLeftX, entityRightX, entityBottomY, entityTopY) ||
-                checkInside(tileRightX, tileBottomY, entityLeftX, entityRightX, entityBottomY, entityTopY) ||
-                checkInside(tileRightX, tileTopY, entityLeftX, entityRightX, entityBottomY, entityTopY) );
-    }
-    public void findTile(Entity entity, Map map){
-
+        typeCollision = new String[50];
         for (int  i = 0; i < map.numTileContainer; ++i) {
-            Tile considerTile = map.tileContainer[i][map.mapIndex]; //?????????
+            Tile considerTile = map.tileContainer[i];
             int tileLeftX = considerTile.getLeftX();
             int tileRightX = considerTile.getRightX();
             int tileTopY = considerTile.getTopY();
             int tileBottomY = considerTile.getBottomY();
 
-            int entityLeftX = entity.getMapX() + entity.getValidArea().x;
-            int entityRightX = entity.getMapX() + entity.getValidArea().x + entity.getValidArea().width;
-            int entityTopY = entity.getMapY() + entity.getValidArea().y;
-            int entityBottomY = entity.getMapY() + entity.getValidArea().y + entity.getValidArea().height;
+            int entityLeftX = entity.getHitArea().x;
+            int entityRightX = entity.getHitArea().x + entity.getHitArea().width;
+            int entityTopY = entity.getHitArea().y;
+            int entityBottomY = entity.getHitArea().y + entity.getHitArea().height;
 
-            if (checkCollision(tileLeftX, tileRightX, tileBottomY, tileTopY, entityLeftX, entityRightX, entityTopY, entityBottomY))
+            String type = defineType(entityLeftX, entityRightX, entityTopY, entityBottomY, tileLeftX, tileRightX, tileTopY, tileBottomY);
+            if (!type.equals("no-collision")) {
                 collisionTile[++numCollision] = considerTile;
+                typeCollision[numCollision] = type;
+            }
         }
     }
 }
