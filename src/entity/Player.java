@@ -1,4 +1,3 @@
-
 package entity;
 import main.CollisionPlayer;
 import main.GamePanel;
@@ -71,7 +70,7 @@ public class Player extends Entity{
         curr_animation_player = animation_player_stand_RIGHT;
 
     }
-    
+
     public void update(){
         int countPressed = 0;
         if (keyhandler.upPressed)
@@ -160,8 +159,8 @@ public class Player extends Entity{
                     case "down": curr_animation_player = animation_player_DOWN;break;
                     case "left": curr_animation_player = animation_player_LEFT;break;
                     case "right": curr_animation_player = animation_player_RIGHT;break;
-                    }
                 }
+            }
         }
         else {
             direction = "stand_right";
@@ -183,4 +182,3 @@ public class Player extends Entity{
         curr_animation_player.operation(g2);
     }
 }
-
