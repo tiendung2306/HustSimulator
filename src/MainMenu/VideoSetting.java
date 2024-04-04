@@ -26,7 +26,7 @@ public class VideoSetting extends JPanel {
 
     public void getImage() {
         try {
-            SettingBackGround = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbackground.png"));
+            SettingBackGround = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbackgroundmo.png"));
             back = ImageIO.read(new FileInputStream("res/MainmenuImage/backicon.png"));
             exitImg1 = ImageIO.read(new FileInputStream("res/player/character_move_left (1).png"));
 
