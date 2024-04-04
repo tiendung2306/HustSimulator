@@ -69,7 +69,7 @@ public class ComputerRoom extends Map {
                 x1 = 33;
                 x_mt = 35;
                 y1_mt = 177;
-                y2_mt = 297;
+                y2_mt = 197;
             }
             if(count > 5) {
                 tileTable[i] = new TileTableClassroom(gamePanel,x1,y1);
