@@ -31,6 +31,8 @@ public class Main {
         return GameState.peek();
     }
 
+    public static void emptyGameState() {while(!GameState.empty())  popGameState();}
+
     public static void main(String[] args) {
         pushGameState("MainMenu");
         JFrame window = new JFrame();
@@ -138,6 +140,8 @@ class ButtonClicked implements ActionListener {
                 // Frame frame = (Frame) evt.getSource();
                 // System.out.println("Closing = " + frame.getTitle());
                 gamePanel.isRunning = false;
+                Main.emptyGameState();
+                Main.pushGameState("MainMenu");
             }
         };
         window.addWindowListener(listener);
