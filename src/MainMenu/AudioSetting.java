@@ -1,6 +1,7 @@
 package MainMenu;
 
 import main.Main;
+import sound.SoundManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class AudioSetting extends JPanel {
     private BufferedImage SettingBackGround, back, exitImg, exitImg1, line, player, comment, comment1, volume, volumeX,
             volume0, volume1, volume2, volume3, mutecmt, mutecmt1;
     private int i;
-    
+
     public static int volumesliderpointX = 230 * Main.ex;
     public int mute_unmutestring = 163 * Main.ex;
     public static boolean checkenterslider = false;
@@ -23,20 +24,11 @@ public class AudioSetting extends JPanel {
     private String check = "", mutestring, mutestring1;
     private int numbervolume = 999 * Main.ex;
 
+    int currVolume = 100;
+    Boolean isVolumeChanged = false;
+
     public AudioSetting() {
         getImage();
-    }
-
-    // public void startGameThread() {
-    //     gameThread = new Thread(this);
-    //     gameThread.start();
-    // }
-
-    public void run() {
-        while (gameThread != null) {
-            update();
-            repaint();
-        }
     }
 
     public String c_check;
@@ -64,7 +56,6 @@ public class AudioSetting extends JPanel {
             e.printStackTrace();
         }
     }
-
 
     public void volumesliderpointX(int i) {
         check = "volumesliderpointclick";
@@ -139,6 +130,21 @@ public class AudioSetting extends JPanel {
             mutestring1 = "Unmute";
             mute_unmutestring = 156 * Main.ex;
         }
+
+        if ((int) ((volumesliderpointX - 217) / 3.6) == 100)
+            currVolume = (int) ((volumesliderpointX - 217 * Main.ex) / (3.6 * Main.ex));
+        else if ((int) ((volumesliderpointX - 217 * Main.ex) / (3.6 * Main.ex)) > 9)
+            currVolume = (int) ((volumesliderpointX - 217 * Main.ex) / (3.6 * Main.ex));
+        else
+            currVolume = (int) ((volumesliderpointX - 217 * Main.ex) / (3.6 * Main.ex));
+        currVolume = Math.max(currVolume, 0);
+        currVolume = Math.min(currVolume, 100);
+        
+        if(checkmute == 1)  {
+            SoundManager.unmutingVolume();
+            SoundManager.setVolume(currVolume);
+        }
+        else if(checkmute == -1)    SoundManager.mutingVolume();
     }
 
     public void draw(Graphics2D g2) {
@@ -151,15 +157,19 @@ public class AudioSetting extends JPanel {
         g2.setFont(new Font("Arial", Font.BOLD, 14 * Main.ex));
         g2.setColor(Color.white);
         g2.drawImage(comment, volumesliderpointX + 9 * Main.ex, 215 * Main.ex, 30 * Main.ex, 30 * Main.ex, null);
-        if ((int) ((volumesliderpointX - 217) / 3.6) == 100)
-            g2.drawString("" + (int) ((volumesliderpointX - 217 * Main.ex) / (3.6 * Main.ex)),
+        if ((int) ((volumesliderpointX - 217) / 3.6) == 100) {
+            g2.drawString("" + currVolume,
                     volumesliderpointX + 12 * Main.ex, numbervolume);
-        else if ((int) ((volumesliderpointX - 217 * Main.ex) / (3.6 * Main.ex)) > 9)
-            g2.drawString("" + (int) ((volumesliderpointX - 217 * Main.ex) / (3.6 * Main.ex)),
+            isVolumeChanged = true;
+        } else if (currVolume > 9) {
+            g2.drawString("" + currVolume,
                     volumesliderpointX + 16 * Main.ex, numbervolume);
-        else
-            g2.drawString("0" + (int) ((volumesliderpointX - 217 * Main.ex) / (3.6 * Main.ex)),
+            isVolumeChanged = true;
+        } else {
+            g2.drawString("0" + currVolume,
                     volumesliderpointX + 16 * Main.ex, numbervolume);
+            isVolumeChanged = true;
+        }
         g2.drawImage(volume, 170 * Main.ex, 254 * Main.ex, 50 * Main.ex, 50 * Main.ex, null);
         g2.drawImage(mutecmt, 153 * Main.ex, 205 * Main.ex, 60 * Main.ex, 50 * Main.ex, null);
         g2.drawString(mutestring, mute_unmutestring, 229 * Main.ex);

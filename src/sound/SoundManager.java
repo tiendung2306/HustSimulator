@@ -11,7 +11,7 @@ public class SoundManager {
 
     private static float prevVolume = 0;
     private static float currVolume = 0;
-    static boolean mute = false;
+    static boolean isMuted = false;
 
     public static ArrayList<Sound> sounds = new ArrayList<Sound>();
     public static ArrayList<Sound> currRunningSounds = new ArrayList<Sound>();
@@ -24,11 +24,11 @@ public class SoundManager {
         sounds.add(sound);
     }
 
-    public void removeSound(Sound sound) { //cam thang nao dung`, thang nao muon dung` ham` nay phai hoi t truoc
+    public void removeSound(Sound sound) { // cam thang nao dung`, thang nao muon dung` ham` nay phai hoi t truoc
         sounds.remove(sound);
     }
 
-    public void playSound(String name) { // Phat am thanh 1 lan
+    public static void playSound(String name) { // Phat am thanh 1 lan
         for (Sound s : sounds) {
             if (s.soundName.equals(name)) {
                 String url = s.getUrl_str();
@@ -39,7 +39,7 @@ public class SoundManager {
         }
     }
 
-    public void loopSound(String name) { // phat am thanh vo han lan
+    public static void loopSound(String name) { // phat am thanh vo han lan
         for (Sound s : sounds) {
             if (s.soundName.equals(name)) {
                 String url = s.getUrl_str();
@@ -51,7 +51,7 @@ public class SoundManager {
         }
     }
 
-    public void stopSound(String name) { // dung am thanh
+    public static void stopSound(String name) { // dung am thanh
         ArrayList<Sound> deleted_sound = new ArrayList<Sound>();
         for (int i = 0; i < currRunningSounds.size(); i++) {
             Sound s = currRunningSounds.get(i);
@@ -65,7 +65,7 @@ public class SoundManager {
         }
     }
 
-    public void stopAllSound() {
+    public static void stopAllSound() {
         ArrayList<Sound> deleted_sound = new ArrayList<Sound>();
         for (int i = 0; i < currRunningSounds.size(); i++) {
             Sound s = currRunningSounds.get(i);
@@ -93,9 +93,8 @@ public class SoundManager {
         }
     }
 
-
     // 0.0 -> 1.0
-    public void volumeUp() {
+    public static void volumeUp() {
         currVolume += 1.0f;
         if (currVolume > 6.0f)
             currVolume = 6.0f;
@@ -109,7 +108,7 @@ public class SoundManager {
         // System.out.println(currVolume);
     }
 
-    public void volumeDown() {
+    public static void volumeDown() {
         currVolume -= 1.0f;
         if (currVolume < -80.0f)
             currVolume = -80.0f;
@@ -123,8 +122,8 @@ public class SoundManager {
         // System.out.println(currVolume);
     }
 
-    public void volumeMute() {
-        if (mute == false) {
+    public static void volumeMute() {
+        if (isMuted == false) {
             prevVolume = currVolume;
             currVolume = -80.0f;
             for (Sound s : currRunningSounds) {
@@ -134,8 +133,8 @@ public class SoundManager {
 
                 }
             }
-            mute = true;
-        } else if (mute == true) {
+            isMuted = true;
+        } else if (isMuted == true) {
             currVolume = prevVolume;
             for (Sound s : currRunningSounds) {
                 try {
@@ -144,9 +143,34 @@ public class SoundManager {
 
                 }
             }
-            mute = false;
+            isMuted = false;
         }
         // System.out.println(currVolume);
+    }
+
+    public static void setVolume(int percentage) {
+        currVolume = -30.0f + (6.0f + 30.0f) / 100 * percentage;
+        if (percentage == 0)
+            currVolume = -80.0f;
+        for (Sound s : currRunningSounds) {
+            try {
+                s.floatControl.setValue(currVolume);
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    public static void mutingVolume() {
+        if (isMuted == false) {
+            volumeMute();
+        }
+    }
+
+    public static void unmutingVolume() {
+        if (isMuted == true) {
+            volumeMute();
+        }
     }
 
 }
