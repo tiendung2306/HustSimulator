@@ -88,8 +88,15 @@ public class Section_selection {
         int col = (int)(mouseX / (gamePanel.screenWidth / 10));
         int row = (int)(mouseY / (gamePanel.screenHeight / 10));
 
-        mouseX = (mouseX / gamePanel.screenWidth) * background.getWidth();
-        mouseY = (mouseY / gamePanel.screenHeight) * background.getHeight();
+        // mouseX = (mouseX / gamePanel.screenWidth) * background.getWidth();
+        // mouseY = (mouseY / gamePanel.screenHeight) * background.getHeight();
+
+        // System.err.println(mouseX);
+        // System.err.println(mouseY);
+        // System.err.println("vpa");
+
+
+
 
         if (section_array[col][row] != null) {
             for(Section section : section_array[col][row].getContainer())
@@ -99,8 +106,15 @@ public class Section_selection {
         }
     }
 
+    private void display(Graphics graphics){
+        for(Section a : section_array[0][1].getContainer()){
+            a.display(graphics);
+        }    
+    }
+
     public void operation(Graphics graphics){
         graphics.drawImage(background, 0, 0, gamePanel.screenWidth, gamePanel.screenHeight,null);
+        display(graphics);
         HoverCheck(graphics);
     }
 }

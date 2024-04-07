@@ -10,6 +10,14 @@ public class Rectangle {
         this.height = height;
     }
 
+    protected void update(double X_scale, double Y_scale){
+        x *= X_scale;
+        y *= Y_scale;
+        width *= X_scale;
+        height *= Y_scale;
+
+    }
+
     protected boolean HoverCheck(Point chech_point){
         if((x <= chech_point.x) && (chech_point.x <= x + width) && (y <= chech_point.y) && (chech_point.y <= y + height))
             return true;

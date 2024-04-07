@@ -29,6 +29,29 @@ public class Shape  {
                 return false;
         }
     }
-    
+
+    public void update(double X_scale, double Y_scale){
+        switch (type) {
+            case "Polygon":
+                polygon.update();
+            case "Rectangle":
+                rectangle.update(X_scale, Y_scale);
+            default:
+                System.out.println("undefined type of shape");
+        }
+    }
+
+    public int getX(){
+        return rectangle.x;
+    }
+    public int getY(){
+        return rectangle.y;
+    }
+    public int getWidth(){
+        return rectangle.width;
+    }
+    public int getHeight(){
+        return rectangle.height;
+    }
 }
 

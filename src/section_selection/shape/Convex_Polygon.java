@@ -17,6 +17,9 @@ public class Convex_Polygon {
         center.y /= points.size();
 
     }
+    protected void update(){
+        
+    }
 
     protected boolean HoverCheck(Point check_point){
         int i = 0, j = 1;
