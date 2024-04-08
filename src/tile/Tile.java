@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
     public BufferedImage image;
+    public String Name;
+    int numOwn;
     int LeftX;
     int RightX ;
     int TopY;
@@ -18,6 +20,8 @@ public class Tile {
         RightX = rightX;
         TopY = topY;
         BottomY = bottomY;
+        numOwn = 0;
+        Name = "";
     }
 
     public int getLeftX() {

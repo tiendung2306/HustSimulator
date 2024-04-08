@@ -2,7 +2,6 @@ package main;
 
 import MainMenu.*;
 import entity.Player;
-import javafx.stage.WindowEvent;
 import map.Map;
 import sound.Sound;
 import tile.TileManager;
@@ -66,13 +65,15 @@ public class GamePanel extends JPanel implements Runnable {
     MouseManager mouseManager = new MouseManager();
     public Map presentMap = null;
     KeyboardManager keyboardManager = new KeyboardManager();
-    public Player player = new Player(this, keyH, tileManager);
+    public UI ui = new UI(this);
+    public Player player = new Player(this, keyH, tileManager, ui);
 
     public boolean isRunning = false;
 
+    //==================================================================================================================
+
     double FPS = 60;
 
-    // =================================================================================================================
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setSize(400, 400);
@@ -109,18 +110,26 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 4: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
                 presentMap = normalClassroom;
                 break;
             }
             case 5: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
                 presentMap = computerRoom;
                 break;
             }
             case 6: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
                 presentMap = stadium;
                 break;
             }
             case 7: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
                 presentMap = library;
                 break;
             }
@@ -173,9 +182,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         // System.out.println(MouseManager.lastClickedX);
         // System.out.println(MouseManager.lastClickedY);
-
-        player.update();
-
         soundManager.update();
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
@@ -203,6 +209,17 @@ public class GamePanel extends JPanel implements Runnable {
                 keySetting.update();
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
+        } else {
+            if (Main.topGameState().equals("GamePlay")) {
+                if (player.ButtonInteract && keyH.interactShow){
+                    player.collisionHandling();
+                    Main.pushGameState("Dialogue");
+                } else player.update();
+            }
+            else if (Main.topGameState().equals("Dialogue")){
+                if (!keyH.interactShow)
+                    Main.popGameState();
+            }
         }
     }
     // =================================================================================================================
@@ -255,26 +272,31 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             case 3: {
+                //====
                 break;
             }
             case 4: {
                 normalClassroom.draw(g2);
                 player.draw(g2);
+                ui.draw(g2);
                 break;
             }
             case 5: {
                 computerRoom.draw(g2);
                 player.draw(g2);
+                ui.draw(g2);
                 break;
             }
             case 6: {
                 stadium.draw(g2);
                 player.draw(g2);
+                ui.draw(g2);
                 break;
             }
             case 7: {
                 library.draw(g2);
                 player.draw(g2);
+                ui.draw(g2);
                 break;
             }
         }

@@ -13,8 +13,8 @@ public class TileComputerTeacher extends Tile {
     public TileComputerTeacher(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Teacher Computer";
         tileManager = new TileManager(gamePanel);
         this.BoundingBox();
     }
@@ -22,8 +22,8 @@ public class TileComputerTeacher extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x+28) * gamePanel.scale);
-        setBottomY((y+28) * gamePanel.scale);
+        setRightX((x + 28) * gamePanel.scale);
+        setBottomY((y + 28) * gamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {

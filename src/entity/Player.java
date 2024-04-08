@@ -1,15 +1,14 @@
 
 package entity;
-import main.CollisionPlayer;
-import main.GamePanel;
-import main.KeyHandler;
-import map.Map;
+import main.*;
 import animation.Animation_player;
 
 import java.awt.*;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+
+import tile.Tile;
 import tile.TileManager;
 public class Player extends Entity{
 
@@ -17,8 +16,10 @@ public class Player extends Entity{
     GamePanel gamepanel;
     KeyHandler keyhandler;
     CollisionPlayer collision;
+    UI ui;
     public int screenX, screenY;
     boolean leftBorder, rightBorder, topBorder, bottomBorder;
+    public boolean ButtonInteract;
 
     public Animation_player animation_player_UP ;
     public Animation_player animation_player_DOWN;
@@ -28,15 +29,19 @@ public class Player extends Entity{
     public Animation_player curr_animation_player;
     TileManager tileManager;
 
-    public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager){
+    public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager, UI ui){
         this.gamepanel = gamepanel;
         this.keyhandler = keyhandler;
         this.collision = gamepanel.collision;
         this.tileManager = tilemanager;
+        this.ui = ui;
         leftBorder = false;
         rightBorder = false;
         bottomBorder = false;
         topBorder = false;
+        ButtonInteract = false;
+
+        dialogue = new String[10];
 
         hitArea = new Rectangle();
         boundingBox = new Rectangle();
@@ -51,6 +56,7 @@ public class Player extends Entity{
         boundingBox.x = screenX;
         boundingBox.y = screenY;
         setDefaultValues();
+        setDialogue();
     }
 
 
@@ -71,7 +77,22 @@ public class Player extends Entity{
         curr_animation_player = animation_player_stand_RIGHT;
 
     }
-    
+    public void setDialogue(){
+        dialogue[0] = "You're hitting ";
+        dialogue[1] = "It is a beautiful day ";
+    }
+    //=============================================================================================================================================
+    public void collisionHandling(){
+        int numCollision = collision.getNumCollision();
+        Tile[] collisionTile = collision.getCollisionTile();
+        ui.currentDialogue = dialogue[0];
+        for (int i = 0; i < numCollision; ++i){
+            if (i > 0)
+                ui.currentDialogue += " and ";
+            ui.currentDialogue += collisionTile[i].Name;
+        }
+    }
+    //=============================================================================================================================================
     public void update(){
         int countPressed = 0;
         if (keyhandler.upPressed)
@@ -84,6 +105,8 @@ public class Player extends Entity{
             ++countPressed;
         int newMapX = mapX, newMapY = mapY;
         if (countPressed > 0) {
+            if (ButtonInteract)
+                ButtonInteract = false;
             if (countPressed == 1){
                 if (keyhandler.upPressed) {
                     direction = "up";
@@ -151,7 +174,6 @@ public class Player extends Entity{
                 collision.scanCollision(this, gamepanel.presentMap);
             }
             else checkBug = true;
-            //System.out.println(collision.getNumCollision());
             if (checkBug || collision.getNumCollision() == 0){
                 mapX = newMapX;
                 mapY = newMapY;
@@ -161,7 +183,8 @@ public class Player extends Entity{
                     case "left": curr_animation_player = animation_player_LEFT;break;
                     case "right": curr_animation_player = animation_player_RIGHT;break;
                     }
-                }
+            }
+            else ButtonInteract = true;
         }
         else {
             direction = "stand_right";

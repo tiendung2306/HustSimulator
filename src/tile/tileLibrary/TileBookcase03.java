@@ -14,8 +14,8 @@ public class TileBookcase03 extends Tile {
     public TileBookcase03(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Bookcase 03";
         tileManager = new TileManager(gamePanel);
         this.BoundingBox();
     }

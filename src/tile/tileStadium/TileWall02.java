@@ -14,8 +14,8 @@ public class TileWall02 extends Tile {
     public TileWall02(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Wall 02";
         tileManager = new TileManager(gamePanel);
         BoundingBox();
     }

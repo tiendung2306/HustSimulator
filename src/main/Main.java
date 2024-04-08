@@ -16,8 +16,8 @@ public class Main {
     public static int nguoncode;
     public static int ex = 1;
     public static Stack<String> GameState = new Stack<>();
-    public static String states[] = { "MainMenu", "PlayMenu", "Setting", "AudioSetting", "KeySetting", "VideoSetting",
-            "Tutorial", "GamePlay" };
+    public static String[] states = { "MainMenu", "PlayMenu", "Setting", "AudioSetting", "KeySetting", "VideoSetting",
+            "Tutorial", "GamePlay", "GamePause", "Dialogue"};
 
     public static void pushGameState(String a) {
         GameState.push(a);
@@ -30,6 +30,8 @@ public class Main {
     public static String topGameState() {
         return GameState.peek();
     }
+
+    public static void emptyGameState() {while(!GameState.empty())  popGameState();}
 
     public static void main(String[] args) {
         pushGameState("MainMenu");
@@ -138,6 +140,8 @@ class ButtonClicked implements ActionListener {
                 // Frame frame = (Frame) evt.getSource();
                 // System.out.println("Closing = " + frame.getTitle());
                 gamePanel.isRunning = false;
+                Main.emptyGameState();
+                Main.pushGameState("MainMenu");
             }
         };
         window.addWindowListener(listener);

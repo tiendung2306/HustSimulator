@@ -14,8 +14,8 @@ public class TileDoorLibrary extends Tile {
     public TileDoorLibrary(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Door Library";
         tileManager = new TileManager(gamePanel);
         this.BoundingBox();
     }

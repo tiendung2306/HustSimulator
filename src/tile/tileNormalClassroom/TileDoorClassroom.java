@@ -14,8 +14,8 @@ public class TileDoorClassroom extends Tile {
     public TileDoorClassroom(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
-
         this.gamePanel=gamePanel;
+        Name = "Door Classroom";
         tileManager = new TileManager(gamePanel);
         BoundingBox();
     }
