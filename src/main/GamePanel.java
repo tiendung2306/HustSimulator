@@ -183,7 +183,11 @@ public class GamePanel extends JPanel implements Runnable {
         // System.out.println(MouseManager.lastClickedX);
         // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
+
+        player.update();
+
         if (Main.nguoncode == 1) {
+            player.update();
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
             } else if (Main.topGameState().equals(Main.states[1])) {
@@ -197,6 +201,7 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
         } else if (Main.nguoncode == 2) {
+            player.update();
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
             } else if (Main.topGameState().equals(Main.states[1])) {
