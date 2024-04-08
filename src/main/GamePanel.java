@@ -21,7 +21,6 @@ import javax.swing.*;
 
 import Keyboard.KeyboardManager;
 
-
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -65,14 +64,13 @@ public class GamePanel extends JPanel implements Runnable {
     Stadium stadium = new Stadium(this);
 
     MouseManager mouseManager = new MouseManager();
-    public Map presentMap = normalClassroom;
+    public Map presentMap = null;
     KeyboardManager keyboardManager = new KeyboardManager();
     public Player player = new Player(this, keyH, tileManager);
 
     public boolean isRunning = false;
 
     double FPS = 60;
-
 
     // =================================================================================================================
     public GamePanel() {
@@ -102,6 +100,14 @@ public class GamePanel extends JPanel implements Runnable {
     public void Init() {
 
         switch (Main.nguoncode) {
+            case 1: {
+                presentMap = normalClassroom;
+                break;
+            }
+            case 2: {
+                presentMap = normalClassroom;
+                break;
+            }
             case 4: {
                 presentMap = normalClassroom;
                 break;
@@ -122,6 +128,10 @@ public class GamePanel extends JPanel implements Runnable {
         keyboardManager.init();
     }
 
+    private void stopThread() {
+        SoundManager.stopAllSound();
+    }
+
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
         SoundManager.loopSound("piano_music");
@@ -132,7 +142,11 @@ public class GamePanel extends JPanel implements Runnable {
 
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
-        while (gameThread != null && isRunning == true) {
+        while (gameThread != null) {
+            if (isRunning == false) {
+                stopThread();
+                break;
+            }
 
             update();
 
@@ -176,6 +190,19 @@ public class GamePanel extends JPanel implements Runnable {
                 keySetting.update();
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
+        } else if (Main.nguoncode == 2) {
+            if (Main.topGameState().equals(Main.states[0])) {
+                mainMenu.update();
+            } else if (Main.topGameState().equals(Main.states[1])) {
+                nextMainMenu.update();
+            } else if (Main.topGameState().equals(Main.states[2])) {
+                setting.update();
+            } else if (Main.topGameState().equals(Main.states[3])) {
+                audioSetting.update();
+            } else if (Main.topGameState().equals(Main.states[4]))
+                keySetting.update();
+            else if (Main.topGameState().equals(Main.states[5]))
+                videoSetting.update();
         }
     }
     // =================================================================================================================
@@ -198,10 +225,34 @@ public class GamePanel extends JPanel implements Runnable {
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
-                break;
+                else if (Main.topGameState().equals(Main.states[7])) {
+                    if (presentMap == normalClassroom) {
+                        normalClassroom.draw(g2);
+                        player.draw(g2);
+                    }
+                    break;
+                }
             }
             case 2: {
-                break;
+                if (Main.topGameState().equals(Main.states[0])) {
+                    mainMenu.draw(g2);
+                } else if (Main.topGameState().equals(Main.states[1])) {
+                    nextMainMenu.draw(g2);
+                } else if (Main.topGameState().equals(Main.states[2]))
+                    setting.draw(g2);
+                else if (Main.topGameState().equals(Main.states[3]))
+                    audioSetting.draw(g2);
+                else if (Main.topGameState().equals(Main.states[4]))
+                    keySetting.draw(g2);
+                else if (Main.topGameState().equals(Main.states[5]))
+                    videoSetting.draw(g2);
+                else if (Main.topGameState().equals(Main.states[7])) {
+                    if (presentMap == normalClassroom) {
+                        normalClassroom.draw(g2);
+                        player.draw(g2);
+                    }
+                    break;
+                }
             }
             case 3: {
                 break;
@@ -228,5 +279,9 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         g2.dispose();
+    }
+
+    public void newGame() {
+        presentMap = normalClassroom;
     }
 }

@@ -122,13 +122,13 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 Main.popGameState();
             else if ((x_click > 262 * Main.ex) && (y_click > 331 * Main.ex) && (x_click < 504 * Main.ex)
                     && (y_click < 366 * Main.ex))
-                Main.pushGameState(Main.states[6]);
+                Main.pushGameState(Main.states[6]);//tutorial
             else if ((x_click > 260 * Main.ex) && (y_click > 299 * Main.ex) && (x_click < 507 * Main.ex)
                     && (y_click < 337 * Main.ex)) {
-                Main.pushGameState(Main.states[6]);
+                Main.pushGameState(Main.states[6]); 
             } else if ((x_click > 244 * Main.ex) && (y_click > 237 * Main.ex) && (x_click < 527 * Main.ex)
                     && (y_click < 276 * Main.ex)) {
-                Main.pushGameState(Main.states[7]);
+                Main.pushGameState(Main.states[7]); //gameplay
             }
         } else if (Main.topGameState().equals(Main.states[2])) {
             if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 * Main.ex) // neu an back
