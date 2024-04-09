@@ -3,7 +3,6 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
-import tile.TileManager;
 import tile.tileComputerRoom.TileComputerStudent;
 import tile.tileComputerRoom.TileComputerTeacher;
 import tile.tileNormalClassroom.TileDoorClassroom;
@@ -14,20 +13,23 @@ import java.awt.*;
 
 public class ComputerRoom extends Map {
     GamePanel gamePanel;
-    TileManager tileManager;
     TileTableClassroom[] tileTable;
     TileDoorClassroom tileDoor01;
     TileDoorClassroom tileDoor02;
     TileTableTeacherClassroom tileTableTeacher;
     TileComputerStudent[] tileComputerStudents;
     TileComputerTeacher tileComputerTeacher;
+    Tile background;
 
     public ComputerRoom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
         tileContainer = new Tile[50];
-        tileManager = new TileManager(gamePanel);
-        tileManager.getTileImage();
+        gamePanel.tileManager.getTileImage();
+        background = new Tile();
+        background.image = gamePanel.tileManager.tile[17].image;
+        background.setWidth(320 * gamePanel.scale);
+        background.setHeight(240 * gamePanel.scale);
         tileTable = new TileTableClassroom[10];
         tileComputerStudents = new TileComputerStudent[20];
         tileComputerTeacher = new TileComputerTeacher(gamePanel,274,182);
@@ -40,14 +42,16 @@ public class ComputerRoom extends Map {
     }
 
     public void setUpTileComputerRoom() {
-        numTileContainer = 34;
+        numTileContainer = 0;
         mapIndex = 2;
-        tileContainer[0] = tileDoor01;
-        tileContainer[1] = tileDoor02;
-        tileContainer[2] = tileComputerTeacher;
-        tileContainer[3] = tileTableTeacher;
-        System.arraycopy(tileTable, 0, tileContainer, 4, 10);
-        System.arraycopy(tileComputerStudents, 0, tileContainer, 14, 20);
+        addTile(tileDoor01);
+        addTile(tileDoor02);
+        addTile(tileComputerTeacher);
+        addTile(tileTableTeacher);
+        for(int i = 0; i < 10; i++)
+            addTile(tileTable[i]);
+        for(int i = 0; i < 20; i++)
+            addTile(tileComputerStudents[i]);
     }
 
     private void setUpTable() {
@@ -70,7 +74,7 @@ public class ComputerRoom extends Map {
                 x1 = 33;
                 x_mt = 35;
                 y1_mt = 177;
-                y2_mt = 297;
+                y2_mt = 197;
             }
             if(count > 5) {
                 tileTable[i] = new TileTableClassroom(gamePanel,x1,y1);
@@ -86,16 +90,8 @@ public class ComputerRoom extends Map {
 
     public void draw(Graphics2D g2) {
 
-        tileManager.draw(g2, tileManager.tile[17].image,0,0,320*gamePanel.scale,240*gamePanel.scale);
-        for(int i = 0; i < 10; i++) {
-            tileTable[i].draw(g2);
-        }
-        for(int i = 0; i < 20; i++) {
-            tileComputerStudents[i].draw(g2);
-        }
-        tileDoor01.draw(g2);
-        tileDoor02.draw(g2);
-        tileTableTeacher.draw(g2);
-        tileComputerTeacher.draw(g2);
+        gamePanel.tileManager.draw(g2, background);
+        for (int i = 0; i < numTileContainer; ++i)
+            gamePanel.tileManager.draw(g2, tileContainer[i]);
     }
 }

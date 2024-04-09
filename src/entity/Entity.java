@@ -9,7 +9,7 @@ public class Entity {
     int speed;
     int speedSlant;
     String direction;
-    String[] dialogue;
+    public String[] dialogue;
     boolean collisionOn = false;
     public int getMapX() {
         return mapX;

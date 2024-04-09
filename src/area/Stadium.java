@@ -3,26 +3,27 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
-import tile.TileManager;
 import tile.tileStadium.*;
 
 import java.awt.*;
 
 public class Stadium extends Map {
     GamePanel gamePanel;
-    TileManager tileManager ;
     TileWall01 tileWall01;
     TileWall02 tileWall02;
     TileCar01 tileCar01;
     TileCar02 tileCar02;
     TileBall tileBall;
+    Tile background;
     int x_car_white = 39;
     int x_car_red = 218;
     public Stadium(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        tileManager = new TileManager(gamePanel);
         tileContainer = new Tile[50];
-        this.tileManager.getTileImage();
+        background = new Tile();
+        background.image = gamePanel.tileManager.tile[18].image;
+        background.setWidth(320 * gamePanel.scale);
+        background.setHeight(240 * gamePanel.scale);
         tileWall01 = new TileWall01(gamePanel,0,70);
         tileWall02 = new TileWall02(gamePanel,241,69);
         tileCar01 = new TileCar01(gamePanel,39,158);
@@ -32,13 +33,13 @@ public class Stadium extends Map {
     }
 
     public void setUpTileStadium() {
-        numTileContainer = 5;
+        numTileContainer = 0;
         mapIndex = 4;
-        tileContainer[0] = tileCar01;
-        tileContainer[1] = tileCar02;
-        tileContainer[2] = tileBall;
-        tileContainer[3] = tileWall01;
-        tileContainer[4] = tileWall02;
+        addTile(tileCar01);
+        addTile(tileCar02);
+        addTile(tileBall);
+        addTile(tileWall01);
+        addTile(tileWall02);
     }
 
     // Phương thức vẽ map
@@ -55,12 +56,9 @@ public class Stadium extends Map {
         if(x_car_red > 350) {
             x_car_red = -70;
         }
-        tileManager.draw(g2, tileManager.tile[18].image,0,0,320*gamePanel.scale,240*gamePanel.scale);
-        tileWall01.draw(g2);
-        tileWall02.draw(g2);
-        tileCar01.draw(g2);
-        tileCar02.draw(g2);
-        tileBall.draw(g2);
+        gamePanel.tileManager.draw(g2, background);
+        for (int i = 0; i < numTileContainer; ++i)
+            gamePanel.tileManager.draw(g2, tileContainer[i]);
 
     }
 }

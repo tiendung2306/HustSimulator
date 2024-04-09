@@ -2,7 +2,6 @@ package area;
 
 import main.GamePanel;
 import map.Map;
-import tile.TileManager;
 import tile.Tile;
 import tile.tileNormalClassroom.TileDoorClassroom;
 import tile.tileNormalClassroom.TileTableClassroom;
@@ -12,17 +11,20 @@ import java.awt.*;
 
 public class NormalClassroom extends Map {
     GamePanel gamePanel;
-    TileManager tileManager;
     TileTableClassroom[] tileTable;
     TileDoorClassroom tileDoor01;
     TileDoorClassroom tileDoor02;
     TileTableTeacherClassroom tileTableTeacher;
+    Tile background;
 
     public NormalClassroom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
         tileContainer = new Tile[50];
-        tileManager = new TileManager(gamePanel);
+        background = new Tile();
+        background.image = gamePanel.tileManager.tile[17].image;
+        background.setWidth(320 * gamePanel.scale);
+        background.setHeight(240 * gamePanel.scale);
         tileTable = new TileTableClassroom[10];
         tileDoor01 = new TileDoorClassroom(gamePanel, 30, 28);
         tileDoor02 = new TileDoorClassroom(gamePanel, 261, 28);
@@ -31,12 +33,13 @@ public class NormalClassroom extends Map {
         setUpTileNormalClassroom();
     }
     public void setUpTileNormalClassroom() {
-        numTileContainer = 13;
+        numTileContainer = 0;
         mapIndex = 1;
-        tileContainer[0] = tileTableTeacher;
-        tileContainer[1] = tileDoor01;
-        tileContainer[2] = tileDoor02;
-        System.arraycopy(tileTable, 0, tileContainer, 3, 10);
+        addTile(tileTableTeacher);
+        addTile(tileDoor01);
+        addTile(tileDoor02);
+        for (int i = 0; i < 10; i++)
+            addTile(tileTable[i]);
     }
 
     private void setUpTable() {
@@ -62,12 +65,8 @@ public class NormalClassroom extends Map {
 
     public void draw(Graphics2D g2) {
 
-        tileManager.draw(g2, tileManager.tile[17].image, 0, 0, 320 * gamePanel.scale, 240 * gamePanel.scale);
-        for (int i = 0; i < 10; i++) {
-            tileTable[i].draw(g2);
-        }
-        tileDoor01.draw(g2);
-        tileDoor02.draw(g2);
-        tileTableTeacher.draw(g2);
+        gamePanel.tileManager.draw(g2, background);
+        for (int i = 0; i < numTileContainer; ++i)
+            gamePanel.tileManager.draw(g2, tileContainer[i]);
     }
 }

@@ -3,15 +3,12 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
-import tile.TileManager;
 import tile.tileLibrary.*;
-import tile.tileNormalClassroom.TileTableClassroom;
 
 import java.awt.*;
 
 public class Library extends Map {
     GamePanel gamePanel;
-    TileManager tileManager ;
     TileBookcase01 tileBookcase01_1;
     TileBookcase01 tileBookcase01_2;
     TileBookcase02 tileBookcase02;
@@ -19,12 +16,15 @@ public class Library extends Map {
     TileChairLibrary[] tileChairLibrary;
     TileTableLibrary[] tileTableLibrary;
     TileDoorLibrary tileDoorLibrary;
+    Tile background;
 
     public Library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        tileManager = new TileManager(gamePanel);
         tileContainer = new Tile[50];
-        this.tileManager.getTileImage();
+        background = new Tile();
+        background.image = gamePanel.tileManager.tile[19].image;
+        background.setWidth(320 * gamePanel.scale);
+        background.setHeight(240 * gamePanel.scale);
         tileBookcase01_1 = new TileBookcase01(gamePanel,40,34);
         tileBookcase01_2 = new TileBookcase01(gamePanel,44,53);
         tileBookcase02 = new TileBookcase02(gamePanel,0,77);
@@ -37,15 +37,17 @@ public class Library extends Map {
     }
 
     public void setUpTileLibrary() {
-        numTileContainer = 17;
+        numTileContainer = 0;
         mapIndex = 3;
-        tileContainer[0] = tileBookcase01_1;
-        tileContainer[1] = tileBookcase01_2;
-        tileContainer[2] = tileBookcase02;
-        tileContainer[3] = tileBookcase03;
-        tileContainer[4] = tileDoorLibrary;
-        System.arraycopy(tileChairLibrary, 0, tileContainer, 5, 6);
-        System.arraycopy(tileTableLibrary, 0, tileContainer, 11, 6);
+        addTile(tileBookcase01_1);
+        addTile(tileBookcase01_2);
+        addTile(tileBookcase02);
+        addTile(tileBookcase03);
+        addTile(tileDoorLibrary);
+        for(int i = 0; i < 6; i++)
+            addTile(tileChairLibrary[i]);
+        for(int i = 0; i < 6; i++)
+            addTile(tileTableLibrary[i]);
     }
 
     private void setUpTable() {
@@ -81,15 +83,9 @@ public class Library extends Map {
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
-        tileManager.draw(g2, tileManager.tile[19].image,0,0,320*gamePanel.scale,240*gamePanel.scale);
-        tileBookcase01_1.draw(g2);
-        tileBookcase01_2.draw(g2);
-        tileBookcase02.draw(g2);
-        tileBookcase03.draw(g2);
-        tileDoorLibrary.draw(g2);
-        for(int i=0;i<6;i++) {
-            tileChairLibrary[i].draw(g2);
-            tileTableLibrary[i].draw(g2);
-        }
+
+        gamePanel.tileManager.draw(g2, background);
+        for (int i = 0; i < numTileContainer; ++i)
+            gamePanel.tileManager.draw(g2, tileContainer[i]);
     }
 }

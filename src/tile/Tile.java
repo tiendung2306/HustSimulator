@@ -5,23 +5,27 @@ import java.awt.image.BufferedImage;
 public class Tile {
     public BufferedImage image;
     public String Name;
-    int numOwn;
-    int LeftX;
-    int RightX ;
-    int TopY;
-    int BottomY;
+    public int numOwn;
+    public String Type;
+    int LeftX, RightX, TopY, BottomY;
+
+    int width, height;
 
     public Tile() {
 
     }
 
-    public Tile(int leftX, int rightX, int topY, int bottomY) {
+    public Tile(int leftX, int rightX, int topY, int bottomY, String name, String type, BufferedImage image) {
         LeftX = leftX;
         RightX = rightX;
         TopY = topY;
         BottomY = bottomY;
+        width = rightX - leftX;
+        height = bottomY - topY;
         numOwn = 0;
-        Name = "";
+        Name = name;
+        Type = type;
+        this.image = image;
     }
 
     public int getLeftX() {
@@ -54,5 +58,20 @@ public class Tile {
 
     public void setBottomY(int bottomY) {
         BottomY = bottomY;
+    }
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }

@@ -1,5 +1,7 @@
 package main;
 
+import Collision.Collision;
+import Intentory.Inventory;
 import MainMenu.*;
 import entity.Player;
 import map.Map;
@@ -7,10 +9,7 @@ import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
 import Mouse.MouseManager;
-import area_selection.*;
-import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
 import area.NormalClassroom;
 import area.ComputerRoom;
 import area.Stadium;
@@ -41,8 +40,6 @@ public class GamePanel extends JPanel implements Runnable {
     public final int mapHeight = tileSize * maxMapRow;
 
     public TileManager tileManager = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
-    public CollisionPlayer collision = new CollisionPlayer(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
 
@@ -63,10 +60,13 @@ public class GamePanel extends JPanel implements Runnable {
     Stadium stadium = new Stadium(this);
 
     MouseManager mouseManager = new MouseManager();
-    public Map presentMap = null;
+    public Map currentMap = null;
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
+    KeyHandler keyH = new KeyHandler();
+    public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
+    public Inventory inventory = new Inventory(this);
 
     public boolean isRunning = false;
 
@@ -99,38 +99,37 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void Init() {
-
         switch (Main.nguoncode) {
             case 1: {
-                presentMap = normalClassroom;
+                currentMap = normalClassroom;
                 break;
             }
             case 2: {
-                presentMap = normalClassroom;
+                currentMap = normalClassroom;
                 break;
             }
             case 4: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("GamePlay");
-                presentMap = normalClassroom;
+                currentMap = normalClassroom;
                 break;
             }
             case 5: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("GamePlay");
-                presentMap = computerRoom;
+                currentMap = computerRoom;
                 break;
             }
             case 6: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("GamePlay");
-                presentMap = stadium;
+                currentMap = stadium;
                 break;
             }
             case 7: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("GamePlay");
-                presentMap = library;
+                currentMap = library;
                 break;
             }
         }
@@ -187,7 +186,6 @@ public class GamePanel extends JPanel implements Runnable {
         player.update();
 
         if (Main.nguoncode == 1) {
-            player.update();
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
             } else if (Main.topGameState().equals(Main.states[1])) {
@@ -201,7 +199,6 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
         } else if (Main.nguoncode == 2) {
-            player.update();
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
             } else if (Main.topGameState().equals(Main.states[1])) {
@@ -216,15 +213,18 @@ public class GamePanel extends JPanel implements Runnable {
                 videoSetting.update();
         } else {
             if (Main.topGameState().equals("GamePlay")) {
-                if (player.ButtonInteract && keyH.interactShow){
-                    player.collisionHandling();
-                    Main.pushGameState("Dialogue");
-                } else player.update();
+                if (keyH.isInteract) {
+                    if (player.ButtonInteract)
+                        collision.update();
+                    else keyH.isInteract = false;
+                }
             }
             else if (Main.topGameState().equals("Dialogue")){
-                if (!keyH.interactShow)
+                if (!keyH.isInteract)
                     Main.popGameState();
             }
+            if (keyH.isPop)
+                inventory.popFromInventory(0,0,0);
         }
     }
     // =================================================================================================================
@@ -248,7 +248,7 @@ public class GamePanel extends JPanel implements Runnable {
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[7])) {
-                    if (presentMap == normalClassroom) {
+                    if (currentMap == normalClassroom) {
                         normalClassroom.draw(g2);
                         player.draw(g2);
                     }
@@ -269,7 +269,7 @@ public class GamePanel extends JPanel implements Runnable {
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[7])) {
-                    if (presentMap == normalClassroom) {
+                    if (currentMap == normalClassroom) {
                         normalClassroom.draw(g2);
                         player.draw(g2);
                     }
@@ -309,6 +309,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void newGame() {
-        presentMap = normalClassroom;
+        currentMap = normalClassroom;
     }
 }

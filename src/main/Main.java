@@ -17,7 +17,7 @@ public class Main {
     public static int ex = 1;
     public static Stack<String> GameState = new Stack<>();
     public static String[] states = { "MainMenu", "PlayMenu", "Setting", "AudioSetting", "KeySetting", "VideoSetting",
-            "Tutorial", "GamePlay", "GamePause", "Dialogue"};
+            "Tutorial", "GamePlay", "GamePause", "Dialogue", "Inventory"};
 
     public static void pushGameState(String a) {
         GameState.push(a);
@@ -82,7 +82,6 @@ public class Main {
         window.setVisible(true);
         // gamePanel.startGameThread();
     }
-
 }
 
 class ButtonClicked implements ActionListener {

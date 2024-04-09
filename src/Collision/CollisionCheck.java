@@ -1,10 +1,11 @@
-package main;
+package Collision;
 
 import entity.Entity;
+import main.GamePanel;
 import tile.Tile;
 import map.Map;
 
-public class CollisionPlayer {
+public class CollisionCheck {
     GamePanel gamePanel;
     int numCollision;
 
@@ -16,14 +17,17 @@ public class CollisionPlayer {
         return collisionTile;
     }
 
-    public String[] getTypeCollision(){ return typeCollision; }
+    public String[] getTypeCollision(){return typeCollision; }
+    public int[] getTileIndex(){return tileIndex; }
 
+    int[] tileIndex;
     Tile[] collisionTile;
     String[] typeCollision;
-    public CollisionPlayer(GamePanel gamePanel) {
+    public CollisionCheck(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         collisionTile = new Tile[50];
         typeCollision = new String[50];
+        tileIndex = new int[50];
     }
     boolean checkInside(int pointX, int pointY, int tileLeftX, int tileRightX, int tileTopY, int tileBottomY) {
         return (pointX >= tileLeftX && pointX <= tileRightX && pointY >= tileTopY && pointY <= tileBottomY);
@@ -77,6 +81,7 @@ public class CollisionPlayer {
             String type = defineType(entityLeftX, entityRightX, entityTopY, entityBottomY, tileLeftX, tileRightX, tileTopY, tileBottomY);
             if (!type.equals("no-collision")) {
                 collisionTile[numCollision] = considerTile;
+                tileIndex[numCollision] = i;
                 typeCollision[numCollision++] = type;
             }
         }

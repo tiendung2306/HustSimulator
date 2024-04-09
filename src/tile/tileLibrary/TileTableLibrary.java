@@ -2,21 +2,18 @@ package tile.tileLibrary;
 
 import main.GamePanel;
 import tile.Tile;
-import tile.TileManager;
-
-import java.awt.*;
 
 public class TileTableLibrary extends Tile {
     public int x,y;
     GamePanel gamePanel;
-    TileManager tileManager;
 
     public TileTableLibrary(GamePanel gamePanel, int x, int y) {
         this.x = x;
         this.y = y;
         this.gamePanel=gamePanel;
         Name = "Table Library";
-        tileManager = new TileManager(gamePanel);
+        Type = "Interact";
+        image = gamePanel.tileManager.tile[5].image;
         this.BoundingBox();
     }
 
@@ -25,9 +22,8 @@ public class TileTableLibrary extends Tile {
         setTopY(y * gamePanel.scale);
         setRightX((x+30) * gamePanel.scale);
         setBottomY((y+30) * gamePanel.scale);
+        setWidth(30 * gamePanel.scale);
+        setHeight(30 * gamePanel.scale);
     }
 
-    public void draw(Graphics2D g2) {
-        tileManager.draw(g2, tileManager.tile[5].image,  getLeftX(),  getTopY(), 30 * gamePanel.scale, 30 * gamePanel.scale);
-    }
 }

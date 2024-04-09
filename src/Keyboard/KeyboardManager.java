@@ -18,6 +18,8 @@ public class KeyboardManager implements KeyListener {
         keys.add(new Key(KeyEvent.VK_D, "RIGHT"));
         keys.add(new Key(KeyEvent.VK_F, "INTERACT"));
         keys.add(new Key(KeyEvent.VK_ESCAPE, "PAUSE"));
+        keys.add(new Key(KeyEvent.VK_B, "INVENTORY"));
+        keys.add(new Key(KeyEvent.VK_X, "POP"));
     }
 
     public int getKey(String keyTag) {

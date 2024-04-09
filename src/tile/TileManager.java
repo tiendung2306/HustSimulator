@@ -122,14 +122,18 @@ public class TileManager {
             e.printStackTrace();
         }
     }
-    public void draw(Graphics2D g2, BufferedImage image, int mapX, int mapY, int width, int height) {
+    public void draw(Graphics2D g2, Tile tile) {
+            int mapX = tile.getLeftX();
+            int mapY = tile.getTopY();
+            int width = tile.getWidth();
+            int height = tile.getHeight();
             int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
             int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
             if     (mapX + gamePanel.player.getBoundingBoxX() + gamePanel.screenWidth > gamePanel.player.getMapX() - gamePanel.player.screenX &&
                     mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth  < gamePanel.player.getMapX() + gamePanel.player.screenX &&
                     mapY + gamePanel.player.getBoundingBoxY() + gamePanel.screenHeight > gamePanel.player.getMapY() - gamePanel.player.screenY &&
                     mapY - gamePanel.player.getBoundingBoxY() - gamePanel.screenHeight < gamePanel.player.getMapY() + gamePanel.player.screenY) {
-                g2.drawImage(image, screenX, screenY, width, height, null);
+                g2.drawImage(tile.image, screenX, screenY, width, height, null);
                 g2.drawRect(screenX, screenY, width, height);
             }
         }

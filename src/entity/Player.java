@@ -1,5 +1,6 @@
 
 package entity;
+import Collision.Collision;
 import main.*;
 import animation.Animation_player;
 
@@ -15,7 +16,7 @@ public class Player extends Entity{
     public Animation_player animation_player_stand_RIGHT;
     GamePanel gamepanel;
     KeyHandler keyhandler;
-    CollisionPlayer collision;
+    Collision collision;
     UI ui;
     public int screenX, screenY;
     boolean leftBorder, rightBorder, topBorder, bottomBorder;
@@ -35,13 +36,16 @@ public class Player extends Entity{
         this.collision = gamepanel.collision;
         this.tileManager = tilemanager;
         this.ui = ui;
+        setDefaultValues();
+    }
+
+
+    public void setDefaultValues() {
         leftBorder = false;
         rightBorder = false;
         bottomBorder = false;
         topBorder = false;
         ButtonInteract = false;
-
-        dialogue = new String[10];
 
         hitArea = new Rectangle();
         boundingBox = new Rectangle();
@@ -55,12 +59,6 @@ public class Player extends Entity{
         screenY = gamepanel.screenHeight/2 - boundingBox.height/2;
         boundingBox.x = screenX;
         boundingBox.y = screenY;
-        setDefaultValues();
-        setDialogue();
-    }
-
-
-    public void setDefaultValues() {
         mapX = 600;
         mapY = 300;
         speed = 4;
@@ -77,23 +75,10 @@ public class Player extends Entity{
         curr_animation_player = animation_player_stand_RIGHT;
 
     }
-    public void setDialogue(){
-        dialogue[0] = "You're hitting ";
-        dialogue[1] = "It is a beautiful day ";
-    }
-    //=============================================================================================================================================
-    public void collisionHandling(){
-        int numCollision = collision.getNumCollision();
-        Tile[] collisionTile = collision.getCollisionTile();
-        ui.currentDialogue = dialogue[0];
-        for (int i = 0; i < numCollision; ++i){
-            if (i > 0)
-                ui.currentDialogue += " and ";
-            ui.currentDialogue += collisionTile[i].Name;
-        }
-    }
     //=============================================================================================================================================
     public void update(){
+        if (!Main.topGameState().equals("GamePlay"))
+            return;
         int countPressed = 0;
         if (keyhandler.upPressed)
             ++countPressed;
@@ -167,14 +152,14 @@ public class Player extends Entity{
                 }
             }
             boolean checkBug = false;
-            collision.scanCollision(this, gamepanel.presentMap);
-            if (collision.getNumCollision() == 0) {
+            collision.collisionCheck.scanCollision(this, gamepanel.currentMap);
+            if (collision.collisionCheck.getNumCollision() == 0) {
                 hitArea.x = newMapX + boundingBox.width / 4;
                 hitArea.y = newMapY + boundingBox.height / 2;
-                collision.scanCollision(this, gamepanel.presentMap);
+                collision.collisionCheck.scanCollision(this, gamepanel.currentMap);
             }
             else checkBug = true;
-            if (checkBug || collision.getNumCollision() == 0){
+            if (checkBug || collision.collisionCheck.getNumCollision() == 0){
                 mapX = newMapX;
                 mapY = newMapY;
                 switch (direction) {
