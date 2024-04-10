@@ -284,24 +284,28 @@ public class GamePanel extends JPanel implements Runnable {
                 normalClassroom.draw(g2);
                 player.draw(g2);
                 ui.draw(g2);
+                inventory.drawIcon(g2);
                 break;
             }
             case 5: {
                 computerRoom.draw(g2);
                 player.draw(g2);
                 ui.draw(g2);
+                inventory.drawIcon(g2);
                 break;
             }
             case 6: {
                 stadium.draw(g2);
                 player.draw(g2);
                 ui.draw(g2);
+                inventory.drawIcon(g2);
                 break;
             }
             case 7: {
                 library.draw(g2);
                 player.draw(g2);
                 ui.draw(g2);
+                inventory.drawIcon(g2);
                 break;
             }
         }
