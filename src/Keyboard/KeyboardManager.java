@@ -20,6 +20,7 @@ public class KeyboardManager implements KeyListener {
         keys.add(new Key(KeyEvent.VK_ESCAPE, "PAUSE"));
         keys.add(new Key(KeyEvent.VK_B, "INVENTORY"));
         keys.add(new Key(KeyEvent.VK_X, "POP"));
+        keys.add(new Key(KeyEvent.VK_P, "PHONE"));
     }
 
     public int getKey(String keyTag) {

@@ -226,6 +226,13 @@ public class GamePanel extends JPanel implements Runnable {
             if (keyH.isPop)
                 inventory.popFromInventory(0,0,0);
         }
+
+        if(Main.topGameState().equals("GamePlay")) {
+            if (keyH.isPhonePressed) {
+                System.out.println("phone-kun xin chao tat ca cac ban");
+            }
+        }
+
     }
     // =================================================================================================================
 
