@@ -12,7 +12,7 @@ public class Inventory {
     InventoryPage[] pages;
     InventoryUI inventoryUI;
     GamePanel gamePanel;
-    InventoryComponent inventoryIcon;
+    InventoryComponent inventoryIcon, inventoryBag;
     public Inventory(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         pages = new InventoryPage[10];
@@ -23,13 +23,23 @@ public class Inventory {
         GetInventoryInfo();
     }
     public void GetInventoryInfo(){
+
         inventoryIcon = new InventoryComponent();
         inventoryIcon.BoundingBox.x = 0;
         inventoryIcon.BoundingBox.y = 0;
         inventoryIcon.BoundingBox.width = 20 * gamePanel.scale;
         inventoryIcon.BoundingBox.height = 15 * gamePanel.scale;
+
+        inventoryBag = new InventoryComponent();
+        inventoryBag.BoundingBox.x = 30 * gamePanel.scale;
+        inventoryBag.BoundingBox.y = 30 * gamePanel.scale;
+        inventoryBag.BoundingBox.width = 150 * gamePanel.scale;
+        inventoryBag.BoundingBox.height = 150 * gamePanel.scale;
+
+
         try {
             inventoryIcon.image = ImageIO.read(new FileInputStream("res/inventory/InventoryIcon.png"));
+            inventoryBag.image = ImageIO.read(new FileInputStream("res/inventory/bag.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,6 +75,7 @@ public class Inventory {
         }
     }
     public void drawIcon(Graphics2D g2){
+        inventoryUI.draw(g2, inventoryBag);
         inventoryUI.draw(g2, inventoryIcon);
     }
 }
