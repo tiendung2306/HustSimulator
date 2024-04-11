@@ -145,7 +145,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
-        SoundManager.loopSound("piano_music");
+        //SoundManager.loopSound("piano_music");
 
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
@@ -296,24 +296,28 @@ public class GamePanel extends JPanel implements Runnable {
                 normalClassroom.draw(g2);
                 player.draw(g2);
                 ui.draw(g2);
+                inventory.draw(g2);
                 break;
             }
             case 5: {
                 computerRoom.draw(g2);
                 player.draw(g2);
                 ui.draw(g2);
+                inventory.draw(g2);
                 break;
             }
             case 6: {
                 stadium.draw(g2);
                 player.draw(g2);
                 ui.draw(g2);
+                inventory.draw(g2);
                 break;
             }
             case 7: {
                 library.draw(g2);
                 player.draw(g2);
                 ui.draw(g2);
+                inventory.draw(g2);
                 break;
             }
         }
