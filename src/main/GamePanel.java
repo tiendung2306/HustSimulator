@@ -9,6 +9,7 @@ import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
 import Mouse.MouseManager;
+import phone.Phone;
 
 import area.NormalClassroom;
 import area.ComputerRoom;
@@ -67,8 +68,10 @@ public class GamePanel extends JPanel implements Runnable {
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
     public Inventory inventory = new Inventory(this);
+    public Phone phone = new Phone(this);
 
     public boolean isRunning = false;
+    boolean isDrawPhone = false;
 
     //==================================================================================================================
 
@@ -230,6 +233,8 @@ public class GamePanel extends JPanel implements Runnable {
         if(Main.topGameState().equals("GamePlay")) {
             if (keyH.isPhonePressed) {
                 System.out.println("phone-kun xin chao tat ca cac ban");
+                isDrawPhone = !isDrawPhone;
+                keyH.isPhonePressed = false;
             }
         }
 
@@ -311,6 +316,10 @@ public class GamePanel extends JPanel implements Runnable {
                 ui.draw(g2);
                 break;
             }
+        }
+        if(isDrawPhone) {
+            phone.draw(g2);
+            // isDrawPhone = false;
         }
         g2.dispose();
     }

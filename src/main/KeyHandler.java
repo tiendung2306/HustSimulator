@@ -46,9 +46,9 @@ public class KeyHandler implements KeyListener{
         if(code == keyboardManager.getKey("POP")){
             isPop = true;
         }
-        if(code == keyboardManager.getKey("PHONE")){
-            isPhonePressed = true;
-        }
+        // if(code == keyboardManager.getKey("PHONE")){
+        //     isPhonePressed = true;
+        // }
     }
 
     public void keyReleased(KeyEvent e){
@@ -71,7 +71,7 @@ public class KeyHandler implements KeyListener{
             isPop = false;
         }
         if(code == keyboardManager.getKey("PHONE")){
-            isPhonePressed = false;
+            isPhonePressed = true;
         }
     }
 

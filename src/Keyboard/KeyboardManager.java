@@ -44,10 +44,10 @@ public class KeyboardManager implements KeyListener {
     public void keyTyped(KeyEvent e) { // nay la nguoi dung an roi tha ra
 
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            // System.out.println("Right key typed");
+            System.out.println("Right key typed");
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            // System.out.println("Left key typed");
+            System.out.println("Left key typed");
         }
 
     }
