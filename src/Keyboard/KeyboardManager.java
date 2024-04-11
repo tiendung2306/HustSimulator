@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 
 public class KeyboardManager implements KeyListener {
     static ArrayList<Key> keys = new ArrayList<Key>();
+    static int releasedKey = -1;
 
     public void init() { // tell me if you want add new key
         keys.add(new Key(KeyEvent.VK_W, "UP"));
@@ -70,5 +71,14 @@ public class KeyboardManager implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             // System.out.println("Left key Released");
         }
+        releasedKey = e.getKeyCode();
+    }
+
+    static public void resetReleasedKey() {
+        releasedKey = -1;
+    }
+
+    static public int getReleasedKey() {
+        return releasedKey;
     }
 }

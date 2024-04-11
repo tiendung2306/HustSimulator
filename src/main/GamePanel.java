@@ -73,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean isRunning = false;
     boolean isDrawPhone = false;
 
-    //==================================================================================================================
+    // ==================================================================================================================
 
     double FPS = 60;
 
@@ -145,7 +145,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
-        //SoundManager.loopSound("piano_music");
+        // SoundManager.loopSound("piano_music");
 
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
@@ -214,25 +214,25 @@ public class GamePanel extends JPanel implements Runnable {
                 keySetting.update();
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
-        } else {
-            if (Main.topGameState().equals("GamePlay")) {
-                if (keyH.isInteract) {
-                    if (player.ButtonInteract)
-                        collision.update();
-                    else keyH.isInteract = false;
-                }
-            }
-            else if (Main.topGameState().equals("Dialogue")){
-                if (!keyH.isInteract)
-                    Main.popGameState();
-            }
-            if (keyH.isPop)
-                inventory.popFromInventory(0,0,0);
         }
 
-        if(Main.topGameState().equals("GamePlay")) {
+        if (Main.topGameState().equals("GamePlay")) {
+            if (keyH.isInteract) {
+                if (player.ButtonInteract)
+                    collision.update();
+                else
+                    keyH.isInteract = false;
+            }
+        } else if (Main.topGameState().equals("Dialogue")) {
+            if (!keyH.isInteract)
+                Main.popGameState();
+        }
+        if (keyH.isPop)
+            inventory.popFromInventory(0, 0, 0);
+
+        if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isPhonePressed) {
-                System.out.println("phone-kun xin chao tat ca cac ban");
+                // System.out.println("phone-kun xin chao tat ca cac ban");
                 isDrawPhone = !isDrawPhone;
                 keyH.isPhonePressed = false;
             }
@@ -259,13 +259,6 @@ public class GamePanel extends JPanel implements Runnable {
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[7])) {
-                    if (currentMap == normalClassroom) {
-                        normalClassroom.draw(g2);
-                        player.draw(g2);
-                    }
-                    break;
-                }
             }
             case 2: {
                 if (Main.topGameState().equals(Main.states[0])) {
@@ -280,16 +273,9 @@ public class GamePanel extends JPanel implements Runnable {
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[7])) {
-                    if (currentMap == normalClassroom) {
-                        normalClassroom.draw(g2);
-                        player.draw(g2);
-                    }
-                    break;
-                }
             }
             case 3: {
-                //====
+                // ====
                 break;
             }
             case 4: {
@@ -301,27 +287,28 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 5: {
                 computerRoom.draw(g2);
-                player.draw(g2);
-                ui.draw(g2);
-                inventory.draw(g2);
                 break;
             }
             case 6: {
                 stadium.draw(g2);
-                player.draw(g2);
-                ui.draw(g2);
-                inventory.draw(g2);
                 break;
             }
             case 7: {
                 library.draw(g2);
-                player.draw(g2);
-                ui.draw(g2);
-                inventory.draw(g2);
                 break;
             }
         }
-        if(isDrawPhone) {
+
+        if (Main.topGameState().equals(Main.states[7]) || Main.topGameState().equals("Dialogue") || Main.topGameState().equals("Inventory")) {
+            if (currentMap == normalClassroom) {
+                normalClassroom.draw(g2);
+            }
+            player.draw(g2);
+            ui.draw(g2);
+            inventory.draw(g2);
+        }
+
+        if (isDrawPhone) {
             phone.draw(g2);
             // isDrawPhone = false;
         }

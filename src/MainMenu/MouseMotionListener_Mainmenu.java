@@ -35,6 +35,11 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                 if ((x_drag >= 240 * Main.ex) && (x_drag <= 600 * Main.ex))
                     audioSetting.volumesliderpointX(x_drag - 23 * Main.ex);
             }
+        } else if (Main.topGameState().equals(Main.states[5])) {
+            if (VideoSetting.checkenterslider) {
+                if ((x_drag >= 240 * Main.ex) && (x_drag <= 600 * Main.ex))
+                    videoSetting.qualitysliderpointX(x_drag - 23 * Main.ex);
+            }
         }
     }
 
@@ -104,13 +109,38 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                 audioSetting.audiorollback();
             }
         } else if (Main.topGameState().equals(Main.states[4])) {
-            if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
-                    && (y_enter < 50 * Main.ex))
-                keySetting.buttonReturnEnter();
+            if (KeySetting.checkpressakey)
+            {
+                if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
+                        && (y_enter < 50 * Main.ex))
+                    keySetting.buttonReturnEnter();
+                else if ((x_enter > 67 * Main.ex) && (y_enter > 87 * Main.ex) && (x_enter < 105 * Main.ex)
+                        && (y_enter < 125 * Main.ex))
+                    keySetting.keysetting_squareup();
+                else if ((x_enter > 67 * Main.ex) && (y_enter > 137 * Main.ex) && (x_enter < 105 * Main.ex)
+                        && (y_enter < 175 * Main.ex))
+                    keySetting.keysetting_squaredown();
+                else if ((x_enter > 667 * Main.ex) && (y_enter > 67 * Main.ex) && (x_enter < 705 * Main.ex)
+                        && (y_enter < 125 * Main.ex))
+                    keySetting.keysetting_squareleft();
+                else if ((x_enter > 667 * Main.ex) && (y_enter > 137 * Main.ex) && (x_enter < 705 * Main.ex)
+                        && (y_enter < 175 * Main.ex))
+                    keySetting.keysetting_squareright();
+                else keySetting.keysettingrollback();
+            }
         } else if (Main.topGameState().equals(Main.states[5])) {
-            if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
-                    && (y_enter < 50 * Main.ex))
+            if ((x_enter > 220 * Main.ex) && (y_enter > 251 * Main.ex) && (x_enter < 620 * Main.ex)
+                    && (y_enter < 297 * Main.ex)) {
+                VideoSetting.checkenterslider = true;
+                videoSetting.checkcomment();
+            } else if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
+                    && (y_enter < 50 * Main.ex)) {
                 videoSetting.buttonReturnEnter();
+                VideoSetting.checkenterslider = false;
+            } else {
+                VideoSetting.checkenterslider = false;
+                videoSetting.audiorollback();
+            }
         }
     }
 }
