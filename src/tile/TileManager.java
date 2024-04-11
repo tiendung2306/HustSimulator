@@ -117,6 +117,46 @@ public class TileManager {
             tile[19] = new Tile();
             tile[19].image = ImageIO.read(new FileInputStream("res/tile/background_library.png"));
 
+            tile[20] = new Tile();
+            tile[20].image = ImageIO.read(new FileInputStream("res/tile/background_myroom.png"));
+
+            tile[21] = new Tile();
+            tile[21].image = ImageIO.read(new FileInputStream("res/tile/am_dun_nuoc.png"));
+
+            tile[22] = new Tile();
+            tile[22].image = ImageIO.read(new FileInputStream("res/tile/bep_tu.png"));
+
+            tile[23] = new Tile();
+            tile[23].image = ImageIO.read(new FileInputStream("res/tile/Cai_chao.png"));
+
+            tile[24] = new Tile();
+            tile[24].image = ImageIO.read(new FileInputStream("res/tile/chair_my_room.png"));
+
+            tile[25] = new Tile();
+            tile[25].image = ImageIO.read(new FileInputStream("res/tile/cho_nau_an.png"));
+
+            tile[26] = new Tile();
+            tile[26].image = ImageIO.read(new FileInputStream("res/tile/door_my_room.png"));
+
+            tile[27] = new Tile();
+            tile[27].image = ImageIO.read(new FileInputStream("res/tile/my_bed.png"));
+
+            tile[28] = new Tile();
+            tile[28].image = ImageIO.read(new FileInputStream("res/tile/table_my_room.png"));
+
+            tile[29] = new Tile();
+            tile[29].image = ImageIO.read(new FileInputStream("res/tile/tu_do_my_room.png"));
+
+            tile[30] = new Tile();
+            tile[30].image = ImageIO.read(new FileInputStream("res/tile/tu_lanh.png"));
+
+            tile[31] = new Tile();
+            tile[31].image = ImageIO.read(new FileInputStream("res/tile/tu_quan_ao.png"));
+
+            tile[32] = new Tile();
+            tile[32].image = ImageIO.read(new FileInputStream("res/tile/dan_pc.png"));
+
+
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -141,7 +181,7 @@ public class TileManager {
         int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
         int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
         if     (mapX + gamePanel.player.getBoundingBoxX() + gamePanel.screenWidth > gamePanel.player.getMapX() - gamePanel.player.screenX &&
-                mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth  < gamePanel.player.getMapX() + gamePanel.player.screenX &&
+                mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth < gamePanel.player.getMapX() + gamePanel.player.screenX &&
                 mapY + gamePanel.player.getBoundingBoxY() + gamePanel.screenHeight > gamePanel.player.getMapY() - gamePanel.player.screenY &&
                 mapY - gamePanel.player.getBoundingBoxY() - gamePanel.screenHeight < gamePanel.player.getMapY() + gamePanel.player.screenY) {
             g2.drawRect(screenX, screenY, width, height);

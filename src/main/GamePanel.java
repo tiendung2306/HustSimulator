@@ -3,17 +3,13 @@ package main;
 import Collision.Collision;
 import Intentory.Inventory;
 import MainMenu.*;
+import area.*;
 import entity.Player;
 import map.Map;
 import sound.Sound;
 import tile.TileManager;
 import sound.SoundManager;
 import Mouse.MouseManager;
-
-import area.NormalClassroom;
-import area.ComputerRoom;
-import area.Stadium;
-import area.Library;
 
 import javax.swing.*;
 
@@ -58,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     ComputerRoom computerRoom = new ComputerRoom(this);
     Library library = new Library(this);
     Stadium stadium = new Stadium(this);
+    MyRoom myRoom = new MyRoom(this);
 
     MouseManager mouseManager = new MouseManager();
     public Map currentMap = null;
@@ -132,6 +129,12 @@ public class GamePanel extends JPanel implements Runnable {
                 currentMap = library;
                 break;
             }
+            case 8: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
+                currentMap = myRoom;
+                break;
+            }
         }
         keyboardManager.init();
     }
@@ -142,7 +145,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
-        SoundManager.loopSound("piano_music");
+        //SoundManager.loopSound("piano_music");
 
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
@@ -307,6 +310,12 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 7: {
                 library.draw(g2);
+                player.draw(g2);
+                ui.draw(g2);
+                break;
+            }
+            case 8: {
+                myRoom.draw(g2);
                 player.draw(g2);
                 ui.draw(g2);
                 break;
