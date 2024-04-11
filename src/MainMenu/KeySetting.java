@@ -1,5 +1,6 @@
 package MainMenu;
 
+import Keyboard.KeyboardManager;
 import main.Main;
 
 import javax.imageio.ImageIO;
@@ -10,19 +11,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class KeySetting extends JPanel {
-
-    Thread gameThread;
-    private BufferedImage SettingBackGround, back, exitImg, exitImg1, keyboardimg;
+    private BufferedImage SettingBackGround, back, exitImg, exitImg1, keyboardimg, playerUP, playerDOWN, playerLEFT, playerRIGHT, square, enterkey, enterkey1;
 
     public KeySetting() {
         getImage();
-    }
-
-    public void run() {
-        while (gameThread != null) {
-            update();
-            repaint();
-        }
     }
 
     public void getImage() {
@@ -31,29 +23,101 @@ public class KeySetting extends JPanel {
             back = ImageIO.read(new FileInputStream("res/MainmenuImage/backicon.png"));
             exitImg1 = ImageIO.read(new FileInputStream("res/player/character_move_left (1).png"));
             keyboardimg = ImageIO.read(new FileInputStream("res/MainmenuImage/keyboardimg.png"));
+            playerUP = ImageIO.read(new FileInputStream("res/player/character_move_up (1).png"));
+            playerDOWN = ImageIO.read(new FileInputStream("res/player/character_move_down (1).png"));
+            playerLEFT = ImageIO.read(new FileInputStream("res/player/character_move_left (1).png"));
+            playerRIGHT = ImageIO.read(new FileInputStream("res/player/character_move_right (1).png"));
+            square = ImageIO.read(new FileInputStream("res/MainmenuImage/square.png"));
+            enterkey1 = ImageIO.read(new FileInputStream("res/MainmenuImage/enterakey.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    int inputKey = -1;
+    Boolean isFirstTimePressAKey = false;
     private String check = null;
-
+    private int x_square = 999, y_square = 999;
+    public static boolean checkpressakey = true;
     public void keysettingrollback() {
-        check = null;
+        check = "null";
     }
 
     public void buttonReturnEnter() {
         check = "buttonReturnEnter";
     }
-
-    public void update() {
-        if (check == "buttonReturnEnter") {
-            exitImg = exitImg1;
-        } else {
-            exitImg = null;
+    public void keysetting_squareup() {
+        check = "squareup";
+    }
+    public void keysetting_squaredown() {
+        check = "squaredown";
+    }
+    public void keysetting_squareleft() {
+        check = "squareleft";
+    }
+    public void keysetting_squareright() {
+        check = "squareright";
+    }
+    public void keysetting_squareupchange() {
+        check = "squareup1";
+    }
+    public void keysetting_squaredownchange() {
+        check = "squaredown1";
+    }
+    public void keysetting_squareleftchange() {
+        check = "squareleft1";
+    }
+    public void keysetting_squarerightchange() {
+        check = "squareright1";
+    }
+    public void getInputKey()
+    {
+        if (!checkpressakey)
+        {
+            inputKey = KeyboardManager.getReleasedKey();
+            if(inputKey != -1)   {
+                checkpressakey = true;
+                check = "null";
+                KeyboardManager.resetReleasedKey();
+            }
         }
     }
-
+    public void update() {
+        if (check.equals("buttonReturnEnter")) exitImg = exitImg1;
+        else if (check.equals("squareup")) {
+            x_square = 66;
+            y_square = 87;
+        } else if (check.equals("squaredown")) {
+            x_square = 66;
+            y_square = 137;
+        } else if (check.equals("squareleft")) {
+            x_square = 666;
+            y_square = 87;
+        } else if (check.equals("squareright")) {
+            x_square = 666;
+            y_square = 137;
+        } else if (check.equals("squareup1")) {
+            enterkey = enterkey1;
+            checkpressakey = false;
+            getInputKey();
+        } else if (check.equals("squaredown1")) {
+            enterkey = enterkey1;
+            checkpressakey = false;
+            getInputKey();
+        } else if (check.equals("squareleft1")) {
+            enterkey = enterkey1;
+            checkpressakey = false;
+            getInputKey();
+        } else if (check.equals("squareright1")) {
+            enterkey = enterkey1;
+            checkpressakey = false;
+            getInputKey();
+        } else {
+            exitImg = null;
+            x_square = 999;
+            y_square = 999;
+            enterkey = null;
+        }
+    }
     public void Init() {
         check = "";
     }
@@ -76,10 +140,17 @@ public class KeySetting extends JPanel {
         g2.drawRect(70 * Main.ex, 450 * Main.ex, 30 * Main.ex, 30 * Main.ex);
         g2.drawRect(670 * Main.ex, 450 * Main.ex, 30 * Main.ex, 30 * Main.ex);
         g2.setFont(new Font("Arial", Font.ITALIC, 25 * Main.ex));
-        g2.drawString("W",70 * Main.ex,115 * Main.ex);
-        g2.drawString("A",672 * Main.ex,115 * Main.ex);
-        g2.drawString("S",70 * Main.ex,165 * Main.ex);
-        g2.drawString("D",672 * Main.ex,165 * Main.ex);
+        g2.drawString("W",72 * Main.ex,115 * Main.ex);
+        g2.drawString("A",674 * Main.ex,115 * Main.ex);
+        g2.drawString("S",72 * Main.ex,165 * Main.ex);
+        g2.drawString("D",674 * Main.ex,165 * Main.ex);
+        g2.drawImage(playerUP, 216 * Main.ex, 86 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
+        g2.drawImage(playerDOWN, 216 * Main.ex, 139 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
+        g2.drawImage(playerLEFT, 507 * Main.ex, 86 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
+        g2.drawImage(playerRIGHT, 507 * Main.ex, 139 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
+        g2.drawImage(square, x_square * Main.ex, y_square * Main.ex, 38 * Main.ex, 38 * Main.ex, null);
+        g2.drawImage(enterkey, 150 * Main.ex, 207 * Main.ex, 468 * Main.ex, 200 * Main.ex, null);
         super.paintComponent(g2);
     }
+
 }

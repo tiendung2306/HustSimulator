@@ -80,9 +80,7 @@ public class Main {
         window.setVisible(true);
         // gamePanel.startGameThread();
     }
-
 }
-
 class ButtonClicked implements ActionListener {
     String buttonName;
     GamePanel gamePanel;

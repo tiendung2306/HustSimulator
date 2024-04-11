@@ -120,15 +120,15 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             } else if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 * Main.ex)
                     && (y_click < 50 * Main.ex))
                 Main.popGameState();
-            else if ((x_click > 262 * Main.ex) && (y_click > 331 * Main.ex) && (x_click < 504 * Main.ex)
-                    && (y_click < 366 * Main.ex))
+            else if ((x_click > 244 * Main.ex) && (y_click > 210 * Main.ex) && (x_click < 527 * Main.ex)
+                    && (y_click < 246 * Main.ex))
+                Main.pushGameState(Main.states[8]);
+            else if ((x_click > 260 * Main.ex) && (y_click > 270 * Main.ex) && (x_click < 507 * Main.ex)
+                    && (y_click < 310 * Main.ex)) {
+                Main.pushGameState(Main.states[8]);
+            } else if ((x_click > 260 * Main.ex) && (y_click > 330 * Main.ex) && (x_click < 507 * Main.ex)
+                    && (y_click < 367 * Main.ex)) {
                 Main.pushGameState(Main.states[6]);
-            else if ((x_click > 260 * Main.ex) && (y_click > 299 * Main.ex) && (x_click < 507 * Main.ex)
-                    && (y_click < 337 * Main.ex)) {
-                Main.pushGameState(Main.states[6]);
-            } else if ((x_click > 244 * Main.ex) && (y_click > 237 * Main.ex) && (x_click < 527 * Main.ex)
-                    && (y_click < 276 * Main.ex)) {
-                Main.pushGameState(Main.states[7]);
             }
         } else if (Main.topGameState().equals(Main.states[2])) {
             if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 * Main.ex) // neu an back
@@ -158,13 +158,31 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     && (y_click < 296 * Main.ex))
                 AudioSetting.checkmute = (-1) * AudioSetting.checkmute;
         } else if (Main.topGameState().equals(Main.states[4])) {
-            if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 * Main.ex)
-                    && (y_click < 50 * Main.ex))
-                Main.popGameState();
+            if (KeySetting.checkpressakey)
+            {
+                if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 * Main.ex)
+                        && (y_click < 50 * Main.ex))
+                    Main.popGameState();
+                else if ((x_click > 67 * Main.ex) && (y_click > 87 * Main.ex) && (x_click < 105 * Main.ex)
+                        && (y_click < 125 * Main.ex))
+                    keySetting.keysetting_squareupchange();
+                else if ((x_click > 67 * Main.ex) && (y_click > 137 * Main.ex) && (x_click < 105 * Main.ex)
+                        && (y_click < 175 * Main.ex))
+                    keySetting.keysetting_squaredownchange();
+                else if ((x_click > 667 * Main.ex) && (y_click > 67 * Main.ex) && (x_click < 705 * Main.ex)
+                        && (y_click < 125 * Main.ex))
+                    keySetting.keysetting_squareleftchange();
+                else if ((x_click > 667 * Main.ex) && (y_click > 137 * Main.ex) && (x_click < 705 * Main.ex)
+                        && (y_click < 175 * Main.ex))
+                    keySetting.keysetting_squarerightchange();
+            }
         } else if (Main.topGameState().equals(Main.states[5])) {
             if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 * Main.ex)
                     && (y_click < 50 * Main.ex))
                 Main.popGameState();
+            else if ((x_click > 240 * Main.ex) && (y_click > 251 * Main.ex) && (x_click < 600 * Main.ex)
+                    && (y_click < 297 * Main.ex))
+                VideoSetting.qualitysliderpointX = (x_click - 23 * Main.ex);
         }
     }
 
