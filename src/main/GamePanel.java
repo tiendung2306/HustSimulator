@@ -26,8 +26,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int tileSize = originalTileSize * scale;
     public final int maxScreenCol = 16;
     public final int maxScreenRow = 12;
-    public final int screenWidth = 1920;
-    public final int screenHeight = 1080;
+    public final int screenWidth = maxScreenCol * tileSize;
+    public final int screenHeight = maxScreenRow * tileSize;
 
     // =================================================================================================================
     // MAP SETTINGS
@@ -72,7 +72,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     // ==================================================================================================================
 
-    Section_selection se = new Section_selection(this);
 
     double FPS = 60;
 
