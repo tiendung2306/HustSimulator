@@ -12,7 +12,7 @@ public class MouseManager implements MouseListener {
     public static boolean isMiddleMouseHeld = false; // = true neu nguoi dung dang giu chuot giua
     public static boolean isRightMouseHeld = false; // = true neu nguoi dung dang giu chuot phai
 
-    public static int lastClickedX, lastClickedY; //toa do lan click chuot gan nhat theo truc x va y
+    public static int lastClickedX, lastClickedY; //toa do lan click chuot gan nhat theo truc x va y tren man hinh
 
 
     // static boolean isLeftMouseRelease = false;
