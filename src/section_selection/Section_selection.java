@@ -27,7 +27,7 @@ public class Section_selection {
 
     private void LoadImage(){
         try {
-            background = ImageIO.read(new FileInputStream("res/tile/Area_selection_map.jpg"));
+            background = ImageIO.read(new FileInputStream("res/tile/Area_selection_map.png"));
         }
         catch(IOException e) {
             e.printStackTrace();
@@ -113,7 +113,7 @@ public class Section_selection {
     }
 
     public void operation(Graphics graphics){
-        graphics.drawImage(background, 0, 0, gamePanel.screenWidth, gamePanel.screenHeight,null);
+        graphics.drawImage(background, 0, 0, gamePanel.screenWidth, background.getHeight() * gamePanel.screenWidth / background.getWidth(),null);
         display(graphics);
         HoverCheck(graphics);
     }
