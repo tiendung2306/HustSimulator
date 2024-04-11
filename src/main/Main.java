@@ -86,7 +86,6 @@ public class Main {
         // gamePanel.startGameThread();
     }
 }
-
 class ButtonClicked implements ActionListener {
     String buttonName;
     GamePanel gamePanel;
