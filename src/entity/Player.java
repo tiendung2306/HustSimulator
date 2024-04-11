@@ -1,3 +1,4 @@
+
 package entity;
 import Collision.Collision;
 import main.*;
@@ -75,7 +76,6 @@ public class Player extends Entity{
 
     }
     //=============================================================================================================================================
-
     public void update(){
         if (!Main.topGameState().equals("GamePlay"))
             return;
@@ -191,3 +191,4 @@ public class Player extends Entity{
         curr_animation_player.operation(g2);
     }
 }
+

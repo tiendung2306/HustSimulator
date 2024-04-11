@@ -105,7 +105,7 @@ public class SoundManager {
 
             }
         }
-        System.out.println(currVolume);
+        // System.out.println(currVolume);
     }
 
     public static void volumeDown() {
@@ -119,7 +119,7 @@ public class SoundManager {
 
             }
         }
-        System.out.println(currVolume);
+        // System.out.println(currVolume);
     }
 
     public static void volumeMute() {
@@ -145,7 +145,7 @@ public class SoundManager {
             }
             isMuted = false;
         }
-        System.out.println(currVolume);
+        // System.out.println(currVolume);
     }
 
     public static void setVolume(int percentage) {

@@ -16,7 +16,7 @@ public class Area_selection {
     BufferedImage background;
     Area_container area_array[][];
     GamePanel gamePanel;
-
+    
 
     public Area_selection(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -30,7 +30,7 @@ public class Area_selection {
         }
         catch(IOException e) {
             e.printStackTrace();
-        }
+        }  
     }
 
     private void LoadMap(){
