@@ -1,7 +1,8 @@
 package main;
 
 import Collision.Collision;
-import Intentory.Inventory;
+import Inventory.Inventory;
+import ItemInteract.ItemInteract;
 import MainMenu.*;
 import area.*;
 import entity.Player;
@@ -66,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH, tileManager, ui);
     public Inventory inventory = new Inventory(this);
     public Phone phone = new Phone(this);
+    ItemInteract itemInteract = new ItemInteract(this);
 
     public boolean isRunning = false;
     boolean isDrawPhone = false;
@@ -191,6 +193,7 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.update();
 
         player.update();
+        itemInteract.update();
 
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
@@ -221,6 +224,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (Main.topGameState().equals("Inventory"))
             inventory.update();
+        else inventory.currentIndex = 0;
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)

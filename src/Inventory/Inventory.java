@@ -1,4 +1,4 @@
-package Intentory;
+package Inventory;
 
 import Mouse.MouseManager;
 import main.GamePanel;
@@ -26,10 +26,14 @@ public class Inventory implements ActionListener {
     JPopupMenu popMenu;
     JMenuItem item1, item2, item3;
 
+    public Tile usingItem = new Tile();
+
     int slotX, slotY;
     boolean reverse = false;
-    int step = 0, currentIndex = 0;
+    int step = 0;
+    public int currentIndex = 0;
     boolean isGettingInformation = false;
+    public boolean isUsingItem = false;
 
     public Inventory(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -258,14 +262,44 @@ public class Inventory implements ActionListener {
                 }
             if (isGettingInformation) {
                 g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
-                showInformation(g2);
+                showInformation(g2, pages[currentIndex].slot[slotX][slotY]);
             }
         }
     }
-    void showInformation(Graphics2D g2){
+    void showInformation(Graphics2D g2, Tile tile){
         inventoryUI.draw(g2, informationBoard);
         inventoryUI.draw(g2,informationBoardBackArrow);
-        g2.drawImage(pages[currentIndex].slot[slotX][slotY].image, 43 * gamePanel.scale, 81 * gamePanel.scale, 50 * gamePanel.scale, 50 * gamePanel.scale, null);
+        g2.drawImage(tile.image, 43 * gamePanel.scale, 81 * gamePanel.scale, 50 * gamePanel.scale, 50 * gamePanel.scale, null);
+        int FontSize = 30;
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
+        g2.drawString(tile.Name, 67 * gamePanel.scale, 56 * gamePanel.scale);
+        FontSize = 25;
+        int FontPixel = 11;
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
+        int x = 110 * gamePanel.scale;
+        int y = 77 * gamePanel.scale;
+        String str = "";
+        int strSize = 0;
+        for (int i = 0; i < tile.Description.length(); ++i){
+            strSize += FontPixel;
+            if (tile.Description.charAt(i) == ' '){
+                for (int j = i + 1; j <= tile.Description.length(); ++j)
+                    if (j == tile.Description.length() || tile.Description.charAt(j) == ' '){
+                        if (strSize + (j - i - 1) * FontPixel >= informationBoard.BoundingBox.width / 3 * 2 - gamePanel.tileSize * 2){
+                            g2.drawString(str, x, y);
+                            str = "";
+                            y += 40;
+                            strSize = 0;
+                        }
+                        break;
+                    }
+                if (strSize > 0)
+                    str += ' ';
+            } else str += tile.Description.charAt(i);
+        }
+        if (strSize > 0)
+            g2.drawString(str, x, y);
     }
     boolean isLeftClick(InventoryComponent comp){
         if (MouseManager.isLeftMouseClick && MouseManager.lastReleasedX >= comp.BoundingBox.x && MouseManager.lastReleasedX <= comp.BoundingBox.x + comp.BoundingBox.width
@@ -275,20 +309,13 @@ public class Inventory implements ActionListener {
         }
         return false;
     }
-    boolean isRightClick(InventoryComponent comp){
-        if (MouseManager.isRightMouseClick && MouseManager.lastReleasedX >= comp.BoundingBox.x && MouseManager.lastReleasedX <= comp.BoundingBox.x + comp.BoundingBox.width
-                && MouseManager.lastReleasedY >= comp.BoundingBox.y && MouseManager.lastReleasedY <= comp.BoundingBox.y + comp.BoundingBox.height) {
-            MouseManager.isRightMouseClick = false;
-            return true;
-        }
-        return false;
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         switch (command){
             case "Use": {
-                System.out.println("Use");
+                isUsingItem = true;
+                usingItem = pages[currentIndex].slot[slotX][slotY];
                 break;
             }
             case "Drop": {

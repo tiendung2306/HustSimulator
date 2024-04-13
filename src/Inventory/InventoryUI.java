@@ -1,4 +1,4 @@
-package Intentory;
+package Inventory;
 import tile.Tile;
 import java.awt.*;
 import main.GamePanel;
