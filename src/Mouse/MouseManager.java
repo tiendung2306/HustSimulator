@@ -1,8 +1,6 @@
 package Mouse;
 
 // import javafx.scene.paint.Color;
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 // import javafx.util.*;
 
@@ -13,6 +11,7 @@ public class MouseManager implements MouseListener {
     public static boolean isRightMouseHeld = false; // = true neu nguoi dung dang giu chuot phai
 
     public static int lastClickedX, lastClickedY; //toa do lan click chuot gan nhat theo truc x va y tren man hinh
+    public static int lastReleasedX, lastReleasedY; //toa do lan released chuot gan nhat theo truc x va y tren man hinh
 
 
     // static boolean isLeftMouseRelease = false;
@@ -22,6 +21,11 @@ public class MouseManager implements MouseListener {
     // static boolean isLeftMouseClicked = false;
     // static boolean isMiddleMouseClicked = false;
     // static boolean isRightMouseClicked = false;
+
+    public static void resetLastReleasedPos() {
+        lastReleasedX = -1;
+        lastReleasedY = -1;
+    }
 
     public void mouseClicked(MouseEvent e) {
 
@@ -79,5 +83,8 @@ public class MouseManager implements MouseListener {
             // System.out.println("Right button release");
             isRightMouseHeld = false;
         } 
+
+        lastReleasedX = e.getX();
+        lastReleasedY = e.getY();
     }
 }

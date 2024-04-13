@@ -191,6 +191,9 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.update();
 
         player.update();
+        if(isDrawPhone) {
+            phone.update();
+        }
 
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
