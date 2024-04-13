@@ -74,6 +74,12 @@ public class Main {
         JButton button8 = new JButton("MyRoom");
         window.add(button8);
         button8.addActionListener(new ButtonClicked(button8.getText(), gamePanel));
+
+        JButton button9 = new JButton("Section_3");
+        window.add(button9);
+        button9.addActionListener(new ButtonClicked(button9.getText(), gamePanel));
+
+
         // window.add(gamePanel);
         // window.pack();
         // window.setSize(400, 400);
@@ -130,6 +136,10 @@ class ButtonClicked implements ActionListener {
             }
             case "MyRoom": {
                 Main.nguoncode = 8;
+                break;
+            }
+            case "Section_3": {
+                Main.nguoncode = 9;
                 break;
             }
         }

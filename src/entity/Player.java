@@ -9,7 +9,6 @@ import java.awt.*;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-import tile.Tile;
 import tile.TileManager;
 public class Player extends Entity{
 
@@ -75,6 +74,8 @@ public class Player extends Entity{
         curr_animation_player = animation_player_stand_RIGHT;
 
     }
+
+
     //=============================================================================================================================================
     public void update(){
         if (!Main.topGameState().equals("GamePlay"))

@@ -11,7 +11,7 @@ public class TileKitchen extends Tile {
         this.x = x;
         this.y = y;
         this.gamePanel=gamePanel;
-        Name = "My PC";
+        Name = "Kitchen";
         Type = "Interact";
         image = gamePanel.tileManager.tile[25].image;
         BoundingBox();

@@ -1,5 +1,6 @@
 package area;
 
+import entity.Player;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
@@ -18,6 +19,10 @@ public class MyRoom extends Map {
     TileBookshelf tileBookshelf;
     TileWardrobe tileWardrobe;
     TileKitchen tileKitchen;
+    TileDoorMyRoom tileDoorMyRoom;
+    TileKitchenInfrared tileKitchenInfrared;
+    TileWallMyRoom tileWallMyRoom;
+
 
     public MyRoom(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -25,7 +30,7 @@ public class MyRoom extends Map {
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;
         background.setWidth(562 * gamePanel.scale);
-        background.setHeight(317 * gamePanel.scale);
+        background.setHeight(320 * gamePanel.scale);
         tileBed = new TileBed(gamePanel,22,215);
         tilePC = new TilePC(gamePanel,195,202);
         tileTable = new TileTable(gamePanel,388,175);
@@ -34,7 +39,9 @@ public class MyRoom extends Map {
         tileBookshelf = new TileBookshelf(gamePanel,126,65);
         tileWardrobe = new TileWardrobe(gamePanel,0,51);
         tileKitchen = new TileKitchen(gamePanel,520,139);
-
+        tileDoorMyRoom = new TileDoorMyRoom(gamePanel,256,39);
+        tileKitchenInfrared = new TileKitchenInfrared(gamePanel,513,201);
+        tileWallMyRoom = new TileWallMyRoom(gamePanel,0,0);
         setTileChair();
         setUpTileMyRoom();
     }
@@ -62,6 +69,7 @@ public class MyRoom extends Map {
     public void setUpTileMyRoom() {
         numTileContainer = 0;
         mapIndex = 5;
+        addTile(tileWallMyRoom);
         addTile(tileBed);
         addTile(tilePC);
         addTile(tileTable);
@@ -69,6 +77,8 @@ public class MyRoom extends Map {
         addTile(tileBookshelf);
         addTile((tileWardrobe));
         addTile(tileKitchen);
+        addTile(tileDoorMyRoom);
+        addTile(tileKitchenInfrared);
         for(int i = 0; i < 4; i++) {
             addTile(tileChair[i]);
         }

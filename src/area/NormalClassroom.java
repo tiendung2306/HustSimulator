@@ -3,9 +3,11 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
+import tile.tileMyRoom.TileWallMyRoom;
 import tile.tileNormalClassroom.TileDoorClassroom;
 import tile.tileNormalClassroom.TileTableClassroom;
 import tile.tileNormalClassroom.TileTableTeacherClassroom;
+import tile.tileNormalClassroom.TileWallNormalClassroom;
 
 import java.awt.*;
 
@@ -16,6 +18,7 @@ public class NormalClassroom extends Map {
     TileDoorClassroom tileDoor02;
     TileTableTeacherClassroom tileTableTeacher;
     Tile background;
+    TileWallNormalClassroom tileWallNormalClassroom;
 
     public NormalClassroom(GamePanel gamePanel) {
         super();
@@ -29,12 +32,14 @@ public class NormalClassroom extends Map {
         tileDoor01 = new TileDoorClassroom(gamePanel, 30, 28);
         tileDoor02 = new TileDoorClassroom(gamePanel, 261, 28);
         tileTableTeacher = new TileTableTeacherClassroom(gamePanel, 273, 177);
+        tileWallNormalClassroom = new TileWallNormalClassroom(gamePanel,0,0);
         setUpTable();
         setUpTileNormalClassroom();
     }
     public void setUpTileNormalClassroom() {
         numTileContainer = 0;
         mapIndex = 1;
+        addTile(tileWallNormalClassroom);
         addTile(tileTableTeacher);
         addTile(tileDoor01);
         addTile(tileDoor02);

@@ -16,6 +16,7 @@ public class Library extends Map {
     TileChairLibrary[] tileChairLibrary;
     TileTableLibrary[] tileTableLibrary;
     TileDoorLibrary tileDoorLibrary;
+    TileWallLibrary tileWallLibrary;
     Tile background;
 
     public Library(GamePanel gamePanel) {
@@ -32,6 +33,7 @@ public class Library extends Map {
         tileChairLibrary = new TileChairLibrary[6];
         tileTableLibrary = new TileTableLibrary[6];
         tileDoorLibrary = new TileDoorLibrary(gamePanel,127,12);
+        tileWallLibrary = new TileWallLibrary(gamePanel,0,0);
         setUpTable();
         setUpTileLibrary();
     }
@@ -39,6 +41,7 @@ public class Library extends Map {
     public void setUpTileLibrary() {
         numTileContainer = 0;
         mapIndex = 3;
+        addTile(tileWallLibrary);
         addTile(tileBookcase01_1);
         addTile(tileBookcase01_2);
         addTile(tileBookcase02);

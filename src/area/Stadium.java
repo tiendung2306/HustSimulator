@@ -30,6 +30,7 @@ public class Stadium extends Map {
         tileCar02 = new TileCar02(gamePanel,218,200);
         tileBall = new TileBall(gamePanel,152,42);
         setUpTileStadium();
+
     }
 
     public void setUpTileStadium() {
