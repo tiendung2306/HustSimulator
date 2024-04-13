@@ -187,7 +187,7 @@ public class Inventory implements ActionListener {
     public void popFromInventory(int pageIndex, int x, int y){
         if (!pages[pageIndex].slot[x][y].Name.equals("Empty")){
             --pages[pageIndex].slot[x][y].numOwn;
-            Tile tile = new Tile(gamePanel.player.getMapX(), gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(), gamePanel.player.getMapY() + gamePanel.tileSize, gamePanel.player.getMapY() + gamePanel.tileSize + pages[pageIndex].slot[x][y].getHeight(), pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type, pages[pageIndex].slot[x][y].image);
+            Tile tile = new Tile(gamePanel.player.getMapX(), gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(), gamePanel.player.getMapY() + gamePanel.tileSize, gamePanel.player.getMapY() + gamePanel.tileSize + pages[pageIndex].slot[x][y].getHeight(), pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type, pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
             gamePanel.currentMap.addTile(tile);
             if (pages[pageIndex].slot[x][y].numOwn == 0) {
                 pages[pageIndex].slot[x][y].Name = "Empty";

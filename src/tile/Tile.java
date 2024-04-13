@@ -16,7 +16,7 @@ public class Tile{
 
     }
 
-    public Tile(int leftX, int rightX, int topY, int bottomY, String name, String type, BufferedImage image) {
+    public Tile(int leftX, int rightX, int topY, int bottomY, String name, String type, String description, BufferedImage image) {
         LeftX = leftX;
         RightX = rightX;
         TopY = topY;
@@ -26,6 +26,7 @@ public class Tile{
         numOwn = 0;
         Name = name;
         Type = type;
+        Description = description;
         this.image = image;
     }
 
