@@ -3,8 +3,6 @@ package tile.tileLibrary;
 import main.GamePanel;
 import tile.Tile;
 
-import java.awt.*;
-
 public class TileBookcase01 extends Tile {
     public int x,y;
     GamePanel gamePanel;

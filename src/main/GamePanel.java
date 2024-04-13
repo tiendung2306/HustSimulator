@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
     Stadium stadium = new Stadium(this);
     MyRoom myRoom = new MyRoom(this);
 
-    MouseManager mouseManager = new MouseManager();
+    public MouseManager mouseManager = new MouseManager();
     public Map currentMap = null;
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
@@ -158,7 +158,7 @@ public class GamePanel extends JPanel implements Runnable {
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
-            if (isRunning == false) {
+            if (!isRunning) {
                 stopThread();
                 break;
             }
@@ -219,20 +219,18 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
         }
-
+        if (Main.topGameState().equals("Inventory"))
+            inventory.update();
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
-                else
-                    keyH.isInteract = false;
+                else keyH.isInteract = false;
             }
         } else if (Main.topGameState().equals("Dialogue")) {
             if (!keyH.isInteract)
                 Main.popGameState();
         }
-        if (keyH.isPop)
-            inventory.popFromInventory(0, 0, 0);
 
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isPhonePressed) {
@@ -284,9 +282,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 4: {
                 normalClassroom.draw(g2);
-                player.draw(g2);
-                ui.draw(g2);
-                inventory.draw(g2);
                 break;
             }
             case 5: {
@@ -303,8 +298,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 8: {
                 myRoom.draw(g2);
-                player.draw(g2);
-                ui.draw(g2);
                 break;
             }
         }

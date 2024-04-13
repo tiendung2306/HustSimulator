@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
-    public boolean upPressed, downPressed, leftPressed, rightPressed, isInteract, isPop, isPhonePressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, isInteract, isPhonePressed;
     KeyboardManager keyboardManager = new KeyboardManager();
 
     public void keyTyped(KeyEvent e){
@@ -43,9 +43,6 @@ public class KeyHandler implements KeyListener{
                 Main.popGameState();
             else Main.pushGameState("Inventory");
         }
-        if(code == keyboardManager.getKey("POP")){
-            isPop = true;
-        }
         // if(code == keyboardManager.getKey("PHONE")){
         //     isPhonePressed = true;
         // }
@@ -66,9 +63,6 @@ public class KeyHandler implements KeyListener{
         }
         if(code == keyboardManager.getKey("RIGHT")){
             rightPressed = false;
-        }
-        if(code == keyboardManager.getKey("POP")){
-            isPop = false;
         }
         if(code == keyboardManager.getKey("PHONE")){
             isPhonePressed = true;
