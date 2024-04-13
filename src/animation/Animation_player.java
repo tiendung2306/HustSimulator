@@ -15,7 +15,7 @@ public class Animation_player{
     GamePanel gamePanel;
     BufferedImage[] frames;
     double total_loop_time;
-    Rectangle play_area;
+    public Rectangle play_area;
     double one_loop_time;
     double pre_loop_time = -1.0;
     int index = 0;
@@ -81,7 +81,8 @@ public class Animation_player{
 
             update();
 
-            graphics.drawImage(frames[index], play_area.x, play_area.y, play_area.width, play_area.height, null);
+            graphics.drawImage(frames[index], play_area.x + gamePanel.getA(), play_area.y+gamePanel.getB(), play_area.width+gamePanel.getC(), play_area.height+gamePanel.getD(), null);
+
         }
     }
 

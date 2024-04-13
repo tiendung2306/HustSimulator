@@ -59,6 +59,9 @@ public class TileManager {
     }
     public void getTileImage() {
         try {
+            tile[0] = new Tile();
+            tile[0].image = ImageIO.read(new FileInputStream("res/tile/no_thing.png"));
+
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(new FileInputStream("res/tile/ban_hs.png"));
 
@@ -125,9 +128,6 @@ public class TileManager {
             tile[22] = new Tile();
             tile[22].image = ImageIO.read(new FileInputStream("res/tile/bep_tu.png"));
 
-            tile[23] = new Tile();
-            tile[23].image = ImageIO.read(new FileInputStream("res/tile/Cai_chao.png"));
-
             tile[24] = new Tile();
             tile[24].image = ImageIO.read(new FileInputStream("res/tile/chair_my_room.png"));
 
@@ -168,23 +168,12 @@ public class TileManager {
             int height = tile.getHeight();
             int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
             int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
-            if     (mapX + gamePanel.player.getBoundingBoxX() + gamePanel.screenWidth > gamePanel.player.getMapX() - gamePanel.player.screenX &&
-                    mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth  < gamePanel.player.getMapX() + gamePanel.player.screenX &&
-                    mapY + gamePanel.player.getBoundingBoxY() + gamePanel.screenHeight > gamePanel.player.getMapY() - gamePanel.player.screenY &&
-                    mapY - gamePanel.player.getBoundingBoxY() - gamePanel.screenHeight < gamePanel.player.getMapY() + gamePanel.player.screenY) {
-                g2.drawImage(tile.image, screenX, screenY, width, height, null);
-                g2.drawRect(screenX, screenY, width, height);
-            }
+            g2.drawImage(tile.image, screenX, screenY, width, height, null);
+            g2.drawRect(screenX, screenY, width, height);
         }
     public void drawRect(Graphics2D g2, int mapX, int mapY, int width, int height) {
         int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
         int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
-        if     (mapX + gamePanel.player.getBoundingBoxX() + gamePanel.screenWidth > gamePanel.player.getMapX() - gamePanel.player.screenX &&
-                mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth < gamePanel.player.getMapX() + gamePanel.player.screenX &&
-                mapY + gamePanel.player.getBoundingBoxY() + gamePanel.screenHeight > gamePanel.player.getMapY() - gamePanel.player.screenY &&
-                mapY - gamePanel.player.getBoundingBoxY() - gamePanel.screenHeight < gamePanel.player.getMapY() + gamePanel.player.screenY) {
-            g2.drawRect(screenX, screenY, width, height);
-        }
+        g2.drawRect(screenX, screenY, width, height);
     }
-
 }

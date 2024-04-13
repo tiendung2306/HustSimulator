@@ -73,6 +73,8 @@ public class Player extends Entity{
         curr_animation_player = animation_player_stand_RIGHT;
 
     }
+
+
     //=============================================================================================================================================
     public void update(){
         if (!Main.topGameState().equals("GamePlay"))
