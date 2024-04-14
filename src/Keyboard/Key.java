@@ -1,7 +1,5 @@
 package Keyboard;
 
-import java.awt.event.KeyEvent;
-
 public class Key {
     int key; // W, A, S, Enter (VK_W VK_A VK_Enter)
     String keyName;

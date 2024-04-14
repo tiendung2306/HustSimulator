@@ -13,6 +13,7 @@ public class TileBall extends Tile {
         this.gamePanel=gamePanel;
         Name = "Ball";
         Type = "Collected";
+        Description = "Hmm... Just a Ballon D'or! And it's for Lionel Messi!";
         image = gamePanel.tileManager.tile[12].image;
         BoundingBox();
     }

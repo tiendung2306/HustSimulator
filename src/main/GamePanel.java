@@ -1,8 +1,10 @@
 package main;
 
 import Collision.Collision;
-import Intentory.Inventory;
+import Inventory.Inventory;
+import ItemInteract.ItemInteract;
 import MainMenu.*;
+import animation.Animation_player;
 import area.*;
 import entity.Player;
 import map.Map;
@@ -15,6 +17,8 @@ import phone.Phone;
 import javax.swing.*;
 
 import Keyboard.KeyboardManager;
+import tileWorldMap.TileWorldMapManager;
+import worldMap.Section_3;
 
 import java.awt.*;
 
@@ -31,12 +35,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     // MAP SETTINGS
-    public final int maxMapCol = 50;
-    public final int maxMapRow = 50;
-    public final int mapWidth = tileSize * maxMapCol;
-    public final int mapHeight = tileSize * maxMapRow;
+    public int maxMapCol;
+    public int maxMapRow;
+    public int mapWidth;
+    public int mapHeight;
 
     public TileManager tileManager = new TileManager(this);
+    public TileWorldMapManager tileWorldMapManager = new TileWorldMapManager(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
 
@@ -56,22 +61,63 @@ public class GamePanel extends JPanel implements Runnable {
     Library library = new Library(this);
     Stadium stadium = new Stadium(this);
     MyRoom myRoom = new MyRoom(this);
+    Section_3 section_3 = new Section_3(this);
 
-    MouseManager mouseManager = new MouseManager();
-    public Map currentMap = null; //map hien tai
+    // =================================================================================================
+    int a, b, c, d;
+
+    // ==============================================================================================
+
+    public MouseManager mouseManager = new MouseManager();
+    public Map currentMap = null; // map hien tai
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
-    KeyHandler keyH = new KeyHandler();
+    public KeyHandler keyH = new KeyHandler();
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
     public Inventory inventory = new Inventory(this);
     public Phone phone = new Phone(this);
+    ItemInteract itemInteract = new ItemInteract(this);
 
     public boolean isRunning = false;
     boolean isDrawPhone = false;
 
     // ==================================================================================================================
 
+    public void setSizeMap(int x, int y) {
+        maxMapCol = x;
+        maxMapRow = y;
+        mapWidth = tileSize * maxMapCol;
+        mapHeight = tileSize * maxMapRow;
+    }
+
+    // ===========================================================
+
+    public void setSizePlayer(int a, int b, int c, int d) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public int getD() {
+        return d;
+    }
+
+    // =========================================================
 
     double FPS = 60;
 
@@ -139,6 +185,12 @@ public class GamePanel extends JPanel implements Runnable {
                 currentMap = myRoom;
                 break;
             }
+            case 9: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
+                currentMap = section_3;
+                break;
+            }
         }
         keyboardManager.init();
         keySetting.init();
@@ -150,7 +202,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
-        //SoundManager.loopSound("piano_music");
+        // SoundManager.loopSound("piano_music");
 
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
@@ -159,7 +211,7 @@ public class GamePanel extends JPanel implements Runnable {
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
-            if (isRunning == false) {
+            if (!isRunning) {
                 stopThread();
                 break;
             }
@@ -190,11 +242,13 @@ public class GamePanel extends JPanel implements Runnable {
         // System.out.println(MouseManager.lastClickedX);
         // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
+        setSizePlayer(0,0,0,0);
 
         player.update();
         if(isDrawPhone) {
             phone.update();
         }
+        itemInteract.update();
 
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
@@ -223,20 +277,19 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
         }
-
+        if (Main.topGameState().equals("Inventory"))
+            inventory.update();
+        else inventory.currentIndex = 0;
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
-                else
-                    keyH.isInteract = false;
+                else keyH.isInteract = false;
             }
         } else if (Main.topGameState().equals("Dialogue")) {
             if (!keyH.isInteract)
                 Main.popGameState();
         }
-        if (keyH.isPop)
-            inventory.popFromInventory(0, 0, 0);
 
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isPhonePressed) {
@@ -287,26 +340,35 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 4: {
+                setSizeMap(21,18);
                 normalClassroom.draw(g2);
-                ui.draw(g2);
-                inventory.draw(g2);
                 break;
             }
             case 5: {
+                setSizeMap(21,18);
                 computerRoom.draw(g2);
                 break;
             }
             case 6: {
+                setSizeMap(21,18);
                 stadium.draw(g2);
                 break;
             }
             case 7: {
+                setSizeMap(21,18);
                 library.draw(g2);
                 break;
             }
             case 8: {
+                setSizePlayer(-33,-50,60,60);
+                setSizeMap(36,23);
                 myRoom.draw(g2);
-                ui.draw(g2);
+                break;
+            }
+            case 9: {
+//                setSizeMap(82,86);
+                setSizeMap(64,65);
+                section_3.draw(g2);
                 break;
             }
         }

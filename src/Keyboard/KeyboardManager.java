@@ -14,7 +14,6 @@ public class KeyboardManager implements KeyListener {
     static char releasedKeyName;
 
     public void init() { // tell me if you want add new key
-        // System.out.println("run!!!!!!!!!!!!!!");
         keys.add(new Key(KeyEvent.VK_W, "W", "UP"));
         keys.add(new Key(KeyEvent.VK_A, "A", "LEFT"));
         keys.add(new Key(KeyEvent.VK_S, "S", "DOWN"));
@@ -27,7 +26,7 @@ public class KeyboardManager implements KeyListener {
 
     static public int getKey(String keyTag) {
         for (Key k : keys) {
-            if (k.getKeyTag() == keyTag) {
+            if (k.getKeyTag().equals(keyTag)) {
                 return k.getKey();
             }
         }
@@ -58,10 +57,10 @@ public class KeyboardManager implements KeyListener {
     public void keyTyped(KeyEvent e) { // nay la nguoi dung an roi tha ra
 
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            System.out.println("Right key typed");
+            //System.out.println("Right key typed");
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            System.out.println("Left key typed");
+            //System.out.println("Left key typed");
         }
 
     }

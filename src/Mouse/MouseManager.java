@@ -6,9 +6,11 @@ import java.awt.event.*;
 
 public class MouseManager implements MouseListener {
 
-    public static boolean isLeftMouseHeld = false; // = true neu nguoi dung dang giu chuot trai
-    public static boolean isMiddleMouseHeld = false; // = true neu nguoi dung dang giu chuot giua
-    public static boolean isRightMouseHeld = false; // = true neu nguoi dung dang giu chuot phai
+    public static boolean isLeftMouseHeld = false;
+    public static boolean isMiddleMouseHeld = false;
+    public static boolean isRightMouseHeld = false;
+    public static boolean isRightMouseClick = false;
+    public static boolean isLeftMouseClick = false;
 
     public static int lastClickedX, lastClickedY; //toa do lan click chuot gan nhat theo truc x va y tren man hinh
     public static int lastReleasedX, lastReleasedY; //toa do lan released chuot gan nhat theo truc x va y tren man hinh
@@ -29,17 +31,6 @@ public class MouseManager implements MouseListener {
 
     public void mouseClicked(MouseEvent e) {
 
-        // int x = e.getClickCount();
-        // System.out.println("You CLICKED the mouse " + x + " times.");
-
-        // if (e.getButton() == MouseEvent.BUTTON1){
-        //     System.out.println("Left button clicked");
-        // } else if (e.getButton() == MouseEvent.BUTTON2){
-        //     System.out.println("Middle button clicked");
-        // } else if (e.getButton() == MouseEvent.BUTTON3) {
-        //     System.out.println("Right button clicked");
-        // } 
-
         lastClickedX = e.getX();
         lastClickedY = e.getY();
     }
@@ -53,7 +44,6 @@ public class MouseManager implements MouseListener {
     }
 
     public void mousePressed(MouseEvent e) {
-        // System.out.println("You have PRESSED the mouse");
 
         if (e.getButton() == MouseEvent.BUTTON1){
             // System.out.println("Left button hold");
@@ -75,6 +65,7 @@ public class MouseManager implements MouseListener {
 
         if (e.getButton() == MouseEvent.BUTTON1){
             // System.out.println("Left button release");
+            isLeftMouseClick = true;
             isLeftMouseHeld = false;
         } else if (e.getButton() == MouseEvent.BUTTON2){
             // System.out.println("Middle button release");
@@ -82,8 +73,8 @@ public class MouseManager implements MouseListener {
         } else if (e.getButton() == MouseEvent.BUTTON3) {
             // System.out.println("Right button release");
             isRightMouseHeld = false;
-        } 
-
+            isRightMouseClick = true;
+        }
         lastReleasedX = e.getX();
         lastReleasedY = e.getY();
     }

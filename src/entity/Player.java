@@ -8,8 +8,6 @@ import java.awt.*;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-
-import tile.Tile;
 import tile.TileManager;
 public class Player extends Entity{
 
@@ -22,7 +20,7 @@ public class Player extends Entity{
     boolean leftBorder, rightBorder, topBorder, bottomBorder;
     public boolean ButtonInteract;
 
-    public Animation_player animation_player_UP ;
+    public Animation_player animation_player_UP;
     public Animation_player animation_player_DOWN;
     public Animation_player animation_player_RIGHT;
     public Animation_player animation_player_LEFT;
@@ -54,7 +52,7 @@ public class Player extends Entity{
         hitArea.x = boundingBox.width / 4;
         hitArea.y = boundingBox.height / 2;
         hitArea.width = boundingBox.width / 2;
-        hitArea.height = boundingBox.height / 2;
+        hitArea.height = boundingBox.height / 3;
         screenX = gamepanel.screenWidth/2 - boundingBox.width/2;
         screenY = gamepanel.screenHeight/2 - boundingBox.height/2;
         boundingBox.x = screenX;
@@ -75,6 +73,8 @@ public class Player extends Entity{
         curr_animation_player = animation_player_stand_RIGHT;
 
     }
+
+
     //=============================================================================================================================================
     public void update(){
         if (!Main.topGameState().equals("GamePlay"))
@@ -119,7 +119,7 @@ public class Player extends Entity{
                 {
                     if (keyhandler.upPressed && keyhandler.leftPressed)
                     {
-                        direction = "upleft";
+                        direction = "up-left";
                         if (!topBorder)
                             newMapY -= speedSlant;
                         if (!leftBorder)
@@ -127,7 +127,7 @@ public class Player extends Entity{
                     }
                     if (keyhandler.upPressed && keyhandler.rightPressed)
                     {
-                        direction = "upright";
+                        direction = "up-right";
                         if (!topBorder)
                             newMapY -= speedSlant;
                         if (!rightBorder)
@@ -135,7 +135,7 @@ public class Player extends Entity{
                     }
                     if (keyhandler.downPressed && keyhandler.leftPressed)
                     {
-                        direction = "downleft";
+                        direction = "down-left";
                         if (!bottomBorder)
                             newMapY += speedSlant;
                         if (!leftBorder)
@@ -143,7 +143,7 @@ public class Player extends Entity{
                     }
                     if (keyhandler.downPressed && keyhandler.rightPressed)
                     {
-                        direction = "downright";
+                        direction = "down-right";
                         if (!bottomBorder)
                             newMapY += speedSlant;
                         if (!rightBorder)
@@ -163,10 +163,10 @@ public class Player extends Entity{
                 mapX = newMapX;
                 mapY = newMapY;
                 switch (direction) {
-                    case "up": curr_animation_player = animation_player_UP;break;
-                    case "down": curr_animation_player = animation_player_DOWN;break;
-                    case "left": curr_animation_player = animation_player_LEFT;break;
-                    case "right": curr_animation_player = animation_player_RIGHT;break;
+                    case "up", "up-left": curr_animation_player = animation_player_UP;break;
+                    case "down", "down-right": curr_animation_player = animation_player_DOWN;break;
+                    case "left", "down-left": curr_animation_player = animation_player_LEFT;break;
+                    case "right", "up-right": curr_animation_player = animation_player_RIGHT;break;
                     }
             }
             else ButtonInteract = true;

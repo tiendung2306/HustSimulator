@@ -3,8 +3,6 @@ package tile.tileComputerRoom;
 import main.GamePanel;
 import tile.Tile;
 
-import java.awt.*;
-
 public class TileComputerStudent extends Tile {
     public int x,y;
     GamePanel gamePanel;

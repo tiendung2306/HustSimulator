@@ -1,9 +1,6 @@
-package Intentory;
+package Inventory;
 
 import tile.Tile;
-
-import java.awt.*;
-
 public class InventoryPage {
     Tile[][] slot;
     public InventoryPage(){

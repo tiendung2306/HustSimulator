@@ -5,6 +5,7 @@ import map.Map;
 import tile.Tile;
 import tile.tileComputerRoom.TileComputerStudent;
 import tile.tileComputerRoom.TileComputerTeacher;
+import tile.tileComputerRoom.TileWallComputerRoom;
 import tile.tileNormalClassroom.TileDoorClassroom;
 import tile.tileNormalClassroom.TileTableClassroom;
 import tile.tileNormalClassroom.TileTableTeacherClassroom;
@@ -19,6 +20,7 @@ public class ComputerRoom extends Map {
     TileTableTeacherClassroom tileTableTeacher;
     TileComputerStudent[] tileComputerStudents;
     TileComputerTeacher tileComputerTeacher;
+    TileWallComputerRoom tileWallComputerRoom;
     Tile background;
 
     public ComputerRoom(GamePanel gamePanel) {
@@ -36,14 +38,17 @@ public class ComputerRoom extends Map {
         tileDoor01 = new TileDoorClassroom(gamePanel,30,28);
         tileDoor02 = new TileDoorClassroom(gamePanel,261,28);
         tileTableTeacher = new TileTableTeacherClassroom(gamePanel,273,177);
+        tileWallComputerRoom = new TileWallComputerRoom(gamePanel,0,0);
         setUpTable();
         setUpTileComputerRoom();
+
 
     }
 
     public void setUpTileComputerRoom() {
         numTileContainer = 0;
         mapIndex = 2;
+        addTile(tileWallComputerRoom);
         addTile(tileDoor01);
         addTile(tileDoor02);
         addTile(tileComputerTeacher);
