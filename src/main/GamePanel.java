@@ -243,7 +243,6 @@ public class GamePanel extends JPanel implements Runnable {
         // System.out.println(MouseManager.lastClickedX);
         // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
-        setSizePlayer(0,0,0,0);
 
         player.update();
         itemInteract.update();
@@ -301,6 +300,7 @@ public class GamePanel extends JPanel implements Runnable {
     // =================================================================================================================
 
     public void paintComponent(Graphics g) {
+        setSizePlayer(0,-13,0,0);
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
@@ -338,6 +338,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 4: {
+                setSizePlayer(0,-13,0,0);
                 setSizeMap(21,18);
                 normalClassroom.draw(g2);
                 break;
@@ -358,7 +359,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 8: {
-                setSizePlayer(-33,-50,60,60);
+                setSizePlayer(-33,-70,60,60);
                 setSizeMap(36,23);
                 myRoom.draw(g2);
                 ui.draw(g2);
