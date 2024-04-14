@@ -38,8 +38,8 @@ public class GamePanel extends JPanel implements Runnable {
     // MAP SETTINGS
     public int maxMapCol;
     public int maxMapRow;
-    public int mapWidth; 
-    public int mapHeight; 
+    public int mapWidth;
+    public int mapHeight;
 
     public TileManager tileManager = new TileManager(this);
     public TileWorldMapManager tileWorldMapManager = new TileWorldMapManager(this);
@@ -255,7 +255,7 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.update();
 
         player.update();
-        if(isDrawPhone) {
+        if (isDrawPhone) {
             phone.update();
         }
         itemInteract.update();
@@ -289,12 +289,14 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (Main.topGameState().equals("Inventory"))
             inventory.update();
-        else inventory.currentIndex = 0;
+        else
+            inventory.currentIndex = 0;
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
-                else keyH.isInteract = false;
+                else
+                    keyH.isInteract = false;
             }
         } else if (Main.topGameState().equals("Dialogue")) {
             if (!keyH.isInteract)
@@ -313,7 +315,8 @@ public class GamePanel extends JPanel implements Runnable {
     // =================================================================================================================
 
     public void paintComponent(Graphics g) {
-        setSizePlayer(0,-13,0,0);
+        setSizePlayer(0, -13, 0, 0);
+
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
@@ -331,6 +334,7 @@ public class GamePanel extends JPanel implements Runnable {
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
+                break;
             }
             case 2: {
                 if (Main.topGameState().equals(Main.states[0])) {
@@ -345,57 +349,58 @@ public class GamePanel extends JPanel implements Runnable {
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
+                break;
             }
             case 3: {
                 section_selection.operation(g);
                 break;
             }
             case 4: {
-                setSizePlayer(0,-13,0,0);
-                setSizeMap(21,18);
+                setSizeMap(21, 18);
                 normalClassroom.draw(g2);
                 break;
             }
             case 5: {
-                setSizeMap(21,18);
+                setSizeMap(21, 18);
                 computerRoom.draw(g2);
                 break;
             }
             case 6: {
-                setSizeMap(21,18);
+                setSizeMap(21, 18);
                 stadium.draw(g2);
                 break;
             }
             case 7: {
-                setSizeMap(21,18);
+                setSizeMap(21, 18);
                 library.draw(g2);
                 break;
             }
             case 8: {
-                setSizePlayer(-33,-70,60,60);
-                setSizeMap(36,23);
+                setSizePlayer(-33, -70, 60, 60);
+                setSizeMap(36, 23);
                 myRoom.draw(g2);
                 break;
             }
             case 9: {
-//                setSizeMap(82,86);
-                setSizeMap(64,65);
+                // setSizeMap(82,86);
+                setSizeMap(64, 65);
                 section_3.draw(g2);
                 break;
             }
             case 10: {
-                setSizeMap(64,65);
+                setSizeMap(64, 65);
                 section_2.draw(g2);
             }
         }
 
-        if (Main.topGameState().equals(Main.states[7]) || Main.topGameState().equals("Dialogue") || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) {
+        if (Main.topGameState().equals(Main.states[7]) || Main.topGameState().equals("Dialogue")
+                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) {
             if (currentMap == normalClassroom) {
-                setSizeMap(21,18);
+                setSizeMap(21, 18);
                 normalClassroom.draw(g2);
             } else if (currentMap == myRoom) {
-                setSizePlayer(-33,-70,60,60);
-                setSizeMap(36,23);
+                setSizePlayer(-33, -70, 60, 60);
+                setSizeMap(36, 23);
                 myRoom.draw(g2);
             }
             player.draw(g2);
@@ -414,4 +419,3 @@ public class GamePanel extends JPanel implements Runnable {
         currentMap = myRoom;
     }
 }
-
