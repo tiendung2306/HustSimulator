@@ -10,14 +10,23 @@ import java.io.FileInputStream;
 import java.awt.*;
 
 import main.GamePanel;
+import main.Main;
 import time.TimeSystem;
 
 public class Phone {
 
     GamePanel gamePanel;
+
+    String phoneStates[] = { "Main Menu", "fHUST", "Message", "Setting" };
+    String phoneState = "Main Menu";
+
     BufferedImage phone;
     BufferedImage arrowUp;
     BufferedImage arrowDown;
+    BufferedImage phoneWithWallpaper;
+    BufferedImage logoFhust;
+    BufferedImage logoMessager;
+    BufferedImage logoSetting;
     Schedule schedule = new Schedule();
 
     int phoneStartX;
@@ -36,6 +45,11 @@ public class Phone {
 
     int arrowWidth;
     int arrowHeight;
+
+    int logoSize;
+    int firstLogoX, firstLogoY;
+    int spaceSizeBetween2Logo;
+    int spaceSizeBetweenLogoAndName;
 
     int currentPhonePage = 1; // default la 1
     Boolean isArrowUpExist = false;
@@ -67,6 +81,12 @@ public class Phone {
 
         arrowWidth = 20;
         arrowHeight = 13;
+
+        logoSize = phoneWidth / 7;
+        firstLogoX = phoneStartX + (int) (phoneWidth / 4.7);
+        firstLogoY = phoneStartY + phoneHeight / 7;
+        spaceSizeBetween2Logo = phoneWidth / 13;
+        spaceSizeBetweenLogoAndName = phoneHeight / 40;
     }
 
     public void update() {
@@ -78,6 +98,10 @@ public class Phone {
             phone = ImageIO.read(new FileInputStream("res/Phone/phone_icon_ehust_2k.png"));
             arrowUp = ImageIO.read(new FileInputStream("res/Phone/arrow_up.png"));
             arrowDown = ImageIO.read(new FileInputStream("res/Phone/arrow_down.png"));
+            phoneWithWallpaper = ImageIO.read(new FileInputStream("res/Phone/phone_with_wallpaper.png"));
+            logoFhust = ImageIO.read(new FileInputStream("res/Phone/logo_fHUST.png"));
+            logoMessager = ImageIO.read(new FileInputStream("res/Phone/logo_messager_app.png"));
+            logoSetting = ImageIO.read(new FileInputStream("res/Phone/setting_icon.png"));
 
         } catch (Exception e) {
 
@@ -111,13 +135,15 @@ public class Phone {
                 drawSubjectInformationOnPhone(g2, TimeSystem.day, 4, secondTextBoxWidth, secondTextBoxHeight);
         }
 
-        //dong` nay` de in ra ngay hien tai, de test
-        g2.drawString(Integer.toString(TimeSystem.day), firstTextBoxWidth / 10 * 13, firstTextBoxHeight - emptyLineSpaceHeight);
+        // dong` nay` de in ra ngay hien tai, de test
+        // g2.drawString(Integer.toString(TimeSystem.day), firstTextBoxWidth / 10 * 13,
+        // firstTextBoxHeight - emptyLineSpaceHeight);
     }
 
     void drawArrow(Graphics2D g2) {
         if (currentPhonePage == 2) {
-            g2.drawImage(arrowUp, phoneStartX + phoneWidth / 2 - 15, firstTextBoxHeight - textBoxHeight / 100 * 55, arrowWidth,
+            g2.drawImage(arrowUp, phoneStartX + phoneWidth / 2 - 15, firstTextBoxHeight - textBoxHeight / 100 * 55,
+                    arrowWidth,
                     arrowHeight,
                     null);
             isArrowUpExist = true;
@@ -143,39 +169,109 @@ public class Phone {
     }
 
     void checkClicked() {
-        if(isArrowUpExist) {
-            if(MouseManager.lastReleasedX >= phoneStartX + phoneWidth / 2 - 15 && MouseManager.lastReleasedX <= phoneStartX + phoneWidth / 2 - 15 + arrowWidth) {
-                if(MouseManager.lastReleasedY >= firstTextBoxHeight - textBoxHeight / 100 * 55 && MouseManager.lastReleasedY <= firstTextBoxHeight - textBoxHeight / 100 * 55 + arrowHeight) {
-                    clickOnUpArrow();
+        if(!Main.topGameState().equals("GamePlay"))    return;
+        switch (phoneState) {
+            case "fHUST":
+                if (isArrowUpExist) {
+                    if (MouseManager.lastReleasedX >= phoneStartX + phoneWidth / 2 - 15
+                            && MouseManager.lastReleasedX <= phoneStartX + phoneWidth / 2 - 15 + arrowWidth) {
+                        if (MouseManager.lastReleasedY >= firstTextBoxHeight - textBoxHeight / 100 * 55
+                                && MouseManager.lastReleasedY <= firstTextBoxHeight - textBoxHeight / 100 * 55
+                                        + arrowHeight) {
+                            clickOnUpArrow();
+                        }
+                    }
                 }
-            }
-        }
-        if(isArrowDownExist) {
-            if(MouseManager.lastReleasedX >= phoneStartX + phoneWidth / 2 - 15 && MouseManager.lastReleasedX <= phoneStartX + phoneWidth / 2 - 15 + arrowWidth) {
-                if(MouseManager.lastReleasedY >= secondTextBoxHeight + textBoxHeight / 100 * 67 && MouseManager.lastReleasedY <= secondTextBoxHeight + textBoxHeight / 100 * 67 + arrowHeight) {
-                    clickOnDownArrow();
+                if (isArrowDownExist) {
+                    if (MouseManager.lastReleasedX >= phoneStartX + phoneWidth / 2 - 15
+                            && MouseManager.lastReleasedX <= phoneStartX + phoneWidth / 2 - 15 + arrowWidth) {
+                        if (MouseManager.lastReleasedY >= secondTextBoxHeight + textBoxHeight / 100 * 67
+                                && MouseManager.lastReleasedY <= secondTextBoxHeight + textBoxHeight / 100 * 67
+                                        + arrowHeight) {
+                            clickOnDownArrow();
+                        }
+                    }
                 }
-            }
+
+                if (MouseManager.lastReleasedX >= 378 && MouseManager.lastReleasedX <= 423
+                        && MouseManager.lastReleasedY >= 456
+                        && MouseManager.lastReleasedY <= 508) {
+                    // nhan va nut home(dung de chuyen sang ngay tiep theo) (dung cho muc dich test
+                    // game)
+                    // TimeSystem.day++;
+                    // if (TimeSystem.day >= 7)
+                    // TimeSystem.day = 1;
+                    // resetOnNewDay();
+                    // MouseManager.resetLastReleasedPos();
+
+                    phoneState = "Main Menu";
+                }
+                break;
+
+            case "Main Menu":
+                if (MouseManager.lastReleasedX >= firstLogoX && MouseManager.lastReleasedX <= firstLogoX + logoSize
+                        && MouseManager.lastReleasedY >= firstLogoY
+                        && MouseManager.lastReleasedY <= firstLogoY + logoSize) {
+                    phoneState = "fHUST";
+                } else if (MouseManager.lastReleasedX >= firstLogoX + logoSize + spaceSizeBetween2Logo
+                        && MouseManager.lastReleasedX <= firstLogoX + 2 * logoSize + spaceSizeBetween2Logo
+                        && MouseManager.lastReleasedY >= firstLogoY
+                        && MouseManager.lastReleasedY <= firstLogoY + logoSize) {
+                    // phoneState = "Messager";
+                }
+                else if (MouseManager.lastReleasedX >= firstLogoX + 2 * logoSize + 2 * spaceSizeBetween2Logo
+                        && MouseManager.lastReleasedX <= firstLogoX + 3 * logoSize + 2 * spaceSizeBetween2Logo
+                        && MouseManager.lastReleasedY >= firstLogoY
+                        && MouseManager.lastReleasedY <= firstLogoY + logoSize) {
+                    Main.pushGameState("Setting");
+                    MouseManager.resetLastReleasedPos();
+                }
+                break;
+            case "Setting":
+
+                break;
         }
 
-        if(MouseManager.lastReleasedX >= 378 && MouseManager.lastReleasedX <= 423 && MouseManager.lastReleasedY >= 456 && MouseManager.lastReleasedY <= 508) {
-            //nhan va nut home(dung de chuyen sang ngay tiep theo) (dung cho muc dich test game)
-            TimeSystem.day++;
-            if(TimeSystem.day >= 7) TimeSystem.day = 1;
-            resetOnNewDay();
-            MouseManager.resetLastReleasedPos();
-        }
+    }
+
+    void drawAppLogo(Graphics2D g2, BufferedImage logoImage, String name, int X, int Y, int offsetNameX) {
+        g2.drawImage(logoImage, X, Y, logoSize,
+                logoSize, null);
+        g2.setFont(new Font("TimesRoman", Font.BOLD, 13));
+        g2.drawString(name, X + offsetNameX, Y + logoSize + spaceSizeBetweenLogoAndName);
     }
 
     public void draw(Graphics2D g2) {
+        if(!Main.topGameState().equals("GamePlay"))    return;
         Color myColor = new Color(45, 39, 39, 190);
         g2.setColor(myColor);
-        g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+        g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight); // ve lop background mo sau cai dien thoai
 
-        g2.drawImage(phone, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
+        switch (phoneState) {
+            case "fHUST":
+                myColor = new Color(0, 0, 0);
+                g2.setColor(myColor);
 
-        drawArrow(g2);
+                g2.drawImage(phone, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
 
-        drawAllSubjectInformationOnPhone(g2);
+                drawArrow(g2);
+
+                drawAllSubjectInformationOnPhone(g2);
+                break;
+
+            case "Main Menu":
+                myColor = new Color(0, 0, 0);
+                g2.setColor(myColor);
+
+                g2.drawImage(phoneWithWallpaper, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
+
+                drawAppLogo(g2, logoFhust, "fHUST", firstLogoX, firstLogoY, 1);
+                drawAppLogo(g2, logoMessager, "Messager", firstLogoX + logoSize + spaceSizeBetween2Logo, firstLogoY,
+                        -4);
+                drawAppLogo(g2, logoSetting, "Settings", firstLogoX + 2 * logoSize + 2 * spaceSizeBetween2Logo,
+                        firstLogoY, 0);
+                break;
+        }
+
     }
 }

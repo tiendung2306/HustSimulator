@@ -58,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
     MyRoom myRoom = new MyRoom(this);
 
     MouseManager mouseManager = new MouseManager();
-    public Map currentMap = null;
+    public Map currentMap = null; //map hien tai
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
     KeyHandler keyH = new KeyHandler();
@@ -102,11 +102,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void Init() {
         switch (Main.nguoncode) {
             case 1: {
-                currentMap = normalClassroom;
+                newGame();
                 break;
             }
             case 2: {
-                currentMap = normalClassroom;
+                newGame();
                 break;
             }
             case 4: {
@@ -287,7 +287,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 4: {
                 normalClassroom.draw(g2);
-                player.draw(g2);
                 ui.draw(g2);
                 inventory.draw(g2);
                 break;
@@ -306,7 +305,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 8: {
                 myRoom.draw(g2);
-                player.draw(g2);
                 ui.draw(g2);
                 break;
             }
@@ -315,6 +313,8 @@ public class GamePanel extends JPanel implements Runnable {
         if (Main.topGameState().equals(Main.states[7]) || Main.topGameState().equals("Dialogue") || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) {
             if (currentMap == normalClassroom) {
                 normalClassroom.draw(g2);
+            } else if (currentMap == myRoom) {
+                myRoom.draw(g2);
             }
             player.draw(g2);
             ui.draw(g2);
@@ -329,6 +329,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void newGame() {
-        currentMap = normalClassroom;
+        currentMap = myRoom;
     }
 }
