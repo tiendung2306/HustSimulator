@@ -1,7 +1,7 @@
 package time;
 
 public class TimeSystem {
-    public static int day = 1;
+    public static int day = 4;
 
     public static void goNextDay() {
         day++;
