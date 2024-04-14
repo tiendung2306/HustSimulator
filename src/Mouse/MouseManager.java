@@ -2,18 +2,24 @@ package Mouse;
 
 // import javafx.scene.paint.Color;
 import javax.swing.*;
+
+import main.GamePanel;
+
 import java.awt.*;
 import java.awt.event.*;
 // import javafx.util.*;
 
 public class MouseManager implements MouseListener {
+    private GamePanel gamePanel;
+    
+    private MouseMotion mouseMotion = new MouseMotion();
 
     public static boolean isLeftMouseHeld = false; // = true neu nguoi dung dang giu chuot trai
     public static boolean isMiddleMouseHeld = false; // = true neu nguoi dung dang giu chuot giua
     public static boolean isRightMouseHeld = false; // = true neu nguoi dung dang giu chuot phai
 
     public static int lastClickedX, lastClickedY; //toa do lan click chuot gan nhat theo truc x va y tren man hinh
-
+    
 
     // static boolean isLeftMouseRelease = false;
     // static boolean isMiddleMouseRelease = false;
@@ -22,6 +28,20 @@ public class MouseManager implements MouseListener {
     // static boolean isLeftMouseClicked = false;
     // static boolean isMiddleMouseClicked = false;
     // static boolean isRightMouseClicked = false;
+    public MouseManager(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
+        gamePanel.addMouseListener(this);
+        gamePanel.addMouseMotionListener(mouseMotion);
+    }
+
+
+    public int mouseCurrentX() {
+        return mouseMotion.get_mouseX();
+    }
+
+    public int mouseCurrentY() {
+        return mouseMotion.get_mouseY();
+    }
 
     public void mouseClicked(MouseEvent e) {
 

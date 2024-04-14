@@ -3,46 +3,85 @@ import java.awt.Graphics;
 import java.util.Vector;
 
 import section_selection.shape.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.*;
+
 
 class Section {
+    Section_selection section_selection;
     String tag;
-    Vector<Shape> hitboxs;
-    Section_selection area_selection;
+    Vector<Shape> hitboxs = new Vector<Shape>();
+    Shape boder;
+    BufferedImage HoverImg;
 
-    public Section(Section_selection area_selection, String tag, Vector<Shape> hitboxs)  {
-        this.area_selection = area_selection;
-        this.tag = tag;
-        this.hitboxs = hitboxs;
-        update((double)area_selection.gamePanel.screenWidth / area_selection.background.getWidth(), (double)area_selection.gamePanel.screenHeight / area_selection.background.getHeight());
+    Boolean unlock = false;
+    String description;
+
+    public Section(Section_selection section_selection)  {
+        this.section_selection = section_selection;
+
+    }
+    private void LoadHoverImage(){
+        try {
+            String path = "res/tile/" + tag + ".png";
+            HoverImg = ImageIO.read(new FileInputStream(path));
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        } 
+
     }
 
-    private void update(double X_scale, double Y_scale){
+    protected void set_Tag(String tag){
+        this.tag = tag;
+        LoadHoverImage();
+    }
+
+    protected void set_Description(String description){
+        this.description = description;
+    }
+
+    protected void add_Hitbox(Shape shape){
+        hitboxs.add(shape);
+    }
+
+    protected void set_Boder(Shape boder){
+        this.boder = boder;
+    }
+
+    protected void scale(double X_scale, double Y_scale){
         for(Shape shape : hitboxs){
-            shape.update(X_scale, Y_scale);
+            shape.scale(X_scale, Y_scale);
         }
+        boder.scale(X_scale, Y_scale);
     }
 
     protected boolean HoverCheck(int mouseX, int mouseY){
         Point point = new Point(mouseX, mouseY);
-        for(Shape shape : hitboxs){
-            if(shape.HoverCheck(point) == true)
-                return true;
+
+        if(boder.HoverCheck(point)){
+            for(Shape shape : hitboxs){
+                if(shape.HoverCheck(point) == true)
+                    return true;
+            }
         }
 
         return false;
     
     }
 
+    protected void OnHover(Graphics graphics){
+        section_selection.statusPanel.setHoverOn(this);
+        graphics.drawImage(HoverImg, 0, 0, (int)(HoverImg.getWidth() * section_selection.scale_X), (int)(HoverImg.getHeight() * section_selection.scale_Y), null);
+    }
+
     protected void display(Graphics graphics){
-        System.out.println("vpa");
         for(Shape shape : hitboxs){
-            graphics.drawRect(shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+            shape.display(graphics);
         }
+        boder.display(graphics);
     
     }   
 
-    protected void OnHover(Graphics graphics){
-
-        graphics.fillRect(500, 500, 500, 500);
-    }
 }

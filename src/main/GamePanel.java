@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
     Stadium stadium = new Stadium(this);
     MyRoom myRoom = new MyRoom(this);
 
-    MouseManager mouseManager = new MouseManager();
+    public MouseManager mouseManager = new MouseManager(this);
     public Map currentMap = null;
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
@@ -329,3 +329,4 @@ public class GamePanel extends JPanel implements Runnable {
         currentMap = normalClassroom;
     }
 }
+
