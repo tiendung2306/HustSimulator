@@ -31,8 +31,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     // MAP SETTINGS
-    public final int maxMapCol = 50;
-    public final int maxMapRow = 50;
+    public final int maxMapCol = 70;
+    public final int maxMapRow = 70;
     public final int mapWidth = tileSize * maxMapCol;
     public final int mapHeight = tileSize * maxMapRow;
 
@@ -56,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
     Library library = new Library(this);
     Stadium stadium = new Stadium(this);
     MyRoom myRoom = new MyRoom(this);
-
+    Section_2 section_2 = new Section_2(this);
     MouseManager mouseManager = new MouseManager();
     public Map currentMap = null;
     KeyboardManager keyboardManager = new KeyboardManager();
@@ -137,6 +137,12 @@ public class GamePanel extends JPanel implements Runnable {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("GamePlay");
                 currentMap = myRoom;
+                break;
+            }
+            case 9: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
+                currentMap = section_2;
                 break;
             }
         }
@@ -306,6 +312,11 @@ public class GamePanel extends JPanel implements Runnable {
                 player.draw(g2);
                 ui.draw(g2);
                 break;
+            }
+            case 9: {
+                section_2.draw(g2);
+                player.draw(g2);
+                ui.draw(g2);
             }
         }
 

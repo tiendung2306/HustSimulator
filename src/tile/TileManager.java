@@ -155,7 +155,8 @@ public class TileManager {
             tile[32] = new Tile();
             tile[32].image = ImageIO.read(new FileInputStream("res/tile/dan_pc.png"));
 
-
+            tile[33] = new Tile();
+            tile[33].image = ImageIO.read(new FileInputStream("res/tile/D7 map.png"));
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -168,13 +169,9 @@ public class TileManager {
             int height = tile.getHeight();
             int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
             int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
-            if     (mapX + gamePanel.player.getBoundingBoxX() + gamePanel.screenWidth > gamePanel.player.getMapX() - gamePanel.player.screenX &&
-                    mapX - gamePanel.player.getBoundingBoxX() - gamePanel.screenWidth  < gamePanel.player.getMapX() + gamePanel.player.screenX &&
-                    mapY + gamePanel.player.getBoundingBoxY() + gamePanel.screenHeight > gamePanel.player.getMapY() - gamePanel.player.screenY &&
-                    mapY - gamePanel.player.getBoundingBoxY() - gamePanel.screenHeight < gamePanel.player.getMapY() + gamePanel.player.screenY) {
-                g2.drawImage(tile.image, screenX, screenY, width, height, null);
-                g2.drawRect(screenX, screenY, width, height);
-            }
+            g2.drawImage(tile.image, screenX, screenY, width, height, null);
+            g2.drawRect(screenX, screenY, width, height);
+
         }
     public void drawRect(Graphics2D g2, int mapX, int mapY, int width, int height) {
         int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
