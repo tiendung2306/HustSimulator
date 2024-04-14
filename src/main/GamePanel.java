@@ -141,6 +141,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         keyboardManager.init();
+        keySetting.init();
     }
 
     private void stopThread() {

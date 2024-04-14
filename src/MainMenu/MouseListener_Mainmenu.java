@@ -158,7 +158,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     && (y_click < 296 * Main.ex))
                 AudioSetting.checkmute = (-1) * AudioSetting.checkmute;
         } else if (Main.topGameState().equals(Main.states[4])) {
-            if (KeySetting.checkpressakey)
+            if (KeySetting.checkPressAKey)
             {
                 if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 * Main.ex)
                         && (y_click < 50 * Main.ex))
