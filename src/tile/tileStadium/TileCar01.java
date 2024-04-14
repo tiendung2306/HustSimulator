@@ -13,6 +13,7 @@ public class TileCar01 extends Tile {
         this.gamePanel=gamePanel;
         Name = "Car 01";
         Type = "Obstacle";
+        Description = "Mercedes";
         image = gamePanel.tileManager.tile[10].image;
         BoundingBox();
     }

@@ -38,7 +38,7 @@ public class KeyHandler implements KeyListener{
         if(code == keyboardManager.getKey("INTERACT")){
             isInteract = !isInteract;
         }
-        if(code == keyboardManager.getKey("INVENTORY")){
+        if((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Inventory")) && code == keyboardManager.getKey("INVENTORY")){
             if (Main.topGameState().equals("Inventory"))
                 Main.popGameState();
             else Main.pushGameState("Inventory");
