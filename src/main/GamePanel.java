@@ -37,8 +37,8 @@ public class GamePanel extends JPanel implements Runnable {
     // MAP SETTINGS
     public int maxMapCol;
     public int maxMapRow;
-    public int mapWidth;
-    public int mapHeight;
+    public int mapWidth; 
+    public int mapHeight; 
 
     public TileManager tileManager = new TileManager(this);
     public TileWorldMapManager tileWorldMapManager = new TileWorldMapManager(this);
@@ -70,6 +70,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public MouseManager mouseManager = new MouseManager();
     public Map currentMap = null; // map hien tai
+    Section_2 section_2 = new Section_2(this);
+
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
     public KeyHandler keyH = new KeyHandler();
@@ -189,6 +191,12 @@ public class GamePanel extends JPanel implements Runnable {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("GamePlay");
                 currentMap = section_3;
+                break;
+            }
+            case 10: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
+                currentMap = section_2;
                 break;
             }
         }
@@ -370,6 +378,10 @@ public class GamePanel extends JPanel implements Runnable {
                 setSizeMap(64,65);
                 section_3.draw(g2);
                 break;
+            }
+            case 10: {
+                setSizeMap(64,65);
+                section_2.draw(g2);
             }
         }
 
