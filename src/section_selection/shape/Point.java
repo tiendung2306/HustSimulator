@@ -9,4 +9,9 @@ public class Point {
         this.y = y;
 
     }
+
+    protected void scale(double X_scale, double Y_scale){
+        x = (int)(x * X_scale);
+        y = (int)(y * Y_scale);
+    }
 }

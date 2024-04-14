@@ -1,10 +1,18 @@
 package Mouse;
 
 // import javafx.scene.paint.Color;
+import javax.swing.*;
+
+import main.GamePanel;
+
+import java.awt.*;
 import java.awt.event.*;
 // import javafx.util.*;
 
 public class MouseManager implements MouseListener {
+    private GamePanel gamePanel;
+    
+    private MouseMotion mouseMotion = new MouseMotion();
 
     public static boolean isLeftMouseHeld = false;
     public static boolean isMiddleMouseHeld = false;
@@ -23,6 +31,20 @@ public class MouseManager implements MouseListener {
     // static boolean isLeftMouseClicked = false;
     // static boolean isMiddleMouseClicked = false;
     // static boolean isRightMouseClicked = false;
+    public MouseManager(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
+        gamePanel.addMouseListener(this);
+        gamePanel.addMouseMotionListener(mouseMotion);
+    }
+
+
+    public int mouseCurrentX() {
+        return mouseMotion.get_mouseX();
+    }
+
+    public int mouseCurrentY() {
+        return mouseMotion.get_mouseY();
+    }
 
     public static void resetLastReleasedPos() {
         lastReleasedX = -1;

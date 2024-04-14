@@ -68,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // ==============================================================================================
 
-    public MouseManager mouseManager = new MouseManager();
+    public MouseManager mouseManager = new MouseManager(this);
     public Map currentMap = null; // map hien tai
     Section_2 section_2 = new Section_2(this);
 
@@ -407,3 +407,4 @@ public class GamePanel extends JPanel implements Runnable {
         currentMap = myRoom;
     }
 }
+

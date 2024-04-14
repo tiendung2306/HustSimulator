@@ -1,13 +1,13 @@
 package section_selection.shape;
 
-import java.security.PublicKey;
+import java.awt.Graphics;
 import java.util.Vector;
 
 public class Shape  {
     String type;
 
-    Convex_Polygon polygon;
-    public Shape(Vector<Point> points) {
+    public Convex_Polygon polygon;
+    public Shape(Vector <Point> points) {
         type = "Polygon";
         polygon = new Convex_Polygon(points);
     }
@@ -30,28 +30,31 @@ public class Shape  {
         }
     }
 
-    public void update(double X_scale, double Y_scale){
+    public void scale(double X_scale, double Y_scale){
         switch (type) {
             case "Polygon":
-                polygon.update();
+                polygon.scale(X_scale, Y_scale);
+                break;
             case "Rectangle":
-                rectangle.update(X_scale, Y_scale);
+                rectangle.scale(X_scale, Y_scale);
+                break;
             default:
-                System.out.println("undefined type of shape");
+                System.out.println("undefined type of shapee");
         }
     }
 
-    public int getX(){
-        return rectangle.x;
+    public void display(Graphics graphics){
+        switch (type) {
+            case "Polygon":
+                polygon.display(graphics);
+                break;
+            case "Rectangle":
+                rectangle.display(graphics);
+                break;
+            default:
+                System.out.println("undefined type of shapee");    
+            }
     }
-    public int getY(){
-        return rectangle.y;
-    }
-    public int getWidth(){
-        return rectangle.width;
-    }
-    public int getHeight(){
-        return rectangle.height;
-    }
+
 }
 
