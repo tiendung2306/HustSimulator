@@ -17,7 +17,7 @@ public class Main {
     public static int ex = 1;
     public static Stack<String> GameState = new Stack<>();
     public static String[] states = { "MainMenu", "PlayMenu", "Setting", "AudioSetting", "KeySetting", "VideoSetting",
-            "Tutorial", "GamePlay", "GamePause", "Dialogue", "Inventory"};
+            "Tutorial", "GamePlay", "GamePause", "Dialogue", "Inventory" };
 
     public static void pushGameState(String a) {
         GameState.push(a);
@@ -31,7 +31,10 @@ public class Main {
         return GameState.peek();
     }
 
-    public static void emptyGameState() {while(!GameState.empty())  popGameState();}
+    public static void emptyGameState() {
+        while (!GameState.empty())
+            popGameState();
+    }
 
     public static void main(String[] args) {
         pushGameState("MainMenu");
@@ -79,7 +82,9 @@ public class Main {
         window.add(button9);
         button9.addActionListener(new ButtonClicked(button9.getText(), gamePanel));
 
-
+        JButton button10 = new JButton("Section_2");
+        window.add(button10);
+        button10.addActionListener(new ButtonClicked(button10.getText(), gamePanel));
         // window.add(gamePanel);
         // window.pack();
         // window.setSize(400, 400);
@@ -92,6 +97,7 @@ public class Main {
         // gamePanel.startGameThread();
     }
 }
+
 class ButtonClicked implements ActionListener {
     String buttonName;
     GamePanel gamePanel;
@@ -142,8 +148,11 @@ class ButtonClicked implements ActionListener {
                 Main.nguoncode = 9;
                 break;
             }
+            case "Section_2": {
+                Main.nguoncode = 10;
+            }
         }
-
+        System.out.println(Main.nguoncode);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("2D Adventure");

@@ -24,17 +24,18 @@ public class TileManager {
 
     public void loadMap(String filePath) {
         try {
-            //Khai báo 1 biến để nhập file
+            // Khai báo 1 biến để nhập file
             InputStream is = getClass().getResourceAsStream(filePath);
-            //System.out.println("1");
-            //Khai báo biến để đọc pfile vừa nhập
+            // System.out.println("1");
+            // Khai báo biến để đọc file vừa nhập
             assert is != null;
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
             int row = 0;
 
-            //Vòng lặp để đọc file và tách xâu thnahf các số để đưa vào mảng 2 chiều mapTileNum
+            // Vòng lặp để đọc file và tách xâu thành các số để đưa vào mảng 2 chiều
+            // mapTileNum
             while (col < gamePanel.maxScreenCol && row < gamePanel.maxScreenRow) {
                 String line = br.readLine();
 
@@ -57,6 +58,7 @@ public class TileManager {
         }
 
     }
+
     public void getTileImage() {
         try {
             tile[0] = new Tile();
@@ -155,22 +157,25 @@ public class TileManager {
             tile[32] = new Tile();
             tile[32].image = ImageIO.read(new FileInputStream("res/tile/dan_pc.png"));
 
+            tile[33] = new Tile();
+            tile[33].image = ImageIO.read(new FileInputStream("res/tile/D7 map.png"));
 
-
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public void draw(Graphics2D g2, Tile tile) {
-            int mapX = tile.getLeftX();
-            int mapY = tile.getTopY();
-            int width = tile.getWidth();
-            int height = tile.getHeight();
-            int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
-            int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
-            g2.drawImage(tile.image, screenX, screenY, width, height, null);
-            g2.drawRect(screenX, screenY, width, height);
-        }
+        int mapX = tile.getLeftX();
+        int mapY = tile.getTopY();
+        int width = tile.getWidth();
+        int height = tile.getHeight();
+        int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
+        int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
+        g2.drawImage(tile.image, screenX, screenY, width, height, null);
+        g2.drawRect(screenX, screenY, width, height);
+    }
+
     public void drawRect(Graphics2D g2, int mapX, int mapY, int width, int height) {
         int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
         int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
