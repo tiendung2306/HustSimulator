@@ -109,7 +109,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                 audioSetting.audiorollback();
             }
         } else if (Main.topGameState().equals(Main.states[4])) {
-            if (KeySetting.checkpressakey)
+            if (KeySetting.checkPressAKey)
             {
                 if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
                         && (y_enter < 50 * Main.ex))

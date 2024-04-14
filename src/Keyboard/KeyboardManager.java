@@ -11,19 +11,20 @@ import java.awt.event.KeyListener;
 public class KeyboardManager implements KeyListener {
     static ArrayList<Key> keys = new ArrayList<Key>();
     static int releasedKey = -1;
+    static char releasedKeyName;
 
     public void init() { // tell me if you want add new key
-        keys.add(new Key(KeyEvent.VK_W, "UP"));
-        keys.add(new Key(KeyEvent.VK_A, "LEFT"));
-        keys.add(new Key(KeyEvent.VK_S, "DOWN"));
-        keys.add(new Key(KeyEvent.VK_D, "RIGHT"));
-        keys.add(new Key(KeyEvent.VK_F, "INTERACT"));
-        keys.add(new Key(KeyEvent.VK_ESCAPE, "PAUSE"));
-        keys.add(new Key(KeyEvent.VK_B, "INVENTORY"));
-        keys.add(new Key(KeyEvent.VK_P, "PHONE"));
+        keys.add(new Key(KeyEvent.VK_W, "W", "UP"));
+        keys.add(new Key(KeyEvent.VK_A, "A", "LEFT"));
+        keys.add(new Key(KeyEvent.VK_S, "S", "DOWN"));
+        keys.add(new Key(KeyEvent.VK_D, "D", "RIGHT"));
+        keys.add(new Key(KeyEvent.VK_F, "F", "INTERACT"));
+        keys.add(new Key(KeyEvent.VK_ESCAPE, "ESC", "PAUSE"));
+        keys.add(new Key(KeyEvent.VK_B, "B", "INVENTORY"));
+        keys.add(new Key(KeyEvent.VK_P, "P", "PHONE"));
     }
 
-    public int getKey(String keyTag) {
+    static public int getKey(String keyTag) {
         for (Key k : keys) {
             if (k.getKeyTag().equals(keyTag)) {
                 return k.getKey();
@@ -32,7 +33,19 @@ public class KeyboardManager implements KeyListener {
         return -1; // chua khai bao phim nay`
     }
 
-    public void setKey(int key, String keyTag) {
+    static public String getKeyName(String keyTag) {
+        System.out.println(keyTag);
+        if(keys.size() != 0)    System.out.println(keys.get(0).getKeyName());
+        for (Key k : keys) {
+            if (k.getKeyTag() == keyTag) {
+                return k.getKeyName();
+            }
+        }
+        return ""; // chua khai bao phim nay`
+
+    }
+
+    static public void setKey(int key, String keyTag) {
         for (Key k : keys) {
             if (k.getKeyTag() == keyTag) {
                 k.setKey(key);
@@ -71,6 +84,7 @@ public class KeyboardManager implements KeyListener {
             // System.out.println("Left key Released");
         }
         releasedKey = e.getKeyCode();
+        releasedKeyName = e.getKeyChar();
     }
 
     static public void resetReleasedKey() {
@@ -79,5 +93,9 @@ public class KeyboardManager implements KeyListener {
 
     static public int getReleasedKey() {
         return releasedKey;
+    }
+
+    static public char getReleasedKeyName() {
+        return Character.toUpperCase(releasedKeyName);
     }
 }

@@ -13,6 +13,7 @@ import tile.TileManager;
 import sound.SoundManager;
 import Mouse.MouseManager;
 import phone.Phone;
+import section_selection.Section_selection;
 
 import javax.swing.*;
 
@@ -37,8 +38,8 @@ public class GamePanel extends JPanel implements Runnable {
     // MAP SETTINGS
     public int maxMapCol;
     public int maxMapRow;
-    public int mapWidth;
-    public int mapHeight;
+    public int mapWidth; 
+    public int mapHeight; 
 
     public TileManager tileManager = new TileManager(this);
     public TileWorldMapManager tileWorldMapManager = new TileWorldMapManager(this);
@@ -63,13 +64,15 @@ public class GamePanel extends JPanel implements Runnable {
     MyRoom myRoom = new MyRoom(this);
     Section_3 section_3 = new Section_3(this);
 
-    //=================================================================================================
-    int a,b,c,d;
+    // =================================================================================================
+    int a, b, c, d;
 
     // ==============================================================================================
 
-    public MouseManager mouseManager = new MouseManager();
-    public Map currentMap = null;
+    public MouseManager mouseManager = new MouseManager(this);
+    public Map currentMap = null; // map hien tai
+    Section_2 section_2 = new Section_2(this);
+
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
     public KeyHandler keyH = new KeyHandler();
@@ -79,20 +82,21 @@ public class GamePanel extends JPanel implements Runnable {
     public Phone phone = new Phone(this);
     ItemInteract itemInteract = new ItemInteract(this);
 
+    public Section_selection section_selection = new Section_selection(this);
+
     public boolean isRunning = false;
     boolean isDrawPhone = false;
 
-
     // ==================================================================================================================
 
-    public void setSizeMap(int x,int y) {
+    public void setSizeMap(int x, int y) {
         maxMapCol = x;
         maxMapRow = y;
         mapWidth = tileSize * maxMapCol;
         mapHeight = tileSize * maxMapRow;
     }
 
-    //===========================================================
+    // ===========================================================
 
     public void setSizePlayer(int a, int b, int c, int d) {
         this.a = a;
@@ -101,15 +105,14 @@ public class GamePanel extends JPanel implements Runnable {
         this.d = d;
 
     }
+
     public int getA() {
         return a;
     }
 
-
     public int getB() {
         return b;
     }
-
 
     public int getC() {
         return c;
@@ -119,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable {
         return d;
     }
 
-    //=========================================================
+    // =========================================================
 
     double FPS = 60;
 
@@ -150,11 +153,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void Init() {
         switch (Main.nguoncode) {
             case 1: {
-                currentMap = normalClassroom;
+                newGame();
                 break;
             }
             case 2: {
-                currentMap = normalClassroom;
+                newGame();
                 break;
             }
             case 4: {
@@ -193,8 +196,15 @@ public class GamePanel extends JPanel implements Runnable {
                 currentMap = section_3;
                 break;
             }
+            case 10: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
+                currentMap = section_2;
+                break;
+            }
         }
         keyboardManager.init();
+        keySetting.init();
     }
 
     private void stopThread() {
@@ -203,7 +213,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
-        //SoundManager.loopSound("piano_music");
+        // SoundManager.loopSound("piano_music");
 
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
@@ -243,9 +253,11 @@ public class GamePanel extends JPanel implements Runnable {
         // System.out.println(MouseManager.lastClickedX);
         // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
-        setSizePlayer(0,0,0,0);
 
         player.update();
+        if(isDrawPhone) {
+            phone.update();
+        }
         itemInteract.update();
 
         if (Main.nguoncode == 1) {
@@ -301,6 +313,8 @@ public class GamePanel extends JPanel implements Runnable {
     // =================================================================================================================
 
     public void paintComponent(Graphics g) {
+        setSizePlayer(0,-13,0,0);
+
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
@@ -334,7 +348,7 @@ public class GamePanel extends JPanel implements Runnable {
                     videoSetting.draw(g2);
             }
             case 3: {
-                // ====
+                section_selection.operation(g);
                 break;
             }
             case 4: {
@@ -358,24 +372,31 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 8: {
-                setSizePlayer(-33,-50,60,60);
+                setSizePlayer(-33,-70,60,60);
                 setSizeMap(36,23);
                 myRoom.draw(g2);
-                ui.draw(g2);
                 break;
             }
             case 9: {
 //                setSizeMap(82,86);
                 setSizeMap(64,65);
                 section_3.draw(g2);
-                ui.draw(g2);
                 break;
+            }
+            case 10: {
+                setSizeMap(64,65);
+                section_2.draw(g2);
             }
         }
 
         if (Main.topGameState().equals(Main.states[7]) || Main.topGameState().equals("Dialogue") || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) {
             if (currentMap == normalClassroom) {
+                setSizeMap(21,18);
                 normalClassroom.draw(g2);
+            } else if (currentMap == myRoom) {
+                setSizePlayer(-33,-70,60,60);
+                setSizeMap(36,23);
+                myRoom.draw(g2);
             }
             player.draw(g2);
             ui.draw(g2);
@@ -390,6 +411,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void newGame() {
-        currentMap = normalClassroom;
+        currentMap = myRoom;
     }
 }
+

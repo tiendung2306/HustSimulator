@@ -12,9 +12,17 @@ import java.io.IOException;
 
 public class KeySetting extends JPanel {
     private BufferedImage SettingBackGround, back, exitImg, exitImg1, keyboardimg, playerUP, playerDOWN, playerLEFT, playerRIGHT, square, enterkey, enterkey1;
+    String upKeyName, leftKeyName, rightKeyName, downKeyName;
 
     public KeySetting() {
         getImage();
+    }
+
+    public void init() {
+        upKeyName = KeyboardManager.getKeyName("UP");
+        downKeyName = KeyboardManager.getKeyName("DOWN");
+        leftKeyName = KeyboardManager.getKeyName("LEFT");
+        rightKeyName = KeyboardManager.getKeyName("RIGHT");
     }
 
     public void getImage() {
@@ -34,10 +42,13 @@ public class KeySetting extends JPanel {
         }
     }
     int inputKey = -1;
+    char inputKeyName;
+
     Boolean isFirstTimePressAKey = false;
     private String check = null;
+    String prevCheck = null;
     private int x_square = 999, y_square = 999;
-    public static boolean checkpressakey = true;
+    public static boolean checkPressAKey = true;
     public void keysettingrollback() {
         check = "null";
     }
@@ -69,13 +80,23 @@ public class KeySetting extends JPanel {
     public void keysetting_squarerightchange() {
         check = "squareright1";
     }
-    public void getInputKey()
+    public void getInputKeyAndBindingKey(String keyName)
     {
-        if (!checkpressakey)
+        if (!checkPressAKey)
         {
             inputKey = KeyboardManager.getReleasedKey();
             if(inputKey != -1)   {
-                checkpressakey = true;
+                inputKeyName = KeyboardManager.getReleasedKeyName();
+
+                KeyboardManager.setKey(inputKey, keyName);
+                if(keyName == "UP") upKeyName = Character.toString(inputKeyName);
+                if(keyName == "DOWN") downKeyName = Character.toString(inputKeyName);
+                if(keyName == "LEFT") leftKeyName = Character.toString(inputKeyName);
+                if(keyName == "RIGHT") rightKeyName = Character.toString(inputKeyName);
+
+                prevCheck = null;
+
+                checkPressAKey = true;
                 check = "null";
                 KeyboardManager.resetReleasedKey();
             }
@@ -96,21 +117,37 @@ public class KeySetting extends JPanel {
             x_square = 666;
             y_square = 137;
         } else if (check.equals("squareup1")) {
+            if(prevCheck != check) {
+                KeyboardManager.resetReleasedKey();
+                prevCheck = check;
+            }
             enterkey = enterkey1;
-            checkpressakey = false;
-            getInputKey();
+            checkPressAKey = false;
+            getInputKeyAndBindingKey("UP");
         } else if (check.equals("squaredown1")) {
+            if(prevCheck != check) {
+                KeyboardManager.resetReleasedKey();
+                prevCheck = check;
+            }
             enterkey = enterkey1;
-            checkpressakey = false;
-            getInputKey();
+            checkPressAKey = false;
+            getInputKeyAndBindingKey("DOWN");
         } else if (check.equals("squareleft1")) {
+            if(prevCheck != check) {
+                KeyboardManager.resetReleasedKey();
+                prevCheck = check;
+            }
             enterkey = enterkey1;
-            checkpressakey = false;
-            getInputKey();
+            checkPressAKey = false;
+            getInputKeyAndBindingKey("LEFT");
         } else if (check.equals("squareright1")) {
+            if(prevCheck != check) {
+                KeyboardManager.resetReleasedKey();
+                prevCheck = check;
+            }
             enterkey = enterkey1;
-            checkpressakey = false;
-            getInputKey();
+            checkPressAKey = false;
+            getInputKeyAndBindingKey("RIGHT");
         } else {
             exitImg = null;
             x_square = 999;
@@ -140,10 +177,10 @@ public class KeySetting extends JPanel {
         g2.drawRect(70 * Main.ex, 450 * Main.ex, 30 * Main.ex, 30 * Main.ex);
         g2.drawRect(670 * Main.ex, 450 * Main.ex, 30 * Main.ex, 30 * Main.ex);
         g2.setFont(new Font("Arial", Font.ITALIC, 25 * Main.ex));
-        g2.drawString("W",72 * Main.ex,115 * Main.ex);
-        g2.drawString("A",674 * Main.ex,115 * Main.ex);
-        g2.drawString("S",72 * Main.ex,165 * Main.ex);
-        g2.drawString("D",674 * Main.ex,165 * Main.ex);
+        g2.drawString(upKeyName,72 * Main.ex,115 * Main.ex);
+        g2.drawString(leftKeyName,674 * Main.ex,115 * Main.ex);
+        g2.drawString(downKeyName,72 * Main.ex,165 * Main.ex);
+        g2.drawString(rightKeyName,674 * Main.ex,165 * Main.ex);
         g2.drawImage(playerUP, 216 * Main.ex, 86 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
         g2.drawImage(playerDOWN, 216 * Main.ex, 139 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
         g2.drawImage(playerLEFT, 507 * Main.ex, 86 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
