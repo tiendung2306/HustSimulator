@@ -20,9 +20,9 @@ public class TileChair extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x + 18) * gamePanel.scale);
-        setBottomY((y + 18) * gamePanel.scale);
-        setWidth(18 * gamePanel.scale);
-        setHeight(18 * gamePanel.scale);
+        setRightX((x + 13) * gamePanel.scale);
+        setBottomY((y + 13) * gamePanel.scale);
+        setWidth(13 * gamePanel.scale);
+        setHeight(13 * gamePanel.scale);
     }
 }

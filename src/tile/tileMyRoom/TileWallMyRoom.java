@@ -20,8 +20,8 @@ public class TileWallMyRoom extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x+600) * gamePanel.scale);
-        setBottomY((y+115) * gamePanel.scale);
+        setRightX((x+460) * gamePanel.scale);
+        setBottomY((y+89) * gamePanel.scale);
         setWidth(600 * gamePanel.scale);
         setHeight(0 * gamePanel.scale);
     }

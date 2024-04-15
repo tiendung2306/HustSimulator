@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+
+import entity.Player;
 import sound.Sound;
 import main.GamePanel;
 
@@ -19,6 +21,7 @@ public class Animation_player{
     double one_loop_time;
     double pre_loop_time = -1.0;
     int index = 0;
+    Player player;
 
     String state = "run";
     
@@ -81,7 +84,7 @@ public class Animation_player{
 
             update();
 
-            graphics.drawImage(frames[index], play_area.x + gamePanel.getA(), play_area.y+gamePanel.getB(), play_area.width+gamePanel.getC(), play_area.height+gamePanel.getD(), null);
+            graphics.drawImage(frames[index], play_area.x + gamePanel.player.getA(), play_area.y+gamePanel.player.getB(), play_area.width+gamePanel.player.getC(), play_area.height+gamePanel.player.getD(), null);
 
         }
     }

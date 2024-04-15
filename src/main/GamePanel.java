@@ -64,8 +64,6 @@ public class GamePanel extends JPanel implements Runnable {
     MyRoom myRoom = new MyRoom(this);
     Section_3 section_3 = new Section_3(this);
 
-    // =================================================================================================
-    int a, b, c, d;
 
     // ==============================================================================================
 
@@ -94,32 +92,6 @@ public class GamePanel extends JPanel implements Runnable {
         maxMapRow = y;
         mapWidth = tileSize * maxMapCol;
         mapHeight = tileSize * maxMapRow;
-    }
-
-    // ===========================================================
-
-    public void setSizePlayer(int a, int b, int c, int d) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-
-    }
-
-    public int getA() {
-        return a;
-    }
-
-    public int getB() {
-        return b;
-    }
-
-    public int getC() {
-        return c;
-    }
-
-    public int getD() {
-        return d;
     }
 
     // =========================================================
@@ -315,7 +287,7 @@ public class GamePanel extends JPanel implements Runnable {
     // =================================================================================================================
 
     public void paintComponent(Graphics g) {
-        setSizePlayer(0, -13, 0, 0);
+        player.setSizePlayer(0, -13, 0, 0);
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -376,8 +348,8 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 8: {
-                setSizePlayer(-33, -70, 60, 60);
-                setSizeMap(36, 23);
+                player.setSizePlayer(-13, -50, 20, 20);
+                setSizeMap(29, 18);
                 myRoom.draw(g2);
                 break;
             }
@@ -399,8 +371,8 @@ public class GamePanel extends JPanel implements Runnable {
                 setSizeMap(21, 18);
                 normalClassroom.draw(g2);
             } else if (currentMap == myRoom) {
-                setSizePlayer(-33, -70, 60, 60);
-                setSizeMap(36, 23);
+                player.setSizePlayer(-13, -30, 20, 20);
+                setSizeMap(29, 18);
                 myRoom.draw(g2);
             }
             player.draw(g2);

@@ -1,5 +1,6 @@
 package area;
 
+import entity.Player;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
@@ -22,6 +23,7 @@ public class ComputerRoom extends Map {
     TileComputerTeacher tileComputerTeacher;
     TileWallComputerRoom tileWallComputerRoom;
     Tile background;
+
 
     public ComputerRoom(GamePanel gamePanel) {
         super();

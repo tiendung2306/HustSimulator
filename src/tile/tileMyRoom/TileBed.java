@@ -20,9 +20,9 @@ public class TileBed extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x + 106) * gamePanel.scale);
-        setBottomY((y + 74) * gamePanel.scale);
-        setWidth(106 * gamePanel.scale);
-        setHeight(77 * gamePanel.scale);
+        setRightX((x + 87) * gamePanel.scale);
+        setBottomY((y + 54) * gamePanel.scale);
+        setWidth(87 * gamePanel.scale);
+        setHeight(58 * gamePanel.scale);
     }
 }

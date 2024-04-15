@@ -20,9 +20,9 @@ public class TileKitchenInfrared extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x + 52) * gamePanel.scale);
-        setBottomY((y + 32) * gamePanel.scale);
-        setWidth(52 * gamePanel.scale);
-        setHeight(32 * gamePanel.scale);
+        setRightX((x + 33) * gamePanel.scale);
+        setBottomY((y + 20) * gamePanel.scale);
+        setWidth(33 * gamePanel.scale);
+        setHeight(20 * gamePanel.scale);
     }
 }

@@ -1,8 +1,10 @@
 package map;
 
+import main.GamePanel;
 import tile.Tile;
 
 public class Map {
+    GamePanel gamePanel;
     public int mapIndex;
     public int numTileContainer;
     public Tile [] tileContainer;

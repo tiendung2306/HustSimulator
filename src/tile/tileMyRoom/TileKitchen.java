@@ -20,9 +20,9 @@ public class TileKitchen extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x + 42) * gamePanel.scale);
-        setBottomY((y + 178) * gamePanel.scale);
-        setWidth(42 * gamePanel.scale);
-        setHeight(178 * gamePanel.scale);
+        setRightX((x + 34) * gamePanel.scale);
+        setBottomY((y + 135) * gamePanel.scale);
+        setWidth(34 * gamePanel.scale);
+        setHeight(135 * gamePanel.scale);
     }
 }
