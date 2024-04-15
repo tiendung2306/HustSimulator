@@ -9,17 +9,6 @@ public class CollisionCheck {
     GamePanel gamePanel;
     int numCollision;
 
-    public int getNumCollision() {
-        return numCollision;
-    }
-
-    public Tile[] getCollisionTile() {
-        return collisionTile;
-    }
-
-    public String[] getTypeCollision(){return typeCollision; }
-    public int[] getTileIndex(){return tileIndex; }
-
     int[] tileIndex;
     Tile[] collisionTile;
     String[] typeCollision;

@@ -12,7 +12,7 @@ public class TileTable extends Tile {
         this.y = y;
         this.gamePanel=gamePanel;
         Name = "My Table";
-        Type = "Interact";
+        Type = "Obstacle";
         image = gamePanel.tileManager.tile[28].image;
         BoundingBox();
     }

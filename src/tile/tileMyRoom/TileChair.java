@@ -12,7 +12,7 @@ public class TileChair extends Tile {
         this.y = y;
         this.gamePanel = gamePanel;
         Name = "My Chair";
-        Type = "Interact";
+        Type = "Obstacle";
         image = gamePanel.tileManager.tile[24].image;
         BoundingBox();
     }

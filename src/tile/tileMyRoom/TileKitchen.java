@@ -12,7 +12,7 @@ public class TileKitchen extends Tile {
         this.y = y;
         this.gamePanel=gamePanel;
         Name = "Kitchen";
-        Type = "Interact";
+        Type = "Obstacle";
         image = gamePanel.tileManager.tile[25].image;
         BoundingBox();
     }

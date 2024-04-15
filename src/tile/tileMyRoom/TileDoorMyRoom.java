@@ -12,7 +12,7 @@ public class TileDoorMyRoom extends Tile {
         this.y = y;
         this.gamePanel=gamePanel;
         Name = "Door My Room";
-        Type = "Interact";
+        Type = "Teleport";
         image = gamePanel.tileManager.tile[26].image;
         BoundingBox();
     }

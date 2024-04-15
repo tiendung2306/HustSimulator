@@ -1,9 +1,11 @@
 package Collision;
 
+import entity.Entity;
 import main.GamePanel;
 import main.Main;
 import main.UI;
 import tile.Tile;
+import map.Map;
 
 public class Collision {
     public CollisionCheck collisionCheck;
@@ -18,9 +20,9 @@ public class Collision {
         collisionCheck = new CollisionCheck(gamePanel);
     }
     public void update(){
-        numCollision = collisionCheck.getNumCollision();
-        collisionTile = collisionCheck.getCollisionTile();
-        tileIndex = collisionCheck.getTileIndex();
+        numCollision = collisionCheck.numCollision;
+        collisionTile = collisionCheck.collisionTile;
+        tileIndex = collisionCheck.tileIndex;
         pushDialogue();
         for (int i = 0; i < numCollision; ++i)
             if (collisionTile[i].Type.equals("Collected"))
@@ -58,4 +60,15 @@ public class Collision {
         gamePanel.currentMap.deleteTile(tileIndex[index]);
         gamePanel.player.ButtonInteract = false;
     }
+    public void scanCollision(Entity entity, Map map){
+        collisionCheck.scanCollision(entity,map);
+    }
+    public int getNumCollision() {
+        return collisionCheck.numCollision;
+    }
+
+    public Tile[] getCollisionTile() {
+        return collisionCheck.collisionTile;
+    }
+    public int[] getTileIndex(){return collisionCheck.tileIndex; }
 }

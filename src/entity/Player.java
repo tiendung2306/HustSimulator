@@ -8,6 +8,8 @@ import java.awt.*;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+
+import tile.Tile;
 import tile.TileManager;
 public class Player extends Entity{
 
@@ -27,7 +29,6 @@ public class Player extends Entity{
 
     public Animation_player curr_animation_player;
     TileManager tileManager;
-    int a,b,c,d;
 
     public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager, UI ui){
         this.gamepanel = gamepanel;
@@ -51,9 +52,9 @@ public class Player extends Entity{
         boundingBox.width = gamepanel.tileSize * 2;
         boundingBox.height = gamepanel.tileSize * 2;
         hitArea.x = boundingBox.width / 4;
-        hitArea.y = boundingBox.height / 2;
+        hitArea.y = boundingBox.height / 3 * 2;
         hitArea.width = boundingBox.width / 2;
-        hitArea.height = boundingBox.height / 2;
+        hitArea.height = boundingBox.height / 3;
         screenX = gamepanel.screenWidth/2 - boundingBox.width/2;
         screenY = gamepanel.screenHeight/2 - boundingBox.height/2;
         boundingBox.x = screenX;
@@ -151,14 +152,14 @@ public class Player extends Entity{
                 }
             }
             boolean checkBug = false;
-            collision.collisionCheck.scanCollision(this, gamepanel.currentMap);
-            if (collision.collisionCheck.getNumCollision() == 0) {
+            collision.scanCollision(this, gamepanel.currentMap);
+            if (collision.getNumCollision() == 0) {
                 hitArea.x = newMapX + boundingBox.width / 4;
-                hitArea.y = newMapY + boundingBox.height / 2;
-                collision.collisionCheck.scanCollision(this, gamepanel.currentMap);
+                hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                collision.scanCollision(this, gamepanel.currentMap);
             }
             else checkBug = true;
-            if (checkBug || collision.collisionCheck.getNumCollision() == 0){
+            if (checkBug || collision.getNumCollision() == 0){
                 mapX = newMapX;
                 mapY = newMapY;
                 switch (direction) {
@@ -168,7 +169,15 @@ public class Player extends Entity{
                     case "right", "up-right": curr_animation_player = animation_player_RIGHT;break;
                     }
             }
-            else ButtonInteract = true;
+            else {
+                Tile[] tile = collision.getCollisionTile();
+                ButtonInteract = false;
+                for (int i = 0; i < collision.getNumCollision(); ++i)
+                    if (!tile[i].Type.equals("Obstacle")) {
+                        ButtonInteract = true;
+                        break;
+                    }
+            }
         }
         else {
             direction = "stand_right";
@@ -179,7 +188,7 @@ public class Player extends Entity{
         boundingBox.x += max(0,mapX - (gamepanel.mapWidth - gamepanel.screenWidth / 2) + boundingBox.width);
         boundingBox.y += max(0,mapY - (gamepanel.mapHeight - gamepanel.screenWidth / 2) + boundingBox.height);
         hitArea.x = mapX + boundingBox.width / 4;
-        hitArea.y = mapY + boundingBox.height / 2;
+        hitArea.y = mapY + boundingBox.height / 3 * 2;
         leftBorder = (boundingBox.x <= 0);
         rightBorder = (boundingBox.x >= gamepanel.screenWidth - boundingBox.width);
         topBorder = (boundingBox.y <= 0);
@@ -189,30 +198,5 @@ public class Player extends Entity{
         tileManager.drawRect(g2, hitArea.x, hitArea.y, hitArea.width, hitArea.height);
         curr_animation_player.operation(g2);
     }
-
-    public void setSizePlayer(int a, int b, int c, int d) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-
-    }
-
-    public int getA() {
-        return a;
-    }
-
-    public int getB() {
-        return b;
-    }
-
-    public int getC() {
-        return c;
-    }
-
-    public int getD() {
-        return d;
-    }
-
 }
 
