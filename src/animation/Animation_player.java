@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+
+import entity.Player;
 import sound.Sound;
 import main.GamePanel;
 
@@ -19,6 +21,7 @@ public class Animation_player{
     double one_loop_time;
     double pre_loop_time = -1.0;
     int index = 0;
+    Player player;
 
     String state = "run";
     

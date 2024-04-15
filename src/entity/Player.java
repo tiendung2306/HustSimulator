@@ -27,6 +27,7 @@ public class Player extends Entity{
 
     public Animation_player curr_animation_player;
     TileManager tileManager;
+    int a,b,c,d;
 
     public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager, UI ui){
         this.gamepanel = gamepanel;
@@ -188,5 +189,30 @@ public class Player extends Entity{
         tileManager.drawRect(g2, hitArea.x, hitArea.y, hitArea.width, hitArea.height);
         curr_animation_player.operation(g2);
     }
+
+    public void setSizePlayer(int a, int b, int c, int d) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public int getD() {
+        return d;
+    }
+
 }
 

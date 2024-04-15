@@ -11,7 +11,7 @@ public class TileFridge extends Tile {
         this.x = x;
         this.y = y;
         this.gamePanel=gamePanel;
-        Name = "My PC";
+        Name = "My Fridge";
         Type = "Interact";
         image = gamePanel.tileManager.tile[30].image;
         BoundingBox();
@@ -20,9 +20,9 @@ public class TileFridge extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x + 63) * gamePanel.scale);
-        setBottomY((y + 92) * gamePanel.scale);
-        setWidth(63 * gamePanel.scale);
-        setHeight(97 * gamePanel.scale);
+        setRightX((x + 55) * gamePanel.scale);
+        setBottomY((y + 74) * gamePanel.scale);
+        setWidth(55 * gamePanel.scale);
+        setHeight(74 * gamePanel.scale);
     }
 }

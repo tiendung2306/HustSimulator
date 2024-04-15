@@ -20,9 +20,9 @@ public class TilePC extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x + 126) * gamePanel.scale);
-        setBottomY((y + 75) * gamePanel.scale);
-        setWidth(126 * gamePanel.scale);
-        setHeight(87 * gamePanel.scale);
+        setRightX((x + 102) * gamePanel.scale);
+        setBottomY((y + 55) * gamePanel.scale);
+        setWidth(102 * gamePanel.scale);
+        setHeight(61 * gamePanel.scale);
     }
 }

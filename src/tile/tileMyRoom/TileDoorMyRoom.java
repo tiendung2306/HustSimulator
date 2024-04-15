@@ -20,9 +20,9 @@ public class TileDoorMyRoom extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x + 61) * gamePanel.scale);
-        setBottomY((y + 77) * gamePanel.scale);
-        setWidth(61 * gamePanel.scale);
-        setHeight(81 * gamePanel.scale);
+        setRightX((x + 49) * gamePanel.scale);
+        setBottomY((y + 61) * gamePanel.scale);
+        setWidth(49 * gamePanel.scale);
+        setHeight(61 * gamePanel.scale);
     }
 }

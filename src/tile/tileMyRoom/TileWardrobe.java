@@ -20,9 +20,9 @@ public class TileWardrobe extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x + 78) * gamePanel.scale);
-        setBottomY((y + 88) * gamePanel.scale);
-        setWidth(78 * gamePanel.scale);
-        setHeight(93 * gamePanel.scale);
+        setRightX((x + 55) * gamePanel.scale);
+        setBottomY((y + 65) * gamePanel.scale);
+        setWidth(55 * gamePanel.scale);
+        setHeight(70 * gamePanel.scale);
     }
 }

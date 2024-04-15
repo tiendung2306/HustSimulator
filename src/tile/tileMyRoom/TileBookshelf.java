@@ -20,9 +20,9 @@ public class TileBookshelf extends Tile {
     public void BoundingBox() {
         setLeftX(x * gamePanel.scale);
         setTopY(y * gamePanel.scale);
-        setRightX((x + 105) * gamePanel.scale);
-        setBottomY((y + 58) * gamePanel.scale);
-        setWidth(105 * gamePanel.scale);
-        setHeight(63 * gamePanel.scale);
+        setRightX((x + 84) * gamePanel.scale);
+        setBottomY((y + 45) * gamePanel.scale);
+        setWidth(84 * gamePanel.scale);
+        setHeight(49 * gamePanel.scale);
     }
 }

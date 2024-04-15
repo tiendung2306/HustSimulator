@@ -33,40 +33,40 @@ public class MyRoom extends Map {
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;
-        background.setWidth(562 * gamePanel.scale);
-        background.setHeight(320 * gamePanel.scale);
-        tileBed = new TileBed(gamePanel,22,215);
-        tilePC = new TilePC(gamePanel,195,202);
-        tileTable = new TileTable(gamePanel,388,175);
-        tileFridge = new TileFridge(gamePanel,470,30);
+        background.setWidth(450 * gamePanel.scale);
+        background.setHeight(240 * gamePanel.scale);
+        tileBed = new TileBed(gamePanel,26,176);
+        tilePC = new TilePC(gamePanel,164,159);
+        tileTable = new TileTable(gamePanel,315,145);
+        tileFridge = new TileFridge(gamePanel,378,22);
         tileChair = new TileChair[5];
-        tileBookshelf = new TileBookshelf(gamePanel,126,65);
-        tileWardrobe = new TileWardrobe(gamePanel,0,51);
-        tileKitchen = new TileKitchen(gamePanel,520,139);
-        tileDoorMyRoom = new TileDoorMyRoom(gamePanel,256,39);
-        tileKitchenInfrared = new TileKitchenInfrared(gamePanel,513,201);
+        tileBookshelf = new TileBookshelf(gamePanel,100,48);
+        tileWardrobe = new TileWardrobe(gamePanel,0,30);
+        tileKitchen = new TileKitchen(gamePanel,416,108);
+        tileDoorMyRoom = new TileDoorMyRoom(gamePanel,205,29);
+        tileKitchenInfrared = new TileKitchenInfrared(gamePanel,415,157);
         tileWallMyRoom = new TileWallMyRoom(gamePanel,0,0);
         setTileChair();
         setUpTileMyRoom();
     }
 
     public void setTileChair() {
-        int x = 365;
-        int y = 180;
+        int x = 300;
+        int y = 148;
         int dem = 0;
         for(int i=0;i<4;i++) {
             dem ++;
             if(dem<=2) {
                 tileChair[i] = new TileChair(gamePanel,x,y);
-                y += 55;
+                y += 45;
             }
             if(dem == 2) {
-                x = 435;
-                y = 180;
+                x = 350;
+                y = 148;
             }
             if(dem>2) {
                 tileChair[i] = new TileChair(gamePanel,x,y);
-                y += 55;
+                y += 45;
             }
         }
     }

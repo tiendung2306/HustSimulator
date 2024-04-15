@@ -4,6 +4,7 @@ import main.GamePanel;
 import tile.Tile;
 
 public class Map {
+    GamePanel gamePanel;
     public int mapIndex;
     public int maxMapCol, maxMapRow;
     public int numTileContainer;
