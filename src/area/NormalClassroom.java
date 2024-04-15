@@ -23,6 +23,10 @@ public class NormalClassroom extends Map {
     public NormalClassroom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
+        maxMapCol = 21;
+        maxMapRow = 18;
+        playerX = 35 * gamePanel.scale;
+        playerY = 64 * gamePanel.scale;
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[17].image;

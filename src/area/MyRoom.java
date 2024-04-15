@@ -26,6 +26,10 @@ public class MyRoom extends Map {
 
     public MyRoom(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        maxMapCol = 36;
+        maxMapRow = 23;
+        playerX = 272 * gamePanel.scale;
+        playerY = 103 * gamePanel.scale;
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;

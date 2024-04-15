@@ -5,10 +5,19 @@ import java.awt.*;
 public class Entity {
 
     int mapX, mapY;
-    int speed;
-    int speedSlant;
+    int speed, speedSlant;
     String direction;
     public String[] dialogue;
+    public void setMapX(int mapX) {
+        this.mapX = mapX;
+    }
+
+    public void setMapY(int mapY) {
+        this.mapY = mapY;
+    }
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
     public int getMapX() {
         return mapX;
     }
@@ -19,10 +28,6 @@ public class Entity {
 
     public int getSpeed() {
         return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
     }
 
     public String getDirection() {

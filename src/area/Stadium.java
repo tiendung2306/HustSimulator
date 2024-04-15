@@ -19,6 +19,10 @@ public class Stadium extends Map {
     int x_car_red = 218;
     public Stadium(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        maxMapCol = 21;
+        maxMapRow = 18;
+        playerX = 10 * gamePanel.scale;
+        playerY = 115 * gamePanel.scale;
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[18].image;

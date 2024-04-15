@@ -18,6 +18,10 @@ public class Section_3 extends Map {
     public Section_3(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
+        maxMapCol = 64;
+        maxMapRow = 65;
+        playerX = 266 * gamePanel.scale;
+        playerY = 660 * gamePanel.scale;
         tileContainer = new Tile[50];
         gamePanel.tileWorldMapManager.getTileImage();
         background = new Tile();

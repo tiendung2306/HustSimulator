@@ -4,7 +4,6 @@ import Collision.Collision;
 import Inventory.Inventory;
 import ItemInteract.ItemInteract;
 import MainMenu.*;
-import animation.Animation_player;
 import area.*;
 import entity.Player;
 import map.Map;
@@ -19,6 +18,7 @@ import javax.swing.*;
 
 import Keyboard.KeyboardManager;
 import tileWorldMap.TileWorldMapManager;
+import worldMap.Section_2;
 import worldMap.Section_3;
 
 import java.awt.*;
@@ -64,9 +64,6 @@ public class GamePanel extends JPanel implements Runnable {
     MyRoom myRoom = new MyRoom(this);
     Section_3 section_3 = new Section_3(this);
 
-    // =================================================================================================
-    int a, b, c, d;
-
     // ==============================================================================================
 
     public MouseManager mouseManager = new MouseManager(this);
@@ -87,40 +84,6 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean isRunning = false;
     boolean isDrawPhone = false;
 
-    // ==================================================================================================================
-
-    public void setSizeMap(int x, int y) {
-        maxMapCol = x;
-        maxMapRow = y;
-        mapWidth = tileSize * maxMapCol;
-        mapHeight = tileSize * maxMapRow;
-    }
-
-    // ===========================================================
-
-    public void setSizePlayer(int a, int b, int c, int d) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-
-    }
-
-    public int getA() {
-        return a;
-    }
-
-    public int getB() {
-        return b;
-    }
-
-    public int getC() {
-        return c;
-    }
-
-    public int getD() {
-        return d;
-    }
 
     // =========================================================
 
@@ -203,6 +166,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
         }
+        currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();
     }
@@ -253,7 +217,6 @@ public class GamePanel extends JPanel implements Runnable {
         // System.out.println(MouseManager.lastClickedX);
         // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
-
         player.update();
         if (isDrawPhone) {
             phone.update();
@@ -315,7 +278,6 @@ public class GamePanel extends JPanel implements Runnable {
     // =================================================================================================================
 
     public void paintComponent(Graphics g) {
-        setSizePlayer(0, -13, 0, 0);
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -356,39 +318,30 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 4: {
-                setSizeMap(21, 18);
                 normalClassroom.draw(g2);
                 break;
             }
             case 5: {
-                setSizeMap(21, 18);
                 computerRoom.draw(g2);
                 break;
             }
             case 6: {
-                setSizeMap(21, 18);
                 stadium.draw(g2);
                 break;
             }
             case 7: {
-                setSizeMap(21, 18);
                 library.draw(g2);
                 break;
             }
             case 8: {
-                setSizePlayer(-33, -70, 60, 60);
-                setSizeMap(36, 23);
                 myRoom.draw(g2);
                 break;
             }
             case 9: {
-                // setSizeMap(82,86);
-                setSizeMap(64, 65);
                 section_3.draw(g2);
                 break;
             }
             case 10: {
-                setSizeMap(64, 65);
                 section_2.draw(g2);
             }
         }
@@ -396,11 +349,8 @@ public class GamePanel extends JPanel implements Runnable {
         if (Main.topGameState().equals(Main.states[7]) || Main.topGameState().equals("Dialogue")
                 || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) {
             if (currentMap == normalClassroom) {
-                setSizeMap(21, 18);
                 normalClassroom.draw(g2);
             } else if (currentMap == myRoom) {
-                setSizePlayer(-33, -70, 60, 60);
-                setSizeMap(36, 23);
                 myRoom.draw(g2);
             }
             player.draw(g2);
@@ -414,7 +364,6 @@ public class GamePanel extends JPanel implements Runnable {
         }
         g2.dispose();
     }
-
     public void newGame() {
         currentMap = myRoom;
     }

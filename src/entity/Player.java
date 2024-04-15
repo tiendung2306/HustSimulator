@@ -52,13 +52,11 @@ public class Player extends Entity{
         hitArea.x = boundingBox.width / 4;
         hitArea.y = boundingBox.height / 2;
         hitArea.width = boundingBox.width / 2;
-        hitArea.height = boundingBox.height / 3;
+        hitArea.height = boundingBox.height / 2;
         screenX = gamepanel.screenWidth/2 - boundingBox.width/2;
         screenY = gamepanel.screenHeight/2 - boundingBox.height/2;
         boundingBox.x = screenX;
         boundingBox.y = screenY;
-        mapX = 600;
-        mapY = 300;
         speed = 4;
         direction = "stand_right";
         speedSlant = 3;

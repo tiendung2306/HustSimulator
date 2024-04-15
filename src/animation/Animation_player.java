@@ -34,7 +34,7 @@ public class Animation_player{
      * @param play_area the area the animation will play on the gamepanel (a rectangle)
     */
     public Animation_player(GamePanel gamePanel, String frames_path, int total_frames , double total_loop_time, Rectangle play_area){
-        
+
         this.gamePanel = gamePanel;
         this.total_loop_time = total_loop_time;
         this.play_area = play_area;
@@ -81,7 +81,7 @@ public class Animation_player{
 
             update();
 
-            graphics.drawImage(frames[index], play_area.x + gamePanel.getA(), play_area.y+gamePanel.getB(), play_area.width+gamePanel.getC(), play_area.height+gamePanel.getD(), null);
+            graphics.drawImage(frames[index], play_area.x, play_area.y, play_area.width, play_area.height, null);
 
         }
     }

@@ -1,4 +1,4 @@
-package area;
+package worldMap;
 
 import main.GamePanel;
 import map.Map;
@@ -14,6 +14,8 @@ public class Section_2 extends Map {
 
     public Section_2(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        maxMapCol = 64;
+        maxMapRow = 65;
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[33].image;

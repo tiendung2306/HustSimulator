@@ -21,6 +21,10 @@ public class Library extends Map {
 
     public Library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        maxMapCol = 21;
+        maxMapRow = 18;
+        playerX = 160 * gamePanel.scale;
+        playerY = 34 * gamePanel.scale;
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[19].image;

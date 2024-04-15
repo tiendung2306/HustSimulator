@@ -26,6 +26,10 @@ public class ComputerRoom extends Map {
     public ComputerRoom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
+        maxMapCol = 21;
+        maxMapRow = 18;
+        playerX = 35 * gamePanel.scale;
+        playerY = 64 * gamePanel.scale;
         tileContainer = new Tile[50];
         gamePanel.tileManager.getTileImage();
         background = new Tile();
