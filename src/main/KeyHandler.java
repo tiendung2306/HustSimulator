@@ -7,7 +7,6 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
     public boolean upPressed, downPressed, leftPressed, rightPressed, isInteract, isPhonePressed;
-    KeyboardManager keyboardManager = new KeyboardManager();
 
     public void keyTyped(KeyEvent e){
 
@@ -17,33 +16,33 @@ public class KeyHandler implements KeyListener{
 
         int code = e.getKeyCode();
 
-        if(code == keyboardManager.getKey("UP")){
+        if(code == KeyboardManager.getKey("UP")){
             upPressed = true;
         }
-        if(code == keyboardManager.getKey("DOWN")){
+        if(code == KeyboardManager.getKey("DOWN")){
             downPressed = true;
         }
-        if(code == keyboardManager.getKey("LEFT")){
+        if(code == KeyboardManager.getKey("LEFT")){
             leftPressed = true;
         }
-        if(code == keyboardManager.getKey("RIGHT")){
+        if(code == KeyboardManager.getKey("RIGHT")){
             rightPressed = true;
         }
-        if(code == keyboardManager.getKey("PAUSE")){
+        if(code == KeyboardManager.getKey("PAUSE")){
             if (Main.topGameState().equals("GamePause")){
                 Main.popGameState();
             }
             else Main.pushGameState("GamePause");
         }
-        if(code == keyboardManager.getKey("INTERACT")){
+        if(code == KeyboardManager.getKey("INTERACT")){
             isInteract = !isInteract;
         }
-        if((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Inventory")) && code == keyboardManager.getKey("INVENTORY")){
+        if((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Inventory")) && code == KeyboardManager.getKey("INVENTORY")){
             if (Main.topGameState().equals("Inventory"))
                 Main.popGameState();
             else Main.pushGameState("Inventory");
         }
-        // if(code == keyboardManager.getKey("PHONE")){
+        // if(code == KeyboardManager.getKey("PHONE")){
         //     isPhonePressed = true;
         // }
     }
@@ -52,19 +51,19 @@ public class KeyHandler implements KeyListener{
 
         int code = e.getKeyCode();
 
-        if(code == keyboardManager.getKey("UP")){
+        if(code == KeyboardManager.getKey("UP")){
             upPressed = false;
         }
-        if(code == keyboardManager.getKey("DOWN")){
+        if(code == KeyboardManager.getKey("DOWN")){
             downPressed = false;
         }
-        if(code == keyboardManager.getKey("LEFT")){
+        if(code == KeyboardManager.getKey("LEFT")){
             leftPressed = false;
         }
-        if(code == keyboardManager.getKey("RIGHT")){
+        if(code == KeyboardManager.getKey("RIGHT")){
             rightPressed = false;
         }
-        if(code == keyboardManager.getKey("PHONE")){
+        if(code == KeyboardManager.getKey("PHONE")){
             isPhonePressed = true;
         }
     }

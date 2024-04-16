@@ -2,7 +2,6 @@ package sound;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Objects;
 import java.io.File;
 
 import javax.sound.sampled.AudioInputStream;

@@ -2,6 +2,11 @@ package time;
 
 public class TimeSystem {
     public static int day = 4;
+    public static String currentTime = "88:88";
+
+    public static void setCurrentTime(String time) {
+        currentTime = time;
+    }
 
     public static void goNextDay() {
         day++;
@@ -11,17 +16,3 @@ public class TimeSystem {
         day--;
     }
 }
-
-
-// class BallIteractive{
-
-//     void getDialog() {
-//         if(chapter == 1) {
-//             if(currTimeline == 3) {
-//                 return "Nau an xong roi";
-//             }
-//         }
-//         else return "...";
-//     }
-// }
-

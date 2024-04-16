@@ -1,6 +1,8 @@
 package main;
 
 import Collision.Collision;
+import GUI.MissionDescription;
+import GUI.TimeBoard;
 import Inventory.Inventory;
 import ItemInteract.ItemInteract;
 import MainMenu.*;
@@ -77,12 +79,14 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH, tileManager, ui);
     public Inventory inventory = new Inventory(this);
     public Phone phone = new Phone(this);
+    public TimeBoard timeBoard = new TimeBoard(this);
+    public MissionDescription missionDescription = new MissionDescription(this);
+
     ItemInteract itemInteract = new ItemInteract(this);
 
     public Section_selection section_selection = new Section_selection(this);
 
     public boolean isRunning = false;
-    boolean isDrawPhone = false;
 
 
     // =========================================================
@@ -218,9 +222,7 @@ public class GamePanel extends JPanel implements Runnable {
         // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
         player.update();
-        if (isDrawPhone) {
-            phone.update();
-        }
+        phone.update();
         itemInteract.update();
 
         if (Main.nguoncode == 1) {
@@ -269,7 +271,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isPhonePressed) {
                 // System.out.println("phone-kun xin chao tat ca cac ban");
-                isDrawPhone = !isDrawPhone;
+                phone.isDrawPhone = !phone.isDrawPhone;
                 keyH.isPhonePressed = false;
             }
         }
@@ -357,11 +359,9 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
             inventory.draw(g2);
         }
-
-        if (isDrawPhone) {
-            phone.draw(g2);
-            // isDrawPhone = false;
-        }
+        timeBoard.draw(g2);
+        missionDescription.draw(g2);
+        phone.draw(g2);
         g2.dispose();
     }
     public void newGame() {

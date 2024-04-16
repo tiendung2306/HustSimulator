@@ -16,6 +16,8 @@ import time.TimeSystem;
 public class Phone {
 
     GamePanel gamePanel;
+    public boolean isDrawPhone = false;
+    public boolean isNewMessage = false;
 
     String phoneStates[] = { "Main Menu", "fHUST", "Message", "Setting" };
     String phoneState = "Main Menu";
@@ -27,6 +29,7 @@ public class Phone {
     BufferedImage logoFhust;
     BufferedImage logoMessager;
     BufferedImage logoSetting;
+    BufferedImage messagerNoNewMessage;
     Schedule schedule = new Schedule();
 
     int phoneStartX;
@@ -90,6 +93,8 @@ public class Phone {
     }
 
     public void update() {
+        if (!isDrawPhone)
+            return;
         checkClicked();
     }
 
@@ -102,6 +107,7 @@ public class Phone {
             logoFhust = ImageIO.read(new FileInputStream("res/Phone/logo_fHUST.png"));
             logoMessager = ImageIO.read(new FileInputStream("res/Phone/logo_messager_app.png"));
             logoSetting = ImageIO.read(new FileInputStream("res/Phone/setting_icon.png"));
+            messagerNoNewMessage = ImageIO.read(new FileInputStream("res/Phone/messager_no_new_message.png"));
 
         } catch (Exception e) {
 
@@ -158,6 +164,14 @@ public class Phone {
         }
     }
 
+    public void makeNewMessage(String[] myMessage, String[] recievedMessage) {
+        isNewMessage = true;
+    }
+
+    public void clearMessage() {
+        isNewMessage = false;
+    }
+
     private void clickOnDownArrow() {
         // System.out.println("down arrow clicked");
         currentPhonePage = 2;
@@ -169,7 +183,8 @@ public class Phone {
     }
 
     void checkClicked() {
-        if(!Main.topGameState().equals("GamePlay"))    return;
+        if (!Main.topGameState().equals("GamePlay"))
+            return;
         switch (phoneState) {
             case "fHUST":
                 if (isArrowUpExist) {
@@ -217,9 +232,8 @@ public class Phone {
                         && MouseManager.lastReleasedX <= firstLogoX + 2 * logoSize + spaceSizeBetween2Logo
                         && MouseManager.lastReleasedY >= firstLogoY
                         && MouseManager.lastReleasedY <= firstLogoY + logoSize) {
-                    // phoneState = "Messager";
-                }
-                else if (MouseManager.lastReleasedX >= firstLogoX + 2 * logoSize + 2 * spaceSizeBetween2Logo
+                    phoneState = "Messager";
+                } else if (MouseManager.lastReleasedX >= firstLogoX + 2 * logoSize + 2 * spaceSizeBetween2Logo
                         && MouseManager.lastReleasedX <= firstLogoX + 3 * logoSize + 2 * spaceSizeBetween2Logo
                         && MouseManager.lastReleasedY >= firstLogoY
                         && MouseManager.lastReleasedY <= firstLogoY + logoSize) {
@@ -229,6 +243,13 @@ public class Phone {
                 break;
             case "Setting":
 
+                break;
+            case "Messager":
+                if (MouseManager.lastReleasedX >= 378 && MouseManager.lastReleasedX <= 423
+                        && MouseManager.lastReleasedY >= 456
+                        && MouseManager.lastReleasedY <= 508) {
+                    phoneState = "Main Menu";
+                }
                 break;
         }
 
@@ -242,7 +263,10 @@ public class Phone {
     }
 
     public void draw(Graphics2D g2) {
-        if(!Main.topGameState().equals("GamePlay"))    return;
+        if (!isDrawPhone)
+            return;
+        if (!Main.topGameState().equals("GamePlay"))
+            return;
         Color myColor = new Color(45, 39, 39, 190);
         g2.setColor(myColor);
         g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight); // ve lop background mo sau cai dien thoai
@@ -271,6 +295,16 @@ public class Phone {
                 drawAppLogo(g2, logoSetting, "Settings", firstLogoX + 2 * logoSize + 2 * spaceSizeBetween2Logo,
                         firstLogoY, 0);
                 break;
+            case "Messager":
+                if (!isNewMessage) {
+                    myColor = new Color(0, 0, 0);
+                    g2.setColor(myColor);
+                    g2.drawImage(messagerNoNewMessage, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
+                    g2.setFont(new Font("Arial", Font.ITALIC, 18));
+                    g2.drawString("Không có tin nhắn mới", phoneStartX + phoneWidth * 37 / 200,
+                            phoneStartY + phoneHeight / 3);
+                    break;
+                }
         }
 
     }
