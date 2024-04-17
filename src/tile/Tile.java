@@ -30,6 +30,8 @@ public class Tile{
         this.image = image;
     }
 
+    
+
     public int getLeftX() {
         return LeftX;
     }
