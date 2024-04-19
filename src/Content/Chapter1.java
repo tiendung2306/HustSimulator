@@ -9,11 +9,12 @@ public class Chapter1 {
     UI ui;
     boolean isDrawBackground;
     int currentTimeline, completedAct;
-    public boolean isPlot, bagMission, laptopMission, studentIDMission;
+    public boolean isPlot = false, bagMission = false, laptopMission = false, studentIDMission = false;
     public Chapter1(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
         currentTimeline = 0;
+        completedAct = 0;
     }
     void nextTimeline(){
         ++currentTimeline;
@@ -29,7 +30,8 @@ public class Chapter1 {
             Dialogue("Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
         if (completedAct == 3)
             Dialogue("Theo như tìm hiểu thì ngôn ngữ ở đây có vẻ không khác ở thế giới cũ là bao");
-        nextTimeline();
+        if (completedAct == 4)
+            nextTimeline();
     }
     void Timeline1(){
 

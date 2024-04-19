@@ -27,13 +27,9 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
-    public final int originalTileSize = 16;
     public final int scale = 3;
-    public final int tileSize = originalTileSize * scale;
-    public final int maxScreenCol = 16;
-    public final int maxScreenRow = 12;
-    public final int screenWidth = maxScreenCol * tileSize;
-    public final int screenHeight = maxScreenRow * tileSize;
+    public final int screenWidth = 256 * scale;
+    public final int screenHeight = 192 * scale;
 
     // =================================================================================================================
     // MAP SETTINGS
@@ -221,11 +217,13 @@ public class GamePanel extends JPanel implements Runnable {
         // System.out.println(MouseManager.lastClickedX);
         // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
-        player.update();
-        inventory.update();
         chapter1.update();
-        if (isDrawPhone) {
-            phone.update();
+        if (chapter1.isPlot) {
+            player.update();
+            inventory.update();
+            if (isDrawPhone) {
+                phone.update();
+            }
         }
 
         if (Main.nguoncode == 1) {
@@ -314,38 +312,6 @@ public class GamePanel extends JPanel implements Runnable {
                     videoSetting.draw(g2);
                 break;
             }
-            case 3: {
-                section_selection.operation(g);
-                break;
-            }
-            case 4: {
-                normalClassroom.draw(g2);
-                break;
-            }
-            case 5: {
-                computerRoom.draw(g2);
-                break;
-            }
-            case 6: {
-                stadium.draw(g2);
-                break;
-            }
-            case 7: {
-                library.draw(g2);
-                break;
-            }
-            case 8: {
-                myRoom.draw(g2);
-                break;
-            }
-            case 9: {
-                section_3.draw(g2);
-                break;
-            }
-            case 10: {
-                section_2.draw(g2);
-                break;
-            }
         }
 
         if ((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialogue")
@@ -363,10 +329,26 @@ public class GamePanel extends JPanel implements Runnable {
         g2.dispose();
     }
     public void drawMap(Graphics2D g2) {
+        if (currentMap == myRoom) {
+            myRoom.draw(g2);
+        }
         if (currentMap == normalClassroom) {
             normalClassroom.draw(g2);
-        } else if (currentMap == myRoom) {
-            myRoom.draw(g2);
+        }
+        if (currentMap == computerRoom) {
+            computerRoom.draw(g2);
+        }
+        if (currentMap == library) {
+            library.draw(g2);
+        }
+        if (currentMap == stadium) {
+            stadium.draw(g2);
+        }
+        if (currentMap == section_2) {
+            section_2.draw(g2);
+        }
+        if (currentMap == section_3) {
+            section_3.draw(g2);
         }
     }
     public void newGame() {

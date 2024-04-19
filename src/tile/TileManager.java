@@ -22,43 +22,6 @@ public class TileManager {
         getTileImage();
     }
 
-    public void loadMap(String filePath) {
-        try {
-            // Khai báo 1 biến để nhập file
-            InputStream is = getClass().getResourceAsStream(filePath);
-            // System.out.println("1");
-            // Khai báo biến để đọc file vừa nhập
-            assert is != null;
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-            int col = 0;
-            int row = 0;
-
-            // Vòng lặp để đọc file và tách xâu thành các số để đưa vào mảng 2 chiều
-            // mapTileNum
-            while (col < gamePanel.maxScreenCol && row < gamePanel.maxScreenRow) {
-                String line = br.readLine();
-
-                while (col < gamePanel.maxScreenCol) {
-                    String[] numbers = line.split(" ");
-
-                    int num = Integer.parseInt(numbers[col]);
-                    typeTile[col][row] = num;
-                    col++;
-                }
-                if (col == gamePanel.maxScreenCol) {
-                    col = 0;
-                    row++;
-                }
-            }
-            br.close();
-
-        } catch (Exception ignored) {
-
-        }
-
-    }
-
     public void getTileImage() {
         try {
             tile[0] = new Tile();

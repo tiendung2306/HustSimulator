@@ -36,17 +36,17 @@ public class UI {
         g2.drawString(text, x, y);
     }
     public void drawDialogueScreen(){
-        int x = gamePanel.tileSize * 2;
-        int width = gamePanel.screenWidth - gamePanel.tileSize * 4;
-        int height = gamePanel.tileSize * 4;
-        int y = gamePanel.screenHeight - height - gamePanel.tileSize / 2;
+        int x = 32 * gamePanel.scale;
+        int width = gamePanel.screenWidth - 64 * gamePanel.scale;
+        int height = 64 * gamePanel.scale;
+        int y = gamePanel.screenHeight - height - 8 * gamePanel.scale;
         int FontSize = 28;
         int FontPixel = 12;
         drawSubWindow(x,y,width,height);
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
-        x += gamePanel.tileSize;
-        y += gamePanel.tileSize;
+        x += 16 * gamePanel.scale;
+        y += 16 * gamePanel.scale;
         String str = "";
         int strSize = 0;
         for (int i = 0; i < currentDialogue.length(); ++i){
@@ -54,7 +54,7 @@ public class UI {
             if (currentDialogue.charAt(i) == ' '){
                 for (int j = i + 1; j <= currentDialogue.length(); ++j)
                     if (j == currentDialogue.length() || currentDialogue.charAt(j) == ' '){
-                        if (strSize + (j - i - 1) * FontPixel >= width - gamePanel.tileSize * 2){
+                        if (strSize + (j - i - 1) * FontPixel >= width - 32 * gamePanel.scale){
                             g2.drawString(str, x, y);
                             str = "";
                             y += 40;
@@ -75,9 +75,9 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 11));
         int x = gamePanel.player.getBoundingBoxX() + gamePanel.player.getBoundingBoxWidth();
         int y = gamePanel.player.getBoundingBoxY();
-        int width = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + gamePanel.tileSize - 8 * gamePanel.scale;
-        int height = gamePanel.tileSize / 2;
-        drawSubInteractButton(x - gamePanel.tileSize / 2 + 4 * gamePanel.scale,y - height / 2 - gamePanel.scale,width,height);
+        int width = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + 8 * gamePanel.scale;
+        int height = 8 * gamePanel.scale;
+        drawSubInteractButton(x - 4 * gamePanel.scale,y - height / 2 - gamePanel.scale,width,height);
         g2.drawString(text, x, y);
     }
     public void drawSubWindow(int x, int y, int width, int height){
