@@ -339,7 +339,6 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 3: {
-                setSizeMap(64, 65);
                 section_1.draw(g2);
                 break;
             }
