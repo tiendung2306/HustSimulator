@@ -1,4 +1,4 @@
-package worldMap;
+package area;
 
 import main.GamePanel;
 import map.Map;
@@ -9,20 +9,14 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
 
-public class Section_2 extends Map {
-    Tile background, D3, D5, D3_5, D7, D9;
+
+public class Section_1 extends Map {
+    Tile background, C1, C2, C9;
     GamePanel gamePanel;
 
 
-    public Section_2(GamePanel gamePanel) {
+    public Section_1(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        maxMapCol = 64;
-        maxMapRow = 65;
-        tileContainer = new Tile[50];
-        background = new Tile();
-        background.image = gamePanel.tileManager.tile[33].image;
-        background.setWidth(1000 * gamePanel.scale);
-        background.setHeight(1000 * gamePanel.scale);
 
         TileLoad();
     }
@@ -33,7 +27,7 @@ public class Section_2 extends Map {
         background = new Tile();
         BufferedImage bacImage;
         try {
-            bacImage = ImageIO.read(new FileInputStream("res/tile/Section2_demo.png"));
+            bacImage = ImageIO.read(new FileInputStream("res/tile/Section1_demo.png"));
             background.image = bacImage;
             background.setWidth(bacImage.getWidth());
             background.setHeight(bacImage.getHeight());
@@ -41,14 +35,14 @@ public class Section_2 extends Map {
             e.printStackTrace();
         }
 
-        D3 = new Tile(new Rectangle(463, 1974, 1088, 387), "D3", "Obstacle", null, null);
-        D5 = new Tile(new Rectangle(486, 1497, 1088, 390), "D5", "Obstacle", null, null);
-        D9 = new Tile(new Rectangle(2030, 251, 1226, 402), "D9", "Obstacle", null, null);
+        C9 = new Tile(new Rectangle(101, 1720, 793, 389), "C9", "Obstacle", null, null);
+        C2 = new Tile(new Rectangle(305, 754, 402, 965), "C2", "Obstacle", null, null);
+        C1 = new Tile(new Rectangle(472, 238, 1716, 373), "C1", "Obstacle", null, null);
 
         addTile(background);
-        addTile(D3);
-        addTile(D5);
-        addTile(D9);
+        addTile(C9);
+        addTile(C2);
+        addTile(C1);
 
 
 

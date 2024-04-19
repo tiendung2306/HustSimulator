@@ -78,6 +78,8 @@ public class GamePanel extends JPanel implements Runnable {
     public MouseManager mouseManager = new MouseManager(this);
     public Map currentMap = null; // map hien tai
     Section_2 section_2 = new Section_2(this);
+    Section_1 section_1 = new Section_1(this);
+
 
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
@@ -134,6 +136,14 @@ public class GamePanel extends JPanel implements Runnable {
                 newGame();
                 break;
             }
+
+            case 3: {
+                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
+                    Main.pushGameState("GamePlay");
+                currentMap = section_1;
+                break;
+            }
+
             case 4: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("GamePlay");
@@ -329,7 +339,8 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
             case 3: {
-                section_selection.operation(g);
+                setSizeMap(64, 65);
+                section_1.draw(g2);
                 break;
             }
             case 4: {
@@ -368,6 +379,7 @@ public class GamePanel extends JPanel implements Runnable {
             } else if (currentMap == myRoom) {
                 myRoom.draw(g2);
             }
+
             player.draw(g2);
             ui.draw(g2);
             inventory.draw(g2);
