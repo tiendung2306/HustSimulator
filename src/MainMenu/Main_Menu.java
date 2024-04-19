@@ -18,9 +18,9 @@ public class Main_Menu extends JPanel {
     public BufferedImage imgBackGround, HUST, simulator, play, exit, setting;
     public BufferedImage play1, exit1, playerImg, playImg, exitImg, setting1;
     public BufferedImage play2, exit2, setting2;
-    private int x_player = 999 * Main.ex;
-    private int y_player = 999 * Main.ex;
-    private int x_size = 48 * Main.ex, y_size = 48 * Main.ex;
+    private double x_player = 999 * Main.ex;
+    private double y_player = 999 * Main.ey;
+    private double x_size = 48 * Main.ex, y_size = 48 * Main.ey;
 
     public Main_Menu() {
         getImage();
@@ -73,16 +73,16 @@ public class Main_Menu extends JPanel {
         if (c_check == "buttonPlayEnter") {
             play = play2;
             x_size = 50 * Main.ex;
-            y_size = 50 * Main.ex;
+            y_size = 50 * Main.ey;
             x_player = 455 * Main.ex;
-            y_player = 417 * Main.ex;
+            y_player = 417 * Main.ey;
             playerImg = playImg;
         } else if (c_check == "buttonExitEnter") {
             exit = exit2;
             x_size = 30 * Main.ex;
-            y_size = 30 * Main.ex;
+            y_size = 30 * Main.ey;
             x_player = 308 * Main.ex;
-            y_player = 475 * Main.ex;
+            y_player = 475 * Main.ey;
             playerImg = exitImg;
 
         } else if (c_check == "buttonSettingEnter") {
@@ -93,18 +93,20 @@ public class Main_Menu extends JPanel {
             exit = exit1;
             setting = setting1;
             x_player = 999 * Main.ex;
-            y_player = 999 * Main.ex;
+            y_player = 999 * Main.ey;
         }
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(imgBackGround, 0, 0, 768 * Main.ex, 576 * Main.ex, null);
-        g2.drawImage(HUST, 281 * Main.ex, 20 * Main.ex, 200 * Main.ex, 50 * Main.ex, null);
-        g2.drawImage(simulator, 350 * Main.ex, 65 * Main.ex, 233 * Main.ex, 82 * Main.ex, null);
-        g2.drawImage(play, 311 * Main.ex, 425 * Main.ex, 145 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(exit, 340 * Main.ex, 480 * Main.ex, 80 * Main.ex, 24 * Main.ex, null);
-        g2.drawImage(playerImg, x_player, y_player, x_size, y_size, null);
-        g2.drawImage(setting, 710 * Main.ex, 13 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
+        g2.scale(1,1);
+        g2.drawImage(imgBackGround, 0, 0, (int) (768 * Main.ex), (int) (576 * Main.ey), null);
+        g2.drawImage(HUST, (int) (281 * Main.ex), (int) (20 * Main.ey), (int) (200 * Main.ex), (int) (50 * Main.ey), null);
+        g2.drawImage(simulator, (int) (350 * Main.ex), (int) (65 * Main.ey), (int) (233 * Main.ex), (int) (82 * Main.ey), null);
+        g2.drawImage(play, (int) (311 * Main.ex), (int) (425 * Main.ey), (int) (145 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(exit, (int) (340 * Main.ex), (int) (480 * Main.ey), (int) (80 * Main.ex), (int) (24 * Main.ey), null);
+        g2.drawImage(playerImg, (int) x_player, (int) y_player, (int) x_size, (int) y_size, null);
+        g2.drawImage(setting, (int) (710 * Main.ex), (int) (13 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         super.paintComponent(g2);
+
     }
 }

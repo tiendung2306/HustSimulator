@@ -32,13 +32,8 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
         // int y_drag = e.getY();
         if (Main.topGameState().equals(Main.states[3])) {
             if (AudioSetting.checkenterslider) {
-                if ((x_drag >= 240 * Main.ex) && (x_drag <= 600 * Main.ex))
-                    audioSetting.volumesliderpointX(x_drag - 23 * Main.ex);
-            }
-        } else if (Main.topGameState().equals(Main.states[5])) {
-            if (VideoSetting.checkenterslider) {
-                if ((x_drag >= 240 * Main.ex) && (x_drag <= 600 * Main.ex))
-                    videoSetting.qualitysliderpointX(x_drag - 23 * Main.ex);
+                if ((x_drag >= 240 * Main.ex) && (x_drag <= 602 * Main.ex))
+                    audioSetting.volumesliderpointX((int) (x_drag - 23 * Main.ex));
             }
         }
     }
@@ -48,61 +43,61 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
         int x_enter = e.getX();
         int y_enter = e.getY();
         if (Main.topGameState().equals(Main.states[0])) {
-            if ((x_enter > 311 * Main.ex) && (y_enter > 425 * Main.ex) && (x_enter < 456 * Main.ex)
-                    && (y_enter < 464 * Main.ex))
+            if ((x_enter > 311 * Main.ex) && (y_enter > 425 * Main.ey) && (x_enter < 456 * Main.ex)
+                    && (y_enter < 464 * Main.ey))
                 mainMenu.buttonPlayEnter();
-            else if ((x_enter > 340 * Main.ex) && (y_enter > 478 * Main.ex) && (x_enter < 420 * Main.ex)
-                    && (y_enter < 501 * Main.ex))
+            else if ((x_enter > 340 * Main.ex) && (y_enter > 478 * Main.ey) && (x_enter < 420 * Main.ex)
+                    && (y_enter < 501 * Main.ey))
                 mainMenu.buttonExitEnter();
-            else if ((x_enter > 710 * Main.ex) && (y_enter > 13 * Main.ex) && (x_enter < 750 * Main.ex)
-                    && (y_enter < 53 * Main.ex))
+            else if ((x_enter > 710 * Main.ex) && (y_enter > 13 * Main.ey) && (x_enter < 750 * Main.ex)
+                    && (y_enter < 53 * Main.ey))
                 mainMenu.buttonSettingEnter();
             else
                 mainMenu.rollback();
         } else if (Main.topGameState().equals(Main.states[1])) {
-            if ((x_enter > 260 * Main.ex) && (y_enter > 330 * Main.ex) && (x_enter < 507 * Main.ex)
-                    && (y_enter < 367 * Main.ex))
+            if ((x_enter > 260 * Main.ex) && (y_enter > 330 * Main.ey) && (x_enter < 507 * Main.ex)
+                    && (y_enter < 367 * Main.ey))
                 nextMainMenu.buttonTutorialEnter();
-            else if ((x_enter > 244 * Main.ex) && (y_enter > 210 * Main.ex) && (x_enter < 527 * Main.ex)
-                    && (y_enter < 246 * Main.ex))
+            else if ((x_enter > 244 * Main.ex) && (y_enter > 210 * Main.ey) && (x_enter < 527 * Main.ex)
+                    && (y_enter < 246 * Main.ey))
                 nextMainMenu.buttonNewgameEnter();
-            else if ((x_enter > 710 * Main.ex) && (y_enter > 13 * Main.ex) && (x_enter < 750 * Main.ex)
-                    && (y_enter < 53 * Main.ex))
+            else if ((x_enter > 710 * Main.ex) && (y_enter > 13 * Main.ey) && (x_enter < 750 * Main.ex)
+                    && (y_enter < 53 * Main.ey))
                 nextMainMenu.buttonSettingEnter();
-            else if ((x_enter > 260 * Main.ex) && (y_enter > 270 * Main.ex) && (x_enter < 507 * Main.ex)
-                    && (y_enter < 310 * Main.ex))
+            else if ((x_enter > 260 * Main.ex) && (y_enter > 270 * Main.ey) && (x_enter < 507 * Main.ex)
+                    && (y_enter < 310 * Main.ey))
                 nextMainMenu.buttonContinueEnter();
-            else if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
-                    && (y_enter < 50 * Main.ex))
+            else if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
+                    && (y_enter < 50 * Main.ey))
                 nextMainMenu.buttonReturnEnter();
             else
                 nextMainMenu.rollbacknext();
         } else if (Main.topGameState().equals(Main.states[2])) {
-            if ((x_enter > 200 * Main.ex) && (y_enter > 192 * Main.ex) && (x_enter < 567 * Main.ex)
-                    && (y_enter < 226 * Main.ex))
+            if ((x_enter > 200 * Main.ex) && (y_enter > 192 * Main.ey) && (x_enter < 567 * Main.ex)
+                    && (y_enter < 226 * Main.ey))
                 setting.buttonVideoEnter();
-            else if ((x_enter > 200 * Main.ex) && (y_enter > 251 * Main.ex) && (x_enter < 566 * Main.ex)
-                    && (y_enter < 290 * Main.ex))
+            else if ((x_enter > 200 * Main.ex) && (y_enter > 251 * Main.ey) && (x_enter < 566 * Main.ex)
+                    && (y_enter < 290 * Main.ey))
                 setting.buttonAudioEnter();
-            else if ((x_enter > 249 * Main.ex) && (y_enter > 312 * Main.ex) && (x_enter < 516 * Main.ex)
-                    && (y_enter < 347 * Main.ex))
+            else if ((x_enter > 249 * Main.ex) && (y_enter > 312 * Main.ey) && (x_enter < 516 * Main.ex)
+                    && (y_enter < 347 * Main.ey))
                 setting.buttonKeyEnter();
-            else if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
-                    && (y_enter < 50 * Main.ex))
+            else if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
+                    && (y_enter < 50 * Main.ey))
                 setting.buttonReturnEnter();
             else
                 setting.rollbacksetting();
         } else if (Main.topGameState().equals(Main.states[3])) {
-            if ((x_enter > 220 * Main.ex) && (y_enter > 251 * Main.ex) && (x_enter < 620 * Main.ex)
-                    && (y_enter < 297 * Main.ex)) {
+            if ((x_enter > 220 * Main.ex) && (y_enter > 251 * Main.ey) && (x_enter < 620 * Main.ex)
+                    && (y_enter < 297 * Main.ey)) {
                 AudioSetting.checkenterslider = true;
                 audioSetting.checkcomment();
-            } else if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
-                    && (y_enter < 50 * Main.ex)) {
+            } else if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
+                    && (y_enter < 50 * Main.ey)) {
                 audioSetting.buttonReturnEnter();
                 AudioSetting.checkenterslider = false;
-            } else if ((x_enter > 169 * Main.ex) && (y_enter > 260 * Main.ex) && (x_enter < 204 * Main.ex)
-                    && (y_enter < 296 * Main.ex))
+            } else if ((x_enter > 169 * Main.ex) && (y_enter > 260 * Main.ey) && (x_enter < 204 * Main.ex)
+                    && (y_enter < 296 * Main.ey))
                 audioSetting.muteEnter();
             else {
                 AudioSetting.checkenterslider = false;
@@ -111,35 +106,32 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
         } else if (Main.topGameState().equals(Main.states[4])) {
             if (KeySetting.checkPressAKey)
             {
-                if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
-                        && (y_enter < 50 * Main.ex))
+                if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
+                        && (y_enter < 50 * Main.ey))
                     keySetting.buttonReturnEnter();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 87 * Main.ex) && (x_enter < 105 * Main.ex)
-                        && (y_enter < 125 * Main.ex))
+                else if ((x_enter > 67 * Main.ex) && (y_enter > 87 * Main.ey) && (x_enter < 105 * Main.ex)
+                        && (y_enter < 125 * Main.ey))
                     keySetting.keysetting_squareup();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 137 * Main.ex) && (x_enter < 105 * Main.ex)
-                        && (y_enter < 175 * Main.ex))
+                else if ((x_enter > 67 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 105 * Main.ex)
+                        && (y_enter < 175 * Main.ey))
                     keySetting.keysetting_squaredown();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 67 * Main.ex) && (x_enter < 705 * Main.ex)
-                        && (y_enter < 125 * Main.ex))
+                else if ((x_enter > 667 * Main.ex) && (y_enter > 67 * Main.ey) && (x_enter < 705 * Main.ex)
+                        && (y_enter < 125 * Main.ey))
                     keySetting.keysetting_squareleft();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 137 * Main.ex) && (x_enter < 705 * Main.ex)
-                        && (y_enter < 175 * Main.ex))
+                else if ((x_enter > 667 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 705 * Main.ex)
+                        && (y_enter < 175 * Main.ey))
                     keySetting.keysetting_squareright();
                 else keySetting.keysettingrollback();
             }
         } else if (Main.topGameState().equals(Main.states[5])) {
-            if ((x_enter > 220 * Main.ex) && (y_enter > 251 * Main.ex) && (x_enter < 620 * Main.ex)
-                    && (y_enter < 297 * Main.ex)) {
-                VideoSetting.checkenterslider = true;
-                videoSetting.checkcomment();
-            } else if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ex) && (x_enter < 50 * Main.ex)
-                    && (y_enter < 50 * Main.ex)) {
-                videoSetting.buttonReturnEnter();
-                VideoSetting.checkenterslider = false;
+            if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
+                    && (y_enter < 50 * Main.ey)) {
+                videoSetting.buttonvideoReturnEnter();
+            } else if ((x_enter > 599 * Main.ex) && (y_enter > 29 * Main.ey) && (x_enter < 731 * Main.ex)
+                    && (y_enter < 81 * Main.ey)) {
+                videoSetting.buttonSaveEnter();
             } else {
-                VideoSetting.checkenterslider = false;
-                videoSetting.audiorollback();
+                videoSetting.videorollback();
             }
         }
     }

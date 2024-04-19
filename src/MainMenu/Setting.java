@@ -101,15 +101,15 @@ public class Setting extends JPanel {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(SettingBackGround, 0, 0, 768 * Main.ex, 576 * Main.ex, null);
-        g2.drawImage(key, 250 * Main.ex, 310 * Main.ex, 267 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(audio, 200 * Main.ex, 250 * Main.ex, 367 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(video, 200 * Main.ex, 190 * Main.ex, 367 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(back, 10 * Main.ex, 10 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(exitImg, 60 * Main.ex, 12 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(keyicon, 530 * Main.ex, 305 * Main.ex, 45 * Main.ex, 45 * Main.ex, null);
-        g2.drawImage(audioicon, 580 * Main.ex, 250 * Main.ex, 45 * Main.ex, 45 * Main.ex, null);
-        g2.drawImage(videoicon, 580 * Main.ex, 190 * Main.ex, 45 * Main.ex, 45 * Main.ex, null);
+        g2.drawImage(SettingBackGround, 0, 0, (int) (768 * Main.ex), (int) (576 * Main.ey), null);
+        g2.drawImage(key, (int) (250 * Main.ex), (int) (310 * Main.ey), (int) (267 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(audio, (int) (200 * Main.ex), (int) (250 * Main.ey), (int) (367 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(video, (int) (200 * Main.ex), (int) (190 * Main.ey), (int) (367 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(back, (int) (10 * Main.ex), (int) (10 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(exitImg, (int) (60 * Main.ex), (int) (12 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(keyicon, (int) (530 * Main.ex), (int) (305 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
+        g2.drawImage(audioicon, (int) (580 * Main.ex), (int) (250 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
+        g2.drawImage(videoicon, (int) (580 * Main.ex), (int) (190 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
         super.paintComponent(g2);
     }
 }
