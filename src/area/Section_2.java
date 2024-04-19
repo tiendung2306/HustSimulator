@@ -3,7 +3,6 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
-import tile.tileMyRoom.*;
 
 import java.awt.*;
 

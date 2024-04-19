@@ -3,18 +3,16 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
+import tile.TileSection;
 import tile.tileStadium.*;
 
 import java.awt.*;
 
 public class Stadium extends Map {
     GamePanel gamePanel;
-    TileWall01 tileWall01;
-    TileWall02 tileWall02;
-    TileCar01 tileCar01;
-    TileCar02 tileCar02;
     TileBall tileBall;
     Tile background;
+    TileSection tileWall01,tileWall02,tileCar01,tileCar02;
     int x_car_white = 39;
     int x_car_red = 218;
     public Stadium(GamePanel gamePanel) {
@@ -24,10 +22,10 @@ public class Stadium extends Map {
         background.image = gamePanel.tileManager.tile[18].image;
         background.setWidth(320 * gamePanel.scale);
         background.setHeight(240 * gamePanel.scale);
-        tileWall01 = new TileWall01(gamePanel,0,70);
-        tileWall02 = new TileWall02(gamePanel,241,69);
-        tileCar01 = new TileCar01(gamePanel,39,158);
-        tileCar02 = new TileCar02(gamePanel,218,200);
+        tileWall01 = new TileSection(gamePanel,0,70,203,45,"Wall","Obstacle","res/tile/tuong_va_cua_svd01.png");
+        tileWall02 = new TileSection(gamePanel,241,69,79,46,"Wall","Obstacle","res/tile/tuong_va_cua_svd02.png");
+        tileCar01 = new TileSection(gamePanel,39,158,65,33,"Car 01","Obstacle","res/tile/xe_hoi_trang.png");
+        tileCar02 = new TileSection(gamePanel,218,200,77,33,"Car 02","Obstacle","res/tile/xe_tai_do.png");
         tileBall = new TileBall(gamePanel,152,42);
         setUpTileStadium();
 

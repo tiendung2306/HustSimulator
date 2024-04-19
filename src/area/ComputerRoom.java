@@ -1,28 +1,24 @@
 package area;
 
-import entity.Player;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
-import tile.tileComputerRoom.TileComputerStudent;
-import tile.tileComputerRoom.TileComputerTeacher;
-import tile.tileComputerRoom.TileWallComputerRoom;
-import tile.tileNormalClassroom.TileDoorClassroom;
-import tile.tileNormalClassroom.TileTableClassroom;
-import tile.tileNormalClassroom.TileTableTeacherClassroom;
+import tile.TileSection;
 
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class ComputerRoom extends Map {
     GamePanel gamePanel;
-    TileTableClassroom[] tileTable;
-    TileDoorClassroom tileDoor01;
-    TileDoorClassroom tileDoor02;
-    TileTableTeacherClassroom tileTableTeacher;
-    TileComputerStudent[] tileComputerStudents;
-    TileComputerTeacher tileComputerTeacher;
-    TileWallComputerRoom tileWallComputerRoom;
+    TileSection tileDoor01,tileDoor02,tileTableTeacher,tileWallComputerRoom,tileComputerTeacher;
+    TileSection [] tileTable;
+    TileSection [] tileComputerStudents;
     Tile background;
+
 
 
     public ComputerRoom(GamePanel gamePanel) {
@@ -34,17 +30,15 @@ public class ComputerRoom extends Map {
         background.image = gamePanel.tileManager.tile[17].image;
         background.setWidth(320 * gamePanel.scale);
         background.setHeight(240 * gamePanel.scale);
-        tileTable = new TileTableClassroom[10];
-        tileComputerStudents = new TileComputerStudent[20];
-        tileComputerTeacher = new TileComputerTeacher(gamePanel,274,182);
-        tileDoor01 = new TileDoorClassroom(gamePanel,30,28);
-        tileDoor02 = new TileDoorClassroom(gamePanel,261,28);
-        tileTableTeacher = new TileTableTeacherClassroom(gamePanel,273,177);
-        tileWallComputerRoom = new TileWallComputerRoom(gamePanel,0,0);
+        tileTable = new TileSection[10];
+        tileComputerTeacher = new TileSection(gamePanel,274,182,28,28,"Teacher Computer","Obstacle","res/tile/may_tinh_gv.png");
+        tileDoor01 = new TileSection(gamePanel,30,28,41,51,"Door Classroom","Teleport","res/tile/cua_ra_vao.png");
+        tileDoor02 = new TileSection(gamePanel,261,28,41,51,"Door Classroom","Teleport","res/tile/cua_ra_vao.png");
+        tileTableTeacher = new TileSection(gamePanel,273,177,30,62,"Teacher Table Classroom","Obstacle","res/tile/ban_gv.png");
+        tileWallComputerRoom = new TileSection(gamePanel,0,0,320,75,"Wall","Obstacle","res/tile/no_thing.png");
+        tileComputerStudents = new TileSection[20];
         setUpTable();
         setUpTileComputerRoom();
-
-
     }
 
     public void setUpTileComputerRoom() {
@@ -53,8 +47,8 @@ public class ComputerRoom extends Map {
         addTile(tileWallComputerRoom);
         addTile(tileDoor01);
         addTile(tileDoor02);
-        addTile(tileComputerTeacher);
         addTile(tileTableTeacher);
+        addTile(tileComputerTeacher);
         for(int i = 0; i < 10; i++)
             addTile(tileTable[i]);
         for(int i = 0; i < 20; i++)
@@ -70,9 +64,9 @@ public class ComputerRoom extends Map {
         for(int i = 0; i < 10; i++) {
             ++count;
             if(count <= 5) {
-                tileTable[i] = new TileTableClassroom(gamePanel,x1,y1);
-                tileComputerStudents[2 * i] = new TileComputerStudent(gamePanel, x_mt, y1_mt);
-                tileComputerStudents[2 * i + 1] = new TileComputerStudent(gamePanel, x_mt, y2_mt);
+                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","res/tile/ban_hs.png");
+                tileComputerStudents[2 * i] = new TileSection(gamePanel,x_mt,y1_mt,16,16,"Student Computer","Interact","res/tile/may_tinh_hs.png");
+                tileComputerStudents[2 * i + 1] = new TileSection(gamePanel,x_mt,y2_mt,16,16,"Student Computer","Interact","res/tile/may_tinh_hs.png");
                 x1 += 42;
                 x_mt += 42;
             }
@@ -84,9 +78,9 @@ public class ComputerRoom extends Map {
                 y2_mt = 197;
             }
             if(count > 5) {
-                tileTable[i] = new TileTableClassroom(gamePanel,x1,y1);
-                tileComputerStudents[2 * i] = new TileComputerStudent(gamePanel, x_mt, y1_mt);
-                tileComputerStudents[2 * i + 1] = new TileComputerStudent(gamePanel, x_mt, y2_mt);
+                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","res/tile/ban_hs.png");
+                tileComputerStudents[2 * i] = new TileSection(gamePanel,x_mt,y1_mt,16,16,"Student Computer","Interact","res/tile/may_tinh_hs.png");
+                tileComputerStudents[2 * i + 1] = new TileSection(gamePanel,x_mt,y2_mt,16,16,"Student Computer","Interact","res/tile/may_tinh_hs.png");
                 x1 += 42;
                 x_mt += 42;
             }

@@ -3,20 +3,14 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
-import tile.tileLibrary.*;
-
+import tile.TileSection;
 import java.awt.*;
 
 public class Library extends Map {
     GamePanel gamePanel;
-    TileBookcase01 tileBookcase01_1;
-    TileBookcase01 tileBookcase01_2;
-    TileBookcase02 tileBookcase02;
-    TileBookcase03 tileBookcase03;
-    TileChairLibrary[] tileChairLibrary;
-    TileTableLibrary[] tileTableLibrary;
-    TileDoorLibrary tileDoorLibrary;
-    TileWallLibrary tileWallLibrary;
+
+    TileSection tileBookcase01_1,tileBookcase01_2,tileBookcase02,tileBookcase03,tileDoorLibrary,tileWallLibrary;
+    TileSection[] tileChairLibrary,tileTableLibrary;
     Tile background;
 
     public Library(GamePanel gamePanel) {
@@ -26,14 +20,14 @@ public class Library extends Map {
         background.image = gamePanel.tileManager.tile[19].image;
         background.setWidth(320 * gamePanel.scale);
         background.setHeight(240 * gamePanel.scale);
-        tileBookcase01_1 = new TileBookcase01(gamePanel,40,34);
-        tileBookcase01_2 = new TileBookcase01(gamePanel,44,53);
-        tileBookcase02 = new TileBookcase02(gamePanel,0,77);
-        tileBookcase03 = new TileBookcase03(gamePanel,44,170);
-        tileChairLibrary = new TileChairLibrary[6];
-        tileTableLibrary = new TileTableLibrary[6];
-        tileDoorLibrary = new TileDoorLibrary(gamePanel,127,12);
-        tileWallLibrary = new TileWallLibrary(gamePanel,0,0);
+        tileBookcase01_1 = new TileSection(gamePanel,40,34,78,59,"Bookcase 01","Interact","res/tile/tu_sach01.png");
+        tileBookcase01_2 = new TileSection(gamePanel,44,53,78,59,"Bookcase 01","Interact","res/tile/tu_sach01.png");
+        tileBookcase02 = new TileSection(gamePanel,0,77,16,140,"Bookcase 02","Interact","res/tile/tu_sach02.png");
+        tileBookcase03 = new TileSection(gamePanel,44,170,81,61,"Bookcase 03","Interact","res/tile/tu_sach03.png");
+        tileDoorLibrary = new TileSection(gamePanel,127,12,92,37,"Door Library","Teleport","res/tile/cua_thu_vien.png");
+        tileWallLibrary = new TileSection(gamePanel,0,0,320,47,"Wall","Obstacle","res/tile/no_thing.png");
+        tileChairLibrary = new TileSection[6];
+        tileTableLibrary = new TileSection[6];
         setUpTable();
         setUpTileLibrary();
     }
@@ -62,8 +56,8 @@ public class Library extends Map {
         for(int i = 0; i < 6; i++) {
             count++;
             if(count<=3) {
-                tileTableLibrary[i] = new TileTableLibrary(gamePanel,x1,y1);
-                tileChairLibrary[i] = new TileChairLibrary(gamePanel,x2,y2);
+                tileChairLibrary[i] = new TileSection(gamePanel,x1,y1,30,30,"Table Library","Interact","res/tile/ban_thu_vien.png");
+                tileTableLibrary[i] = new TileSection(gamePanel,x2,y2,16,16,"Chair Library","Interact","res/tile/ghe_thu_vien.png");
                 y1 += 64;
                 y2 += 64;
             }
@@ -74,8 +68,8 @@ public class Library extends Map {
                 y2 = 97;
             }
             if(count > 3) {
-                tileTableLibrary[i] = new TileTableLibrary(gamePanel,x1,y1);
-                tileChairLibrary[i] = new TileChairLibrary(gamePanel,x2,y2);
+                tileChairLibrary[i] = new TileSection(gamePanel,x1,y1,30,30,"Table Library","Interact","res/tile/ban_thu_vien.png");
+                tileTableLibrary[i] = new TileSection(gamePanel,x2,y2,16,16,"Chair Library","Interact","res/tile/ghe_thu_vien.png");
                 y1 += 64;
                 y2 += 64;
             }
