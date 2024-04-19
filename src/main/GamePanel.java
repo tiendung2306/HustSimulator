@@ -26,13 +26,13 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
-    public final int originalTileSize = 16;
-    public final int scale = 3;
-    public final int tileSize = originalTileSize * scale;
-    public final int maxScreenCol = 16;
-    public final int maxScreenRow = 12;
-    public final int screenWidth = maxScreenCol * tileSize;
-    public final int screenHeight = maxScreenRow * tileSize;
+    public static int originalTileSize = 16;
+    public static int scale = 3;
+    public static int tileSize = originalTileSize * scale;
+    public static int maxScreenCol = 16;
+    public static int maxScreenRow = 12;
+    public static int screenWidth = maxScreenCol * tileSize;
+    public static int screenHeight = maxScreenRow * tileSize;
 
     // =================================================================================================================
     // MAP SETTINGS
@@ -66,6 +66,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================
     int a, b, c, d;
+    public static int next_screenWidth = maxScreenCol * tileSize;
+    public static int next_screenHeight = maxScreenRow * tileSize;
+    public static int prev_screenWidth = maxScreenCol * tileSize;
+    public static int prev_screenHeight = maxScreenRow * tileSize;
 
     // ==============================================================================================
 
@@ -134,13 +138,13 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
         this.Mouse();
+
     }
 
     public void Mouse() {
         this.addMouseMotionListener(mouseMotionListenerMainmenu);
         this.addMouseListener(mouseListenerMainmenu);
         this.addMouseListener(mouseManager);
-
         this.addKeyListener(keyboardManager);
     }
 
@@ -210,6 +214,8 @@ public class GamePanel extends JPanel implements Runnable {
     private void stopThread() {
         SoundManager.stopAllSound();
     }
+
+
 
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
@@ -319,6 +325,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+//        RenderingHints rh1 = new RenderingHints(
+//                RenderingHints.KEY_RENDERING,
+//                RenderingHints.VALUE_RENDER_SPEED);
+//        g2.setRenderingHints(rh1);
 
         switch (Main.nguoncode) {
             case 1: {

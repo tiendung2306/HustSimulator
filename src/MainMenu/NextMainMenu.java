@@ -110,16 +110,16 @@ public class NextMainMenu extends JPanel {
     }
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(NextBackGround, 0, 0, 768 * Main.ex, 576 * Main.ex, null);
-        g2.drawImage(tutorial, 260 * Main.ex, 330 * Main.ex, 247 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(newgame, 240 * Main.ex, 210 * Main.ex, 287 * Main.ex, 45 * Main.ex, null);
-        g2.drawImage(setting, 710 * Main.ex, 13 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(player, 530 * Main.ex, 200 * Main.ex, 60 * Main.ex, 60 * Main.ex, null);
-        g2.drawImage(back, 10 * Main.ex, 10 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(exitImg, 60 * Main.ex, 12 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(tutorialicon, 520 * Main.ex, 330 * Main.ex, 40 * Main.ex, 40 * Main.ex, null);
-        g2.drawImage(Continue, 260 * Main.ex, 270 * Main.ex, 247 * Main.ex, 45 * Main.ex, null);
-        g2.drawImage(continueicon, 520 * Main.ex, 270 * Main.ex, 45 * Main.ex, 45 * Main.ex, null);
+        g2.drawImage(NextBackGround, 0, 0, (int) (768 * Main.ex), (int) (576 * Main.ey), null);
+        g2.drawImage(tutorial, (int) (260 * Main.ex), (int) (330 * Main.ey), (int) (247 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(newgame, (int) (240 * Main.ex), (int) (210 * Main.ey), (int) (287 * Main.ex), (int) (45 * Main.ey), null);
+        g2.drawImage(setting, (int) (710 * Main.ex), (int) (13 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(player, (int) (530 * Main.ex), (int) (200 * Main.ey), (int) (60 * Main.ex), (int) (60 * Main.ey), null);
+        g2.drawImage(back, (int) (10 * Main.ex), (int) (10 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(exitImg, (int) (60 * Main.ex), (int) (12 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(tutorialicon, (int) (520 * Main.ex), (int) (330 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(Continue, (int) (260 * Main.ex), (int) (270 * Main.ey), (int) (247 * Main.ex), (int) (45 * Main.ey), null);
+        g2.drawImage(continueicon, (int) (520 * Main.ex), (int) (270 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
         super.paintComponent(g2);
     }
 
