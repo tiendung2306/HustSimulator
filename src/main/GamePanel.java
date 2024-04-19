@@ -19,9 +19,7 @@ import section_selection.Section_selection;
 import javax.swing.*;
 
 import Keyboard.KeyboardManager;
-import tileWorldMap.TileWorldMapManager;
-import worldMap.Section_2;
-import worldMap.Section_3;
+import area.Section_3;
 
 import java.awt.*;
 
@@ -44,7 +42,6 @@ public class GamePanel extends JPanel implements Runnable {
     public int mapHeight;
 
     public TileManager tileManager = new TileManager(this);
-    public TileWorldMapManager tileWorldMapManager = new TileWorldMapManager(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
 

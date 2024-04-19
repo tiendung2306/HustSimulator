@@ -3,22 +3,14 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
-import tile.tileMyRoom.TileWallMyRoom;
-import tile.tileNormalClassroom.TileDoorClassroom;
-import tile.tileNormalClassroom.TileTableClassroom;
-import tile.tileNormalClassroom.TileTableTeacherClassroom;
-import tile.tileNormalClassroom.TileWallNormalClassroom;
-
+import tile.TileSection;
 import java.awt.*;
 
 public class NormalClassroom extends Map {
     GamePanel gamePanel;
-    TileTableClassroom[] tileTable;
-    TileDoorClassroom tileDoor01;
-    TileDoorClassroom tileDoor02;
-    TileTableTeacherClassroom tileTableTeacher;
     Tile background;
-    TileWallNormalClassroom tileWallNormalClassroom;
+    TileSection tileDoor01,tileDoor02,tileTableTeacher,tileWallNormalClassroom;
+    TileSection [] tileTable;
 
     public NormalClassroom(GamePanel gamePanel) {
         super();
@@ -32,11 +24,11 @@ public class NormalClassroom extends Map {
         background.image = gamePanel.tileManager.tile[17].image;
         background.setWidth(320 * gamePanel.scale);
         background.setHeight(240 * gamePanel.scale);
-        tileTable = new TileTableClassroom[10];
-        tileDoor01 = new TileDoorClassroom(gamePanel, 30, 28);
-        tileDoor02 = new TileDoorClassroom(gamePanel, 261, 28);
-        tileTableTeacher = new TileTableTeacherClassroom(gamePanel, 273, 177);
-        tileWallNormalClassroom = new TileWallNormalClassroom(gamePanel,0,0);
+        tileTable = new TileSection[10];
+        tileDoor01 = new TileSection(gamePanel,30,28,41,51,"Door Classroom","Teleport","res/tile/cua_ra_vao.png");
+        tileDoor02 = new TileSection(gamePanel,261,28,41,51,"Door Classroom","Teleport","res/tile/cua_ra_vao.png");
+        tileTableTeacher = new TileSection(gamePanel,273,177,30,62,"Teacher Table Classroom","Obstacle","res/tile/ban_gv.png");
+        tileWallNormalClassroom = new TileSection(gamePanel,0,0,320,75,"Wall","Obstacle","res/tile/no_thing.png");
         setUpTable();
         setUpTileNormalClassroom();
     }
@@ -58,7 +50,7 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < 10; i++) {
             count++;
             if (count <= 5) {
-                tileTable[i] = new TileTableClassroom(gamePanel, x1, y1);
+                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","res/tile/ban_hs.png");
                 x1 += 42;
             }
             if (count == 5) {
@@ -66,7 +58,7 @@ public class NormalClassroom extends Map {
                 x1 = 33;
             }
             if (count > 5) {
-                tileTable[i] = new TileTableClassroom(gamePanel, x1, y1);
+                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","res/tile/ban_hs.png");
                 x1 += 42;
             }
         }

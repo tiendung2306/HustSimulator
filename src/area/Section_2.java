@@ -1,4 +1,4 @@
-package worldMap;
+package area;
 
 import main.GamePanel;
 import map.Map;

@@ -61,56 +61,12 @@ public class TileManager {
 
     public void getTileImage() {
         try {
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(new FileInputStream("res/tile/no_thing.png"));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new FileInputStream("res/tile/ban_hs.png"));
-
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(new FileInputStream("res/tile/ban_gv.png"));
-
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(new FileInputStream("res/tile/may_tinh_hs.png"));
-
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(new FileInputStream("res/tile/may_tinh_gv.png"));
-
-            tile[5] = new Tile();
-            tile[5].image = ImageIO.read(new FileInputStream("res/tile/ban_thu_vien.png"));
-
-            tile[6] = new Tile();
-            tile[6].image = ImageIO.read(new FileInputStream("res/tile/ghe_thu_vien.png"));
-
-            tile[7] = new Tile();
-            tile[7].image = ImageIO.read(new FileInputStream("res/tile/tu_sach01.png"));
-
-            tile[8] = new Tile();
-            tile[8].image = ImageIO.read(new FileInputStream("res/tile/tu_sach02.png"));
-
-            tile[9] = new Tile();
-            tile[9].image = ImageIO.read(new FileInputStream("res/tile/tu_sach03.png"));
-
-            tile[10] = new Tile();
-            tile[10].image = ImageIO.read(new FileInputStream("res/tile/xe_hoi_trang.png"));
-
-            tile[11] = new Tile();
-            tile[11].image = ImageIO.read(new FileInputStream("res/tile/xe_tai_do.png"));
+            tile[1].image = ImageIO.read(new FileInputStream("res/tile/KHU_VUC_3.png"));
 
             tile[12] = new Tile();
             tile[12].image = ImageIO.read(new FileInputStream("res/tile/qua_bong.png"));
-
-            tile[13] = new Tile();
-            tile[13].image = ImageIO.read(new FileInputStream("res/tile/cua_thu_vien.png"));
-
-            tile[14] = new Tile();
-            tile[14].image = ImageIO.read(new FileInputStream("res/tile/cua_ra_vao.png"));
-
-            tile[15] = new Tile();
-            tile[15].image = ImageIO.read(new FileInputStream("res/tile/tuong_va_cua_svd01.png"));
-
-            tile[16] = new Tile();
-            tile[16].image = ImageIO.read(new FileInputStream("res/tile/tuong_va_cua_svd02.png"));
 
             tile[17] = new Tile();
             tile[17].image = ImageIO.read(new FileInputStream("res/tile/backgroud_classroom.png"));
@@ -123,39 +79,6 @@ public class TileManager {
 
             tile[20] = new Tile();
             tile[20].image = ImageIO.read(new FileInputStream("res/tile/background_myroom.png"));
-
-            tile[21] = new Tile();
-            tile[21].image = ImageIO.read(new FileInputStream("res/tile/am_dun_nuoc.png"));
-
-            tile[22] = new Tile();
-            tile[22].image = ImageIO.read(new FileInputStream("res/tile/bep_tu.png"));
-
-            tile[24] = new Tile();
-            tile[24].image = ImageIO.read(new FileInputStream("res/tile/chair_my_room.png"));
-
-            tile[25] = new Tile();
-            tile[25].image = ImageIO.read(new FileInputStream("res/tile/cho_nau_an.png"));
-
-            tile[26] = new Tile();
-            tile[26].image = ImageIO.read(new FileInputStream("res/tile/door_my_room.png"));
-
-            tile[27] = new Tile();
-            tile[27].image = ImageIO.read(new FileInputStream("res/tile/my_bed.png"));
-
-            tile[28] = new Tile();
-            tile[28].image = ImageIO.read(new FileInputStream("res/tile/table_my_room.png"));
-
-            tile[29] = new Tile();
-            tile[29].image = ImageIO.read(new FileInputStream("res/tile/tu_do_my_room.png"));
-
-            tile[30] = new Tile();
-            tile[30].image = ImageIO.read(new FileInputStream("res/tile/tu_lanh.png"));
-
-            tile[31] = new Tile();
-            tile[31].image = ImageIO.read(new FileInputStream("res/tile/tu_quan_ao.png"));
-
-            tile[32] = new Tile();
-            tile[32].image = ImageIO.read(new FileInputStream("res/tile/dan_pc.png"));
 
             tile[33] = new Tile();
             tile[33].image = ImageIO.read(new FileInputStream("res/tile/D7 map.png"));
