@@ -1,5 +1,6 @@
 package tile;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Tile{
@@ -23,6 +24,20 @@ public class Tile{
         BottomY = bottomY;
         width = rightX - leftX;
         height = bottomY - topY;
+        numOwn = 0;
+        Name = name;
+        Type = type;
+        Description = description;
+        this.image = image;
+    }
+
+    public Tile(Rectangle box, String name, String type, String description, BufferedImage image) {
+        LeftX = box.x;
+        RightX = box.x + box.width;
+        TopY = box.y;
+        BottomY = box.y + box.height;
+        width = box.width;
+        height = box.height;
         numOwn = 0;
         Name = name;
         Type = type;
