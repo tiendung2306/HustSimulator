@@ -2,7 +2,6 @@ package main;
 
 import Collision.Collision;
 import Inventory.Inventory;
-import ItemInteract.ItemInteract;
 import MainMenu.*;
 import area.*;
 import entity.Player;
@@ -20,6 +19,8 @@ import Keyboard.KeyboardManager;
 import tileWorldMap.TileWorldMapManager;
 import worldMap.Section_2;
 import worldMap.Section_3;
+
+import Content.Chapter1;
 
 import java.awt.*;
 
@@ -77,12 +78,15 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH, tileManager, ui);
     public Inventory inventory = new Inventory(this);
     public Phone phone = new Phone(this);
-    ItemInteract itemInteract = new ItemInteract(this);
 
     public Section_selection section_selection = new Section_selection(this);
 
     public boolean isRunning = false;
     boolean isDrawPhone = false;
+
+    //==========================================================
+
+    Chapter1 chapter1 = new Chapter1(this);
 
 
     // =========================================================
@@ -218,10 +222,11 @@ public class GamePanel extends JPanel implements Runnable {
         // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
         player.update();
+        inventory.update();
+        chapter1.update();
         if (isDrawPhone) {
             phone.update();
         }
-        itemInteract.update();
 
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
@@ -250,10 +255,6 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
         }
-        if (Main.topGameState().equals("Inventory"))
-            inventory.update();
-        else
-            inventory.currentIndex = 0;
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
@@ -343,16 +344,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 10: {
                 section_2.draw(g2);
+                break;
             }
         }
 
-        if (Main.topGameState().equals(Main.states[7]) || Main.topGameState().equals("Dialogue")
-                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) {
-            if (currentMap == normalClassroom) {
-                normalClassroom.draw(g2);
-            } else if (currentMap == myRoom) {
-                myRoom.draw(g2);
-            }
+        if ((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialogue")
+                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) && chapter1.isPlot) {
+            drawMap(g2);
             player.draw(g2);
             ui.draw(g2);
             inventory.draw(g2);
@@ -363,6 +361,13 @@ public class GamePanel extends JPanel implements Runnable {
             // isDrawPhone = false;
         }
         g2.dispose();
+    }
+    public void drawMap(Graphics2D g2) {
+        if (currentMap == normalClassroom) {
+            normalClassroom.draw(g2);
+        } else if (currentMap == myRoom) {
+            myRoom.draw(g2);
+        }
     }
     public void newGame() {
         currentMap = myRoom;

@@ -195,6 +195,10 @@ public class Inventory implements ActionListener {
         }
     }
     public void update(){
+        if (!Main.topGameState().equals("Inventory")) {
+            currentIndex = 0;
+            return;
+        }
         if (isGettingInformation)
         {
             if (isLeftClick(informationBoardBackArrow))

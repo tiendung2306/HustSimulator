@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class UI {
     GamePanel gamePanel;
@@ -98,5 +99,8 @@ public class UI {
         g2.setColor(c);
         g2.setStroke(new BasicStroke(2));
         g2.drawRoundRect(x + 2, y + 2, width - 4, height - 4, 25, 25);
+    }
+    public void drawBackground(BufferedImage image){
+        g2.drawImage(image, 0, 0, gamePanel.screenWidth, gamePanel.screenHeight, null);
     }
 }
