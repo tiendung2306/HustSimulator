@@ -163,10 +163,14 @@ public class Player extends Entity{
                 mapX = newMapX;
                 mapY = newMapY;
                 switch (direction) {
-                    case "up", "up-left": curr_animation_player = animation_player_UP;break;
-                    case "down", "down-right": curr_animation_player = animation_player_DOWN;break;
-                    case "left", "down-left": curr_animation_player = animation_player_LEFT;break;
-                    case "right", "up-right": curr_animation_player = animation_player_RIGHT;break;
+                    case "up": curr_animation_player = animation_player_UP;break;
+                    case "up-left": curr_animation_player = animation_player_UP;break;
+                    case "down": curr_animation_player = animation_player_DOWN;break;
+                    case "down-right": curr_animation_player = animation_player_DOWN;break;
+                    case "left": curr_animation_player = animation_player_LEFT;break;
+                    case "down-left": curr_animation_player = animation_player_LEFT;break;
+                    case "up-right": curr_animation_player = animation_player_RIGHT;break;
+                    case "right": curr_animation_player = animation_player_RIGHT;break;
                     }
             }
             else {
