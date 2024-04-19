@@ -187,7 +187,7 @@ public class Inventory implements ActionListener {
     public void popFromInventory(int pageIndex, int x, int y){
         if (!pages[pageIndex].slot[x][y].Name.equals("Empty")){
             --pages[pageIndex].slot[x][y].numOwn;
-            Tile tile = new Tile(gamePanel.player.getMapX(), gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(), gamePanel.player.getMapY() + gamePanel.tileSize, gamePanel.player.getMapY() + gamePanel.tileSize + pages[pageIndex].slot[x][y].getHeight(), pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type, pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
+            Tile tile = new Tile(gamePanel.player.getMapX(), gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(), gamePanel.player.getMapY() + 16 * gamePanel.scale, gamePanel.player.getMapY() + 16 * gamePanel.scale + pages[pageIndex].slot[x][y].getHeight(), pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type, pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
             gamePanel.currentMap.addTile(tile);
             if (pages[pageIndex].slot[x][y].numOwn == 0) {
                 pages[pageIndex].slot[x][y].Name = "Empty";
@@ -195,6 +195,10 @@ public class Inventory implements ActionListener {
         }
     }
     public void update(){
+        if (!Main.topGameState().equals("Inventory")) {
+            currentIndex = 0;
+            return;
+        }
         if (isGettingInformation)
         {
             if (isLeftClick(informationBoardBackArrow))
@@ -286,7 +290,7 @@ public class Inventory implements ActionListener {
             if (tile.Description.charAt(i) == ' '){
                 for (int j = i + 1; j <= tile.Description.length(); ++j)
                     if (j == tile.Description.length() || tile.Description.charAt(j) == ' '){
-                        if (strSize + (j - i - 1) * FontPixel >= informationBoard.BoundingBox.width / 3 * 2 - gamePanel.tileSize * 2){
+                        if (strSize + (j - i - 1) * FontPixel >= informationBoard.BoundingBox.width / 3 * 2 - 32 * gamePanel.scale){
                             g2.drawString(str, x, y);
                             str = "";
                             y += 40;

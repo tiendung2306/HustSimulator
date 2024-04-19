@@ -20,10 +20,8 @@ public class Map {
     }
     public void loadMap(GamePanel gamePanel){
         gamePanel.currentMap = this;
-        gamePanel.maxMapCol = maxMapCol;
-        gamePanel.maxMapRow = maxMapRow;
-        gamePanel.mapWidth = maxMapCol * gamePanel.tileSize;
-        gamePanel.mapHeight = maxMapRow * gamePanel.tileSize;
+        gamePanel.mapWidth = maxMapCol * 16 * gamePanel.scale;
+        gamePanel.mapHeight = maxMapRow * 16 * gamePanel.scale;
         gamePanel.player.setMapX(playerX);
         gamePanel.player.setMapY(playerY);
     }

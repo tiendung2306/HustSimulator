@@ -49,8 +49,8 @@ public class Player extends Entity{
 
         hitArea = new Rectangle();
         boundingBox = new Rectangle();
-        boundingBox.width = gamepanel.tileSize * 2;
-        boundingBox.height = gamepanel.tileSize * 2;
+        boundingBox.width = 32 * gamepanel.scale;
+        boundingBox.height = 32 * gamepanel.scale;
         hitArea.x = boundingBox.width / 4;
         hitArea.y = boundingBox.height / 3 * 2;
         hitArea.width = boundingBox.width / 2;
