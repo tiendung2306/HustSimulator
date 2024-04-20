@@ -21,8 +21,8 @@ public class Section_2 extends Map {
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[33].image;
-        background.setWidth(1000 * gamePanel.scale);
-        background.setHeight(1000 * gamePanel.scale);
+        background.setWidth((int) (1000 * gamePanel.scale));
+        background.setHeight((int) (1000 * gamePanel.scale));
 
         TileLoad();
     }

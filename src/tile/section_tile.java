@@ -27,12 +27,12 @@ public class section_tile extends Tile {
     }
 
     public void BoundingBox() {
-        setLeftX(x * gamePanel.scale);
-        setTopY(y * gamePanel.scale);
-        setRightX((x+20) * gamePanel.scale);
-        setBottomY((y+46) * gamePanel.scale);
-        setWidth(20 * gamePanel.scale);
-        setHeight(46 * gamePanel.scale);
+        setLeftX((int) (x * gamePanel.scale));
+        setTopY((int) (y * gamePanel.scale));
+        setRightX((int) ((x+20) * gamePanel.scale));
+        setBottomY((int) ((y+46) * gamePanel.scale));
+        setWidth((int) (20 * gamePanel.scale));
+        setHeight((int) (46 * gamePanel.scale));
     }
 
 }

@@ -9,11 +9,11 @@ import java.io.IOException;
 
 public class TileSection extends Tile{
     public int x,y,width_tile,height_tile;
-    public String name,type,name_path;
+    public String name,type,name_path,description;
     GamePanel gamePanel;
 
 
-    public TileSection(GamePanel gamePanel, int x, int y, int width_tile, int height_tile, String name, String type, String name_path) {
+    public TileSection(GamePanel gamePanel, int x, int y, int width_tile, int height_tile, String name, String type, String description, String name_path) {
         this.x = x;
         this.y = y;
         this.width_tile = width_tile;
@@ -22,6 +22,8 @@ public class TileSection extends Tile{
         this.name = name;
         this.type = type;
         this.name_path = name_path;
+        this.description = description;
+        Description = description;
         Name = name;
         Type = type;
         try {
@@ -32,12 +34,12 @@ public class TileSection extends Tile{
         BoundingBox();
     }
     public void BoundingBox() {
-        setLeftX(x * gamePanel.scale);
-        setTopY(y * gamePanel.scale);
-        setRightX((x + width_tile) * gamePanel.scale);
-        setBottomY((y + height_tile) * gamePanel.scale);
-        setWidth(width_tile * gamePanel.scale);
-        setHeight(height_tile * gamePanel.scale);
+        setLeftX((int) (x * gamePanel.scale));
+        setTopY((int) (y * gamePanel.scale));
+        setRightX((int) ((x + width_tile) * gamePanel.scale));
+        setBottomY((int) ((y + height_tile) * gamePanel.scale));
+        setWidth((int) (width_tile * gamePanel.scale));
+        setHeight((int) (height_tile * gamePanel.scale));
     }
 
 }

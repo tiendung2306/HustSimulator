@@ -23,7 +23,7 @@ public class MissionDescription {
         g2.setFont(new Font("Arial", Font.BOLD, 16));
         g2.setColor(Color.DARK_GRAY);
         int width = g2.getFontMetrics().stringWidth(missionDescriptionText);
-        g2.drawString(missionDescriptionText, gamePanel.screenWidth - width - 2, 105);
+        g2.drawString(missionDescriptionText, (int) (gamePanel.screenWidth - width - 2), 105);
 
     }
 }

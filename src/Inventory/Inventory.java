@@ -69,85 +69,85 @@ public class Inventory implements ActionListener {
         for (int x = 0; x < 3; ++x)
             for (int y = 0; y < 3; ++y) {
                 BoundingBox[x][y] = new Rectangle();
-                BoundingBox[x][y].width = 19 * gamePanel.scale;
-                BoundingBox[x][y].height = 19 * gamePanel.scale;
+                BoundingBox[x][y].width = (int) (19 * gamePanel.scale);
+                BoundingBox[x][y].height = (int) (19 * gamePanel.scale);
             }
-        BoundingBox[0][0].x = 123 * gamePanel.scale;
-        BoundingBox[0][0].y = 63 * gamePanel.scale;
+        BoundingBox[0][0].x = (int) (123 * gamePanel.scale);
+        BoundingBox[0][0].y = (int) (63 * gamePanel.scale);
 
-        BoundingBox[1][0].x = 155 * gamePanel.scale + gamePanel.scale / 3;
-        BoundingBox[1][0].y = 63 * gamePanel.scale;
+        BoundingBox[1][0].x = (int) (155 * gamePanel.scale + gamePanel.scale / 3);
+        BoundingBox[1][0].y = (int) (63 * gamePanel.scale);
 
-        BoundingBox[2][0].x = 188 * gamePanel.scale;
-        BoundingBox[2][0].y = 63 * gamePanel.scale;
+        BoundingBox[2][0].x = (int) (188 * gamePanel.scale);
+        BoundingBox[2][0].y = (int) (63 * gamePanel.scale);
 
-        BoundingBox[0][1].x = 123 * gamePanel.scale;
-        BoundingBox[0][1].y = 95 * gamePanel.scale + gamePanel.scale / 3;
+        BoundingBox[0][1].x = (int) (123 * gamePanel.scale);
+        BoundingBox[0][1].y = (int) (95 * gamePanel.scale + gamePanel.scale / 3);
 
-        BoundingBox[1][1].x = 155 * gamePanel.scale + gamePanel.scale / 3;
-        BoundingBox[1][1].y = 95 * gamePanel.scale + gamePanel.scale / 3;
+        BoundingBox[1][1].x = (int) (155 * gamePanel.scale + gamePanel.scale / 3);
+        BoundingBox[1][1].y = (int) (95 * gamePanel.scale + gamePanel.scale / 3);
 
-        BoundingBox[2][1].x = 188 * gamePanel.scale;
-        BoundingBox[2][1].y = 95 * gamePanel.scale + gamePanel.scale / 3;
+        BoundingBox[2][1].x = (int) (188 * gamePanel.scale);
+        BoundingBox[2][1].y = (int) (95 * gamePanel.scale + gamePanel.scale / 3);
 
-        BoundingBox[0][2].x = 123 * gamePanel.scale;
-        BoundingBox[0][2].y = 128 * gamePanel.scale;
+        BoundingBox[0][2].x = (int) (123 * gamePanel.scale);
+        BoundingBox[0][2].y = (int) (128 * gamePanel.scale);
 
-        BoundingBox[1][2].x = 155 * gamePanel.scale + gamePanel.scale / 3;
-        BoundingBox[1][2].y = 128 * gamePanel.scale;
+        BoundingBox[1][2].x = (int) (155 * gamePanel.scale + gamePanel.scale / 3);
+        BoundingBox[1][2].y = (int) (128 * gamePanel.scale);
 
-        BoundingBox[2][2].x = 188 * gamePanel.scale;
-        BoundingBox[2][2].y = 128 * gamePanel.scale;
+        BoundingBox[2][2].x = (int) (188 * gamePanel.scale);
+        BoundingBox[2][2].y = (int) (128 * gamePanel.scale);
     }
     public void GetInventoryInfo(){
 
         inventoryBag = new InventoryComponent();
-        inventoryBag.BoundingBox.x = 70 * gamePanel.scale;
+        inventoryBag.BoundingBox.x = (int) (70 * gamePanel.scale);
         inventoryBag.BoundingBox.y = 0;
-        inventoryBag.BoundingBox.width = 250 * gamePanel.scale;
-        inventoryBag.BoundingBox.height = 250 * gamePanel.scale;
+        inventoryBag.BoundingBox.width = (int) (250 * gamePanel.scale);
+        inventoryBag.BoundingBox.height = (int) (250 * gamePanel.scale);
 
         inventoryPlayer = new InventoryComponent();
-        inventoryPlayer.BoundingBox.x = -33 * gamePanel.scale;
-        inventoryPlayer.BoundingBox.y = 20 * gamePanel.scale;
-        inventoryPlayer.BoundingBox.width = 150 * gamePanel.scale;
-        inventoryPlayer.BoundingBox.height = 150 * gamePanel.scale;
+        inventoryPlayer.BoundingBox.x = (int) (-33 * gamePanel.scale);
+        inventoryPlayer.BoundingBox.y = (int) (20 * gamePanel.scale);
+        inventoryPlayer.BoundingBox.width = (int) (150 * gamePanel.scale);
+        inventoryPlayer.BoundingBox.height = (int) (150 * gamePanel.scale);
 
         inventoryTask = new InventoryComponent();
-        inventoryTask.BoundingBox.x = 89 * gamePanel.scale;
-        inventoryTask.BoundingBox.y = -15 * gamePanel.scale;
-        inventoryTask.BoundingBox.width = 150 * gamePanel.scale;
-        inventoryTask.BoundingBox.height = 150 * gamePanel.scale;
+        inventoryTask.BoundingBox.x = (int) (89 * gamePanel.scale);
+        inventoryTask.BoundingBox.y = (int) (-15 * gamePanel.scale);
+        inventoryTask.BoundingBox.width = (int) (150 * gamePanel.scale);
+        inventoryTask.BoundingBox.height = (int) (150 * gamePanel.scale);
 
         rightArrow = new InventoryComponent();
-        rightArrow.BoundingBox.x = 228 * gamePanel.scale;
-        rightArrow.BoundingBox.y = 96 * gamePanel.scale;
-        rightArrow.BoundingBox.width = 20 * gamePanel.scale;
-        rightArrow.BoundingBox.height = 17 * gamePanel.scale;
+        rightArrow.BoundingBox.x = (int) (228 * gamePanel.scale);
+        rightArrow.BoundingBox.y = (int) (96 * gamePanel.scale);
+        rightArrow.BoundingBox.width = (int) (20 * gamePanel.scale);
+        rightArrow.BoundingBox.height = (int) (17 * gamePanel.scale);
 
         leftArrow = new InventoryComponent();
-        leftArrow.BoundingBox.x = 82 * gamePanel.scale;
-        leftArrow.BoundingBox.y = 96 * gamePanel.scale;
-        leftArrow.BoundingBox.width = 20 * gamePanel.scale;
-        leftArrow.BoundingBox.height = 17 * gamePanel.scale;
+        leftArrow.BoundingBox.x = (int) (82 * gamePanel.scale);
+        leftArrow.BoundingBox.y = (int) (96 * gamePanel.scale);
+        leftArrow.BoundingBox.width = (int) (20 * gamePanel.scale);
+        leftArrow.BoundingBox.height = (int) (17 * gamePanel.scale);
 
         backArrow = new InventoryComponent();
-        backArrow.BoundingBox.x = 101 * gamePanel.scale;
-        backArrow.BoundingBox.y = 19 * gamePanel.scale;
-        backArrow.BoundingBox.width = 14 * gamePanel.scale;
-        backArrow.BoundingBox.height = 11 * gamePanel.scale;
+        backArrow.BoundingBox.x = (int) (101 * gamePanel.scale);
+        backArrow.BoundingBox.y = (int) (19 * gamePanel.scale);
+        backArrow.BoundingBox.width = (int) (14 * gamePanel.scale);
+        backArrow.BoundingBox.height = (int) (11 * gamePanel.scale);
 
         informationBoard = new InventoryComponent();
-        informationBoard.BoundingBox.x = 24 * gamePanel.scale;
-        informationBoard.BoundingBox.y = 40 * gamePanel.scale;
-        informationBoard.BoundingBox.width = 200 * gamePanel.scale;
-        informationBoard.BoundingBox.height = 110 * gamePanel.scale;
+        informationBoard.BoundingBox.x = (int) (24 * gamePanel.scale);
+        informationBoard.BoundingBox.y = (int) (40 * gamePanel.scale);
+        informationBoard.BoundingBox.width = (int) (200 * gamePanel.scale);
+        informationBoard.BoundingBox.height = (int) (110 * gamePanel.scale);
 
         informationBoardBackArrow = new InventoryComponent();
-        informationBoardBackArrow.BoundingBox.x = 39 * gamePanel.scale;
-        informationBoardBackArrow.BoundingBox.y = 49 * gamePanel.scale;
-        informationBoardBackArrow.BoundingBox.width = 12 * gamePanel.scale;
-        informationBoardBackArrow.BoundingBox.height = 8 * gamePanel.scale;
+        informationBoardBackArrow.BoundingBox.x = (int) (39 * gamePanel.scale);
+        informationBoardBackArrow.BoundingBox.y = (int) (49 * gamePanel.scale);
+        informationBoardBackArrow.BoundingBox.width = (int) (12 * gamePanel.scale);
+        informationBoardBackArrow.BoundingBox.height = (int) (8 * gamePanel.scale);
 
 
         try {
@@ -187,7 +187,7 @@ public class Inventory implements ActionListener {
     public void popFromInventory(int pageIndex, int x, int y){
         if (!pages[pageIndex].slot[x][y].Name.equals("Empty")){
             --pages[pageIndex].slot[x][y].numOwn;
-            Tile tile = new Tile(gamePanel.player.getMapX(), gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(), gamePanel.player.getMapY() + 16 * gamePanel.scale, gamePanel.player.getMapY() + 16 * gamePanel.scale + pages[pageIndex].slot[x][y].getHeight(), pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type, pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
+            Tile tile = new Tile(gamePanel.player.getMapX(), gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(), (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale), (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale + pages[pageIndex].slot[x][y].getHeight()), pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type, pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
             gamePanel.currentMap.addTile(tile);
             if (pages[pageIndex].slot[x][y].numOwn == 0) {
                 pages[pageIndex].slot[x][y].Name = "Empty";
@@ -250,7 +250,7 @@ public class Inventory implements ActionListener {
         if (Main.topGameState().equals("Inventory")) {
             Color myColor = new Color(45, 39, 39, 190);
             g2.setColor(myColor);
-            g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+            g2.fillRect(0, 0, (int) gamePanel.screenWidth, (int) gamePanel.screenHeight);
             inventoryUI.draw(g2, inventoryBag);
             inventoryUI.draw(g2, inventoryTask);
             inventoryUI.draw(g2, inventoryPlayer);
@@ -265,7 +265,7 @@ public class Inventory implements ActionListener {
                     }
                 }
             if (isGettingInformation) {
-                g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+                g2.fillRect(0, 0, (int) gamePanel.screenWidth, (int) gamePanel.screenHeight);
                 showInformation(g2, pages[currentIndex].slot[slotX][slotY]);
             }
         }
@@ -273,16 +273,16 @@ public class Inventory implements ActionListener {
     void showInformation(Graphics2D g2, Tile tile){
         inventoryUI.draw(g2, informationBoard);
         inventoryUI.draw(g2,informationBoardBackArrow);
-        g2.drawImage(tile.image, 43 * gamePanel.scale, 81 * gamePanel.scale, 50 * gamePanel.scale, 50 * gamePanel.scale, null);
+        g2.drawImage(tile.image, (int) (43 * gamePanel.scale), (int) (81 * gamePanel.scale), (int) (50 * gamePanel.scale), (int) (50 * gamePanel.scale), null);
         int FontSize = 30;
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
-        g2.drawString(tile.Name, 67 * gamePanel.scale, 56 * gamePanel.scale);
+        g2.drawString(tile.Name, (int) (67 * gamePanel.scale), (int) (56 * gamePanel.scale));
         FontSize = 25;
         int FontPixel = 11;
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
-        int x = 110 * gamePanel.scale;
-        int y = 77 * gamePanel.scale;
+        int x = (int) (110 * gamePanel.scale);
+        int y = (int) (77 * gamePanel.scale);
         String str = "";
         int strSize = 0;
         for (int i = 0; i < tile.Description.length(); ++i){

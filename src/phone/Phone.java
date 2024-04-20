@@ -67,8 +67,8 @@ public class Phone {
         schedule.Init();
         getImage();
 
-        phoneStartX = gamePanel.screenWidth / 3;
-        phoneStartY = gamePanel.screenHeight / 20;
+        phoneStartX = (int) (gamePanel.screenWidth / 3);
+        phoneStartY = (int) (gamePanel.screenHeight / 20);
         phoneWidth = phone.getWidth() / 10 * 2;
         phoneHeight = phone.getHeight() / 10 * 2;
 
@@ -269,7 +269,7 @@ public class Phone {
             return;
         Color myColor = new Color(45, 39, 39, 190);
         g2.setColor(myColor);
-        g2.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight); // ve lop background mo sau cai dien thoai
+        g2.fillRect(0, 0, (int) gamePanel.screenWidth, (int) gamePanel.screenHeight); // ve lop background mo sau cai dien thoai
 
         switch (phoneState) {
             case "fHUST":
