@@ -38,7 +38,7 @@ public class MyRoom extends Map {
         tilePan = new TileSection(gamePanel,413,155,30,20,"Pan","Interact","","res/tile/chao.png");
         tileWallMyRoom = new TileSection(gamePanel,0,0,460,91,"","Obstacle","","res/tile/no_thing.png");
         tileKettle = new TileSection(gamePanel,60,85,25,15,"Kettle","Collected","DCM 37 38 RACH","res/tile/am_dun_nuoc.png");
-        tileLaptop = new TileSection(gamePanel,78,100,23,17,"Laptop gaming MSI Titan GT77 12UHS 204VN","Collected","DCM 37 38 RACH","res/tile/laptop_lor.png");
+        tileLaptop = new TileSection(gamePanel,78,100,23,17,"Laptop gaming MSI Titan GT77 12UHS 204VN","Collected","135990000 VNĐ","res/tile/laptop_lor.png");
         tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student Card","Collected","DCM 37 38 RACH","res/tile/the_sinh_vien.png");
         tilePhone = new TileSection(gamePanel,162,187,8,15,"Iphone 1000000 ProMax","Collected","DCM 37 38 RACH","res/tile/phone_lor.png");
 
