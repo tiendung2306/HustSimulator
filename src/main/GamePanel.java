@@ -27,9 +27,9 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
-    public int scale = 3;
-    public int screenWidth = 256 * scale;
-    public int screenHeight = 192 * scale;
+    public static int scale = 3;
+    public static int screenWidth = 256 * scale;
+    public static int screenHeight = 192 * scale;
 
     // =================================================================================================================
     // MAP SETTINGS
@@ -61,10 +61,10 @@ public class GamePanel extends JPanel implements Runnable {
     Section_3 section_3 = new Section_3(this);
 
     // =================================================================================================
-    public int next_screenWidth = 256 * scale;
-    public int next_screenHeight = 192 * scale;
-    public int prev_screenWidth = 256 * scale;
-    public int prev_screenHeight = 192 * scale;
+    public static int next_screenWidth = 256 * scale;
+    public static int next_screenHeight = 192 * scale;
+    public static int prev_screenWidth = 256 * scale;
+    public static int prev_screenHeight = 192 * scale;
 
     // ==============================================================================================
 
@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
-    public KeyHandler keyH = new KeyHandler();
+    public KeyHandler keyH = new KeyHandler(this);
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
     public Inventory inventory = new Inventory(this);
@@ -361,6 +361,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void newGame() {
         currentMap = myRoom;
         chapter1.currentTimeline = 0;
+        chapter1.IntroFinished = false;
         chapter1.completedAct = 0;
     }
 }

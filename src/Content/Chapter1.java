@@ -4,17 +4,20 @@ import main.Main;
 import main.UI;
 import Inventory.Inventory;
 import tile.Tile;
+import Collision.Collision;
 public class Chapter1 {
     GamePanel gamePanel;
     UI ui;
     Inventory inventory;
+    Collision collision;
     boolean isDrawBackground;
     public int currentTimeline, completedAct;
-    public boolean IntroFinished = false, phoneMission = false, laptopMission = false, studentIDMission = false;
+    public boolean IntroFinished = false, phoneMission = false, laptopMission = false, studentIDMission = false, noodleMission = false;
     public Chapter1(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
         this.inventory = gamePanel.inventory;
+        this.collision = gamePanel.collision;
         currentTimeline = 0;
         completedAct = 0;
     }
@@ -44,11 +47,11 @@ public class Chapter1 {
     void Timeline1(){
         IntroFinished = true;
         if (completedAct == 0){
-            if (inventory.isGettingInformation && inventory.infoItem.Name.equals("Laptop"))
+            if (inventory.isGettingInformation && inventory.infoItem.Name.equals("Laptop gaming MSI Titan GT77 12UHS 204VN"))
                 laptopMission = true;
-            if (inventory.isGettingInformation && inventory.infoItem.Name.equals("StudentID"))
+            if (inventory.isGettingInformation && inventory.infoItem.Name.equals("Student ID"))
                 studentIDMission = true;
-            if (inventory.isGettingInformation && inventory.infoItem.Name.equals("Phone"))
+            if (inventory.isGettingInformation && inventory.infoItem.Name.equals("Iphone 1000000 ProMax"))
                 phoneMission = true;
             if (laptopMission && studentIDMission && phoneMission)
                 ++completedAct;
@@ -57,7 +60,18 @@ public class Chapter1 {
             nextTimeline();
     }
     void Timeline2(){
-        
+        if (completedAct == 0){
+            if (collision.interactItem.Name.equals("Pan") && inventory.isUsingItem && inventory.usingItem.Name.equals("Kettle")) {
+                noodleMission = true;
+                ++completedAct;
+            }
+        }
+        if (completedAct == 1){
+            nextTimeline();
+        }
+    }
+    void Timeline3(){
+        System.out.println(1);
     }
     public void update(){
         if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory") && !Main.topGameState().equals("Dialogue"))
@@ -73,6 +87,10 @@ public class Chapter1 {
             }
             case 2: {
                 Timeline2();
+                break;
+            }
+            case 3: {
+                Timeline3();
                 break;
             }
         }

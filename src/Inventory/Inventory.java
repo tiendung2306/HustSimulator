@@ -165,41 +165,13 @@ public class Inventory implements ActionListener {
             e.printStackTrace();
         }
     }
-    public void pushToInventory(Tile tile){
-        for (int pageIndex = 0; pageIndex < 3; ++pageIndex)
-            for (int y = 0; y < 3; ++y)
-                for (int x = 0; x < 3; ++x)
-                {
-                    if (pages[pageIndex].slot[x][y].Name.equals(tile.Name)){
-                        ++pages[pageIndex].slot[x][y].numOwn;
-                        return;
-                    }
-                }
-        for (int pageIndex = 0; pageIndex < 3; ++pageIndex)
-            for (int y = 0; y < 3; ++y)
-                for (int x = 0; x < 3; ++x){
-                    if (pages[pageIndex].slot[x][y].Name.equals("Empty")){
-                        pages[pageIndex].slot[x][y] = tile;
-                        pages[pageIndex].slot[x][y].numOwn = 1;
-                        return;
-                    }
-                }
-    }
-    public void popFromInventory(int pageIndex, int x, int y){
-        if (!pages[pageIndex].slot[x][y].Name.equals("Empty")){
-            --pages[pageIndex].slot[x][y].numOwn;
-            Tile tile = new Tile(gamePanel.player.getMapX(), gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(), (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale), (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale + pages[pageIndex].slot[x][y].getHeight()), pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type, pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
-            gamePanel.currentMap.addTile(tile);
-            if (pages[pageIndex].slot[x][y].numOwn == 0) {
-                pages[pageIndex].slot[x][y].Name = "Empty";
-            }
-        }
-    }
     public void update(){
         if (!Main.topGameState().equals("Inventory")) {
             currentIndex = 0;
             return;
         }
+        isUsingItem = false;
+        usingItem = new Tile();
         if (isGettingInformation)
         {
             if (isLeftClick(informationBoardBackArrow))
@@ -271,6 +243,42 @@ public class Inventory implements ActionListener {
             }
         }
     }
+    public void pushToInventory(Tile tile){
+        for (int pageIndex = 0; pageIndex < 3; ++pageIndex)
+            for (int y = 0; y < 3; ++y)
+                for (int x = 0; x < 3; ++x)
+                {
+                    if (pages[pageIndex].slot[x][y].Name.equals(tile.Name)){
+                        ++pages[pageIndex].slot[x][y].numOwn;
+                        return;
+                    }
+                }
+        for (int pageIndex = 0; pageIndex < 3; ++pageIndex)
+            for (int y = 0; y < 3; ++y)
+                for (int x = 0; x < 3; ++x){
+                    if (pages[pageIndex].slot[x][y].Name.equals("Empty")){
+                        pages[pageIndex].slot[x][y] = tile;
+                        pages[pageIndex].slot[x][y].numOwn = 1;
+                        return;
+                    }
+                }
+    }
+    public void dropFromInventory(int pageIndex, int x, int y){
+        if (!pages[pageIndex].slot[x][y].Name.equals("Empty")){
+            --pages[pageIndex].slot[x][y].numOwn;
+            Tile tile = new Tile(gamePanel.player.getMapX(), gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(), (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale), (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale + pages[pageIndex].slot[x][y].getHeight()), pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type, pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
+            gamePanel.currentMap.addTile(tile);
+            if (pages[pageIndex].slot[x][y].numOwn == 0) {
+                pages[pageIndex].slot[x][y].Name = "Empty";
+            }
+        }
+    }
+    public void deleteFromInventory(int pageIndex, int x, int y){
+        if (!pages[pageIndex].slot[x][y].Name.equals("Empty")){
+            --pages[pageIndex].slot[x][y].numOwn;
+            pages[pageIndex].slot[x][y].Name = "Empty";
+        }
+    }
     void showInformation(Graphics2D g2, Tile tile){
         inventoryUI.draw(g2, informationBoard);
         inventoryUI.draw(g2,informationBoardBackArrow);
@@ -320,11 +328,12 @@ public class Inventory implements ActionListener {
         switch (command){
             case "Use": {
                 isUsingItem = true;
-                usingItem = pages[currentIndex].slot[slotX][slotY];
+                usingItem.copyTile(pages[currentIndex].slot[slotX][slotY]);
+                deleteFromInventory(currentIndex, slotX, slotY);
                 break;
             }
             case "Drop": {
-                popFromInventory(currentIndex,slotX, slotY);
+                dropFromInventory(currentIndex,slotX, slotY);
                 break;
             }
             case "Info": {

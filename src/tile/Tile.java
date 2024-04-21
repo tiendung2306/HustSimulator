@@ -14,7 +14,16 @@ public class Tile{
     int width, height;
 
     public Tile() {
-
+        Name = "Empty";
+    }
+    public void copyTile(Tile tile){
+        Name = tile.Name;
+        image = tile.image;
+        numOwn = tile.numOwn;
+        Type = tile.Type;
+        Description = tile.Description;
+        width = tile.width;
+        height = tile.height;
     }
 
     public Tile(int leftX, int rightX, int topY, int bottomY, String name, String type, String description, BufferedImage image) {

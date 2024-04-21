@@ -44,7 +44,7 @@ public class VideoSetting extends JPanel {
     }
     public void Init() {
         exitImg = null;
-        resolutionstr = GamePanel.screenWidth + " x " + GamePanel.screenHeight;
+        //resolutionstr = GamePanel.screenWidth + " x " + GamePanel.screenHeight;
     }
     public void buttonSaveEnter() {
         check = "buttonSaveEnter";

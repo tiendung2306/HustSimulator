@@ -39,7 +39,7 @@ public class MyRoom extends Map {
         tileWallMyRoom = new TileSection(gamePanel,0,0,460,91,"","Obstacle","","res/tile/no_thing.png");
         tileKettle = new TileSection(gamePanel,60,85,25,15,"Kettle","Collected","DCM 37 38 RACH","res/tile/am_dun_nuoc.png");
         tileLaptop = new TileSection(gamePanel,78,100,23,17,"Laptop gaming MSI Titan GT77 12UHS 204VN","Collected","135990000 VNĐ","res/tile/laptop_lor.png");
-        tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student Card","Collected","DCM 37 38 RACH","res/tile/the_sinh_vien.png");
+        tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student ID","Collected","DCM 37 38 RACH","res/tile/the_sinh_vien.png");
         tilePhone = new TileSection(gamePanel,162,187,8,15,"Iphone 1000000 ProMax","Collected","DCM 37 38 RACH","res/tile/phone_lor.png");
 
         tileChair =new TileSection[4];
@@ -56,7 +56,7 @@ public class MyRoom extends Map {
         for(int i=0;i<4;i++) {
             dem ++;
             if(dem<=2) {
-                tileChair[i] = new TileSection(gamePanel,x,y,13,13,"My Chair","Obstacle","res/tile/chair_my_room.png");
+                tileChair[i] = new TileSection(gamePanel, x, y,13,13,"My Chair","Obstacle", "","res/tile/chair_my_room.png");
 
                 y += 45;
             }
@@ -65,7 +65,7 @@ public class MyRoom extends Map {
                 y = 148;
             }
             if(dem>2) {
-                tileChair[i] = new TileSection(gamePanel,x,y,13,13,"My Chair","Obstacle","res/tile/chair_my_room.png");
+                tileChair[i] = new TileSection(gamePanel,x,y,13,13,"My Chair","Obstacle", "","res/tile/chair_my_room.png");
                 y += 45;
             }
         }

@@ -4,9 +4,15 @@ import Keyboard.KeyboardManager;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import main.GamePanel;
 
 public class KeyHandler implements KeyListener{
+
+    GamePanel gamePanel;
     public boolean upPressed, downPressed, leftPressed, rightPressed, isInteract, isPhonePressed;
+    public KeyHandler(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
+    }
 
     public void keyTyped(KeyEvent e){
 
@@ -34,10 +40,13 @@ public class KeyHandler implements KeyListener{
             }
             else Main.pushGameState("GamePause");
         }
-        if((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Inventory")) && code == KeyboardManager.getKey("INVENTORY")){
+        if(code == KeyboardManager.getKey("INVENTORY")){
             if (Main.topGameState().equals("Inventory"))
                 Main.popGameState();
-            else Main.pushGameState("Inventory");
+            else {
+                if (Main.topGameState().equals("GamePlay") || (Main.topGameState().equals("Dialogue") && gamePanel.collision.inventoryAllow))
+                    Main.pushGameState("Inventory");
+            }
         }
         // if(code == KeyboardManager.getKey("PHONE")){
         //     isPhonePressed = true;
