@@ -7,6 +7,8 @@ import main.UI;
 import tile.Tile;
 import map.Map;
 
+import java.util.Objects;
+
 public class Collision {
     public CollisionCheck collisionCheck;
     public UI ui;
@@ -50,9 +52,10 @@ public class Collision {
             }
         }
         for (int i = 0; i < numCollision; ++i){
-            if (i > 0)
+            if (i > 0 && collisionTile[i].Name.equals(""))
                 ui.currentDialogue += " and ";
-            ui.currentDialogue += collisionTile[i].Name;
+            if(!collisionTile[i].Name.equals(""))
+                ui.currentDialogue += collisionTile[i].Name;
         }
     }
     public void collectItem(int index){

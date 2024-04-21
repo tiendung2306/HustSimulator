@@ -98,7 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
     double FPS = 60;
 
     public GamePanel() {
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setPreferredSize(new Dimension((int)screenWidth, (int)screenHeight));
         this.setSize(400, 400);
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);

@@ -15,14 +15,14 @@ public class Section_3 extends Map {
         this.gamePanel = gamePanel;
         maxMapCol = 64;
         maxMapRow = 65;
-        playerX = 266 * gamePanel.scale;
-        playerY = 660 * gamePanel.scale;
+        playerX = (int) (266 * gamePanel.scale);
+        playerY = (int) (660 * gamePanel.scale);
         tileContainer = new Tile[50];
         gamePanel.tileManager.getTileImage();
         background = new Tile();
         background.image = gamePanel.tileManager.tile[1].image;
-        background.setWidth(1000 * gamePanel.scale);
-        background.setHeight(1000 * gamePanel.scale);
+        background.setWidth((int) (1000 * gamePanel.scale));
+        background.setHeight((int) (1000 * gamePanel.scale));
     }
 
 

@@ -204,7 +204,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 Main.ey = Main.next_ey;
                 GamePanel.screenHeight = GamePanel.next_screenHeight;
                 GamePanel.screenWidth = GamePanel.next_screenWidth;
-                Main.window.setSize(GamePanel.screenWidth,GamePanel.screenHeight);
+                Main.window.setSize((int) GamePanel.screenWidth, (int) GamePanel.screenHeight);
                 Main.window.setLocationRelativeTo(null);
 
 //                if (VideoSetting.fullscreenstr.equals("FULLSCREEN")){
