@@ -49,6 +49,7 @@ public class TimeBoard {
         if(!Main.topGameState().equals("GamePlay")) return;
         g2.drawImage(timeBoard, gamePanel.screenWidth - timeBoardWidth - timeBoardWidth / 35, 0, timeBoardWidth, timeBoardHeight, null);
         g2.setFont(new Font("Verdana", Font.PLAIN, (int)(timeBoardWidth / 6)));
+        g2.setColor(Color.WHITE);
         g2.drawString(TimeSystem.currentTime, gamePanel.screenWidth - timeBoardWidth * 24 / 32, timeBoardHeight / 3 * 2);
 
     }

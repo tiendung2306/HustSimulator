@@ -26,20 +26,20 @@ public class ComputerRoom extends Map {
         this.gamePanel = gamePanel;
         maxMapCol = 21;
         maxMapRow = 18;
-        playerX = 35 * gamePanel.scale;
-        playerY = 64 * gamePanel.scale;
+        playerX = (int) (35 * gamePanel.scale);
+        playerY = (int) (64 * gamePanel.scale);
         tileContainer = new Tile[50];
         gamePanel.tileManager.getTileImage();
         background = new Tile();
         background.image = gamePanel.tileManager.tile[17].image;
-        background.setWidth(320 * gamePanel.scale);
-        background.setHeight(240 * gamePanel.scale);
+        background.setWidth((int) (320 * gamePanel.scale));
+        background.setHeight((int) (240 * gamePanel.scale));
         tileTable = new TileSection[10];
-        tileComputerTeacher = new TileSection(gamePanel,274,182,28,28,"Teacher Computer","Obstacle","res/tile/may_tinh_gv.png");
-        tileDoor01 = new TileSection(gamePanel,30,28,41,51,"Door Classroom","Teleport","res/tile/cua_ra_vao.png");
-        tileDoor02 = new TileSection(gamePanel,261,28,41,51,"Door Classroom","Teleport","res/tile/cua_ra_vao.png");
-        tileTableTeacher = new TileSection(gamePanel,273,177,30,62,"Teacher Table Classroom","Obstacle","res/tile/ban_gv.png");
-        tileWallComputerRoom = new TileSection(gamePanel,0,0,320,75,"Wall","Obstacle","res/tile/no_thing.png");
+        tileComputerTeacher = new TileSection(gamePanel,274,182,28,28,"Teacher Computer","Obstacle","","res/tile/may_tinh_gv.png");
+        tileDoor01 = new TileSection(gamePanel,30,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png");
+        tileDoor02 = new TileSection(gamePanel,261,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png");
+        tileTableTeacher = new TileSection(gamePanel,273,177,30,62,"Teacher Table Classroom","","Obstacle","res/tile/ban_gv.png");
+        tileWallComputerRoom = new TileSection(gamePanel,0,0,320,79,"","Obstacle","","res/tile/no_thing.png");
         tileComputerStudents = new TileSection[20];
         setUpTable();
         setUpTileComputerRoom();
@@ -68,9 +68,9 @@ public class ComputerRoom extends Map {
         for(int i = 0; i < 10; i++) {
             ++count;
             if(count <= 5) {
-                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","res/tile/ban_hs.png");
-                tileComputerStudents[2 * i] = new TileSection(gamePanel,x_mt,y1_mt,16,16,"Student Computer","Interact","res/tile/may_tinh_hs.png");
-                tileComputerStudents[2 * i + 1] = new TileSection(gamePanel,x_mt,y2_mt,16,16,"Student Computer","Interact","res/tile/may_tinh_hs.png");
+                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","","res/tile/ban_hs.png");
+                tileComputerStudents[2 * i] = new TileSection(gamePanel,x_mt,y1_mt,16,16,"Student Computer","Interact","","res/tile/may_tinh_hs.png");
+                tileComputerStudents[2 * i + 1] = new TileSection(gamePanel,x_mt,y2_mt,16,16,"Student Computer","Interact","","res/tile/may_tinh_hs.png");
                 x1 += 42;
                 x_mt += 42;
             }
@@ -82,9 +82,9 @@ public class ComputerRoom extends Map {
                 y2_mt = 197;
             }
             if(count > 5) {
-                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","res/tile/ban_hs.png");
-                tileComputerStudents[2 * i] = new TileSection(gamePanel,x_mt,y1_mt,16,16,"Student Computer","Interact","res/tile/may_tinh_hs.png");
-                tileComputerStudents[2 * i + 1] = new TileSection(gamePanel,x_mt,y2_mt,16,16,"Student Computer","Interact","res/tile/may_tinh_hs.png");
+                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","","res/tile/ban_hs.png");
+                tileComputerStudents[2 * i] = new TileSection(gamePanel,x_mt,y1_mt,16,16,"Student Computer","Interact","","res/tile/may_tinh_hs.png");
+                tileComputerStudents[2 * i + 1] = new TileSection(gamePanel,x_mt,y2_mt,16,16,"Student Computer","Interact","","res/tile/may_tinh_hs.png");
                 x1 += 42;
                 x_mt += 42;
             }

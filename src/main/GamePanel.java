@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
-    public KeyHandler keyH = new KeyHandler();
+    public KeyHandler keyH = new KeyHandler(this);
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
     public Inventory inventory = new Inventory(this);
@@ -98,7 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
     double FPS = 60;
 
     public GamePanel() {
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setPreferredSize(new Dimension((int)screenWidth, (int)screenHeight));
         this.setSize(400, 400);
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -237,16 +237,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
-        // System.out.println(MouseManager.lastClickedX);
-        // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
         chapter1.update();
         phone.update();
-        if (chapter1.isPlot) {
-            player.update();
-            inventory.update();
-        }
-
+        player.update();
+        inventory.update();
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
@@ -278,22 +273,14 @@ public class GamePanel extends JPanel implements Runnable {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
-                else
-                    keyH.isInteract = false;
+                else keyH.isInteract = false;
             }
-        } else if (Main.topGameState().equals("Dialogue")) {
-            if (!keyH.isInteract)
-                Main.popGameState();
-        }
-
-        if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isPhonePressed) {
                 // System.out.println("phone-kun xin chao tat ca cac ban");
                 phone.isDrawPhone = !phone.isDrawPhone;
                 keyH.isPhonePressed = false;
             }
         }
-
     }
     // =================================================================================================================
 
@@ -339,16 +326,18 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        if ((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialogue")
-                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) && chapter1.isPlot) {
-            drawMap(g2);
-            player.draw(g2);
+        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialogue")
+                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) {
+            if (chapter1.IntroFinished) {
+                drawMap(g2);
+                player.draw(g2);
+                inventory.draw(g2);
+                timeBoard.draw(g2);
+                missionDescription.draw(g2);
+                phone.draw(g2);
+            }
             ui.draw(g2);
-            inventory.draw(g2);
         }
-        timeBoard.draw(g2);
-        missionDescription.draw(g2);
-        phone.draw(g2);
         g2.dispose();
     }
     public void drawMap(Graphics2D g2) {
@@ -376,5 +365,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public void newGame() {
         currentMap = myRoom;
+        chapter1.currentTimeline = 0;
+        chapter1.IntroFinished = false;
+        chapter1.completedAct = 0;
     }
 }

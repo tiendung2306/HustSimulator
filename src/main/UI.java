@@ -31,15 +31,15 @@ public class UI {
     public void drawPauseScreen(){
         String text = "PAUSED";
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gamePanel.screenWidth / 2 - length / 2;
-        int y = gamePanel.screenHeight / 2;
+        int x = (int) (gamePanel.screenWidth / 2 - length / 2);
+        int y = (int) (gamePanel.screenHeight / 2);
         g2.drawString(text, x, y);
     }
     public void drawDialogueScreen(){
-        int x = 32 * gamePanel.scale;
-        int width = gamePanel.screenWidth - 64 * gamePanel.scale;
-        int height = 64 * gamePanel.scale;
-        int y = gamePanel.screenHeight - height - 8 * gamePanel.scale;
+        int x = 32 * (int)gamePanel.scale;
+        int width = (int) (gamePanel.screenWidth - 64 * gamePanel.scale);
+        int height = (int) (64 * gamePanel.scale);
+        int y = (int) (gamePanel.screenHeight - height - 8 * gamePanel.scale);
         int FontSize = 28;
         int FontPixel = 12;
         drawSubWindow(x,y,width,height);
@@ -75,9 +75,9 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 11));
         int x = gamePanel.player.getBoundingBoxX() + gamePanel.player.getBoundingBoxWidth();
         int y = gamePanel.player.getBoundingBoxY();
-        int width = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + 8 * gamePanel.scale;
-        int height = 8 * gamePanel.scale;
-        drawSubInteractButton(x - 4 * gamePanel.scale,y - height / 2 - gamePanel.scale,width,height);
+        int width = (int) ((int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + 8 * gamePanel.scale);
+        int height = (int) (8 * gamePanel.scale);
+        drawSubInteractButton((int) (x - 4 * gamePanel.scale), (int) (y - height / 2 - gamePanel.scale),width,height);
         g2.drawString(text, x, y);
     }
     public void drawSubWindow(int x, int y, int width, int height){
@@ -101,6 +101,6 @@ public class UI {
         g2.drawRoundRect(x + 2, y + 2, width - 4, height - 4, 25, 25);
     }
     public void drawBackground(BufferedImage image){
-        g2.drawImage(image, 0, 0, gamePanel.screenWidth, gamePanel.screenHeight, null);
+        g2.drawImage(image, 0, 0, (int)gamePanel.screenWidth, (int)gamePanel.screenHeight, null);
     }
 }

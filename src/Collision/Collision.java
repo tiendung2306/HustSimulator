@@ -12,6 +12,8 @@ public class Collision {
     public UI ui;
     GamePanel gamePanel;
     int numCollision;
+    public boolean inventoryAllow = false;
+    public Tile interactItem = new Tile();
     Tile[] collisionTile;
     int[] tileIndex;
     public Collision(GamePanel gamePanel){
@@ -24,6 +26,12 @@ public class Collision {
         collisionTile = collisionCheck.collisionTile;
         tileIndex = collisionCheck.tileIndex;
         pushDialogue();
+        if (numCollision == 1 && collisionTile[0].Type.equals("Interact"))
+        {
+            inventoryAllow = true;
+            interactItem = collisionTile[0];
+        }
+        else inventoryAllow = false;
         for (int i = 0; i < numCollision; ++i)
             if (collisionTile[i].Type.equals("Collected"))
                 collectItem(i);
@@ -50,9 +58,10 @@ public class Collision {
             }
         }
         for (int i = 0; i < numCollision; ++i){
-            if (i > 0)
+            if (i > 0 && collisionTile[i].Name.equals(""))
                 ui.currentDialogue += " and ";
-            ui.currentDialogue += collisionTile[i].Name;
+            if(!collisionTile[i].Name.equals(""))
+                ui.currentDialogue += collisionTile[i].Name;
         }
     }
     public void collectItem(int index){
@@ -70,5 +79,4 @@ public class Collision {
     public Tile[] getCollisionTile() {
         return collisionCheck.collisionTile;
     }
-    public int[] getTileIndex(){return collisionCheck.tileIndex; }
 }
