@@ -25,7 +25,12 @@ public class TimeBoard {
 
     void init() {
         getImage();
-        timeBoardWidth = 150;
+        timeBoardWidth = (int)((double)gamePanel.screenWidth * 150.0 / 900.0);
+        timeBoardHeight = (int)(timeBoard.getHeight() * timeBoardWidth / timeBoard.getWidth());
+    }
+
+    public void screenResize() {
+        timeBoardWidth = (int)((double)gamePanel.screenWidth * 150.0 / 900.0);
         timeBoardHeight = (int)(timeBoard.getHeight() * timeBoardWidth / timeBoard.getWidth());
     }
 
@@ -42,8 +47,8 @@ public class TimeBoard {
 
     public void draw(Graphics2D g2) {
         if(!Main.topGameState().equals("GamePlay")) return;
-        g2.drawImage(timeBoard, gamePanel.screenWidth - timeBoardWidth, 0, timeBoardWidth, timeBoardHeight, null);
-        g2.setFont(new Font("Verdana", Font.PLAIN, 24));
+        g2.drawImage(timeBoard, gamePanel.screenWidth - timeBoardWidth - timeBoardWidth / 35, 0, timeBoardWidth, timeBoardHeight, null);
+        g2.setFont(new Font("Verdana", Font.PLAIN, (int)(timeBoardWidth / 6)));
         g2.drawString(TimeSystem.currentTime, gamePanel.screenWidth - timeBoardWidth * 24 / 32, timeBoardHeight / 3 * 2);
 
     }

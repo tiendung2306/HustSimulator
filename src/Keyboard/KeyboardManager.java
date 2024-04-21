@@ -34,7 +34,7 @@ public class KeyboardManager implements KeyListener {
     }
 
     static public String getKeyName(String keyTag) {
-        System.out.println(keyTag);
+        // System.out.println(keyTag);
         if(keys.size() != 0)    System.out.println(keys.get(0).getKeyName());
         for (Key k : keys) {
             if (k.getKeyTag() == keyTag) {

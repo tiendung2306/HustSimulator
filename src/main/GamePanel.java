@@ -121,6 +121,11 @@ public class GamePanel extends JPanel implements Runnable {
         isRunning = true;
     }
 
+    public void screenResize() {
+        timeBoard.screenResize();
+        phone.screenResize();
+    }
+
     public void Init() {
         switch (Main.nguoncode) {
             case 1: {
