@@ -27,9 +27,9 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
-    public static int scale = 3;
-    public static int screenWidth = 256 * scale;
-    public static int screenHeight = 192 * scale;
+    public int scale = 3;
+    public int screenWidth = 256 * scale;
+    public int screenHeight = 192 * scale;
 
     // =================================================================================================================
     // MAP SETTINGS
@@ -61,10 +61,10 @@ public class GamePanel extends JPanel implements Runnable {
     Section_3 section_3 = new Section_3(this);
 
     // =================================================================================================
-    public static int next_screenWidth = 256 * scale;
-    public static int next_screenHeight = 192 * scale;
-    public static int prev_screenWidth = 256 * scale;
-    public static int prev_screenHeight = 192 * scale;
+    public int next_screenWidth = 256 * scale;
+    public int next_screenHeight = 192 * scale;
+    public int prev_screenWidth = 256 * scale;
+    public int prev_screenHeight = 192 * scale;
 
     // ==============================================================================================
 
@@ -232,16 +232,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
-        // System.out.println(MouseManager.lastClickedX);
-        // System.out.println(MouseManager.lastClickedY);
         soundManager.update();
         chapter1.update();
         phone.update();
-        if (chapter1.isPlot) {
-            player.update();
-            inventory.update();
-        }
-
+        player.update();
+        inventory.update();
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
@@ -273,22 +268,14 @@ public class GamePanel extends JPanel implements Runnable {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
-                else
-                    keyH.isInteract = false;
+                else keyH.isInteract = false;
             }
-        } else if (Main.topGameState().equals("Dialogue")) {
-            if (!keyH.isInteract)
-                Main.popGameState();
-        }
-
-        if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isPhonePressed) {
                 // System.out.println("phone-kun xin chao tat ca cac ban");
                 phone.isDrawPhone = !phone.isDrawPhone;
                 keyH.isPhonePressed = false;
             }
         }
-
     }
     // =================================================================================================================
 
@@ -334,16 +321,18 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        if ((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialogue")
-                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) && chapter1.isPlot) {
-            drawMap(g2);
-            player.draw(g2);
+        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialogue")
+                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) {
+            if (chapter1.IntroFinished) {
+                drawMap(g2);
+                player.draw(g2);
+                inventory.draw(g2);
+                timeBoard.draw(g2);
+                missionDescription.draw(g2);
+                phone.draw(g2);
+            }
             ui.draw(g2);
-            inventory.draw(g2);
         }
-        timeBoard.draw(g2);
-        missionDescription.draw(g2);
-        phone.draw(g2);
         g2.dispose();
     }
     public void drawMap(Graphics2D g2) {
@@ -371,5 +360,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public void newGame() {
         currentMap = myRoom;
+        chapter1.currentTimeline = 0;
+        chapter1.completedAct = 0;
     }
 }

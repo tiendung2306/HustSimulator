@@ -28,7 +28,7 @@ public class MyRoom extends Map {
         background.setHeight(240 * gamePanel.scale);
         tileBed = new TileSection(gamePanel,26,176,87,54,"My Bed","Interact","res/tile/my_bed.png");
         tilePC = new TileSection(gamePanel,164,159,102,61,"My PC","Interact","res/tile/dan_pc.png");
-        tileTable = new TileSection(gamePanel,315,145,34,62,"My Table","Interact","res/tile/table_my_room.png");
+        tileTable = new TileSection(gamePanel,315,145,34,62,"My Table","Obstacle","res/tile/table_my_room.png");
         tileFridge = new TileSection(gamePanel,378,22,55,74,"My Fridge","Interact","res/tile/tu_lanh.png");
         tileBookshelf = new TileSection(gamePanel,100,48,84,49,"My Bookshelf","Interact","res/tile/tu_do_my_room.png");
         tileWardrobe = new TileSection(gamePanel,0,30,55,70,"My Wardrobe","Interact","res/tile/tu_quan_ao.png");
@@ -52,7 +52,7 @@ public class MyRoom extends Map {
         for(int i=0;i<4;i++) {
             dem ++;
             if(dem<=2) {
-                tileChair[i] = new TileSection(gamePanel,x,y,13,13,"My Chair","Interact","res/tile/chair_my_room.png");
+                tileChair[i] = new TileSection(gamePanel,x,y,13,13,"My Chair","Obstacle","res/tile/chair_my_room.png");
 
                 y += 45;
             }
@@ -61,7 +61,7 @@ public class MyRoom extends Map {
                 y = 148;
             }
             if(dem>2) {
-                tileChair[i] = new TileSection(gamePanel,x,y,13,13,"My Chair","Interact","res/tile/chair_my_room.png");
+                tileChair[i] = new TileSection(gamePanel,x,y,13,13,"My Chair","Obstacle","res/tile/chair_my_room.png");
                 y += 45;
             }
         }

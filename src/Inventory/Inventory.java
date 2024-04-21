@@ -27,12 +27,13 @@ public class Inventory implements ActionListener {
     JMenuItem item1, item2, item3;
 
     public Tile usingItem = new Tile();
+    public Tile infoItem = new Tile();
 
     int slotX, slotY;
     boolean reverse = false;
     int step = 0;
     public int currentIndex = 0;
-    boolean isGettingInformation = false;
+    public boolean isGettingInformation = false;
     public boolean isUsingItem = false;
 
     public Inventory(GamePanel gamePanel){
@@ -328,6 +329,7 @@ public class Inventory implements ActionListener {
             }
             case "Info": {
                 isGettingInformation = true;
+                infoItem = pages[currentIndex].slot[slotX][slotY];
                 break;
             }
         }
