@@ -58,6 +58,8 @@ public class Phone {
     Boolean isArrowUpExist = false;
     Boolean isArrowDownExist = false;
 
+    public Boolean isOpenFhust = false;
+
     public Phone(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         init();
@@ -232,6 +234,7 @@ public class Phone {
                         && MouseManager.lastReleasedY >= firstLogoY
                         && MouseManager.lastReleasedY <= firstLogoY + logoSize) {
                     phoneState = "fHUST";
+                    isOpenFhust = true;
                 } else if (MouseManager.lastReleasedX >= firstLogoX + logoSize + spaceSizeBetween2Logo
                         && MouseManager.lastReleasedX <= firstLogoX + 2 * logoSize + spaceSizeBetween2Logo
                         && MouseManager.lastReleasedY >= firstLogoY

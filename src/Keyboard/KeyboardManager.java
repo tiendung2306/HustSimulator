@@ -4,6 +4,8 @@
 
 package Keyboard;
 
+import static java.lang.Math.cos;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.event.KeyListener;
@@ -19,6 +21,8 @@ public class KeyboardManager implements KeyListener {
         keys.add(new Key(KeyEvent.VK_S, "S", "DOWN"));
         keys.add(new Key(KeyEvent.VK_D, "D", "RIGHT"));
         keys.add(new Key(KeyEvent.VK_F, "F", "INTERACT"));
+        keys.add(new Key(KeyEvent.VK_SPACE, "SPACE", "INTERACT"));
+        keys.add(new Key(KeyEvent.VK_ENTER, "ENTER", "INTERACT"));
         keys.add(new Key(KeyEvent.VK_ESCAPE, "ESC", "PAUSE"));
         keys.add(new Key(KeyEvent.VK_B, "B", "INVENTORY"));
         keys.add(new Key(KeyEvent.VK_P, "P", "PHONE"));
@@ -31,6 +35,15 @@ public class KeyboardManager implements KeyListener {
             }
         }
         return -1; // chua khai bao phim nay`
+    }
+
+    static public String getTypeKey(int code) {
+        for (Key k : keys) {
+            if (k.getKey() == code) {
+                return k.getKeyTag();
+            }
+        }
+        return "";
     }
 
     static public String getKeyName(String keyTag) {
