@@ -12,7 +12,6 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.Stack;
 
-import static com.sun.org.apache.xerces.internal.util.DOMUtil.setVisible;
 
 public class Main {
     public static int nguoncode;

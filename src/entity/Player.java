@@ -15,7 +15,6 @@ import tile.TileManager;
 
 public class Player extends Entity {
 
-    public Animation_player animation_player_stand_RIGHT;
     GamePanel gamepanel;
     KeyHandler keyhandler;
     Collision collision;
@@ -23,6 +22,11 @@ public class Player extends Entity {
     public int screenX, screenY;
     boolean leftBorder, rightBorder, topBorder, bottomBorder;
     public boolean ButtonInteract;
+    
+    public Animation_player animation_player_stand_RIGHT;
+    public Animation_player animation_player_stand_LEFT;
+    public Animation_player animation_player_stand_FRONT;
+    public Animation_player animation_player_stand_BACK;
 
     public Animation_player animation_player_UP;
     public Animation_player animation_player_DOWN;
@@ -61,12 +65,17 @@ public class Player extends Entity {
         boundingBox.x = screenX;
         boundingBox.y = screenY;
         speed = 4;
-        direction = "stand_right";
+        direction = "stand";
         speedSlant = 3;
 
         animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5,
                 boundingBox);
-
+        animation_player_stand_LEFT = new Animation_player(gamepanel, "res/player/character_stand_left ", 3, 0.5,
+                boundingBox);
+        animation_player_stand_FRONT = new Animation_player(gamepanel, "res/player/character_stand_front ", 3, 0.5,
+                boundingBox);
+        animation_player_stand_BACK = new Animation_player(gamepanel, "res/player/character_stand_back ", 3, 0.5,
+                boundingBox);
         animation_player_UP = new Animation_player(gamepanel, "res/player/character_move_up ", 4, 0.8, boundingBox);
         animation_player_DOWN = new Animation_player(gamepanel, "res/player/character_move_down ", 4, 0.8, boundingBox);
         animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8,
@@ -195,8 +204,34 @@ public class Player extends Entity {
                     }
             }
         } else {
-            direction = "stand_right";
-            curr_animation_player = animation_player_stand_RIGHT;
+            switch (direction) {
+                case "up":
+                    curr_animation_player = animation_player_stand_BACK;
+                    break;
+                case "up-left":
+                    curr_animation_player = animation_player_stand_BACK;
+                    break;
+                case "down":
+                    curr_animation_player = animation_player_stand_FRONT;
+                    break;
+                case "down-right":
+                    curr_animation_player = animation_player_stand_FRONT;
+                    break;
+                case "left":
+                    curr_animation_player = animation_player_stand_LEFT;
+                    break;
+                case "down-left":
+                    curr_animation_player = animation_player_stand_LEFT;
+                    break;
+                case "up-right":
+                    curr_animation_player = animation_player_stand_RIGHT;
+                    break;
+                case "right":
+                    curr_animation_player = animation_player_stand_RIGHT;
+                    break;
+            }
+            direction = "stand";
+
         }
         boundingBox.x = min(screenX, mapX);
         boundingBox.y = min(screenY, mapY);
