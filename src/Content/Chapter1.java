@@ -96,11 +96,8 @@ public class Chapter1 {
             if(phone.isOpenFhust == true && phone.isDrawPhone == false) {
                 Dialogue("Vậy là hôm nay mình không có lịch học");
             }
-        } else if (completedAct == 3) {
-            if (!Main.topGameState().equals("Dialogue"))
-                ++completedAct;
         }
-        if (completedAct == 4)
+        if (completedAct == 3)
             nextTimeline();
     }
     public void update(){
@@ -128,7 +125,7 @@ public class Chapter1 {
 
     void Dialogue(String str) {
         if (!Main.topGameState().equals("Dialogue")) {
-            ui.currentDialogue = str;
+            ui.currentDialog = str;
             Main.pushGameState("Dialogue");
         }
     }

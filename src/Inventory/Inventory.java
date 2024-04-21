@@ -171,7 +171,6 @@ public class Inventory implements ActionListener {
         if (!Main.topGameState().equals("Inventory")) {
             currentIndex = 0;
             isGettingInformation = false;
-            infoItem.Name = "Empty";
             return;
         }
         isUsingItem = false;
