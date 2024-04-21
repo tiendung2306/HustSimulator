@@ -36,7 +36,7 @@ public class Inventory implements ActionListener {
     public boolean isGettingInformation = false;
     public boolean isUsingItem = false;
 
-    public Inventory(GamePanel gamePanel){
+    public Inventory(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         pages = new InventoryPage[3];
         inventoryUI = new InventoryUI(gamePanel);
@@ -47,7 +47,8 @@ public class Inventory implements ActionListener {
         GetInventoryInfo();
         setBoundingBox();
     }
-    public void setPopMenu(){
+
+    public void setPopMenu() {
         popMenu = new JPopupMenu();
 
         item1 = new JMenuItem("Use");
@@ -65,7 +66,8 @@ public class Inventory implements ActionListener {
         item3.setActionCommand("Info");
         popMenu.add(item3);
     }
-    public void setBoundingBox(){
+
+    public void setBoundingBox() {
         BoundingBox = new Rectangle[3][3];
         for (int x = 0; x < 3; ++x)
             for (int y = 0; y < 3; ++y) {
@@ -100,7 +102,8 @@ public class Inventory implements ActionListener {
         BoundingBox[2][2].x = (int) (188 * gamePanel.scale);
         BoundingBox[2][2].y = (int) (128 * gamePanel.scale);
     }
-    public void GetInventoryInfo(){
+
+    public void GetInventoryInfo() {
 
         inventoryBag = new InventoryComponent();
         inventoryBag.BoundingBox.x = (int) (70 * gamePanel.scale);
@@ -150,7 +153,6 @@ public class Inventory implements ActionListener {
         informationBoardBackArrow.BoundingBox.width = (int) (12 * gamePanel.scale);
         informationBoardBackArrow.BoundingBox.height = (int) (8 * gamePanel.scale);
 
-
         try {
             inventoryBag.image = ImageIO.read(new FileInputStream("res/inventory/Inventory.png"));
             inventoryTask.image = ImageIO.read(new FileInputStream("res/inventory/InventoryTask.png"));
@@ -160,43 +162,40 @@ public class Inventory implements ActionListener {
             informationBoard.image = ImageIO.read(new File("res/inventory/InformationBoard.png"));
             informationBoardBackArrow.image = ImageIO.read(new File("res/inventory/LeftArrow.png"));
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void update(){
+
+    public void update() {
         if (!Main.topGameState().equals("Inventory")) {
             currentIndex = 0;
             isGettingInformation = false;
-            infoItem.Name = "Empty";
             return;
         }
         isUsingItem = false;
         usingItem = new Tile();
-        if (isGettingInformation)
-        {
+        if (isGettingInformation) {
             if (isLeftClick(informationBoardBackArrow))
                 isGettingInformation = false;
             return;
         }
-        if (isLeftClick(backArrow)){
+        if (isLeftClick(backArrow)) {
             Main.popGameState();
             return;
         }
         ++step;
-        if (step == 6){
+        if (step == 6) {
             if (!reverse) {
                 leftArrow.BoundingBox.x -= gamePanel.scale;
                 rightArrow.BoundingBox.x += gamePanel.scale;
-                if (rightArrow.BoundingBox.x == 233 * gamePanel.scale){
+                if (rightArrow.BoundingBox.x == 233 * gamePanel.scale) {
                     reverse = true;
                 }
-            }
-            else {
+            } else {
                 leftArrow.BoundingBox.x += gamePanel.scale;
                 rightArrow.BoundingBox.x -= gamePanel.scale;
-                if (rightArrow.BoundingBox.x == 230 * gamePanel.scale){
+                if (rightArrow.BoundingBox.x == 230 * gamePanel.scale) {
                     reverse = false;
                 }
             }
@@ -208,9 +207,11 @@ public class Inventory implements ActionListener {
             --currentIndex;
         if (MouseManager.isRightMouseClick) {
             for (int x = 0; x < 3; ++x)
-                for (int y = 0; y < 3; ++y){
-                    if (MouseManager.lastReleasedX >= BoundingBox[x][y].x && MouseManager.lastReleasedX <= BoundingBox[x][y].x + BoundingBox[x][y].width
-                     && MouseManager.lastReleasedY >= BoundingBox[x][y].y && MouseManager.lastReleasedY <= BoundingBox[x][y].y + BoundingBox[x][y].height){
+                for (int y = 0; y < 3; ++y) {
+                    if (MouseManager.lastReleasedX >= BoundingBox[x][y].x
+                            && MouseManager.lastReleasedX <= BoundingBox[x][y].x + BoundingBox[x][y].width
+                            && MouseManager.lastReleasedY >= BoundingBox[x][y].y
+                            && MouseManager.lastReleasedY <= BoundingBox[x][y].y + BoundingBox[x][y].height) {
                         MouseManager.isRightMouseClick = false;
                         slotX = x;
                         slotY = y;
@@ -221,7 +222,8 @@ public class Inventory implements ActionListener {
                 }
         }
     }
-    public void draw(Graphics2D g2){
+
+    public void draw(Graphics2D g2) {
         if (Main.topGameState().equals("Inventory")) {
             Color myColor = new Color(45, 39, 39, 190);
             g2.setColor(myColor);
@@ -232,10 +234,10 @@ public class Inventory implements ActionListener {
             if (currentIndex < 2)
                 inventoryUI.draw(g2, rightArrow);
             if (currentIndex > 0)
-                inventoryUI.draw(g2,leftArrow);
+                inventoryUI.draw(g2, leftArrow);
             for (int i = 0; i < 3; ++i)
                 for (int j = 0; j < 3; ++j) {
-                    if (!pages[currentIndex].slot[i][j].Name.equals("Empty")){
+                    if (!pages[currentIndex].slot[i][j].Name.equals("Empty")) {
                         inventoryUI.drawIcon(g2, BoundingBox[i][j], pages[currentIndex].slot[i][j]);
                     }
                 }
@@ -245,46 +247,66 @@ public class Inventory implements ActionListener {
             }
         }
     }
-    public void pushToInventory(Tile tile){
+
+    public Boolean isExist(String itemName) {
         for (int pageIndex = 0; pageIndex < 3; ++pageIndex)
             for (int y = 0; y < 3; ++y)
-                for (int x = 0; x < 3; ++x)
-                {
-                    if (pages[pageIndex].slot[x][y].Name.equals(tile.Name)){
+                for (int x = 0; x < 3; ++x) {
+                    if (pages[pageIndex].slot[x][y].Name.equals(itemName)) {
+                        return true;
+                    }
+                }
+        return false;
+    }
+
+    public void pushToInventory(Tile tile) {
+        for (int pageIndex = 0; pageIndex < 3; ++pageIndex)
+            for (int y = 0; y < 3; ++y)
+                for (int x = 0; x < 3; ++x) {
+                    if (pages[pageIndex].slot[x][y].Name.equals(tile.Name)) {
                         ++pages[pageIndex].slot[x][y].numOwn;
                         return;
                     }
                 }
         for (int pageIndex = 0; pageIndex < 3; ++pageIndex)
             for (int y = 0; y < 3; ++y)
-                for (int x = 0; x < 3; ++x){
-                    if (pages[pageIndex].slot[x][y].Name.equals("Empty")){
+                for (int x = 0; x < 3; ++x) {
+                    if (pages[pageIndex].slot[x][y].Name.equals("Empty")) {
                         pages[pageIndex].slot[x][y] = tile;
                         pages[pageIndex].slot[x][y].numOwn = 1;
                         return;
                     }
                 }
     }
-    public void dropFromInventory(int pageIndex, int x, int y){
-        if (!pages[pageIndex].slot[x][y].Name.equals("Empty")){
+
+    public void dropFromInventory(int pageIndex, int x, int y) {
+        if (!pages[pageIndex].slot[x][y].Name.equals("Empty")) {
             --pages[pageIndex].slot[x][y].numOwn;
-            Tile tile = new Tile(gamePanel.player.getMapX(), gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(), (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale), (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale + pages[pageIndex].slot[x][y].getHeight()), pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type, pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
+            Tile tile = new Tile(gamePanel.player.getMapX(),
+                    gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(),
+                    (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale),
+                    (int) (gamePanel.player.getMapY() + 16 * gamePanel.scale + pages[pageIndex].slot[x][y].getHeight()),
+                    pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type,
+                    pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
             gamePanel.currentMap.addTile(tile);
             if (pages[pageIndex].slot[x][y].numOwn == 0) {
                 pages[pageIndex].slot[x][y].Name = "Empty";
             }
         }
     }
-    public void deleteFromInventory(int pageIndex, int x, int y){
-        if (!pages[pageIndex].slot[x][y].Name.equals("Empty")){
+
+    public void deleteFromInventory(int pageIndex, int x, int y) {
+        if (!pages[pageIndex].slot[x][y].Name.equals("Empty")) {
             --pages[pageIndex].slot[x][y].numOwn;
             pages[pageIndex].slot[x][y].Name = "Empty";
         }
     }
-    void showInformation(Graphics2D g2, Tile tile){
+
+    void showInformation(Graphics2D g2, Tile tile) {
         inventoryUI.draw(g2, informationBoard);
-        inventoryUI.draw(g2,informationBoardBackArrow);
-        g2.drawImage(tile.image, (int) (43 * gamePanel.scale), (int) (81 * gamePanel.scale), (int) (50 * gamePanel.scale), (int) (50 * gamePanel.scale), null);
+        inventoryUI.draw(g2, informationBoardBackArrow);
+        g2.drawImage(tile.image, (int) (43 * gamePanel.scale), (int) (81 * gamePanel.scale),
+                (int) (50 * gamePanel.scale), (int) (50 * gamePanel.scale), null);
         int FontSize = 30;
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
@@ -296,12 +318,13 @@ public class Inventory implements ActionListener {
         int y = (int) (77 * gamePanel.scale);
         String str = "";
         int strSize = 0;
-        for (int i = 0; i < tile.Description.length(); ++i){
+        for (int i = 0; i < tile.Description.length(); ++i) {
             strSize += FontPixel;
-            if (tile.Description.charAt(i) == ' '){
+            if (tile.Description.charAt(i) == ' ') {
                 for (int j = i + 1; j <= tile.Description.length(); ++j)
-                    if (j == tile.Description.length() || tile.Description.charAt(j) == ' '){
-                        if (strSize + (j - i - 1) * FontPixel >= informationBoard.BoundingBox.width / 3 * 2 - 32 * gamePanel.scale){
+                    if (j == tile.Description.length() || tile.Description.charAt(j) == ' ') {
+                        if (strSize + (j - i - 1) * FontPixel >= informationBoard.BoundingBox.width / 3 * 2
+                                - 32 * gamePanel.scale) {
                             g2.drawString(str, x, y);
                             str = "";
                             y += 40;
@@ -311,31 +334,35 @@ public class Inventory implements ActionListener {
                     }
                 if (strSize > 0)
                     str += ' ';
-            } else str += tile.Description.charAt(i);
+            } else
+                str += tile.Description.charAt(i);
         }
         if (strSize > 0)
             g2.drawString(str, x, y);
     }
-    boolean isLeftClick(InventoryComponent comp){
-        if (MouseManager.isLeftMouseClick && MouseManager.lastReleasedX >= comp.BoundingBox.x && MouseManager.lastReleasedX <= comp.BoundingBox.x + comp.BoundingBox.width
-                && MouseManager.lastReleasedY >= comp.BoundingBox.y && MouseManager.lastReleasedY <= comp.BoundingBox.y + comp.BoundingBox.height) {
+
+    boolean isLeftClick(InventoryComponent comp) {
+        if (MouseManager.isLeftMouseClick && MouseManager.lastReleasedX >= comp.BoundingBox.x
+                && MouseManager.lastReleasedX <= comp.BoundingBox.x + comp.BoundingBox.width
+                && MouseManager.lastReleasedY >= comp.BoundingBox.y
+                && MouseManager.lastReleasedY <= comp.BoundingBox.y + comp.BoundingBox.height) {
             MouseManager.isLeftMouseClick = false;
             return true;
         }
         return false;
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        switch (command){
+        switch (command) {
             case "Use": {
                 isUsingItem = true;
                 usingItem.copyTile(pages[currentIndex].slot[slotX][slotY]);
-                //deleteFromInventory(currentIndex, slotX, slotY);
                 break;
             }
             case "Drop": {
-                dropFromInventory(currentIndex,slotX, slotY);
+                dropFromInventory(currentIndex, slotX, slotY);
                 break;
             }
             case "Info": {

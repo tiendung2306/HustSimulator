@@ -7,7 +7,7 @@ public class UI {
     GamePanel gamePanel;
     Graphics2D g2;
     Font arial_40;
-    public String currentDialogue = "";
+    public String currentDialog = "";
     public UI(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
@@ -52,11 +52,11 @@ public class UI {
         y += 16 * gamePanel.scale;
         String str = "";
         int strSize = 0;
-        for (int i = 0; i < currentDialogue.length(); ++i){
+        for (int i = 0; i < currentDialog.length(); ++i){
             strSize += FontPixel;
-            if (currentDialogue.charAt(i) == ' '){
-                for (int j = i + 1; j <= currentDialogue.length(); ++j)
-                    if (j == currentDialogue.length() || currentDialogue.charAt(j) == ' '){
+            if (currentDialog.charAt(i) == ' '){
+                for (int j = i + 1; j <= currentDialog.length(); ++j)
+                    if (j == currentDialog.length() || currentDialog.charAt(j) == ' '){
                         if (strSize + (j - i - 1) * FontPixel >= width - 32 * gamePanel.scale){
                             g2.drawString(str, x, y);
                             str = "";
@@ -67,7 +67,7 @@ public class UI {
                     }
                 if (strSize > 0)
                     str += ' ';
-            } else str += currentDialogue.charAt(i);
+            } else str += currentDialog.charAt(i);
         }
         if (strSize > 0)
             g2.drawString(str, x, y);
@@ -86,11 +86,11 @@ public class UI {
         y += 16 * gamePanel.scale;
         String str = "";
         int strSize = 0;
-        for (int i = 0; i < currentDialogue.length(); ++i){
+        for (int i = 0; i < currentDialog.length(); ++i){
             strSize += FontPixel;
-            if (currentDialogue.charAt(i) == ' '){
-                for (int j = i + 1; j <= currentDialogue.length(); ++j)
-                    if (j == currentDialogue.length() || currentDialogue.charAt(j) == ' '){
+            if (currentDialog.charAt(i) == ' '){
+                for (int j = i + 1; j <= currentDialog.length(); ++j)
+                    if (j == currentDialog.length() || currentDialog.charAt(j) == ' '){
                         if (strSize + (j - i - 1) * FontPixel >= width - 32 * gamePanel.scale){
                             g2.drawString(str, x, y);
                             str = "";
@@ -101,7 +101,7 @@ public class UI {
                     }
                 if (strSize > 0)
                     str += ' ';
-            } else str += currentDialogue.charAt(i);
+            } else str += currentDialog.charAt(i);
         }
         if (strSize > 0)
             g2.drawString(str, x, y);

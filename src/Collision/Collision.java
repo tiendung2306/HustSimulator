@@ -36,27 +36,27 @@ public class Collision {
             Main.pushGameState("Dialog");
         switch(collisionTile[0].Type){
             case "Collected" : {
-                ui.currentDialogue = "You've collected a ";
+                ui.currentDialog = "You've collected a ";
                 break;
             }
             case "Interact" : {
-                ui.currentDialogue = "You're interacting with ";
+                ui.currentDialog = "You're interacting with ";
                 break;
             }
             case "Obstacle" : {
-                ui.currentDialogue = "You're hitting ";
+                ui.currentDialog = "You're hitting ";
                 break;
             }
             case "Teleport" : {
-                ui.currentDialogue = "Teleport to ";
+                ui.currentDialog = "Teleport to ";
                 break;
             }
         }
         for (int i = 0; i < numCollision; ++i){
             if (i > 0 && collisionTile[i].Name.equals(""))
-                ui.currentDialogue += " and ";
+                ui.currentDialog += " and ";
             if(!collisionTile[i].Name.equals(""))
-                ui.currentDialogue += collisionTile[i].Name;
+                ui.currentDialog += collisionTile[i].Name;
         }
     }
     public void collectItem(int index){
