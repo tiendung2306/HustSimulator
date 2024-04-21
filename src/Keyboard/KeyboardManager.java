@@ -36,6 +36,14 @@ public class KeyboardManager implements KeyListener {
         }
         return -1; // chua khai bao phim nay`
     }
+    static public String getTypeKey(int code) {
+        for (Key k : keys) {
+            if (k.getKey() == code) {
+                return k.getKeyTag();
+            }
+        }
+        return "";
+    }
 
     static public String getTypeKey(int code) {
         for (Key k : keys) {

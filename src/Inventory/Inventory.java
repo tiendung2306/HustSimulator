@@ -170,6 +170,8 @@ public class Inventory implements ActionListener {
     public void update() {
         if (!Main.topGameState().equals("Inventory")) {
             currentIndex = 0;
+            isGettingInformation = false;
+            infoItem.Name = "Empty";
             return;
         }
         isUsingItem = false;
@@ -358,7 +360,6 @@ public class Inventory implements ActionListener {
             case "Use": {
                 isUsingItem = true;
                 usingItem.copyTile(pages[currentIndex].slot[slotX][slotY]);
-                // deleteFromInventory(currentIndex, slotX, slotY);
                 break;
             }
             case "Drop": {

@@ -326,8 +326,8 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialogue")
-                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause")) {
+        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
+                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause") || Main.topGameState().equals("Dialogue")) {
             if (chapter1.IntroFinished) {
                 drawMap(g2);
                 player.draw(g2);

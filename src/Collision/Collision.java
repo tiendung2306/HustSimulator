@@ -12,7 +12,6 @@ public class Collision {
     public UI ui;
     GamePanel gamePanel;
     int numCollision;
-    public boolean inventoryAllow = false;
     public Tile interactItem = new Tile();
     Tile[] collisionTile;
     int[] tileIndex;
@@ -27,11 +26,7 @@ public class Collision {
         tileIndex = collisionCheck.tileIndex;
         pushDialogue();
         if (numCollision == 1 && collisionTile[0].Type.equals("Interact"))
-        {
-            inventoryAllow = true;
             interactItem = collisionTile[0];
-        }
-        else inventoryAllow = false;
         for (int i = 0; i < numCollision; ++i)
             if (collisionTile[i].Type.equals("Collected"))
                 collectItem(i);

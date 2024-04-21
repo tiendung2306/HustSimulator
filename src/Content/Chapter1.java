@@ -49,11 +49,7 @@ public class Chapter1 {
             Dialogue("Theo như tìm hiểu thì ngôn ngữ ở đây có vẻ không khác ở thế giới cũ là bao");
         if (completedAct == 4)
             Dialogue("Bắt đầu tìm hiểu xung quanh thôi");
-        if (completedAct == 5) {
-            if (!Main.topGameState().equals("Dialogue"))
-                ++completedAct;
-        }
-        if (completedAct == 6)
+        if (completedAct == 5)
             nextTimeline();
     }
 
@@ -107,10 +103,8 @@ public class Chapter1 {
         if (completedAct == 4)
             nextTimeline();
     }
-
-    public void update() {
-        if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory")
-                && !Main.topGameState().equals("Dialogue"))
+    public void update(){
+        if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory") && !Main.topGameState().equals("Dialog") && !Main.topGameState().equals("Dialogue"))
             return;
         switch (currentTimeline) {
             case 0: {
@@ -136,7 +130,6 @@ public class Chapter1 {
         if (!Main.topGameState().equals("Dialogue")) {
             ui.currentDialogue = str;
             Main.pushGameState("Dialogue");
-            ++completedAct;
         }
     }
 

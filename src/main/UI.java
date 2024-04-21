@@ -19,6 +19,9 @@ public class UI {
         if (Main.topGameState().equals("GamePause")){
             drawPauseScreen();
         }
+        if (Main.topGameState().equals("Dialog")){
+            drawDialogScreen();
+        }
         if (Main.topGameState().equals("Dialogue")){
             drawDialogueScreen();
         }
@@ -34,6 +37,40 @@ public class UI {
         int x = (int) (gamePanel.screenWidth / 2 - length / 2);
         int y = (int) (gamePanel.screenHeight / 2);
         g2.drawString(text, x, y);
+    }
+    public void drawDialogScreen(){
+        int x = 32 * (int)gamePanel.scale;
+        int width = (int) (gamePanel.screenWidth - 64 * gamePanel.scale);
+        int height = (int) (64 * gamePanel.scale);
+        int y = (int) (gamePanel.screenHeight - height - 8 * gamePanel.scale);
+        int FontSize = 28;
+        int FontPixel = 12;
+        drawSubWindow(x,y,width,height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
+        x += 16 * gamePanel.scale;
+        y += 16 * gamePanel.scale;
+        String str = "";
+        int strSize = 0;
+        for (int i = 0; i < currentDialogue.length(); ++i){
+            strSize += FontPixel;
+            if (currentDialogue.charAt(i) == ' '){
+                for (int j = i + 1; j <= currentDialogue.length(); ++j)
+                    if (j == currentDialogue.length() || currentDialogue.charAt(j) == ' '){
+                        if (strSize + (j - i - 1) * FontPixel >= width - 32 * gamePanel.scale){
+                            g2.drawString(str, x, y);
+                            str = "";
+                            y += 40;
+                            strSize = 0;
+                        }
+                        break;
+                    }
+                if (strSize > 0)
+                    str += ' ';
+            } else str += currentDialogue.charAt(i);
+        }
+        if (strSize > 0)
+            g2.drawString(str, x, y);
     }
     public void drawDialogueScreen(){
         int x = 32 * (int)gamePanel.scale;
