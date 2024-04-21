@@ -24,16 +24,16 @@ public class Collision {
         numCollision = collisionCheck.numCollision;
         collisionTile = collisionCheck.collisionTile;
         tileIndex = collisionCheck.tileIndex;
-        pushDialogue();
+        pushDialog();
         if (numCollision == 1 && collisionTile[0].Type.equals("Interact"))
             interactItem = collisionTile[0];
         for (int i = 0; i < numCollision; ++i)
             if (collisionTile[i].Type.equals("Collected"))
                 collectItem(i);
     }
-    public void pushDialogue(){
-        if (!Main.topGameState().equals("Dialogue"))
-            Main.pushGameState("Dialogue");
+    public void pushDialog(){
+        if (!Main.topGameState().equals("Dialog"))
+            Main.pushGameState("Dialog");
         switch(collisionTile[0].Type){
             case "Collected" : {
                 ui.currentDialogue = "You've collected a ";

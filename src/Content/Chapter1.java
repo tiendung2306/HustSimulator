@@ -42,6 +42,7 @@ public class Chapter1 {
     }
     void Timeline1(){
         IntroFinished = true;
+        System.out.println(completedAct);
         if (completedAct == 0){
             if (inventory.isGettingInformation && inventory.infoItem.Name.equals("Laptop gaming MSI Titan GT77 12UHS 204VN"))
                 laptopMission = true;
@@ -67,7 +68,7 @@ public class Chapter1 {
         }
     }
     void Timeline3(){
-        System.out.println(1);
+        //System.out.println(1);
     }
     public void update(){
         if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory") && !Main.topGameState().equals("Dialog") && !Main.topGameState().equals("Dialogue"))
