@@ -72,7 +72,7 @@ public class KeyHandler implements KeyListener{
         if(code == KeyboardManager.getKey("PHONE")){
             isPhonePressed = true;
         }
-        if(KeyboardManager.getTypeKey(code) == "INTERACT") {
+        if(KeyboardManager.getTypeKey(code).equals("INTERACT")) {
             if (Main.topGameState().equals("Dialog"))
             {
                 Main.popGameState();
@@ -80,7 +80,7 @@ public class KeyHandler implements KeyListener{
             }
             else isInteract = true;
         }
-        if(KeyboardManager.getTypeKey(code) == "NEXTDIALOGUE") {
+        if(KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE")) {
             if (Main.topGameState().equals("Dialogue")) {
                 Main.popGameState();
                 ++gamePanel.chapter1.completedAct;

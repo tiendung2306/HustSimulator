@@ -1,16 +1,39 @@
 package main;
 
+import tile.Tile;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class UI {
     GamePanel gamePanel;
     Graphics2D g2;
     Font arial_40;
     public String currentDialog = "";
+    public String text = "";
+    JPanel textPanel;
+    JTextArea textArea;
+    BufferedImage nextIcon;
+    int iconX = 207 * gamePanel.scale, iconY = 170 * gamePanel.scale, step = 0;
+    boolean reverse;
     public UI(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
+        getImage();
+    }
+    void getImage(){
+        try {
+            nextIcon = ImageIO.read(new FileInputStream("res/Dialog/next-icon.png"));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void draw(Graphics2D g2){
         this.g2 = g2;
@@ -57,7 +80,7 @@ public class UI {
             if (currentDialog.charAt(i) == ' '){
                 for (int j = i + 1; j <= currentDialog.length(); ++j)
                     if (j == currentDialog.length() || currentDialog.charAt(j) == ' '){
-                        if (strSize + (j - i - 1) * FontPixel >= width - 32 * gamePanel.scale){
+                        if (strSize + (j - i - 1) * FontPixel >= width - 36 * gamePanel.scale){
                             g2.drawString(str, x, y);
                             str = "";
                             y += 40;
@@ -82,6 +105,7 @@ public class UI {
         drawSubWindow(x,y,width,height);
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
+        //timer.start();
         x += 16 * gamePanel.scale;
         y += 16 * gamePanel.scale;
         String str = "";
@@ -91,7 +115,7 @@ public class UI {
             if (currentDialog.charAt(i) == ' '){
                 for (int j = i + 1; j <= currentDialog.length(); ++j)
                     if (j == currentDialog.length() || currentDialog.charAt(j) == ' '){
-                        if (strSize + (j - i - 1) * FontPixel >= width - 32 * gamePanel.scale){
+                        if (strSize + (j - i - 1) * FontPixel >= width - 36 * gamePanel.scale){
                             g2.drawString(str, x, y);
                             str = "";
                             y += 40;
@@ -105,7 +129,42 @@ public class UI {
         }
         if (strSize > 0)
             g2.drawString(str, x, y);
+        ++step;
+        if (step == 8) {
+            if (!reverse) {
+                iconX += gamePanel.scale;
+                if (iconX == 209 * gamePanel.scale) {
+                    reverse = true;
+                }
+            } else {
+                iconX -= gamePanel.scale;
+                if (iconX == 207 * gamePanel.scale) {
+                    reverse = false;
+                }
+            }
+            step = 0;
+        }
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
+        g2.drawString("Press Space", 183 * gamePanel.scale, 175 * gamePanel.scale);
+        g2.drawImage(nextIcon, iconX, iconY, 10 * gamePanel.scale, 7 * gamePanel.scale, null);
     }
+    int i;
+    Timer timer = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            char character[] = text.toCharArray();
+            int arrayNumber = character.length;
+
+            String addedCharacter = String.valueOf(character[i]);
+            textArea.append(addedCharacter);
+
+            i++;
+            if (i == arrayNumber){
+                i = 0;
+                timer.stop();
+            }
+        }
+    });
     public void drawInteractButton(){
         String text =  "F";
         g2.setColor(Color.BLACK);

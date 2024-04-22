@@ -5,28 +5,26 @@ import main.Main;
 import main.UI;
 import phone.Phone;
 import Inventory.Inventory;
-import tile.Tile;
 import Collision.Collision;
+import GUI.MissionDescription;
 
 public class Chapter1 {
     GamePanel gamePanel;
     UI ui;
-
     Inventory inventory;
     Collision collision;
     Phone phone;
-
+    MissionDescription missionDescription;
     boolean isDrawBackground;
     public int currentTimeline, completedAct;
-    public boolean IntroFinished = false, phoneMission = false, laptopMission = false, studentIDMission = false,
-            noodleMission = false;
-
+    public boolean IntroFinished = false, laptopMission = false, studentIDMission = false, noodleMission = false;
     public Chapter1(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
         this.inventory = gamePanel.inventory;
         this.collision = gamePanel.collision;
         this.phone = gamePanel.phone;
+        this.missionDescription = gamePanel.missionDescription;
         currentTimeline = 0;
         completedAct = 0;
     }
@@ -43,19 +41,39 @@ public class Chapter1 {
         if (completedAct == 1)
             Dialogue("Mình đang là anh hùng trong cuộc chiến chống lại quỷ vương mà. Đây là đâu?");
         if (completedAct == 2)
-            Dialogue(
-                    "Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
+            Dialogue("Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
         if (completedAct == 3)
-            Dialogue("Theo như tìm hiểu thì ngôn ngữ ở đây có vẻ không khác ở thế giới cũ là bao");
+            Dialogue("Eimi, Yua, không biết 2 cô ấy có ổn không?");
         if (completedAct == 4)
-            Dialogue("Bắt đầu tìm hiểu xung quanh thôi");
+            Dialogue("Mong rằng những giây phút hi sinh cuối cùng của mình đủ thời gian giúp họ trốn thoát.");
         if (completedAct == 5)
+            Dialogue("Mình phải tìm cách để trở lại thế giới cũ!!!");
+        if (completedAct == 6)
+            Dialogue("...");
+        if (completedAct == 7)
+            Dialogue("Dòng chảy Ma Pháp ở thế giới này thật hỗn loạn, mình không thể khai triển sức mạnh được.");
+        if (completedAct == 8)
+            Dialogue("Có vẻ ngôn ngữ ở đây có vẻ không khác ở thế giới cũ là bao.");
+        if (completedAct == 9)
+            Dialogue("Bắt đầu tìm hiểu xung quanh thôi!");
+        if (completedAct == 10)
             nextTimeline();
     }
 
     void Timeline1() {
         IntroFinished = true;
-        if (completedAct == 0) {
+        if (completedAct == 0)
+            Dialogue("Đây là căn phòng của mình sao?");
+        if (completedAct == 1)
+            Dialogue("Nó khá nhỏ so với tòa lâu đài mình ở kiếp trước. Nhưng nó chứa khá là nhiều thứ thú vị!");
+        if (completedAct == 2)
+            Dialogue("Thế giới này chứa những đồ vật hoạt động bằng một thứ người ta gọi là Khoa Học.");
+        if (completedAct == 3)
+            Dialogue("Cái thứ Khoa học này so với Ma Pháp tồn tại ở thế giới của mình khá là giống nhau.");
+        if (completedAct == 4)
+            Dialogue("Biết tìm kiếm thông tin ở đâu đây?");
+        missionDescription.setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng");
+        if (completedAct == 5) {
             if (inventory.isGettingInformation
                     && inventory.infoItem.Name.equals("Laptop gaming MSI Titan GT77 12UHS 204VN"))
                 laptopMission = true;
@@ -64,12 +82,21 @@ public class Chapter1 {
             if (laptopMission && studentIDMission)
                 ++completedAct;
         }
-        if (completedAct == 1)
+        if (completedAct == 6)
+            Dialogue("Đại khái thì mình đã nắm bắt được mọi thứ xung quanh.");
+        if (completedAct == 7)
+            Dialogue("Ọc ọc ọc");
+        if (completedAct == 8)
+            Dialogue("...");
+        if (completedAct == 9)
+            Dialogue("Tạm gác việc cứu thế giới lại vậy, mình cần cứu đói đã!");
+        if (completedAct == 10)
             nextTimeline();
     }
 
     void Timeline2() {
         if (completedAct == 0) {
+            missionDescription.setMissionDescription("Tìm mì tôm và lại nấu ăn đi");
             if (collision.interactItem.Name.equals("Pan") && inventory.isUsingItem
                     && inventory.usingItem.Name.equals("Kettle")) {
                 noodleMission = true;
@@ -124,8 +151,9 @@ public class Chapter1 {
     }
 
     void Dialogue(String str) {
-        if (!Main.topGameState().equals("Dialogue")) {
+        if (Main.topGameState().equals("GamePlay")) {
             ui.currentDialog = str;
+            ui.text = str;
             Main.pushGameState("Dialogue");
         }
     }

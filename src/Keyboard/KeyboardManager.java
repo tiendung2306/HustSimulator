@@ -4,8 +4,6 @@
 
 package Keyboard;
 
-import static java.lang.Math.cos;
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.event.KeyListener;
