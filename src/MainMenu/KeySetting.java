@@ -80,6 +80,18 @@ public class KeySetting extends JPanel {
     public void keysetting_squarerightchange() {
         check = "squareright1";
     }
+    public void keysetting_square1(){check = "square1";}
+    public void keysetting_square2(){check = "square2";}
+    public void keysetting_square3(){check = "square3";}
+    public void keysetting_square4(){check = "square4";}
+    public void keysetting_square5(){check = "square5";}
+    public void keysetting_square6(){check = "square6";}
+    public void keysetting_square1change(){check = "square1change";}
+    public void keysetting_square2change(){check = "square2change";}
+    public void keysetting_square3change(){check = "square3change";}
+    public void keysetting_square4change(){check = "square4change";}
+    public void keysetting_square5change(){check = "square5change";}
+    public void keysetting_square6change(){check = "square6change";}
     public void getInputKeyAndBindingKey(String keyName)
     {
         if (!checkPressAKey)
@@ -116,6 +128,24 @@ public class KeySetting extends JPanel {
         } else if (check.equals("squareright")) {
             x_square = 666 * Main.ex;
             y_square = 137 * Main.ey;
+        } else if (check.equals("square1")) {
+            x_square = 66 * Main.ex;
+            y_square = 397 * Main.ey;
+        } else if (check.equals("square2")) {
+            x_square = 666 * Main.ex;
+            y_square = 397 * Main.ey;
+        } else if (check.equals("square3")) {
+            x_square = 66 * Main.ex;
+            y_square = 447 * Main.ey;
+        } else if (check.equals("square4")) {
+            x_square = 666 * Main.ex;
+            y_square = 447 * Main.ey;
+        } else if (check.equals("square5")) {
+            x_square = 66 * Main.ex;
+            y_square = 497 * Main.ey;
+        } else if (check.equals("square6")) {
+            x_square = 666 * Main.ex;
+            y_square = 497 * Main.ey;
         } else if (check.equals("squareup1")) {
             if(!prevCheck.equals(check)) {
                 KeyboardManager.resetReleasedKey();
@@ -148,6 +178,18 @@ public class KeySetting extends JPanel {
             enterkey = enterkey1;
             checkPressAKey = false;
             getInputKeyAndBindingKey("RIGHT");
+        } else if (check.equals("square1change")) {
+
+        } else if (check.equals("square2change")) {
+
+        } else if (check.equals("square3change")) {
+
+        } else if (check.equals("square4change")) {
+
+        } else if (check.equals("square5change")) {
+
+        } else if (check.equals("square6change")) {
+
         } else {
             exitImg = null;
             x_square = 999 * Main.ex;
@@ -165,7 +207,7 @@ public class KeySetting extends JPanel {
         g2.drawImage(exitImg, (int) (60 * Main.ex), (int) (12 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         g2.setFont(new Font("Arial", Font.BOLD, (int) (25 * Main.ex)));
         g2.setColor(Color.black);
-        g2.drawImage(keyboardimg, (int) (184 * Main.ex), (int) (207 * Main.ey), (int) (400 * Main.ex), (int) (200 * Main.ey), null);
+        g2.drawImage(keyboardimg, (int) (184 * Main.ex), (int) (192 * Main.ey), (int) (400 * Main.ex), (int) (200 * Main.ey), null);
         g2.drawRect((int) (70 * Main.ex), (int) (90 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
         g2.drawString("UP", (float) (130 * Main.ex), (float) (115 * Main.ey));
         g2.drawRect((int) (670 * Main.ex), (int) (90 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
@@ -174,8 +216,18 @@ public class KeySetting extends JPanel {
         g2.drawString("DOWN", (float) (130 * Main.ex), (float) (165 * Main.ey));
         g2.drawRect((int) (670 * Main.ex), (int) (140 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
         g2.drawString("RIGHT", (float) (560 * Main.ex), (float) (165 * Main.ey));
+        g2.drawRect((int) (70 * Main.ex), (int) (400 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("ANH", (float) (130 * Main.ex), (float) (425 * Main.ey));
+        g2.drawRect((int) (670 * Main.ex), (int) (400 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("ĐỜI", (float) (560 * Main.ex), (float) (425 * Main.ey));
         g2.drawRect((int) (70 * Main.ex), (int) (450 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("TÔI", (float) (130 * Main.ex), (float) (475 * Main.ey));
         g2.drawRect((int) (670 * Main.ex), (int) (450 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("LIÊM", (float) (560 * Main.ex), (float) (475 * Main.ey));
+        g2.drawRect((int) (70 * Main.ex), (int) (500 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("MỘT", (float) (130 * Main.ex), (float) (525 * Main.ey));
+        g2.drawRect((int) (670 * Main.ex), (int) (500 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("KHIẾT", (float) (560 * Main.ex), (float) (525 * Main.ey));
         g2.setFont(new Font("Arial", Font.ITALIC, (int) (25 * Main.ex)));
         g2.drawString(upKeyName, (float) (72 * Main.ex), (float) (115 * Main.ey));
         g2.drawString(leftKeyName, (float) (674 * Main.ex), (float) (115 * Main.ey));

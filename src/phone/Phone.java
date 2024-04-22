@@ -73,10 +73,10 @@ public class Phone {
     }
 
     public void screenResize() {
-        phoneWidth = Math.max(phone.getWidth() / 10 * 2, phone.getWidth() / 10 * gamePanel.screenWidth / 680);
-        phoneHeight = Math.max(phone.getHeight() / 10 * 2, phone.getHeight() / 10 * gamePanel.screenWidth / 680);
-        phoneStartX = gamePanel.screenWidth / 2 - phoneWidth / 2;
-        phoneStartY = gamePanel.screenHeight / 2 - phoneHeight / 2;
+        phoneWidth = (int) Math.max(phone.getWidth() / 10 * 2, phone.getWidth() / 10 * gamePanel.screenWidth / 680);
+        phoneHeight = (int) Math.max(phone.getHeight() / 10 * 2, phone.getHeight() / 10 * gamePanel.screenWidth / 680);
+        phoneStartX = (int) (gamePanel.screenWidth / 2 - phoneWidth / 2);
+        phoneStartY = (int) (gamePanel.screenHeight / 2 - phoneHeight / 2);
 
         emptyLineSpaceHeight = phone.getHeight() / 100 * 1; // chieu cao giua hai dong ke nhau
 
