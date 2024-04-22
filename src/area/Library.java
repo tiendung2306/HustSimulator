@@ -29,7 +29,7 @@ public class Library extends Map {
         tileBookcase02 = new TileSection(gamePanel,0,77,16,140,"Bookcase 02","Interact","","res/tile/tu_sach02.png");
         tileBookcase03 = new TileSection(gamePanel,44,170,81,61,"Bookcase 03","Interact","","res/tile/tu_sach03.png");
         tileDoorLibrary = new TileSection(gamePanel,127,12,92,37,"Door Library","Teleport","","res/tile/cua_thu_vien.png");
-        tileWallLibrary = new TileSection(gamePanel,0,0,320,49,"","Obstacle","","res/tile/no_thing.png");
+        tileWallLibrary = new TileSection(gamePanel,0,0,320,49,"","","","res/tile/no_thing.png");
         tileChairLibrary = new TileSection[6];
         tileTableLibrary = new TileSection[6];
         setUpTable();
@@ -39,12 +39,12 @@ public class Library extends Map {
     public void setUpTileLibrary() {
         numTileContainer = 0;
         mapIndex = 3;
+        addTile(tileDoorLibrary);
         addTile(tileWallLibrary);
         addTile(tileBookcase01_1);
         addTile(tileBookcase01_2);
         addTile(tileBookcase02);
         addTile(tileBookcase03);
-        addTile(tileDoorLibrary);
         for(int i = 0; i < 6; i++)
             addTile(tileChairLibrary[i]);
         for(int i = 0; i < 6; i++)
