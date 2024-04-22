@@ -65,6 +65,8 @@ public class GamePanel extends JPanel implements Runnable {
     public static int next_screenHeight = 192 * scale;
     public static int prev_screenWidth = 256 * scale;
     public static int prev_screenHeight = 192 * scale;
+    public static int next_scale = 3;
+    public static int prev_scale = 3;
 
     // ==============================================================================================
 
