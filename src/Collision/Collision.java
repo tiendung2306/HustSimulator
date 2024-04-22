@@ -34,6 +34,10 @@ public class Collision {
         if (!Main.topGameState().equals("Dialogue"))
             Main.pushGameState("Dialogue");
         switch(collisionTile[0].Type){
+            case "Teleport" : {
+                ui.currentDialogue = "Teleport to ";
+                break;
+            }
             case "Collected" : {
                 ui.currentDialogue = "You've collected a ";
                 break;
@@ -46,13 +50,9 @@ public class Collision {
                 ui.currentDialogue = "You're hitting ";
                 break;
             }
-            case "Teleport" : {
-                ui.currentDialogue = "Teleport to ";
-                break;
-            }
         }
         for (int i = 0; i < numCollision; ++i){
-            if (i > 0 && collisionTile[i].Name.equals(""))
+            if (i > 0 && !collisionTile[i-1].Name.equals("") && !collisionTile[i].Name.equals(""))
                 ui.currentDialogue += " and ";
             if(!collisionTile[i].Name.equals(""))
                 ui.currentDialogue += collisionTile[i].Name;

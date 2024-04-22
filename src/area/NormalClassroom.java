@@ -27,7 +27,7 @@ public class NormalClassroom extends Map {
         tileTable = new TileSection[10];
         tileDoor01 = new TileSection(gamePanel,30,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png");
         tileDoor02 = new TileSection(gamePanel,261,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png");
-        tileTableTeacher = new TileSection(gamePanel,273,177,30,62,"Teacher Table Classroom","Obstacle","","res/tile/ban_gv.png");
+        tileTableTeacher = new TileSection(gamePanel,273,177,30,62,"Table Teacher","Obstacle","","res/tile/ban_gv.png");
         tileWallNormalClassroom = new TileSection(gamePanel,0,0,320,79,"","Obstacle","","res/tile/no_thing.png");
         setUpTable();
         setUpTileNormalClassroom();
@@ -35,10 +35,10 @@ public class NormalClassroom extends Map {
     public void setUpTileNormalClassroom() {
         numTileContainer = 0;
         mapIndex = 1;
-        addTile(tileWallNormalClassroom);
-        addTile(tileTableTeacher);
         addTile(tileDoor01);
         addTile(tileDoor02);
+        addTile(tileWallNormalClassroom);
+        addTile(tileTableTeacher);
         for (int i = 0; i < 10; i++)
             addTile(tileTable[i]);
     }
@@ -50,7 +50,7 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < 10; i++) {
             count++;
             if (count <= 5) {
-                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","","res/tile/ban_hs.png");
+                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Student","Obstacle","","res/tile/ban_hs.png");
                 x1 += 42;
             }
             if (count == 5) {
@@ -58,7 +58,7 @@ public class NormalClassroom extends Map {
                 x1 = 33;
             }
             if (count > 5) {
-                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Classroom","Obstacle","","res/tile/ban_hs.png");
+                tileTable[i] = new TileSection(gamePanel,x1,y1,20,46,"Table Student","Obstacle","","res/tile/ban_hs.png");
                 x1 += 42;
             }
         }

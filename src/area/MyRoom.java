@@ -73,6 +73,7 @@ public class MyRoom extends Map {
     public void setUpTileMyRoom() {
         numTileContainer = 0;
         mapIndex = 5;
+        addTile(tileDoorMyRoom);
         addTile(tileWallMyRoom);
         addTile(tileBed);
         addTile(tilePC);
@@ -81,7 +82,6 @@ public class MyRoom extends Map {
         addTile(tileBookshelf);
         addTile((tileWardrobe));
         addTile(tileKitchen);
-        addTile(tileDoorMyRoom);
         addTile(tilePan);
         addTile(tileKettle);
         addTile(tileLaptop);
