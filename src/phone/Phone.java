@@ -98,10 +98,16 @@ public class Phone {
         spaceSizeBetweenLogoAndName = phoneHeight / 40;
     }
 
+    public void setPhoneState(String stateName) {
+        phoneState = stateName;
+        MouseManager.resetLastReleasedPos();
+    }
+
     public void update() {
         if (!isDrawPhone)
             return;
         checkClicked();
+        // System.out.println(phoneState);
     }
 
     void getImage() {
@@ -234,6 +240,7 @@ public class Phone {
                         && MouseManager.lastReleasedY >= firstLogoY
                         && MouseManager.lastReleasedY <= firstLogoY + logoSize) {
                     phoneState = "fHUST";
+                    currentPhonePage = 1;
                     isOpenFhust = true;
                 } else if (MouseManager.lastReleasedX >= firstLogoX + logoSize + spaceSizeBetween2Logo
                         && MouseManager.lastReleasedX <= firstLogoX + 2 * logoSize + spaceSizeBetween2Logo
@@ -276,7 +283,8 @@ public class Phone {
             return;
         Color myColor = new Color(45, 39, 39, 190);
         g2.setColor(myColor);
-        g2.fillRect(0, 0, (int) gamePanel.screenWidth, (int) gamePanel.screenHeight); // ve lop background mo sau cai dien thoai
+        g2.fillRect(0, 0, (int) gamePanel.screenWidth, (int) gamePanel.screenHeight); // ve lop background mo sau cai
+                                                                                      // dien thoai
 
         switch (phoneState) {
             case "fHUST":
@@ -303,15 +311,17 @@ public class Phone {
                         firstLogoY, 0);
                 break;
             case "Messager":
-                if (!isNewMessage) {
+                if (!isNewMessage) { //neu khong co tin nhan moi
                     myColor = new Color(0, 0, 0);
                     g2.setColor(myColor);
                     g2.drawImage(messagerNoNewMessage, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
-                    g2.setFont(new Font("Arial", Font.ITALIC, 18));
+                    g2.setFont(new Font("Arial", Font.ITALIC, Math.min((int)(gamePanel.screenWidth / 43), 20)));
                     g2.drawString("Không có tin nhắn mới", phoneStartX + phoneWidth * 37 / 200,
                             phoneStartY + phoneHeight / 3);
-                    break;
+                } else {
+                    
                 }
+                break;
         }
 
     }

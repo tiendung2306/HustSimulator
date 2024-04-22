@@ -7,9 +7,11 @@ import Inventory.Inventory;
 import MainMenu.*;
 import area.*;
 import entity.Player;
+import javafx.util.converter.TimeStringConverter;
 import map.Map;
 import sound.Sound;
 import tile.TileManager;
+import time.TimeSystem;
 import sound.SoundManager;
 import Mouse.MouseManager;
 import phone.Phone;
@@ -41,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
     public TileManager tileManager = new TileManager(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
+    TimeSystem timeSystem = new TimeSystem();
 
     public static Main_Menu mainMenu = new Main_Menu();
     public static NextMainMenu nextMainMenu = new NextMainMenu();
@@ -239,6 +242,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
+        timeSystem.update();
         soundManager.update();
         chapter1.update();
         phone.update();
@@ -279,7 +283,10 @@ public class GamePanel extends JPanel implements Runnable {
             }
             if (keyH.isPhonePressed) {
                 // System.out.println("phone-kun xin chao tat ca cac ban");
-                phone.isDrawPhone = !phone.isDrawPhone;
+                if(inventory.isExist("Iphone 1000000 ProMax")) {
+                    phone.isDrawPhone = !phone.isDrawPhone;
+                    phone.setPhoneState("Main Menu");
+                }
                 keyH.isPhonePressed = false;
             }
         }
