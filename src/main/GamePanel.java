@@ -27,9 +27,9 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
-    public static int scale = 3;
-    public static int screenWidth = 256 * scale;
-    public static int screenHeight = 192 * scale;
+//    public static int scale = 3;
+//    public static int screenWidth = 256 * scale;
+//    public static int screenHeight = 192 * scale;
 
     // =================================================================================================================
     // MAP SETTINGS
