@@ -36,7 +36,7 @@ public class Collision {
             Main.pushGameState("Dialog");
         switch(collisionTile[0].Type){
             case "Teleport" : {
-                ui.currentDialogue = "Teleport to ";
+                ui.currentDialog = "Teleport to ";
                 break;
             }
             case "Collected" : {
@@ -54,7 +54,7 @@ public class Collision {
         }
         for (int i = 0; i < numCollision; ++i){
             if (i > 0 && !collisionTile[i-1].Name.equals("") && !collisionTile[i].Name.equals(""))
-                ui.currentDialogue += " and ";
+                ui.currentDialog += " and ";
             if(!collisionTile[i].Name.equals(""))
                 ui.currentDialog += collisionTile[i].Name;
         }
