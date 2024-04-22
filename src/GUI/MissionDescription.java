@@ -25,7 +25,7 @@ public class MissionDescription {
     public void draw(Graphics2D g2) {
         if (!Main.topGameState().equals("GamePlay"))
             return;
-        g2.setFont(new Font("Arial", Font.BOLD, (int)(gamePanel.screenWidth / 55)));
+        g2.setFont(new Font("Arial", Font.BOLD, (int) (gamePanel.screenWidth / 55)));
         int width = g2.getFontMetrics().stringWidth(missionDescriptionText);
         FontMetrics fm = g2.getFontMetrics();
         Rectangle2D rect = fm.getStringBounds(missionDescriptionText, g2);
@@ -37,7 +37,8 @@ public class MissionDescription {
                 (int) rect.getHeight());
 
         g2.setColor(Color.DARK_GRAY);
-        g2.drawString(missionDescriptionText, gamePanel.screenWidth - width - gamePanel.screenWidth / 75, gamePanel.screenHeight / 6);
+        g2.drawString(missionDescriptionText, gamePanel.screenWidth - width - gamePanel.screenWidth / 75,
+                gamePanel.screenHeight / 6);
 
     }
 }

@@ -5,8 +5,8 @@ import main.Main;
 import main.UI;
 import phone.Phone;
 import Inventory.Inventory;
-import tile.Tile;
 import Collision.Collision;
+import GUI.MissionDescription;
 
 public class Chapter1 {
     GamePanel gamePanel;
@@ -14,6 +14,7 @@ public class Chapter1 {
 
     Inventory inventory;
     Collision collision;
+    MissionDescription missionDescription;
     Phone phone;
 
     boolean isDrawBackground;
@@ -27,6 +28,7 @@ public class Chapter1 {
         this.inventory = gamePanel.inventory;
         this.collision = gamePanel.collision;
         this.phone = gamePanel.phone;
+        this.missionDescription = gamePanel.missionDescription;
         currentTimeline = 0;
         completedAct = 0;
     }
@@ -87,21 +89,33 @@ public class Chapter1 {
         if (completedAct == 0) {
             if (!inventory.isExist("Iphone 1000000 ProMax")) { // phai co dien thoai trong balo
                 Dialogue("Điện thoại của tôi đâu rồi nhỉ");
+                missionDescription.setMissionDescription("Tìm điện thoại");
             } else
                 completedAct++;
         } else if (completedAct == 1) {
-            Dialogue("Mình phải mở điện thoại ra kiểm tra xem hôm nay có tiết học gì không nào");
-            phone.isOpenFhust = false;
+            if (inventory.isExist("Iphone 1000000 ProMax")) {
+                if (Main.topGameState().equals("GamePlay"))
+                    Dialogue("Mình phải mở điện thoại ra kiểm tra xem hôm nay có tiết học gì không nào");
+                    missionDescription.setMissionDescription("Kiểm tra app fHUST");
+                phone.isOpenFhust = false;
+            }
         } else if (completedAct == 2) {
-            if(phone.isOpenFhust == true && phone.isDrawPhone == false) {
+            if (phone.isOpenFhust == true && phone.isDrawPhone == false) {
                 Dialogue("Vậy là hôm nay mình không có lịch học");
+                missionDescription.setMissionDescription("");
             }
         }
         if (completedAct == 3)
             nextTimeline();
     }
-    public void update(){
-        if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory") && !Main.topGameState().equals("Dialog") && !Main.topGameState().equals("Dialogue"))
+
+    void Timeline4() {
+        
+    }
+
+    public void update() {
+        if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory")
+                && !Main.topGameState().equals("Dialog") && !Main.topGameState().equals("Dialogue"))
             return;
         switch (currentTimeline) {
             case 0: {
@@ -118,6 +132,10 @@ public class Chapter1 {
             }
             case 3: {
                 Timeline3();
+                break;
+            }
+            case 4: {
+                Timeline4();
                 break;
             }
         }
