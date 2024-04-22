@@ -121,6 +121,24 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                 else if ((x_enter > 667 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 705 * Main.ex)
                         && (y_enter < 175 * Main.ey))
                     keySetting.keysetting_squareright();
+                else if ((x_enter > 67 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 105 * Main.ex)
+                        && (y_enter < 435 * Main.ey))
+                    keySetting.keysetting_square1();
+                else if ((x_enter > 667 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 705 * Main.ex)
+                        && (y_enter < 435 * Main.ey))
+                    keySetting.keysetting_square2();
+                else if ((x_enter > 67 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 105 * Main.ex)
+                        && (y_enter < 485 * Main.ey))
+                    keySetting.keysetting_square3();
+                else if ((x_enter > 667 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 705 * Main.ex)
+                        && (y_enter < 485 * Main.ey))
+                    keySetting.keysetting_square4();
+                else if ((x_enter > 67 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 105 * Main.ex)
+                        && (y_enter < 535 * Main.ey))
+                    keySetting.keysetting_square5();
+                else if ((x_enter > 667 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 705 * Main.ex)
+                        && (y_enter < 535 * Main.ey))
+                    keySetting.keysetting_square6();
                 else keySetting.keysettingrollback();
             }
         } else if (Main.topGameState().equals(Main.states[5])) {
@@ -130,6 +148,24 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
             } else if ((x_enter > 599 * Main.ex) && (y_enter > 29 * Main.ey) && (x_enter < 731 * Main.ex)
                     && (y_enter < 81 * Main.ey)) {
                 videoSetting.buttonSaveEnter();
+            } else if ((x_enter > 256 * Main.ex) && (y_enter > 313 * Main.ey) && (x_enter < 370 * Main.ex)
+                    && (y_enter < 338 * Main.ey) && VideoSetting.checkResolution) {
+                videoSetting.x768x576enter();
+            } else if ((x_enter > 257 * Main.ex) && (y_enter > 353 * Main.ey) && (x_enter < 383 * Main.ex)
+                    && (y_enter < 378 * Main.ey) && VideoSetting.checkResolution) {
+                videoSetting.x1024x768enter();
+            } else if ((x_enter > 256 * Main.ex) && (y_enter > 394 * Main.ey) && (x_enter < 398 * Main.ex)
+                    && (y_enter < 420 * Main.ey) && VideoSetting.checkResolution) {
+                videoSetting.x1536x1152enter();
+            } else if ((x_enter > 482 * Main.ex) && (y_enter > 313 * Main.ey) && (x_enter < 610 * Main.ex)
+                    && (y_enter < 338 * Main.ey) && VideoSetting.checkResolution) {
+                videoSetting.x1280x960enter();
+            } else if ((x_enter > 481 * Main.ex) && (y_enter > 354 * Main.ey) && (x_enter < 622 * Main.ex)
+                    && (y_enter < 378 * Main.ey) && VideoSetting.checkResolution) {
+                videoSetting.x1792x1344enter();
+            } else if ((x_enter > 482 * Main.ex) && (y_enter > 394 * Main.ey) && (x_enter < 623 * Main.ex)
+                    && (y_enter < 418 * Main.ey) && VideoSetting.checkResolution) {
+                videoSetting.x2304x1728enter();
             } else {
                 videoSetting.videorollback();
             }

@@ -11,12 +11,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class VideoSetting extends JPanel {
-    private BufferedImage SettingBackGround, back, exitImg, exitImg1, fullscreenimg, resolution, down, right, left, save, save1, save2;
+    GamePanel gamePanel;
+    private BufferedImage SettingBackGround, back, exitImg, exitImg1, resolution, down, right1, left1, right, left, save, save1, save2;
     private String check = "";
     public static boolean checkResolution = false;
-    public static String fullscreenstr = "WINDOW", resolutionstr = "768 x 576";
-    public static String x2560x1440 = "", x1920x1080 = "", x1280x720 = "", x1024x768 = "", x768x576 = "", x1536x1152 = "";
-    public static double fullscreenstrX = 358, resolutionstrX = 358 * Main.ex;
+    public static String resolutionstr = "768 x 576";
+    public static String x2304x1728 = "", x1792x1344 = "", x1280x960 = "", x1024x768 = "", x768x576 = "", x1536x1152 = "";
+    public static double resolutionstrX = 356 * Main.ex;
+    private int leftX, leftY, rightX, rightY;
     public VideoSetting() {
         getImage();
     }
@@ -25,11 +27,10 @@ public class VideoSetting extends JPanel {
             SettingBackGround = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbackgroundmo.png"));
             back = ImageIO.read(new FileInputStream("res/MainmenuImage/backicon.png"));
             exitImg1 = ImageIO.read(new FileInputStream("res/player/character_move_left (1).png"));
-            fullscreenimg = ImageIO.read(new FileInputStream("res/MainmenuImage/fullscreen.png"));
             resolution = ImageIO.read(new FileInputStream("res/MainmenuImage/resolution.png"));
             down = ImageIO.read(new FileInputStream("res/Phone/arrow_down.png"));
-            right = ImageIO.read(new FileInputStream("res/Phone/arrow_right.png"));
-            left = ImageIO.read(new FileInputStream("res/Phone/arrow_left.png"));
+            right1 = ImageIO.read(new FileInputStream("res/Phone/arrow_right.png"));
+            left1 = ImageIO.read(new FileInputStream("res/Phone/arrow_left.png"));
             save1 = ImageIO.read(new FileInputStream("res/MainmenuImage/savechange1.png"));
             save2 = ImageIO.read(new FileInputStream("res/MainmenuImage/savechange2.png"));
         } catch (IOException e) {
@@ -42,9 +43,28 @@ public class VideoSetting extends JPanel {
     public void buttonvideoReturnEnter() {
         check = "buttonReturnEnter";
     }
+    public void x2304x1728enter(){
+        check = "x2304x1728";
+    }
+    public void x1792x1344enter(){
+        check = "x1792x1344";
+    }
+    public void x1280x960enter(){
+        check = "x1280x960";
+    }
+    public void x1024x768enter(){
+        check = "x1024x768";
+    }
+    public void x1536x1152enter(){
+        check = "x1536x1152";
+    }
+    public void x768x576enter(){
+        check = "x768x576";
+    }
     public void Init() {
+        check = "";
         exitImg = null;
-        //resolutionstr = GamePanel.screenWidth + " x " + GamePanel.screenHeight;
+        resolutionstr = (int)GamePanel.screenWidth + " x " + (int)GamePanel.screenHeight;
     }
     public void buttonSaveEnter() {
         check = "buttonSaveEnter";
@@ -54,9 +74,35 @@ public class VideoSetting extends JPanel {
             exitImg = exitImg1;
         } else if (check == "buttonSaveEnter") {
             save = save2;
+        } else if (check == "x768x576") {
+            right = right1;
+            rightX = 231;
+            rightY = 313;
+        } else if (check == "x1024x768") {
+            right = right1;
+            rightX = 231;
+            rightY = 352;
+        } else if (check == "x1536x1152") {
+            right = right1;
+            rightX = 231;
+            rightY = 395;
+        } else if (check == "x1280x960") {
+            left = left1;
+            leftX = 635;
+            leftY = 313;
+        } else if (check == "x1792x1344") {
+            left = left1;
+            leftX = 635;
+            leftY = 352;
+        } else if (check == "x2304x1728") {
+            left = left1;
+            leftX = 635;
+            leftY = 395;
         } else {
             exitImg = null;
             save = save1;
+            right = null;
+            left = null;
         }
     }
 
@@ -67,22 +113,20 @@ public class VideoSetting extends JPanel {
 
         g2.setFont(new Font("Arial", Font.BOLD, (int) (34 * Main.ex)));
         g2.setColor(Color.black);
-        g2.drawImage(fullscreenimg, (int) (140 * Main.ex), (int) (180 * Main.ey), (int) (70 * Main.ex), (int) (70 * Main.ey), null);
-        g2.drawImage(resolution, (int) (140 * Main.ex), (int) (330 * Main.ey), (int) (70 * Main.ex), (int) (70 * Main.ey), null);
-        g2.drawString(fullscreenstr, (int) (fullscreenstrX * Main.ex), (int) (225 * Main.ey));
-        g2.drawString(resolutionstr, (int) (resolutionstrX * Main.ex), (int) (375 * Main.ey));
-        g2.drawImage(down, (int) (421 * Main.ex), (int) (394 * Main.ey), (int) (25 * Main.ex), (int) (15 * Main.ey), null);
-        g2.drawImage(right, (int) (557 * Main.ex), (int) (201 * Main.ey), (int) (15 * Main.ex), (int) (25 * Main.ey), null);
-        g2.drawImage(left, (int) (288 * Main.ex), (int) (201 * Main.ey), (int) (15 * Main.ex), (int) (25 * Main.ey), null);
+        g2.drawImage(resolution, (int) (140 * Main.ex), (int) (220 * Main.ey), (int) (70 * Main.ex), (int) (70 * Main.ey), null);
+        g2.drawString(resolutionstr, (int) (resolutionstrX * Main.ex), (int) (265 * Main.ey));
+        g2.drawImage(down, (int) (421 * Main.ex), (int) (284 * Main.ey), (int) (25 * Main.ex), (int) (15 * Main.ey), null);
+        g2.drawImage(right, (int) (rightX * Main.ex), (int) (rightY * Main.ey), (int) (15 * Main.ex), (int) (25 * Main.ey), null);
+        g2.drawImage(left, (int) (leftX * Main.ex), (int) (leftY * Main.ey), (int) (15 * Main.ex), (int) (25 * Main.ey), null);
         g2.drawImage(save, (int) (600 * Main.ex), (int) (30 * Main.ey), (int) (130 * Main.ex), (int) (50 * Main.ey), null);
 
         g2.setFont(new Font("Arial", Font.BOLD, (int) (24 * Main.ex)));
-        g2.drawString(x768x576, (int) (260 * Main.ex), (int) (445 * Main.ey));
-        g2.drawString(x1024x768, (int) (260 * Main.ex), (int) (485 * Main.ey));
-        g2.drawString(x1536x1152, (int) (260 * Main.ex), (int) (525 * Main.ey));
-        g2.drawString(x1280x720, (int) (485 * Main.ex), (int) (445 * Main.ey));
-        g2.drawString(x1920x1080, (int) (485 * Main.ex), (int) (485 * Main.ey));
-        g2.drawString(x2560x1440, (int) (485 * Main.ex), (int) (525 * Main.ey));
+        g2.drawString(x768x576, (int) (260 * Main.ex), (int) (335 * Main.ey));
+        g2.drawString(x1024x768, (int) (260 * Main.ex), (int) (375 * Main.ey));
+        g2.drawString(x1536x1152, (int) (260 * Main.ex), (int) (415 * Main.ey));
+        g2.drawString(x1280x960, (int) (485 * Main.ex), (int) (335 * Main.ey));
+        g2.drawString(x1792x1344, (int) (485 * Main.ex), (int) (375 * Main.ey));
+        g2.drawString(x2304x1728, (int) (485 * Main.ex), (int) (415 * Main.ey));
         super.paintComponent(g2);
     }
 
