@@ -15,7 +15,6 @@ public class Chapter1 {
     Collision collision;
     MissionDescription missionDescription;
     Phone phone;
-    MissionDescription missionDescription;
     boolean isDrawBackground;
     public int currentTimeline, completedAct;
     public boolean IntroFinished = false, laptopMission = false, studentIDMission = false, noodleMission = false;

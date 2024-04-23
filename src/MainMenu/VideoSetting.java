@@ -11,7 +11,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class VideoSetting extends JPanel {
-    GamePanel gamePanel;
     private BufferedImage SettingBackGround, back, exitImg, exitImg1, resolution, down, right1, left1, right, left, save, save1, save2;
     private String check = "";
     public static boolean checkResolution = false;
