@@ -57,8 +57,8 @@ public class TileManager {
         int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
         g2.drawImage(tile.image, screenX, screenY, width, height, null);
         g2.drawRect(screenX, screenY, width, height);
-
     }
+
 
     public void drawRect(Graphics2D g2, int mapX, int mapY, int width, int height) {
         int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();

@@ -7,7 +7,6 @@ import Inventory.Inventory;
 import MainMenu.*;
 import area.*;
 import entity.Player;
-import javafx.util.converter.TimeStringConverter;
 import map.Map;
 import sound.Sound;
 import tile.TileManager;
@@ -129,6 +128,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void screenResize() {
         timeBoard.screenResize();
         phone.screenResize();
+        myRoom.reSizeMap(this);
+        myRoom.MyRoomResize();
+        myRoom.LocationPlayer(this);
+        player.reSize();
+
     }
 
     public void Init() {
