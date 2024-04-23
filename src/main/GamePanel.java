@@ -129,10 +129,10 @@ public class GamePanel extends JPanel implements Runnable {
         timeBoard.screenResize();
         phone.screenResize();
         myRoom.reSizeMap(this);
-        myRoom.MyRoomResize();
+        myRoom.setDefaultValues();
         myRoom.LocationPlayer(this);
-        player.reSize();
-
+        player.setDefaultValues();
+        inventory.ScreenResize();
     }
 
     public void Init() {
