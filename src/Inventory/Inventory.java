@@ -67,6 +67,10 @@ public class Inventory implements ActionListener {
         popMenu.add(item3);
     }
 
+    public void ScreenResize() {
+        GetInventoryInfo();
+        setBoundingBox();
+    }
     public void setBoundingBox() {
         BoundingBox = new Rectangle[3][3];
         for (int x = 0; x < 3; ++x)

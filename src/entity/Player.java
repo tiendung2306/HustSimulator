@@ -85,48 +85,6 @@ public class Player extends Entity {
         curr_animation_player = animation_player_stand_RIGHT;
     }
 
-    public void reSize() {
-        update();
-        System.out.println("Player "+GamePanel.scale);
-        leftBorder = false;
-        rightBorder = false;
-        bottomBorder = false;
-        topBorder = false;
-        ButtonInteract = false;
-
-        hitArea = new Rectangle();
-        boundingBox = new Rectangle();
-        boundingBox.width = (int) (32 * GamePanel.scale);
-        boundingBox.height = (int) (32 * GamePanel.scale);
-        hitArea.x = boundingBox.width / 4;
-        hitArea.y = boundingBox.height / 3 * 2;
-        hitArea.width = boundingBox.width / 2;
-        hitArea.height = boundingBox.height / 3;
-        screenX = (int) (GamePanel.screenWidth / 2 - boundingBox.width / 2);
-        screenY = (int) (GamePanel.screenHeight / 2 - boundingBox.height / 2);
-        boundingBox.x = screenX;
-        boundingBox.y = screenY;
-        speed = 4;
-        direction = "stand";
-        speedSlant = 3;
-
-        animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5,
-                boundingBox);
-        animation_player_stand_LEFT = new Animation_player(gamepanel, "res/player/character_stand_left ", 3, 0.5,
-                boundingBox);
-        animation_player_stand_FRONT = new Animation_player(gamepanel, "res/player/character_stand_front ", 3, 0.5,
-                boundingBox);
-        animation_player_stand_BACK = new Animation_player(gamepanel, "res/player/character_stand_back ", 3, 0.5,
-                boundingBox);
-        animation_player_UP = new Animation_player(gamepanel, "res/player/character_move_up ", 4, 0.8, boundingBox);
-        animation_player_DOWN = new Animation_player(gamepanel, "res/player/character_move_down ", 4, 0.8, boundingBox);
-        animation_player_RIGHT = new Animation_player(gamepanel, "res/player/character_move_right ", 4, 0.8,
-                boundingBox);
-        animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, boundingBox);
-
-        curr_animation_player = animation_player_stand_RIGHT;
-    }
-
 
     // =============================================================================================================================================
     public void update() {
