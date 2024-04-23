@@ -81,8 +81,8 @@ public class TileManager {
         if (tile.isMission)
             g2.drawImage(warningIcon, screenX + width + (int)(GamePanel.scale), screenY - (int)(4 * GamePanel.scale) + extraY, (int) (2 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
         g2.drawRect(screenX, screenY, width, height);
-
     }
+
 
     public void drawRect(Graphics2D g2, int mapX, int mapY, int width, int height) {
         int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
