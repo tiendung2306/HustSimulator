@@ -54,8 +54,8 @@ public class Player extends Entity {
 
         hitArea = new Rectangle();
         boundingBox = new Rectangle();
-        boundingBox.width = 32 * (int)GamePanel.scale;
-        boundingBox.height = 32 * (int)GamePanel.scale;
+        boundingBox.width = (int) (32 * GamePanel.scale);
+        boundingBox.height = (int) (32 * GamePanel.scale);
         hitArea.x = boundingBox.width / 4;
         hitArea.y = boundingBox.height / 3 * 2;
         hitArea.width = boundingBox.width / 2;
@@ -83,8 +83,8 @@ public class Player extends Entity {
         animation_player_LEFT = new Animation_player(gamepanel, "res/player/character_move_left ", 4, 0.8, boundingBox);
 
         curr_animation_player = animation_player_stand_RIGHT;
-
     }
+
 
     // =============================================================================================================================================
     public void update() {
@@ -235,8 +235,8 @@ public class Player extends Entity {
         }
         boundingBox.x = min(screenX, mapX);
         boundingBox.y = min(screenY, mapY);
-        boundingBox.x += max(0, mapX - (gamepanel.mapWidth - GamePanel.screenWidth / 2) + boundingBox.width);
-        boundingBox.y += max(0, mapY - (gamepanel.mapHeight - GamePanel.screenWidth / 2) + boundingBox.height);
+        boundingBox.x += (int) max(0, mapX - (gamepanel.mapWidth - GamePanel.screenWidth / 2) + boundingBox.width);
+        boundingBox.y += (int) max(0, mapY - (gamepanel.mapHeight - GamePanel.screenWidth / 2) + boundingBox.height);
         hitArea.x = mapX + boundingBox.width / 4;
         hitArea.y = mapY + boundingBox.height / 3 * 2;
         leftBorder = (boundingBox.x <= 0);
