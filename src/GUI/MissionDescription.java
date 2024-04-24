@@ -12,8 +12,6 @@ import Mouse.MouseMotion;
 
 import java.io.IOException;
 
-import java.awt.*;
-
 import main.GamePanel;
 import main.Main;
 import main.UI;
