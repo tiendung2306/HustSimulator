@@ -59,12 +59,12 @@ public class TileManager {
             step = 0;
             if (!reverse) {
                 extraY += (int) GamePanel.scale;
-                if (extraY == 3 * GamePanel.scale) {
+                if (extraY >= 3 * GamePanel.scale) {
                     reverse = true;
                 }
             } else {
                 extraY -= (int) GamePanel.scale;
-                if (extraY == 0) {
+                if (extraY <= 0) {
                     reverse = false;
                 }
             }
@@ -79,7 +79,7 @@ public class TileManager {
         int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
         g2.drawImage(tile.image, screenX, screenY, width, height, null);
         if (tile.isMission)
-            g2.drawImage(warningIcon, screenX + width + (int)(GamePanel.scale), screenY - (int)(4 * GamePanel.scale) + extraY, (int) (2 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
+            g2.drawImage(warningIcon, screenX + width, screenY - (int)(12 * GamePanel.scale) + extraY, (int) (3 * GamePanel.scale), (int) (9 * GamePanel.scale), null);
         g2.drawRect(screenX, screenY, width, height);
     }
 

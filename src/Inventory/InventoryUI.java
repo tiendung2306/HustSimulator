@@ -17,6 +17,20 @@ public class InventoryUI {
         //g2.drawRect(screenX, screenY, width, height);
     }
     public void drawIcon(Graphics2D g2, Rectangle boundingBox, Tile tile){
-        g2.drawImage(tile.image, boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height, null);
+        int leftX, topY;
+        int width, height;
+        if (tile.getWidth() >= tile.getHeight()){
+            leftX = boundingBox.x;
+            width = boundingBox.width;
+            height = width * tile.getHeight() / tile.getWidth();
+            topY = boundingBox.y + (boundingBox.height - height) / 2;
+        }
+        else {
+            topY = boundingBox.y;
+            height = boundingBox.height;
+            width = height * tile.getWidth() / tile.getHeight();
+            leftX = boundingBox.x + (boundingBox.width - width) / 2;
+        }
+        g2.drawImage(tile.image, leftX, topY, width, height, null);
     }
 }

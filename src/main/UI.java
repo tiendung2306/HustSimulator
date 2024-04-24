@@ -38,8 +38,13 @@ public class UI {
             e.printStackTrace();
         }
     }
-
-    public void draw(Graphics2D g2) {
+    public void screenResize(){
+        iconX = (int) (207 * GamePanel.scale);
+        iconY = (int) (170 * GamePanel.scale);
+        skipX = (int) (8 * GamePanel.scale);
+        skipY = (int) (10 * GamePanel.scale);
+    }
+    public void draw(Graphics2D g2){
         this.g2 = g2;
         g2.setFont(arial_40);
         g2.setColor(Color.white);
@@ -72,9 +77,9 @@ public class UI {
         int width = (int) (GamePanel.screenWidth - 64 * GamePanel.scale);
         int height = (int) (64 * GamePanel.scale);
         int y = (int) (GamePanel.screenHeight - height - 8 * GamePanel.scale);
-        int FontSize = 28;
-        int FontPixel = 12;
-        drawSubWindow(x, y, width, height);
+        int FontSize = (int)(GamePanel.scale * 9);
+        int FontPixel = (int)(GamePanel.scale * 4);
+        drawSubWindow(x,y,width,height);
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
         x += (int) (16 * GamePanel.scale);
@@ -119,8 +124,8 @@ public class UI {
         int width = (int) (GamePanel.screenWidth - 64 * GamePanel.scale);
         int height = (int) (64 * GamePanel.scale);
         int y = (int) (GamePanel.screenHeight - height - 8 * GamePanel.scale);
-        int FontSize = 28;
-        int FontPixel = 12;
+        int FontSize = (int)(GamePanel.scale * 9);
+        int FontPixel = (int)(GamePanel.scale * 4);
         drawSubWindow(x,y,width,height);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
         x += (int) (16 * GamePanel.scale);
@@ -151,29 +156,29 @@ public class UI {
             if (!reverse) {
                 iconX += (int) GamePanel.scale;
                 //skipX += (int) GamePanel.scale;
-                if (iconX == 209 * GamePanel.scale) {
+                if (iconX >= 209 * GamePanel.scale) {
                     reverse = true;
                 }
             } else {
                 iconX -= (int) GamePanel.scale;
                 //skipX -= (int) GamePanel.scale;
-                if (iconX == 207 * GamePanel.scale) {
+                if (iconX <= 207 * GamePanel.scale) {
                     reverse = false;
                 }
             }
             step = 0;
         }
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 13));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) (GamePanel.scale * 4)));
         g2.drawString("Press Space", (int) (182 * GamePanel.scale), (int) (175 * GamePanel.scale));
         g2.drawImage(nextIcon, iconX, iconY, (int)(10 * GamePanel.scale), (int)(7 * GamePanel.scale), null);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) (GamePanel.scale * 7)));
         g2.drawImage(skipWord, (int) (27 * GamePanel.scale), (int) (11 * GamePanel.scale), (int) (15 * GamePanel.scale),(int) (5 * GamePanel.scale),  null);
         g2.drawImage(skipIcon, skipX, skipY, (int)(17 * GamePanel.scale), (int)(7 * GamePanel.scale), null);
     }
     public void drawInteractButton(){
         String text =  "F";
         g2.setColor(Color.BLACK);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 11));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int)(GamePanel.scale * 4)));
         int x = gamePanel.player.getBoundingBoxX() + gamePanel.player.getBoundingBoxWidth();
         int y = gamePanel.player.getBoundingBoxY();
         int width = (int) ((int) g2.getFontMetrics().getStringBounds(text, g2).getWidth() + 8 * GamePanel.scale);

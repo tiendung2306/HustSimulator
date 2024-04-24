@@ -34,12 +34,12 @@ public class TileSection extends Tile{
         BoundingBox();
     }
     public void BoundingBox() {
-        setLeftX((int) (x * gamePanel.scale));
-        setTopY((int) (y * gamePanel.scale));
-        setRightX((int) ((x + width_tile) * gamePanel.scale));
-        setBottomY((int) ((y + height_tile) * gamePanel.scale));
-        setWidth((int) (width_tile * gamePanel.scale));
-        setHeight((int) (height_tile * gamePanel.scale));
+        setLeftX((int) (x * GamePanel.scale));
+        setTopY((int) (y * GamePanel.scale));
+        setRightX((int) ((x + width_tile) * GamePanel.scale));
+        setBottomY((int) ((y + height_tile) * GamePanel.scale));
+        setWidth((int) (width_tile * GamePanel.scale));
+        setHeight((int) (height_tile * GamePanel.scale));
     }
 
 }

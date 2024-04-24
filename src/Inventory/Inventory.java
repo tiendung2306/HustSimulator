@@ -196,15 +196,15 @@ public class Inventory implements ActionListener {
         ++step;
         if (step == 6) {
             if (!reverse) {
-                leftArrow.BoundingBox.x -= GamePanel.scale;
-                rightArrow.BoundingBox.x += GamePanel.scale;
-                if (rightArrow.BoundingBox.x == 233 * GamePanel.scale) {
+                leftArrow.BoundingBox.x -= (int)(GamePanel.scale);
+                rightArrow.BoundingBox.x += (int) GamePanel.scale;
+                if (rightArrow.BoundingBox.x >= 233 * GamePanel.scale) {
                     reverse = true;
                 }
             } else {
-                leftArrow.BoundingBox.x += GamePanel.scale;
-                rightArrow.BoundingBox.x -= GamePanel.scale;
-                if (rightArrow.BoundingBox.x == 230 * GamePanel.scale) {
+                leftArrow.BoundingBox.x += (int) GamePanel.scale;
+                rightArrow.BoundingBox.x -= (int) GamePanel.scale;
+                if (rightArrow.BoundingBox.x <= 230 * GamePanel.scale) {
                     reverse = false;
                 }
             }
@@ -214,7 +214,7 @@ public class Inventory implements ActionListener {
             ++currentIndex;
         if (currentIndex > 0 && isLeftClick(leftArrow))
             --currentIndex;
-        if (MouseManager.isRightMouseClick) {
+        if (MouseManager.isRightMouseClick || MouseManager.isLeftMouseClick) {
             for (int x = 0; x < 3; ++x)
                 for (int y = 0; y < 3; ++y) {
                     if (MouseManager.lastReleasedX >= BoundingBox[x][y].x
@@ -222,6 +222,7 @@ public class Inventory implements ActionListener {
                             && MouseManager.lastReleasedY >= BoundingBox[x][y].y
                             && MouseManager.lastReleasedY <= BoundingBox[x][y].y + BoundingBox[x][y].height) {
                         MouseManager.isRightMouseClick = false;
+                        MouseManager.isLeftMouseClick = false;
                         slotX = x;
                         slotY = y;
 
@@ -314,14 +315,14 @@ public class Inventory implements ActionListener {
     void showInformation(Graphics2D g2, Tile tile) {
         inventoryUI.draw(g2, informationBoard);
         inventoryUI.draw(g2, informationBoardBackArrow);
-        g2.drawImage(tile.image, (int) (43 * GamePanel.scale), (int) (81 * GamePanel.scale),
-                (int) (50 * GamePanel.scale), (int) (50 * GamePanel.scale), null);
-        int FontSize = 30;
+        Rectangle rect = new Rectangle((int) (43 * GamePanel.scale), (int) (81 * GamePanel.scale), (int) (50 * GamePanel.scale), (int) (50 * GamePanel.scale));
+        inventoryUI.drawIcon(g2, rect, tile);
+        int FontSize = (int)(10 * GamePanel.scale);
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
         g2.drawString(tile.Name, (int) (67 * GamePanel.scale), (int) (56 * GamePanel.scale));
-        FontSize = 25;
-        int FontPixel = 11;
+        FontSize = (int) (8 * GamePanel.scale);
+        int FontPixel = (int) (4 * GamePanel.scale);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
         int x = (int) (110 * GamePanel.scale);
         int y = (int) (77 * GamePanel.scale);

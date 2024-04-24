@@ -131,6 +131,7 @@ public class GamePanel extends JPanel implements Runnable {
         myRoom.LocationPlayer(this);
         player.setDefaultValues();
         inventory.ScreenResize();
+        ui.screenResize();
     }
 
     public void Init() {

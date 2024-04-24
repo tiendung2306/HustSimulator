@@ -1,7 +1,5 @@
 package tile;
 
-import javax.print.DocFlavor.STRING;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
 import main.GamePanel;
@@ -27,12 +25,12 @@ public class section_tile extends Tile {
     }
 
     public void BoundingBox() {
-        setLeftX((int) (x * gamePanel.scale));
-        setTopY((int) (y * gamePanel.scale));
-        setRightX((int) ((x+20) * gamePanel.scale));
-        setBottomY((int) ((y+46) * gamePanel.scale));
-        setWidth((int) (20 * gamePanel.scale));
-        setHeight((int) (46 * gamePanel.scale));
+        setLeftX((int) (x * GamePanel.scale));
+        setTopY((int) (y * GamePanel.scale));
+        setRightX((int) ((x+20) * GamePanel.scale));
+        setBottomY((int) ((y+46) * GamePanel.scale));
+        setWidth((int) (20 * GamePanel.scale));
+        setHeight((int) (46 * GamePanel.scale));
     }
 
 }
