@@ -17,7 +17,7 @@ public class AudioSetting extends JPanel {
             volume0, volume1, volume2, volume3, mutecmt, mutecmt1;
     private int i;
 
-    public static double volumesliderpointX = 230 * Main.ex;
+    public static double volumesliderpointX = 541 * Main.ex;
     public double mute_unmutestring = 163 * Main.ex;
     public static boolean checkenterslider = false;
     public static int checkmute = 1;
@@ -31,11 +31,6 @@ public class AudioSetting extends JPanel {
         getImage();
     }
 
-    public String c_check;
-
-    public void rollback() {
-        c_check = null;
-    }
 
     public void getImage() {
         try {

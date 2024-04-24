@@ -14,9 +14,10 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
     AudioSetting audioSetting;
     KeySetting keySetting;
     VideoSetting videoSetting;
+    LoadGame loadGame;
 
     public MouseMotionListener_Mainmenu(GamePanel gamePanel, Main_Menu mainMenu, NextMainMenu nextMainMenu,
-            Setting setting, AudioSetting audioSetting, KeySetting keySetting, VideoSetting videoSetting) {
+            Setting setting, AudioSetting audioSetting, KeySetting keySetting, VideoSetting videoSetting, LoadGame loadGame) {
         this.gamePanel = gamePanel;
         this.mainMenu = mainMenu;
         this.nextMainMenu = nextMainMenu;
@@ -24,6 +25,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
         this.audioSetting = audioSetting;
         this.keySetting = keySetting;
         this.videoSetting = videoSetting;
+        this.loadGame = loadGame;
     }
 
     @Override
@@ -169,6 +171,11 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
             } else {
                 videoSetting.videorollback();
             }
+        } else if (Main.topGameState().equals(Main.states[12])) {
+            if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
+                    && (y_enter < 50 * Main.ey))
+                loadGame.buttonLoadGameReturnEnter();
+            else loadGame.LoadGamerollback();
         }
     }
 }
