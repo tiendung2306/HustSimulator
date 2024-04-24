@@ -2,7 +2,6 @@ package main;
 
 import Collision.Collision;
 import GUI.MissionDescription;
-import GUI.TimeBoard;
 import Inventory.Inventory;
 import MainMenu.*;
 import area.*;
@@ -86,7 +85,6 @@ public class GamePanel extends JPanel implements Runnable {
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
     public Inventory inventory = new Inventory(this);
-    public TimeBoard timeBoard = new TimeBoard(this);
 
     public Section_selection section_selection = new Section_selection(this);
 
@@ -289,6 +287,10 @@ public class GamePanel extends JPanel implements Runnable {
                 }
                 keyH.isPhonePressed = false;
             }
+        } else {
+            if (keyH.isPhonePressed) {
+                keyH.isPhonePressed = false;
+            }
         }
     }
     // =================================================================================================================
@@ -341,7 +343,6 @@ public class GamePanel extends JPanel implements Runnable {
                 drawMap(g2);
                 player.draw(g2);
                 inventory.draw(g2);
-                timeBoard.draw(g2);
                 missionDescription.draw(g2);
                 phone.draw(g2);
             }

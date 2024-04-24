@@ -176,6 +176,7 @@ public class UI {
     });
 
     public void drawInteractButton() {
+        if(gamePanel.phone.isDrawPhone) return;
         String text = "F";
         g2.setColor(Color.BLACK);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 11));

@@ -48,7 +48,7 @@ public class KeyHandler implements KeyListener {
             if (Main.topGameState().equals("Inventory"))
                 Main.popGameState();
             else {
-                if (Main.topGameState().equals("GamePlay"))
+                if (Main.topGameState().equals("GamePlay") && !gamePanel.phone.isDrawPhone)
                     Main.pushGameState("Inventory");
             }
         }

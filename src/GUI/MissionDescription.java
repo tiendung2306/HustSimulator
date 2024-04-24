@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import javax.imageio.ImageIO;
 
 import Mouse.MouseManager;
+import Mouse.MouseMotion;
 
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ public class MissionDescription {
     UI ui;
     public Boolean isMissionDescriptionDrawing = false;
     Boolean isNewMission = false;
+    Boolean isOnHover = false;
 
     public MissionDescription(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -64,6 +66,7 @@ public class MissionDescription {
         if (!Main.topGameState().equals("GamePlay"))
             return;
         checkClicked();
+        checkHoverd();
     }
 
     public void checkClicked() {
@@ -79,6 +82,22 @@ public class MissionDescription {
             isNewMission = false;
             if (!missionDescriptionText.equals(""))
                 Dialogue("Hệ thống: " + missionDescriptionText);
+        }
+        MouseManager.resetLastReleasedPos();
+    }
+
+    public void checkHoverd() {
+        if (!Main.topGameState().equals("GamePlay"))
+            return;
+        if (this.phone.isDrawPhone)
+            return;
+        isOnHover = false;
+        if (MouseMotion.currentX >= (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70)
+                && MouseMotion.currentX <= (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70)
+                        + width
+                && MouseMotion.currentY >= (int) (GamePanel.screenHeight / 20)
+                && MouseMotion.currentY <= (int) (GamePanel.screenHeight / 20) + height) {
+            isOnHover = true;
         }
         MouseManager.resetLastReleasedPos();
     }
@@ -105,21 +124,13 @@ public class MissionDescription {
         else
             g2.drawImage(missionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
                     (int) (GamePanel.screenHeight / 20), width, height, null);
-        // g2.setFont(new Font("Arial", Font.BOLD, (int)(GamePanel.screenWidth / 55)));
-        // int width = g2.getFontMetrics().stringWidth(missionDescriptionText);
-        // FontMetrics fm = g2.getFontMetrics();
-        // Rectangle2D rect = fm.getStringBounds(missionDescriptionText, g2);
-
-        // g2.setColor(Color.WHITE);
-        // g2.fillRect((int) (GamePanel.screenWidth - width - GamePanel.screenWidth /
-        // 75),
-        // (int) (GamePanel.screenHeight / 6 - fm.getAscent()),
-        // (int) rect.getWidth(),
-        // (int) rect.getHeight());
-
-        // g2.setColor(Color.DARK_GRAY);
-        // g2.drawString(missionDescriptionText, (float) (GamePanel.screenWidth - width
-        // - GamePanel.screenWidth / 75), (float) (GamePanel.screenHeight / 6));
+        // if (!isOnHover) {
+        //     float percentage = .92f; // 50% bright - change this (or set dynamically) as you feel fit
+        //     int brightness = (int) (256 - 256 * percentage);
+        //     g2.setColor(new Color(0, 0, 0, brightness));
+        //     g2.fillRect((int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
+        //             (int) (GamePanel.screenHeight / 20), width, height);
+        // }
 
     }
 }

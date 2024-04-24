@@ -3,12 +3,12 @@ package Mouse;
 import java.awt.event.MouseEvent;
 
 public class MouseMotion implements java.awt.event.MouseMotionListener{
-    int currentX, currentY;
+    public static int currentX, currentY;
     
     @Override
     public void mouseDragged(MouseEvent e) {
         currentX = e.getX();
-        currentX = e.getY();
+        currentY = e.getY();
     }
     
     @Override

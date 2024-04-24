@@ -173,6 +173,11 @@ public class Inventory implements ActionListener {
             isGettingInformation = false;
             return;
         }
+        if (isUsingItem && usingItem.Name.equals("Iphone 1000000 ProMax")) {
+            gamePanel.phone.isDrawPhone = true;
+            gamePanel.phone.setPhoneState("Screen Saver");
+            Main.popGameState();
+        }
         isUsingItem = false;
         usingItem = new Tile();
         if (isGettingInformation) {

@@ -75,7 +75,7 @@ public class Chapter1 {
             Dialogue("Cái thứ Khoa học này so với Ma Pháp tồn tại ở thế giới của mình khá là giống nhau.");
         if (completedAct == 4)
             Dialogue("Biết tìm kiếm thông tin ở đâu đây?");
-        missionDescription.setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng");
+        missionDescription.setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng(Ấn B để mở balo)");
         if (completedAct == 5) {
             if (inventory.isGettingInformation
                     && inventory.infoItem.Name.equals("Laptop gaming MSI Titan GT77 12UHS 204VN"))
@@ -124,7 +124,7 @@ public class Chapter1 {
             if (inventory.isExist("Iphone 1000000 ProMax")) {
                 if (Main.topGameState().equals("GamePlay"))
                     Dialogue("Mình phải mở điện thoại ra kiểm tra xem hôm nay có tiết học gì không nào");
-                    missionDescription.setMissionDescription("Kiểm tra app fHUST");
+                    missionDescription.setMissionDescription("Kiểm tra app fHUST(Ấn P để mở điện thoại)");
                 phone.isOpenFhust = false;
             }
         } else if (completedAct == 2) {
