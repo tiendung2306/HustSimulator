@@ -24,7 +24,7 @@ public class Main {
     public static double ey = 1;
     public static Stack<String> GameState = new Stack<>();
     public static String[] states = { "MainMenu", "PlayMenu", "Setting", "AudioSetting", "KeySetting", "VideoSetting",
-            "Tutorial", "GamePlay", "GamePause", "Dialogue", "Inventory", "Dialog" };
+            "Tutorial", "GamePlay", "GamePause", "Dialogue", "Inventory", "Dialog", "LoadGame" };
 
     public static void pushGameState(String a) {
         GameState.push(a);
@@ -50,7 +50,7 @@ public class Main {
         window1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window1.setResizable(false);
         window1.setTitle("Chon nguon code");
-        window1.setPreferredSize(new Dimension(500, 500));
+        window1.setPreferredSize(new Dimension(900, 900));
         window1.setBackground(Color.black);
         window1.setLayout(new BoxLayout(window1.getContentPane(), BoxLayout.Y_AXIS));
         GamePanel gamePanel = new GamePanel();
@@ -165,7 +165,6 @@ class ButtonClicked implements ActionListener {
         Main.window.setTitle("2D Adventure");
         Main.window.setLayout(new BoxLayout(Main.window.getContentPane(), BoxLayout.Y_AXIS));
 
-        Main.window.add(gamePanel);
 
         WindowListener listener = new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
@@ -176,8 +175,8 @@ class ButtonClicked implements ActionListener {
                 Main.pushGameState("MainMenu");
             }
         };
+        Main.window.add(gamePanel);
         Main.window.addWindowListener(listener);
-
         Main.window.pack();
         Main.window.setLocationRelativeTo(null);
         Main.window.setVisible(true);

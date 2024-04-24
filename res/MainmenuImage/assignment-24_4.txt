@@ -1,0 +1,11 @@
+Stall xảy ra tại lệnh lw $t4, 8($t0) và $t5, $t1, $t4
+
+Phương án 1: Sử dụng pipelining
+
+Phương án 2: Sắp xếp lại lệnh:
+	lw $t1, 0($t0)  # Tải dữ liệu từ 0($t0) vào $t1
+	lw $t4, 8($t0)  # Tải dữ liệu từ 8($t0) vào $t4
+	add $t3, $t1, $t2  # Cộng $t1 và $t2, lưu kết quả vào $t3
+	sw $t3, 12($t0)  # Lưu $t3 vào 12($t0)
+	add $t5, $t1, $t4  # Cộng $t1 và $t4, lưu kết quả vào $t5
+	sw $t5, 16($t0)  # Lưu $t5 vào 16($t0)

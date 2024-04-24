@@ -17,7 +17,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     KeySetting keySetting = GamePanel.keySetting;
     VideoSetting videoSetting = GamePanel.videoSetting;
     Setting setting = GamePanel.setting;
-    public static int screenW, screenH;
+    LoadGame loadGame = GamePanel.loadGame;
 
     public MouseListener_Mainmenu(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -147,7 +147,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             }
             else if ((x_click > 260 * Main.ex) && (y_click > 270 * Main.ey) && (x_click < 507 * Main.ex)
                     && (y_click < 310 * Main.ey)) {
-                Main.pushGameState(Main.states[7]);
+                Main.pushGameState(Main.states[12]);
                 nextMainMenu.Init();
             } else if ((x_click > 260 * Main.ex) && (y_click > 330 * Main.ey) && (x_click < 507 * Main.ex)
                     && (y_click < 367 * Main.ey)) {
@@ -156,8 +156,10 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             }
         } else if (Main.topGameState().equals(Main.states[2])) {
             if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ey) && (x_click < 50 * Main.ex) // neu an back
-                    && (y_click < 50 * Main.ey))
+                    && (y_click < 50 * Main.ey)) {
                 Main.popGameState();
+                setting.Init();
+            }
             else if ((x_click > 200 * Main.ex) && (y_click > 192 * Main.ey) && (x_click < 565 * Main.ex)
                     && (y_click < 226 * Main.ey)) {
                 Main.pushGameState(Main.states[5]);
@@ -175,7 +177,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ey) && (x_click < 50 * Main.ex)
                     && (y_click < 50 * Main.ey)) {
                 Main.popGameState();
-                audioSetting.rollback();
+                audioSetting.audiorollback();
             }
             else if ((x_click > 240 * Main.ex) && (y_click > 251 * Main.ey) && (x_click < 600 * Main.ex)
                     && (y_click < 297 * Main.ey))
@@ -189,6 +191,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                         && (y_click < 50 * Main.ey)) {
                     Main.popGameState();
                     keySetting.keysettingrollback();
+                    keySetting.Init();
                 }
                 else if ((x_click > 67 * Main.ex) && (y_click > 87 * Main.ey) && (x_click < 105 * Main.ex)
                         && (y_click < 125 * Main.ey))
@@ -226,7 +229,6 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     && (y_click < 50 * Main.ey)) {
                 Main.popGameState();
                 videoSetting.Init();
-
             }
             else if ((x_click > 417 * Main.ex) && (y_click > 281 * Main.ey) && (x_click < 448 * Main.ex)
                     && (y_click < 301 * Main.ey)) {
@@ -255,7 +257,9 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 GamePanel.screenHeight = GamePanel.next_screenHeight;
                 GamePanel.screenWidth = GamePanel.next_screenWidth;
                 gamePanel.screenResize();
-                Main.window.setSize((int) GamePanel.screenWidth, (int) GamePanel.screenHeight);
+                Main.window.setSize((int) (GamePanel.screenWidth + 14), (int) (GamePanel.screenHeight + 37));
+//                Main.window.remove(gamePanel);
+//                Main.window.add(gamePanel);
                 Main.window.setLocationRelativeTo(null);
             }
             if (VideoSetting.checkResolution) {
@@ -380,6 +384,13 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     videoSetting.videorollback();
                     VideoSetting.checkResolution = false;
                 }
+            }
+        }else if (Main.topGameState().equals(Main.states[12])) {
+            if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ey) && (x_click < 50 * Main.ex)
+                    && (y_click < 50 * Main.ey)) {
+                Main.popGameState();
+                loadGame.buttonLoadGameReturnEnter();
+                loadGame.Init();
             }
         }
     }

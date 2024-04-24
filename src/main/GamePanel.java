@@ -27,7 +27,7 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
-    public static double scale = 3;
+    public static double scale = 3 * Main.ex;
     public static double screenWidth = 256 * scale;
     public static double screenHeight = 192 * scale;
 
@@ -49,10 +49,11 @@ public class GamePanel extends JPanel implements Runnable {
     public static AudioSetting audioSetting = new AudioSetting();
     public static KeySetting keySetting = new KeySetting();
     public static VideoSetting videoSetting = new VideoSetting();
+    public static LoadGame loadGame = new LoadGame();
 
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
-            nextMainMenu, setting, audioSetting, keySetting, videoSetting);
+            nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame);
     // Khai báo lớp NormalClassroom vào GamePanel
     public NormalClassroom normalClassroom = new NormalClassroom(this);
     public ComputerRoom computerRoom = new ComputerRoom(this);
@@ -101,7 +102,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel() {
         this.setPreferredSize(new Dimension((int)screenWidth, (int)screenHeight));
-        this.setSize(400, 400);
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
@@ -266,6 +266,8 @@ public class GamePanel extends JPanel implements Runnable {
                 keySetting.update();
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
+            else if (Main.topGameState().equals(Main.states[12]))
+                loadGame.update();
         } else if (Main.nguoncode == 2) {
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
@@ -279,6 +281,8 @@ public class GamePanel extends JPanel implements Runnable {
                 keySetting.update();
             else if (Main.topGameState().equals(Main.states[5]))
                 videoSetting.update();
+            else if (Main.topGameState().equals(Main.states[12]))
+                loadGame.update();
         }
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
@@ -325,6 +329,8 @@ public class GamePanel extends JPanel implements Runnable {
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
+                else if (Main.topGameState().equals(Main.states[12]))
+                    loadGame.draw(g2);
                 break;
             }
             case 2: {
@@ -340,6 +346,8 @@ public class GamePanel extends JPanel implements Runnable {
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
+                else if (Main.topGameState().equals(Main.states[12]))
+                    loadGame.draw(g2);
                 break;
             }
         }
