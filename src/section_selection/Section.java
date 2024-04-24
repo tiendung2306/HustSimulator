@@ -5,6 +5,9 @@ import java.util.Vector;
 import section_selection.shape.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+
+import Mouse.MouseManager;
+
 import java.io.*;
 
 
@@ -74,7 +77,15 @@ class Section {
     protected void OnHover(Graphics graphics){
         section_selection.statusPanel.setHoverOn(this);
         graphics.drawImage(HoverImg, 0, 0, (int)(HoverImg.getWidth() * section_selection.scale_X), (int)(HoverImg.getHeight() * section_selection.scale_Y), null);
+        if(MouseManager.isLeftMouseClick)
+            OnClick();
     }
+
+
+    private void OnClick(){
+
+    } 
+
 
     protected void display(Graphics graphics){
         for(Shape shape : hitboxs){
