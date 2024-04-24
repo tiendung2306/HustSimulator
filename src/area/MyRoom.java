@@ -24,8 +24,6 @@ public class MyRoom extends Map {
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;
         setDefaultValues();
-        setTileChair();
-        setUpTileMyRoom();
     }
 
     public void setTileChair() {

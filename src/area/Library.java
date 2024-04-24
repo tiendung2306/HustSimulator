@@ -17,13 +17,17 @@ public class Library extends Map {
         this.gamePanel = gamePanel;
         maxMapCol = 21;
         maxMapRow = 18;
-        playerX = (int) (160 * gamePanel.scale);
-        playerY = (int) (34 * gamePanel.scale);
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[19].image;
-        background.setWidth((int) (320 * gamePanel.scale));
-        background.setHeight((int) (240 * gamePanel.scale));
+        setDefaultValues();
+    }
+
+    public void setDefaultValues() {
+        playerX = (int) (160 * GamePanel.scale);
+        playerY = (int) (34 * GamePanel.scale);
+        background.setWidth((int) (320 * GamePanel.scale));
+        background.setHeight((int) (240 * GamePanel.scale));
         tileBookcase01_1 = new TileSection(gamePanel,40,34,78,59,"Bookcase 01","Interact","","res/tile/tu_sach01.png");
         tileBookcase01_2 = new TileSection(gamePanel,44,53,78,59,"Bookcase 01","Interact","","res/tile/tu_sach01.png");
         tileBookcase02 = new TileSection(gamePanel,0,77,16,140,"Bookcase 02","Interact","","res/tile/tu_sach02.png");

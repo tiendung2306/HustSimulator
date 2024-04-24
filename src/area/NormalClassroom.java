@@ -17,13 +17,17 @@ public class NormalClassroom extends Map {
         this.gamePanel = gamePanel;
         maxMapCol = 21;
         maxMapRow = 18;
-        playerX = (int) (35 * gamePanel.scale);
-        playerY = (int) (64 * gamePanel.scale);
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[17].image;
-        background.setWidth((int) (320 * gamePanel.scale));
-        background.setHeight((int) (240 * gamePanel.scale));
+        setDefaultValues();
+    }
+
+    public void setDefaultValues() {
+        playerX = (int) (35 * GamePanel.scale);
+        playerY = (int) (64 * GamePanel.scale);
+        background.setWidth((int) (320 * GamePanel.scale));
+        background.setHeight((int) (240 * GamePanel.scale));
         tileTable = new TileSection[10];
         tileDoor01 = new TileSection(gamePanel,30,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png");
         tileDoor02 = new TileSection(gamePanel,261,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png");
