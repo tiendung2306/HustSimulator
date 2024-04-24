@@ -1,6 +1,7 @@
 package main;
 
 import Keyboard.KeyboardManager;
+import Mouse.MouseManager;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -48,8 +49,11 @@ public class KeyHandler implements KeyListener {
             if (Main.topGameState().equals("Inventory"))
                 Main.popGameState();
             else {
-                if (Main.topGameState().equals("GamePlay") && !gamePanel.phone.isDrawPhone)
+                if (Main.topGameState().equals("GamePlay") && !gamePanel.phone.isDrawPhone) {
+                    MouseManager.isRightMouseClick = false;
+                    MouseManager.isLeftMouseClick = false;
                     Main.pushGameState("Inventory");
+                }
             }
         }
         // if(code == KeyboardManager.getKey("PHONE")){
