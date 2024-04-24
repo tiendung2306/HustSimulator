@@ -9,8 +9,8 @@ import java.awt.*;
 public class NormalClassroom extends Map {
     GamePanel gamePanel;
     Tile background;
-    TileSection tileDoor01,tileDoor02,tileTableTeacher,tileWallNormalClassroom;
-    TileSection [] tileTable;
+    public TileSection tileDoor01,tileDoor02,tileTableTeacher,tileWallNormalClassroom;
+    public TileSection [] tileTable;
 
     public NormalClassroom(GamePanel gamePanel) {
         super();

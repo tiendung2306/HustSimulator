@@ -15,11 +15,11 @@ public class UI {
     Font arial_40;
     public String currentDialog = "";
     public String text = "";
-    JPanel textPanel;
-    JTextArea textArea;
-    BufferedImage nextIcon;
-    int iconX = (int) (207 * GamePanel.scale);
-    int iconY = (int) (170 * GamePanel.scale);
+    public int i;
+    BufferedImage nextIcon, skipIcon, skipWord;
+    public boolean isFinishDialogue;
+    int iconX = (int) (207 * GamePanel.scale), iconY = (int) (170 * GamePanel.scale);
+    int skipX = (int) (8 * GamePanel.scale), skipY = (int) (10 * GamePanel.scale);
     int step = 0;
     boolean reverse;
 
@@ -31,8 +31,9 @@ public class UI {
 
     void getImage() {
         try {
-            nextIcon = ImageIO.read(new FileInputStream("res/Dialog/next-icon.png"));
-
+            nextIcon = ImageIO.read(new FileInputStream("res/Dialog/nextIcon.png"));
+            skipIcon = ImageIO.read(new FileInputStream("res/Dialog/skipIcon.png"));
+            skipWord = ImageIO.read(new FileInputStream("res/Dialog/skipWord.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,28 +102,37 @@ public class UI {
         if (strSize > 0)
             g2.drawString(str, x, y);
     }
-
-    public void drawDialogueScreen() {
-        int x = 32 * (int) GamePanel.scale;
+    public Timer timer = new Timer(60, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            text += currentDialog.charAt(i);
+            i++;
+            if (i == currentDialog.length()){
+                timer.stop();
+                isFinishDialogue = true;
+                i = 0;
+            }
+        }
+    });
+    public void drawDialogueScreen(){
+        int x = 32 * (int)GamePanel.scale;
         int width = (int) (GamePanel.screenWidth - 64 * GamePanel.scale);
         int height = (int) (64 * GamePanel.scale);
         int y = (int) (GamePanel.screenHeight - height - 8 * GamePanel.scale);
         int FontSize = 28;
         int FontPixel = 12;
-        drawSubWindow(x, y, width, height);
-
+        drawSubWindow(x,y,width,height);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
-        // timer.start();
         x += (int) (16 * GamePanel.scale);
         y += (int) (16 * GamePanel.scale);
         String str = "";
         int strSize = 0;
-        for (int i = 0; i < currentDialog.length(); ++i) {
+        for (int i = 0; i < text.length(); ++i){
             strSize += FontPixel;
-            if (currentDialog.charAt(i) == ' ') {
-                for (int j = i + 1; j <= currentDialog.length(); ++j)
-                    if (j == currentDialog.length() || currentDialog.charAt(j) == ' ') {
-                        if (strSize + (j - i - 1) * FontPixel >= width - 36 * GamePanel.scale) {
+            if (text.charAt(i) == ' '){
+                for (int j = i + 1; j <= text.length(); ++j)
+                    if (j == text.length() || text.charAt(j) == ' '){
+                        if (strSize + (j - i - 1) * FontPixel >= width - 36 * GamePanel.scale){
                             g2.drawString(str, x, y);
                             str = "";
                             y += 40;
@@ -132,8 +142,7 @@ public class UI {
                     }
                 if (strSize > 0)
                     str += ' ';
-            } else
-                str += currentDialog.charAt(i);
+            } else str += text.charAt(i);
         }
         if (strSize > 0)
             g2.drawString(str, x, y);
@@ -141,43 +150,28 @@ public class UI {
         if (step == 8) {
             if (!reverse) {
                 iconX += (int) GamePanel.scale;
+                //skipX += (int) GamePanel.scale;
                 if (iconX == 209 * GamePanel.scale) {
                     reverse = true;
                 }
             } else {
                 iconX -= (int) GamePanel.scale;
+                //skipX -= (int) GamePanel.scale;
                 if (iconX == 207 * GamePanel.scale) {
                     reverse = false;
                 }
             }
             step = 0;
         }
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
-        g2.drawString("Press Space", (int) (183 * GamePanel.scale), (int) (175 * GamePanel.scale));
-        g2.drawImage(nextIcon, iconX, iconY, (int) (10 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 13));
+        g2.drawString("Press Space", (int) (182 * GamePanel.scale), (int) (175 * GamePanel.scale));
+        g2.drawImage(nextIcon, iconX, iconY, (int)(10 * GamePanel.scale), (int)(7 * GamePanel.scale), null);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20));
+        g2.drawImage(skipWord, (int) (27 * GamePanel.scale), (int) (11 * GamePanel.scale), (int) (15 * GamePanel.scale),(int) (5 * GamePanel.scale),  null);
+        g2.drawImage(skipIcon, skipX, skipY, (int)(17 * GamePanel.scale), (int)(7 * GamePanel.scale), null);
     }
-
-    int i;
-    Timer timer = new Timer(1000, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            char[] character = text.toCharArray();
-            int arrayNumber = character.length;
-
-            String addedCharacter = String.valueOf(character[i]);
-            textArea.append(addedCharacter);
-
-            i++;
-            if (i == arrayNumber) {
-                i = 0;
-                timer.stop();
-            }
-        }
-    });
-
-    public void drawInteractButton() {
-        if(gamePanel.phone.isDrawPhone) return;
-        String text = "F";
+    public void drawInteractButton(){
+        String text =  "F";
         g2.setColor(Color.BLACK);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 11));
         int x = gamePanel.player.getBoundingBoxX() + gamePanel.player.getBoundingBoxWidth();

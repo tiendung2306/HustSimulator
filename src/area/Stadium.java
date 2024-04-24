@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class Stadium extends Map {
     GamePanel gamePanel;
-    Tile background;
-    TileSection tileWall01,tileWall02,tileCar01,tileCar02,tileBall;
+    public Tile background;
+    public TileSection tileWall01,tileWall02,tileCar01,tileCar02,tileBall;
     int x_car_white = 39;
     int x_car_red = 218;
     public Stadium(GamePanel gamePanel) {

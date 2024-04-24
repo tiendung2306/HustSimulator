@@ -14,9 +14,9 @@ import java.io.IOException;
 
 public class ComputerRoom extends Map {
     GamePanel gamePanel;
-    TileSection tileDoor01,tileDoor02,tileTableTeacher,tileWallComputerRoom,tileComputerTeacher;
-    TileSection [] tileTable;
-    TileSection [] tileComputerStudents;
+    public TileSection tileDoor01,tileDoor02,tileTableTeacher,tileWallComputerRoom,tileComputerTeacher;
+    public TileSection [] tileTable;
+    public TileSection [] tileComputerStudents;
     Tile background;
 
 

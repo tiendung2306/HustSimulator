@@ -12,6 +12,8 @@ public class Tile{
     int LeftX, RightX, TopY, BottomY;
 
     int width, height;
+    public boolean isCollision;
+    public boolean isMission;
 
     public Tile() {
         Name = "Empty";

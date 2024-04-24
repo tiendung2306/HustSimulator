@@ -11,9 +11,9 @@ import java.awt.*;
 public class MyRoom extends Map {
     Tile background;
     GamePanel gamePanel;
-    TileSection tileBed,tilePC,tileTable,tileBookshelf,tileWardrobe, tileKitchen,tilePan,tileWallMyRoom,
+    public TileSection tileBed,tilePC,tileTable,tileBookshelf,tileWardrobe, tileKitchen,tilePan,tileWallMyRoom,
             tileFridge,tileDoorMyRoom,tileKettle,tileStudentCard,tileLaptop,tilePhone;
-    TileSection[] tileChair;
+    public TileSection[] tileChair;
 
 
     public MyRoom(GamePanel gamePanel) {
@@ -94,7 +94,6 @@ public class MyRoom extends Map {
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
-        // System.out.println(GamePanel.scale);
         gamePanel.tileManager.draw(g2, background);
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);

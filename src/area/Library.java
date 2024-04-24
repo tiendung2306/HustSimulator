@@ -9,8 +9,8 @@ import java.awt.*;
 public class Library extends Map {
     GamePanel gamePanel;
 
-    TileSection tileBookcase01_1,tileBookcase01_2,tileBookcase02,tileBookcase03,tileDoorLibrary,tileWallLibrary;
-    TileSection[] tileChairLibrary,tileTableLibrary;
+    public TileSection tileBookcase01_1,tileBookcase01_2,tileBookcase02,tileBookcase03,tileDoorLibrary,tileWallLibrary;
+    public TileSection[] tileChairLibrary,tileTableLibrary;
     Tile background;
 
     public Library(GamePanel gamePanel) {

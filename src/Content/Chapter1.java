@@ -56,7 +56,7 @@ public class Chapter1 {
         if (completedAct == 7)
             Dialogue("Dòng chảy Ma Pháp ở thế giới này thật hỗn loạn, mình không thể khai triển sức mạnh được.");
         if (completedAct == 8)
-            Dialogue("Có vẻ ngôn ngữ ở đây có vẻ không khác ở thế giới cũ là bao.");
+            Dialogue("Ngôn ngữ ở đây có vẻ không khác ở thế giới cũ là bao.");
         if (completedAct == 9)
             Dialogue("Bắt đầu tìm hiểu xung quanh thôi!");
         if (completedAct == 10)
@@ -77,13 +77,20 @@ public class Chapter1 {
             Dialogue("Biết tìm kiếm thông tin ở đâu đây?");
         missionDescription.setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng(Ấn B để mở balo)");
         if (completedAct == 5) {
+            if (!studentIDMission)
+                gamePanel.myRoom.tileStudentCard.isMission = true;
+            if (!laptopMission)
+                gamePanel.myRoom.tileLaptop.isMission = true;
             if (inventory.isGettingInformation
                     && inventory.infoItem.Name.equals("Laptop gaming MSI Titan GT77 12UHS 204VN"))
                 laptopMission = true;
             if (inventory.isGettingInformation && inventory.infoItem.Name.equals("Student ID"))
                 studentIDMission = true;
-            if (laptopMission && studentIDMission)
+            if (laptopMission && studentIDMission) {
                 ++completedAct;
+                gamePanel.myRoom.tileStudentCard.isMission = false;
+                gamePanel.myRoom.tileLaptop.isMission = false;
+            }
         }
         if (completedAct == 6)
             Dialogue("Đại khái thì mình đã nắm bắt được mọi thứ xung quanh.");
@@ -100,8 +107,14 @@ public class Chapter1 {
     void Timeline2() {
         if (completedAct == 0) {
             missionDescription.setMissionDescription("Tìm mì tôm và lại nấu ăn đi");
+            if (!noodleMission){
+                gamePanel.myRoom.tileKettle.isMission = true;
+                gamePanel.myRoom.tilePan.isMission = true;
+            }
             if (collision.interactItem.Name.equals("Pan") && inventory.isUsingItem
                     && inventory.usingItem.Name.equals("Kettle")) {
+                gamePanel.myRoom.tileKettle.isMission = false;
+                gamePanel.myRoom.tilePan.isMission = false;
                 noodleMission = true;
                 ++completedAct;
             }
@@ -118,8 +131,7 @@ public class Chapter1 {
             if (!inventory.isExist("Iphone 1000000 ProMax")) { // phai co dien thoai trong balo
                 Dialogue("Điện thoại của tôi đâu rồi nhỉ");
                 missionDescription.setMissionDescription("Tìm điện thoại");
-            } else
-                completedAct++;
+            } else completedAct++;
         } else if (completedAct == 1) {
             if (inventory.isExist("Iphone 1000000 ProMax")) {
                 if (Main.topGameState().equals("GamePlay"))
@@ -128,7 +140,7 @@ public class Chapter1 {
                 phone.isOpenFhust = false;
             }
         } else if (completedAct == 2) {
-            if (phone.isOpenFhust == true && phone.isDrawPhone == false) {
+            if (phone.isOpenFhust && !phone.isDrawPhone) {
                 Dialogue("Vậy là hôm nay mình không có lịch học");
                 missionDescription.setMissionDescription("");
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
@@ -182,8 +194,11 @@ public class Chapter1 {
     void Dialogue(String str) {
         if (Main.topGameState().equals("GamePlay")) {
             ui.currentDialog = str;
-            ui.text = str;
             Main.pushGameState("Dialogue");
+            ui.i = 0;
+            ui.timer.setDelay(60);
+            ui.isFinishDialogue = false;
+            ui.timer.start();
         }
     }
 

@@ -31,6 +31,12 @@ public class Collision {
             if (collisionTile[i].Type.equals("Collected"))
                 collectItem(i);
     }
+    public boolean isCollision(String str){
+        for (int i = 0; i < numCollision; ++i)
+            if (collisionTile[i].Name.equals(str))
+                return true;
+        return false;
+    }
     public void pushDialog(){
         if (!Main.topGameState().equals("Dialog"))
             Main.pushGameState("Dialog");

@@ -70,9 +70,11 @@ public class CollisionCheck {
             String type = defineType(entityLeftX, entityRightX, entityTopY, entityBottomY, tileLeftX, tileRightX, tileTopY, tileBottomY);
             if (!type.equals("no-collision")) {
                 collisionTile[numCollision] = considerTile;
+                collisionTile[numCollision].isCollision = true;
                 tileIndex[numCollision] = i;
                 typeCollision[numCollision++] = type;
             }
+            else considerTile.isCollision = false;
         }
     }
 }

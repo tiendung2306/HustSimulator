@@ -3,15 +3,19 @@ package tile;
 import main.GamePanel;
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.*;
 
 public class TileManager {
 
     GamePanel gamePanel;
     public Tile[] tile;
     public int[][] typeTile;
+
+    BufferedImage warningIcon;
+    int step, extraY;
+    boolean reverse;
 
     public TileManager(GamePanel gamePanel) {
 
@@ -43,11 +47,29 @@ public class TileManager {
             tile[33] = new Tile();
             tile[33].image = ImageIO.read(new FileInputStream("res/tile/D7 map.png"));
 
+            warningIcon = ImageIO.read(new FileInputStream("res/Mission/warningIcon.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    public void update(){
+        ++step;
+        if (step == 8) {
+            step = 0;
+            if (!reverse) {
+                extraY += (int) GamePanel.scale;
+                if (extraY == 3 * GamePanel.scale) {
+                    reverse = true;
+                }
+            } else {
+                extraY -= (int) GamePanel.scale;
+                if (extraY == 0) {
+                    reverse = false;
+                }
+            }
+        }
+    }
     public void draw(Graphics2D g2, Tile tile) {
         int mapX = tile.getLeftX();
         int mapY = tile.getTopY();
@@ -56,6 +78,8 @@ public class TileManager {
         int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
         int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
         g2.drawImage(tile.image, screenX, screenY, width, height, null);
+        if (tile.isMission)
+            g2.drawImage(warningIcon, screenX + width + (int)(GamePanel.scale), screenY - (int)(4 * GamePanel.scale) + extraY, (int) (2 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
         g2.drawRect(screenX, screenY, width, height);
 
     }

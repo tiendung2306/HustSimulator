@@ -85,11 +85,19 @@ public class KeyHandler implements KeyListener {
         }
         if (KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE")) {
             if (Main.topGameState().equals("Dialogue")) {
-                Main.popGameState();
-                if (this.missionDescription != null && this.missionDescription.isMissionDescriptionDrawing) {
-                    this.missionDescription.isMissionDescriptionDrawing = false;
-                } else
-                    ++gamePanel.chapter1.completedAct;
+                if (!gamePanel.ui.isFinishDialogue){
+                    gamePanel.ui.timer.setDelay(0);
+                    gamePanel.ui.isFinishDialogue = true;
+                }
+                else {
+                    Main.popGameState();
+                    gamePanel.ui.text = "";
+                    gamePanel.ui.timer.stop();
+                    if (this.missionDescription != null && this.missionDescription.isMissionDescriptionDrawing) {
+                        this.missionDescription.isMissionDescriptionDrawing = false;
+                    } else
+                        ++gamePanel.chapter1.completedAct;
+                }
             }
         }
 

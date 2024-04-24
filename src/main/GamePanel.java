@@ -54,12 +54,12 @@ public class GamePanel extends JPanel implements Runnable {
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
             nextMainMenu, setting, audioSetting, keySetting, videoSetting);
     // Khai báo lớp NormalClassroom vào GamePanel
-    NormalClassroom normalClassroom = new NormalClassroom(this);
-    ComputerRoom computerRoom = new ComputerRoom(this);
-    Library library = new Library(this);
-    Stadium stadium = new Stadium(this);
-    MyRoom myRoom = new MyRoom(this);
-    Section_3 section_3 = new Section_3(this);
+    public NormalClassroom normalClassroom = new NormalClassroom(this);
+    public ComputerRoom computerRoom = new ComputerRoom(this);
+    public Library library = new Library(this);
+    public Stadium stadium = new Stadium(this);
+    public MyRoom myRoom = new MyRoom(this);
+    public Section_3 section_3 = new Section_3(this);
 
     // =================================================================================================
     public static double next_screenWidth = 256 * scale;
@@ -241,6 +241,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         timeSystem.update();
         soundManager.update();
+        tileManager.update();
         chapter1.update();
         phone.update();
         player.update();
