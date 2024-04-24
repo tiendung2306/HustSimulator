@@ -24,6 +24,8 @@ public class MissionDescription {
     String missionDescriptionText = "Làm gì đó đi ní ơi!!!";
     BufferedImage missionIcon;
     BufferedImage newMissionIcon;
+    BufferedImage darkMissionIcon;
+    BufferedImage darkNewMissionIcon;
     int width, height;
     Phone phone;
     UI ui;
@@ -54,6 +56,8 @@ public class MissionDescription {
         try {
             missionIcon = ImageIO.read(new FileInputStream("res/GUI/mission_icon.png"));
             newMissionIcon = ImageIO.read(new FileInputStream("res/GUI/new_mission_icon.png"));
+            darkMissionIcon = ImageIO.read(new FileInputStream("res/GUI/dark_mission_icon.png"));
+            darkNewMissionIcon = ImageIO.read(new FileInputStream("res/GUI/dark_new_mission_icon.png"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -119,17 +123,26 @@ public class MissionDescription {
         if (!Main.topGameState().equals("GamePlay"))
             return;
         if (isNewMission)
-            g2.drawImage(newMissionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
-                    (int) (GamePanel.screenHeight / 20), width, height, null);
-        else
+            if (isOnHover)
+                g2.drawImage(newMissionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
+                        (int) (GamePanel.screenHeight / 20), width, height, null);
+            else
+                g2.drawImage(darkNewMissionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
+                        (int) (GamePanel.screenHeight / 20), width, height, null);
+        else if (isOnHover)
             g2.drawImage(missionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
                     (int) (GamePanel.screenHeight / 20), width, height, null);
+        else
+            g2.drawImage(darkMissionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
+                    (int) (GamePanel.screenHeight / 20), width, height, null);
         // if (!isOnHover) {
-        //     float percentage = .92f; // 50% bright - change this (or set dynamically) as you feel fit
-        //     int brightness = (int) (256 - 256 * percentage);
-        //     g2.setColor(new Color(0, 0, 0, brightness));
-        //     g2.fillRect((int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
-        //             (int) (GamePanel.screenHeight / 20), width, height);
+        // float percentage = .92f; // 50% bright - change this (or set dynamically) as
+        // you feel fit
+        // int brightness = (int) (256 - 256 * percentage);
+        // g2.setColor(new Color(0, 0, 0, brightness));
+        // g2.fillRect((int) (GamePanel.screenWidth - width - GamePanel.screenWidth /
+        // 70),
+        // (int) (GamePanel.screenHeight / 20), width, height);
         // }
 
     }
