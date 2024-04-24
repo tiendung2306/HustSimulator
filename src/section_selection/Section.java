@@ -61,7 +61,7 @@ class Section {
     }
 
     protected boolean HoverCheck(int mouseX, int mouseY){
-        Point point = new Point(mouseX, mouseY);
+        Point point = new Point(mouseX - section_selection.bg_X, mouseY - section_selection.bg_Y);
 
         if(boder.HoverCheck(point)){
             for(Shape shape : hitboxs){
@@ -76,13 +76,13 @@ class Section {
 
     protected void OnHover(Graphics graphics){
         section_selection.statusPanel.setHoverOn(this);
-        graphics.drawImage(HoverImg, 0, 0, (int)(HoverImg.getWidth() * section_selection.scale_X), (int)(HoverImg.getHeight() * section_selection.scale_Y), null);
-        if(MouseManager.isLeftMouseClick)
+        graphics.drawImage(HoverImg, section_selection.bg_X, section_selection.bg_Y, (int)(HoverImg.getWidth() * section_selection.scale_X), (int)(HoverImg.getHeight() * section_selection.scale_Y), null);
+        if(MouseManager.isLeftMouseClick){}
             OnClick();
     }
 
 
-    private void OnClick(){
+    protected void OnClick(){
 
     } 
 

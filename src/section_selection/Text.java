@@ -6,11 +6,13 @@ import java.awt.Rectangle;
 
 
 public class Text {
+    Section_selection section_selection;
     String text;
     Font font;
     int top, bottom, left, right;//%
 
-    public Text(String text, Font font){
+    public Text(String text, Font font, Section_selection section_selection){
+        this.section_selection = section_selection;
         this.text = text;
         this.font = font;
         top = bottom = left = right = 0;
@@ -77,6 +79,6 @@ public class Text {
         else
             y = (int)(surface.height - surface.height * bottom * 1.0 / 100);
         // System.out.println(x);
-        graphics.drawString(text, x + surface.x, y + surface.y);
+        graphics.drawString(text,section_selection.bg_X + x + surface.x, section_selection.bg_Y + y + surface.y);
     }
 }
