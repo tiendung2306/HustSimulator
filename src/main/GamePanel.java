@@ -181,13 +181,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 9: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("Gameplay");
+                    Main.pushGameState("GamePlay");
                 currentMap = section_3;
                 break;
             }
             case 10: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("Gameplay");
+                    Main.pushGameState("GamePlay");
                 currentMap = section_2;
                 break;
             }

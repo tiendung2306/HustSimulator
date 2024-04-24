@@ -7,15 +7,17 @@ import java.awt.Rectangle;
 public class StatusPanel {
     Section_selection section_selection;
     Rectangle contex_box = new Rectangle(45, 1174, 1044, 495);
-    Text defaut = new Text("NO SECTION SELECTED", new Font("Dialog", Font.BOLD, 90));
+    Text defaut, sectionTag, sectionStatus, sectionDescription;
     Boolean onhover = false;
-    Text sectionTag = new Text("", new Font("Dialog", Font.BOLD, 120));
-    Text sectionStatus = new Text("", new Font("Dialog", Font.BOLD, 80));
-    Text sectionDescription = new Text("", new Font("Dialog", Font.BOLD, 80));
 
 
     public StatusPanel(Section_selection section_selection){
         this.section_selection = section_selection;
+
+        defaut = new Text("NO SECTION SELECTED", new Font("Dialog", Font.BOLD, 90), section_selection);
+        sectionTag = new Text("", new Font("Dialog", Font.BOLD, 120), section_selection);
+        sectionStatus = new Text("", new Font("Dialog", Font.BOLD, 80), section_selection);
+        sectionDescription = new Text("", new Font("Dialog", Font.BOLD, 80), section_selection);
 
         sectionTag.setTop(15);
         sectionStatus.setTop(45);

@@ -18,6 +18,8 @@ public class Section_2 extends Map {
         this.gamePanel = gamePanel;
         maxMapCol = 64;
         maxMapRow = 65;
+        playerX = (int) (300 * gamePanel.scale);
+        playerY = (int) (600 * gamePanel.scale);
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[33].image;
@@ -56,7 +58,6 @@ public class Section_2 extends Map {
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
-
         gamePanel.tileManager.draw(g2, background);
         // for (int i = 0; i < numTileContainer; ++i)
         //     gamePanel.tileManager.draw(g2, tileContainer[i]);

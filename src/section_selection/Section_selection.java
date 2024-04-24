@@ -17,6 +17,7 @@ public class Section_selection {
     BufferedImage background;
     Vector<Section> sections = new Vector<Section>();
     double scale_X, scale_Y;
+    int bg_X, bg_Y;
 
     StatusPanel statusPanel = new StatusPanel(this);
     Button backButton = new Button(this);
@@ -26,7 +27,7 @@ public class Section_selection {
         LoadImage();
         LoadMap();
         LoadButton();
-        Scale((double) GamePanel.screenWidth / background.getWidth(),
+        Scale((double) GamePanel.screenHeight / background.getHeight(),
                 (double) GamePanel.screenHeight / background.getHeight());
         // Scale(1.0 / 2, 1.0 / 2);
 
@@ -117,6 +118,10 @@ public class Section_selection {
 
         statusPanel.scale(scale_X, scale_Y);
         backButton.scale(scale_X, scale_Y);
+
+        bg_X = (int)((gamePanel.screenWidth - background.getWidth() * scale_X) / 2);
+        bg_Y = 0;
+
     }
 
     private void HoverCheck(Graphics graphics) {
@@ -131,7 +136,7 @@ public class Section_selection {
     }
 
     private void display(Graphics graphics) {
-        graphics.drawImage(background, 0, 0, (int) (background.getWidth() * scale_X), (int) (background.getHeight() * scale_Y), null);
+        graphics.drawImage(background, bg_X, bg_Y, (int) (background.getWidth() * scale_X), (int) (background.getHeight() * scale_Y), null);
 
         // Test(graphics);
         // for(Section section : sections){
