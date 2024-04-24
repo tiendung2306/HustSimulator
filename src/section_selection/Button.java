@@ -8,6 +8,6 @@ public class Button extends Section {
 
     
     @Override protected void OnClick(){
-        // section_selection.close();
+        section_selection.close();
     }
 }
