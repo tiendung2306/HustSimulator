@@ -136,6 +136,7 @@ public class GamePanel extends JPanel implements Runnable {
         library.reSizeMap(this);
         stadium.setDefaultValues();
         stadium.reSizeMap(this);
+        currentMap.loadMap(this);
         player.setDefaultValues();
         inventory.ScreenResize();
         ui.screenResize();
