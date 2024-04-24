@@ -126,9 +126,16 @@ public class GamePanel extends JPanel implements Runnable {
     public void screenResize() {
         missionDescription.screenResize();
         phone.screenResize();
-        myRoom.reSizeMap(this);
         myRoom.setDefaultValues();
-        myRoom.LocationPlayer(this);
+        myRoom.reSizeMap(this);
+        normalClassroom.setDefaultValues();
+        normalClassroom.reSizeMap(this);
+        computerRoom.setDefaultValues();
+        computerRoom.reSizeMap(this);
+        library.setDefaultValues();
+        library.reSizeMap(this);
+        stadium.setDefaultValues();
+        stadium.reSizeMap(this);
         player.setDefaultValues();
         inventory.ScreenResize();
         ui.screenResize();

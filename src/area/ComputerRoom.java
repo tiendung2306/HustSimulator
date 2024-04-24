@@ -26,14 +26,18 @@ public class ComputerRoom extends Map {
         this.gamePanel = gamePanel;
         maxMapCol = 21;
         maxMapRow = 18;
-        playerX = (int) (35 * gamePanel.scale);
-        playerY = (int) (64 * gamePanel.scale);
         tileContainer = new Tile[50];
-        gamePanel.tileManager.getTileImage();
         background = new Tile();
         background.image = gamePanel.tileManager.tile[17].image;
-        background.setWidth((int) (320 * gamePanel.scale));
-        background.setHeight((int) (240 * gamePanel.scale));
+        setDefaultValues();
+    }
+
+    public void setDefaultValues() {
+        playerX = (int) (35 * GamePanel.scale);
+        playerY = (int) (64 * GamePanel.scale);
+        gamePanel.tileManager.getTileImage();
+        background.setWidth((int) (320 * GamePanel.scale));
+        background.setHeight((int) (240 * GamePanel.scale));
         tileTable = new TileSection[10];
         tileComputerTeacher = new TileSection(gamePanel,274,182,28,28,"Teacher Computer","Interact","","res/tile/may_tinh_gv.png");
         tileDoor01 = new TileSection(gamePanel,30,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png");
