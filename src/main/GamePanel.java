@@ -7,7 +7,6 @@ import Inventory.Inventory;
 import MainMenu.*;
 import area.*;
 import entity.Player;
-import javafx.util.converter.TimeStringConverter;
 import map.Map;
 import sound.Sound;
 import tile.TileManager;
@@ -81,13 +80,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
+    public Phone phone = new Phone(this);
+    public MissionDescription missionDescription = new MissionDescription(this);
     public KeyHandler keyH = new KeyHandler(this);
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
     public Inventory inventory = new Inventory(this);
-    public Phone phone = new Phone(this);
     public TimeBoard timeBoard = new TimeBoard(this);
-    public MissionDescription missionDescription = new MissionDescription(this);
 
     public Section_selection section_selection = new Section_selection(this);
 
@@ -127,7 +126,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void screenResize() {
-        timeBoard.screenResize();
+        missionDescription.screenResize();
         phone.screenResize();
     }
 
@@ -248,6 +247,7 @@ public class GamePanel extends JPanel implements Runnable {
         phone.update();
         player.update();
         inventory.update();
+        missionDescription.update();
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
@@ -285,7 +285,7 @@ public class GamePanel extends JPanel implements Runnable {
                 // System.out.println("phone-kun xin chao tat ca cac ban");
                 if(inventory.isExist("Iphone 1000000 ProMax")) {
                     phone.isDrawPhone = !phone.isDrawPhone;
-                    phone.setPhoneState("Main Menu");
+                    phone.setPhoneState("Screen Saver");
                 }
                 keyH.isPhonePressed = false;
             }

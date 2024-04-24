@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import Mouse.MouseManager;
+// import java.awt.geom.Rectangle2D;
 
 import java.io.FileInputStream;
 import java.awt.*;
@@ -19,8 +20,8 @@ public class Phone {
     public boolean isDrawPhone = false;
     public boolean isNewMessage = false;
 
-    String phoneStates[] = { "Main Menu", "fHUST", "Message", "Setting" };
-    String phoneState = "Main Menu";
+    String phoneStates[] = { "Screen Saver", "Main Menu", "fHUST", "Message", "Setting", "Map" };
+    String phoneState = "Screen Saver";
 
     BufferedImage phone;
     BufferedImage arrowUp;
@@ -30,6 +31,9 @@ public class Phone {
     BufferedImage logoMessager;
     BufferedImage logoSetting;
     BufferedImage messagerNoNewMessage;
+    BufferedImage messagerNewMessage;
+    BufferedImage screenSaver;
+    BufferedImage mapIcon;
     Schedule schedule = new Schedule();
 
     int phoneStartX;
@@ -59,6 +63,7 @@ public class Phone {
     Boolean isArrowDownExist = false;
 
     public Boolean isOpenFhust = false;
+    public Boolean isOpenMessager = false;
 
     public Phone(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -73,17 +78,17 @@ public class Phone {
     }
 
     public void screenResize() {
-        phoneWidth = (int) Math.max(phone.getWidth() / 10 * 2, phone.getWidth() / 10 * gamePanel.screenWidth / 680);
-        phoneHeight = (int) Math.max(phone.getHeight() / 10 * 2, phone.getHeight() / 10 * gamePanel.screenWidth / 680);
-        phoneStartX = (int) (gamePanel.screenWidth / 2 - phoneWidth / 2);
-        phoneStartY = (int) (gamePanel.screenHeight / 2 - phoneHeight / 2);
+        phoneWidth = (int) Math.max(phone.getWidth() / 10 * 2, phone.getWidth() / 10 * GamePanel.screenWidth / 680);
+        phoneHeight = (int) Math.max(phone.getHeight() / 10 * 2, phone.getHeight() / 10 * GamePanel.screenWidth / 680);
+        phoneStartX = (int) (GamePanel.screenWidth / 2 - phoneWidth / 2);
+        phoneStartY = (int) (GamePanel.screenHeight / 2 - phoneHeight / 2);
 
         emptyLineSpaceHeight = phone.getHeight() / 100 * 1; // chieu cao giua hai dong ke nhau
 
-        textBoxHeight = phoneHeight / 100 * 21;
+        textBoxHeight = phoneHeight * 21 / 100;
 
-        firstTextBoxHeight = phoneStartY + phoneHeight / 100 * 35; // muon chinh chieu cao chu thi sua moi dong nay
-        firstTextBoxWidth = phoneStartX + phoneWidth / 100 * 23;
+        firstTextBoxHeight = phoneStartY + phoneHeight * 34 / 100; // muon chinh chieu cao chu thi sua moi dong nay
+        firstTextBoxWidth = phoneStartX + phoneWidth * 18 / 100;
 
         secondTextBoxHeight = firstTextBoxHeight + textBoxHeight; // khong sua dong nay`
         secondTextBoxWidth = firstTextBoxWidth;
@@ -107,7 +112,6 @@ public class Phone {
         if (!isDrawPhone)
             return;
         checkClicked();
-        // System.out.println(phoneState);
     }
 
     void getImage() {
@@ -120,7 +124,9 @@ public class Phone {
             logoMessager = ImageIO.read(new FileInputStream("res/Phone/logo_messager_app.png"));
             logoSetting = ImageIO.read(new FileInputStream("res/Phone/setting_icon.png"));
             messagerNoNewMessage = ImageIO.read(new FileInputStream("res/Phone/messager_no_new_message.png"));
-
+            messagerNewMessage = ImageIO.read(new FileInputStream("res/Phone/messager_chapter1_1.png"));
+            screenSaver = ImageIO.read(new FileInputStream("res/Phone/screen_saver.png"));
+            mapIcon = ImageIO.read(new FileInputStream("res/Phone/map_icon.png"));
         } catch (Exception e) {
 
         }
@@ -132,6 +138,20 @@ public class Phone {
         currentPhonePage = 1;
     }
 
+    public void clearMessage() {
+        isNewMessage = false;
+    }
+
+    public void setNewMessage(String messageName) {
+        isNewMessage = true;
+        if (messageName == "chapter1_1") {
+            try {
+                messagerNewMessage = ImageIO.read(new FileInputStream("res/Phone/messager_chapter1_1.png"));
+            } catch (Exception e) {
+            }
+        }
+    }
+
     void drawSubjectInformationOnPhone(Graphics2D g2, int day, int peroid, int X, int Y) {
         if (schedule.getDailySchedule(day, peroid) == null)
             return;
@@ -140,7 +160,7 @@ public class Phone {
     }
 
     void drawAllSubjectInformationOnPhone(Graphics2D g2) {
-        g2.setFont(new Font("TimesRoman", Font.PLAIN, 15));
+        g2.setFont(new Font("TimesRoman", Font.PLAIN, phoneWidth / 19));
         if (currentPhonePage == 1) {
             if (schedule.numOfPeroidPerDay[TimeSystem.day] >= 1)
                 drawSubjectInformationOnPhone(g2, TimeSystem.day, 1, firstTextBoxWidth, firstTextBoxHeight);
@@ -160,7 +180,7 @@ public class Phone {
 
     void drawArrow(Graphics2D g2) {
         if (currentPhonePage == 2) {
-            g2.drawImage(arrowUp, phoneStartX + phoneWidth / 2 - 15, firstTextBoxHeight - textBoxHeight / 100 * 55,
+            g2.drawImage(arrowUp, phoneStartX + phoneWidth / 2 - 15, firstTextBoxHeight - textBoxHeight * 49 / 100,
                     arrowWidth,
                     arrowHeight,
                     null);
@@ -168,20 +188,12 @@ public class Phone {
             isArrowDownExist = false;
         }
         if (currentPhonePage == 1 && schedule.numOfPeroidPerDay[TimeSystem.day] >= 3) {
-            g2.drawImage(arrowDown, phoneStartX + phoneWidth / 2 - 15, secondTextBoxHeight + textBoxHeight / 100 * 67,
+            g2.drawImage(arrowDown, phoneStartX + phoneWidth / 2 - 15, secondTextBoxHeight + textBoxHeight * 62 / 100,
                     arrowWidth,
                     arrowHeight, null);
             isArrowDownExist = true;
             isArrowUpExist = false;
         }
-    }
-
-    public void makeNewMessage(String[] myMessage, String[] recievedMessage) {
-        isNewMessage = true;
-    }
-
-    public void clearMessage() {
-        isNewMessage = false;
     }
 
     private void clickOnDownArrow() {
@@ -198,12 +210,21 @@ public class Phone {
         if (!Main.topGameState().equals("GamePlay"))
             return;
         switch (phoneState) {
+            case "Screen Saver":
+                if (MouseManager.lastReleasedX >= phoneStartX + phoneWidth / 2 - phoneWidth / 12
+                        && MouseManager.lastReleasedX <= phoneStartX + phoneWidth / 2 - phoneWidth / 12 + phoneWidth / 6
+                        && MouseManager.lastReleasedY >= phoneStartY + phoneHeight * 76 / 90
+                        && MouseManager.lastReleasedY <= phoneStartY + phoneHeight * 76 / 90 + phoneHeight / 11) {
+
+                    phoneState = "Main Menu";
+                }
+                break;
             case "fHUST":
                 if (isArrowUpExist) {
                     if (MouseManager.lastReleasedX >= phoneStartX + phoneWidth / 2 - 15
                             && MouseManager.lastReleasedX <= phoneStartX + phoneWidth / 2 - 15 + arrowWidth) {
-                        if (MouseManager.lastReleasedY >= firstTextBoxHeight - textBoxHeight / 100 * 55
-                                && MouseManager.lastReleasedY <= firstTextBoxHeight - textBoxHeight / 100 * 55
+                        if (MouseManager.lastReleasedY >= firstTextBoxHeight - textBoxHeight * 49 / 100
+                                && MouseManager.lastReleasedY <= firstTextBoxHeight - textBoxHeight * 49 / 100
                                         + arrowHeight) {
                             clickOnUpArrow();
                         }
@@ -212,17 +233,18 @@ public class Phone {
                 if (isArrowDownExist) {
                     if (MouseManager.lastReleasedX >= phoneStartX + phoneWidth / 2 - 15
                             && MouseManager.lastReleasedX <= phoneStartX + phoneWidth / 2 - 15 + arrowWidth) {
-                        if (MouseManager.lastReleasedY >= secondTextBoxHeight + textBoxHeight / 100 * 67
-                                && MouseManager.lastReleasedY <= secondTextBoxHeight + textBoxHeight / 100 * 67
+                        if (MouseManager.lastReleasedY >= secondTextBoxHeight + textBoxHeight * 62 / 100
+                                && MouseManager.lastReleasedY <= secondTextBoxHeight + textBoxHeight * 62 / 100
                                         + arrowHeight) {
                             clickOnDownArrow();
                         }
                     }
                 }
 
-                if (MouseManager.lastReleasedX >= 378 && MouseManager.lastReleasedX <= 423
-                        && MouseManager.lastReleasedY >= 456
-                        && MouseManager.lastReleasedY <= 508) {
+                if (MouseManager.lastReleasedX >= phoneStartX + phoneWidth / 2 - phoneWidth / 12
+                        && MouseManager.lastReleasedX <= phoneStartX + phoneWidth / 2 - phoneWidth / 12 + phoneWidth / 6
+                        && MouseManager.lastReleasedY >= phoneStartY + phoneHeight * 76 / 90
+                        && MouseManager.lastReleasedY <= phoneStartY + phoneHeight * 76 / 90 + phoneHeight / 11) {
                     // nhan va nut home(dung de chuyen sang ngay tiep theo) (dung cho muc dich test
                     // game)
                     // TimeSystem.day++;
@@ -247,21 +269,30 @@ public class Phone {
                         && MouseManager.lastReleasedY >= firstLogoY
                         && MouseManager.lastReleasedY <= firstLogoY + logoSize) {
                     phoneState = "Messager";
+                    isOpenMessager = true;
                 } else if (MouseManager.lastReleasedX >= firstLogoX + 2 * logoSize + 2 * spaceSizeBetween2Logo
                         && MouseManager.lastReleasedX <= firstLogoX + 3 * logoSize + 2 * spaceSizeBetween2Logo
                         && MouseManager.lastReleasedY >= firstLogoY
                         && MouseManager.lastReleasedY <= firstLogoY + logoSize) {
                     Main.pushGameState("Setting");
                     MouseManager.resetLastReleasedPos();
+                } else if (MouseManager.lastReleasedX >= firstLogoX
+                        && MouseManager.lastReleasedX <= firstLogoX + logoSize
+                        && MouseManager.lastReleasedY >= firstLogoY + logoSize + spaceSizeBetweenLogoAndName * 2
+                        && MouseManager.lastReleasedY <= firstLogoY + logoSize + spaceSizeBetweenLogoAndName * 2
+                                + logoSize) {
+                    phoneState = "Map";
                 }
                 break;
             case "Setting":
 
                 break;
             case "Messager":
-                if (MouseManager.lastReleasedX >= 378 && MouseManager.lastReleasedX <= 423
-                        && MouseManager.lastReleasedY >= 456
-                        && MouseManager.lastReleasedY <= 508) {
+                if (MouseManager.lastReleasedX >= phoneStartX + phoneWidth / 2 - phoneWidth / 12
+                        && MouseManager.lastReleasedX <= phoneStartX + phoneWidth / 2 - phoneWidth / 12 + phoneWidth / 6
+                        && MouseManager.lastReleasedY >= phoneStartY + phoneHeight * 76 / 90
+                        && MouseManager.lastReleasedY <= phoneStartY + phoneHeight * 76 / 90 + phoneHeight / 11) {
+
                     phoneState = "Main Menu";
                 }
                 break;
@@ -270,9 +301,10 @@ public class Phone {
     }
 
     void drawAppLogo(Graphics2D g2, BufferedImage logoImage, String name, int X, int Y, int offsetNameX) {
+        // System.out.println(phoneWidth);
         g2.drawImage(logoImage, X, Y, logoSize,
                 logoSize, null);
-        g2.setFont(new Font("TimesRoman", Font.BOLD, 13));
+        g2.setFont(new Font("TimesRoman", Font.BOLD, phoneWidth / 22));
         g2.drawString(name, X + offsetNameX, Y + logoSize + spaceSizeBetweenLogoAndName);
     }
 
@@ -283,10 +315,22 @@ public class Phone {
             return;
         Color myColor = new Color(45, 39, 39, 190);
         g2.setColor(myColor);
-        g2.fillRect(0, 0, (int) gamePanel.screenWidth, (int) gamePanel.screenHeight); // ve lop background mo sau cai
+        g2.fillRect(0, 0, (int) GamePanel.screenWidth, (int) GamePanel.screenHeight); // ve lop background mo sau cai
                                                                                       // dien thoai
 
         switch (phoneState) {
+            case "Screen Saver":
+                g2.drawImage(screenSaver, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
+                myColor = new Color(255, 255, 255);
+                g2.setColor(myColor);
+                g2.setFont(new Font("Verdana", Font.PLAIN, (int) (phoneWidth / 6)));
+                int width = g2.getFontMetrics().stringWidth(TimeSystem.currentTime);
+                // FontMetrics fm = g2.getFontMetrics();
+                // Rectangle2D rect = fm.getStringBounds(TimeSystem.currentTime, g2);
+                g2.drawString(TimeSystem.currentTime, phoneStartX + phoneWidth / 2 - width / 2,
+                        phoneStartY + phoneHeight / 3);
+                g2.setColor(myColor);
+                break;
             case "fHUST":
                 myColor = new Color(0, 0, 0);
                 g2.setColor(myColor);
@@ -296,6 +340,9 @@ public class Phone {
                 drawArrow(g2);
 
                 drawAllSubjectInformationOnPhone(g2);
+                // g2.fillRect(phoneStartX + phoneWidth / 2 - phoneWidth / 12, phoneStartY +
+                // phoneHeight * 76 / 90, phoneWidth / 6, phoneHeight / 11); //test vi tri nut
+                // home
                 break;
 
             case "Main Menu":
@@ -304,25 +351,29 @@ public class Phone {
 
                 g2.drawImage(phoneWithWallpaper, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
 
-                drawAppLogo(g2, logoFhust, "fHUST", firstLogoX, firstLogoY, 1);
+                drawAppLogo(g2, logoFhust, "fHUST", firstLogoX, firstLogoY, 2);
                 drawAppLogo(g2, logoMessager, "Messager", firstLogoX + logoSize + spaceSizeBetween2Logo, firstLogoY,
                         -4);
                 drawAppLogo(g2, logoSetting, "Settings", firstLogoX + 2 * logoSize + 2 * spaceSizeBetween2Logo,
                         firstLogoY, 0);
+                drawAppLogo(g2, mapIcon, "Map", firstLogoX,
+                        firstLogoY + logoSize + spaceSizeBetweenLogoAndName * 2, logoSize / 5);
                 break;
             case "Messager":
-                if (!isNewMessage) { //neu khong co tin nhan moi
+                if (!isNewMessage) { // neu khong co tin nhan moi
                     myColor = new Color(0, 0, 0);
                     g2.setColor(myColor);
                     g2.drawImage(messagerNoNewMessage, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
-                    g2.setFont(new Font("Arial", Font.ITALIC, Math.min((int)(gamePanel.screenWidth / 43), 20)));
+                    g2.setFont(new Font("Arial", Font.ITALIC, Math.min((int) (GamePanel.screenWidth / 43), 20)));
                     g2.drawString("Không có tin nhắn mới", phoneStartX + phoneWidth * 37 / 200,
                             phoneStartY + phoneHeight / 3);
                 } else {
-                    
+                    g2.drawImage(messagerNewMessage, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
                 }
                 break;
+            case "Map":
+                gamePanel.section_selection.operation(g2);
+                break;
         }
-
     }
 }

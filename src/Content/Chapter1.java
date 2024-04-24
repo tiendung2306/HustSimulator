@@ -4,6 +4,7 @@ import main.GamePanel;
 import main.Main;
 import main.UI;
 import phone.Phone;
+import time.TimeSystem;
 import Inventory.Inventory;
 import Collision.Collision;
 import GUI.MissionDescription;
@@ -15,10 +16,11 @@ public class Chapter1 {
     Collision collision;
     MissionDescription missionDescription;
     Phone phone;
-    MissionDescription missionDescription;
     boolean isDrawBackground;
     public int currentTimeline, completedAct;
     public boolean IntroFinished = false, laptopMission = false, studentIDMission = false, noodleMission = false;
+    long prevTime = 0;
+
     public Chapter1(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
@@ -129,9 +131,19 @@ public class Chapter1 {
             if (phone.isOpenFhust == true && phone.isDrawPhone == false) {
                 Dialogue("Vậy là hôm nay mình không có lịch học");
                 missionDescription.setMissionDescription("");
+                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             }
+        } else if (completedAct == 3 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 6000) {
+            Dialogue("Khoan đã, mình vừa có tin nhắn mới thì phải. Là ai nhắn thế nhỉ");
+            missionDescription.setMissionDescription("Kiểm tra tin nhắn");
+            phone.setNewMessage("chapter1_1");
+            phone.isOpenMessager = false;
+        }   else if (completedAct == 4 && phone.isOpenMessager == true && phone.isDrawPhone == false) {
+            Dialogue("Ừ nhỉ mình suýt quên mất. Hôm nay có lịch phải nộp hồ sơ nhập học ở C2 lúc 7h30. Mình phải nhanh chóng di chuyển đến trường thôi");
+            missionDescription.setMissionDescription("Tương tác với cửa phòng để di chuyển đến trường");
+            phone.clearMessage();
         }
-        if (completedAct == 3)
+        if (completedAct == 5)
             nextTimeline();
     }
 

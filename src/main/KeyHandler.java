@@ -5,41 +5,46 @@ import Keyboard.KeyboardManager;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyHandler implements KeyListener{
+import GUI.MissionDescription;
+
+public class KeyHandler implements KeyListener {
 
     GamePanel gamePanel;
+    MissionDescription missionDescription;
     public boolean upPressed, downPressed, leftPressed, rightPressed, isInteract, isPhonePressed;
-    public KeyHandler(GamePanel gamePanel){
+
+    public KeyHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        this.missionDescription = gamePanel.missionDescription;
     }
 
-    public void keyTyped(KeyEvent e){
+    public void keyTyped(KeyEvent e) {
 
     }
 
-    public void keyPressed(KeyEvent e){
+    public void keyPressed(KeyEvent e) {
 
         int code = e.getKeyCode();
 
-        if(code == KeyboardManager.getKey("UP")){
+        if (code == KeyboardManager.getKey("UP")) {
             upPressed = true;
         }
-        if(code == KeyboardManager.getKey("DOWN")){
+        if (code == KeyboardManager.getKey("DOWN")) {
             downPressed = true;
         }
-        if(code == KeyboardManager.getKey("LEFT")){
+        if (code == KeyboardManager.getKey("LEFT")) {
             leftPressed = true;
         }
-        if(code == KeyboardManager.getKey("RIGHT")){
+        if (code == KeyboardManager.getKey("RIGHT")) {
             rightPressed = true;
         }
-        if(code == KeyboardManager.getKey("PAUSE")){
-            if (Main.topGameState().equals("GamePause")){
+        if (code == KeyboardManager.getKey("PAUSE")) {
+            if (Main.topGameState().equals("GamePause")) {
                 Main.popGameState();
-            }
-            else Main.pushGameState("GamePause");
+            } else
+                Main.pushGameState("GamePause");
         }
-        if(code == KeyboardManager.getKey("INVENTORY")){
+        if (code == KeyboardManager.getKey("INVENTORY")) {
             if (Main.topGameState().equals("Inventory"))
                 Main.popGameState();
             else {
@@ -48,44 +53,46 @@ public class KeyHandler implements KeyListener{
             }
         }
         // if(code == KeyboardManager.getKey("PHONE")){
-        //     isPhonePressed = true;
+        // isPhonePressed = true;
         // }
     }
 
-    public void keyReleased(KeyEvent e){
+    public void keyReleased(KeyEvent e) {
 
         int code = e.getKeyCode();
 
-        if(code == KeyboardManager.getKey("UP")){
+        if (code == KeyboardManager.getKey("UP")) {
             upPressed = false;
         }
-        if(code == KeyboardManager.getKey("DOWN")){
+        if (code == KeyboardManager.getKey("DOWN")) {
             downPressed = false;
         }
-        if(code == KeyboardManager.getKey("LEFT")){
+        if (code == KeyboardManager.getKey("LEFT")) {
             leftPressed = false;
         }
-        if(code == KeyboardManager.getKey("RIGHT")){
+        if (code == KeyboardManager.getKey("RIGHT")) {
             rightPressed = false;
         }
-        if(code == KeyboardManager.getKey("PHONE")){
+        if (code == KeyboardManager.getKey("PHONE")) {
             isPhonePressed = true;
         }
-        if(KeyboardManager.getTypeKey(code).equals("INTERACT")) {
-            if (Main.topGameState().equals("Dialog"))
-            {
+        if (KeyboardManager.getTypeKey(code).equals("INTERACT")) {
+            if (Main.topGameState().equals("Dialog")) {
                 Main.popGameState();
                 isInteract = false;
-            }
-            else isInteract = true;
+            } else
+                isInteract = true;
         }
-        if(KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE")) {
+        if (KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE")) {
             if (Main.topGameState().equals("Dialogue")) {
                 Main.popGameState();
-                ++gamePanel.chapter1.completedAct;
+                if (this.missionDescription != null && this.missionDescription.isMissionDescriptionDrawing) {
+                    this.missionDescription.isMissionDescriptionDrawing = false;
+                } else
+                    ++gamePanel.chapter1.completedAct;
             }
         }
-        
+
     }
 
 }

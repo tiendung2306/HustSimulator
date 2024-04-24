@@ -94,7 +94,7 @@ public class MyRoom extends Map {
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
-        System.out.println(GamePanel.scale);
+        // System.out.println(GamePanel.scale);
         gamePanel.tileManager.draw(g2, background);
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);

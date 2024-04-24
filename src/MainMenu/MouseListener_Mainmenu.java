@@ -26,8 +26,8 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     public void mouseClicked(MouseEvent e) {
         // int x_click = (int) e.getPoint().getX();
         // int y_click = (int) ;
-         System.out.println(e.getPoint().getX());
-         System.out.println(e.getPoint().getY());
+        //  System.out.println(e.getPoint().getX());
+        //  System.out.println(e.getPoint().getY());
         // if (Main.topGameState().equals(Main.states[0])) {
         // if ((x_click > 340 * Main.ex) && (y_click > 478 * Main.ex) && (x_click < 420
         // * Main.ex)

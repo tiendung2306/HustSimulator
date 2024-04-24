@@ -4,7 +4,7 @@ public class TimeSystem {
     public static int day = 4;
     public static String currentTime = "88:88";
     
-    public long currentSystemTime = 0; //thoi gian tu luc bat dau game den gio (tinh theo nano giay)
+    public static long currentSystemTime = 0; //thoi gian tu luc bat dau game den gio (tinh theo nano giay)
     public static long startSystemTime = 0;
 
     public TimeSystem() {
@@ -15,7 +15,7 @@ public class TimeSystem {
         currentSystemTime = System.nanoTime() - startSystemTime;
     }
 
-    public long getCurrentSystemTimeInMilliseconds() {
+    static public long getCurrentSystemTimeInMilliseconds() {
         return currentSystemTime / 1000000;
     }
 

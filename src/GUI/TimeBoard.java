@@ -20,37 +20,37 @@ public class TimeBoard {
     int timeBoardHeight;
     public TimeBoard(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        init();
+        // init();
     }
 
-    void init() {
-        getImage();
-        timeBoardWidth = (int)(gamePanel.screenWidth * 150.0 / 900.0);
-        timeBoardHeight = (int)(timeBoard.getHeight() * timeBoardWidth / timeBoard.getWidth());
-    }
+    // void init() {
+    //     // getImage();
+    //     timeBoardWidth = (int)(gamePanel.screenWidth * 150.0 / 900.0);
+    //     timeBoardHeight = (int)(timeBoard.getHeight() * timeBoardWidth / timeBoard.getWidth());
+    // }
 
-    public void screenResize() {
-        timeBoardWidth = (int)((double)gamePanel.screenWidth * 150.0 / 900.0);
-        timeBoardHeight = (int)(timeBoard.getHeight() * timeBoardWidth / timeBoard.getWidth());
-    }
+    // public void screenResize() {
+    //     timeBoardWidth = (int)((double)gamePanel.screenWidth * 150.0 / 900.0);
+    //     timeBoardHeight = (int)(timeBoard.getHeight() * timeBoardWidth / timeBoard.getWidth());
+    // }
 
-    void getImage() {
-        try {
-            timeBoard = ImageIO.read(new FileInputStream("res/TimeBoard/TimeBoard(1).png"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+    // void getImage() {
+    //     try {
+    //         timeBoard = ImageIO.read(new FileInputStream("res/TimeBoard/TimeBoard(1).png"));
+    //     } catch (FileNotFoundException e) {
+    //         e.printStackTrace();
+    //     } catch (IOException e) {
 
-            e.printStackTrace();
-        }
-    }
+    //         e.printStackTrace();
+    //     }
+    // }
 
     public void draw(Graphics2D g2) {
-        if(!Main.topGameState().equals("GamePlay")) return;
-        g2.drawImage(timeBoard, (int) (gamePanel.screenWidth - timeBoardWidth - timeBoardWidth / 35), 0, timeBoardWidth, timeBoardHeight, null);
-        g2.setFont(new Font("Verdana", Font.PLAIN, (int)(timeBoardWidth / 6)));
-        g2.setColor(Color.WHITE);
-        g2.drawString(TimeSystem.currentTime, (float) (gamePanel.screenWidth - timeBoardWidth * 24 / 32), timeBoardHeight / 3 * 2);
+        // if(!Main.topGameState().equals("GamePlay")) return;
+        // g2.drawImage(timeBoard, (int) (gamePanel.screenWidth - timeBoardWidth - timeBoardWidth / 35), 0, timeBoardWidth, timeBoardHeight, null);
+        // g2.setFont(new Font("Verdana", Font.PLAIN, (int)(timeBoardWidth / 6)));
+        // g2.setColor(Color.WHITE);
+        // g2.drawString(TimeSystem.currentTime, (float) (gamePanel.screenWidth - timeBoardWidth * 24 / 32), timeBoardHeight / 3 * 2);
 
     }
 }
