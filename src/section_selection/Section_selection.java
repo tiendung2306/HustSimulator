@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import java.io.*;
 
 import main.GamePanel;
+import main.Main;
 import section_selection.shape.*;
 
 public class Section_selection {
@@ -18,13 +19,15 @@ public class Section_selection {
     double scale_X, scale_Y;
 
     StatusPanel statusPanel = new StatusPanel(this);
+    Button backButton = new Button(this);
 
     public Section_selection(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         LoadImage();
         LoadMap();
-        Scale((double) gamePanel.screenWidth / background.getWidth(),
-                (double) gamePanel.screenHeight / background.getHeight());
+        LoadButton();
+        Scale((double) GamePanel.screenWidth / background.getWidth(),
+                (double) GamePanel.screenHeight / background.getHeight());
         // Scale(1.0 / 2, 1.0 / 2);
 
     }
@@ -38,19 +41,27 @@ public class Section_selection {
 
     }
 
+    private void LoadButton(){
+        backButton.add_Hitbox(new Shape(1, 114, 331, 147));
+        backButton.set_Boder(new Shape(1, 114, 331, 147));
+        backButton.set_Tag("BackButton");
+
+    }
+
     private void LoadMap() {
         try {
             BufferedReader source = new BufferedReader(new InputStreamReader(new FileInputStream("src/txt/areas.txt")));
             while (true) {
 
-                Section section = new Section(this);
                 String tag = source.readLine();
+                Section section = new Section(this);
 
                 if (tag.length() == 0) {
                     break;
                 } else {
                     sections.add(section);
                     section.set_Tag(tag);
+
                     boolean next = true;
                     while (next) {
                         String line = source.readLine();
@@ -105,6 +116,7 @@ public class Section_selection {
         }
 
         statusPanel.scale(scale_X, scale_Y);
+        backButton.scale(scale_X, scale_Y);
     }
 
     private void HoverCheck(Graphics graphics) {
@@ -113,6 +125,9 @@ public class Section_selection {
             if (section.HoverCheck(gamePanel.mouseManager.mouseCurrentX(), gamePanel.mouseManager.mouseCurrentY())) {
                 section.OnHover(graphics);
             }
+
+        if(backButton.HoverCheck(gamePanel.mouseManager.mouseCurrentX(), gamePanel.mouseManager.mouseCurrentY()))
+            backButton.OnHover(graphics);
     }
 
     private void display(Graphics graphics) {
@@ -139,4 +154,13 @@ public class Section_selection {
         HoverCheck(graphics);
         statusPanel.display(graphics);
     }
+
+    public void open(){
+        Main.pushGameState("Map");
+    }
+
+    public void close(){
+        Main.popGameState();
+    }
+
 }

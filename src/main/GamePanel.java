@@ -154,7 +154,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             case 3: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
+                    Main.pushGameState("Section");
                 currentMap = section_1;
                 break;
             }
@@ -191,13 +191,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 9: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
+                    Main.pushGameState("Gameplay");
                 currentMap = section_3;
                 break;
             }
             case 10: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
+                    Main.pushGameState("Gameplay");
                 currentMap = section_2;
                 break;
             }
@@ -357,6 +357,10 @@ public class GamePanel extends JPanel implements Runnable {
                     loadGame.draw(g2);
                 break;
             }
+
+            case 3:{
+                section_selection.operation(g);
+            }
         }
 
         if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
@@ -370,6 +374,12 @@ public class GamePanel extends JPanel implements Runnable {
             }
             ui.draw(g2);
         }
+
+
+        if (Main.topGameState().equals("Map")){
+            section_selection.operation(g);
+        }
+        
         g2.dispose();
     }
     public void drawMap(Graphics2D g2) {
@@ -394,6 +404,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentMap == section_3) {
             section_3.draw(g2);
         }
+
     }
     public void newGame() {
         currentMap = myRoom;
