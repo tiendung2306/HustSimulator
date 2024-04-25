@@ -88,7 +88,7 @@ public class Phone {
         textBoxHeight = phoneHeight * 21 / 100;
 
         firstTextBoxHeight = phoneStartY + phoneHeight * 34 / 100; // muon chinh chieu cao chu thi sua moi dong nay
-        firstTextBoxWidth = phoneStartX + phoneWidth * 18 / 100;
+        firstTextBoxWidth = phoneStartX + phoneWidth * 17 / 100;
 
         secondTextBoxHeight = firstTextBoxHeight + textBoxHeight; // khong sua dong nay`
         secondTextBoxWidth = firstTextBoxWidth;
@@ -160,7 +160,7 @@ public class Phone {
     }
 
     void drawAllSubjectInformationOnPhone(Graphics2D g2) {
-        g2.setFont(new Font("TimesRoman", Font.PLAIN, phoneWidth / 19));
+        g2.setFont(new Font("Times New Roman", Font.PLAIN, phoneWidth / 19));
         if (currentPhonePage == 1) {
             if (schedule.numOfPeroidPerDay[TimeSystem.day] >= 1)
                 drawSubjectInformationOnPhone(g2, TimeSystem.day, 1, firstTextBoxWidth, firstTextBoxHeight);
@@ -364,7 +364,7 @@ public class Phone {
                     myColor = new Color(0, 0, 0);
                     g2.setColor(myColor);
                     g2.drawImage(messagerNoNewMessage, phoneStartX, phoneStartY, phoneWidth, phoneHeight, null);
-                    g2.setFont(new Font("Arial", Font.ITALIC, Math.min((int) (GamePanel.screenWidth / 43), 20)));
+                    g2.setFont(new Font("Arial", Font.ITALIC, 18));
                     g2.drawString("Không có tin nhắn mới", phoneStartX + phoneWidth * 37 / 200,
                             phoneStartY + phoneHeight / 3);
                 } else {
@@ -372,7 +372,7 @@ public class Phone {
                 }
                 break;
             case "Map":
-                gamePanel.section_selection.operation(g2);
+                gamePanel.section_selection.open();
                 break;
         }
     }

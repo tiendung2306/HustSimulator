@@ -131,12 +131,14 @@ public class Chapter1 {
             if (!inventory.isExist("Iphone 1000000 ProMax")) { // phai co dien thoai trong balo
                 Dialogue("Điện thoại của tôi đâu rồi nhỉ");
                 missionDescription.setMissionDescription("Tìm điện thoại");
+                gamePanel.myRoom.tilePhone.isMission = true;
             } else completedAct++;
         } else if (completedAct == 1) {
             if (inventory.isExist("Iphone 1000000 ProMax")) {
                 if (Main.topGameState().equals("GamePlay"))
                     Dialogue("Mình phải mở điện thoại ra kiểm tra xem hôm nay có tiết học gì không nào");
                     missionDescription.setMissionDescription("Kiểm tra app fHUST(Ấn P để mở điện thoại)");
+                    gamePanel.myRoom.tilePhone.isMission = false;
                 phone.isOpenFhust = false;
             }
         } else if (completedAct == 2) {
@@ -158,10 +160,7 @@ public class Chapter1 {
         if (completedAct == 5)
             nextTimeline();
     }
-
-    void Timeline4() {
-        
-    }
+    
 
     public void update() {
         if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory")
@@ -182,10 +181,6 @@ public class Chapter1 {
             }
             case 3: {
                 Timeline3();
-                break;
-            }
-            case 4: {
-                Timeline4();
                 break;
             }
         }
