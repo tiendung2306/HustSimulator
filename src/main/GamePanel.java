@@ -331,8 +331,9 @@ public class GamePanel extends JPanel implements Runnable {
                     nextMainMenu.draw(g2);
                 } else if (Main.topGameState().equals(Main.states[2]))
                     setting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[3]))
+                else if (Main.topGameState().equals(Main.states[3])) {
                     audioSetting.draw(g2);
+                }
                 else if (Main.topGameState().equals(Main.states[4]))
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
@@ -408,7 +409,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
     public void newGame() {
-        currentMap = myRoom;
+        currentMap = normalClassroom;
         chapter1.currentTimeline = 0;
         chapter1.IntroFinished = false;
         chapter1.completedAct = 0;

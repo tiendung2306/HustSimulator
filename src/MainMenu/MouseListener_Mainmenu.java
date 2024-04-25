@@ -25,6 +25,8 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getPoint().getX());
+        System.out.println(e.getPoint().getY());
         // int x_click = (int) e.getPoint().getX();
         // int y_click = (int) ;
         // if (Main.topGameState().equals(Main.states[0])) {
@@ -167,6 +169,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 setting.Init();
             } else if ((x_click > 201 * Main.ex) && (y_click > 253 * Main.ey) && (x_click < 566 * Main.ex)
                     && (y_click < 287 * Main.ey)) {
+                AudioSetting.volumesliderpointX = 542 * Main.ex;
                 Main.pushGameState(Main.states[3]);
                 setting.Init();
             } else if ((x_click > 251 * Main.ex) && (y_click > 313 * Main.ey) && (x_click < 514 * Main.ex)
