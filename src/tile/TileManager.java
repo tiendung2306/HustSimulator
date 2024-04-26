@@ -11,7 +11,6 @@ public class TileManager {
 
     GamePanel gamePanel;
     public Tile[] tile;
-    public int[][] typeTile;
 
     BufferedImage warningIcon;
     int step, extraY;
@@ -22,7 +21,6 @@ public class TileManager {
         this.gamePanel = gamePanel;
 
         tile = new Tile[60];
-        typeTile = new int[gamePanel.maxMapCol][gamePanel.maxMapRow];
         getTileImage();
     }
 

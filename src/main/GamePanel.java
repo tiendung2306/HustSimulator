@@ -140,6 +140,7 @@ public class GamePanel extends JPanel implements Runnable {
         player.setDefaultValues();
         inventory.ScreenResize();
         ui.screenResize();
+        section_selection.screenResize();
     }
 
     public void Init() {
