@@ -156,8 +156,17 @@ public class Chapter1 {
             Dialogue("Ừ nhỉ mình suýt quên mất. Hôm nay có lịch phải nộp hồ sơ nhập học ở C2 lúc 7h30. Mình phải nhanh chóng di chuyển đến trường thôi");
             missionDescription.setMissionDescription("Tương tác với cửa phòng để di chuyển đến trường");
             phone.clearMessage();
+            prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+        } else if (completedAct == 5 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4000) {
+            gamePanel.currentMap = gamePanel.normalClassroom;
+            gamePanel.currentMap.loadMap(gamePanel);
+            prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+            completedAct++;
         }
-        if (completedAct == 5)
+        else if(completedAct == 6 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 500) {
+            Dialogue("Mình đã đến nơi rồi!");
+        }
+        if (completedAct == 7)
             nextTimeline();
     }
     
@@ -175,11 +184,11 @@ public class Chapter1 {
                 Timeline1();
                 break;
             }
+            // case 2: {
+            //     Timeline2();
+            //     break;
+            // }
             case 2: {
-                Timeline2();
-                break;
-            }
-            case 3: {
                 Timeline3();
                 break;
             }

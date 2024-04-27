@@ -301,6 +301,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (keyH.isPhonePressed) {
                 // System.out.println("phone-kun xin chao tat ca cac ban");
                 if(inventory.isExist("Iphone 1000000 ProMax")) {
+                    KeyboardManager.resetReleasedKey();
                     phone.isDrawPhone = !phone.isDrawPhone;
                     phone.setPhoneState("Screen Saver");
                 }

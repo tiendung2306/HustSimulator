@@ -46,7 +46,7 @@ public class Collision {
     }
 
     public void pushDialog() {
-        if (!Main.topGameState().equals("Dialog"))
+        if (!Main.topGameState().equals("Dialog") && !gamePanel.phone.isDrawPhone)
             Main.pushGameState("Dialog");
         switch (collisionTile[0].Type) {
             case "Teleport": {

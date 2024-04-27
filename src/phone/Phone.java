@@ -1,9 +1,11 @@
 package phone;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
+import Keyboard.KeyboardManager;
 import Mouse.MouseManager;
 // import java.awt.geom.Rectangle2D;
 
@@ -111,6 +113,9 @@ public class Phone {
     public void update() {
         if (!isDrawPhone)
             return;
+        if(isDrawPhone) {
+            if(KeyboardManager.getReleasedKey() == KeyEvent.VK_ESCAPE) isDrawPhone = false;
+        }
         checkClicked();
     }
 
