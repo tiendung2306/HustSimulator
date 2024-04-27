@@ -83,6 +83,10 @@ public class TileManager {
         if(gamePanel.player.collision_collect && gamePanel.player.checkNameTile.equals(tile.Name)) {
             System.out.println(gamePanel.player.collision_collect + " " + gamePanel.player.checkNameTile);
             g2.drawImage(tile.imageEffcet, screenX, screenY, width, height, null);
+            if(tile.imageEffcet == null) {
+                System.out.println("sddkfksndfksndfsndfj");
+            }
+
         }
 
 

@@ -8,7 +8,7 @@ public class Tile{
     public String Name;
     public int numOwn;
     public String Type;
-    public String Description,isEffect,name_path,name_path2;
+    public String Description,name_path,name_path2;
     int LeftX, RightX, TopY, BottomY;
 
     int width, height;
@@ -27,6 +27,7 @@ public class Tile{
         Description = tile.Description;
         width = tile.width;
         height = tile.height;
+        imageEffcet = tile.imageEffcet;
     }
 
     public Tile(int leftX, int rightX, int topY, int bottomY, String name, String type, String description, BufferedImage image,String name_path,String name_path2) {
@@ -45,7 +46,7 @@ public class Tile{
         this.image = image;
     }
 
-    public Tile(int leftX, int rightX, int topY, int bottomY, String name, String type, String description, BufferedImage image) {
+    public Tile(int leftX, int rightX, int topY, int bottomY, String name, String type, String description, BufferedImage image,BufferedImage imageEffcet) {
         LeftX = leftX;
         RightX = rightX;
         TopY = topY;
@@ -55,6 +56,7 @@ public class Tile{
         numOwn = 0;
         Name = name;
         Type = type;
+        this.imageEffcet = imageEffcet;
         Description = description;
         this.image = image;
     }

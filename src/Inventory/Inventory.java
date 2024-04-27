@@ -297,7 +297,7 @@ public class Inventory implements ActionListener {
                     (int) (gamePanel.player.getMapY() + 16 * GamePanel.scale),
                     (int) (gamePanel.player.getMapY() + 16 * GamePanel.scale + pages[pageIndex].slot[x][y].getHeight()),
                     pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type,
-                    pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image);
+                    pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image,pages[pageIndex].slot[x][y].imageEffcet);
             gamePanel.currentMap.addTile(tile);
             if (pages[pageIndex].slot[x][y].numOwn == 0) {
                 pages[pageIndex].slot[x][y].Name = "Empty";
