@@ -58,7 +58,7 @@ public class UI {
             drawDialogueScreen();
         }
         if (Main.topGameState().equals("GamePlay")) {
-            if (gamePanel.player.ButtonInteract) {
+            if (gamePanel.player.ButtonInteract && !gamePanel.phone.isDrawPhone) {
                 drawInteractButton();
             }
         }

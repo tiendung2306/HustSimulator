@@ -46,7 +46,7 @@ public class MissionDescription {
     }
 
     public void init() {
-        width = (int) (GamePanel.screenWidth / 18);
+        width = (int) (GamePanel.screenWidth / 16);
         height = missionIcon.getHeight() * width / missionIcon.getWidth();
     }
 
@@ -121,13 +121,13 @@ public class MissionDescription {
         if (!Main.topGameState().equals("GamePlay"))
             return;
         if (isNewMission)
-            if (isOnHover)
+            if (!isOnHover)
                 g2.drawImage(newMissionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
                         (int) (GamePanel.screenHeight / 20), width, height, null);
             else
                 g2.drawImage(darkNewMissionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
                         (int) (GamePanel.screenHeight / 20), width, height, null);
-        else if (isOnHover)
+        else if (!isOnHover)
             g2.drawImage(missionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
                     (int) (GamePanel.screenHeight / 20), width, height, null);
         else

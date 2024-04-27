@@ -52,8 +52,10 @@ public class Chapter1 extends Chapter {
 
     void Timeline1() {
         IntroFinished = true;
-        if (completedAct == 0)
+        if (completedAct == 0){
             Dialogue("Đây là căn phòng của ta sao?");
+            TimeSystem.setCurrentTime("07:00");
+        }
         if (completedAct == 1)
             Dialogue("Nó khá nhỏ so với tòa lâu đài ở kiếp trước. Nhưng nó chứa khá là nhiều thứ thú vị!");
         if (completedAct == 2)
@@ -124,13 +126,15 @@ public class Chapter1 extends Chapter {
             if (!inventory.isExist("Iphone 100 ProMax")) { // phai co dien thoai trong balo
                 Dialogue(" ");
                 missionDescription.setMissionDescription("Tìm điện thoại");
+                gamePanel.myRoom.tilePhone.isMission = true;
             } else completedAct++;
         }
         if (completedAct == 3) {
             if (inventory.isExist("Iphone 100 ProMax")) {
                 if (Main.topGameState().equals("GamePlay"))
                     Dialogue("Một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này quả là thiên tài.");
-                missionDescription.setMissionDescription("Kiểm tra app fHUST(Ấn P để mở điện thoại)");
+                    missionDescription.setMissionDescription("Kiểm tra app fHUST(Ấn P để mở điện thoại)");
+                    gamePanel.myRoom.tilePhone.isMission = false;
                 phone.isOpenFhust = false;
             }
         }
@@ -153,14 +157,20 @@ public class Chapter1 extends Chapter {
             Dialogue("Hội dũng giả nằm ở tòa C2, đến đăng ký tân thủ lúc 7h30");
             missionDescription.setMissionDescription("Tương tác với cửa phòng để di chuyển đến trường");
             phone.clearMessage();
+            prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+        } else if (completedAct == 5 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4000) {
+            gamePanel.currentMap = gamePanel.normalClassroom;
+            gamePanel.currentMap.loadMap(gamePanel);
+            prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+            completedAct++;
+        }
+        else if(completedAct == 6 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 500) {
+            Dialogue("Mình đã đến nơi rồi!");
         }
         if (completedAct == 7)
             nextTimeline();
     }
-
-    void Timeline4() {
-        
-    }
+    
 
     public void update() {
         if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory")
@@ -175,16 +185,12 @@ public class Chapter1 extends Chapter {
                 Timeline1();
                 break;
             }
+            // case 2: {
+            //     Timeline2();
+            //     break;
+            // }
             case 2: {
-                Timeline2();
-                break;
-            }
-            case 3: {
                 Timeline3();
-                break;
-            }
-            case 4: {
-                Timeline4();
                 break;
             }
         }

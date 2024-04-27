@@ -77,7 +77,7 @@ class Section {
     protected void OnHover(Graphics graphics){
         section_selection.statusPanel.setHoverOn(this);
         graphics.drawImage(HoverImg, section_selection.bg_X, section_selection.bg_Y, (int)(HoverImg.getWidth() * section_selection.scale_X), (int)(HoverImg.getHeight() * section_selection.scale_Y), null);
-        if(HoverCheck(MouseManager.lastClickedX, MouseManager.lastClickedY)){
+        if(HoverCheck(MouseManager.lastReleasedX, MouseManager.lastReleasedY)){
             OnClick();
         }
     }

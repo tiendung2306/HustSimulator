@@ -6,6 +6,9 @@ import java.lang.String;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
+
+import Mouse.MouseManager;
+
 import java.io.*;
 
 import main.GamePanel;
@@ -14,7 +17,7 @@ import section_selection.shape.*;
 
 public class Section_selection {
     GamePanel gamePanel;
-    BufferedImage background;
+    public BufferedImage background;
     Vector<Section> sections = new Vector<Section>();
     double scale_X, scale_Y;
     int bg_X, bg_Y;
@@ -166,6 +169,7 @@ public class Section_selection {
 
     public void close(){
         Main.popGameState();
+        gamePanel.phone.setPhoneState("Main Menu");
     }
 
 }
