@@ -12,6 +12,7 @@ public class TileManager {
     GamePanel gamePanel;
     public Tile[] tile;
     public int[][] typeTile;
+   // public TileSection tileSection;
 
     BufferedImage warningIcon;
     int step, extraY;
@@ -20,7 +21,6 @@ public class TileManager {
     public TileManager(GamePanel gamePanel) {
 
         this.gamePanel = gamePanel;
-
         tile = new Tile[60];
         typeTile = new int[gamePanel.maxMapCol][gamePanel.maxMapRow];
         getTileImage();
@@ -77,11 +77,20 @@ public class TileManager {
         int height = tile.getHeight();
         int screenX = mapX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
         int screenY = mapY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
-        g2.drawImage(tile.image, screenX, screenY, width, height, null);
+        if( !gamePanel.player.collision_collect || (gamePanel.player.collision_collect && (!gamePanel.player.checkNameTile.equals(tile.Name)))) {
+           g2.drawImage(tile.image, screenX, screenY, width, height, null);
+        }
+        if(gamePanel.player.collision_collect && gamePanel.player.checkNameTile.equals(tile.Name)) {
+            System.out.println(gamePanel.player.collision_collect + " " + gamePanel.player.checkNameTile);
+            g2.drawImage(tile.imageEffcet, screenX, screenY, width, height, null);
+        }
+
+
         if (tile.isMission)
             g2.drawImage(warningIcon, screenX + width, screenY - (int)(12 * GamePanel.scale) + extraY, (int) (3 * GamePanel.scale), (int) (9 * GamePanel.scale), null);
         g2.drawRect(screenX, screenY, width, height);
     }
+
 
 
     public void drawRect(Graphics2D g2, int mapX, int mapY, int width, int height) {

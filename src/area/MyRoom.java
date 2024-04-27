@@ -33,7 +33,7 @@ public class MyRoom extends Map {
         for(int i=0;i<4;i++) {
             dem ++;
             if(dem<=2) {
-                tileChair[i] = new TileSection(gamePanel, x, y,13,13,"My Chair","Obstacle", "","res/tile/chair_my_room.png");
+                tileChair[i] = new TileSection(gamePanel, x, y,13,13,"My Chair","Obstacle", "","res/tile/chair_my_room.png",1);
 
                 y += 45;
             }
@@ -42,7 +42,7 @@ public class MyRoom extends Map {
                 y = 148;
             }
             if(dem>2) {
-                tileChair[i] = new TileSection(gamePanel,x,y,13,13,"My Chair","Obstacle", "","res/tile/chair_my_room.png");
+                tileChair[i] = new TileSection(gamePanel,x,y,13,13,"My Chair","Obstacle", "","res/tile/chair_my_room.png",1);
                 y += 45;
             }
         }
@@ -74,21 +74,21 @@ public class MyRoom extends Map {
         playerY = (int) (75 * GamePanel.scale);
         background.setWidth((int) (450 * GamePanel.scale));
         background.setHeight((int) (242 * GamePanel.scale));
-        tileBed = new TileSection(gamePanel,26,176,87,54,"My Bed","Interact","","res/tile/my_bed.png");
-        tilePC = new TileSection(gamePanel,164,159,102,61,"My PC","Interact","","res/tile/dan_pc.png");
-        tileTable = new TileSection(gamePanel,315,145,34,62,"My Table","Interact","","res/tile/table_my_room.png");
-        tileFridge = new TileSection(gamePanel,378,23,55,74,"My Fridge","Interact","","res/tile/tu_lanh.png");
-        tileBookshelf = new TileSection(gamePanel,100,48,84,49,"My Bookshelf","Interact","","res/tile/tu_do_my_room.png");
-        tileWardrobe = new TileSection(gamePanel,0,30,55,70,"My Wardrobe","Interact","","res/tile/tu_quan_ao.png");
-        tileKitchen = new TileSection(gamePanel,416,108,34,135,"My Kitchen","Interact","","res/tile/cho_nau_an.png");
-        tileDoorMyRoom = new TileSection(gamePanel,205,30,49,61,"Door My Room","Teleport","","res/tile/door_my_room.png");
-        tilePan = new TileSection(gamePanel,413,155,30,20,"Pan","Interact","","res/tile/chao.png");
-        tileWallMyRoom = new TileSection(gamePanel,0,0,460,91,"","Obstacle","","res/tile/no_thing.png");
-        tileKettle = new TileSection(gamePanel,60,85,25,15,"Kettle","Collected","DCM 37 38 RACH","res/tile/am_dun_nuoc.png");
-        tileLaptop = new TileSection(gamePanel,78,100,23,17,"Laptop gaming MSI Titan GT77 12UHS 204VN","Collected","135990000 VNĐ","res/tile/laptop_lor.png");
-        tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student ID","Collected","DCM 37 38 RACH","res/tile/the_sinh_vien.png");
-        tilePhone = new TileSection(gamePanel,162,187,8,15,"Iphone 1000000 ProMax","Collected","DCM 37 38 RACH","res/tile/phone_lor.png");
+        tileBed = new TileSection(gamePanel,26,176,87,54,"My Bed","Interact","","res/tile/my_bed.png",1);
+        tilePC = new TileSection(gamePanel,164,159,102,61,"My PC","Interact","","res/tile/dan_pc.png","res/tile/dan_pc.png",1);
+        tileTable = new TileSection(gamePanel,315,145,34,62,"My Table","Interact","","res/tile/table_my_room.png",1);
+        tileFridge = new TileSection(gamePanel,378,23,55,74,"My Fridge","Interact","","res/tile/tu_lanh.png",1);
+        tileBookshelf = new TileSection(gamePanel,100,48,84,49,"My Bookshelf","Interact","","res/tile/tu_do_my_room.png",1);
+        tileWardrobe = new TileSection(gamePanel,0,30,55,70,"My Wardrobe","Interact","","res/tile/tu_quan_ao.png",1);
+        tileKitchen = new TileSection(gamePanel,416,108,34,135,"My Kitchen","Interact","","res/tile/cho_nau_an.png",1);
+        tileDoorMyRoom = new TileSection(gamePanel,205,30,49,61,"Door My Room","Teleport","","res/tile/door_my_room.png",1);
+        tilePan = new TileSection(gamePanel,413,155,30,20,"Pan","Interact","","res/tile/chao.png",1);
+        tileWallMyRoom = new TileSection(gamePanel,0,0,460,91,"","Obstacle","","res/tile/no_thing.png",1);
+        tileKettle = new TileSection(gamePanel,60,85,25,15,"Kettle","Collected","DCM 37 38 RACH","res/tile/am_dun_nuoc.png",1);
+        tileLaptop = new TileSection(gamePanel,78,100,66,45,"Laptop gaming MSI Titan GT77 12UHS 204VN","Collected","135990000 VNĐ","res/tile/lap_top01.png","res/tile/lap_top02.png",(double) 1/3);
+        tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student ID","Collected","DCM 37 38 RACH","res/tile/the_sinh_vien.png","res/tile/the_sinh_vien.png",1);
         tileChair =new TileSection[4];
+        tilePhone = new TileSection(gamePanel,162,187,24,39,"Iphone 1000000 ProMax","Collected","DCM 37 38 RACH","res/tile/phone01.png","res/tile/phone02.png",(double) 1/3);
 
         setTileChair();
         setUpTileMyRoom();
