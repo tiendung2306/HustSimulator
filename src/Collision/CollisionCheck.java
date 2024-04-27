@@ -12,12 +12,14 @@ import java.io.*;
 public class CollisionCheck {
     GamePanel gamePanel;
     int numCollision;
+    int[] tileIndex;
     Tile[] collisionTile;
     String[] typeCollision;
     public CollisionCheck(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         collisionTile = new Tile[50];
         typeCollision = new String[50];
+        tileIndex = new int[50];
     }
     boolean ccw(int xO, int yO, int xA, int yA, int xB, int yB){
         return ((xA - xO) * (yB - yO) <= (yA - yO) * (xB - xO));
@@ -95,6 +97,7 @@ public class CollisionCheck {
             if (!type.equals("no-collision")) {
                 collisionTile[numCollision] = considerTile;
                 collisionTile[numCollision].isCollision = true;
+                tileIndex[numCollision] = i;
                 typeCollision[numCollision++] = type;
             }
             else considerTile.isCollision = false;

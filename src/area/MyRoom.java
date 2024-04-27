@@ -25,7 +25,7 @@ public class MyRoom extends Map {
         extraTile = new ExtraTile[10];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;
-        addExtraTile("src/txt/test.txt");
+        //addExtraTile("src/txt/test.txt");
         setDefaultValues();
     }
 
@@ -102,7 +102,7 @@ public class MyRoom extends Map {
         gamePanel.tileManager.draw(g2, background);
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);
-        for (int i = 0; i < numExtraTile; ++i){
+        /*for (int i = 0; i < numExtraTile; ++i){
             for (int j = 0; j < extraTile[i].numPoint; ++j){
                 int screenX = extraTile[i].x[j] - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
                 int screenY = extraTile[i].y[j] - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
@@ -110,6 +110,6 @@ public class MyRoom extends Map {
                 int screenY2 = extraTile[i].y[j + 1] - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
                 g2.drawLine(screenX, screenY, screenX2, screenY2);
             }
-        }
+        }*/
     }
 }
