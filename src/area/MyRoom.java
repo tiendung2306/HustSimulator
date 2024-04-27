@@ -18,8 +18,14 @@ public class MyRoom extends Map {
 
     public MyRoom(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        maxMapCol = 29;
-        maxMapRow = 18;
+        // maxMapCol = 29;
+        // maxMapRow = 18;
+        width = (int)(29 * 16 * gamePanel.scale);
+        height = (int)(18 * 16 * gamePanel.scale);
+        
+        // width = (int) (450 * GamePanel.scale);
+        // height = (int) (242 * GamePanel.scale);
+        
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;
@@ -74,6 +80,8 @@ public class MyRoom extends Map {
         playerY = (int) (75 * GamePanel.scale);
         background.setWidth((int) (450 * GamePanel.scale));
         background.setHeight((int) (242 * GamePanel.scale));
+        // background.setWidth((int) (width));
+        // background.setHeight((int) (height));  
         tileBed = new TileSection(gamePanel,26,176,87,54,"My Bed","Interact","","res/tile/my_bed.png");
         tilePC = new TileSection(gamePanel,164,159,102,61,"My PC","Interact","","res/tile/dan_pc.png");
         tileTable = new TileSection(gamePanel,315,145,34,62,"My Table","Interact","","res/tile/table_my_room.png");
