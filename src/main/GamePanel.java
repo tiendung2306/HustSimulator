@@ -19,7 +19,7 @@ import section_selection.Section_selection;
 import javax.swing.*;
 
 import Keyboard.KeyboardManager;
-import area.Section_3;
+//import area.Section_3;
 
 import Content.Chapter1;
 
@@ -61,7 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Library library = new Library(this);
     public Stadium stadium = new Stadium(this);
     public MyRoom myRoom = new MyRoom(this);
-    public Section_3 section_3 = new Section_3(this);
+//    public Section_3 section_3 = new Section_3(this);
 
     // =================================================================================================
     public static double next_screenWidth = 256 * scale;
@@ -75,8 +75,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public MouseManager mouseManager = new MouseManager(this);
     public Map currentMap = null; // map hien tai
-    Section_2 section_2 = new Section_2(this);
-    Section_1 section_1 = new Section_1(this);
+//    Section_2 section_2 = new Section_2(this);
+//    Section_1 section_1 = new Section_1(this);
 
 
     KeyboardManager keyboardManager = new KeyboardManager();
@@ -159,7 +159,7 @@ public class GamePanel extends JPanel implements Runnable {
             case 3: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("Section");
-                currentMap = section_1;
+              //  currentMap = section_1;
                 break;
             }
 
@@ -196,13 +196,13 @@ public class GamePanel extends JPanel implements Runnable {
             case 9: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("GamePlay");
-                currentMap = section_3;
+               // currentMap = section_3;
                 break;
             }
             case 10: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("GamePlay");
-                currentMap = section_2;
+               // currentMap = section_2;
                 break;
             }
         }
@@ -390,24 +390,24 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentMap == myRoom) {
             myRoom.draw(g2);
         }
-        if (currentMap == normalClassroom) {
-            normalClassroom.draw(g2);
-        }
-        if (currentMap == computerRoom) {
-            computerRoom.draw(g2);
-        }
-        if (currentMap == library) {
-            library.draw(g2);
-        }
-        if (currentMap == stadium) {
-            stadium.draw(g2);
-        }
-        if (currentMap == section_2) {
-            section_2.draw(g2);
-        }
-        if (currentMap == section_3) {
-            section_3.draw(g2);
-        }
+//        if (currentMap == normalClassroom) {
+//            normalClassroom.draw(g2);
+//        }
+//        if (currentMap == computerRoom) {
+//            computerRoom.draw(g2);
+//        }
+//        if (currentMap == library) {
+//            library.draw(g2);
+//        }
+//        if (currentMap == stadium) {
+//            stadium.draw(g2);
+//        }
+//        if (currentMap == section_2) {
+//            section_2.draw(g2);
+//        }
+//        if (currentMap == section_3) {
+//            section_3.draw(g2);
+//        }
 
     }
     public void newGame() {

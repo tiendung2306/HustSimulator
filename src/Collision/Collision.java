@@ -26,8 +26,10 @@ public class Collision {
         if (numCollision == 1 && collisionTile[0].Type.equals("Interact"))
             interactItem = collisionTile[0];
         for (int i = 0; i < numCollision; ++i)
-            if (collisionTile[i].Type.equals("Collected"))
+            if (collisionTile[i].Type.equals("Collected")) {
                 collectItem(i);
+            }
+
     }
     public boolean isCollision(String str){
         for (int i = 0; i < numCollision; ++i)

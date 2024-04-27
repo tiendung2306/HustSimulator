@@ -30,11 +30,11 @@ public class Stadium extends Map {
         playerY = (int) (115 * GamePanel.scale);
         background.setWidth((int) (320 * GamePanel.scale));
         background.setHeight((int) (240 * GamePanel.scale));
-        tileWall01 = new TileSection(gamePanel,0,70,203,45,"Wall","Obstacle","","res/tile/tuong_va_cua_svd01.png");
-        tileWall02 = new TileSection(gamePanel,241,69,79,46,"Wall","Obstacle","","res/tile/tuong_va_cua_svd02.png");
-        tileCar01 = new TileSection(gamePanel,39,158,65,33,"Car 01","Obstacle","","res/tile/xe_hoi_trang.png");
-        tileCar02 = new TileSection(gamePanel,218,200,77,33,"Car 02","Obstacle","","res/tile/xe_tai_do.png");
-        tileBall = new TileSection(gamePanel,152,42,14,14,"Ball","Collected","Hmm... Just a Ballon D'or! And it's for Lionel Messi!","res/tile/qua_bong.png");
+        tileWall01 = new TileSection(gamePanel,0,70,203,45,"Wall","Obstacle","","res/tile/tuong_va_cua_svd01.png",1);
+        tileWall02 = new TileSection(gamePanel,241,69,79,46,"Wall","Obstacle","","res/tile/tuong_va_cua_svd02.png",1);
+        tileCar01 = new TileSection(gamePanel,39,158,65,33,"Car 01","Obstacle","","res/tile/xe_hoi_trang.png",1);
+        tileCar02 = new TileSection(gamePanel,218,200,77,33,"Car 02","Obstacle","","res/tile/xe_tai_do.png",1);
+        tileBall = new TileSection(gamePanel,152,42,14,14,"Ball","Collected","Hmm... Just a Ballon D'or! And it's for Lionel Messi!","res/tile/qua_bong.png",1);
         setUpTileStadium();
     }
     public void setUpTileStadium() {
