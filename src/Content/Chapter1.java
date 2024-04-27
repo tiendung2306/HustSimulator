@@ -65,8 +65,10 @@ public class Chapter1 {
 
     void Timeline1() {
         IntroFinished = true;
-        if (completedAct == 0)
+        if (completedAct == 0){
             Dialogue("Đây là căn phòng của mình sao?");
+            TimeSystem.setCurrentTime("07:00");
+        }
         if (completedAct == 1)
             Dialogue("Nó khá nhỏ so với tòa lâu đài mình ở kiếp trước. Nhưng nó chứa khá là nhiều thứ thú vị!");
         if (completedAct == 2)
