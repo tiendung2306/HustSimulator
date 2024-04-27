@@ -1,6 +1,7 @@
 package area;
 
 import main.GamePanel;
+import main.Main;
 import map.Map;
 import tile.Tile;
 
@@ -17,35 +18,76 @@ public class Section_1 extends Map {
 
     public Section_1(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        
+        SetDefaultValues();
+    }
 
+    private void SetDefaultValues(){
         TileLoad();
+        SetOriginalSize();
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 2605 / (40 * background.getHeight()));
+        SetPlayerPos();
+    }
+    
+    private void SetOriginalSize(){
+        background.setWidth(background.image.getWidth());
+        background.setHeight(background.image.getHeight());
+
+        width = background.getWidth();
+        height = background.getHeight();
+    }
+
+    private void ReSize(double scale){
+        background.setWidth((int)(background.getWidth() * scale));
+        background.setHeight((int)(background.getHeight() * scale));
+
+
+
+        for(int i = 0; i < numTileContainer; i++){
+            tileContainer[i].resize(scale);
+
+        }
+        
+        width = background.getWidth();
+        height = background.getHeight();
+
+    }
+
+    private void SetPlayerPos(){
+        playerX = (int) (width * 1.0 / 2);
+        playerY = (int) (height * 1.0 / 2);
     }
 
     private void TileLoad() {
         tileContainer = new Tile[5];
 
-        background = new Tile();
-        BufferedImage bacImage;
         try {
-            bacImage = ImageIO.read(new FileInputStream("res/tile/Section1_demo.png"));
-            background.image = bacImage;
-            background.setWidth(bacImage.getWidth());
-            background.setHeight(bacImage.getHeight());
+            BufferedImage bacImage = ImageIO.read(new FileInputStream("res/tile/Section1_demo.png"));
+            background = new Tile(new Rectangle(0, 0, bacImage.getWidth(), bacImage.getHeight()), "Background", "", null, bacImage);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         C9 = new Tile(new Rectangle(101, 1720, 793, 389), "C9", "Obstacle", null, null);
         C2 = new Tile(new Rectangle(305, 754, 402, 965), "C2", "Obstacle", null, null);
         C1 = new Tile(new Rectangle(472, 238, 1716, 373), "C1", "Obstacle", null, null);
 
-        addTile(background);
         addTile(C9);
         addTile(C2);
         addTile(C1);
 
 
 
+    }
+
+    public void open(){
+        Main.pushGameState("Section");
+    }
+
+    public void close(){
+        Main.popGameState();
     }
 
     // Phương thức vẽ map

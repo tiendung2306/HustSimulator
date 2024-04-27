@@ -16,19 +16,40 @@ public class Section_2 extends Map {
 
     public Section_2(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-
-        tileContainer = new Tile[10];
         
-        TileLoad();
         SetDefaultValues();
     }
 
     private void SetDefaultValues(){
+        TileLoad();
+        SetOriginalSize();
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 2605 / (40 * background.getHeight()));
+        SetPlayerPos();
+    }
+
+    private void SetOriginalSize(){
+        background.setWidth(background.image.getWidth());
+        background.setHeight(background.image.getHeight());
+
+        width = background.getWidth();
+        height = background.getHeight();
+    }
+
+    private void ReSize(double scale){
+        background.setWidth((int)(background.getWidth() * scale));
+        background.setHeight((int)(background.getHeight() * scale));
+
+        for(int i = 0; i < numTileContainer; i++){
+            tileContainer[i].resize(scale);
+
+        }
         
         width = background.getWidth();
         height = background.getHeight();
 
+    }
 
+    private void SetPlayerPos(){
         playerX = (int) (width * 1.0 / 2);
         playerY = (int) (height * 1.0 / 2);
     }
@@ -36,13 +57,9 @@ public class Section_2 extends Map {
     private void TileLoad() {
         tileContainer = new Tile[5];
 
-        background = new Tile();
-        BufferedImage bacImage;
         try {
-            bacImage = ImageIO.read(new FileInputStream("res/tile/Section2_demo.png"));
-            background.image = bacImage;
-            background.setWidth(bacImage.getWidth() * 2);
-            background.setHeight(bacImage.getHeight() * 2);
+            BufferedImage bacImage = ImageIO.read(new FileInputStream("res/tile/Section2_demo.png"));
+            background = new Tile(new Rectangle(0, 0, bacImage.getWidth(), bacImage.getHeight()), "Background", "", null, bacImage);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,7 +69,6 @@ public class Section_2 extends Map {
         D5 = new Tile(new Rectangle(486, 1497, 1088, 390), "D5", "Obstacle", null, null);
         D9 = new Tile(new Rectangle(2030, 251, 1226, 402), "D9", "Obstacle", null, null);
 
-        addTile(background);
         addTile(D3);
         addTile(D5);
         addTile(D9);
@@ -60,19 +76,11 @@ public class Section_2 extends Map {
 
     }
 
-    
-    public void resize(Tile tile){
-        setLeftX((int) (tile.LeftX * GamePanel.scale));
-        setTopY((int) (y * GamePanel.scale));
-        setRightX((int) ((tile.LeftX + width_tile) * GamePanel.scale));
-        setBottomY((int) ((y + height_tile) * GamePanel.scale));
-        setWidth((int) (width_tile * GamePanel.scale));
-        setHeight((int) (height_tile * GamePanel.scale));
-    }
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
         gamePanel.tileManager.draw(g2, background);
+
         // for (int i = 0; i < numTileContainer; ++i)
         //     gamePanel.tileManager.draw(g2, tileContainer[i]);
     }
