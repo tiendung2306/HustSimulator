@@ -1,5 +1,4 @@
 package animation;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
@@ -9,7 +8,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 
 import entity.Player;
-import sound.Sound;
 import main.GamePanel;
 
 public class Animation_player{
@@ -85,6 +83,7 @@ public class Animation_player{
             update();
 
             graphics.drawImage(frames[index], play_area.x, play_area.y, play_area.width, play_area.height, null);
+            System.out.println(play_area.x);
 
         }
     }

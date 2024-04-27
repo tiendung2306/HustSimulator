@@ -60,8 +60,9 @@ public class GamePanel extends JPanel implements Runnable {
     public Library library = new Library(this);
     public Stadium stadium = new Stadium(this);
     public MyRoom myRoom = new MyRoom(this);
-    public Section_3 section_3 = new Section_3(this);
-
+    Section_3 section_3 = new Section_3(this);
+    Section_2 section_2 = new Section_2(this);
+    Section_1 section_1 = new Section_1(this);
     // =================================================================================================
     public static double next_screenWidth = 256 * scale;
     public static double next_screenHeight = 192 * scale;
@@ -74,8 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public MouseManager mouseManager = new MouseManager(this);
     public Map currentMap = null; // map hien tai
-    Section_2 section_2 = new Section_2(this);
-    Section_1 section_1 = new Section_1(this);
+
 
 
     KeyboardManager keyboardManager = new KeyboardManager();
@@ -156,7 +156,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             case 3: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("Section");
+                    Main.pushGameState("GamePlay");
                 currentMap = section_1;
                 break;
             }
@@ -360,9 +360,9 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
 
-            case 3:{
-                section_selection.operation(g);
-            }
+            // case 3:{
+            //     section_selection.operation(g);
+            // }
         }
 
         if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
@@ -370,6 +370,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (chapter1.IntroFinished) {
                 drawMap(g2);
                 player.draw(g2);
+                System.out.println("vpa");
                 inventory.draw(g2);
                 missionDescription.draw(g2);
                 phone.draw(g2);
@@ -399,6 +400,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (currentMap == stadium) {
             stadium.draw(g2);
+        }
+        if (currentMap == section_1) {
+            section_1.draw(g2);
         }
         if (currentMap == section_2) {
             section_2.draw(g2);

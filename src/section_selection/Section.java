@@ -84,7 +84,7 @@ class Section {
 
 
     protected void OnClick(){
-
+        //teleport
     } 
 
 

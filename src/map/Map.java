@@ -29,4 +29,5 @@ public class Map {
         gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
         gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
     }
+
 }

@@ -17,16 +17,7 @@ public class Section_2 extends Map {
     public Section_2(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
 
-
-        tileContainer = new Tile[50];
-        background = new Tile();
-        background.image = gamePanel.tileManager.tile[33].image;
-        background.setWidth((int) (1000 * gamePanel.scale));
-        background.setHeight((int) (1000 * gamePanel.scale));
-
-
-        playerX = (int) (300 * gamePanel.scale);
-        playerY = (int) (600 * gamePanel.scale);
+        tileContainer = new Tile[10];
         
         TileLoad();
     }
@@ -41,6 +32,7 @@ public class Section_2 extends Map {
             background.image = bacImage;
             background.setWidth(bacImage.getWidth());
             background.setHeight(bacImage.getHeight());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,6 +47,8 @@ public class Section_2 extends Map {
         addTile(D9);
 
 
+        // playerX = (int) (background.image.getWidth() * 1.0 / 2);
+        // playerY = (int) (background.image.getHeight() * 1.0 / 2);
 
     }
 
