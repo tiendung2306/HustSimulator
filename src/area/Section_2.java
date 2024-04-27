@@ -20,6 +20,17 @@ public class Section_2 extends Map {
         tileContainer = new Tile[10];
         
         TileLoad();
+        SetDefaultValues();
+    }
+
+    private void SetDefaultValues(){
+        
+        width = background.getWidth();
+        height = background.getHeight();
+
+
+        playerX = (int) (width * 1.0 / 2);
+        playerY = (int) (height * 1.0 / 2);
     }
 
     private void TileLoad() {
@@ -30,8 +41,8 @@ public class Section_2 extends Map {
         try {
             bacImage = ImageIO.read(new FileInputStream("res/tile/Section2_demo.png"));
             background.image = bacImage;
-            background.setWidth(bacImage.getWidth());
-            background.setHeight(bacImage.getHeight());
+            background.setWidth(bacImage.getWidth() * 2);
+            background.setHeight(bacImage.getHeight() * 2);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,9 +58,16 @@ public class Section_2 extends Map {
         addTile(D9);
 
 
-        // playerX = (int) (background.image.getWidth() * 1.0 / 2);
-        // playerY = (int) (background.image.getHeight() * 1.0 / 2);
+    }
 
+    
+    public void resize(Tile tile){
+        setLeftX((int) (tile.LeftX * GamePanel.scale));
+        setTopY((int) (y * GamePanel.scale));
+        setRightX((int) ((tile.LeftX + width_tile) * GamePanel.scale));
+        setBottomY((int) ((y + height_tile) * GamePanel.scale));
+        setWidth((int) (width_tile * GamePanel.scale));
+        setHeight((int) (height_tile * GamePanel.scale));
     }
 
     // Phương thức vẽ map

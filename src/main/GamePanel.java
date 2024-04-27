@@ -33,10 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     // MAP SETTINGS
-    public int maxMapCol;
-    public int maxMapRow;
-    public int mapWidth;
-    public int mapHeight;
+
 
     public TileManager tileManager = new TileManager(this);
     Thread gameThread;
