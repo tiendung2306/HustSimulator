@@ -2,24 +2,48 @@ package Collision;
 
 import entity.Entity;
 import main.GamePanel;
+import tile.ExtraTile;
 import tile.Tile;
 import map.Map;
+
+import javax.imageio.ImageIO;
+import java.io.*;
 
 public class CollisionCheck {
     GamePanel gamePanel;
     int numCollision;
-
-    int[] tileIndex;
     Tile[] collisionTile;
     String[] typeCollision;
     public CollisionCheck(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         collisionTile = new Tile[50];
         typeCollision = new String[50];
-        tileIndex = new int[50];
+    }
+    boolean ccw(int xO, int yO, int xA, int yA, int xB, int yB){
+        return ((xA - xO) * (yB - yO) <= (yA - yO) * (xB - xO));
+
     }
     boolean checkInside(int pointX, int pointY, int tileLeftX, int tileRightX, int tileTopY, int tileBottomY) {
         return (pointX >= tileLeftX && pointX <= tileRightX && pointY >= tileTopY && pointY <= tileBottomY);
+    }
+    boolean checkInsidePolygon(int pointX, int pointY, ExtraTile extraTile){
+        for (int i = 0; i < extraTile.numPoint; ++i)
+            if (!ccw(pointX, pointY, extraTile.x[i], extraTile.y[i], extraTile.x[i + 1], extraTile.y[i + 1]))
+                return false;
+        return true;
+    }
+    public String defineExtraTile(int entityLeftX, int entityRightX, int entityTopY, int entityBottomY, ExtraTile extraTile){
+        boolean cornerLeftTop = checkInsidePolygon(entityLeftX, entityTopY, extraTile);
+        boolean cornerRightTop = checkInsidePolygon(entityRightX, entityTopY, extraTile);
+        boolean cornerLeftBottom = checkInsidePolygon(entityLeftX, entityBottomY, extraTile);
+        boolean cornerRightBottom = checkInsidePolygon(entityRightX, entityBottomY, extraTile);
+        if (cornerLeftTop || cornerRightTop || cornerLeftBottom || cornerRightBottom)
+            return "collision";
+        for (int i = 0; i < extraTile.numPoint; ++i)
+            if (checkInside(extraTile.x[i], extraTile.y[i], entityLeftX, entityRightX, entityTopY, entityBottomY))
+                return "collision";
+        return "no-collision";
+
     }
     public String defineType(int entityLeftX, int entityRightX, int entityTopY, int entityBottomY, int targetLeftX, int targetRightX, int targetTopY, int targetBottomY) {
 
@@ -71,10 +95,23 @@ public class CollisionCheck {
             if (!type.equals("no-collision")) {
                 collisionTile[numCollision] = considerTile;
                 collisionTile[numCollision].isCollision = true;
-                tileIndex[numCollision] = i;
                 typeCollision[numCollision++] = type;
             }
             else considerTile.isCollision = false;
+        }
+        for (int i = 0; i < map.numExtraTile; ++i){
+            ExtraTile extraTile = map.extraTile[i];
+            int entityLeftX = entity.getHitArea().x;
+            int entityRightX = entity.getHitArea().x + entity.getHitArea().width;
+            int entityTopY = entity.getHitArea().y;
+            int entityBottomY = entity.getHitArea().y + entity.getHitArea().height;
+
+            String type = defineExtraTile(entityLeftX,entityRightX,entityTopY,entityBottomY,extraTile);
+            if (!type.equals("no-collision")){
+                collisionTile[numCollision] = extraTile;
+                collisionTile[numCollision].isCollision = true;
+                typeCollision[numCollision++] = type;
+            }
         }
     }
 }

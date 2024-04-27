@@ -107,7 +107,7 @@ public class UI {
         if (strSize > 0)
             g2.drawString(str, x, y);
     }
-    public Timer timer = new Timer(60, new ActionListener() {
+    public Timer timer = new Timer(40, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             text += currentDialog.charAt(i);

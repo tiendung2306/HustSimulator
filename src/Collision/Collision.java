@@ -14,7 +14,6 @@ public class Collision {
     int numCollision;
     public Tile interactItem = new Tile();
     Tile[] collisionTile;
-    int[] tileIndex;
     public Collision(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
@@ -23,7 +22,6 @@ public class Collision {
     public void update(){
         numCollision = collisionCheck.numCollision;
         collisionTile = collisionCheck.collisionTile;
-        tileIndex = collisionCheck.tileIndex;
         pushDialog();
         if (numCollision == 1 && collisionTile[0].Type.equals("Interact"))
             interactItem = collisionTile[0];
@@ -67,7 +65,6 @@ public class Collision {
     }
     public void collectItem(int index){
         gamePanel.inventory.pushToInventory(collisionTile[index]);
-        gamePanel.currentMap.deleteTile(tileIndex[index]);
         gamePanel.player.ButtonInteract = false;
     }
     public void scanCollision(Entity entity, Map map){

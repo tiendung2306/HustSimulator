@@ -100,7 +100,7 @@ public class KeyHandler implements KeyListener {
                     if (this.missionDescription != null && this.missionDescription.isMissionDescriptionDrawing) {
                         this.missionDescription.isMissionDescriptionDrawing = false;
                     } else
-                        ++gamePanel.chapter1.completedAct;
+                        ++gamePanel.currentChapter.completedAct;
                 }
             }
         }

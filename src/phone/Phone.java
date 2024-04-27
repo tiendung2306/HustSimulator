@@ -160,7 +160,7 @@ public class Phone {
     }
 
     void drawAllSubjectInformationOnPhone(Graphics2D g2) {
-        g2.setFont(new Font("TimesRoman", Font.PLAIN, phoneWidth / 19));
+        g2.setFont(new Font("Times New Roman", Font.PLAIN, phoneWidth / 19));
         if (currentPhonePage == 1) {
             if (schedule.numOfPeroidPerDay[TimeSystem.day] >= 1)
                 drawSubjectInformationOnPhone(g2, TimeSystem.day, 1, firstTextBoxWidth, firstTextBoxHeight);

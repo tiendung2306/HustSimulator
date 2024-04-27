@@ -2,22 +2,9 @@ package Content;
 
 import main.GamePanel;
 import main.Main;
-import main.UI;
-import phone.Phone;
 import time.TimeSystem;
-import Inventory.Inventory;
-import Collision.Collision;
-import GUI.MissionDescription;
 
-public class Chapter1 {
-    GamePanel gamePanel;
-    UI ui;
-    Inventory inventory;
-    Collision collision;
-    MissionDescription missionDescription;
-    Phone phone;
-    boolean isDrawBackground;
-    public int currentTimeline, completedAct;
+public class Chapter1 extends Chapter {
     public boolean IntroFinished = false, laptopMission = false, studentIDMission = false, noodleMission = false;
     long prevTime = 0;
 
@@ -42,21 +29,21 @@ public class Chapter1 {
         if (completedAct == 0)
             Dialogue("Chuyện gì vừa xảy ra vậy...");
         if (completedAct == 1)
-            Dialogue("Mình đang là anh hùng trong cuộc chiến chống lại quỷ vương mà. Đây là đâu?");
+            Dialogue("Ta đang là anh hùng trong cuộc chiến chống lại quỷ vương mà. Đây là đâu?");
         if (completedAct == 2)
             Dialogue("Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
         if (completedAct == 3)
             Dialogue("Eimi, Yua, không biết 2 cô ấy có ổn không?");
         if (completedAct == 4)
-            Dialogue("Mong rằng những giây phút hi sinh cuối cùng của mình đủ thời gian giúp họ trốn thoát.");
+            Dialogue("Mong rằng những giây phút hi sinh cuối cùng đủ thời gian giúp họ trốn thoát.");
         if (completedAct == 5)
-            Dialogue("Mình phải tìm cách để trở lại thế giới cũ!!!");
+            Dialogue("Phải tìm cách để trở lại thế giới cũ!!");
         if (completedAct == 6)
             Dialogue("...");
         if (completedAct == 7)
-            Dialogue("Dòng chảy Ma Pháp ở thế giới này thật hỗn loạn, mình không thể khai triển sức mạnh được.");
+            Dialogue("Dòng chảy Ma Pháp ở thế giới này thật hỗn loạn, ta không thể khai triển sức mạnh được.");
         if (completedAct == 8)
-            Dialogue("Ngôn ngữ ở đây có vẻ không khác ở thế giới cũ là bao.");
+            Dialogue("Thật may ngôn ngữ ở đây có vẻ không khác ở thế giới cũ là bao.");
         if (completedAct == 9)
             Dialogue("Bắt đầu tìm hiểu xung quanh thôi!");
         if (completedAct == 10)
@@ -66,13 +53,13 @@ public class Chapter1 {
     void Timeline1() {
         IntroFinished = true;
         if (completedAct == 0)
-            Dialogue("Đây là căn phòng của mình sao?");
+            Dialogue("Đây là căn phòng của ta sao?");
         if (completedAct == 1)
-            Dialogue("Nó khá nhỏ so với tòa lâu đài mình ở kiếp trước. Nhưng nó chứa khá là nhiều thứ thú vị!");
+            Dialogue("Nó khá nhỏ so với tòa lâu đài ở kiếp trước. Nhưng nó chứa khá là nhiều thứ thú vị!");
         if (completedAct == 2)
             Dialogue("Thế giới này chứa những đồ vật hoạt động bằng một thứ người ta gọi là Khoa Học.");
         if (completedAct == 3)
-            Dialogue("Cái thứ Khoa học này so với Ma Pháp tồn tại ở thế giới của mình khá là giống nhau.");
+            Dialogue("Cái thứ Khoa học này so với Ma Pháp tồn tại ở thế giới cũ khá là giống nhau.");
         if (completedAct == 4)
             Dialogue("Biết tìm kiếm thông tin ở đâu đây?");
         missionDescription.setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng(Ấn B để mở balo)");
@@ -82,7 +69,7 @@ public class Chapter1 {
             if (!laptopMission)
                 gamePanel.myRoom.tileLaptop.isMission = true;
             if (inventory.isGettingInformation
-                    && inventory.infoItem.Name.equals("Laptop gaming MSI Titan GT77 12UHS 204VN"))
+                    && inventory.infoItem.Name.equals("Acer Predator 21X"))
                 laptopMission = true;
             if (inventory.isGettingInformation && inventory.infoItem.Name.equals("Student ID"))
                 studentIDMission = true;
@@ -93,13 +80,13 @@ public class Chapter1 {
             }
         }
         if (completedAct == 6)
-            Dialogue("Đại khái thì mình đã nắm bắt được mọi thứ xung quanh.");
+            Dialogue("Đại khái thì ta đã nắm bắt được mọi thứ xung quanh.");
         if (completedAct == 7)
             Dialogue("Ọc ọc ọc");
         if (completedAct == 8)
             Dialogue("...");
         if (completedAct == 9)
-            Dialogue("Tạm gác việc cứu thế giới lại vậy, mình cần cứu đói đã!");
+            Dialogue("Tạm gác việc cứu thế giới lại vậy, ta cần cứu đói đã!");
         if (completedAct == 10)
             nextTimeline();
     }
@@ -119,7 +106,9 @@ public class Chapter1 {
                 ++completedAct;
             }
         }
-        if (completedAct == 1) {
+        if (completedAct == 1)
+            Dialogue("Sao có thể tồn tại món ăn cao sang mĩ vị như vậy!");
+        if (completedAct == 2) {
             while (Main.GameState.size() > 1 && !Main.topGameState().equals("GamePlay"))
                 Main.popGameState();
             nextTimeline();
@@ -127,35 +116,45 @@ public class Chapter1 {
     }
 
     void Timeline3() {
-        if (completedAct == 0) {
-            if (!inventory.isExist("Iphone 1000000 ProMax")) { // phai co dien thoai trong balo
-                Dialogue("Điện thoại của tôi đâu rồi nhỉ");
+        if (completedAct == 0)
+            Dialogue("Reng reng reng");
+        if (completedAct == 1)
+            Dialogue("Âm thanh quái quỷ gì vậy?");
+        if (completedAct == 2) {
+            if (!inventory.isExist("Iphone 100 ProMax")) { // phai co dien thoai trong balo
+                Dialogue(" ");
                 missionDescription.setMissionDescription("Tìm điện thoại");
             } else completedAct++;
-        } else if (completedAct == 1) {
-            if (inventory.isExist("Iphone 1000000 ProMax")) {
+        }
+        if (completedAct == 3) {
+            if (inventory.isExist("Iphone 100 ProMax")) {
                 if (Main.topGameState().equals("GamePlay"))
-                    Dialogue("Mình phải mở điện thoại ra kiểm tra xem hôm nay có tiết học gì không nào");
-                    missionDescription.setMissionDescription("Kiểm tra app fHUST(Ấn P để mở điện thoại)");
+                    Dialogue("Một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này quả là thiên tài.");
+                missionDescription.setMissionDescription("Kiểm tra app fHUST(Ấn P để mở điện thoại)");
                 phone.isOpenFhust = false;
             }
-        } else if (completedAct == 2) {
+        }
+        if (completedAct == 4) {
             if (phone.isOpenFhust && !phone.isDrawPhone) {
-                Dialogue("Vậy là hôm nay mình không có lịch học");
+                Dialogue("Nếu thứ này ta có thể đem sang thế giới cũ, chấp 10 tên ma vương cũng không thể đánh lại.");
                 missionDescription.setMissionDescription("");
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             }
-        } else if (completedAct == 3 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 6000) {
-            Dialogue("Khoan đã, mình vừa có tin nhắn mới thì phải. Là ai nhắn thế nhỉ");
+        }
+        if (completedAct == 5)
+            Dialogue("Nhưng sao nó cứ kêu hoài thế nhỉ?");
+        if (completedAct == 6 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 6000) {
+            Dialogue("Có thư tình báo!!!");
             missionDescription.setMissionDescription("Kiểm tra tin nhắn");
             phone.setNewMessage("chapter1_1");
             phone.isOpenMessager = false;
-        }   else if (completedAct == 4 && phone.isOpenMessager == true && phone.isDrawPhone == false) {
-            Dialogue("Ừ nhỉ mình suýt quên mất. Hôm nay có lịch phải nộp hồ sơ nhập học ở C2 lúc 7h30. Mình phải nhanh chóng di chuyển đến trường thôi");
+        }
+        if (completedAct == 6 && phone.isOpenMessager && !phone.isDrawPhone) {
+            Dialogue("Hội dũng giả nằm ở tòa C2, đến đăng ký tân thủ lúc 7h30");
             missionDescription.setMissionDescription("Tương tác với cửa phòng để di chuyển đến trường");
             phone.clearMessage();
         }
-        if (completedAct == 5)
+        if (completedAct == 7)
             nextTimeline();
     }
 
@@ -196,7 +195,7 @@ public class Chapter1 {
             ui.currentDialog = str;
             Main.pushGameState("Dialogue");
             ui.i = 0;
-            ui.timer.setDelay(60);
+            ui.timer.setDelay(40);
             ui.isFinishDialogue = false;
             ui.timer.start();
         }

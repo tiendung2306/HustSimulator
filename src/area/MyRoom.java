@@ -2,6 +2,7 @@ package area;
 
 import main.GamePanel;
 import map.Map;
+import tile.ExtraTile;
 import tile.Tile;
 import tile.TileSection;
 
@@ -21,8 +22,10 @@ public class MyRoom extends Map {
         maxMapCol = 29;
         maxMapRow = 18;
         tileContainer = new Tile[50];
+        extraTile = new ExtraTile[10];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;
+        addExtraTile("src/txt/test.txt");
         setDefaultValues();
     }
 
@@ -84,11 +87,11 @@ public class MyRoom extends Map {
         tileDoorMyRoom = new TileSection(gamePanel,205,30,49,61,"Door My Room","Teleport","","res/tile/door_my_room.png");
         tilePan = new TileSection(gamePanel,413,155,30,20,"Pan","Interact","","res/tile/chao.png");
         tileWallMyRoom = new TileSection(gamePanel,0,0,460,91,"","Obstacle","","res/tile/no_thing.png");
-        tileKettle = new TileSection(gamePanel,60,85,25,15,"Kettle","Collected","DCM 37 38 RACH","res/tile/am_dun_nuoc.png");
-        tileLaptop = new TileSection(gamePanel,78,100,23,17,"Laptop gaming MSI Titan GT77 12UHS 204VN","Collected","135990000 VNĐ","res/tile/laptop_lor.png");
-        tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student ID","Collected","DCM 37 38 RACH","res/tile/the_sinh_vien.png");
-        tilePhone = new TileSection(gamePanel,162,187,8,15,"Iphone 1000000 ProMax","Collected","DCM 37 38 RACH","res/tile/phone_lor.png");
-        tileChair =new TileSection[4];
+        tileKettle = new TileSection(gamePanel,60,85,25,15,"Kettle","Collected","Cao sơn mĩ vị","res/tile/am_dun_nuoc.png");
+        tileLaptop = new TileSection(gamePanel,78,100,23,17,"Acer Predator 21X","Collected","230 000 000 VNĐ","res/tile/laptop_lor.png");
+        tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student ID","Collected","Sinh viên Bách Khoa ngành KHMT, A+ Giải Tích 1 2 3, GPA 4.5","res/tile/the_sinh_vien.png");
+        tilePhone = new TileSection(gamePanel,162,187,8,15,"Iphone 100 ProMax","Collected","Thứ vũ khí đánh bại ma vương","res/tile/phone_lor.png");
+        tileChair = new TileSection[4];
 
         setTileChair();
         setUpTileMyRoom();
@@ -99,5 +102,14 @@ public class MyRoom extends Map {
         gamePanel.tileManager.draw(g2, background);
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);
+        for (int i = 0; i < numExtraTile; ++i){
+            for (int j = 0; j < extraTile[i].numPoint; ++j){
+                int screenX = extraTile[i].x[j] - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
+                int screenY = extraTile[i].y[j] - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
+                int screenX2 = extraTile[i].x[j + 1] - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
+                int screenY2 = extraTile[i].y[j + 1] - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
+                g2.drawLine(screenX, screenY, screenX2, screenY2);
+            }
+        }
     }
 }

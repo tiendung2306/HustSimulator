@@ -1,6 +1,7 @@
 package main;
 
 import Collision.Collision;
+import Content.Chapter;
 import GUI.MissionDescription;
 import Inventory.Inventory;
 import MainMenu.*;
@@ -92,6 +93,8 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean isRunning = false;
 
     //==========================================================
+
+    Chapter currentChapter = new Chapter();
 
     Chapter1 chapter1 = new Chapter1(this);
 
@@ -409,6 +412,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public void newGame() {
         currentMap = myRoom;
+        currentChapter = chapter1;
         chapter1.currentTimeline = 0;
         chapter1.IntroFinished = false;
         chapter1.completedAct = 0;
