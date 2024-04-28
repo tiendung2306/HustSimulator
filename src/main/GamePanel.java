@@ -206,6 +206,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
         }
+        currentChapter = chapter1;
         currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();
@@ -303,7 +304,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
             if (keyH.isPhonePressed) {
                 // System.out.println("phone-kun xin chao tat ca cac ban");
-                if(inventory.isExist("Iphone 1000000 ProMax")) {
+                if(inventory.isExist("Iphone 100 ProMax")) {
                     KeyboardManager.resetReleasedKey();
                     phone.isDrawPhone = !phone.isDrawPhone;
                     phone.setPhoneState("Screen Saver");
@@ -391,20 +392,20 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentMap == myRoom) {
             myRoom.draw(g2);
         }
-//        if (currentMap == normalClassroom) {
-//            normalClassroom.draw(g2);
-//        }
-//        if (currentMap == computerRoom) {
-//            computerRoom.draw(g2);
-//        }
-//        if (currentMap == library) {
-//            library.draw(g2);
-//        }
-//        if (currentMap == stadium) {
-//            stadium.draw(g2);
-//        }
+        if (currentMap == normalClassroom) {
+            normalClassroom.draw(g2);
+        }
+        if (currentMap == computerRoom) {
+            computerRoom.draw(g2);
+        }
+        if (currentMap == library) {
+            library.draw(g2);
+        }
+        if (currentMap == stadium) {
+            stadium.draw(g2);
+        }
 //        if (currentMap == section_2) {
-//            section_2.draw(g2);
+//      section_2.draw(g2);
 //        }
 //        if (currentMap == section_3) {
 //            section_3.draw(g2);

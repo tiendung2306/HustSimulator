@@ -87,11 +87,11 @@ public class MyRoom extends Map {
         tileDoorMyRoom = new TileSection(gamePanel,205,30,49,61,"Door My Room","Teleport","","res/tile/door_my_room.png",1);
         tilePan = new TileSection(gamePanel,413,155,30,20,"Pan","Interact","","res/tile/chao.png",1);
         tileWallMyRoom = new TileSection(gamePanel,0,0,460,91,"","Obstacle","","res/tile/no_thing.png",1);
-        tileKettle = new TileSection(gamePanel,60,85,25,15,"Kettle","Collected","DCM 37 38 RACH","res/tile/am_dun_nuoc.png",1);
-        tileLaptop = new TileSection(gamePanel,78,100,66,45,"Laptop gaming MSI Titan GT77 12UHS 204VN","Collected","135990000 VNĐ","res/tile/lap_top01.png","res/tile/lap_top02.png",(double) 1/3);
-        tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student ID","Collected","DCM 37 38 RACH","res/tile/the_sinh_vien.png","res/tile/the_sinh_vien.png",1);
+        tileKettle = new TileSection(gamePanel,60,85,25,15,"Kettle","Collected","Món ăn thượng đỉnh số 1 thế giới","res/tile/am_dun_nuoc.png",1);
+        tileLaptop = new TileSection(gamePanel,78,100,66,45,"Acer Predator 21X","Collected","230.000.000 VNĐ","res/tile/lap_top01.png","res/tile/lap_top02.png",(double) 1/3);
+        tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student ID","Collected","Sinh viên Đại Học Bách Khoa Hà Nội, S+ Giải tích, GPA 5.0","res/tile/the_sinh_vien.png","res/tile/the_sinh_vien.png",1);
         tileChair =new TileSection[4];
-        tilePhone = new TileSection(gamePanel,162,187,24,39,"Iphone 1000000 ProMax","Collected","DCM 37 38 RACH","res/tile/phone01.png","res/tile/phone02.png",(double) 1/3);
+        tilePhone = new TileSection(gamePanel,162,187,24,39,"Iphone 100 ProMax","Collected","Vũ khí đánh bại Ma Vương","res/tile/phone01.png","res/tile/phone02.png",(double) 1/3);
 
         setTileChair();
         setUpTileMyRoom();

@@ -42,7 +42,7 @@ public class KeyHandler implements KeyListener {
         if (code == KeyboardManager.getKey("PAUSE")) {
             if (Main.topGameState().equals("GamePause")) {
                 Main.popGameState();
-            } else if(Main.topGameState().equals("GamePlay") && gamePanel.phone.isDrawPhone == false)
+            } else if(Main.topGameState().equals("GamePlay") && !gamePanel.phone.isDrawPhone)
                 Main.pushGameState("GamePause");
         }
         if (code == KeyboardManager.getKey("INVENTORY")) {
@@ -80,12 +80,11 @@ public class KeyHandler implements KeyListener {
         if (code == KeyboardManager.getKey("PHONE")) {
             isPhonePressed = true;
         }
-        if (KeyboardManager.getTypeKey(code).equals("INTERACT") && !gamePanel.phone.isDrawPhone) {
+        if ((KeyboardManager.getTypeKey(code).equals("INTERACT") || KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE") || MouseManager.isLeftMouseClick) && !gamePanel.phone.isDrawPhone) {
             if (Main.topGameState().equals("Dialog")) {
                 Main.popGameState();
                 isInteract = false;
-            } else
-                isInteract = true;
+            } else if (KeyboardManager.getTypeKey(code).equals("INTERACT")) isInteract = true;
         }
         if (KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE")) {
             if (Main.topGameState().equals("Dialogue")) {
