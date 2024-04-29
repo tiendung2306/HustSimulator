@@ -11,12 +11,12 @@ import javax.imageio.ImageIO;
 import java.io.*;
 
 
-public class Section_1 extends Map {
-    Tile background, C1, C2, C9, C2_hall_1, C2_hall_2;
+public class C2_hall extends Map {
+    Tile background;
     GamePanel gamePanel;
 
 
-    public Section_1(GamePanel gamePanel) {
+    public C2_hall(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         
         SetDefaultValues();
@@ -25,13 +25,11 @@ public class Section_1 extends Map {
     private void SetDefaultValues(){
         TileLoad();
         SetOriginalSize();
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 2605 / (60 * background.getHeight()));
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 1000 / (50 * background.getHeight()));
         SetPlayerPos();
     }
     
     private void SetOriginalSize(){
-        background.setWidth(background.image.getWidth());
-        background.setHeight(background.image.getHeight());
 
         width = background.getWidth();
         height = background.getHeight();
@@ -62,27 +60,12 @@ public class Section_1 extends Map {
         tileContainer = new Tile[5];
 
         try {
-            BufferedImage bacImage = ImageIO.read(new FileInputStream("res/tile/Section1_demo.png"));
+            BufferedImage bacImage = ImageIO.read(new FileInputStream("res/tile/C2_hall.png"));
             background = new Tile(new Rectangle(0, 0, bacImage.getWidth(), bacImage.getHeight()), "Background", "", null, bacImage);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        C9 = new Tile(new Rectangle(101, 1720, 793, 389), "C9", "Obstacle", null, null);
-        C2 = new Tile(new Rectangle(305, 754, 402, 965), "C2", "Obstacle", null, null);
-        C1 = new Tile(new Rectangle(472, 238, 1716, 373), "C1", "Obstacle", null, null);
-
-        C2_hall_1 = new Tile(new Rectangle(696 , 1027 , 86 , 574), "C2_hall", "Teleport", null, null);
-        C2_hall_2 = new Tile(new Rectangle(781 , 1137 , 203 , 211), "C2_hall", "Teleport", null, null);
-
-        addTile(C9);
-        addTile(C2);
-        addTile(C1);
-
-        addTile(C2_hall_1);
-        addTile(C2_hall_2);
 
 
 

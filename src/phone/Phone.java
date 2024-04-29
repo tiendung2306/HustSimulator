@@ -372,7 +372,7 @@ public class Phone {
                 }
                 break;
             case "Map":
-                gamePanel.section_selection.operation(g2);
+                gamePanel.section_selection.open();
                 break;
         }
     }

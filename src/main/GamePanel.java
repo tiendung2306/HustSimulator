@@ -83,9 +83,9 @@ public class GamePanel extends JPanel implements Runnable {
     public Inventory inventory = new Inventory(this);
 
     public Section_selection section_selection = new Section_selection(this);
-    Section_3 section_3 = new Section_3(this);
-    Section_2 section_2 = new Section_2(this);
-    Section_1 section_1 = new Section_1(this);
+    public Section_3 section_3 = new Section_3(this);
+    public Section_2 section_2 = new Section_2(this);
+    public C2_hall section_1 = new C2_hall(this);
     public boolean isRunning = false;
 
     //==========================================================
@@ -290,7 +290,7 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals(Main.states[12]))
                 loadGame.update();
         }
-        if (Main.topGameState().equals("GamePlay")) {
+        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Section")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
@@ -356,15 +356,12 @@ public class GamePanel extends JPanel implements Runnable {
                     loadGame.draw(g2);
                 break;
             }
-
-            // case 3:{
-            //     section_selection.operation(g);
-            // }
         }
 
-        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
+        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog") || Main.topGameState().equals("Section")
                 || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause") || Main.topGameState().equals("Dialogue")) {
-            if (chapter1.IntroFinished) {
+            if (true) {
+            // if (chapter1.IntroFinished) {
                 drawMap(g2);
                 player.draw(g2);
                 inventory.draw(g2);
@@ -379,14 +376,6 @@ public class GamePanel extends JPanel implements Runnable {
             section_selection.operation(g);
         }
         
-        if (Main.topGameState().equals("Section")){
-            drawMap(g2);
-            player.draw(g2);
-            inventory.draw(g2);
-            missionDescription.draw(g2);
-            phone.draw(g2);
-        }
-        g2.dispose();
     }
     public void drawMap(Graphics2D g2) {
         if (currentMap == myRoom) {

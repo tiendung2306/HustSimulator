@@ -22,10 +22,6 @@ public class MyRoom extends Map {
         // maxMapRow = 18;
         width = (int)(29 * 16 * gamePanel.scale);
         height = (int)(18 * 16 * gamePanel.scale);
-        
-        // width = (int) (450 * GamePanel.scale);
-        // height = (int) (242 * GamePanel.scale);
-        
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;

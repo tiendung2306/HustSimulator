@@ -18,7 +18,6 @@ public class NormalClassroom extends Map {
         // maxMapCol = 21;
         // maxMapRow = 18;
         width = (int)(21 * 16 * gamePanel.scale);
-        System.out.println(width);
         height = (int)(18 * 16 * gamePanel.scale);
         tileContainer = new Tile[50];
         background = new Tile();

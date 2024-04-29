@@ -171,6 +171,7 @@ public class Section_selection {
 
     public void close(){
         Main.popGameState();
+        gamePanel.phone.setPhoneState("Main Menu");
     }
 
 }

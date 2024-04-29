@@ -108,7 +108,6 @@ public class Tile{
     }
 
     public void resize(double scale) {
-        System.out.println(scale);
         setLeftX((int) (LeftX * scale));
         setTopY((int) (TopY * scale));
         setWidth((int) (width * scale));
