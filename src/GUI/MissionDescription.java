@@ -1,6 +1,6 @@
 package GUI;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
@@ -11,11 +11,13 @@ import Mouse.MouseManager;
 import Mouse.MouseMotion;
 
 import java.io.IOException;
+import java.io.StringWriter;
 
 import main.GamePanel;
 import main.Main;
 import main.UI;
 import phone.Phone;
+import time.TimeSystem;
 
 public class MissionDescription {
     GamePanel gamePanel;
@@ -30,6 +32,9 @@ public class MissionDescription {
     public Boolean isMissionDescriptionDrawing = false;
     Boolean isNewMission = false;
     Boolean isOnHover = false;
+    Boolean isNewMissionNotify = true;
+
+    long startTime;
 
     public MissionDescription(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -40,8 +45,11 @@ public class MissionDescription {
     }
 
     public void setMissionDescription(String text) {
-        if (!missionDescriptionText.equals(text) && text.length() > 0)
+        if (!missionDescriptionText.equals(text) && text.length() > 0) {
             isNewMission = true;
+            startTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+            isNewMissionNotify = true;
+        }
         missionDescriptionText = text;
     }
 
@@ -133,6 +141,22 @@ public class MissionDescription {
         else
             g2.drawImage(darkMissionIcon, (int) (GamePanel.screenWidth - width - GamePanel.screenWidth / 70),
                     (int) (GamePanel.screenHeight / 20), width, height, null);
+        if (isNewMissionNotify) {
+            if (TimeSystem.getCurrentSystemTimeInMilliseconds() - startTime <= 2000)
+                g2.setColor(Color.WHITE);
+            else if (TimeSystem.getCurrentSystemTimeInMilliseconds() - startTime <= 4000)
+                g2.setColor(Color.BLACK);
+            else if (TimeSystem.getCurrentSystemTimeInMilliseconds() - startTime <= 6500)
+                g2.setColor(Color.WHITE);
+            else if (TimeSystem.getCurrentSystemTimeInMilliseconds() - startTime <= 9000)
+                g2.setColor(Color.BLACK);
+            else
+                isNewMissionNotify = false;
+                g2.setFont(new Font("Arial", Font.ITALIC, (int) (GamePanel.screenWidth / 40)));
+                int stringWidth = g2.getFontMetrics().stringWidth("Nhiệm vụ mới!");
+            g2.drawString("Nhiệm vụ mới!", (int) (GamePanel.screenWidth - stringWidth - GamePanel.screenWidth / 90),
+                    (int) (GamePanel.screenHeight / 20) + height + height / 3);
+        }
         // if (!isOnHover) {
         // float percentage = .92f; // 50% bright - change this (or set dynamically) as
         // you feel fit
