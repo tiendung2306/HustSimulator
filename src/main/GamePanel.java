@@ -19,7 +19,9 @@ import javax.swing.*;
 
 import Keyboard.KeyboardManager;
 import area.Section_3;
-
+import area.D3_5_hallway.D3_5_hallway_secondfloor;
+import area.D3_hallway.D3_hallway;
+import area.D3_hallway.D3_secondfloor_hallway;
 import Content.Chapter1;
 
 import java.awt.*;
@@ -85,7 +87,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Section_selection section_selection = new Section_selection(this);
     public Section_3 section_3 = new Section_3(this);
     public Section_2 section_2 = new Section_2(this);
-    public C2_hall section_1 = new C2_hall(this);
+    public D3_5_hallway_secondfloor section_1 = new D3_5_hallway_secondfloor(this);
     public boolean isRunning = false;
 
     //==========================================================
@@ -363,7 +365,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (true) {
             // if (chapter1.IntroFinished) {
                 drawMap(g2);
-                player.draw(g2);
+                // player.draw(g2);
                 inventory.draw(g2);
                 missionDescription.draw(g2);
                 phone.draw(g2);
