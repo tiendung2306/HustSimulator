@@ -17,11 +17,11 @@ public class AudioSetting extends JPanel {
             volume0, volume1, volume2, volume3, mutecmt, mutecmt1;
     private int i;
 
-    public static double volumesliderpointX = 541 * Main.ex;
+    public static double volumesliderpointX = 542 * Main.ex;
     public double mute_unmutestring = 163 * Main.ex;
     public static boolean checkenterslider = false;
     public static int checkmute = 1;
-    private String check = "", mutestring, mutestring1;
+    private String check = "", mutestring = "", mutestring1 = "";
     private double numbervolume = 999 * Main.ey;
 
     int currVolume = 100;
@@ -168,7 +168,7 @@ public class AudioSetting extends JPanel {
         }
         g2.drawImage(volume, (int) (170 * Main.ex), (int) (254 * Main.ey), (int) (50 * Main.ex), (int) (50 * Main.ey), null);
         g2.drawImage(mutecmt, (int) (153 * Main.ex), (int) (205 * Main.ey), (int) (60 * Main.ex), (int) (50 * Main.ey), null);
-        g2.drawString(mutestring, (float) mute_unmutestring, (float) (229));
+        g2.drawString(mutestring, (float) mute_unmutestring, (float) (229 * Main.ey));
 
         super.paintComponent(g2);
     }

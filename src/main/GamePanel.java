@@ -38,7 +38,6 @@ public class GamePanel extends JPanel implements Runnable {
     // =================================================================================================================
     // MAP SETTINGS
 
-
     public TileManager tileManager = new TileManager(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
@@ -51,17 +50,18 @@ public class GamePanel extends JPanel implements Runnable {
     public static KeySetting keySetting = new KeySetting();
     public static VideoSetting videoSetting = new VideoSetting();
     public static LoadGame loadGame = new LoadGame();
+    public static PauseGame pauseGame = new PauseGame();
 
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
-            nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame);
+            nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame, pauseGame);
     // Khai báo lớp NormalClassroom vào GamePanel
     public NormalClassroom normalClassroom = new NormalClassroom(this);
     public ComputerRoom computerRoom = new ComputerRoom(this);
     public Library library = new Library(this);
     public Stadium stadium = new Stadium(this);
     public MyRoom myRoom = new MyRoom(this);
-//    public Section_3 section_3 = new Section_3(this);
+    // public Section_3 section_3 = new Section_3(this);
 
     // =================================================================================================
     public static double next_screenWidth = 256 * scale;
@@ -75,10 +75,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public MouseManager mouseManager = new MouseManager(this);
     public Map currentMap = null; // map hien tai
-//    Section_2 section_2 = new Section_2(this);
-//    Section_1 section_1 = new Section_1(this);
-
-
+    // Section_2 section_2 = new Section_2(this);
+    // Section_1 section_1 = new Section_1(this);
 
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
@@ -95,20 +93,19 @@ public class GamePanel extends JPanel implements Runnable {
     public D3_5_hallway_secondfloor section_1 = new D3_5_hallway_secondfloor(this);
     public boolean isRunning = false;
 
-    //==========================================================
+    // ==========================================================
 
     public Chapter currentChapter = new Chapter();
 
     public Chapter1 chapter1 = new Chapter1(this);
-    public Chapter2  chapter2 = new Chapter2(this);
-
+    public Chapter2 chapter2 = new Chapter2(this);
 
     // =========================================================
 
     double FPS = 60;
 
     public GamePanel() {
-        this.setPreferredSize(new Dimension((int)screenWidth, (int)screenHeight));
+        this.setPreferredSize(new Dimension((int) screenWidth, (int) screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
@@ -164,7 +161,7 @@ public class GamePanel extends JPanel implements Runnable {
             case 3: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("Section");
-               currentMap = section_1;
+                currentMap = section_1;
                 break;
             }
 
@@ -201,13 +198,13 @@ public class GamePanel extends JPanel implements Runnable {
             case 9: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("Section");
-               currentMap = section_3;
+                currentMap = section_3;
                 break;
             }
             case 10: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("Section");
-               currentMap = section_2;
+                currentMap = section_2;
                 break;
             }
         }
@@ -220,8 +217,6 @@ public class GamePanel extends JPanel implements Runnable {
     private void stopThread() {
         SoundManager.stopAllSound();
     }
-
-
 
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
@@ -285,6 +280,8 @@ public class GamePanel extends JPanel implements Runnable {
                 videoSetting.update();
             else if (Main.topGameState().equals(Main.states[12]))
                 loadGame.update();
+            else if (Main.topGameState().equals("PauseGame"))
+                pauseGame.update();
         } else if (Main.nguoncode == 2) {
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
@@ -300,16 +297,19 @@ public class GamePanel extends JPanel implements Runnable {
                 videoSetting.update();
             else if (Main.topGameState().equals(Main.states[12]))
                 loadGame.update();
+            else if (Main.topGameState().equals("PauseGame"))
+                pauseGame.update();
         }
         if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Section")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
-                else keyH.isInteract = false;
+                else
+                    keyH.isInteract = false;
             }
             if (keyH.isPhonePressed) {
                 // System.out.println("phone-kun xin chao tat ca cac ban");
-                if(inventory.isExist("Iphone 100 ProMax")) {
+                if (inventory.isExist("Iphone 100 ProMax")) {
                     KeyboardManager.resetReleasedKey();
                     phone.isDrawPhone = !phone.isDrawPhone;
                     phone.setPhoneState("Screen Saver");
@@ -328,18 +328,18 @@ public class GamePanel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-//        RenderingHints rh1 = new RenderingHints(
-//                RenderingHints.KEY_RENDERING,
-//                RenderingHints.VALUE_RENDER_SPEED);
-//        g2.setRenderingHints(rh1);
+        // RenderingHints rh1 = new RenderingHints(
+        // RenderingHints.KEY_RENDERING,
+        // RenderingHints.VALUE_RENDER_SPEED);
+        // g2.setRenderingHints(rh1);
 
         switch (Main.nguoncode) {
             case 1: {
-                if (Main.topGameState().equals(Main.states[0])) {
+                if (Main.topGameState().equals(Main.states[0]))
                     mainMenu.draw(g2);
-                } else if (Main.topGameState().equals(Main.states[1])) {
+                else if (Main.topGameState().equals(Main.states[1]))
                     nextMainMenu.draw(g2);
-                } else if (Main.topGameState().equals(Main.states[2]))
+                else if (Main.topGameState().equals(Main.states[2]))
                     setting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[3]))
                     audioSetting.draw(g2);
@@ -349,6 +349,8 @@ public class GamePanel extends JPanel implements Runnable {
                     videoSetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[12]))
                     loadGame.draw(g2);
+                else if (Main.topGameState().equals("PauseGame"))
+                    pauseGame.draw(g2);
                 break;
             }
             case 2: {
@@ -366,12 +368,16 @@ public class GamePanel extends JPanel implements Runnable {
                     videoSetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[12]))
                     loadGame.draw(g2);
+                else if (Main.topGameState().equals("PauseGame"))
+                    pauseGame.draw(g2);
                 break;
             }
         }
 
-        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog") || Main.topGameState().equals("Section")
-                || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause") || Main.topGameState().equals("Dialogue")) {
+        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
+                || Main.topGameState().equals("Section")
+                || Main.topGameState().equals("Inventory")
+                || Main.topGameState().equals("Dialogue")) {
             if (chapter1.IntroFinished) {
                 drawMap(g2);
                 player.draw(g2);
@@ -382,12 +388,12 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
         }
 
-
-        if (Main.topGameState().equals("Map")){
+        if (Main.topGameState().equals("Map")) {
             section_selection.operation(g);
         }
-        
+
     }
+
     public void drawMap(Graphics2D g2) {
         if (currentMap == myRoom) {
             myRoom.draw(g2);
@@ -415,6 +421,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
     }
+
     public void newGame() {
         currentMap = myRoom;
         currentChapter = chapter1;
