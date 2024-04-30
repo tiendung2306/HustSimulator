@@ -50,10 +50,11 @@ public class GamePanel extends JPanel implements Runnable {
     public static KeySetting keySetting = new KeySetting();
     public static VideoSetting videoSetting = new VideoSetting();
     public static LoadGame loadGame = new LoadGame();
+    public static PauseGame pauseGame = new PauseGame();
 
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
-            nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame);
+            nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame, pauseGame);
     // Khai báo lớp NormalClassroom vào GamePanel
     public NormalClassroom normalClassroom = new NormalClassroom(this);
     public ComputerRoom computerRoom = new ComputerRoom(this);
@@ -276,6 +277,8 @@ public class GamePanel extends JPanel implements Runnable {
                 videoSetting.update();
             else if (Main.topGameState().equals(Main.states[12]))
                 loadGame.update();
+            else if (Main.topGameState().equals(Main.states[15]))
+                pauseGame.update();
         } else if (Main.nguoncode == 2) {
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
@@ -325,21 +328,22 @@ public class GamePanel extends JPanel implements Runnable {
 
         switch (Main.nguoncode) {
             case 1: {
-                if (Main.topGameState().equals(Main.states[0])) {
+                if (Main.topGameState().equals(Main.states[0]))
                     mainMenu.draw(g2);
-                } else if (Main.topGameState().equals(Main.states[1])) {
+                else if (Main.topGameState().equals(Main.states[1]))
                     nextMainMenu.draw(g2);
-                } else if (Main.topGameState().equals(Main.states[2]))
+                else if (Main.topGameState().equals(Main.states[2]))
                     setting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[3])) {
+                else if (Main.topGameState().equals(Main.states[3]))
                     audioSetting.draw(g2);
-                }
                 else if (Main.topGameState().equals(Main.states[4]))
                     keySetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[5]))
                     videoSetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[12]))
                     loadGame.draw(g2);
+                else if (Main.topGameState().equals(Main.states[15]))
+                    pauseGame.draw(g2);
                 break;
             }
             case 2: {
