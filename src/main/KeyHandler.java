@@ -98,8 +98,8 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.timer.stop();
                     if (this.missionDescription != null && this.missionDescription.isMissionDescriptionDrawing) {
                         this.missionDescription.isMissionDescriptionDrawing = false;
-                    } else
-                        ++gamePanel.currentChapter.completedAct;
+                    } else ++gamePanel.currentChapter.completedAct;
+
                 }
             }
         }

@@ -15,5 +15,11 @@ public class Chapter {
     public int currentTimeline, completedAct;
     MissionDescription missionDescription;
     Collision collision;
+    public void update(){
+        if (this == gamePanel.chapter1)
+            gamePanel.chapter1.update();
+        if (this == gamePanel.chapter2)
+            gamePanel.chapter2.update();
+    }
 
 }

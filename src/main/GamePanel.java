@@ -2,6 +2,7 @@ package main;
 
 import Collision.Collision;
 import Content.Chapter;
+import Content.Chapter2;
 import GUI.MissionDescription;
 import Inventory.Inventory;
 import MainMenu.*;
@@ -94,9 +95,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     //==========================================================
 
-    Chapter currentChapter = new Chapter();
+    public Chapter currentChapter = new Chapter();
 
-    Chapter1 chapter1 = new Chapter1(this);
+    public Chapter1 chapter1 = new Chapter1(this);
+    public Chapter2  chapter2 = new Chapter2(this);
 
 
     // =========================================================
@@ -260,7 +262,7 @@ public class GamePanel extends JPanel implements Runnable {
         timeSystem.update();
         soundManager.update();
         tileManager.update();
-        chapter1.update();
+        currentChapter.update();
         phone.update();
         player.update();
         inventory.update();

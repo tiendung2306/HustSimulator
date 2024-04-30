@@ -6,9 +6,6 @@ import tile.ExtraTile;
 import tile.Tile;
 import map.Map;
 
-import javax.imageio.ImageIO;
-import java.io.*;
-
 public class CollisionCheck {
     GamePanel gamePanel;
     int numCollision;
