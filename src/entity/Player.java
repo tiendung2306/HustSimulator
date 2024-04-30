@@ -6,6 +6,7 @@ import main.*;
 import animation.Animation_player;
 
 import java.awt.*;
+import java.security.PublicKey;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -18,6 +19,7 @@ public class Player extends Entity {
     GamePanel gamepanel;
     KeyHandler keyhandler;
     Collision collision;
+    public boolean collision_collect;
     UI ui;
     public int screenX, screenY;
     boolean leftBorder, rightBorder, topBorder, bottomBorder;
@@ -35,6 +37,7 @@ public class Player extends Entity {
 
     public Animation_player curr_animation_player;
     TileManager tileManager;
+    public String checkNameTile;
 
     public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager, UI ui) {
         this.gamepanel = gamepanel;
@@ -51,6 +54,7 @@ public class Player extends Entity {
         bottomBorder = false;
         topBorder = false;
         ButtonInteract = false;
+        collision_collect = false;
 
         hitArea = new Rectangle();
         boundingBox = new Rectangle();
@@ -88,7 +92,7 @@ public class Player extends Entity {
 
     // =============================================================================================================================================
     public void update() {
-        if (!Main.topGameState().equals("GamePlay") || gamepanel.phone.isDrawPhone)
+        if (!(Main.topGameState().equals("GamePlay")) || gamepanel.phone.isDrawPhone)
             return;
         int countPressed = 0;
         if (keyhandler.upPressed)
@@ -103,6 +107,8 @@ public class Player extends Entity {
         if (countPressed > 0) {
             if (ButtonInteract)
                 ButtonInteract = false;
+                collision_collect =false;
+                checkNameTile = "";
             if (countPressed == 1) {
                 if (keyhandler.upPressed) {
                     direction = "up";
@@ -197,11 +203,18 @@ public class Player extends Entity {
             } else {
                 Tile[] tile = collision.getCollisionTile();
                 ButtonInteract = false;
-                for (int i = 0; i < collision.getNumCollision(); ++i)
+                for (int i = 0; i < collision.getNumCollision(); ++i) {
                     if (!tile[i].Type.equals("Obstacle")) {
                         ButtonInteract = true;
+                        if(tile[i].Type.equals("Collected")) {
+                            checkNameTile = tile[i].Name;
+                            collision_collect = true;
+                        }
                         break;
+
                     }
+                }
+
             }
         } else {
             switch (direction) {
@@ -235,8 +248,8 @@ public class Player extends Entity {
         }
         boundingBox.x = min(screenX, mapX);
         boundingBox.y = min(screenY, mapY);
-        boundingBox.x += (int) max(0, mapX - (gamepanel.mapWidth - GamePanel.screenWidth / 2) + boundingBox.width);
-        boundingBox.y += (int) max(0, mapY - (gamepanel.mapHeight - GamePanel.screenWidth / 2) + boundingBox.height);
+        boundingBox.x += (int) max(0, mapX - (gamepanel.currentMap.width - GamePanel.screenWidth / 2) + boundingBox.width);
+        boundingBox.y += (int) max(0, mapY - (gamepanel.currentMap.height - GamePanel.screenWidth / 2) + boundingBox.height);
         hitArea.x = mapX + boundingBox.width / 4;
         hitArea.y = mapY + boundingBox.height / 3 * 2;
         leftBorder = (boundingBox.x <= 0);
@@ -249,4 +262,6 @@ public class Player extends Entity {
         tileManager.drawRect(g2, hitArea.x, hitArea.y, hitArea.width, hitArea.height);
         curr_animation_player.operation(g2);
     }
+
+
 }
