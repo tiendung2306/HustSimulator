@@ -84,7 +84,7 @@ class Section {
 
 
     protected void OnClick(){
-
+        section_selection.gamePanel.section_1.open();
     } 
 
 

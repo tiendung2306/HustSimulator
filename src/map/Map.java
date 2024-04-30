@@ -11,6 +11,8 @@ public class Map {
     public int mapIndex;
     public int maxMapCol, maxMapRow;
     public int numExtraTile;
+    public int width, height;
+    public int org_width, org_height;
     public int numTileContainer;
     public int playerX, playerY;
     public Tile [] tileContainer;
@@ -55,13 +57,14 @@ public class Map {
     }
     public void loadMap(GamePanel gamePanel){
         gamePanel.currentMap = this;
-        gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
-        gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
+        // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
+        // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
         gamePanel.player.setMapX(playerX);
         gamePanel.player.setMapY(playerY);
     }
     public void reSizeMap(GamePanel gamePanel) {
-        gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
-        gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
+        // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
+        // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
     }
+
 }

@@ -20,8 +20,10 @@ import section_selection.Section_selection;
 import javax.swing.*;
 
 import Keyboard.KeyboardManager;
-//import area.Section_3;
-
+import area.Section_3;
+import area.D3_5_hallway.D3_5_hallway_secondfloor;
+import area.D3_hallway.D3_hallway;
+import area.D3_hallway.D3_secondfloor_hallway;
 import Content.Chapter1;
 
 import java.awt.*;
@@ -35,10 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     // MAP SETTINGS
-    public int maxMapCol;
-    public int maxMapRow;
-    public int mapWidth;
-    public int mapHeight;
+
 
     public TileManager tileManager = new TileManager(this);
     Thread gameThread;
@@ -80,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
 //    Section_1 section_1 = new Section_1(this);
 
 
+
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
     public Phone phone = new Phone(this);
@@ -90,7 +90,9 @@ public class GamePanel extends JPanel implements Runnable {
     public Inventory inventory = new Inventory(this);
 
     public Section_selection section_selection = new Section_selection(this);
-
+    public Section_3 section_3 = new Section_3(this);
+    public Section_2 section_2 = new Section_2(this);
+    public D3_5_hallway_secondfloor section_1 = new D3_5_hallway_secondfloor(this);
     public boolean isRunning = false;
 
     //==========================================================
@@ -145,6 +147,7 @@ public class GamePanel extends JPanel implements Runnable {
         player.setDefaultValues();
         inventory.ScreenResize();
         ui.screenResize();
+        section_selection.screenResize();
     }
 
     public void Init() {
@@ -161,7 +164,7 @@ public class GamePanel extends JPanel implements Runnable {
             case 3: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
                     Main.pushGameState("Section");
-              //  currentMap = section_1;
+               currentMap = section_1;
                 break;
             }
 
@@ -197,14 +200,14 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 9: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-               // currentMap = section_3;
+                    Main.pushGameState("Section");
+               currentMap = section_3;
                 break;
             }
             case 10: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-               // currentMap = section_2;
+                    Main.pushGameState("Section");
+               currentMap = section_2;
                 break;
             }
         }
@@ -298,7 +301,7 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals(Main.states[12]))
                 loadGame.update();
         }
-        if (Main.topGameState().equals("GamePlay")) {
+        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Section")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
@@ -365,13 +368,9 @@ public class GamePanel extends JPanel implements Runnable {
                     loadGame.draw(g2);
                 break;
             }
-
-            case 3:{
-                section_selection.operation(g);
-            }
         }
 
-        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
+        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog") || Main.topGameState().equals("Section")
                 || Main.topGameState().equals("Inventory") || Main.topGameState().equals("GamePause") || Main.topGameState().equals("Dialogue")) {
             if (chapter1.IntroFinished) {
                 drawMap(g2);
@@ -388,7 +387,6 @@ public class GamePanel extends JPanel implements Runnable {
             section_selection.operation(g);
         }
         
-        g2.dispose();
     }
     public void drawMap(Graphics2D g2) {
         if (currentMap == myRoom) {
@@ -406,12 +404,15 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentMap == stadium) {
             stadium.draw(g2);
         }
-//        if (currentMap == section_2) {
-//      section_2.draw(g2);
-//        }
-//        if (currentMap == section_3) {
-//            section_3.draw(g2);
-//        }
+        if (currentMap == section_1) {
+            section_1.draw(g2);
+        }
+        if (currentMap == section_2) {
+            section_2.draw(g2);
+        }
+        if (currentMap == section_3) {
+            section_3.draw(g2);
+        }
 
     }
     public void newGame() {

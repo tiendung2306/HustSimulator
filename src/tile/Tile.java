@@ -3,6 +3,8 @@ package tile;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import main.GamePanel;
+
 public class Tile{
     public BufferedImage image, imageEffcet;
     public String Name;
@@ -126,5 +128,14 @@ public class Tile{
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public void resize(double scale) {
+        setLeftX((int) (LeftX * scale));
+        setTopY((int) (TopY * scale));
+        setWidth((int) (width * scale));
+        setHeight((int) (height * scale));
+        setRightX((int) ((LeftX + width)));
+        setBottomY((int) ((TopY + height)));
     }
 }

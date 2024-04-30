@@ -22,7 +22,6 @@ public class TileManager {
 
         this.gamePanel = gamePanel;
         tile = new Tile[60];
-        typeTile = new int[gamePanel.maxMapCol][gamePanel.maxMapRow];
         getTileImage();
     }
 
@@ -81,7 +80,7 @@ public class TileManager {
            g2.drawImage(tile.image, screenX, screenY, width, height, null);
         }
         if(gamePanel.player.collision_collect && gamePanel.player.checkNameTile.equals(tile.Name)) {
-            System.out.println(gamePanel.player.collision_collect + " " + gamePanel.player.checkNameTile);
+            // System.out.println(gamePanel.player.collision_collect + " " + gamePanel.player.checkNameTile);
             g2.drawImage(tile.imageEffcet, screenX, screenY, width, height, null);
         }
 
