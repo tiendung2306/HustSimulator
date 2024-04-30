@@ -92,6 +92,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Section_2 section_2 = new Section_2(this);
     public D3_5_hallway_secondfloor section_1 = new D3_5_hallway_secondfloor(this);
     public boolean isRunning = false;
+    public C2_hall c2_hall = new C2_hall(this);
 
     // ==========================================================
 
@@ -160,7 +161,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             case 3: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("Section");
+                    Main.pushGameState("GamePlay");
                 currentMap = section_1;
                 break;
             }
@@ -197,13 +198,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
             case 9: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("Section");
+                    Main.pushGameState("GamePlay");
                 currentMap = section_3;
                 break;
             }
             case 10: {
                 if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("Section");
+                    Main.pushGameState("GamePlay");
                 currentMap = section_2;
                 break;
             }
@@ -300,7 +301,7 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals("PauseGame"))
                 pauseGame.update();
         }
-        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Section")) {
+        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
@@ -375,7 +376,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
-                || Main.topGameState().equals("Section")
+                || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
                 || Main.topGameState().equals("Dialogue")) {
             if (chapter1.IntroFinished) {
@@ -419,7 +420,9 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentMap == section_3) {
             section_3.draw(g2);
         }
-
+        if (currentMap == c2_hall) {
+            c2_hall.draw(g2);
+        }
     }
 
     public void newGame() {

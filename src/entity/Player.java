@@ -92,7 +92,7 @@ public class Player extends Entity {
 
     // =============================================================================================================================================
     public void update() {
-        if (!(Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Section")) || gamepanel.phone.isDrawPhone)
+        if (!(Main.topGameState().equals("GamePlay")) || gamepanel.phone.isDrawPhone)
             return;
         int countPressed = 0;
         if (keyhandler.upPressed)

@@ -4,6 +4,7 @@ import main.GamePanel;
 import tile.ExtraTile;
 import tile.Tile;
 
+import java.awt.Graphics2D;
 import java.io.*;
 
 public class Map {
@@ -65,6 +66,10 @@ public class Map {
     public void reSizeMap(GamePanel gamePanel) {
         // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
         // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
+    }
+
+    public void draw(Graphics2D g2) {
+        
     }
 
 }

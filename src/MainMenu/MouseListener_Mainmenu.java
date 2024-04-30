@@ -397,7 +397,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 loadGame.buttonLoadGameReturnEnter();
                 loadGame.Init();
             }
-        } else if (Main.topGameState().equals(Main.states[15])) {
+        } else if (Main.topGameState().equals("PauseGame")) {
             if ((x_click > 260 * Main.ex) && (y_click > 270 * Main.ey) && (x_click < 507 * Main.ex)
                     && (y_click < 307 * Main.ey)) {
                 Main.pushGameState(Main.states[6]);
@@ -415,6 +415,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             }
             else if ((x_click > 260 * Main.ex) && (y_click > 210 * Main.ey) && (x_click < 507 * Main.ex)
                     && (y_click < 250 * Main.ey)) {
+                Main.popGameState();
                 pauseGame.Init();
             }
         }

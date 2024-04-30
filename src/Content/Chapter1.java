@@ -159,8 +159,7 @@ public class Chapter1 extends Chapter {
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
         if (completedAct == 8 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4000) {
-            gamePanel.currentMap = gamePanel.normalClassroom;
-            gamePanel.currentMap.loadMap(gamePanel);
+            gamePanel.c2_hall.loadMap(gamePanel);
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             completedAct++;
         }

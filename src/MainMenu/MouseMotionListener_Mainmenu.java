@@ -178,7 +178,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                     && (y_enter < 50 * Main.ey))
                 loadGame.buttonLoadGameReturnEnter();
             else loadGame.LoadGamerollback();
-        } else if (Main.topGameState().equals(Main.states[15])) {
+        } else if (Main.topGameState().equals("PauseGame")) {
             if ((x_enter > 260 * Main.ex) && (y_enter > 270 * Main.ey) && (x_enter < 507 * Main.ex)
                     && (y_enter < 307 * Main.ey))
                 pauseGame.buttonTutorialEnterpause();

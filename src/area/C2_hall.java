@@ -73,7 +73,7 @@ public class C2_hall extends Map {
     }
 
     public void open(){
-        Main.pushGameState("Section");
+        Main.pushGameState("GamePlay");
         loadMap(gamePanel);
     }
 

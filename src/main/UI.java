@@ -57,9 +57,9 @@ public class UI {
         this.g2 = g2;
         g2.setFont(arial_40);
         g2.setColor(Color.white);
-        if (Main.topGameState().equals("GamePause")) {
-            drawPauseScreen();
-        }
+        // if (Main.topGameState().equals("PauseGame")) {
+        //     drawPauseScreen();
+        // }
         if (Main.topGameState().equals("Dialog")) {
             drawDialogScreen();
         }
@@ -73,13 +73,13 @@ public class UI {
         }
     }
 
-    public void drawPauseScreen() {
-        String text = "PAUSED";
-        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = (int) (GamePanel.screenWidth / 2 - length / 2);
-        int y = (int) (GamePanel.screenHeight / 2);
-        g2.drawString(text, x, y);
-    }
+    // public void drawPauseScreen() {
+    //     String text = "PAUSED";
+    //     int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+    //     int x = (int) (GamePanel.screenWidth / 2 - length / 2);
+    //     int y = (int) (GamePanel.screenHeight / 2);
+    //     g2.drawString(text, x, y);
+    // }
 
     public void drawDialogScreen() {
         int x = 32 * (int) GamePanel.scale;
