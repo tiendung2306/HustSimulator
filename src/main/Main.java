@@ -24,7 +24,7 @@ public class Main {
     public static double ey = 1;
     public static Stack<String> GameState = new Stack<>();
     public static String[] states = { "MainMenu", "PlayMenu", "Setting", "AudioSetting", "KeySetting", "VideoSetting",
-            "Tutorial", "GamePlay", "GamePause", "Dialogue", "Inventory", "Dialog", "LoadGame", "Map", "Section", "PauseGame" };
+            "Tutorial", "GamePlay", "GamePause", "Dialogue", "Inventory", "Dialog", "LoadGame", "Map", "Section", "PauseGame", "LoadGame2" };
 
     public static void pushGameState(String a) {
         GameState.push(a);

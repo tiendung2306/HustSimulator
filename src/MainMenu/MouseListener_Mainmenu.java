@@ -20,6 +20,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     Setting setting = GamePanel.setting;
     LoadGame loadGame = GamePanel.loadGame;
     PauseGame pauseGame = GamePanel.pauseGame;
+    LoadGame2 loadGame2 = GamePanel.loadGame2;
 
     public MouseListener_Mainmenu(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -403,9 +404,9 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 Main.pushGameState(Main.states[6]);
                 pauseGame.Init();
             }
-            else if ((x_click > 320 * Main.ex) && (y_click > 330 * Main.ey) && (x_click < 452 * Main.ex)
+            else if ((x_click > 380 * Main.ex) && (y_click > 330 * Main.ey) && (x_click < 512 * Main.ex)
                     && (y_click < 357 * Main.ey)) {
-                Main.pushGameState(Main.states[0]);
+                Main.pushGameState(Main.states[16]);
                 pauseGame.Init();
             }
             else if ((x_click > 710 * Main.ex) && (y_click > 13 * Main.ey) && (x_click < 750 * Main.ex)
@@ -415,7 +416,15 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             }
             else if ((x_click > 260 * Main.ex) && (y_click > 210 * Main.ey) && (x_click < 507 * Main.ex)
                     && (y_click < 250 * Main.ey)) {
+                Main.popGameState();
                 pauseGame.Init();
+            }
+        } else if (Main.topGameState().equals(Main.states[16])) {
+            if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ey) && (x_click < 50 * Main.ex)
+                    && (y_click < 50 * Main.ey)) {
+                Main.popGameState();
+                loadGame2.buttonLoadGameReturnEnter();
+                loadGame2.Init();
             }
         }
     }

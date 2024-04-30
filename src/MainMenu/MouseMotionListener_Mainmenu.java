@@ -16,9 +16,10 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
     VideoSetting videoSetting;
     LoadGame loadGame;
     PauseGame pauseGame;
+    LoadGame2 loadGame2;
 
     public MouseMotionListener_Mainmenu(GamePanel gamePanel, Main_Menu mainMenu, NextMainMenu nextMainMenu,
-            Setting setting, AudioSetting audioSetting, KeySetting keySetting, VideoSetting videoSetting, LoadGame loadGame, PauseGame pauseGame) {
+            Setting setting, AudioSetting audioSetting, KeySetting keySetting, VideoSetting videoSetting, LoadGame loadGame, PauseGame pauseGame, LoadGame2 loadGame2) {
         this.gamePanel = gamePanel;
         this.mainMenu = mainMenu;
         this.nextMainMenu = nextMainMenu;
@@ -28,6 +29,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
         this.videoSetting = videoSetting;
         this.loadGame = loadGame;
         this.pauseGame = pauseGame;
+        this.loadGame2 = loadGame2;
     }
 
     @Override
@@ -182,7 +184,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
             if ((x_enter > 260 * Main.ex) && (y_enter > 270 * Main.ey) && (x_enter < 507 * Main.ex)
                     && (y_enter < 307 * Main.ey))
                 pauseGame.buttonTutorialEnterpause();
-            else if ((x_enter > 320 * Main.ex) && (y_enter > 330 * Main.ey) && (x_enter < 452 * Main.ex)
+            else if ((x_enter > 380 * Main.ex) && (y_enter > 330 * Main.ey) && (x_enter < 512 * Main.ex)
                     && (y_enter < 357 * Main.ey))
                 pauseGame.buttonBackEnterpause();
             else if ((x_enter > 710 * Main.ex) && (y_enter > 13 * Main.ey) && (x_enter < 750 * Main.ex)
@@ -193,6 +195,11 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                 pauseGame.buttonContinueEnterpause();
             else
                 pauseGame.rollbackpause();
+        } else if (Main.topGameState().equals(Main.states[16])) {
+            if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
+                    && (y_enter < 50 * Main.ey))
+                loadGame2.buttonLoadGameReturnEnter();
+            else loadGame2.LoadGamerollback();
         }
     }
 }

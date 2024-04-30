@@ -51,10 +51,11 @@ public class GamePanel extends JPanel implements Runnable {
     public static VideoSetting videoSetting = new VideoSetting();
     public static LoadGame loadGame = new LoadGame();
     public static PauseGame pauseGame = new PauseGame();
+    public static LoadGame2 loadGame2 = new LoadGame2();
 
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
-            nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame, pauseGame);
+            nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame, pauseGame, loadGame2);
     // Khai báo lớp NormalClassroom vào GamePanel
     public NormalClassroom normalClassroom = new NormalClassroom(this);
     public ComputerRoom computerRoom = new ComputerRoom(this);
@@ -279,6 +280,8 @@ public class GamePanel extends JPanel implements Runnable {
                 loadGame.update();
             else if (Main.topGameState().equals(Main.states[15]))
                 pauseGame.update();
+            else if (Main.topGameState().equals(Main.states[16]))
+                loadGame2.update();
         } else if (Main.nguoncode == 2) {
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
@@ -294,6 +297,8 @@ public class GamePanel extends JPanel implements Runnable {
                 videoSetting.update();
             else if (Main.topGameState().equals(Main.states[12]))
                 loadGame.update();
+            else if (Main.topGameState().equals(Main.states[16]))
+                loadGame2.update();
         }
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
@@ -344,6 +349,8 @@ public class GamePanel extends JPanel implements Runnable {
                     loadGame.draw(g2);
                 else if (Main.topGameState().equals(Main.states[15]))
                     pauseGame.draw(g2);
+                else if (Main.topGameState().equals(Main.states[16]))
+                    loadGame2.draw(g2);
                 break;
             }
             case 2: {
@@ -361,6 +368,8 @@ public class GamePanel extends JPanel implements Runnable {
                     videoSetting.draw(g2);
                 else if (Main.topGameState().equals(Main.states[12]))
                     loadGame.draw(g2);
+                else if (Main.topGameState().equals(Main.states[16]))
+                    loadGame2.draw(g2);
                 break;
             }
 

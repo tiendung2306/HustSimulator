@@ -85,8 +85,8 @@ public class PauseGame extends JPanel {
         g2.drawImage(tutorialicon, (int) (520 * Main.ex), (int) (270 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         g2.drawImage(Continue, (int) (260 * Main.ex), (int) (210 * Main.ey), (int) (247 * Main.ex), (int) (45 * Main.ey), null);
         g2.drawImage(continueicon, (int) (520 * Main.ex), (int) (210 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
-        g2.drawImage(Back, (int) (320 * Main.ex), (int) (330 * Main.ey), (int) (128 * Main.ex), (int) (40 * Main.ey), null);
-        g2.drawImage(backiconimg, (int) (464 * Main.ex), (int) (330 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(Back, (int) (380 * Main.ex), (int) (330 * Main.ey), (int) (128 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(backiconimg, (int) (524 * Main.ex), (int) (330 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         super.paintComponent(g2);
     }
 }
