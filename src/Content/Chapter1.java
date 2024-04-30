@@ -197,6 +197,10 @@ public class Chapter1 extends Chapter {
                 Timeline3();
                 break;
             }
+            case 4: {
+                Timeline4();
+                break;
+            }
         }
     }
 
