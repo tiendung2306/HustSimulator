@@ -25,7 +25,6 @@ public class Chapter1 extends Chapter {
     }
 
     void Intro() {
-        // drawBackground();
         if (completedAct == 0)
             Dialogue("Chuyện gì vừa xảy ra vậy...");
         if (completedAct == 1)
@@ -171,6 +170,10 @@ public class Chapter1 extends Chapter {
         if (completedAct == 10)
             nextTimeline();
     }
+    void Timeline4(){
+        gamePanel.currentChapter = gamePanel.chapter2;
+        gamePanel.chapter2.completedAct = 0;
+    }
     
 
     public void update() {
@@ -206,10 +209,5 @@ public class Chapter1 extends Chapter {
             ui.isFinishDialogue = false;
             ui.timer.start();
         }
-    }
-
-    void drawBackground() {
-        if (isDrawBackground)
-            ui.drawBackground(null);
     }
 }
