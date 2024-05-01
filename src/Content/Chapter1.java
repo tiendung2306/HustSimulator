@@ -158,15 +158,30 @@ public class Chapter1 extends Chapter {
             phone.clearMessage();
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
-        if (completedAct == 8 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4000) {
-            gamePanel.c2_hall.loadMap(gamePanel);
+        if (completedAct == 8 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4000) { //chuyen map
+            gamePanel.c2_hallway.loadMap(gamePanel);
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             completedAct++;
         }
         if(completedAct == 9 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 500) {
             Dialogue("Mình đã đến nơi rồi!");
         }
-        if (completedAct == 10)
+        if (completedAct == 10) {
+            Dialogue("Bây giờ mình cần phải đi vào trong hội trường C2 để nộp hồ sơ, đi thôi nào!");
+            missionDescription.setMissionDescription("Di chuyển vào trong hội trường C2");
+            prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+        }
+        if (completedAct == 11 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4000) {
+            gamePanel.c2_hall.loadMap(gamePanel);
+            prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+            completedAct++;
+
+        }
+        if (completedAct == 12) {
+            Dialogue("Theo thông báo của trường thì mình phải nộp hồ sơ ở hàng số 3 tính từ trái qua");
+            missionDescription.setMissionDescription("Đến hàng thứ 3 từ trái sang để nộp hồ sơ(Sử dụng tập tài liệu sau khi tương tác với cô giáo)");
+        }
+        if (completedAct == 13)
             nextTimeline();
     }
     void Timeline4(){

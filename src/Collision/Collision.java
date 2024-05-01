@@ -4,8 +4,8 @@ import entity.Entity;
 import main.GamePanel;
 import main.Main;
 import main.UI;
-import tile.Tile;
 import map.Map;
+import tile.Tile;
 
 public class Collision {
     public CollisionCheck collisionCheck;
@@ -15,7 +15,8 @@ public class Collision {
     int numCollision;
     public Tile interactItem = new Tile();
     Tile[] collisionTile;
-    public Collision(GamePanel gamePanel){
+
+    public Collision(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
         collisionCheck = new CollisionCheck(gamePanel);
@@ -32,8 +33,17 @@ public class Collision {
             if (collisionTile[i].Type.equals("Collected"))
                 collectItem(i);
             if (collisionTile[i].Type.equals("Teleport")) {
-                gamePanel.section_selection.open();
+                teleport(collisionTile[i].Name);
+
             }
+        }
+    }
+
+    void teleport(String name) {
+        if (name == "Door My Room")
+            gamePanel.section_selection.open();
+        else if (name == "Door Classroom") {
+            gamePanel.stadium.loadMap(gamePanel);
         }
     }
 

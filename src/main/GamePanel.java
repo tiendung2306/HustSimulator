@@ -1,32 +1,48 @@
 package main;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JPanel;
+
 import Collision.Collision;
 import Content.Chapter;
+import Content.Chapter1;
 import Content.Chapter2;
 import GUI.MissionDescription;
 import Inventory.Inventory;
-import MainMenu.*;
-import area.*;
+import Keyboard.KeyboardManager;
+import MainMenu.AudioSetting;
+import MainMenu.KeySetting;
+import MainMenu.LoadGame;
+import MainMenu.Main_Menu;
+import MainMenu.MouseListener_Mainmenu;
+import MainMenu.MouseMotionListener_Mainmenu;
+import MainMenu.NextMainMenu;
+import MainMenu.PauseGame;
+import MainMenu.Setting;
+import MainMenu.VideoSetting;
+import Mouse.MouseManager;
+import area.C2_hall;
+import area.C2_hallway;
+import area.ComputerRoom;
+import area.Library;
+import area.MyRoom;
+import area.NormalClassroom;
+import area.Section_2;
+import area.Section_3;
+import area.Stadium;
+import area.D3_5_hallway.D3_5_hallway_secondfloor;
 import entity.Player;
 import map.Map;
-import sound.Sound;
-import tile.TileManager;
-import time.TimeSystem;
-import sound.SoundManager;
-import Mouse.MouseManager;
 import phone.Phone;
 import section_selection.Section_selection;
-
-import javax.swing.*;
-
-import Keyboard.KeyboardManager;
-import area.Section_3;
-import area.D3_5_hallway.D3_5_hallway_secondfloor;
-import area.D3_hallway.D3_hallway;
-import area.D3_hallway.D3_secondfloor_hallway;
-import Content.Chapter1;
-
-import java.awt.*;
+import sound.Sound;
+import sound.SoundManager;
+import tile.TileManager;
+import time.TimeSystem;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -93,6 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
     public D3_5_hallway_secondfloor section_1 = new D3_5_hallway_secondfloor(this);
     public boolean isRunning = false;
     public C2_hall c2_hall = new C2_hall(this);
+    public C2_hallway c2_hallway = new C2_hallway(this);
 
     // ==========================================================
 
@@ -422,6 +439,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (currentMap == c2_hall) {
             c2_hall.draw(g2);
+        }
+        if (currentMap == c2_hallway) {
+            c2_hallway.draw(g2);
         }
     }
 
