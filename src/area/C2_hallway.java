@@ -74,7 +74,6 @@ public class C2_hallway extends Map {
     }
 
     public void open(){
-        Main.pushGameState("GamePlay");
         loadMap(gamePanel);
     }
 

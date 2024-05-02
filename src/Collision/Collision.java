@@ -44,8 +44,7 @@ public class Collision {
             gamePanel.section_selection.open(gamePanel.chapter1.isTeleportable);
         else if (name == "Door Classroom") {
             gamePanel.stadium.loadMap(gamePanel);
-        }
-        else if (name == "C2_hall"){
+        } else if (name == "C2_hall") {
             gamePanel.c2_hallway.open();
         }
     }

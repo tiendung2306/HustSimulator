@@ -4,6 +4,7 @@ import main.GamePanel;
 import main.Main;
 import map.Map;
 import tile.Tile;
+import npc.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,6 +15,7 @@ import java.io.*;
 public class C2_hall extends Map {
     Tile background;
     GamePanel gamePanel;
+    Npc teacher1;
 
 
     public C2_hall(GamePanel gamePanel) {
@@ -67,13 +69,12 @@ public class C2_hall extends Map {
             e.printStackTrace();
         }
 
-
+        // teacher1 = new Npc(gamePanel, 0, 0, 100, 100);
 
 
     }
 
     public void open(){
-        Main.pushGameState("GamePlay");
         loadMap(gamePanel);
     }
 

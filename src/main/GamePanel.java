@@ -329,7 +329,7 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals("PauseGame"))
                 pauseGame.update();
         }
-        if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("GamePlay")) {
+        if (Main.topGameState().equals("GamePlay")){
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();

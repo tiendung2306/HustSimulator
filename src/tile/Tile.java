@@ -11,9 +11,9 @@ public class Tile{
     public int numOwn;
     public String Type;
     public String Description,name_path,name_path2;
-    int LeftX, RightX, TopY, BottomY;
+    public int LeftX, RightX, TopY, BottomY;
 
-    int width, height;
+    public int width, height;
     public boolean isCollision;
     public boolean isMission;
 

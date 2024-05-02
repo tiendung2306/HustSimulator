@@ -74,7 +74,6 @@ public class D3_5_hallway_secondfloor extends Map {
     }
 
     public void open(){
-        Main.pushGameState("GamePlay");
         loadMap(gamePanel);
     }
 

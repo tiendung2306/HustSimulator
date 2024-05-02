@@ -90,7 +90,6 @@ public class Section_1 extends Map {
     }
 
     public void open(){
-        Main.pushGameState("GamePlay");
         loadMap(gamePanel);
     }
 

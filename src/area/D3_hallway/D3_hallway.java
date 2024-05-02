@@ -79,7 +79,6 @@ public class D3_hallway extends Map {
     }
 
     public void open(){
-        Main.pushGameState("GamePlay");
         loadMap(gamePanel);
     }
 
