@@ -81,15 +81,8 @@ public class TileManager {
            g2.drawImage(tile.image, screenX, screenY, width, height, null);
         }
         if(gamePanel.player.collision_collect && gamePanel.player.checkNameTile.equals(tile.Name)) {
-            System.out.println(gamePanel.player.collision_collect + " " + gamePanel.player.checkNameTile);
             g2.drawImage(tile.imageEffcet, screenX, screenY, width, height, null);
-            if(tile.imageEffcet == null) {
-                System.out.println("sddkfksndfksndfsndfj");
-            }
-
         }
-
-
         if (tile.isMission)
             g2.drawImage(warningIcon, screenX + width, screenY - (int)(12 * GamePanel.scale) + extraY, (int) (3 * GamePanel.scale), (int) (9 * GamePanel.scale), null);
         g2.drawRect(screenX, screenY, width, height);

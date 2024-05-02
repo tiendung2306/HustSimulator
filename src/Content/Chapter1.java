@@ -108,12 +108,12 @@ public class Chapter1 {
         if (completedAct == 0) {
             missionDescription.setMissionDescription("Tìm mì tôm và lại nấu ăn đi");
             if (!noodleMission){
-                gamePanel.myRoom.tileKettle.isMission = true;
+                gamePanel.myRoom.tileNoodle.isMission = true;
                 gamePanel.myRoom.tilePan.isMission = true;
             }
             if (collision.interactItem.Name.equals("Pan") && inventory.isUsingItem
-                    && inventory.usingItem.Name.equals("Kettle")) {
-                gamePanel.myRoom.tileKettle.isMission = false;
+                    && inventory.usingItem.Name.equals("Noodle")) {
+                gamePanel.myRoom.tileNoodle.isMission = false;
                 gamePanel.myRoom.tilePan.isMission = false;
                 noodleMission = true;
                 ++completedAct;

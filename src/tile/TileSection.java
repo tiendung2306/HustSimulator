@@ -3,8 +3,6 @@ package tile;
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -68,6 +66,5 @@ public class TileSection extends Tile{
         setWidth((int) (width_tile * GamePanel.scale * scale_collect));
         setHeight((int) (height_tile * GamePanel.scale * scale_collect));
     }
-
 
 }

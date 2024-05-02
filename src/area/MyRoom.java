@@ -12,7 +12,7 @@ public class MyRoom extends Map {
     Tile background;
     GamePanel gamePanel;
     public TileSection tileBed,tilePC,tileTable,tileBookshelf,tileWardrobe, tileKitchen,tilePan,tileWallMyRoom,
-            tileFridge,tileDoorMyRoom,tileKettle,tileStudentCard,tileLaptop,tilePhone;
+            tileFridge,tileDoorMyRoom,tileNoodle,tileStudentCard,tileLaptop,tilePhone,tilehoso;
     public TileSection[] tileChair;
 
 
@@ -55,18 +55,20 @@ public class MyRoom extends Map {
         addTile(tileBed);
         addTile(tilePC);
         addTile(tileTable);
+        for(int i = 0; i < 4; i++) {
+            addTile(tileChair[i]);
+        }
         addTile(tileFridge);
         addTile(tileBookshelf);
         addTile((tileWardrobe));
         addTile(tileKitchen);
         addTile(tilePan);
-        addTile(tileKettle);
+        addTile(tileNoodle);
         addTile(tileLaptop);
         addTile(tileStudentCard);
         addTile(tilePhone);
-        for(int i = 0; i < 4; i++) {
-            addTile(tileChair[i]);
-        }
+        addTile(tilehoso);
+
     }
 
     public void setDefaultValues() {
@@ -84,11 +86,12 @@ public class MyRoom extends Map {
         tileDoorMyRoom = new TileSection(gamePanel,205,30,49,61,"Door My Room","Teleport","","res/tile/door_my_room.png",1);
         tilePan = new TileSection(gamePanel,413,155,30,20,"Pan","Interact","","res/tile/chao.png",1);
         tileWallMyRoom = new TileSection(gamePanel,0,0,460,91,"","Obstacle","","res/tile/no_thing.png",1);
-        tileKettle = new TileSection(gamePanel,60,85,25,15,"Kettle","Collected","DCM 37 38 RACH","res/tile/am_dun_nuoc.png",1);
+        tileNoodle = new TileSection(gamePanel,60,85,36,36,"Noodle","Collected","Mì tôm Omachi","res/tile/mi_tom01.png","res/tile/mi_tom02.png", (double) 1 /3);
         tileLaptop = new TileSection(gamePanel,78,100,66,45,"Laptop gaming MSI Titan GT77 12UHS 204VN","Collected","135990000 VNĐ","res/tile/lap_top01.png","res/tile/lap_top02.png",(double) 1/3);
-        tileStudentCard = new TileSection(gamePanel,50,120,13,8,"Student ID","Collected","DCM 37 38 RACH","res/tile/the_sinh_vien.png","res/tile/the_sinh_vien.png",1);
+        tileStudentCard = new TileSection(gamePanel,50,120,39,27,"Student ID","Collected","DCM 37 38 RACH","res/tile/thehs01.png","res/tile/thehs02.png", (double) 1 /3);
         tileChair =new TileSection[4];
-        tilePhone = new TileSection(gamePanel,162,187,24,39,"Iphone 1000000 ProMax","Collected","DCM 37 38 RACH","res/tile/phone01.png","res/tile/phone02.png",(double) 1/3);
+        tilehoso = new TileSection(gamePanel,340,160,39,60,"Hồ sơ","Collected","Hồ sơ dùng để nhập học","res/tile/hoso01.png","res/tile/hoso02.png",(double) 1/3);
+        tilePhone = new TileSection(gamePanel,162,187,27,42,"Iphone 1000000 ProMax","Collected","DCM 37 38 RACH","res/tile/phone01.png","res/tile/phone02.png",(double) 1/3);
 
         setTileChair();
         setUpTileMyRoom();
