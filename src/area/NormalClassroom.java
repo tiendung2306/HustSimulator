@@ -15,8 +15,10 @@ public class NormalClassroom extends Map {
     public NormalClassroom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
-        maxMapCol = 21;
-        maxMapRow = 18;
+        // maxMapCol = 21;
+        // maxMapRow = 18;
+        width = (int)(21 * 16 * gamePanel.scale);
+        height = (int)(18 * 16 * gamePanel.scale);
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[17].image;

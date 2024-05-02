@@ -40,10 +40,10 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         }
         if (code == KeyboardManager.getKey("PAUSE")) {
-            if (Main.topGameState().equals("GamePause")) {
+            if (Main.topGameState().equals("PauseGame")) {
                 Main.popGameState();
-            } else
-                Main.pushGameState("GamePause");
+            } else if(Main.topGameState().equals("GamePlay") && !gamePanel.phone.isDrawPhone)
+                Main.pushGameState("PauseGame");
         }
         if (code == KeyboardManager.getKey("INVENTORY")) {
             if (Main.topGameState().equals("Inventory"))
@@ -80,12 +80,11 @@ public class KeyHandler implements KeyListener {
         if (code == KeyboardManager.getKey("PHONE")) {
             isPhonePressed = true;
         }
-        if (KeyboardManager.getTypeKey(code).equals("INTERACT")) {
+        if ((KeyboardManager.getTypeKey(code).equals("INTERACT") || KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE") || MouseManager.isLeftMouseClick) && !gamePanel.phone.isDrawPhone) {
             if (Main.topGameState().equals("Dialog")) {
                 Main.popGameState();
                 isInteract = false;
-            } else
-                isInteract = true;
+            } else if (KeyboardManager.getTypeKey(code).equals("INTERACT")) isInteract = true;
         }
         if (KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE")) {
             if (Main.topGameState().equals("Dialogue")) {
@@ -99,8 +98,8 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.timer.stop();
                     if (this.missionDescription != null && this.missionDescription.isMissionDescriptionDrawing) {
                         this.missionDescription.isMissionDescriptionDrawing = false;
-                    } else
-                        ++gamePanel.chapter1.completedAct;
+                    } else ++gamePanel.currentChapter.completedAct;
+
                 }
             }
         }

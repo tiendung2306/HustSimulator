@@ -1,0 +1,15 @@
+rec1
+chap 1
+time 88h88p
+date 88h88p 88/88/8888
+end
+rec2
+chap 2
+time 88h88p
+date 88h88p 88/88/8888
+end
+rec3
+chap 3
+time 88h88p
+date 88h88p 88/88/8888
+end

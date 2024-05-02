@@ -92,7 +92,7 @@ public class Player extends Entity {
 
     // =============================================================================================================================================
     public void update() {
-        if (!Main.topGameState().equals("GamePlay") || gamepanel.phone.isDrawPhone)
+        if (!(Main.topGameState().equals("GamePlay")) || gamepanel.phone.isDrawPhone)
             return;
         int countPressed = 0;
         if (keyhandler.upPressed)
@@ -248,8 +248,8 @@ public class Player extends Entity {
         }
         boundingBox.x = min(screenX, mapX);
         boundingBox.y = min(screenY, mapY);
-        boundingBox.x += (int) max(0, mapX - (gamepanel.mapWidth - GamePanel.screenWidth / 2) + boundingBox.width);
-        boundingBox.y += (int) max(0, mapY - (gamepanel.mapHeight - GamePanel.screenWidth / 2) + boundingBox.height);
+        boundingBox.x += (int) max(0, mapX - (gamepanel.currentMap.width - GamePanel.screenWidth / 2) + boundingBox.width);
+        boundingBox.y += (int) max(0, mapY - (gamepanel.currentMap.height - GamePanel.screenWidth / 2) + boundingBox.height);
         hitArea.x = mapX + boundingBox.width / 4;
         hitArea.y = mapY + boundingBox.height / 3 * 2;
         leftBorder = (boundingBox.x <= 0);

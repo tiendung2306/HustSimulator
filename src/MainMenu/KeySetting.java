@@ -47,7 +47,7 @@ public class KeySetting extends JPanel {
     Boolean isFirstTimePressAKey = false;
     private String check = "null";
     String prevCheck = "null";
-    private double x_square = 999 * Main.ex, y_square = 999 * Main.ey;
+    private double x_square = 9999 * Main.ex, y_square = 9999 * Main.ey;
     public static boolean checkPressAKey = true;
     public void keysettingrollback() {
         check = "null";
@@ -237,7 +237,7 @@ public class KeySetting extends JPanel {
         g2.drawImage(playerDOWN, (int) (216 * Main.ex), (int) (139 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         g2.drawImage(playerLEFT, (int) (507 * Main.ex), (int) (86 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         g2.drawImage(playerRIGHT, (int) (507 * Main.ex), (int) (139 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
-        g2.drawImage(square, (int) (x_square * Main.ex), (int) (y_square * Main.ey), (int) (38 * Main.ex), (int) (38 * Main.ey), null);
+        g2.drawImage(square, (int) (x_square), (int) (y_square), (int) (38 * Main.ex), (int) (38 * Main.ey), null);
         g2.drawImage(enterkey, (int) (150 * Main.ex), (int) (207 * Main.ey), (int) (468 * Main.ex), (int) (200 * Main.ey), null);
         super.paintComponent(g2);
     }

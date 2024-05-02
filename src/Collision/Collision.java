@@ -4,77 +4,95 @@ import entity.Entity;
 import main.GamePanel;
 import main.Main;
 import main.UI;
-import tile.Tile;
 import map.Map;
+import tile.Tile;
 
 public class Collision {
     public CollisionCheck collisionCheck;
     public UI ui;
     GamePanel gamePanel;
+    int[] tileIndex;
     int numCollision;
     public Tile interactItem = new Tile();
     Tile[] collisionTile;
-    int[] tileIndex;
-    public Collision(GamePanel gamePanel){
+
+    public Collision(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
         collisionCheck = new CollisionCheck(gamePanel);
     }
-    public void update(){
+
+    public void update() {
         numCollision = collisionCheck.numCollision;
         collisionTile = collisionCheck.collisionTile;
         tileIndex = collisionCheck.tileIndex;
         pushDialog();
         if (numCollision == 1 && collisionTile[0].Type.equals("Interact"))
             interactItem = collisionTile[0];
-        for (int i = 0; i < numCollision; ++i)
-            if (collisionTile[i].Type.equals("Collected")) {
+        for (int i = 0; i < numCollision; ++i) {
+            if (collisionTile[i].Type.equals("Collected"))
                 collectItem(i);
-            }
+            if (collisionTile[i].Type.equals("Teleport")) {
+                teleport(collisionTile[i].Name);
 
+            }
+        }
     }
-    public boolean isCollision(String str){
+
+    void teleport(String name) {
+        if (name == "Door My Room")
+            gamePanel.section_selection.open();
+        else if (name == "Door Classroom") {
+            gamePanel.stadium.loadMap(gamePanel);
+        }
+    }
+
+    public boolean isCollision(String str) {
         for (int i = 0; i < numCollision; ++i)
             if (collisionTile[i].Name.equals(str))
                 return true;
         return false;
     }
-    public void pushDialog(){
-        if (!Main.topGameState().equals("Dialog"))
+
+    public void pushDialog() {
+        if (!Main.topGameState().equals("Dialog") && !gamePanel.phone.isDrawPhone)
             Main.pushGameState("Dialog");
-        switch(collisionTile[0].Type){
-            case "Teleport" : {
+        switch (collisionTile[0].Type) {
+            case "Teleport": {
                 ui.currentDialog = "Teleport to ";
                 break;
             }
-            case "Collected" : {
+            case "Collected": {
                 ui.currentDialog = "You've collected a ";
                 break;
             }
-            case "Interact" : {
+            case "Interact": {
                 ui.currentDialog = "You're interacting with ";
                 break;
             }
-            case "Obstacle" : {
+            case "Obstacle": {
                 ui.currentDialog = "You're hitting ";
                 break;
             }
         }
-        for (int i = 0; i < numCollision; ++i){
-            if (i > 0 && !collisionTile[i-1].Name.equals("") && !collisionTile[i].Name.equals(""))
+        for (int i = 0; i < numCollision; ++i) {
+            if (i > 0 && !collisionTile[i - 1].Name.equals("") && !collisionTile[i].Name.equals(""))
                 ui.currentDialog += " and ";
-            if(!collisionTile[i].Name.equals(""))
+            if (!collisionTile[i].Name.equals(""))
                 ui.currentDialog += collisionTile[i].Name;
         }
     }
-    public void collectItem(int index){
+
+    public void collectItem(int index) {
         gamePanel.inventory.pushToInventory(collisionTile[index]);
         gamePanel.currentMap.deleteTile(tileIndex[index]);
         gamePanel.player.ButtonInteract = false;
     }
-    public void scanCollision(Entity entity, Map map){
-        collisionCheck.scanCollision(entity,map);
+
+    public void scanCollision(Entity entity, Map map) {
+        collisionCheck.scanCollision(entity, map);
     }
+
     public int getNumCollision() {
         return collisionCheck.numCollision;
     }

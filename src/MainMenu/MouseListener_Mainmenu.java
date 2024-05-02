@@ -19,12 +19,15 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     VideoSetting videoSetting = GamePanel.videoSetting;
     Setting setting = GamePanel.setting;
     LoadGame loadGame = GamePanel.loadGame;
+    PauseGame pauseGame = GamePanel.pauseGame;
 
     public MouseListener_Mainmenu(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
     public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getPoint().getX());
+        System.out.println(e.getPoint().getY());
         // int x_click = (int) e.getPoint().getX();
         // int y_click = (int) ;
         // if (Main.topGameState().equals(Main.states[0])) {
@@ -167,6 +170,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 setting.Init();
             } else if ((x_click > 201 * Main.ex) && (y_click > 253 * Main.ey) && (x_click < 566 * Main.ex)
                     && (y_click < 287 * Main.ey)) {
+                AudioSetting.volumesliderpointX = 542 * Main.ex;
                 Main.pushGameState(Main.states[3]);
                 setting.Init();
             } else if ((x_click > 251 * Main.ex) && (y_click > 313 * Main.ey) && (x_click < 514 * Main.ex)
@@ -386,12 +390,33 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     VideoSetting.checkResolution = false;
                 }
             }
-        }else if (Main.topGameState().equals(Main.states[12])) {
+        } else if (Main.topGameState().equals(Main.states[12])) {
             if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ey) && (x_click < 50 * Main.ex)
                     && (y_click < 50 * Main.ey)) {
                 Main.popGameState();
                 loadGame.buttonLoadGameReturnEnter();
                 loadGame.Init();
+            }
+        } else if (Main.topGameState().equals("PauseGame")) {
+            if ((x_click > 260 * Main.ex) && (y_click > 270 * Main.ey) && (x_click < 507 * Main.ex)
+                    && (y_click < 307 * Main.ey)) {
+                Main.pushGameState(Main.states[6]);
+                pauseGame.Init();
+            }
+            else if ((x_click > 320 * Main.ex) && (y_click > 330 * Main.ey) && (x_click < 452 * Main.ex)
+                    && (y_click < 357 * Main.ey)) {
+                Main.pushGameState(Main.states[0]);
+                pauseGame.Init();
+            }
+            else if ((x_click > 710 * Main.ex) && (y_click > 13 * Main.ey) && (x_click < 750 * Main.ex)
+                    && (y_click < 53 * Main.ey)) {
+                Main.pushGameState(Main.states[2]);
+                pauseGame.Init();
+            }
+            else if ((x_click > 260 * Main.ex) && (y_click > 210 * Main.ey) && (x_click < 507 * Main.ex)
+                    && (y_click < 250 * Main.ey)) {
+                Main.popGameState();
+                pauseGame.Init();
             }
         }
     }

@@ -6,6 +6,9 @@ import java.lang.String;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
+
+import Mouse.MouseManager;
+
 import java.io.*;
 
 import main.GamePanel;
@@ -14,9 +17,9 @@ import section_selection.shape.*;
 
 public class Section_selection {
     GamePanel gamePanel;
-    BufferedImage background;
+    public BufferedImage background;
     Vector<Section> sections = new Vector<Section>();
-    double scale_X, scale_Y;
+    double scale_X = 1.0, scale_Y = 1.0;
     int bg_X, bg_Y;
 
     StatusPanel statusPanel = new StatusPanel(this);
@@ -27,8 +30,8 @@ public class Section_selection {
         LoadImage();
         LoadMap();
         LoadButton();
-        Scale((double) GamePanel.screenHeight / background.getHeight(),
-                (double) GamePanel.screenHeight / background.getHeight());
+        screenResize();
+
         // Scale(1.0 / 2, 1.0 / 2);
 
     }
@@ -108,9 +111,14 @@ public class Section_selection {
 
     }
 
-    public void Scale(double scale_X, double scale_Y) {
-        this.scale_X = scale_X;
-        this.scale_Y = scale_Y;
+    public void screenResize(){
+        Scale((double) GamePanel.screenHeight / (background.getHeight() * scale_X),
+                (double) GamePanel.screenHeight / (background.getHeight() * scale_Y));
+    }
+
+    private void Scale(double scale_X, double scale_Y) {
+        this.scale_X *= scale_X;
+        this.scale_Y *= scale_Y;
 
         for (Section section : sections) {
             section.scale(scale_X, scale_Y);
@@ -119,7 +127,7 @@ public class Section_selection {
         statusPanel.scale(scale_X, scale_Y);
         backButton.scale(scale_X, scale_Y);
 
-        bg_X = (int)((gamePanel.screenWidth - background.getWidth() * scale_X) / 2);
+        bg_X = (int)((GamePanel.screenWidth - background.getWidth() * this.scale_X) / 2);
         bg_Y = 0;
 
     }
@@ -166,6 +174,7 @@ public class Section_selection {
 
     public void close(){
         Main.popGameState();
+        gamePanel.phone.setPhoneState("Main Menu");
     }
 
 }

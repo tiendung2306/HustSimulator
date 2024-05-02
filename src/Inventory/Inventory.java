@@ -29,7 +29,7 @@ public class Inventory implements ActionListener {
     public Tile usingItem = new Tile();
     public Tile infoItem = new Tile();
 
-    int slotX, slotY;
+    public int slotX, slotY;
     boolean reverse = false;
     int step = 0;
     public int currentIndex = 0;
@@ -177,7 +177,7 @@ public class Inventory implements ActionListener {
             isGettingInformation = false;
             return;
         }
-        if (isUsingItem && usingItem.Name.equals("Iphone 1000000 ProMax")) {
+        if (isUsingItem && usingItem.Name.equals("Iphone 100 ProMax")) {
             gamePanel.phone.isDrawPhone = true;
             gamePanel.phone.setPhoneState("Screen Saver");
             Main.popGameState();
@@ -308,7 +308,7 @@ public class Inventory implements ActionListener {
     public void deleteFromInventory(int pageIndex, int x, int y) {
         if (!pages[pageIndex].slot[x][y].Name.equals("Empty")) {
             --pages[pageIndex].slot[x][y].numOwn;
-            pages[pageIndex].slot[x][y].Name = "Empty";
+            pages[pageIndex].slot[x][y] = new Tile();
         }
     }
 

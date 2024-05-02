@@ -16,7 +16,9 @@ public class UI {
     public String currentDialog = "";
     public String text = "";
     public int i;
-    BufferedImage nextIcon, skipIcon, skipWord;
+    BufferedImage nextIcon, skipIcon, skipWord, characterDialogue;
+    BufferedImage mainCharacter, mrsToan, mrHoa, catMeme, system;
+    BufferedImage backgroundDialogue, backgroundClassroom;
     public boolean isFinishDialogue;
     int iconX = (int) (207 * GamePanel.scale), iconY = (int) (170 * GamePanel.scale);
     int skipX = (int) (8 * GamePanel.scale), skipY = (int) (10 * GamePanel.scale);
@@ -31,9 +33,16 @@ public class UI {
 
     void getImage() {
         try {
-            nextIcon = ImageIO.read(new FileInputStream("res/Dialog/nextIcon.png"));
-            skipIcon = ImageIO.read(new FileInputStream("res/Dialog/skipIcon.png"));
-            skipWord = ImageIO.read(new FileInputStream("res/Dialog/skipWord.png"));
+            nextIcon = ImageIO.read(new FileInputStream("res/Dialogue/nextIcon.png"));
+            skipIcon = ImageIO.read(new FileInputStream("res/Dialogue/skipIcon.png"));
+            skipWord = ImageIO.read(new FileInputStream("res/Dialogue/skipWord.png"));
+
+            catMeme = ImageIO.read(new FileInputStream("res/DialogueCharacter/CatMeme.png"));
+            mainCharacter = ImageIO.read(new FileInputStream("res/DialogueCharacter/MainCharacter.png"));
+            mrsToan = ImageIO.read(new FileInputStream("res/DialogueCharacter/MrsToan.png"));
+            system = ImageIO.read(new FileInputStream("res/DialogueCharacter/System.png"));
+
+            backgroundClassroom = ImageIO.read(new FileInputStream("res/DialogueBackground/BackgroundClassroom.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,9 +57,9 @@ public class UI {
         this.g2 = g2;
         g2.setFont(arial_40);
         g2.setColor(Color.white);
-        if (Main.topGameState().equals("GamePause")) {
-            drawPauseScreen();
-        }
+        // if (Main.topGameState().equals("PauseGame")) {
+        //     drawPauseScreen();
+        // }
         if (Main.topGameState().equals("Dialog")) {
             drawDialogScreen();
         }
@@ -58,19 +67,19 @@ public class UI {
             drawDialogueScreen();
         }
         if (Main.topGameState().equals("GamePlay")) {
-            if (gamePanel.player.ButtonInteract) {
+            if (gamePanel.player.ButtonInteract && !gamePanel.phone.isDrawPhone) {
                 drawInteractButton();
             }
         }
     }
 
-    public void drawPauseScreen() {
-        String text = "PAUSED";
-        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = (int) (GamePanel.screenWidth / 2 - length / 2);
-        int y = (int) (GamePanel.screenHeight / 2);
-        g2.drawString(text, x, y);
-    }
+    // public void drawPauseScreen() {
+    //     String text = "PAUSED";
+    //     int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+    //     int x = (int) (GamePanel.screenWidth / 2 - length / 2);
+    //     int y = (int) (GamePanel.screenHeight / 2);
+    //     g2.drawString(text, x, y);
+    // }
 
     public void drawDialogScreen() {
         int x = 32 * (int) GamePanel.scale;
@@ -107,7 +116,7 @@ public class UI {
         if (strSize > 0)
             g2.drawString(str, x, y);
     }
-    public Timer timer = new Timer(60, new ActionListener() {
+    public Timer timer = new Timer(40, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             text += currentDialog.charAt(i);
@@ -126,6 +135,8 @@ public class UI {
         int y = (int) (GamePanel.screenHeight - height - 8 * GamePanel.scale);
         int FontSize = (int)(GamePanel.scale * 9);
         int FontPixel = (int)(GamePanel.scale * 4);
+        drawBackground();
+        drawCharacterDialogue();
         drawSubWindow(x,y,width,height);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));
         x += (int) (16 * GamePanel.scale);
@@ -175,6 +186,66 @@ public class UI {
         g2.drawImage(skipWord, (int) (27 * GamePanel.scale), (int) (11 * GamePanel.scale), (int) (15 * GamePanel.scale),(int) (5 * GamePanel.scale),  null);
         g2.drawImage(skipIcon, skipX, skipY, (int)(17 * GamePanel.scale), (int)(7 * GamePanel.scale), null);
     }
+    public void setDialogueCharacter(String name){
+        if (name.equals("Main Character"))
+            characterDialogue = mainCharacter;
+        if (name.equals("Mrs Toan"))
+            characterDialogue = mrsToan;
+        if (name.equals("Mr Hoa"))
+            characterDialogue = mrHoa;
+        if (name.equals("Cat Meme"))
+            characterDialogue = catMeme;
+        if (name.equals("System"))
+            characterDialogue = system;
+        if (name.equals("Empty"))
+            characterDialogue = null;
+    }
+    public void setDialogueBackground(String name){
+        if (name.equals("Classroom"))
+            backgroundDialogue = backgroundClassroom;
+        if (name.equals("Empty"))
+            backgroundDialogue = null;
+    }
+    public void drawCharacterDialogue(){
+        int leftX = 0, topY = 0, width = 0, height = 0;
+        if (characterDialogue == mrsToan){
+            leftX = (int) (75 * GamePanel.scale);
+            topY = (int) (30 * GamePanel.scale);
+            width = (int) (110 * GamePanel.scale);
+            height = (int) (165 * GamePanel.scale);
+        }
+        if (characterDialogue == mainCharacter){
+            leftX = (int) (75 * GamePanel.scale);
+            topY = (int) (45 * GamePanel.scale);
+            width = (int) (110 * GamePanel.scale);
+            height = (int) (150 * GamePanel.scale);
+        }
+        if (characterDialogue == catMeme){
+            leftX = (int) (55 * GamePanel.scale);
+            topY = (int) (75 * GamePanel.scale);
+            width = (int) (140 * GamePanel.scale);
+            height = (int) (120 * GamePanel.scale);
+        }
+        if (characterDialogue == system){
+            leftX = (int) (75 * GamePanel.scale);
+            topY = (int) (45 * GamePanel.scale);
+            width = (int) (110 * GamePanel.scale);
+            height = (int) (150 * GamePanel.scale);
+        }
+        if (characterDialogue != null) {
+            g2.drawImage(characterDialogue, leftX, topY, width, height, null);
+        }
+        int screenX, screenY;
+
+    }
+    public void drawBackground(){
+        if (backgroundDialogue == null)
+            return;
+        g2.drawImage(backgroundDialogue, 0, 0, (int) GamePanel.screenWidth, (int) GamePanel.screenHeight, null);
+        Color myColor = new Color(45, 39, 39, 190);
+        g2.setColor(myColor);
+        g2.fillRect(0, 0, (int) GamePanel.screenWidth, (int) GamePanel.screenHeight);
+    }
     public void drawInteractButton(){
         String text =  "F";
         g2.setColor(Color.BLACK);
@@ -207,9 +278,5 @@ public class UI {
         g2.setColor(c);
         g2.setStroke(new BasicStroke(2));
         g2.drawRoundRect(x + 2, y + 2, width - 4, height - 4, 25, 25);
-    }
-
-    public void drawBackground(BufferedImage image) {
-        g2.drawImage(image, 0, 0, (int) GamePanel.screenWidth, (int) GamePanel.screenHeight, null);
     }
 }

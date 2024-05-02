@@ -15,9 +15,10 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
     KeySetting keySetting;
     VideoSetting videoSetting;
     LoadGame loadGame;
+    PauseGame pauseGame;
 
     public MouseMotionListener_Mainmenu(GamePanel gamePanel, Main_Menu mainMenu, NextMainMenu nextMainMenu,
-            Setting setting, AudioSetting audioSetting, KeySetting keySetting, VideoSetting videoSetting, LoadGame loadGame) {
+            Setting setting, AudioSetting audioSetting, KeySetting keySetting, VideoSetting videoSetting, LoadGame loadGame, PauseGame pauseGame) {
         this.gamePanel = gamePanel;
         this.mainMenu = mainMenu;
         this.nextMainMenu = nextMainMenu;
@@ -26,6 +27,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
         this.keySetting = keySetting;
         this.videoSetting = videoSetting;
         this.loadGame = loadGame;
+        this.pauseGame = pauseGame;
     }
 
     @Override
@@ -176,6 +178,21 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                     && (y_enter < 50 * Main.ey))
                 loadGame.buttonLoadGameReturnEnter();
             else loadGame.LoadGamerollback();
+        } else if (Main.topGameState().equals("PauseGame")) {
+            if ((x_enter > 260 * Main.ex) && (y_enter > 270 * Main.ey) && (x_enter < 507 * Main.ex)
+                    && (y_enter < 307 * Main.ey))
+                pauseGame.buttonTutorialEnterpause();
+            else if ((x_enter > 320 * Main.ex) && (y_enter > 330 * Main.ey) && (x_enter < 452 * Main.ex)
+                    && (y_enter < 357 * Main.ey))
+                pauseGame.buttonBackEnterpause();
+            else if ((x_enter > 710 * Main.ex) && (y_enter > 13 * Main.ey) && (x_enter < 750 * Main.ex)
+                    && (y_enter < 53 * Main.ey))
+                pauseGame.buttonSettingEnterpause();
+            else if ((x_enter > 260 * Main.ex) && (y_enter > 210 * Main.ey) && (x_enter < 507 * Main.ex)
+                    && (y_enter < 250 * Main.ey))
+                pauseGame.buttonContinueEnterpause();
+            else
+                pauseGame.rollbackpause();
         }
     }
 }
