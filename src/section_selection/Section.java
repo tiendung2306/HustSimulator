@@ -84,7 +84,11 @@ class Section {
 
 
     protected void OnClick(){
-        section_selection.gamePanel.section_1.open();
+        if (unlock) {
+            section_selection.close();
+            section_selection.gamePanel.phone.isDrawPhone = false;
+            section_selection.gamePanel.section_1.open();
+        }
     } 
 
 

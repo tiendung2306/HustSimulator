@@ -168,7 +168,10 @@ public class Section_selection {
         statusPanel.display(graphics);
     }
 
-    public void open(){
+    public void open(Boolean isTeleportable){        
+        for (Section section : sections){
+            section.unlock = isTeleportable;
+        }
         Main.pushGameState("Map");
     }
 

@@ -31,6 +31,7 @@ import area.ComputerRoom;
 import area.Library;
 import area.MyRoom;
 import area.NormalClassroom;
+import area.Section_1;
 import area.Section_2;
 import area.Section_3;
 import area.Stadium;
@@ -106,7 +107,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Section_selection section_selection = new Section_selection(this);
     public Section_3 section_3 = new Section_3(this);
     public Section_2 section_2 = new Section_2(this);
-    public D3_5_hallway_secondfloor section_1 = new D3_5_hallway_secondfloor(this);
+    public Section_1 section_1 = new Section_1(this);
     public boolean isRunning = false;
     public C2_hall c2_hall = new C2_hall(this);
     public C2_hallway c2_hallway = new C2_hallway(this);

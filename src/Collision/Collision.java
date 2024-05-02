@@ -41,9 +41,12 @@ public class Collision {
 
     void teleport(String name) {
         if (name == "Door My Room")
-            gamePanel.section_selection.open();
+            gamePanel.section_selection.open(gamePanel.chapter1.isTeleportable);
         else if (name == "Door Classroom") {
             gamePanel.stadium.loadMap(gamePanel);
+        }
+        else if (name == "C2_hall"){
+            gamePanel.c2_hallway.open();
         }
     }
 
