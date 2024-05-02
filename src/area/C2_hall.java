@@ -28,7 +28,7 @@ public class C2_hall extends Map {
         TileLoad();
         SetOriginalSize();
         ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 1000 / (50 * background.getHeight()));
-        SetPlayerPos();
+        SetPos();
     }
     
     private void SetOriginalSize(){
@@ -53,9 +53,12 @@ public class C2_hall extends Map {
 
     }
 
-    private void SetPlayerPos(){
+    private void SetPos(){
         playerX = (int) (width * 1.0 / 2);
         playerY = (int) (height * 1.0 / 2);
+
+        teacher1 = new Npc(gamePanel, (int)(width * 1.0 / 2), (int)(height * 1.0 / 2), (int)(gamePanel.player.boundingBox.getWidth() * 2 / 3), (int)(gamePanel.player.boundingBox.getHeight()));
+
     }
 
     private void TileLoad() {
@@ -68,9 +71,6 @@ public class C2_hall extends Map {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // teacher1 = new Npc(gamePanel, 0, 0, 100, 100);
-
 
     }
 
@@ -85,6 +85,7 @@ public class C2_hall extends Map {
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
         gamePanel.tileManager.draw(g2, background);
+        teacher1.operation(g2);
         // for (int i = 0; i < numTileContainer; ++i)
         //     gamePanel.tileManager.draw(g2, tileContainer[i]);
     }
