@@ -1,17 +1,17 @@
 package phone;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+
 import javax.imageio.ImageIO;
 
 import Keyboard.KeyboardManager;
 import Mouse.MouseManager;
 // import java.awt.geom.Rectangle2D;
-
-import java.io.FileInputStream;
-import java.awt.*;
-
 import main.GamePanel;
 import main.Main;
 import time.TimeSystem;
@@ -377,7 +377,7 @@ public class Phone {
                 }
                 break;
             case "Map":
-                gamePanel.section_selection.open(false);
+                gamePanel.section_selection.open(true);
                 break;
         }
     }

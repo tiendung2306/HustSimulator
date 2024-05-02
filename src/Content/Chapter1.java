@@ -5,7 +5,8 @@ import main.Main;
 import time.TimeSystem;
 
 public class Chapter1 extends Chapter {
-    public boolean IntroFinished = false, laptopMission = false, studentIDMission = false, noodleMission = false;
+    public boolean IntroFinished = false, laptopMission = false, studentIDMission = false, noodleMission = false,
+            hoSoMission = false;
     long prevTime = 0;
     public Boolean isTeleportable = false;
 
@@ -32,7 +33,8 @@ public class Chapter1 extends Chapter {
         if (completedAct == 1)
             Dialogue("Ta đang là anh hùng trong cuộc chiến chống lại quỷ vương mà. Đây là đâu?");
         if (completedAct == 2)
-            Dialogue("Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
+            Dialogue(
+                    "Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
         if (completedAct == 3)
             Dialogue("Eimi, Yua, không biết 2 cô ấy có ổn không?");
         if (completedAct == 4)
@@ -53,7 +55,7 @@ public class Chapter1 extends Chapter {
 
     void Timeline1() {
         IntroFinished = true;
-        if (completedAct == 0){
+        if (completedAct == 0) {
             Dialogue("Đây là căn phòng của ta sao?");
             TimeSystem.setCurrentTime("07:00");
         }
@@ -65,7 +67,8 @@ public class Chapter1 extends Chapter {
             Dialogue("Cái thứ Khoa học này so với Ma Pháp tồn tại ở thế giới cũ khá là giống nhau.");
         if (completedAct == 4)
             Dialogue("Biết tìm kiếm thông tin ở đâu đây?");
-        missionDescription.setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng(Ấn B để mở balo)");
+        missionDescription
+                .setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng(Ấn B để mở balo)");
         if (completedAct == 5) {
             if (!studentIDMission)
                 gamePanel.myRoom.tileStudentCard.isMission = true;
@@ -96,8 +99,9 @@ public class Chapter1 extends Chapter {
 
     void Timeline2() {
         if (completedAct == 0) {
-            missionDescription.setMissionDescription("Tìm mì tôm và lại nấu ăn đi (Sử dụng Mì tôm sau khi đã tương tác với Bếp)");
-            if (!noodleMission){
+            missionDescription
+                    .setMissionDescription("Tìm mì tôm và lại nấu ăn đi (Sử dụng Mì tôm sau khi đã tương tác với Bếp)");
+            if (!noodleMission) {
                 gamePanel.myRoom.tileNoodle.isMission = true;
                 gamePanel.myRoom.tilePan.isMission = true;
             }
@@ -105,7 +109,8 @@ public class Chapter1 extends Chapter {
                     && inventory.usingItem.Name.equals("Noodle")) {
                 gamePanel.myRoom.tileNoodle.isMission = false;
                 gamePanel.myRoom.tilePan.isMission = false;
-                gamePanel.inventory.deleteFromInventory(gamePanel.inventory.currentIndex, gamePanel.inventory.slotX, gamePanel.inventory.slotY);
+                gamePanel.inventory.deleteFromInventory(gamePanel.inventory.currentIndex, gamePanel.inventory.slotX,
+                        gamePanel.inventory.slotY);
                 noodleMission = true;
                 ++completedAct;
             }
@@ -128,14 +133,16 @@ public class Chapter1 extends Chapter {
             if (!inventory.isExist("Iphone 100 ProMax")) { // phai co dien thoai trong balo
                 missionDescription.setMissionDescription("Tìm kiếm điện thoại");
                 gamePanel.myRoom.tilePhone.isMission = true;
-            } else completedAct++;
+            } else
+                completedAct++;
         }
         if (completedAct == 3) {
             if (inventory.isExist("Iphone 100 ProMax")) {
                 if (Main.topGameState().equals("GamePlay"))
-                    Dialogue("Quả là một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này đúng là một thiên tài.");
-                    missionDescription.setMissionDescription("Kiểm tra app fHUST(Ấn P để mở điện thoại)");
-                    gamePanel.myRoom.tilePhone.isMission = false;
+                    Dialogue(
+                            "Quả là một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này đúng là một thiên tài.");
+                missionDescription.setMissionDescription("Kiểm tra app fHUST(Ấn P để mở điện thoại)");
+                gamePanel.myRoom.tilePhone.isMission = false;
                 phone.isOpenFhust = false;
             }
         }
@@ -155,37 +162,49 @@ public class Chapter1 extends Chapter {
             phone.isOpenMessager = false;
         }
         if (completedAct == 7 && phone.isOpenMessager && !phone.isDrawPhone) {
+            if (!inventory.isExist("Hồ sơ")) {
+                Dialogue("Đi lấy tập hồ sơ nhập học rồi đi nộp thôi nào");
+                missionDescription.setMissionDescription("Nhặt bộ hồ sơ nhập học");
+            } else
+                completedAct++;
+            phone.clearMessage();
+        }
+        if (completedAct == 8) {
             Dialogue("Hội thợ săn nằm ở tòa C2, đến đăng ký tân thủ vào lúc 7h30");
             missionDescription.setMissionDescription("Tương tác với cửa phòng để di chuyển đến trường");
             isTeleportable = true;
-            phone.clearMessage();
         }
-        if(completedAct == 8 && gamePanel.currentMap == gamePanel.c2_hallway) {
+        if (completedAct == 9 && gamePanel.currentMap == gamePanel.section_1) {
+            missionDescription.setMissionDescription("Tìm hội trường C2");
+            isTeleportable = false;
+        }
+        if (completedAct == 10 && gamePanel.currentMap == gamePanel.c2_hallway) {
             Dialogue("Mình đã đến nơi rồi!");
         }
-        if (completedAct == 9) {
+        if (completedAct == 11) {
             Dialogue("Bây giờ mình cần phải đi vào trong hội trường C2 để nộp hồ sơ, đi thôi nào!");
             missionDescription.setMissionDescription("Di chuyển vào trong hội trường C2");
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
-        if (completedAct == 10 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4000) {
+        if (completedAct == 12 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4000) {
             gamePanel.c2_hall.loadMap(gamePanel);
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             completedAct++;
 
         }
-        if (completedAct == 11) {
+        if (completedAct == 13) {
             Dialogue("Theo thông báo của trường thì mình phải nộp hồ sơ ở hàng số 3 tính từ trái qua");
-            missionDescription.setMissionDescription("Đến hàng thứ 3 từ trái sang để nộp hồ sơ(Sử dụng tập tài liệu sau khi tương tác với cô giáo)");
+            missionDescription.setMissionDescription(
+                    "Đến hàng thứ 3 từ trái sang để nộp hồ sơ(Sử dụng tập tài liệu sau khi tương tác với cô giáo)");
         }
-        if (completedAct == 12)
+        if (completedAct == 14)
             nextTimeline();
     }
-    void Timeline4(){
+
+    void Timeline4() {
         gamePanel.currentChapter = gamePanel.chapter2;
         gamePanel.chapter2.completedAct = 0;
     }
-    
 
     public void update() {
         if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory")
@@ -200,10 +219,10 @@ public class Chapter1 extends Chapter {
                 Timeline1();
                 break;
             }
-             case 2: {
-                 Timeline2();
-                 break;
-             }
+            case 2: {
+                Timeline2();
+                break;
+            }
             case 3: {
                 Timeline3();
                 break;
