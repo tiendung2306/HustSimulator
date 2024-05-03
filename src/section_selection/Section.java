@@ -87,7 +87,22 @@ class Section {
         if (unlock) {
             section_selection.close();
             section_selection.gamePanel.phone.isDrawPhone = false;
-            section_selection.gamePanel.section_1.open();
+
+            switch (tag) {
+                case "Section1":
+                    section_selection.gamePanel.section_1.open();
+                    break;
+
+                case "Section2":
+                    section_selection.gamePanel.section_2.open();
+                    break;       
+
+                case "Section3":
+                    section_selection.gamePanel.section_3.open();
+                    break;
+                default:
+                    break;
+            }
         }
     } 
 

@@ -25,8 +25,6 @@ import MainMenu.PauseGame;
 import MainMenu.Setting;
 import MainMenu.VideoSetting;
 import Mouse.MouseManager;
-import area.C2_hall;
-import area.C2_hallway;
 import area.ComputerRoom;
 import area.Library;
 import area.MyRoom;
@@ -35,7 +33,10 @@ import area.Section_1;
 import area.Section_2;
 import area.Section_3;
 import area.Stadium;
-import area.D3_5_hallway.D3_5_hallway_secondfloor;
+import area.C2.*;
+import area.D3.D3_hallway;
+import area.D3.D3_secondfloor_hallway;
+import area.D3_5.*;
 import entity.Player;
 import map.Map;
 import phone.Phone;
@@ -107,10 +108,13 @@ public class GamePanel extends JPanel implements Runnable {
     public Section_selection section_selection = new Section_selection(this);
     public Section_3 section_3 = new Section_3(this);
     public Section_2 section_2 = new Section_2(this);
-    public C2_hall section_1 = new C2_hall(this);
+    public Section_1 section_1 = new Section_1(this);
     public boolean isRunning = false;
     public C2_hall c2_hall = new C2_hall(this);
     public C2_hallway c2_hallway = new C2_hallway(this);
+    public D3_hallway d3_hallway = new D3_hallway(this);
+    public D3_secondfloor_hallway d3_secondfloor_hallway = new D3_secondfloor_hallway(this);
+    public D3_5_hallway_secondfloor d3_5_hallway_secondfloor = new D3_5_hallway_secondfloor(this);
 
     // ==========================================================
 
@@ -453,6 +457,15 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (currentMap == c2_hallway) {
             c2_hallway.draw(g2);
+        }
+        if (currentMap == d3_hallway) {
+            d3_hallway.draw(g2);
+        }
+        if (currentMap == d3_secondfloor_hallway) {
+            d3_secondfloor_hallway.draw(g2);
+        }
+        if (currentMap == d3_5_hallway_secondfloor) {
+            d3_5_hallway_secondfloor.draw(g2);
         }
     }
 

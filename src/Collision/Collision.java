@@ -1,5 +1,6 @@
 package Collision;
 
+import area.D3_5.D3_5_hallway_secondfloor;
 import entity.Entity;
 import main.GamePanel;
 import main.Main;
@@ -40,12 +41,72 @@ public class Collision {
     }
 
     void teleport(String name) {
-        if (name == "Door My Room")
-            gamePanel.section_selection.open(gamePanel.chapter1.isTeleportable);
-        else if (name == "Door Classroom") {
-            gamePanel.stadium.loadMap(gamePanel);
-        } else if (name == "C2_hall") {
-            gamePanel.c2_hallway.open();
+        switch (name) {
+            case "Door My Room":
+                gamePanel.section_selection.open(true);
+                break;
+                
+            case "Door Classroom":
+                gamePanel.stadium.loadMap(gamePanel);
+                break;
+            
+            case "C2_Hallway":
+                gamePanel.c2_hallway.open();
+                break;    
+            
+            case "C2_Hall_entry":
+                gamePanel.c2_hall.open();
+                break;
+
+            case "C2_Hallway_exit":
+                gamePanel.section_1.open();
+                break; 
+
+            case "D3_Hallway":
+                gamePanel.d3_hallway.open();
+                break;      
+
+            case "D3_exit":
+                gamePanel.section_2.open();
+                break; 
+
+            case "D3_1stfloor_stair":
+                gamePanel.d3_secondfloor_hallway.open();
+                break;        
+
+            case "D3_stair_down":
+                if(gamePanel.d3_secondfloor_hallway.curr_floor == 2)
+                    gamePanel.d3_hallway.open();
+                else{
+                    gamePanel.d3_secondfloor_hallway.curr_floor -= 1;
+                    gamePanel.d3_secondfloor_hallway.open();
+                }
+                break;
+
+            case "D3_stair_up":
+                if(gamePanel.d3_secondfloor_hallway.curr_floor != 5){
+                    gamePanel.d3_secondfloor_hallway.curr_floor += 1;
+                    gamePanel.d3_secondfloor_hallway.open();
+                }
+                break;
+
+            case "D3->D3-5_secondfloor_link":
+                gamePanel.d3_5_hallway_secondfloor.curr_floor = gamePanel.d3_secondfloor_hallway.curr_floor;
+                gamePanel.d3_5_hallway_secondfloor.open();
+                break;
+
+            case "D3<-D3_5_secondfloor_link":
+                gamePanel.d3_secondfloor_hallway.curr_floor = gamePanel.d3_5_hallway_secondfloor.curr_floor;
+                gamePanel.d3_secondfloor_hallway.open();
+                break;
+                
+            case "D3-5_...01":
+                if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3)
+                    gamePanel.normalClassroom.loadMap(gamePanel);
+                break;
+
+            default:
+                break;
         }
     }
 
