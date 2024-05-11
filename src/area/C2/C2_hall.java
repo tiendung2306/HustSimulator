@@ -1,4 +1,4 @@
-package area;
+package area.C2;
 
 import main.GamePanel;
 import main.Main;
@@ -16,6 +16,7 @@ public class C2_hall extends Map {
     Tile background;
     GamePanel gamePanel;
     Npc teacher1;
+    Tile spawn_point;
 
 
     public C2_hall(GamePanel gamePanel) {
@@ -27,8 +28,7 @@ public class C2_hall extends Map {
     private void SetDefaultValues(){
         TileLoad();
         SetOriginalSize();
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 1000 / (50 * background.getHeight()));
-        SetPlayerPos();
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * background.image.getHeight() / (50 * background.getHeight()));
     }
     
     private void SetOriginalSize(){
@@ -41,7 +41,7 @@ public class C2_hall extends Map {
         background.setWidth((int)(background.getWidth() * scale));
         background.setHeight((int)(background.getHeight() * scale));
 
-
+        spawn_point.resize(scale);
 
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
@@ -51,11 +51,16 @@ public class C2_hall extends Map {
         width = background.getWidth();
         height = background.getHeight();
 
+        SetPos();
+
     }
 
-    private void SetPlayerPos(){
-        playerX = (int) (width * 1.0 / 2);
-        playerY = (int) (height * 1.0 / 2);
+    private void SetPos(){
+        playerX = spawn_point.getLeftX();
+        playerY = spawn_point.getTopY();
+
+        teacher1 = new Npc(gamePanel, (int)(width * 1.0 / 2), (int)(height * 1.0 / 2), (int)(gamePanel.player.boundingBox.getWidth() * 2 / 3), (int)(gamePanel.player.boundingBox.getHeight()));
+
     }
 
     private void TileLoad() {
@@ -69,8 +74,7 @@ public class C2_hall extends Map {
             e.printStackTrace();
         }
 
-        // teacher1 = new Npc(gamePanel, 0, 0, 100, 100);
-
+        spawn_point = new Tile(new Rectangle(120 , 569 , 35 , 53), "", "", null, null);
 
     }
 
@@ -78,13 +82,10 @@ public class C2_hall extends Map {
         loadMap(gamePanel);
     }
 
-    public void close(){
-        Main.popGameState();
-    }
-
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
         gamePanel.tileManager.draw(g2, background);
+        teacher1.operation(g2);
         // for (int i = 0; i < numTileContainer; ++i)
         //     gamePanel.tileManager.draw(g2, tileContainer[i]);
     }

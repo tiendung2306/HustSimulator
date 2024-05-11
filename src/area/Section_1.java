@@ -12,8 +12,9 @@ import java.io.*;
 
 
 public class Section_1 extends Map {
-    Tile background, C1, C2, C9, C2_hall_1, C2_hall_2;
+    Tile background, C1, C2, C9, hall, hallway_entry;
     GamePanel gamePanel;
+    Tile spawn_point;
 
 
     public Section_1(GamePanel gamePanel) {
@@ -26,7 +27,6 @@ public class Section_1 extends Map {
         TileLoad();
         SetOriginalSize();
         ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 2605 / (60 * background.getHeight()));
-        SetPlayerPos();
     }
     
     private void SetOriginalSize(){
@@ -41,6 +41,7 @@ public class Section_1 extends Map {
         background.setWidth((int)(background.getWidth() * scale));
         background.setHeight((int)(background.getHeight() * scale));
 
+        spawn_point.resize(scale);
 
 
         for(int i = 0; i < numTileContainer; i++){
@@ -51,11 +52,13 @@ public class Section_1 extends Map {
         width = background.getWidth();
         height = background.getHeight();
 
+        SetPlayerPos();
+
     }
 
     private void SetPlayerPos(){
-        playerX = (int) (width * 1.0 / 2);
-        playerY = (int) (height * 1.0 / 2);
+        playerX = spawn_point.LeftX;
+        playerY = spawn_point.TopY;
     }
 
     private void TileLoad() {
@@ -74,15 +77,18 @@ public class Section_1 extends Map {
         C2 = new Tile(new Rectangle(305, 754, 402, 965), "C2", "Obstacle", null, null);
         C1 = new Tile(new Rectangle(472, 238, 1716, 373), "C1", "Obstacle", null, null);
 
-        C2_hall_1 = new Tile(new Rectangle(696 , 1027 , 86 , 574), "C2_hall", "Teleport", null, null);
-        C2_hall_2 = new Tile(new Rectangle(781 , 1137 , 203 , 211), "C2_hall", "Teleport", null, null);
+        hall = new Tile(new Rectangle(696 , 1027 , 86 , 574), "C2_Hallway", "Obstacle", null, null);
+        hallway_entry = new Tile(new Rectangle(781 , 1137 , 203 , 211), "C2_Hallway", "Teleport", null, null);
+
+        spawn_point = new Tile(new Rectangle(1009 , 1210 , 35 , 60), "spawn_point", "", null, null);
+
 
         addTile(C9);
         addTile(C2);
         addTile(C1);
 
-        addTile(C2_hall_1);
-        addTile(C2_hall_2);
+        addTile(hall);
+        addTile(hallway_entry);
 
 
 
