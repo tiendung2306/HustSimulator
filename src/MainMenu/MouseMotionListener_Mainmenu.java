@@ -184,7 +184,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
             if ((x_enter > 260 * Main.ex) && (y_enter > 270 * Main.ey) && (x_enter < 507 * Main.ex)
                     && (y_enter < 307 * Main.ey))
                 pauseGame.buttonTutorialEnterpause();
-            else if ((x_enter > 380 * Main.ex) && (y_enter > 330 * Main.ey) && (x_enter < 512 * Main.ex)
+            else if ((x_enter > 324 * Main.ex) && (y_enter > 330 * Main.ey) && (x_enter < 444 * Main.ex)
                     && (y_enter < 357 * Main.ey))
                 pauseGame.buttonBackEnterpause();
             else if ((x_enter > 710 * Main.ex) && (y_enter > 13 * Main.ey) && (x_enter < 750 * Main.ex)

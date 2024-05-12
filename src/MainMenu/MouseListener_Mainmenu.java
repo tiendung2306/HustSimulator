@@ -264,8 +264,6 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 GamePanel.screenWidth = GamePanel.next_screenWidth;
                 gamePanel.screenResize();
                 Main.window.setSize((int) (GamePanel.screenWidth + 14), (int) (GamePanel.screenHeight + 37));
-//                Main.window.remove(gamePanel);
-//                Main.window.add(gamePanel);
                 Main.window.setLocationRelativeTo(null);
             }
             if (VideoSetting.checkResolution) {
@@ -306,7 +304,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     GamePanel.prev_screenHeight = GamePanel.screenHeight;
                     GamePanel.prev_screenWidth = GamePanel.screenWidth;
                     GamePanel.next_screenWidth = 1024;
-                    GamePanel.next_screenHeight = 786;
+                    GamePanel.next_screenHeight = 768;
                     videoSetting.videorollback();
                     VideoSetting.checkResolution = false;
                 } else if ((x_click > 256 * Main.ex) && (y_click > 394 * Main.ey) && (x_click < 398 * Main.ex)
@@ -404,7 +402,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 Main.pushGameState(Main.states[6]);
                 pauseGame.Init();
             }
-            else if ((x_click > 380 * Main.ex) && (y_click > 330 * Main.ey) && (x_click < 512 * Main.ex)
+            else if ((x_click > 324 * Main.ex) && (y_click > 330 * Main.ey) && (x_click < 444 * Main.ex)
                     && (y_click < 357 * Main.ey)) {
                 Main.pushGameState(Main.states[16]);
                 pauseGame.Init();
