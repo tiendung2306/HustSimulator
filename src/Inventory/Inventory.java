@@ -290,19 +290,19 @@ public class Inventory implements ActionListener {
     }
 
     public void dropFromInventory(int pageIndex, int x, int y) {
-        if (!pages[pageIndex].slot[x][y].Name.equals("Empty")) {
-            --pages[pageIndex].slot[x][y].numOwn;
-            Tile tile = new Tile(gamePanel.player.getMapX(),
-                    gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(),
-                    (int) (gamePanel.player.getMapY() + 16 * GamePanel.scale),
-                    (int) (gamePanel.player.getMapY() + 16 * GamePanel.scale + pages[pageIndex].slot[x][y].getHeight()),
-                    pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type,
-                    pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image,pages[pageIndex].slot[x][y].imageEffcet);
-            gamePanel.currentMap.addTile(tile);
-            if (pages[pageIndex].slot[x][y].numOwn == 0) {
-                pages[pageIndex].slot[x][y].Name = "Empty";
-            }
-        }
+//        if (!pages[pageIndex].slot[x][y].Name.equals("Empty")) {
+//            --pages[pageIndex].slot[x][y].numOwn;
+//            Tile tile = new Tile(gamePanel.player.getMapX(),
+//                    gamePanel.player.getMapX() + pages[pageIndex].slot[x][y].getWidth(),
+//                    (int) (gamePanel.player.getMapY() + 16 * GamePanel.scale),
+//                    (int) (gamePanel.player.getMapY() + 16 * GamePanel.scale + pages[pageIndex].slot[x][y].getHeight()),
+//                    pages[pageIndex].slot[x][y].Name, pages[pageIndex].slot[x][y].Type,
+//                    pages[pageIndex].slot[x][y].Description, pages[pageIndex].slot[x][y].image,pages[pageIndex].slot[x][y].imageEffcet);
+//            gamePanel.currentMap.addTile(tile);
+//            if (pages[pageIndex].slot[x][y].numOwn == 0) {
+//                pages[pageIndex].slot[x][y].Name = "Empty";
+//            }
+//        }
     }
 
     public void deleteFromInventory(int pageIndex, int x, int y) {

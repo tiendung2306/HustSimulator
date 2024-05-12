@@ -81,7 +81,6 @@ public class Main {
         JButton button7 = new JButton("Library");
         window1.add(button7);
         button7.addActionListener(new ButtonClicked(button7.getText(), gamePanel));
-
         JButton button8 = new JButton("MyRoom");
         window1.add(button8);
         button8.addActionListener(new ButtonClicked(button8.getText(), gamePanel));

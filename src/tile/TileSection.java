@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class TileSection extends Tile{
+public class TileSection extends Tile {
     public int x,y,width_tile,height_tile;
     public double scale_collect;
     public String name,type,name_path,description,name_path2;
@@ -56,6 +56,10 @@ public class TileSection extends Tile{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        BoundingBox();
+    }
+
+    public void reSizeTile() {
         BoundingBox();
     }
     public void BoundingBox() {

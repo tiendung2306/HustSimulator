@@ -154,24 +154,19 @@ public class GamePanel extends JPanel implements Runnable {
         missionDescription.screenResize();
         phone.screenResize();
         if(currentMap == myRoom) {
-            myRoom.setDefaultValues();
-            myRoom.reSizeMap(this);
+            myRoom.resetTile();
         }
         if(currentMap == normalClassroom) {
-            normalClassroom.setDefaultValues();
-            normalClassroom.reSizeMap(this);
+            normalClassroom.resetTile();
         }
         if(currentMap == computerRoom) {
-            computerRoom.setDefaultValues();
-            computerRoom.reSizeMap(this);
+            computerRoom.resetTile();
         }
         if(currentMap == library) {
-            library.setDefaultValues();
-            library.reSizeMap(this);
+            library.resetTile();
         }
         if(currentMap == stadium) {
-            stadium.setDefaultValues();
-            stadium.reSizeMap(this);
+            stadium.resetTile();
         }
         currentMap.loadMap(this);
         player.setDefaultValues();
