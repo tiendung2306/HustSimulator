@@ -13,7 +13,7 @@ import java.io.*;
 
 
 public class C2_hall extends Map {
-    Tile background;
+    Tile layer1, layer2;
     GamePanel gamePanel;
     Npc teacher1;
     Tile spawn_point;
@@ -28,28 +28,30 @@ public class C2_hall extends Map {
     private void SetDefaultValues(){
         TileLoad();
         SetOriginalSize();
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * background.image.getHeight() / (50 * background.getHeight()));
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * layer1.image.getHeight() / (50 * layer1.getHeight()));
     }
     
     private void SetOriginalSize(){
 
-        width = background.getWidth();
-        height = background.getHeight();
+        width = layer1.getWidth();
+        height = layer1.getHeight();
     }
 
     private void ReSize(double scale){
-        background.setWidth((int)(background.getWidth() * scale));
-        background.setHeight((int)(background.getHeight() * scale));
+        layer1.setWidth((int)(layer1.getWidth() * scale));
+        layer1.setHeight((int)(layer1.getHeight() * scale));
+
+        layer2.setWidth((int)(layer2.getWidth() * scale));
+        layer2.setHeight((int)(layer2.getHeight() * scale));
 
         spawn_point.resize(scale);
 
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
-
         }
-        
-        width = background.getWidth();
-        height = background.getHeight();
+                
+        width = layer1.getWidth();
+        height = layer1.getHeight();
 
         SetPos();
 
@@ -59,22 +61,48 @@ public class C2_hall extends Map {
         playerX = spawn_point.getLeftX();
         playerY = spawn_point.getTopY();
 
-        teacher1 = new Npc(gamePanel, (int)(width * 1.0 / 2), (int)(height * 1.0 / 2), (int)(gamePanel.player.boundingBox.getWidth() * 2 / 3), (int)(gamePanel.player.boundingBox.getHeight()));
 
     }
 
     private void TileLoad() {
-        tileContainer = new Tile[5];
+        tileContainer = new Tile[50];
 
         try {
-            BufferedImage bacImage = ImageIO.read(new FileInputStream("res/tile/C2_hall.png"));
-            background = new Tile(new Rectangle(0, 0, bacImage.getWidth(), bacImage.getHeight()), "Background", "", null, bacImage);
+            BufferedImage layer1_img = ImageIO.read(new FileInputStream("res/tile/C2_hall_layer (1).png"));
+            layer1 = new Tile(new Rectangle(0, 0, layer1_img.getWidth(), layer1_img.getHeight()), "layer1", "", null, layer1_img);
+            BufferedImage layer2_img = ImageIO.read(new FileInputStream("res/tile/C2_hall_layer (2).png"));
+            layer2 = new Tile(new Rectangle(0, 0, layer2_img.getWidth(), layer2_img.getHeight()), "layer2", "", null, layer2_img);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         spawn_point = new Tile(new Rectangle(120 , 569 , 35 , 53), "", "", null, null);
+
+        addTile(new Tile(new Rectangle(215 , 324 , 570 , 30), "Desk", "Interact", null, null));
+        addTile(new Tile(new Rectangle(215 , 355 , 35 , 47), "Desk", "Interact", null, null));
+        addTile(new Tile(new Rectangle(287 , 355 , 34 , 46), "Desk", "Interact", null, null));
+        addTile(new Tile(new Rectangle(358 , 355 , 35 , 46), "Desk", "Interact", null, null));
+        addTile(new Tile(new Rectangle(431 , 355 , 35 , 47), "Desk", "Interact", null, null));
+        addTile(new Tile(new Rectangle(502 , 355 , 34 , 47), "Desk", "Interact", null, null));
+        addTile(new Tile(new Rectangle(574 , 355 , 34 , 48), "Desk", "Interact", null, null));
+        addTile(new Tile(new Rectangle(646 , 355 , 34 , 47), "Desk", "Interact", null, null));
+        addTile(new Tile(new Rectangle(718 , 354 , 35 , 48), "Desk", "Interact", null, null));
+
+
+        addTile(new Tile(new Rectangle(206 , 391 , 6 , 178), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(278 , 390 , 6 , 179), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(351 , 391 , 4 , 178), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(423 , 391 , 5 , 178), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(494 , 391 , 5 , 181), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(565 , 392 , 5 , 178), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(638 , 391 , 5 , 179), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(710 , 391 , 5 , 179), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(780 , 391 , 6 , 177), "Barrier", "Obstacle", null, null));
+        
+        teacher1 = new Npc(gamePanel, new Rectangle( 309 , 299 , 24 , 34));
+        addTile(teacher1);
+
 
     }
 
@@ -84,8 +112,10 @@ public class C2_hall extends Map {
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
-        gamePanel.tileManager.draw(g2, background);
+        gamePanel.tileManager.draw(g2, layer1);
         teacher1.operation(g2);
+        gamePanel.tileManager.draw(g2, layer2);
+
         // for (int i = 0; i < numTileContainer; ++i)
         //     gamePanel.tileManager.draw(g2, tileContainer[i]);
     }
