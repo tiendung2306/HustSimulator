@@ -15,7 +15,7 @@ import java.io.*;
 public class C2_hall extends Map {
     Tile layer1, layer2;
     GamePanel gamePanel;
-    Npc teacher1;
+    Npc teacher1, security_man;
     Tile spawn_point;
 
 
@@ -100,8 +100,11 @@ public class C2_hall extends Map {
         addTile(new Tile(new Rectangle(710 , 391 , 5 , 179), "Barrier", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(780 , 391 , 6 , 177), "Barrier", "Obstacle", null, null));
         
-        teacher1 = new Npc(gamePanel, new Rectangle( 309 , 299 , 24 , 34));
+        teacher1 = new Npc(gamePanel, new Rectangle( 309 , 299 , 24 , 34), "teacher1");
+        security_man = new Npc(gamePanel, new Rectangle( 190 , 270 , 21 , 53), "security_man");
+
         addTile(teacher1);
+        addTile(security_man);
 
 
     }
@@ -114,6 +117,7 @@ public class C2_hall extends Map {
     public void draw(Graphics2D g2) {
         gamePanel.tileManager.draw(g2, layer1);
         teacher1.operation(g2);
+        security_man.operation(g2);
         gamePanel.tileManager.draw(g2, layer2);
 
         // for (int i = 0; i < numTileContainer; ++i)
