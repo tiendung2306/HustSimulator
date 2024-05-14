@@ -169,14 +169,15 @@ public class Chapter1 extends Chapter {
                 completedAct++;
             phone.clearMessage();
         }
-        if (completedAct == 8) {
+        if (completedAct == 8 && inventory.isExist("Hồ sơ")) {
             Dialogue("Hội thợ săn nằm ở tòa C2, đến đăng ký tân thủ vào lúc 7h30");
-            missionDescription.setMissionDescription("Tương tác với cửa phòng để di chuyển đến trường");
+            missionDescription.setMissionDescription("Tương tác với cửa phòng để di chuyển đến trường(Dịch chuyển đến Section 1)");
             isTeleportable = true;
         }
         if (completedAct == 9 && gamePanel.currentMap == gamePanel.section_1) {
             missionDescription.setMissionDescription("Tìm hội trường C2");
             isTeleportable = false;
+            completedAct++;
         }
         if (completedAct == 10 && gamePanel.currentMap == gamePanel.c2_hallway) {
             Dialogue("Mình đã đến nơi rồi!");
@@ -184,20 +185,44 @@ public class Chapter1 extends Chapter {
         if (completedAct == 11) {
             Dialogue("Bây giờ mình cần phải đi vào trong hội trường C2 để nộp hồ sơ, đi thôi nào!");
             missionDescription.setMissionDescription("Di chuyển vào trong hội trường C2");
-            prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
-        if (completedAct == 12 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4000) {
-            gamePanel.c2_hall.loadMap(gamePanel);
-            prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+        if (completedAct == 12 && gamePanel.currentMap == gamePanel.c2_hall) {
             completedAct++;
-
         }
         if (completedAct == 13) {
             Dialogue("Theo thông báo của trường thì mình phải nộp hồ sơ ở hàng số 3 tính từ trái qua");
             missionDescription.setMissionDescription(
                     "Đến hàng thứ 3 từ trái sang để nộp hồ sơ(Sử dụng tập tài liệu sau khi tương tác với cô giáo)");
         }
-        if (completedAct == 14)
+        if (completedAct == 14) {
+            if(collision.interactItem.Name.equals("Desk")) {
+                Dialogue("Em chào cô ạ, cho em nộp hồ sơ ạ");
+            }
+        }
+        if (completedAct == 15) {
+            ui.setDialogueCharacter("Teacher1");
+            Dialogue("Đâu, để cô xem nào");
+        }
+        if (completedAct == 16) {
+            Dialogue("Tên, tuổi, địa chỉ, giấy hoãn nghĩa vụ quân sự, ... ");
+        }
+        if (completedAct == 17) {
+            Dialogue("Oke đủ rồi, cô nhận hồ sơ của em rồi nhé. Em về đi");
+        }
+        if (completedAct == 18) {
+            ui.setDialogueCharacter("Main Character");
+            Dialogue("Dạ vâng ạ, em chào cô ạ");
+            prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+        }
+        if (completedAct == 19 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 2500) {
+            ui.setDialogueCharacter("Empty");
+            Dialogue("Mình xong việc trên trường rồi, bây giờ về nhà thôi nào");
+            missionDescription.setMissionDescription("Mở điện thoại, dịch chuyển về nhà");
+        }
+        if(completedAct == 20 && gamePanel.currentMap == gamePanel.myRoom) {
+            Dialogue("Hoàn thành chapter 1");
+        }
+        if (completedAct == 21)
             nextTimeline();
     }
 
