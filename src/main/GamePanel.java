@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     public TileManager tileManager = new TileManager(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
-    TimeSystem timeSystem = new TimeSystem();
+    public TimeSystem timeSystem = new TimeSystem();
 
     public static Main_Menu mainMenu = new Main_Menu();
     public static NextMainMenu nextMainMenu = new NextMainMenu();
@@ -354,6 +354,11 @@ public class GamePanel extends JPanel implements Runnable {
                 keyH.isPhonePressed = false;
             }
         }
+
+        if (Main.topGameState().equals("Loading")){
+            if (currentMap.map_exchange_effect.isRunning() == false)
+                Main.popGameState();
+        }
     }
     // =================================================================================================================
 
@@ -423,6 +428,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (Main.topGameState().equals("Map")) {
             section_selection.operation(g);
+        }
+
+        else if (Main.topGameState().equals("Loading")){
+            currentMap.map_exchange_effect.operation(g);
         }
 
     }

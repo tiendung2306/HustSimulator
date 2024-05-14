@@ -8,6 +8,9 @@ import tile.Tile;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+
+import animation.Animation_player;
+
 import java.io.*;
 
 
@@ -91,7 +94,7 @@ public class Section_1 extends Map {
         addTile(hallway_entry);
 
 
-
+        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle(0, 0, (int)(GamePanel.screenWidth), (int)(GamePanel.screenHeight)));
 
     }
 
