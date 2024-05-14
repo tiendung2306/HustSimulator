@@ -83,7 +83,6 @@ public class Animation_player{
             update();
 
             graphics.drawImage(frames[index], play_area.x, play_area.y, play_area.width, play_area.height, null);
-
         }
     }
 
