@@ -4,14 +4,16 @@ import main.GamePanel;
 import main.Main;
 import tile.ExtraTile;
 import tile.Tile;
+import tile.Object;
+
 import animation.*;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.io.*;
+import java.util.Vector;
 
 public class Map {
-    GamePanel gamePanel;
+    public GamePanel gamePanel;
     public int mapIndex;
     public int maxMapCol, maxMapRow;
     public int numExtraTile;
@@ -21,12 +23,18 @@ public class Map {
     public int playerX, playerY;
     public Tile [] tileContainer;
     public ExtraTile[] extraTile;
+    public Vector <Object> objectContainer =  new Vector <Object>();
     public Animation_player map_exchange_effect;
 
     
     public void addTile(Tile tile){
         tileContainer[numTileContainer++] = tile;
     }
+
+    public void addObject(Object object){
+        objectContainer.add(object);
+    }
+
     public void addExtraTile(String src){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(src)));

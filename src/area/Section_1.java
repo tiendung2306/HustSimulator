@@ -3,7 +3,9 @@ package area;
 import main.GamePanel;
 import main.Main;
 import map.Map;
-import tile.Tile;
+import tile.*;
+import tile.Object;
+
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,7 +18,6 @@ import java.io.*;
 
 public class Section_1 extends Map {
     Tile background, C1, C2, C9, hall, hallway_entry;
-    GamePanel gamePanel;
     Tile spawn_point;
 
 
@@ -64,7 +65,7 @@ public class Section_1 extends Map {
     }
 
     private void TileLoad() {
-        tileContainer = new Tile[5];
+        tileContainer = new Tile[50];
 
         try {
             BufferedImage bacImage = ImageIO.read(new FileInputStream("res/tile/Section1_demo.png"));
@@ -84,17 +85,20 @@ public class Section_1 extends Map {
 
         spawn_point = new Tile(new Rectangle(1009 , 1210 , 35 , 60), "spawn_point", "", null, null);
 
-
-        addTile(C9);
+        // addTile(C9);
         addTile(C2);
         addTile(C1);
 
         addTile(hall);
         addTile(hallway_entry);
 
-
         map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
+        
+        Rectangle[] tmp1 = {new Rectangle(81,1692,161,154),new Rectangle(235,1722,695,107),new Rectangle(101,1815,795,207)};
+        Rectangle[] tmp2 = {new Rectangle(102,1988,794,126),new Rectangle(604,2050,169,102)};
+        Object tmp = new Object(this, "C9", "C9", new Rectangle(79, 1693, 858, 468), tmp1, tmp2);
+        addObject(tmp);
     }
 
     public void open(){
@@ -108,6 +112,9 @@ public class Section_1 extends Map {
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
         gamePanel.tileManager.draw(g2, background);
+        for(Object object : objectContainer){
+            object.operation(g2);
+        }
         // for (int i = 0; i < numTileContainer; ++i)
         //     gamePanel.tileManager.draw(g2, tileContainer[i]);
     }
