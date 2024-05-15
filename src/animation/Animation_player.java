@@ -97,14 +97,6 @@ public class Animation_player{
         play_area.y = (int)(play_area.y * scale);
         play_area.width = (int)(play_area.width * scale);
         play_area.height = (int)(play_area.height * scale);
-
-        System.out.println("vpa");
-        System.out.println(play_area.x);
-        System.out.println(play_area.y);
-        System.out.println(play_area.width);
-        System.out.println(play_area.height);
-
-
     }
 
     public void setTimer(double lasted_time){

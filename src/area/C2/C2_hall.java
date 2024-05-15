@@ -101,7 +101,9 @@ public class C2_hall extends Map {
         addTile(new Tile(new Rectangle(638 , 391 , 5 , 179), "Barrier", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(710 , 391 , 5 , 179), "Barrier", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(780 , 391 , 6 , 177), "Barrier", "Obstacle", null, null));
-        
+
+        addTile(new Tile(new Rectangle(88 , 620 , 110 , 4), "C2_hall_exit", "Teleport", null, null));
+
         teacher1 = new Npc(gamePanel, new Rectangle( 309 , 299 , 24 , 34), "teacher1");
         security_man = new Npc(gamePanel, new Rectangle( 190 , 270 , 21 , 53), "security_man");
 

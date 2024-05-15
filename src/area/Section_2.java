@@ -78,9 +78,9 @@ public class Section_2 extends Map {
         D5 = new Tile(new Rectangle(486, 1497, 1088, 390), "D5", "Obstacle", null, null);
         D9 = new Tile(new Rectangle(2030, 251, 1226, 402), "D9", "Obstacle", null, null);
 
-        hallway_entry_1 = new Tile(new Rectangle(691 , 2344 , 25 , 23), "D3_Hallway", "Teleport", null, null);
-        hallway_entry_2 = new Tile(new Rectangle(908 , 2355 , 198 , 38), "D3_Hallway", "Teleport", null, null);
-        hallway_entry_3 = new Tile(new Rectangle(1297 , 2345 , 26 , 21), "D3_Hallway", "Teleport", null, null);
+        hallway_entry_1 = new Tile(new Rectangle(691 , 2344 , 25 , 23), "D3_Hallway_entry_stair1", "Teleport", null, null);
+        hallway_entry_2 = new Tile(new Rectangle(908 , 2355 , 198 , 38), "D3_Hallway_entry_stair2", "Teleport", null, null);
+        hallway_entry_3 = new Tile(new Rectangle(1297 , 2345 , 26 , 21), "D3_Hallway_entry_stair3", "Teleport", null, null);
         
         spawn_point = new Tile(new Rectangle(988 , 2438 , 30 , 47), "", "", null, null);
 
