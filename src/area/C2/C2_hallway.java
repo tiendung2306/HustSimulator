@@ -1,15 +1,16 @@
 package area.C2;
 
 import main.GamePanel;
-import main.Main;
 import map.Map;
 import tile.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+
+import animation.Animation_player;
+
 import java.io.*;
-import java.util.Vector;
 
 
 public class C2_hallway extends Map {
@@ -92,6 +93,9 @@ public class C2_hallway extends Map {
         addTile(new Tile(new Rectangle( 677 , 444 , 215 , 213 ), "map_barrier", "Obstacle", null, null));
         addTile(new Tile(new Rectangle( 748 , 435 , 129 , 49 ), "map_barrier", "Obstacle", null, null));
         addTile(new Tile(new Rectangle( 787 , 374 , 193 , 95 ), "map_barrier", "Obstacle", null, null));
+    
+        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type2/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+    
     }
 
     public void open(){

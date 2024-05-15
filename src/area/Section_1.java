@@ -46,7 +46,6 @@ public class Section_1 extends Map {
 
         spawn_point.resize(scale);
 
-
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 
@@ -94,7 +93,7 @@ public class Section_1 extends Map {
         addTile(hallway_entry);
 
 
-        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle(0, 0, (int)(GamePanel.screenWidth), (int)(GamePanel.screenHeight)));
+        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
     }
 

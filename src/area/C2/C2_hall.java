@@ -1,7 +1,6 @@
 package area.C2;
 
 import main.GamePanel;
-import main.Main;
 import map.Map;
 import tile.Tile;
 import npc.*;
@@ -9,6 +8,9 @@ import npc.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+
+import animation.Animation_player;
+
 import java.io.*;
 
 
@@ -106,6 +108,7 @@ public class C2_hall extends Map {
         addTile(teacher1);
         addTile(security_man);
 
+        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
     }
 

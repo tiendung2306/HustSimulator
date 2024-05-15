@@ -92,6 +92,21 @@ public class Animation_player{
         }
     }
 
+    public void resize(double scale){
+        play_area.x = (int)(play_area.x * scale);
+        play_area.y = (int)(play_area.y * scale);
+        play_area.width = (int)(play_area.width * scale);
+        play_area.height = (int)(play_area.height * scale);
+
+        System.out.println("vpa");
+        System.out.println(play_area.x);
+        System.out.println(play_area.y);
+        System.out.println(play_area.width);
+        System.out.println(play_area.height);
+
+
+    }
+
     public void setTimer(double lasted_time){
         this.lasted_time = lasted_time;
     }
