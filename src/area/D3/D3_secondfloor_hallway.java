@@ -1,19 +1,21 @@
 package area.D3;
 
 import main.GamePanel;
-import main.Main;
 import map.Map;
 import tile.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+
+import animation.Animation_player;
+
 import java.io.*;
 
 
 public class D3_secondfloor_hallway extends Map {
     Tile layer_1, layer_2, layer_3;
-    Tile spawn_point;
+    Tile spawn_point1, spawn_point2, spawn_point3;
     GamePanel gamePanel;
     public int curr_floor = 2;
 
@@ -46,7 +48,10 @@ public class D3_secondfloor_hallway extends Map {
         layer_3.setWidth((int)(layer_3.getWidth() * scale));
         layer_3.setHeight((int)(layer_3.getHeight() * scale));
 
-        spawn_point.resize(scale);
+        spawn_point1.resize(scale);
+        spawn_point2.resize(scale);
+        spawn_point3.resize(scale);
+
 
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
@@ -56,12 +61,9 @@ public class D3_secondfloor_hallway extends Map {
         width = layer_1.getWidth();
         height = layer_1.getHeight();
 
-        SetPlayerPos();
-
-
     }
 
-    private void SetPlayerPos(){
+    private void SetPlayerPos(Tile spawn_point){
         playerX = spawn_point.getLeftX();
         playerY = spawn_point.getTopY();
     }
@@ -81,12 +83,14 @@ public class D3_secondfloor_hallway extends Map {
             e.printStackTrace();
         }
 
-        spawn_point = new Tile(new Rectangle(323 , 399 , 27 , 42), "", "", null, null);
-
-        addTile(new Tile(new Rectangle(273 , 402 , 8 , 17), "D3_stair_up", "Teleport", null, null));
-        addTile(new Tile(new Rectangle(1891 , 387 , 6 , 40), "D3_stair_down", "Teleport", null, null));
-        addTile(new Tile(new Rectangle(1891 , 427 , 7 , 27), "D3_stair_up", "Teleport", null, null));
-        addTile(new Tile(new Rectangle(273 , 420 , 8 , 36), "D3_stair_down", "Teleport", null, null));
+        spawn_point1 = new Tile(new Rectangle(291 , 252 , 28 , 44), "", "", null, null);
+        spawn_point2 = new Tile(new Rectangle(327 , 399 , 30 , 47), "", "", null, null);
+        spawn_point3 = new Tile(new Rectangle(1832 , 400 , 27 , 42), "", "", null, null);
+        
+        addTile(new Tile(new Rectangle(273 , 402 , 8 , 17), "D3_stair_up1", "Teleport", null, null));
+        addTile(new Tile(new Rectangle(1891 , 387 , 6 , 40), "D3_stair_down2", "Teleport", null, null));
+        addTile(new Tile(new Rectangle(1891 , 427 , 7 , 27), "D3_stair_up2", "Teleport", null, null));
+        addTile(new Tile(new Rectangle(273 , 420 , 8 , 36), "D3_stair_down1", "Teleport", null, null));
         addTile(new Tile(new Rectangle(244 , 60 , 157 , 142), "D3->D3-5_secondfloor_link", "Teleport", null, null));
 
 
@@ -102,9 +106,22 @@ public class D3_secondfloor_hallway extends Map {
         addTile(new Tile(new Rectangle(379 , 399 , 1391 , 76), "map_barrier", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(1743 , 455 , 278 , 21), "map_barrier", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(1743 , 172 , 119 , 31), "map_barrier", "Obstacle", null, null));
+    
+        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type2/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+
+    
     }
 
-    public void open(){
+    public void open(String type){
+        if(type == "enter_from_stair1"){
+            SetPlayerPos(spawn_point2);
+        }
+        else if(type == "enter_from_stair2"){
+            SetPlayerPos(spawn_point3);
+        }
+        else if(type == "enter_from_D3_5"){
+            SetPlayerPos(spawn_point1);
+        }
         loadMap(gamePanel);
     }
 

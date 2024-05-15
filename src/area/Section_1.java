@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import animation.Animation_player;
 import main.GamePanel;
 import main.Main;
 import map.Map;
@@ -47,7 +48,6 @@ public class Section_1 extends Map {
 
         spawn_point.resize(scale);
 
-
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 
@@ -81,8 +81,8 @@ public class Section_1 extends Map {
         C2 = new Tile(new Rectangle(305, 754, 402, 965), "C2", "Obstacle", null, null);
         C1 = new Tile(new Rectangle(472, 238, 1716, 373), "C1", "Obstacle", null, null);
 
-        hall = new Tile(new Rectangle(696 , 1027 , 86 , 574), "C2_Hallway", "Obstacle", null, null);
-        hallway_entry = new Tile(new Rectangle(781 , 1137 , 203 , 211), "C2_Hallway", "Teleport", null, null);
+        hall = new Tile(new Rectangle(696 , 1027 , 86 , 574), "C2_Hallway_entry_stair", "Obstacle", null, null);
+        hallway_entry = new Tile(new Rectangle(781 , 1137 , 203 , 211), "C2_Hallway_entry_stair", "Teleport", null, null);
 
         spawn_point = new Tile(new Rectangle(1009 , 1210 , 35 , 60), "spawn_point", "", null, null);
 
@@ -95,7 +95,7 @@ public class Section_1 extends Map {
         addTile(hallway_entry);
 
 
-
+        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
     }
 

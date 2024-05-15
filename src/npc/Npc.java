@@ -14,9 +14,10 @@ public class Npc extends Tile{
 
 
 
-    public Npc(GamePanel gamePanel, Rectangle hitbox){
+    public Npc(GamePanel gamePanel, Rectangle hitbox, String name){
         this.gamePanel = gamePanel;
         this.displaybox = hitbox;
+        Name = name;
         LeftX = hitbox.x;
         RightX = hitbox.x + hitbox.width;
         TopY = hitbox.y;
@@ -25,13 +26,23 @@ public class Npc extends Tile{
         height = hitbox.height;
 
         Type = "Interact";
-        Name = "Npc";
 
         Load_animation();
     }
 
     private void Load_animation(){
-        animation = new Animation_player(gamePanel, "res/NPC/teacher1/Frame ", 7, 1.0, displaybox);
+        switch (Name) {
+            case "teacher1":
+                animation = new Animation_player(gamePanel, "res/NPC/teacher1/Frame ", 7, 1.0, displaybox);
+                break;
+            
+            case "security_man":
+                animation = new Animation_player(gamePanel, "res/NPC/security_man/frame ", 4, 0.8, displaybox);
+                break;
+                
+            default:
+                break;
+        }
     }
 
     private void update(){

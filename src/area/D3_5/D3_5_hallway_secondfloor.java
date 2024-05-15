@@ -1,13 +1,15 @@
 package area.D3_5;
 
 import main.GamePanel;
-import main.Main;
 import map.Map;
 import tile.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+
+import animation.Animation_player;
+
 import java.io.*;
 
 
@@ -89,6 +91,9 @@ public class D3_5_hallway_secondfloor extends Map {
         addTile(new Tile(new Rectangle(451 , 70 , 36 , 54), "D3-5_...02", "Teleport", null, null));
         addTile(new Tile(new Rectangle(588 , 69 , 37 , 53), "D3-5_...03", "Teleport", null, null));
         addTile(new Tile(new Rectangle(721 , 70 , 36 , 54), "D3-5_...04", "Teleport", null, null));
+    
+        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+    
     }
 
     public void open(){

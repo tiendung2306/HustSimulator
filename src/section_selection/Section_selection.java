@@ -7,7 +7,9 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
-import Mouse.MouseManager;
+import Keyboard.KeyboardManager;
+import java.awt.event.KeyEvent;
+
 
 import java.io.*;
 
@@ -24,6 +26,7 @@ public class Section_selection {
 
     StatusPanel statusPanel = new StatusPanel(this);
     Button backButton = new Button(this);
+    Button homeButton = new Button(this);
 
     public Section_selection(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -48,7 +51,11 @@ public class Section_selection {
     private void LoadButton(){
         backButton.add_Hitbox(new Shape(1, 114, 331, 147));
         backButton.set_Boder(new Shape(1, 114, 331, 147));
-        backButton.set_Tag("BackButton");
+        backButton.set_Tag("backButton");
+
+        homeButton.add_Hitbox(new Shape(1627 , 114 , 335 , 148));
+        homeButton.set_Boder(new Shape(1627 , 114 , 335 , 148));
+        homeButton.set_Tag("homeButton");
 
     }
 
@@ -126,6 +133,7 @@ public class Section_selection {
 
         statusPanel.scale(scale_X, scale_Y);
         backButton.scale(scale_X, scale_Y);
+        homeButton.scale(scale_X, scale_Y);
 
         bg_X = (int)((GamePanel.screenWidth - background.getWidth() * this.scale_X) / 2);
         bg_Y = 0;
@@ -141,6 +149,14 @@ public class Section_selection {
 
         if(backButton.HoverCheck(gamePanel.mouseManager.mouseCurrentX(), gamePanel.mouseManager.mouseCurrentY()))
             backButton.OnHover(graphics);
+
+        if(homeButton.HoverCheck(gamePanel.mouseManager.mouseCurrentX(), gamePanel.mouseManager.mouseCurrentY()))
+            homeButton.OnHover(graphics);
+
+        if(KeyboardManager.getReleasedKey() == KeyEvent.VK_ESCAPE){
+            backButton.OnClick();
+        }
+            
     }
 
     private void display(Graphics graphics) {

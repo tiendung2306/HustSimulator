@@ -5,7 +5,9 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
+import animation.Animation_player;
 import main.GamePanel;
+import main.Main;
 import tile.ExtraTile;
 import tile.Tile;
 
@@ -20,6 +22,7 @@ public class Map {
     public int playerX, playerY;
     public Tile[] tileContainer;
     public ExtraTile[] extraTile;
+    public Animation_player map_exchange_effect;
 
     public void addTile(Tile tile) {
         tileContainer[numTileContainer++] = tile;
@@ -64,6 +67,11 @@ public class Map {
 
     public void loadMap(GamePanel gamePanel) {
         gamePanel.currentMap = this;
+        if (map_exchange_effect != null) {
+            map_exchange_effect.setState("run");
+            map_exchange_effect.setTimer(1.0);
+            Main.pushGameState("Loading");
+        }
         // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
         // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
         gamePanel.player.setMapX(playerX);
