@@ -1,15 +1,16 @@
 package area.C2;
 
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import main.GamePanel;
-import main.Main;
 import map.Map;
 import tile.Tile;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.*;
-import java.util.Vector;
 
 
 public class C2_hallway extends Map {

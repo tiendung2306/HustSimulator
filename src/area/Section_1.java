@@ -1,18 +1,22 @@
 package area;
 
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import main.GamePanel;
 import main.Main;
 import map.Map;
 import tile.Tile;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.*;
-
 
 public class Section_1 extends Map {
-    Tile background, C1, C2, C9, hall, hallway_entry;
+    Tile background, C1, C2, C9, hall;
+    public Tile hallway_entry;
     GamePanel gamePanel;
     Tile spawn_point;
 

@@ -1,19 +1,20 @@
 package tile;
 
-import main.GamePanel;
-
-import javax.imageio.ImageIO;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class TileSection extends Tile{
-    public int x,y,width_tile,height_tile;
+import javax.imageio.ImageIO;
+
+import main.GamePanel;
+
+public class TileSection extends Tile {
+    public int x, y, width_tile, height_tile;
     public double scale_collect;
-    public String name,type,name_path,description,name_path2;
+    public String name, type, name_path, description, name_path2;
     GamePanel gamePanel;
 
-
-    public TileSection(GamePanel gamePanel, int x, int y, int width_tile, int height_tile, String name, String type, String description, String name_path,String name_path2,double scale_collect) {
+    public TileSection(GamePanel gamePanel, int x, int y, int width_tile, int height_tile, String name, String type,
+            String description, String name_path, String name_path2, double scale_collect) {
         this.x = x;
         this.y = y;
         this.scale_collect = scale_collect;
@@ -37,7 +38,8 @@ public class TileSection extends Tile{
         BoundingBox();
     }
 
-    public TileSection(GamePanel gamePanel, int x, int y, int width_tile, int height_tile, String name, String type, String description, String name_path,double scale_collect) {
+    public TileSection(GamePanel gamePanel, int x, int y, int width_tile, int height_tile, String name, String type,
+            String description, String name_path, double scale_collect) {
         this.x = x;
         this.y = y;
         this.scale_collect = scale_collect;
@@ -58,6 +60,7 @@ public class TileSection extends Tile{
         }
         BoundingBox();
     }
+
     public void BoundingBox() {
         setLeftX((int) (x * GamePanel.scale));
         setTopY((int) (y * GamePanel.scale));

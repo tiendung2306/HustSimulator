@@ -56,8 +56,8 @@ public class Chapter1 extends Chapter {
     void Timeline1() {
         IntroFinished = true;
         if (completedAct == 0) {
-            Dialogue("Đây là căn phòng của ta sao?");
             TimeSystem.setCurrentTime("07:00");
+            Dialogue("Đây là căn phòng của ta sao?");
         }
         if (completedAct == 1)
             Dialogue("Nó khá nhỏ so với tòa lâu đài ở kiếp trước. Nhưng nó chứa khá là nhiều thứ thú vị!");
@@ -171,19 +171,34 @@ public class Chapter1 extends Chapter {
         }
         if (completedAct == 8 && inventory.isExist("Hồ sơ")) {
             Dialogue("Hội thợ săn nằm ở tòa C2, đến đăng ký tân thủ vào lúc 7h30");
-            missionDescription.setMissionDescription("Tương tác với cửa phòng để di chuyển đến trường(Dịch chuyển đến Section 1)");
+            gamePanel.directionIndicator.addArrow(
+                    (gamePanel.myRoom.tileDoorMyRoom.getLeftX() + gamePanel.myRoom.tileDoorMyRoom.getRightX()) / 2
+                            - gamePanel.directionIndicator.width / 2,
+                    gamePanel.myRoom.tileDoorMyRoom.getBottomY() - gamePanel.directionIndicator.height);
+            missionDescription.setMissionDescription(
+                    "Tương tác với cửa phòng để di chuyển đến trường(Dịch chuyển đến Section 1)");
             isTeleportable = true;
         }
         if (completedAct == 9 && gamePanel.currentMap == gamePanel.section_1) {
+            gamePanel.directionIndicator.resetArrow();
             missionDescription.setMissionDescription("Tìm hội trường C2");
+            gamePanel.directionIndicator.addArrow(
+                    gamePanel.section_1.hallway_entry.getRightX() - gamePanel.directionIndicator.width / 2,
+                    (gamePanel.section_1.hallway_entry.getBottomY() + gamePanel.section_1.hallway_entry.getTopY()) / 2
+                            - gamePanel.directionIndicator.height / 2);
             isTeleportable = false;
             completedAct++;
         }
         if (completedAct == 10 && gamePanel.currentMap == gamePanel.c2_hallway) {
+            gamePanel.directionIndicator.resetArrow();
             Dialogue("Mình đã đến nơi rồi!");
         }
         if (completedAct == 11) {
             Dialogue("Bây giờ mình cần phải đi vào trong hội trường C2 để nộp hồ sơ, đi thôi nào!");
+            // gamePanel.directionIndicator.addArrow(
+            //         gamePanel.c2_hallway.hallway_entry.getRightX() - gamePanel.directionIndicator.width / 2,
+            //         (gamePanel.section_1.hallway_entry.getBottomY() + gamePanel.section_1.hallway_entry.getTopY()) / 2
+            //                 - gamePanel.directionIndicator.height / 2);
             missionDescription.setMissionDescription("Di chuyển vào trong hội trường C2");
         }
         if (completedAct == 12 && gamePanel.currentMap == gamePanel.c2_hall) {
@@ -195,7 +210,7 @@ public class Chapter1 extends Chapter {
                     "Đến hàng thứ 3 từ trái sang để nộp hồ sơ(Sử dụng tập tài liệu sau khi tương tác với cô giáo)");
         }
         if (completedAct == 14) {
-            if(collision.interactItem.Name.equals("Desk")) {
+            if (collision.interactItem.Name.equals("Desk")) {
                 Dialogue("Em chào cô ạ, cho em nộp hồ sơ ạ");
             }
         }
@@ -219,7 +234,7 @@ public class Chapter1 extends Chapter {
             Dialogue("Mình xong việc trên trường rồi, bây giờ về nhà thôi nào");
             missionDescription.setMissionDescription("Mở điện thoại, dịch chuyển về nhà");
         }
-        if(completedAct == 20 && gamePanel.currentMap == gamePanel.myRoom) {
+        if (completedAct == 20 && gamePanel.currentMap == gamePanel.myRoom) {
             Dialogue("Hoàn thành chapter 1");
         }
         if (completedAct == 21)

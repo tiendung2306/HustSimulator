@@ -1,11 +1,13 @@
 package map;
 
+import java.awt.Graphics2D;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 import main.GamePanel;
 import tile.ExtraTile;
 import tile.Tile;
-
-import java.awt.Graphics2D;
-import java.io.*;
 
 public class Map {
     GamePanel gamePanel;
@@ -16,12 +18,14 @@ public class Map {
     public int org_width, org_height;
     public int numTileContainer;
     public int playerX, playerY;
-    public Tile [] tileContainer;
+    public Tile[] tileContainer;
     public ExtraTile[] extraTile;
-    public void addTile(Tile tile){
+
+    public void addTile(Tile tile) {
         tileContainer[numTileContainer++] = tile;
     }
-    public void addExtraTile(String src){
+
+    public void addExtraTile(String src) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(src)));
             String line = "";
@@ -51,25 +55,28 @@ public class Map {
             // TODO: handle exception
         }
     }
-    public void deleteTile(int index){
+
+    public void deleteTile(int index) {
         --numTileContainer;
         for (int i = index; i < numTileContainer; ++i)
             tileContainer[i] = tileContainer[i + 1];
     }
-    public void loadMap(GamePanel gamePanel){
+
+    public void loadMap(GamePanel gamePanel) {
         gamePanel.currentMap = this;
         // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
         // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
         gamePanel.player.setMapX(playerX);
         gamePanel.player.setMapY(playerY);
     }
+
     public void reSizeMap(GamePanel gamePanel) {
         // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
         // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {
-        
+
     }
 
 }
