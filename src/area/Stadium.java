@@ -50,8 +50,9 @@ public class Stadium extends Map {
     public void resetTile(){
         width = (int) (21 * 16 * GamePanel.scale);
         height = (int) (16 * 16 * GamePanel.scale);
-        playerX = (int) (10 * GamePanel.scale);
-        playerY = (int) (115 * GamePanel.scale);
+        playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
+        playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
+        prevScale = (int) GamePanel.scale;
         background.setWidth((int) (320 * GamePanel.scale));
         background.setHeight((int) (240 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {
