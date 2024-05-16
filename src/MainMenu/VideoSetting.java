@@ -64,6 +64,11 @@ public class VideoSetting extends JPanel {
         check = "";
         exitImg = null;
         resolutionstr = (int)GamePanel.screenWidth + " x " + (int)GamePanel.screenHeight;
+        checkResolution = false;
+        Main.next_ex = Main.prev_ex; Main.next_ey = Main.prev_ey;
+        GamePanel.next_screenWidth = GamePanel.prev_screenWidth;
+        GamePanel.next_screenHeight = GamePanel.prev_screenHeight;
+        GamePanel.next_scale = GamePanel.prev_scale;
     }
     public void buttonSaveEnter() {
         check = "buttonSaveEnter";

@@ -280,6 +280,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     Main.prev_ey = Main.ey;
                     Main.next_ex = 1;
                     Main.next_ey = 1;
+                    GamePanel.prev_scale = GamePanel.scale;
                     GamePanel.next_scale = 3 * Main.next_ex;
                     GamePanel.prev_screenHeight = GamePanel.screenHeight;
                     GamePanel.prev_screenWidth = GamePanel.screenWidth;
@@ -301,6 +302,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     Main.next_ex = (double) 4 / 3;
                     Main.next_ey = (double) 4 / 3;
                     GamePanel.next_scale = 3 * Main.next_ex;
+                    GamePanel.prev_scale = GamePanel.scale;
                     GamePanel.prev_screenHeight = GamePanel.screenHeight;
                     GamePanel.prev_screenWidth = GamePanel.screenWidth;
                     GamePanel.next_screenWidth = 1024;
@@ -321,6 +323,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     Main.next_ex = 2;
                     Main.next_ey = 2;
                     GamePanel.next_scale = 3 * Main.next_ex;
+                    GamePanel.prev_scale = GamePanel.scale;
                     GamePanel.prev_screenHeight = GamePanel.screenHeight;
                     GamePanel.prev_screenWidth = GamePanel.screenWidth;
                     GamePanel.next_screenWidth = 1536;
@@ -341,6 +344,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     Main.next_ex = (double) 5 / 3;
                     Main.next_ey = (double) 5 / 3;
                     GamePanel.next_scale = 3 * Main.next_ex;
+                    GamePanel.prev_scale = GamePanel.scale;
                     GamePanel.prev_screenHeight = GamePanel.screenHeight;
                     GamePanel.prev_screenWidth = GamePanel.screenWidth;
                     GamePanel.next_screenWidth = 1280;
@@ -361,6 +365,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     Main.next_ex = (double) 7/3;
                     Main.next_ey = (double) 7/3;
                     GamePanel.next_scale = 3 * Main.next_ex;
+                    GamePanel.prev_scale = GamePanel.scale;
                     GamePanel.prev_screenHeight = GamePanel.screenHeight;
                     GamePanel.prev_screenWidth = GamePanel.screenWidth;
                     GamePanel.next_screenWidth = 1792;
@@ -381,6 +386,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     Main.next_ex = 3;
                     Main.next_ey = 3;
                     GamePanel.next_scale = 3 * Main.next_ex;
+                    GamePanel.prev_scale = GamePanel.scale;
                     GamePanel.prev_screenHeight = GamePanel.screenHeight;
                     GamePanel.prev_screenWidth = GamePanel.screenWidth;
                     GamePanel.next_screenWidth = 2304;
