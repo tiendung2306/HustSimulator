@@ -83,7 +83,7 @@ public class Collision {
 
             case "D3_stair_down1":
                 if(gamePanel.d3_secondfloor_hallway.curr_floor == 2)
-                gamePanel.d3_hallway.open("enter_from_stair1");
+                    gamePanel.d3_hallway.open("enter_from_stair1");
                 else{
                     gamePanel.d3_secondfloor_hallway.curr_floor -= 1;
                     gamePanel.d3_secondfloor_hallway.open("enter_from_stair1");
@@ -92,7 +92,7 @@ public class Collision {
                 
             case "D3_stair_down2":
                 if(gamePanel.d3_secondfloor_hallway.curr_floor == 2)
-                gamePanel.d3_hallway.open("enter_from_stair3");
+                    gamePanel.d3_hallway.open("enter_from_stair3");
                 else{
                     gamePanel.d3_secondfloor_hallway.curr_floor -= 1;
                     gamePanel.d3_secondfloor_hallway.open("enter_from_stair2");
