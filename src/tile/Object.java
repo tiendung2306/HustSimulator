@@ -59,13 +59,21 @@ public class Object {
     private void display(Graphics2D graphics2d){
         for(Tile tile : body){
             if(tile.isCollision == true){
-                graphics2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+                graphics2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
                 break;
             }
         }
         map.gamePanel.tileManager.draw(graphics2d, image);
         graphics2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
             
+    }
+
+    public int getTop(){
+        return foot.getLast().TopY;
+    }
+
+    public int getBot(){
+        return foot.getFirst().BottomY;
     }
 
     public void operation(Graphics2D graphics2d){

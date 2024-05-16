@@ -76,7 +76,7 @@ public class Section_1 extends Map {
         }
 
 
-        C9 = new Tile(new Rectangle(101, 1720, 793, 389), "C9", "Obstacle", null, null);
+        // C9 = new Tile(new Rectangle(101, 1720, 793, 389), "C9", "Obstacle", null, null);
         C2 = new Tile(new Rectangle(305, 754, 402, 965), "C2", "Obstacle", null, null);
         C1 = new Tile(new Rectangle(472, 238, 1716, 373), "C1", "Obstacle", null, null);
 
@@ -91,6 +91,10 @@ public class Section_1 extends Map {
 
         addTile(hall);
         addTile(hallway_entry);
+
+        addTile(new Tile(new Rectangle(615 , 1626 , 89 , 366), "C9_C2_link", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(616 , 1739 , 97 , 253), "C9_C2_link", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(705 , 1655 , 21 , 84), "C9_C2_link_stair_entry", "Teleport", null, null));
 
         map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
@@ -112,9 +116,20 @@ public class Section_1 extends Map {
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
         gamePanel.tileManager.draw(g2, background);
+        boolean is_player_display = false;
         for(Object object : objectContainer){
+            if(is_player_display == false){
+                if(object.getTop() <= gamePanel.player.getHitArea().y + gamePanel.player.getHitArea().height){
+                    // gamePanel.player.draw(g2);
+                    is_player_display = true;
+                }
+            }
             object.operation(g2);
         }
+
+        if(is_player_display == false)
+            gamePanel.player.draw(g2);
+
         // for (int i = 0; i < numTileContainer; ++i)
         //     gamePanel.tileManager.draw(g2, tileContainer[i]);
     }

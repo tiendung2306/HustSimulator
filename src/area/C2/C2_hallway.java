@@ -86,7 +86,7 @@ public class C2_hallway extends Map {
         addTile(new Tile(new Rectangle( 768 , 191 , 191 , 84 ), "C2_Hall_entry", "Teleport", null, null));
         addTile(new Tile(new Rectangle( 93 , 238 , 107 , 24 ), "fence", "Obstacle", null, null));
         addTile(new Tile(new Rectangle( 73 , 173 , 21 , 99 ), "pillar", "Obstacle", null, null));
-        addTile(new Tile(new Rectangle(492 , 639 , 158 , 26), "C2_Hallway_exit", "Teleport", null, null));
+        addTile(new Tile(new Rectangle(491 , 605 , 159 , 34), "C2_Hallway_exit", "Teleport", null, null));
 
         addTile(new Tile(new Rectangle( 0 , 172 , 74 , 80 ), "map_barrier", "Obstacle", null, null));
         addTile(new Tile(new Rectangle( 0 , 411 , 67 , 37 ), "map_barrier", "Obstacle", null, null));
