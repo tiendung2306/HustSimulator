@@ -195,10 +195,21 @@ public class Chapter1 extends Chapter {
         }
         if (completedAct == 11) {
             Dialogue("Bây giờ mình cần phải đi vào trong hội trường C2 để nộp hồ sơ, đi thôi nào!");
-            // gamePanel.directionIndicator.addArrow(
-            //         gamePanel.c2_hallway.hallway_entry.getRightX() - gamePanel.directionIndicator.width / 2,
-            //         (gamePanel.section_1.hallway_entry.getBottomY() + gamePanel.section_1.hallway_entry.getTopY()) / 2
-            //                 - gamePanel.directionIndicator.height / 2);
+            gamePanel.directionIndicator.addArrow(
+                    (gamePanel.c2_hallway.c2_hallEntry1.getRightX() + gamePanel.c2_hallway.c2_hallEntry1.getLeftX()) / 2
+                            - gamePanel.directionIndicator.width / 2,
+                    gamePanel.c2_hallway.c2_hallEntry1.getBottomY()
+                            - gamePanel.directionIndicator.height);
+            gamePanel.directionIndicator.addArrow(
+                    (gamePanel.c2_hallway.c2_hallEntry2.getRightX() + gamePanel.c2_hallway.c2_hallEntry2.getLeftX()) / 2
+                            - gamePanel.directionIndicator.width / 2,
+                    gamePanel.c2_hallway.c2_hallEntry2.getBottomY()
+                            - gamePanel.directionIndicator.height);
+            gamePanel.directionIndicator.addArrow(
+                    (gamePanel.c2_hallway.c2_hallEntry3.getRightX() + gamePanel.c2_hallway.c2_hallEntry3.getLeftX()) / 2
+                            - gamePanel.directionIndicator.width / 2,
+                    gamePanel.c2_hallway.c2_hallEntry3.getBottomY()
+                            - gamePanel.directionIndicator.height);
             missionDescription.setMissionDescription("Di chuyển vào trong hội trường C2");
         }
         if (completedAct == 12 && gamePanel.currentMap == gamePanel.c2_hall) {

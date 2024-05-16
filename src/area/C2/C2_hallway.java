@@ -19,6 +19,7 @@ public class C2_hallway extends Map {
     Tile first_floor, second_floor;
     Tile spawn_point1, spawn_point2;
     Animation_player map_exchange_effect1, map_exchange_effect2;
+    public Tile c2_hallEntry1, c2_hallEntry2, c2_hallEntry3;
 
 
     public C2_hallway(GamePanel gamePanel) {
@@ -81,10 +82,13 @@ public class C2_hallway extends Map {
         spawn_point1 = new Tile(new Rectangle(555 , 586 , 32 , 46), "", "", null, null);
         spawn_point2 = new Tile(new Rectangle(447 , 251 , 32 , 46), "", "", null, null);
 
+        c2_hallEntry1 = new Tile(new Rectangle( 369 , 192 , 191 , 83 ), "C2_Hall_entry", "Teleport", null, null);
+        c2_hallEntry2 = new Tile(new Rectangle( 568 , 191 , 190 , 84 ), "C2_Hall_entry", "Teleport", null, null);
+        c2_hallEntry3 = new Tile(new Rectangle( 768 , 191 , 191 , 84 ), "C2_Hall_entry", "Teleport", null, null);
         addTile(new Tile(new Rectangle( 200 , 172 , 763 , 99 ), "wall", "Obstacle", null, null));
-        addTile(new Tile(new Rectangle( 369 , 192 , 191 , 83 ), "C2_Hall_entry", "Teleport", null, null));
-        addTile(new Tile(new Rectangle( 568 , 191 , 190 , 84 ), "C2_Hall_entry", "Teleport", null, null));
-        addTile(new Tile(new Rectangle( 768 , 191 , 191 , 84 ), "C2_Hall_entry", "Teleport", null, null));
+        addTile(c2_hallEntry1);
+        addTile(c2_hallEntry2);
+        addTile(c2_hallEntry3);
         addTile(new Tile(new Rectangle( 93 , 238 , 107 , 24 ), "fence", "Obstacle", null, null));
         addTile(new Tile(new Rectangle( 73 , 173 , 21 , 99 ), "pillar", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(492 , 639 , 158 , 26), "C2_Hallway_exit", "Teleport", null, null));
