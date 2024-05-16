@@ -93,7 +93,7 @@ public class CollisionCheck {
             String type = defineType(entityLeftX, entityRightX, entityTopY, entityBottomY, tileLeftX, tileRightX, tileTopY, tileBottomY);
             if (!type.equals("no-collision")) {
                 if(considerTile.Type == "Marker")
-                    considerTile.isCollision = false;
+                    considerTile.isCollision = true;
 
                 else{
 

@@ -4,15 +4,17 @@ import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.Vector;
 
 import animation.Animation_player;
 import main.GamePanel;
 import main.Main;
 import tile.ExtraTile;
+import tile.Object;
 import tile.Tile;
 
 public class Map {
-    GamePanel gamePanel;
+    public GamePanel gamePanel;
     public int mapIndex;
     public int maxMapCol, maxMapRow;
     public int numExtraTile;
@@ -23,13 +25,18 @@ public class Map {
     public Tile [] tileContainer;
     public int prevScale = (int) GamePanel.scale;
     public ExtraTile[] extraTile;
+    public Vector <Object> objectContainer =  new Vector <Object>();
     public Animation_player map_exchange_effect;
 
     public void addTile(Tile tile) {
         tileContainer[numTileContainer++] = tile;
     }
 
-    public void addExtraTile(String src) {
+    public void addObject(Object object){
+        objectContainer.add(object);
+    }
+
+    public void addExtraTile(String src){
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(src)));
             String line = "";
