@@ -184,8 +184,84 @@ public class Player extends Entity {
                 hitArea.x = newMapX + boundingBox.width / 4;
                 hitArea.y = newMapY + boundingBox.height / 3 * 2;
                 collision.scanCollision(this, gamepanel.currentMap);
-            } else
-                checkBug = true;
+                if (collision.getNumCollision() > 0){
+                        if (direction.equals("up-left")){
+                            newMapX = mapX - speed;
+                            newMapY = mapY;
+                            hitArea.x = newMapX + boundingBox.width / 4;
+                            hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                            collision.scanCollision(this, gamepanel.currentMap);
+                            if (collision.getNumCollision() == 0)
+                                direction = "left";
+                            else {
+                                newMapX = mapX;
+                                newMapY = mapY - speed;
+                                hitArea.x = newMapX + boundingBox.width / 4;
+                                hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                                collision.scanCollision(this, gamepanel.currentMap);
+                                if (collision.getNumCollision() == 0)
+                                    direction = "up";
+                            }
+                        }
+
+                    if (direction.equals("up-right")){
+                            newMapX = mapX + speed;
+                            newMapY = mapY;
+                            hitArea.x = newMapX + boundingBox.width / 4;
+                            hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                            collision.scanCollision(this, gamepanel.currentMap);
+                            if (collision.getNumCollision() == 0)
+                                direction = "right";
+                            else {
+                                newMapX = mapX;
+                                newMapY = mapY - speed;
+                                hitArea.x = newMapX + boundingBox.width / 4;
+                                hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                                collision.scanCollision(this, gamepanel.currentMap);
+                                if (collision.getNumCollision() == 0)
+                                    direction = "up";
+                            }
+                        }
+                    if (direction.equals("down-left")){
+                            newMapX = mapX - speed;
+                            newMapY = mapY;
+                            hitArea.x = newMapX + boundingBox.width / 4;
+                            hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                            collision.scanCollision(this, gamepanel.currentMap);
+                            if (collision.getNumCollision() == 0) {
+                                direction = "left";
+                            }
+                            else {
+                                newMapX = mapX;
+                                newMapY = mapY + speed;
+                                hitArea.x = newMapX + boundingBox.width / 4;
+                                hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                                collision.scanCollision(this, gamepanel.currentMap);
+                                if (collision.getNumCollision() == 0)
+                                    direction = "down";
+                            }
+                        }
+                    if (direction.equals("down-right")){
+                            newMapX = mapX + speed;
+                            newMapY = mapY;
+                            hitArea.x = newMapX + boundingBox.width / 4;
+                            hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                            collision.scanCollision(this, gamepanel.currentMap);
+                            if (collision.getNumCollision() == 0)
+                                direction = "right";
+                            else {
+                                newMapX = mapX;
+                                newMapY = mapY + speed;
+                                hitArea.x = newMapX + boundingBox.width / 4;
+                                hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                                collision.scanCollision(this, gamepanel.currentMap);
+                                if (collision.getNumCollision() == 0)
+                                    direction = "down";
+                            }
+                        }
+                }
+            } else checkBug = true;
+
             if (checkBug || collision.getNumCollision() == 0) {
                 mapX = newMapX;
                 mapY = newMapY;

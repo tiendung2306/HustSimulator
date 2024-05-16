@@ -118,23 +118,29 @@ public class Collision {
     }
 
     public void pushDialog() {
+        /*boolean checkDoor = false;
+        for (int i = 0; i < numCollision; ++i)
+            if (collisionTile[i].Type.equals("Teleport")) {
+                checkDoor = true;
+                break;
+            }*/
         if (!Main.topGameState().equals("Dialog") && !gamePanel.phone.isDrawPhone)
             Main.pushGameState("Dialog");
         switch (collisionTile[0].Type) {
             case "Teleport": {
-                ui.currentDialog = "Teleport to ";
+                ui.currentDialog = "Bạn vừa dịch chuyển tới ";
                 break;
             }
             case "Collected": {
-                ui.currentDialog = "You've collected a ";
+                ui.currentDialog = "Bạn vừa thu thập ";
                 break;
             }
             case "Interact": {
-                ui.currentDialog = "You're interacting with ";
+                ui.currentDialog = "Bạn đang tương tác với ";
                 break;
             }
             case "Obstacle": {
-                ui.currentDialog = "You're hitting ";
+                ui.currentDialog = "Bạn đang va chạm với ";
                 break;
             }
         }
@@ -142,7 +148,11 @@ public class Collision {
             if (i > 0 && !collisionTile[i - 1].Name.equals("") && !collisionTile[i].Name.equals(""))
                 ui.currentDialog += " and ";
             if (!collisionTile[i].Name.equals(""))
-                ui.currentDialog += collisionTile[i].Name;
+            {
+                if (collisionTile[i].Name.equals("Door My Room"))
+                    ui.currentDialog += "Hanoi University of Tạch Môn!";
+                else ui.currentDialog += collisionTile[i].Name;
+            }
         }
     }
 
