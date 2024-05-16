@@ -56,10 +56,10 @@ public class Inventory implements ActionListener {
         item1.setActionCommand("Use");
         popMenu.add(item1);
 
-        item2 = new JMenuItem("Drop");
+        /*item2 = new JMenuItem("Drop");
         item2.addActionListener(this);
         item2.setActionCommand("Drop");
-        popMenu.add(item2);
+        popMenu.add(item2);*/
 
         item3 = new JMenuItem("Info");
         item3.addActionListener(this);
