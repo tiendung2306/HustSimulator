@@ -18,7 +18,7 @@ import tile.Tile;
 
 
 public class Section_1 extends Map {
-    Tile background, C1, C2, C9, hall, hallway_entry;
+    public Tile background, C1, C2, C9, hall, hallway_entry;
     Tile spawn_point;
 
 
