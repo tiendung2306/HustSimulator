@@ -103,6 +103,7 @@ public class Phone {
         firstLogoY = phoneStartY + phoneHeight / 7;
         spaceSizeBetween2Logo = phoneWidth / 13;
         spaceSizeBetweenLogoAndName = phoneHeight / 40;
+        if(isDrawPhone) isDrawPhone = false;
     }
 
     public void setPhoneState(String stateName) {

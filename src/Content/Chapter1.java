@@ -214,6 +214,7 @@ public class Chapter1 extends Chapter {
         }
         if (completedAct == 12 && gamePanel.currentMap == gamePanel.c2_hall) {
             completedAct++;
+            gamePanel.directionIndicator.resetArrow();
         }
         if (completedAct == 13) {
             Dialogue("Theo thông báo của trường thì mình phải nộp hồ sơ ở hàng số 3 tính từ trái qua");

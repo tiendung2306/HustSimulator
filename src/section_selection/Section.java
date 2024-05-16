@@ -1,14 +1,15 @@
 package section_selection;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Vector;
 
-import section_selection.shape.*;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import Mouse.MouseManager;
-
-import java.io.*;
+import section_selection.shape.Point;
+import section_selection.shape.Shape;
 
 
 class Section {
@@ -87,6 +88,7 @@ class Section {
         if (unlock) {
             section_selection.close();
             section_selection.gamePanel.phone.isDrawPhone = false;
+            section_selection.gamePanel.player.ButtonInteract = false;
 
             switch (tag) {
                 case "Section1":

@@ -27,14 +27,15 @@ public class Collision {
         collisionTile = collisionCheck.collisionTile;
         tileIndex = collisionCheck.tileIndex;
         pushDialog();
+        Boolean isTeleport = false;
         if (numCollision == 1 && collisionTile[0].Type.equals("Interact"))
             interactItem = collisionTile[0];
         for (int i = 0; i < numCollision; ++i) {
             if (collisionTile[i].Type.equals("Collected"))
                 collectItem(i);
-            if (collisionTile[i].Type.equals("Teleport")) {
+            if (!isTeleport && collisionTile[i].Type.equals("Teleport")) {
                 teleport(collisionTile[i].Name);
-
+                isTeleport = true;
             }
         }
     }
