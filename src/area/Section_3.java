@@ -1,6 +1,7 @@
 package area;
 
 import main.GamePanel;
+import main.Main;
 import map.Map;
 import tile.Tile;
 
@@ -83,7 +84,13 @@ public class Section_3 extends Map {
 
     }
 
-    
+    public void open(){
+        loadMap(gamePanel);
+    }
+
+    public void close(){
+        Main.popGameState();
+    }
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {

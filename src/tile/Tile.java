@@ -2,23 +2,90 @@ package tile;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import main.GamePanel;
 
+import javax.imageio.ImageIO;
+
 public class Tile{
+    GamePanel gamePanel;
+    int x,y;
+    public int width_tile,height_tile;
+    public double scale_collect;
+    public String name_path,name_path2;
+
     public BufferedImage image, imageEffcet;
-    public String Name;
+    public String Name,name,type,description;
     public int numOwn;
     public String Type;
-    public String Description,isEffect,name_path,name_path2;
-    int LeftX, RightX, TopY, BottomY;
+    public String Description;
+    public int LeftX, RightX, TopY, BottomY;
 
-    int width, height;
+    public int width, height;
     public boolean isCollision;
     public boolean isMission;
 
     public Tile() {
         Name = "Empty";
+    }
+
+    public Tile(GamePanel gamePanel, int x, int y, int width_tile, int height_tile, String name, String type, String description, String name_path,String name_path2,double scale_collect) {
+        this.x = x;
+        this.y = y;
+        this.scale_collect = scale_collect;
+        this.width_tile = width_tile;
+        this.height_tile = height_tile;
+        this.gamePanel = gamePanel;
+        this.name = name;
+        this.type = type;
+        this.name_path = name_path;
+        this.name_path2 = name_path2;
+        this.description = description;
+        Description = description;
+        Name = name;
+        Type = type;
+        try {
+            image = ImageIO.read(new FileInputStream(name_path));
+            imageEffcet = ImageIO.read(new FileInputStream(name_path2));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BoundingBox();
+    }
+
+    public Tile(GamePanel gamePanel, int x, int y, int width_tile, int height_tile, String name, String type, String description, String name_path,double scale_collect) {
+        this.x = x;
+        this.y = y;
+        this.scale_collect = scale_collect;
+        this.width_tile = width_tile;
+        this.height_tile = height_tile;
+        this.gamePanel = gamePanel;
+        this.name = name;
+        this.type = type;
+        this.name_path = name_path;
+        this.description = description;
+        Name = name;
+        Type = type;
+        try {
+            image = ImageIO.read(new FileInputStream(name_path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BoundingBox();
+    }
+    public void BoundingBox() {
+        setLeftX((int) (x * GamePanel.scale));
+        setTopY((int) (y * GamePanel.scale));
+        setRightX((int) ((x + width_tile * scale_collect) * GamePanel.scale));
+        setBottomY((int) ((y + height_tile * scale_collect) * GamePanel.scale));
+        setWidth((int) (width_tile * GamePanel.scale * scale_collect));
+        setHeight((int) (height_tile * GamePanel.scale * scale_collect));
+    }
+
+    public void reSizeTile() {
+        BoundingBox();
     }
 
     public void copyTile(Tile tile){
@@ -29,37 +96,9 @@ public class Tile{
         Description = tile.Description;
         width = tile.width;
         height = tile.height;
+        imageEffcet = tile.imageEffcet;
     }
 
-    public Tile(int leftX, int rightX, int topY, int bottomY, String name, String type, String description, BufferedImage image,String name_path,String name_path2) {
-        this.name_path = name_path;
-        this.name_path2 = name_path2;
-        LeftX = leftX;
-        RightX = rightX;
-        TopY = topY;
-        BottomY = bottomY;
-        width = rightX - leftX;
-        height = bottomY - topY;
-        numOwn = 0;
-        Name = name;
-        Type = type;
-        Description = description;
-        this.image = image;
-    }
-
-    public Tile(int leftX, int rightX, int topY, int bottomY, String name, String type, String description, BufferedImage image) {
-        LeftX = leftX;
-        RightX = rightX;
-        TopY = topY;
-        BottomY = bottomY;
-        width = rightX - leftX;
-        height = bottomY - topY;
-        numOwn = 0;
-        Name = name;
-        Type = type;
-        Description = description;
-        this.image = image;
-    }
 
     public Tile(Rectangle box, String name, String type, String description, BufferedImage image) {
         LeftX = box.x;

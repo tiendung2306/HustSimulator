@@ -83,8 +83,6 @@ public class TileManager {
             // System.out.println(gamePanel.player.collision_collect + " " + gamePanel.player.checkNameTile);
             g2.drawImage(tile.imageEffcet, screenX, screenY, width, height, null);
         }
-
-
         if (tile.isMission)
             g2.drawImage(warningIcon, screenX + width, screenY - (int)(12 * GamePanel.scale) + extraY, (int) (3 * GamePanel.scale), (int) (9 * GamePanel.scale), null);
         g2.drawRect(screenX, screenY, width, height);

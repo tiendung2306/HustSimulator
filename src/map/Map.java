@@ -58,16 +58,9 @@ public class Map {
     }
     public void loadMap(GamePanel gamePanel){
         gamePanel.currentMap = this;
-        // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
-        // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
         gamePanel.player.setMapX(playerX);
         gamePanel.player.setMapY(playerY);
     }
-    public void reSizeMap(GamePanel gamePanel) {
-        // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
-        // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
-    }
-
     public void draw(Graphics2D g2) {
         
     }

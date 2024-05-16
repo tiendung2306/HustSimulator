@@ -3,12 +3,10 @@ package tile;
 import main.GamePanel;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class TileSection extends Tile{
+public class TileSection extends Tile {
     public int x,y,width_tile,height_tile;
     public double scale_collect;
     public String name,type,name_path,description,name_path2;
@@ -60,6 +58,10 @@ public class TileSection extends Tile{
         }
         BoundingBox();
     }
+
+    public void reSizeTile() {
+        BoundingBox();
+    }
     public void BoundingBox() {
         setLeftX((int) (x * GamePanel.scale));
         setTopY((int) (y * GamePanel.scale));
@@ -68,6 +70,5 @@ public class TileSection extends Tile{
         setWidth((int) (width_tile * GamePanel.scale * scale_collect));
         setHeight((int) (height_tile * GamePanel.scale * scale_collect));
     }
-
 
 }

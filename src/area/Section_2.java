@@ -1,6 +1,7 @@
 package area;
 
 import main.GamePanel;
+import main.Main;
 import map.Map;
 import tile.Tile;
 
@@ -11,6 +12,8 @@ import java.io.*;
 
 public class Section_2 extends Map {
     Tile background, D3, D5, D3_5, D7, D9;
+    Tile hallway_entry_1, hallway_entry_2, hallway_entry_3;
+    Tile spawn_point;
     GamePanel gamePanel;
 
 
@@ -24,7 +27,6 @@ public class Section_2 extends Map {
         TileLoad();
         SetOriginalSize();
         ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 2605 / (40 * background.getHeight()));
-        SetPlayerPos();
     }
 
     private void SetOriginalSize(){
@@ -39,6 +41,8 @@ public class Section_2 extends Map {
         background.setWidth((int)(background.getWidth() * scale));
         background.setHeight((int)(background.getHeight() * scale));
 
+        spawn_point.resize(scale);
+
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 
@@ -47,15 +51,17 @@ public class Section_2 extends Map {
         width = background.getWidth();
         height = background.getHeight();
 
+        SetPlayerPos();
+
     }
 
     private void SetPlayerPos(){
-        playerX = (int) (width * 1.0 / 2);
-        playerY = (int) (height * 1.0 / 2);
+        playerX = spawn_point.getLeftX();
+        playerY = spawn_point.getTopY();
     }
 
     private void TileLoad() {
-        tileContainer = new Tile[5];
+        tileContainer = new Tile[6];
 
         try {
             BufferedImage bacImage = ImageIO.read(new FileInputStream("res/tile/Section2_demo.png"));
@@ -69,13 +75,30 @@ public class Section_2 extends Map {
         D5 = new Tile(new Rectangle(486, 1497, 1088, 390), "D5", "Obstacle", null, null);
         D9 = new Tile(new Rectangle(2030, 251, 1226, 402), "D9", "Obstacle", null, null);
 
+        hallway_entry_1 = new Tile(new Rectangle(691 , 2344 , 25 , 23), "D3_Hallway", "Teleport", null, null);
+        hallway_entry_2 = new Tile(new Rectangle(908 , 2355 , 198 , 38), "D3_Hallway", "Teleport", null, null);
+        hallway_entry_3 = new Tile(new Rectangle(1297 , 2345 , 26 , 21), "D3_Hallway", "Teleport", null, null);
+        
+        spawn_point = new Tile(new Rectangle(988 , 2438 , 30 , 47), "", "", null, null);
+
+        addTile(hallway_entry_1);
+        addTile(hallway_entry_2);
+        addTile(hallway_entry_3);
+        
         addTile(D3);
         addTile(D5);
         addTile(D9);
 
 
     }
+    
+    public void open(){
+        loadMap(gamePanel);
+    }
 
+    public void close(){
+        Main.popGameState();
+    }
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {

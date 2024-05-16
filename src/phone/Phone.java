@@ -377,7 +377,7 @@ public class Phone {
                 }
                 break;
             case "Map":
-                gamePanel.section_selection.open();
+                gamePanel.section_selection.open(false);
                 break;
         }
     }
