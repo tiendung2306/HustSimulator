@@ -152,7 +152,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void screenResize() {
         missionDescription.screenResize();
-        phone.screenResize();
         if(currentMap == myRoom) {
             myRoom.resetTile();
         }
@@ -169,8 +168,9 @@ public class GamePanel extends JPanel implements Runnable {
             stadium.resetTile();
         }
         currentMap.loadMap(this);
-        player.setDefaultValues();
+        player.reSize();
         inventory.ScreenResize();
+        phone.screenResize();
         ui.screenResize();
         section_selection.screenResize();
     }

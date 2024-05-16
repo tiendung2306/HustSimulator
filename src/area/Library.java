@@ -15,8 +15,6 @@ public class Library extends Map {
 
     public Library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        // maxMapCol = 21;
-        // maxMapRow = 18;
         width = (int)(21 * 16 * gamePanel.scale);
         height = (int)(16 * 16 * gamePanel.scale);
         tileContainer = new Tile[50];
@@ -89,8 +87,9 @@ public class Library extends Map {
     public void resetTile(){
         width = (int) (21 * 16 * GamePanel.scale);
         height = (int) (16 * 16 * GamePanel.scale);
-        playerX = (int) (160 * GamePanel.scale);
-        playerY = (int) (34 * GamePanel.scale);
+        playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
+        playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
+        prevScale = (int) GamePanel.scale;
         background.setWidth((int) (320 * GamePanel.scale));
         background.setHeight((int) (240 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {

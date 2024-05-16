@@ -17,6 +17,7 @@ public class Map {
     public int numTileContainer;
     public int playerX, playerY;
     public Tile [] tileContainer;
+    public int prevScale = (int) GamePanel.scale;
     public ExtraTile[] extraTile;
     public void addTile(Tile tile){
         tileContainer[numTileContainer++] = tile;

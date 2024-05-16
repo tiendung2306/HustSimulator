@@ -17,8 +17,8 @@ public class MyRoom extends Map {
 
     public MyRoom(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        width = (int) (29 * 16 * gamePanel.scale);
-        height = (int) (16 * 16 * gamePanel.scale);
+        width = (int) (29 * 16 * GamePanel.scale);
+        height = (int) (16 * 16 * GamePanel.scale);
         tileContainer = new Tile[50];
         extraTile = new ExtraTile[10];
         background = new Tile();
@@ -88,9 +88,6 @@ public class MyRoom extends Map {
 
         setTileChair();
         setUpTileMyRoom();
-        for (int i = 0; i < numTileContainer; ++i) {
-            System.out.println(tileContainer[i].Name);
-        }
     }
 
     public void setUpTileMyRoom() {
@@ -120,8 +117,9 @@ public class MyRoom extends Map {
     public void resetTile() {
         width = (int) (29 * 16 * GamePanel.scale);
         height = (int) (16 * 16 * GamePanel.scale);
-        playerX = (int) (215 * GamePanel.scale);
-        playerY = (int) (75 * GamePanel.scale);
+        playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
+        playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
+        prevScale = (int) GamePanel.scale;
         background.setWidth((int) (450 * GamePanel.scale));
         background.setHeight((int) (242 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {

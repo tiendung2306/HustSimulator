@@ -89,6 +89,21 @@ public class Player extends Entity {
         curr_animation_player = animation_player_stand_RIGHT;
     }
 
+    public void reSize() {
+        boundingBox.width = (int) (32 * GamePanel.scale);
+        boundingBox.height = (int) (32 * GamePanel.scale);
+        hitArea.x = boundingBox.width / 4;
+        hitArea.y = boundingBox.height / 3 * 2;
+        hitArea.width = boundingBox.width / 2;
+        hitArea.height = boundingBox.height / 3;
+        screenX = (int) (GamePanel.screenWidth / 2 - boundingBox.width / 2);
+        screenY = (int) (GamePanel.screenHeight / 2 - boundingBox.height / 2);
+        boundingBox.x = screenX;
+        boundingBox.y = screenY;
+        speed = 4;
+        speedSlant = 3;
+    }
+
 
     // =============================================================================================================================================
     public void update() {
