@@ -6,6 +6,8 @@ import tile.Tile;
 import tile.TileSection;
 import java.awt.*;
 
+import animation.Animation_player;
+
 public class NormalClassroom extends Map {
     GamePanel gamePanel;
     Tile background;
@@ -46,6 +48,9 @@ public class NormalClassroom extends Map {
         addTile(tileTableTeacher);
         for (int i = 0; i < 10; i++)
             addTile(tileTable[i]);
+
+        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+
     }
 
     private void setUpTable() {

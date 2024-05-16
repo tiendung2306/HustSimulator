@@ -1,11 +1,15 @@
 package map;
 
+import java.awt.Graphics2D;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
+import animation.Animation_player;
 import main.GamePanel;
+import main.Main;
 import tile.ExtraTile;
 import tile.Tile;
-
-import java.awt.Graphics2D;
-import java.io.*;
 
 public class Map {
     GamePanel gamePanel;
@@ -19,10 +23,13 @@ public class Map {
     public Tile [] tileContainer;
     public int prevScale = (int) GamePanel.scale;
     public ExtraTile[] extraTile;
-    public void addTile(Tile tile){
+    public Animation_player map_exchange_effect;
+
+    public void addTile(Tile tile) {
         tileContainer[numTileContainer++] = tile;
     }
-    public void addExtraTile(String src){
+
+    public void addExtraTile(String src) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(src)));
             String line = "";
@@ -52,18 +59,33 @@ public class Map {
             // TODO: handle exception
         }
     }
-    public void deleteTile(int index){
+
+    public void deleteTile(int index) {
         --numTileContainer;
         for (int i = index; i < numTileContainer; ++i)
             tileContainer[i] = tileContainer[i + 1];
     }
-    public void loadMap(GamePanel gamePanel){
+
+    public void loadMap(GamePanel gamePanel) {
         gamePanel.currentMap = this;
+        if (map_exchange_effect != null) {
+            map_exchange_effect.setState("run");
+            map_exchange_effect.setTimer(1.0);
+            Main.pushGameState("Loading");
+        }
+        // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
+        // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
         gamePanel.player.setMapX(playerX);
         gamePanel.player.setMapY(playerY);
     }
+
+    public void reSizeMap(GamePanel gamePanel) {
+        // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
+        // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
+    }
+
     public void draw(Graphics2D g2) {
-        
+
     }
 
 }

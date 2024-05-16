@@ -8,6 +8,8 @@ import tile.TileSection;
 
 import java.awt.*;
 
+import animation.Animation_player;
+
 public class MyRoom extends Map {
     Tile background;
     GamePanel gamePanel;

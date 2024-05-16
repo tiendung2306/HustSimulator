@@ -9,16 +9,24 @@ import java.awt.*;
 
 import entity.Player;
 import main.GamePanel;
+import time.TimeSystem;
 
 public class Animation_player{
 
     GamePanel gamePanel;
     BufferedImage[] frames;
-    double total_loop_time;
+    int index = 0;
+
     public Rectangle play_area;
+
+    double total_loop_time;
     double one_loop_time;
     double pre_loop_time = -1.0;
-    int index = 0;
+
+    double start_time;
+    double lasted_time = -1.0;
+
+    boolean Switch = true;
     Player player;
 
     String state = "run";
@@ -62,29 +70,65 @@ public class Animation_player{
 
     private void update() {
 
-        if((System.nanoTime() - pre_loop_time) / 1000000000 > one_loop_time)  {
+        if((TimeSystem.getCurrentSystemTimeInMilliseconds() - pre_loop_time) / 1000 > one_loop_time)  {
 
-            pre_loop_time = System.nanoTime() ;
+            pre_loop_time = TimeSystem.getCurrentSystemTimeInMilliseconds() ;
             if(index == frames.length - 1)
                 index = 0;
             else
                 index += 1;
 
         }
+        if (lasted_time > 0){
 
+            if((TimeSystem.getCurrentSystemTimeInMilliseconds() - start_time) / 1000 > lasted_time)  {
+                
+                state = "stop";
+                Switch = true;
+                lasted_time = -1.0;
+
+                
+            }
+        }
+    }
+
+    public void resize(double scale){
+        play_area.x = (int)(play_area.x * scale);
+        play_area.y = (int)(play_area.y * scale);
+        play_area.width = (int)(play_area.width * scale);
+        play_area.height = (int)(play_area.height * scale);
+    }
+
+    public void setTimer(double lasted_time){
+        this.lasted_time = lasted_time;
+    }
+
+    public void setState(String state){
+        this.state = state;
+    }
+
+    public boolean isRunning(){
+        if(state == "run")
+            return true;
+
+        else
+            return false;
     }
 
     public void operation(Graphics graphics) {
         
-        if(state == "run")  {
-            if(pre_loop_time == -1.0)
-                pre_loop_time = System.nanoTime();
-
-            update();
-
-            graphics.drawImage(frames[index], play_area.x, play_area.y, play_area.width, play_area.height, null);
-
+        if(Switch){
+            state = "run";
+            start_time = TimeSystem.getCurrentSystemTimeInMilliseconds();
+            Switch = false;
         }
+
+        if(pre_loop_time == -1.0)
+            pre_loop_time = TimeSystem.getCurrentSystemTimeInMilliseconds();
+
+        update();
+
+        graphics.drawImage(frames[index], play_area.x, play_area.y, play_area.width, play_area.height, null);
     }
 
 }

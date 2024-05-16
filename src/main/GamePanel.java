@@ -11,6 +11,7 @@ import Collision.Collision;
 import Content.Chapter;
 import Content.Chapter1;
 import Content.Chapter2;
+import GUI.DirectionIndicator;
 import GUI.MissionDescription;
 import Inventory.Inventory;
 import Keyboard.KeyboardManager;
@@ -24,10 +25,11 @@ import area.Section_1;
 import area.Section_2;
 import area.Section_3;
 import area.Stadium;
-import area.C2.*;
+import area.C2.C2_hall;
+import area.C2.C2_hallway;
 import area.D3.D3_hallway;
 import area.D3.D3_secondfloor_hallway;
-import area.D3_5.*;
+import area.D3_5.D3_5_hallway_secondfloor;
 import entity.Player;
 import map.Map;
 import phone.Phone;
@@ -50,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
     public TileManager tileManager = new TileManager(this);
     Thread gameThread;
     SoundManager soundManager = new SoundManager();
-    TimeSystem timeSystem = new TimeSystem();
+    public TimeSystem timeSystem = new TimeSystem();
 
     public static Main_Menu mainMenu = new Main_Menu();
     public static NextMainMenu nextMainMenu = new NextMainMenu();
@@ -92,6 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
     public Phone phone = new Phone(this);
     public MissionDescription missionDescription = new MissionDescription(this);
+    public DirectionIndicator directionIndicator = new DirectionIndicator(this);
     public KeyHandler keyH = new KeyHandler(this);
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
@@ -285,6 +288,7 @@ public class GamePanel extends JPanel implements Runnable {
         player.update();
         inventory.update();
         missionDescription.update();
+        directionIndicator.update();
         if (Main.nguoncode == 1) {
             if (Main.topGameState().equals(Main.states[0])) {
                 mainMenu.update();
@@ -344,6 +348,11 @@ public class GamePanel extends JPanel implements Runnable {
             if (keyH.isPhonePressed) {
                 keyH.isPhonePressed = false;
             }
+        }
+
+        if (Main.topGameState().equals("Loading")){
+            if (currentMap.map_exchange_effect.isRunning() == false)
+                Main.popGameState();
         }
     }
     // =================================================================================================================
@@ -408,6 +417,7 @@ public class GamePanel extends JPanel implements Runnable {
                 || Main.topGameState().equals("Dialogue")) {
             if (chapter1.IntroFinished) {
                 drawMap(g2);
+                directionIndicator.drawArrow(g2);
                 player.draw(g2);
                 inventory.draw(g2);
                 missionDescription.draw(g2);
@@ -418,6 +428,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (Main.topGameState().equals("Map")) {
             section_selection.operation(g);
+        }
+
+        else if (Main.topGameState().equals("Loading")){
+            currentMap.map_exchange_effect.operation(g);
         }
 
     }

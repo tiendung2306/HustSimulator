@@ -1,6 +1,5 @@
 package Collision;
 
-import area.D3_5.D3_5_hallway_secondfloor;
 import entity.Entity;
 import main.GamePanel;
 import main.Main;
@@ -50,43 +49,75 @@ public class Collision {
                 gamePanel.stadium.loadMap(gamePanel);
                 break;
             
-            case "C2_Hallway":
-                gamePanel.c2_hallway.open();
+            case "C2_Hallway_entry_stair":
+                gamePanel.c2_hallway.open("enter_from_stair");
                 break;    
             
             case "C2_Hall_entry":
                 gamePanel.c2_hall.open();
                 break;
 
+            case "C2_Hall_exit":
+                gamePanel.c2_hallway.open("enter_from_door");
+                break;
+
             case "C2_Hallway_exit":
                 gamePanel.section_1.open();
                 break; 
 
-            case "D3_Hallway":
-                gamePanel.d3_hallway.open();
+            case "D3_Hallway_entry_stair1":
+                gamePanel.d3_hallway.open("enter_from_stair1");
+                break;
+
+            case "D3_Hallway_entry_stair2":
+                gamePanel.d3_hallway.open("enter_from_stair2");
+                break;
+
+            case "D3_Hallway_entry_stair3":
+                gamePanel.d3_hallway.open("enter_from_stair3");
                 break;      
 
             case "D3_exit":
                 gamePanel.section_2.open();
                 break; 
 
-            case "D3_1stfloor_stair":
-                gamePanel.d3_secondfloor_hallway.open();
-                break;        
-
-            case "D3_stair_down":
+            case "D3_stair_down1":
                 if(gamePanel.d3_secondfloor_hallway.curr_floor == 2)
-                    gamePanel.d3_hallway.open();
+                gamePanel.d3_hallway.open("enter_from_stair1");
                 else{
                     gamePanel.d3_secondfloor_hallway.curr_floor -= 1;
-                    gamePanel.d3_secondfloor_hallway.open();
+                    gamePanel.d3_secondfloor_hallway.open("enter_from_stair1");
+                }
+                break;
+                
+            case "D3_stair_down2":
+                if(gamePanel.d3_secondfloor_hallway.curr_floor == 2)
+                gamePanel.d3_hallway.open("enter_from_stair3");
+                else{
+                    gamePanel.d3_secondfloor_hallway.curr_floor -= 1;
+                    gamePanel.d3_secondfloor_hallway.open("enter_from_stair2");
+                }
+                break;
+                
+            case "D3_1stfloor_stair1":
+                gamePanel.d3_secondfloor_hallway.open("enter_from_stair1");
+                break;   
+
+            case "D3_1stfloor_stair2":
+                gamePanel.d3_secondfloor_hallway.open("enter_from_stair2");
+                break;  
+                
+            case "D3_stair_up1":
+                if(gamePanel.d3_secondfloor_hallway.curr_floor != 5){
+                    gamePanel.d3_secondfloor_hallway.curr_floor += 1;
+                    gamePanel.d3_secondfloor_hallway.open("enter_from_stair1");
                 }
                 break;
 
-            case "D3_stair_up":
+            case "D3_stair_up2":
                 if(gamePanel.d3_secondfloor_hallway.curr_floor != 5){
                     gamePanel.d3_secondfloor_hallway.curr_floor += 1;
-                    gamePanel.d3_secondfloor_hallway.open();
+                    gamePanel.d3_secondfloor_hallway.open("enter_from_stair2");
                 }
                 break;
 
@@ -97,7 +128,7 @@ public class Collision {
 
             case "D3<-D3_5_secondfloor_link":
                 gamePanel.d3_secondfloor_hallway.curr_floor = gamePanel.d3_5_hallway_secondfloor.curr_floor;
-                gamePanel.d3_secondfloor_hallway.open();
+                gamePanel.d3_secondfloor_hallway.open("enter_from_D3_5");
                 break;
                 
             case "D3-5_...01":

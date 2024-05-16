@@ -8,6 +8,16 @@ public class Button extends Section {
 
     
     @Override protected void OnClick(){
-        section_selection.close();
+        if(tag == "backButton")
+            section_selection.close();
+
+        else if(tag == "homeButton"){
+            if(section_selection.gamePanel.currentMap != section_selection.gamePanel.myRoom){
+                section_selection.gamePanel.currentMap = section_selection.gamePanel.myRoom;
+                section_selection.gamePanel.currentMap.loadMap(section_selection.gamePanel);
+                section_selection.close();
+
+            }
+        }
     }
 }

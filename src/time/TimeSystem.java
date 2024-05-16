@@ -27,7 +27,7 @@ public class TimeSystem {
         day++;
     }
 
-    public static void goBackDay() { //who need this shjtty kind of func???
+    public static void goBackDay() { //who need this shjtty kind of func??? //yea no one need this shjt
         day--;
     }
 }
