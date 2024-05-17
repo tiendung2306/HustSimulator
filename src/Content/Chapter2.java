@@ -38,6 +38,7 @@ public class Chapter2 extends Chapter{
             missionDescription.setMissionDescription("Kiểm tra lịch học ở trong app Fhust.");
             gamePanel.myRoom.tilePhone.isMission = true;
             phone.isOpenFhust = false;
+            TimeSystem.goNextDay();
         }
         if (completedAct == 5){
             if (phone.isOpenFhust && !phone.isDrawPhone) {

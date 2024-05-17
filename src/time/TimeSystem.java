@@ -1,7 +1,7 @@
 package time;
 
 public class TimeSystem {
-    public static int day = 4;
+    public static int day = 1;
     public static String currentTime = "88:88";
     
     public static long currentSystemTime = 0; //thoi gian tu luc bat dau game den gio (tinh theo nano giay)

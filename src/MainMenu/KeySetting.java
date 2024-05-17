@@ -24,17 +24,24 @@ public class KeySetting extends JPanel {
         getImage();
     }
 
+    String stringNormalization(String s) {
+        if(s.length() == 1) s = "    " + s;
+        else if(s.length() == 2)    s = "   " + s;
+        else if(s.length() == 3)    s = "  " + s;
+        return s;
+    }
+
     public void init() {
-        upKeyName = KeyboardManager.getKeyName("UP");
-        downKeyName = KeyboardManager.getKeyName("DOWN");
-        leftKeyName = KeyboardManager.getKeyName("LEFT");
-        rightKeyName = KeyboardManager.getKeyName("RIGHT");
-        interactKeyName = KeyboardManager.getKeyName("INTERACT");
-        nextDialogueKeyName1 = KeyboardManager.getKeyName("NEXTDIALOGUE1");
-        nextDialogueKeyName2 = KeyboardManager.getKeyName("NEXTDIALOGUE2");
-        pauseKeyName = KeyboardManager.getKeyName("PAUSE");
-        inventoryKeyName = KeyboardManager.getKeyName("INVENTORY");
-        phoneKeyName = KeyboardManager.getKeyName("PHONE");
+        upKeyName = stringNormalization(KeyboardManager.getKeyName("UP"));
+        downKeyName = stringNormalization(KeyboardManager.getKeyName("DOWN"));
+        leftKeyName = stringNormalization(KeyboardManager.getKeyName("LEFT"));
+        rightKeyName = stringNormalization(KeyboardManager.getKeyName("RIGHT"));
+        interactKeyName = stringNormalization(KeyboardManager.getKeyName("INTERACT"));
+        nextDialogueKeyName1 = stringNormalization(KeyboardManager.getKeyName("NEXTDIALOGUE"));
+        nextDialogueKeyName2 = stringNormalization(KeyboardManager.getKeyName("NEXTDIALOGUE"));
+        pauseKeyName = stringNormalization(KeyboardManager.getKeyName("PAUSE"));
+        inventoryKeyName = stringNormalization(KeyboardManager.getKeyName("INVENTORY"));
+        phoneKeyName = stringNormalization(KeyboardManager.getKeyName("PHONE"));
     }
 
     public void getImage() {
@@ -155,13 +162,13 @@ public class KeySetting extends JPanel {
         if (inputKey == KeyEvent.VK_SPACE)
             return "SPACE";
         if (inputKey == KeyEvent.VK_ESCAPE)
-            return " ESC ";
+            return "  ESC";
         if (inputKey == KeyEvent.VK_ENTER)
             return "ENTER";
         if (inputKey == KeyEvent.VK_UP)
-            return " UP ";
+            return "   UP";
         if (inputKey == KeyEvent.VK_DOWN)
-            return " DOWN";
+            return "DOWN";
         if (inputKey == KeyEvent.VK_LEFT)
             return " LEFT";
         if (inputKey == KeyEvent.VK_RIGHT)
@@ -169,7 +176,7 @@ public class KeySetting extends JPanel {
         if (inputKey == KeyEvent.VK_SHIFT)
             return "SHIFT";
         if (inputKey >= KeyEvent.VK_A && inputKey <= KeyEvent.VK_Z)
-            return Character.toString(KeyboardManager.getReleasedKeyName());
+            return "    " + Character.toString(KeyboardManager.getReleasedKeyName());
         return null;
     }
 
@@ -285,7 +292,7 @@ public class KeySetting extends JPanel {
             }
             enterkey = enterkey1;
             checkPressAKey = false;
-            getInputKeyAndBindingKey("INTERACT");
+            getInputKeyAndBindingKey("NEXTDIALOGUE1");
         } else if (check.equals("square2change")) {
             if (!prevCheck.equals(check)) {
                 KeyboardManager.resetReleasedKey();
@@ -293,7 +300,7 @@ public class KeySetting extends JPanel {
             }
             enterkey = enterkey1;
             checkPressAKey = false;
-            getInputKeyAndBindingKey("NEXTDIALOGUE1");
+            getInputKeyAndBindingKey("INTERACT");
         } else if (check.equals("square3change")) {
             if (!prevCheck.equals(check)) {
                 KeyboardManager.resetReleasedKey();
