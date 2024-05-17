@@ -396,14 +396,14 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void loadChapter(String chapter) {
-        if (chapter.equals("chap1")) {
+        if (chapter.equals("chap 1")) {
             currentMap = myRoom;
             currentChapter = chapter1;
             chapter1.currentTimeline = 0;
             chapter1.IntroFinished = false;
             chapter1.completedAct = 0;
         }
-        if (chapter.equals("chap2")) {
+        if (chapter.equals("chap 2")) {
             currentMap = myRoom;
             currentChapter = chapter2;
             chapter2.currentTimeline = 0;
