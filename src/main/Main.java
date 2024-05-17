@@ -45,7 +45,7 @@ public class Main {
         pushGameState("MainMenu");
         GamePanel gamePanel = new GamePanel();
         Main.window = new JFrame();
-        Main.window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Main.window.setResizable(false);
         Main.window.setTitle("2D Adventure");
         Main.window.setLayout(new BoxLayout(Main.window.getContentPane(), BoxLayout.Y_AXIS));
