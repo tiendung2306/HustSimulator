@@ -6,6 +6,8 @@ public class TimeSystem {
     
     public static long currentSystemTime = 0; //thoi gian tu luc bat dau game den gio (tinh theo nano giay)
     public static long startSystemTime = 0;
+    public static long savedElapsedTime = 0;
+    public static String currentPlayDate = "88/88/8888";
 
     public TimeSystem() {
         startSystemTime = System.nanoTime();
