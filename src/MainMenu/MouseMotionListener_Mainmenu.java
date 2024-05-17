@@ -115,34 +115,34 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                 if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
                         && (y_enter < 50 * Main.ey))
                     keySetting.buttonReturnEnter();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 87 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 87 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 125 * Main.ey))
                     keySetting.keysetting_squareup();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 175 * Main.ey))
                     keySetting.keysetting_squaredown();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 67 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 67 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 125 * Main.ey))
                     keySetting.keysetting_squareleft();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 175 * Main.ey))
                     keySetting.keysetting_squareright();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 435 * Main.ey))
                     keySetting.keysetting_square1();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 435 * Main.ey))
                     keySetting.keysetting_square2();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 485 * Main.ey))
                     keySetting.keysetting_square3();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 485 * Main.ey))
                     keySetting.keysetting_square4();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 535 * Main.ey))
                     keySetting.keysetting_square5();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 535 * Main.ey))
                     keySetting.keysetting_square6();
                 else keySetting.keysettingrollback();

@@ -30,8 +30,8 @@ public class KeySetting extends JPanel {
         leftKeyName = KeyboardManager.getKeyName("LEFT");
         rightKeyName = KeyboardManager.getKeyName("RIGHT");
         interactKeyName = KeyboardManager.getKeyName("INTERACT");
-        nextDialogueKeyName1 = KeyboardManager.getKeyName("NEXTDIALOGUE");
-        nextDialogueKeyName2 = KeyboardManager.getKeyName("NEXTDIALOGUE");
+        nextDialogueKeyName1 = KeyboardManager.getKeyName("NEXTDIALOGUE1");
+        nextDialogueKeyName2 = KeyboardManager.getKeyName("NEXTDIALOGUE2");
         pauseKeyName = KeyboardManager.getKeyName("PAUSE");
         inventoryKeyName = KeyboardManager.getKeyName("INVENTORY");
         phoneKeyName = KeyboardManager.getKeyName("PHONE");
@@ -194,9 +194,9 @@ public class KeySetting extends JPanel {
                     rightKeyName = keyToString(inputKey);
                 if (keyName.equals("INTERACT"))
                     interactKeyName = keyToString(inputKey);
-                if (keyName.equals("NEXTDIALOGUE"))
+                if (keyName.equals("NEXTDIALOGUE1"))
                     nextDialogueKeyName1 = keyToString(inputKey);
-                if (keyName.equals("NEXTDIALOGUE"))
+                if (keyName.equals("NEXTDIALOGUE2"))
                     nextDialogueKeyName2 = keyToString(inputKey);
                 if (keyName.equals("PAUSE"))
                     pauseKeyName = keyToString(inputKey);
@@ -217,34 +217,34 @@ public class KeySetting extends JPanel {
         if (check.equals("buttonReturnEnter"))
             exitImg = exitImg1;
         else if (check.equals("squareup")) {
-            x_square = 66 * Main.ex;
+            x_square = 36 * Main.ex;
             y_square = 87 * Main.ey;
         } else if (check.equals("squaredown")) {
-            x_square = 66 * Main.ex;
+            x_square = 36 * Main.ex;
             y_square = 137 * Main.ey;
         } else if (check.equals("squareleft")) {
-            x_square = 666 * Main.ex;
+            x_square = 636 * Main.ex;
             y_square = 87 * Main.ey;
         } else if (check.equals("squareright")) {
-            x_square = 666 * Main.ex;
+            x_square = 636 * Main.ex;
             y_square = 137 * Main.ey;
         } else if (check.equals("square1")) {
-            x_square = 66 * Main.ex;
+            x_square = 36 * Main.ex;
             y_square = 397 * Main.ey;
         } else if (check.equals("square2")) {
-            x_square = 666 * Main.ex;
+            x_square = 636 * Main.ex;
             y_square = 397 * Main.ey;
         } else if (check.equals("square3")) {
-            x_square = 66 * Main.ex;
+            x_square = 36 * Main.ex;
             y_square = 447 * Main.ey;
         } else if (check.equals("square4")) {
-            x_square = 666 * Main.ex;
+            x_square = 636 * Main.ex;
             y_square = 447 * Main.ey;
         } else if (check.equals("square5")) {
-            x_square = 66 * Main.ex;
+            x_square = 36 * Main.ex;
             y_square = 497 * Main.ey;
         } else if (check.equals("square6")) {
-            x_square = 666 * Main.ex;
+            x_square = 636 * Main.ex;
             y_square = 497 * Main.ey;
         } else if (check.equals("squareup1")) {
             if (!prevCheck.equals(check)) {
@@ -293,7 +293,7 @@ public class KeySetting extends JPanel {
             }
             enterkey = enterkey1;
             checkPressAKey = false;
-            getInputKeyAndBindingKey("NEXTDIALOGUE");
+            getInputKeyAndBindingKey("NEXTDIALOGUE1");
         } else if (check.equals("square3change")) {
             if (!prevCheck.equals(check)) {
                 KeyboardManager.resetReleasedKey();
@@ -301,7 +301,7 @@ public class KeySetting extends JPanel {
             }
             enterkey = enterkey1;
             checkPressAKey = false;
-            getInputKeyAndBindingKey("NEXTDIALOGUE");
+            getInputKeyAndBindingKey("NEXTDIALOGUE2");
         } else if (check.equals("square4change")) {
             if (!prevCheck.equals(check)) {
                 KeyboardManager.resetReleasedKey();
@@ -348,49 +348,48 @@ public class KeySetting extends JPanel {
         g2.setColor(Color.black);
         g2.drawImage(keyboardimg, (int) (184 * Main.ex), (int) (192 * Main.ey), (int) (400 * Main.ex),
                 (int) (200 * Main.ey), null);
-        g2.drawRect((int) (70 * Main.ex), (int) (90 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("UP", (float) (130 * Main.ex), (float) (115 * Main.ey));
-        g2.drawRect((int) (670 * Main.ex), (int) (90 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("LEFT", (float) (560 * Main.ex), (float) (115 * Main.ex));
-        g2.drawRect((int) (70 * Main.ex), (int) (140 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("DOWN", (float) (130 * Main.ex), (float) (165 * Main.ey));
-        g2.drawRect((int) (670 * Main.ex), (int) (140 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("RIGHT", (float) (560 * Main.ex), (float) (165 * Main.ey));
-        g2.drawRect((int) (70 * Main.ex), (int) (400 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("INTERACT", (float) (130 * Main.ex), (float) (425 * Main.ey));
-        g2.drawRect((int) (670 * Main.ex), (int) (400 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("NEXTDIALOGUE", (float) (560 * Main.ex), (float) (425 * Main.ey));
-        g2.drawRect((int) (70 * Main.ex), (int) (450 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("NEXTDIALOGUE", (float) (130 * Main.ex), (float) (475 * Main.ey));
-        g2.drawRect((int) (670 * Main.ex), (int) (450 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("PAUSE", (float) (560 * Main.ex), (float) (475 * Main.ey));
-        g2.drawRect((int) (70 * Main.ex), (int) (500 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("INVENTORY", (float) (130 * Main.ex), (float) (525 * Main.ey));
-        g2.drawRect((int) (670 * Main.ex), (int) (500 * Main.ey), (int) (30 * Main.ex), (int) (30 * Main.ey));
-        g2.drawString("PHONE", (float) (560 * Main.ex), (float) (525 * Main.ey));
+        g2.drawRect((int) (40 * Main.ex), (int) (90 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("UP", (float) (160 * Main.ex), (float) (115 * Main.ey));
+        g2.drawRect((int) (640 * Main.ex), (int) (90 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("LEFT", (float) (530 * Main.ex), (float) (115 * Main.ex));
+        g2.drawRect((int) (40 * Main.ex), (int) (140 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("DOWN", (float) (160 * Main.ex), (float) (165 * Main.ey));
+        g2.drawRect((int) (640 * Main.ex), (int) (140 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("RIGHT", (float) (530 * Main.ex), (float) (165 * Main.ey));
+        g2.drawRect((int) (40 * Main.ex), (int) (400 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("NEXTDIALOGUE1",(float) (160 * Main.ex), (float) (425 * Main.ey) );
+        g2.drawRect((int) (40 * Main.ex), (int) (450 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("INTERACT",(float) (510 * Main.ex), (float) (425 * Main.ey) );
+        g2.drawRect((int) (640 * Main.ex), (int) (400 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("NEXTDIALOGUE2", (float) (160 * Main.ex), (float) (475 * Main.ey));
+        g2.drawRect((int) (640 * Main.ex), (int) (450 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("PAUSE", (float) (510 * Main.ex), (float) (475 * Main.ey));
+        g2.drawRect((int) (40 * Main.ex), (int) (500 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("INVENTORY", (float) (160 * Main.ex), (float) (525 * Main.ey));
+        g2.drawRect((int) (640 * Main.ex), (int) (500 * Main.ey), (int) (90 * Main.ex), (int) (30 * Main.ey));
+        g2.drawString("PHONE", (float) (510 * Main.ex), (float) (525 * Main.ey));
         g2.setFont(new Font("Arial", Font.ITALIC, (int) (25 * Main.ex)));
 
-        g2.drawString(upKeyName, (float) (73 * Main.ex), (float) (115 * Main.ey));
-        g2.drawString(leftKeyName, (float) (674 * Main.ex), (float) (115 * Main.ey));
-        g2.drawString(downKeyName, (float) (73 * Main.ex), (float) (165 * Main.ey));
-        g2.drawString(rightKeyName, (int) (674 * Main.ex), (int) (165 * Main.ey));
+        g2.drawString(upKeyName, (float) (43 * Main.ex), (float) (115 * Main.ey));
+        g2.drawString(leftKeyName, (float) (644 * Main.ex), (float) (115 * Main.ey));
+        g2.drawString(downKeyName, (float) (43 * Main.ex), (float) (165 * Main.ey));
+        g2.drawString(rightKeyName, (int) (644 * Main.ex), (int) (165 * Main.ey));
+        g2.drawString(interactKeyName, (int) (644 * Main.ex), (int) (424 * Main.ey));
+        g2.drawString(nextDialogueKeyName1, (int) (43 * Main.ex), (int) (424 * Main.ey));
+        g2.drawString(nextDialogueKeyName2, (int) (43 * Main.ex), (int) (475 * Main.ey));
+        g2.drawString(pauseKeyName, (int) (644 * Main.ex), (int) (475 * Main.ey));
+        g2.drawString(inventoryKeyName, (int) (43 * Main.ex), (int) (524 * Main.ey));
+        g2.drawString(phoneKeyName, (int) (644 * Main.ex), (int) (524 * Main.ey));
 
-        g2.drawString(interactKeyName, (int) (73 * Main.ex), (int) (424 * Main.ey));
-        g2.drawString(nextDialogueKeyName1, (int) (674 * Main.ex), (int) (424 * Main.ey));
-        g2.drawString(nextDialogueKeyName2, (int) (73 * Main.ex), (int) (475 * Main.ey));
-        g2.drawString(pauseKeyName, (int) (674 * Main.ex), (int) (475 * Main.ey));
-        g2.drawString(inventoryKeyName, (int) (73 * Main.ex), (int) (524 * Main.ey));
-        g2.drawString(phoneKeyName, (int) (674 * Main.ex), (int) (524 * Main.ey));
-
-        g2.drawImage(playerUP, (int) (216 * Main.ex), (int) (86 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey),
+        g2.drawImage(playerUP, (int) (246 * Main.ex), (int) (86 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey),
                 null);
-        g2.drawImage(playerDOWN, (int) (216 * Main.ex), (int) (139 * Main.ey), (int) (40 * Main.ex),
+        g2.drawImage(playerDOWN, (int) (246 * Main.ex), (int) (139 * Main.ey), (int) (40 * Main.ex),
                 (int) (40 * Main.ey), null);
-        g2.drawImage(playerLEFT, (int) (507 * Main.ex), (int) (86 * Main.ey), (int) (40 * Main.ex),
+        g2.drawImage(playerLEFT, (int) (487 * Main.ex), (int) (86 * Main.ey), (int) (40 * Main.ex),
                 (int) (40 * Main.ey), null);
-        g2.drawImage(playerRIGHT, (int) (507 * Main.ex), (int) (139 * Main.ey), (int) (40 * Main.ex),
+        g2.drawImage(playerRIGHT, (int) (487 * Main.ex), (int) (139 * Main.ey), (int) (40 * Main.ex),
                 (int) (40 * Main.ey), null);
-        g2.drawImage(square, (int) (x_square), (int) (y_square), (int) (38 * Main.ex), (int) (38 * Main.ey), null);
+        g2.drawImage(square, (int) (x_square), (int) (y_square), (int) (98 * Main.ex), (int) (38 * Main.ey), null);
         g2.drawImage(enterkey, (int) (150 * Main.ex), (int) (207 * Main.ey), (int) (468 * Main.ex),
                 (int) (200 * Main.ey), null);
         super.paintComponent(g2);

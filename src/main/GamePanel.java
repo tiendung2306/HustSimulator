@@ -171,72 +171,12 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void Init() {
-        switch (Main.nguoncode) {
-            case 1: {
-                newGame();
-                break;
-            }
-            case 2: {
-                newGame();
-                break;
-            }
-
-            case 3: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = section_1;
-                break;
-            }
-
-            case 4: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = normalClassroom;
-                break;
-            }
-            case 5: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = computerRoom;
-                break;
-            }
-            case 6: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = stadium;
-                break;
-            }
-            case 7: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = library;
-                break;
-            }
-            case 8: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = myRoom;
-                break;
-            }
-            case 9: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = section_3;
-                break;
-            }
-            case 10: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = section_2;
-                break;
-            }
-        }
+        newGame();
         currentChapter = chapter1;
         currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();
     }
-
     private void stopThread() {
         SoundManager.stopAllSound();
     }
@@ -248,7 +188,6 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
         Init();
-
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
@@ -256,7 +195,6 @@ public class GamePanel extends JPanel implements Runnable {
                 stopThread();
                 break;
             }
-
             update();
 
             repaint();
@@ -289,45 +227,24 @@ public class GamePanel extends JPanel implements Runnable {
         inventory.update();
         missionDescription.update();
         directionIndicator.update();
-        if (Main.nguoncode == 1) {
-            if (Main.topGameState().equals(Main.states[0])) {
-                mainMenu.update();
-            } else if (Main.topGameState().equals(Main.states[1])) {
-                nextMainMenu.update();
-            } else if (Main.topGameState().equals(Main.states[2])) {
-                setting.update();
-            } else if (Main.topGameState().equals(Main.states[3])) {
-                audioSetting.update();
-            } else if (Main.topGameState().equals(Main.states[4]))
-                keySetting.update();
-            else if (Main.topGameState().equals(Main.states[5]))
-                videoSetting.update();
-            else if (Main.topGameState().equals(Main.states[12]))
-                loadGame.update();
-            else if (Main.topGameState().equals("PauseGame"))
-                pauseGame.update();
-            else if (Main.topGameState().equals(Main.states[16]))
-                loadGame2.update();
-        } else if (Main.nguoncode == 2) {
-            if (Main.topGameState().equals(Main.states[0])) {
-                mainMenu.update();
-            } else if (Main.topGameState().equals(Main.states[1])) {
-                nextMainMenu.update();
-            } else if (Main.topGameState().equals(Main.states[2])) {
-                setting.update();
-            } else if (Main.topGameState().equals(Main.states[3])) {
-                audioSetting.update();
-            } else if (Main.topGameState().equals(Main.states[4]))
-                keySetting.update();
-            else if (Main.topGameState().equals(Main.states[5]))
-                videoSetting.update();
-            else if (Main.topGameState().equals(Main.states[12]))
-                loadGame.update();
-            else if (Main.topGameState().equals(Main.states[16]))
-                loadGame2.update();
-            else if (Main.topGameState().equals("PauseGame"))
-                pauseGame.update();
-        }
+        if (Main.topGameState().equals(Main.states[0])) {
+            mainMenu.update();
+        } else if (Main.topGameState().equals(Main.states[1])) {
+            nextMainMenu.update();
+        } else if (Main.topGameState().equals(Main.states[2])) {
+            setting.update();
+        } else if (Main.topGameState().equals(Main.states[3])) {
+            audioSetting.update();
+        } else if (Main.topGameState().equals(Main.states[4]))
+            keySetting.update();
+        else if (Main.topGameState().equals(Main.states[5]))
+            videoSetting.update();
+        else if (Main.topGameState().equals(Main.states[12]))
+            loadGame.update();
+        else if (Main.topGameState().equals("PauseGame"))
+            pauseGame.update();
+        else if (Main.topGameState().equals(Main.states[16]))
+            loadGame2.update();
         if (Main.topGameState().equals("GamePlay")){
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
@@ -366,51 +283,24 @@ public class GamePanel extends JPanel implements Runnable {
         // RenderingHints.VALUE_RENDER_SPEED);
         // g2.setRenderingHints(rh1);
 
-        switch (Main.nguoncode) {
-            case 1: {
-                if (Main.topGameState().equals(Main.states[0]))
-                    mainMenu.draw(g2);
-                else if (Main.topGameState().equals(Main.states[1]))
-                    nextMainMenu.draw(g2);
-                else if (Main.topGameState().equals(Main.states[2]))
-                    setting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[3]))
-                    audioSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[4]))
-                    keySetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[5]))
-                    videoSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[12]))
-                    loadGame.draw(g2);
-                else if (Main.topGameState().equals("PauseGame"))
-                    pauseGame.draw(g2);
-                else if (Main.topGameState().equals(Main.states[16]))
-                    loadGame2.draw(g2);
-                break;
-            }
-            case 2: {
-                if (Main.topGameState().equals(Main.states[0])) {
-                    mainMenu.draw(g2);
-                } else if (Main.topGameState().equals(Main.states[1])) {
-                    nextMainMenu.draw(g2);
-                } else if (Main.topGameState().equals(Main.states[2]))
-                    setting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[3]))
-                    audioSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[4]))
-                    keySetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[5]))
-                    videoSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[12]))
-                    loadGame.draw(g2);
-                else if (Main.topGameState().equals(Main.states[16]))
-                    loadGame2.draw(g2);
-                else if (Main.topGameState().equals("PauseGame"))
-                    pauseGame.draw(g2);
-                break;
-            }
-        }
-
+        if (Main.topGameState().equals(Main.states[0]))
+            mainMenu.draw(g2);
+        else if (Main.topGameState().equals(Main.states[1]))
+            nextMainMenu.draw(g2);
+        else if (Main.topGameState().equals(Main.states[2]))
+            setting.draw(g2);
+        else if (Main.topGameState().equals(Main.states[3]))
+            audioSetting.draw(g2);
+        else if (Main.topGameState().equals(Main.states[4]))
+            keySetting.draw(g2);
+        else if (Main.topGameState().equals(Main.states[5]))
+            videoSetting.draw(g2);
+        else if (Main.topGameState().equals(Main.states[12]))
+            loadGame.draw(g2);
+        else if (Main.topGameState().equals("PauseGame"))
+            pauseGame.draw(g2);
+        else if (Main.topGameState().equals(Main.states[16]))
+            loadGame2.draw(g2);
         if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
