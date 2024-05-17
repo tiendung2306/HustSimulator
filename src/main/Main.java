@@ -42,7 +42,7 @@ public class Main {
     }
     public static JFrame window;
     public static void main(String[] args) {
-        pushGameState("PauseGame");
+        pushGameState("MainMenu");
         GamePanel gamePanel = new GamePanel();
         Main.window = new JFrame();
         Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

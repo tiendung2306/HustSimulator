@@ -63,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
     public static LoadGame loadGame = new LoadGame();
     public static PauseGame pauseGame = new PauseGame();
     public static LoadGame2 loadGame2 = new LoadGame2();
+    public static Toturial toturial = new Toturial();
 
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
@@ -245,6 +246,8 @@ public class GamePanel extends JPanel implements Runnable {
             pauseGame.update();
         else if (Main.topGameState().equals(Main.states[16]))
             loadGame2.update();
+        else if (Main.topGameState().equals("Tutorial"))
+            toturial.update();
         if (Main.topGameState().equals("GamePlay")){
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
@@ -301,6 +304,8 @@ public class GamePanel extends JPanel implements Runnable {
             pauseGame.draw(g2);
         else if (Main.topGameState().equals(Main.states[16]))
             loadGame2.draw(g2);
+        else if (Main.topGameState().equals("Tutorial"))
+            toturial.draw(g2);
         if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
