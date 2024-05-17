@@ -416,20 +416,21 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     && (y_click < 307 * Main.ey)) {
                 Main.pushGameState(Main.states[6]);
                 pauseGame.Init();
-            }
-            else if ((x_click > 324 * Main.ex) && (y_click > 330 * Main.ey) && (x_click < 444 * Main.ex)
-                    && (y_click < 357 * Main.ey)) {
-                Main.pushGameState(Main.states[16]);
+            } else if ((x_click > 324 * Main.ex) && (y_click > 390 * Main.ey) && (x_click < 444 * Main.ex)
+                    && (y_click < 417 * Main.ey)) {
+                Main.pushGameState(Main.states[1]);
                 pauseGame.Init();
-            }
-            else if ((x_click > 710 * Main.ex) && (y_click > 13 * Main.ey) && (x_click < 750 * Main.ex)
+            } else if ((x_click > 710 * Main.ex) && (y_click > 13 * Main.ey) && (x_click < 750 * Main.ex)
                     && (y_click < 53 * Main.ey)) {
                 Main.pushGameState(Main.states[2]);
                 pauseGame.Init();
-            }
-            else if ((x_click > 260 * Main.ex) && (y_click > 210 * Main.ey) && (x_click < 507 * Main.ex)
+            } else if ((x_click > 260 * Main.ex) && (y_click > 210 * Main.ey) && (x_click < 507 * Main.ex)
                     && (y_click < 250 * Main.ey)) {
                 Main.popGameState();
+                pauseGame.Init();
+            } else if ((x_click > 324 * Main.ex) && (y_click > 330 * Main.ey) && (x_click < 444 * Main.ex)
+                    && (y_click < 357 * Main.ey)) {
+                Main.pushGameState(Main.states[16]);
                 pauseGame.Init();
             }
         } else if (Main.topGameState().equals(Main.states[16])) {
@@ -438,6 +439,15 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 Main.popGameState();
                 loadGame2.buttonLoadGameReturnEnter();
                 loadGame2.Init();
+            } else if ((x_click > 213 * Main.ex) && (y_click > 149 * Main.ey) && (x_click < 554 * Main.ex)
+                    && (y_click < 260 * Main.ey)) {
+
+            } else if ((x_click > 213 * Main.ex) && (y_click > 279 * Main.ey) && (x_click < 554 * Main.ex)
+                    && (y_click < 390 * Main.ey)) {
+
+            } else if ((x_click > 213 * Main.ex) && (y_click > 409 * Main.ey) && (x_click < 554 * Main.ex)
+                    && (y_click < 520 * Main.ey)) {
+
             }
         }
     }
