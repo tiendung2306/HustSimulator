@@ -430,13 +430,13 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 loadGame2.Init();
             } else if ((x_click > 213 * Main.ex) && (y_click > 149 * Main.ey) && (x_click < 554 * Main.ex)
                     && (y_click < 260 * Main.ey)) {
-
+                gamePanel.loadSaveGameSystem.saveGameSlot(1);
             } else if ((x_click > 213 * Main.ex) && (y_click > 279 * Main.ey) && (x_click < 554 * Main.ex)
                     && (y_click < 390 * Main.ey)) {
-
+                gamePanel.loadSaveGameSystem.saveGameSlot(2);
             } else if ((x_click > 213 * Main.ex) && (y_click > 409 * Main.ey) && (x_click < 554 * Main.ex)
                     && (y_click < 520 * Main.ey)) {
-
+                gamePanel.loadSaveGameSystem.saveGameSlot(3);
             }
         }
     }

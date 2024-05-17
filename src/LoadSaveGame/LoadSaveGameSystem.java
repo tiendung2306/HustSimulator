@@ -1,7 +1,10 @@
 package LoadSaveGame;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 import main.GamePanel;
@@ -22,6 +25,19 @@ public class LoadSaveGameSystem {
                 + time.charAt(4) - '0';
     }
 
+    String timeNormalization(long time) {
+        long hour = time / 3600;
+        long mins = (time - hour * 3600) / 60;
+        String hourString, minsString;
+        hourString = Long.toString(hour);
+        if (hourString.length() == 1)
+            hourString = "0" + hourString;
+        minsString = Long.toString(mins);
+        if (minsString.length() == 1)
+            minsString = "0" + minsString;
+        return hourString + "h" + minsString + "p";
+    }
+
     public void loadGameSlot(int slotId) {
         readFileLoadGame();
         if (slotId == 1) {
@@ -39,7 +55,92 @@ public class LoadSaveGameSystem {
             TimeSystem.savedElapsedTime = timeNormalization(totalPlayTimeSlot3);
             TimeSystem.currentPlayDate = dateSlot3;
         }
-        System.out.println(TimeSystem.savedElapsedTime);
+        // System.out.println(TimeSystem.savedElapsedTime);
+    }
+
+    public void saveGameSlot(int slotID) {
+        readFileLoadGame();
+        if (slotID == 1) {
+            if (gamePanel.currentChapter == gamePanel.chapter1)
+                currChapterSlot1 = "chap 1";
+            if (gamePanel.currentChapter == gamePanel.chapter2)
+                currChapterSlot1 = "chap 2";
+            // if (gamePanel.currentChapter == gamePanel.chapter3)
+            // currChapterSlot1 = "chap 3";
+
+            totalPlayTimeSlot1 = timeNormalization(
+                    TimeSystem.currentSystemTime / 1000000000 + TimeSystem.savedElapsedTime);
+            String tempDate = TimeSystem.getCurrentDate();
+            dateSlot1 = "";
+            for (int i = 0; i <= 9; i++) {
+                dateSlot1 += String.valueOf(String.valueOf(tempDate.charAt(i)));
+            }
+            timeSlot1 = String.valueOf(tempDate.charAt(11)) + String.valueOf(tempDate.charAt(12)) + "h"
+                    + String.valueOf(tempDate.charAt(14)) + String.valueOf(tempDate.charAt(15))
+                    + "p";
+        }
+        if (slotID == 2) {
+            if (gamePanel.currentChapter == gamePanel.chapter1)
+                currChapterSlot2 = "chap 1";
+            if (gamePanel.currentChapter == gamePanel.chapter2)
+                currChapterSlot2 = "chap 2";
+            // if (gamePanel.currentChapter == gamePanel.chapter3)
+            // currChapterSlot2 = "chap 3";
+            totalPlayTimeSlot2 = timeNormalization(
+                    TimeSystem.currentSystemTime / 1000000000 + TimeSystem.savedElapsedTime);
+            String tempDate = TimeSystem.getCurrentDate();
+            dateSlot2 = "";
+            for (int i = 0; i <= 9; i++) {
+                dateSlot2 += String.valueOf(tempDate.charAt(i));
+            }
+            timeSlot2 = String.valueOf(tempDate.charAt(11)) + String.valueOf(tempDate.charAt(12)) + "h"
+                    + String.valueOf(tempDate.charAt(14)) + String.valueOf(tempDate.charAt(15))
+                    + "p";
+        }
+        if (slotID == 3) {
+            if (gamePanel.currentChapter == gamePanel.chapter1)
+                currChapterSlot3 = "chap 1";
+            if (gamePanel.currentChapter == gamePanel.chapter2)
+                currChapterSlot3 = "chap 2";
+            // if (gamePanel.currentChapter == gamePanel.chapter3)
+            // currChapterSlot3 = "chap 3";
+            totalPlayTimeSlot3 = timeNormalization(
+                TimeSystem.currentSystemTime / 1000000000 + TimeSystem.savedElapsedTime);
+            String tempDate = TimeSystem.getCurrentDate();
+            dateSlot3 = "";
+            for (int i = 0; i <= 9; i++) {
+                dateSlot3 += String.valueOf(tempDate.charAt(i));
+            }
+            timeSlot3 = String.valueOf(tempDate.charAt(11)) + String.valueOf(tempDate.charAt(12)) + "h"
+                    + String.valueOf(tempDate.charAt(14)) + String.valueOf(tempDate.charAt(15))
+                    + "p";
+        }
+        writeFileSaveGame();
+    }
+
+    public void writeFileSaveGame() {
+        try (BufferedWriter source = new BufferedWriter(new FileWriter("src/txt/loadGame.txt"))) {
+            // ghi du lieu save slot 1
+            source.write("rec1\n");
+            source.write(currChapterSlot1 + "\n");
+            source.write("time " + totalPlayTimeSlot1 + "\n");
+            source.write("date " + timeSlot1 + " " + dateSlot1 + "\n");
+            source.write("end\n");
+            // ghi du lieu save slot 2
+            source.write("rec2\n");
+            source.write(currChapterSlot2 + "\n");
+            source.write("time " + totalPlayTimeSlot2 + "\n");
+            source.write("date " + timeSlot2 + " " + dateSlot2 + "\n");
+            source.write("end\n");
+            // ghi du lieu save slot 3
+            source.write("rec3\n");
+            source.write(currChapterSlot3 + "\n");
+            source.write("time " + totalPlayTimeSlot3 + "\n");
+            source.write("date " + timeSlot3 + " " + dateSlot3 + "\n");
+            source.write("end\n");
+        } catch (IOException e) {
+            System.err.println("Lỗi khi ghi dữ liệu vào file: " + e.getMessage());
+        }
     }
 
     public void readFileLoadGame() {
@@ -60,25 +161,25 @@ public class LoadSaveGameSystem {
                             case "chap":
                                 if (cnt == 1) {
                                     if (Integer.parseInt(values[1]) == 1)
-                                        currChapterSlot1 = "chap1";
+                                        currChapterSlot1 = "chap 1";
                                     else if (Integer.parseInt(values[1]) == 2)
-                                        currChapterSlot1 = "chap2";
+                                        currChapterSlot1 = "chap 2";
                                     else if (Integer.parseInt(values[1]) == 3)
-                                        currChapterSlot1 = "chap3";
+                                        currChapterSlot1 = "chap 3";
                                 } else if (cnt == 2) {
                                     if (Integer.parseInt(values[1]) == 1)
-                                        currChapterSlot2 = "chap1";
+                                        currChapterSlot2 = "chap 1";
                                     else if (Integer.parseInt(values[1]) == 2)
-                                        currChapterSlot2 = "chap2";
+                                        currChapterSlot2 = "chap 2";
                                     else if (Integer.parseInt(values[1]) == 3)
-                                        currChapterSlot2 = "chap3";
+                                        currChapterSlot2 = "chap 3";
                                 } else if (cnt == 3) {
                                     if (Integer.parseInt(values[1]) == 1)
-                                        currChapterSlot3 = "chap1";
+                                        currChapterSlot3 = "chap 1";
                                     else if (Integer.parseInt(values[1]) == 2)
-                                        currChapterSlot3 = "chap2";
+                                        currChapterSlot3 = "chap 2";
                                     else if (Integer.parseInt(values[1]) == 3)
-                                        currChapterSlot3 = "chap3";
+                                        currChapterSlot3 = "chap 3";
                                 }
                                 break;
                             case "time":
