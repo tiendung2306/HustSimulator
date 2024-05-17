@@ -3,6 +3,7 @@ package MainMenu;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -150,33 +151,59 @@ public class KeySetting extends JPanel {
         check = "square6change";
     }
 
+    String keyToString(int inputKey) {
+        if (inputKey == KeyEvent.VK_SPACE)
+            return "SPACE";
+        if (inputKey == KeyEvent.VK_ESCAPE)
+            return " ESC ";
+        if (inputKey == KeyEvent.VK_ENTER)
+            return "ENTER";
+        if (inputKey == KeyEvent.VK_UP)
+            return " UP ";
+        if (inputKey == KeyEvent.VK_DOWN)
+            return " DOWN";
+        if (inputKey == KeyEvent.VK_LEFT)
+            return " LEFT";
+        if (inputKey == KeyEvent.VK_RIGHT)
+            return " RIGHT";
+        if (inputKey == KeyEvent.VK_SHIFT)
+            return "SHIFT";
+        if (inputKey >= KeyEvent.VK_A && inputKey <= KeyEvent.VK_Z)
+            return Character.toString(KeyboardManager.getReleasedKeyName());
+        return null;
+    }
+
     public void getInputKeyAndBindingKey(String keyName) {
         if (!checkPressAKey) {
             inputKey = KeyboardManager.getReleasedKey();
             if (inputKey != -1) {
-                inputKeyName = KeyboardManager.getReleasedKeyName();
-
+                if (keyToString(inputKey) == null) {
+                    KeyboardManager.resetReleasedKey();
+                    check = "null";
+                    checkPressAKey = true;
+                    return;
+                }
                 KeyboardManager.setKey(inputKey, keyName);
                 if (keyName.equals("UP"))
-                    upKeyName = Character.toString(inputKeyName);
+                    upKeyName = keyToString(inputKey);
                 if (keyName.equals("DOWN"))
-                    downKeyName = Character.toString(inputKeyName);
+                    downKeyName = keyToString(inputKey);
                 if (keyName.equals("LEFT"))
-                    leftKeyName = Character.toString(inputKeyName);
+                    leftKeyName = keyToString(inputKey);
                 if (keyName.equals("RIGHT"))
-                    rightKeyName = Character.toString(inputKeyName);
+                    rightKeyName = keyToString(inputKey);
                 if (keyName.equals("INTERACT"))
-                    interactKeyName = Character.toString(inputKeyName);
+                    interactKeyName = keyToString(inputKey);
                 if (keyName.equals("NEXTDIALOGUE"))
-                    nextDialogueKeyName1 = Character.toString(inputKeyName);
+                    nextDialogueKeyName1 = keyToString(inputKey);
                 if (keyName.equals("NEXTDIALOGUE"))
-                    nextDialogueKeyName2 = Character.toString(inputKeyName);
+                    nextDialogueKeyName2 = keyToString(inputKey);
                 if (keyName.equals("PAUSE"))
-                    pauseKeyName = Character.toString(inputKeyName);
+                    pauseKeyName = keyToString(inputKey);
                 if (keyName.equals("INVENTORY"))
-                    inventoryKeyName = Character.toString(inputKeyName);
+                    inventoryKeyName = keyToString(inputKey);
                 if (keyName.equals("PHONE"))
-                    phoneKeyName = Character.toString(inputKeyName);
+                    phoneKeyName = keyToString(inputKey);
                 prevCheck = "null";
 
                 checkPressAKey = true;
