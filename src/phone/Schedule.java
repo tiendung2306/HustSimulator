@@ -46,18 +46,18 @@ public class Schedule {
         Subjects.add(tthcm);
         Subjects.add(pldc);
 
-        addDailySchedule(1, ds);
-        addDailySchedule(1, gt);
+        addDailySchedule(2, ds);
+        addDailySchedule(2, gt);
 
-        addDailySchedule(2, tthcm);
-        addDailySchedule(2, nmcntt_lt);
+        addDailySchedule(3, tthcm);
+        addDailySchedule(3, nmcntt_lt);
 
-        addDailySchedule(3, pldc);
+        addDailySchedule(4, pldc);
 
-        addDailySchedule(4, ds);
-        addDailySchedule(4, gt);
-        addDailySchedule(4, nmcntt_th1);
-        addDailySchedule(4, nmcntt_th2);
+        addDailySchedule(5, ds);
+        addDailySchedule(5, gt);
+        addDailySchedule(5, nmcntt_th1);
+        addDailySchedule(5, nmcntt_th2);
     }
 
 }

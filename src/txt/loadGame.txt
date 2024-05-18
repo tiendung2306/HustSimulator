@@ -1,15 +1,15 @@
 rec1
 chap 1
-time 88h88p
-date 88h88p 88/88/8888
+time 00h02p
+date 04h49p 18/05/2024
 end
 rec2
-chap 2
-time 88h88p
-date 88h88p 88/88/8888
+chap 1
+time 00h00p
+date 05h08p 18/05/2024
 end
 rec3
-chap 3
-time 88h88p
-date 88h88p 88/88/8888
+chap 1
+time 00h00p
+date 04h39p 18/05/2024
 end

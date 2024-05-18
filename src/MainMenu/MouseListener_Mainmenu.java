@@ -1,14 +1,9 @@
 package MainMenu;
 
-//import DeveloperTest.Thai;
-//import main.GamePanel;
-import Mouse.MouseManager;
+import java.awt.event.MouseEvent;
+
 import main.GamePanel;
 import main.Main;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
 
 public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     GamePanel gamePanel;
@@ -27,8 +22,8 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-         System.out.println(e.getPoint().getX());
-         System.out.println(e.getPoint().getY());
+        System.out.println(e.getPoint().getX());
+        System.out.println(e.getPoint().getY());
         // int x_click = (int) e.getPoint().getX();
         // int y_click = (int) ;
         // if (Main.topGameState().equals(Main.states[0])) {
@@ -144,13 +139,11 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     && (y_click < 50 * Main.ey)) {
                 Main.popGameState();
                 nextMainMenu.Init();
-            }
-            else if ((x_click > 244 * Main.ex) && (y_click > 210 * Main.ey) && (x_click < 527 * Main.ex)
+            } else if ((x_click > 244 * Main.ex) && (y_click > 210 * Main.ey) && (x_click < 527 * Main.ex)
                     && (y_click < 246 * Main.ey)) {
                 Main.pushGameState(Main.states[7]);
                 nextMainMenu.Init();
-            }
-            else if ((x_click > 260 * Main.ex) && (y_click > 270 * Main.ey) && (x_click < 507 * Main.ex)
+            } else if ((x_click > 260 * Main.ex) && (y_click > 270 * Main.ey) && (x_click < 507 * Main.ex)
                     && (y_click < 310 * Main.ey)) {
                 Main.pushGameState(Main.states[12]);
                 nextMainMenu.Init();
@@ -164,8 +157,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     && (y_click < 50 * Main.ey)) {
                 Main.popGameState();
                 setting.Init();
-            }
-            else if ((x_click > 200 * Main.ex) && (y_click > 192 * Main.ey) && (x_click < 565 * Main.ex)
+            } else if ((x_click > 200 * Main.ex) && (y_click > 192 * Main.ey) && (x_click < 565 * Main.ex)
                     && (y_click < 226 * Main.ey)) {
                 Main.pushGameState(Main.states[5]);
                 setting.Init();
@@ -184,8 +176,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     && (y_click < 50 * Main.ey)) {
                 Main.popGameState();
                 audioSetting.audiorollback();
-            }
-            else if ((x_click > 240 * Main.ex) && (y_click > 251 * Main.ey) && (x_click < 600 * Main.ex)
+            } else if ((x_click > 240 * Main.ex) && (y_click > 251 * Main.ey) && (x_click < 600 * Main.ex)
                     && (y_click < 297 * Main.ey))
                 AudioSetting.volumesliderpointX = (x_click - 23 * Main.ex);
             else if ((x_click > 169 * Main.ex) && (y_click > 260 * Main.ey) && (x_click < 204 * Main.ex)
@@ -198,8 +189,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     Main.popGameState();
                     keySetting.keysettingrollback();
                     keySetting.Init();
-                }
-                else if ((x_click > 37 * Main.ex) && (y_click > 87 * Main.ey) && (x_click < 135 * Main.ex)
+                } else if ((x_click > 37 * Main.ex) && (y_click > 87 * Main.ey) && (x_click < 135 * Main.ex)
                         && (y_click < 125 * Main.ey))
                     keySetting.keysetting_squareupchange();
                 else if ((x_click > 37 * Main.ex) && (y_click > 137 * Main.ey) && (x_click < 135 * Main.ex)
@@ -235,8 +225,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     && (y_click < 50 * Main.ey)) {
                 Main.popGameState();
                 videoSetting.Init();
-            }
-            else if ((x_click > 417 * Main.ex) && (y_click > 281 * Main.ey) && (x_click < 448 * Main.ex)
+            } else if ((x_click > 417 * Main.ex) && (y_click > 281 * Main.ey) && (x_click < 448 * Main.ex)
                     && (y_click < 301 * Main.ey)) {
                 if (!VideoSetting.checkResolution) {
                     VideoSetting.x1280x960 = "1280 x 960";
@@ -362,8 +351,8 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                     VideoSetting.x1536x1152 = "";
                     Main.prev_ex = Main.ex;
                     Main.prev_ey = Main.ey;
-                    Main.next_ex = (double) 7/3;
-                    Main.next_ey = (double) 7/3;
+                    Main.next_ex = (double) 7 / 3;
+                    Main.next_ey = (double) 7 / 3;
                     GamePanel.next_scale = 3 * Main.next_ex;
                     GamePanel.prev_scale = GamePanel.scale;
                     GamePanel.prev_screenHeight = GamePanel.screenHeight;
@@ -403,13 +392,13 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 loadGame.Init();
             } else if ((x_click > 213 * Main.ex) && (y_click > 149 * Main.ey) && (x_click < 554 * Main.ex)
                     && (y_click < 260 * Main.ey)) {
-
+                gamePanel.loadSaveGameSystem.loadGameSlot(1);
             } else if ((x_click > 213 * Main.ex) && (y_click > 279 * Main.ey) && (x_click < 554 * Main.ex)
                     && (y_click < 390 * Main.ey)) {
-
+                gamePanel.loadSaveGameSystem.loadGameSlot(2);
             } else if ((x_click > 213 * Main.ex) && (y_click > 409 * Main.ey) && (x_click < 554 * Main.ex)
                     && (y_click < 520 * Main.ey)) {
-
+                gamePanel.loadSaveGameSystem.loadGameSlot(3);
             }
         } else if (Main.topGameState().equals("PauseGame")) {
             if ((x_click > 260 * Main.ex) && (y_click > 270 * Main.ey) && (x_click < 507 * Main.ex)
@@ -441,13 +430,19 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 loadGame2.Init();
             } else if ((x_click > 213 * Main.ex) && (y_click > 149 * Main.ey) && (x_click < 554 * Main.ex)
                     && (y_click < 260 * Main.ey)) {
-
+                gamePanel.loadSaveGameSystem.saveGameSlot(1);
+                Main.pushGameState(Main.states[0]);
+                pauseGame.Init();
             } else if ((x_click > 213 * Main.ex) && (y_click > 279 * Main.ey) && (x_click < 554 * Main.ex)
                     && (y_click < 390 * Main.ey)) {
-
+                gamePanel.loadSaveGameSystem.saveGameSlot(2);
+                Main.pushGameState(Main.states[0]);
+                pauseGame.Init();
             } else if ((x_click > 213 * Main.ex) && (y_click > 409 * Main.ey) && (x_click < 554 * Main.ex)
                     && (y_click < 520 * Main.ey)) {
-
+                gamePanel.loadSaveGameSystem.saveGameSlot(3);
+                Main.pushGameState(Main.states[0]);
+                pauseGame.Init();
             }
         }
     }
