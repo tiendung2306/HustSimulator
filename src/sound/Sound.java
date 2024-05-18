@@ -110,12 +110,12 @@ public class Sound {
         }
     }
 
-    public void resume() {
-        System.out.println("đã cố resume nhưng không được");
+    public void resume(Boolean isThisSoundLoop) {
         if (this.clip != null && isPause) {
             clip.setMicrosecondPosition(pauseTime);
             clip.start();
             isPause = false;
+            if(isThisSoundLoop) loop();
         }
     }
 
