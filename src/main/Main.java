@@ -13,7 +13,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-
 public class Main {
     public static double next_ex = 1;
     public static double next_ey = 1;

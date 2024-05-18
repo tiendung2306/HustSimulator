@@ -208,7 +208,7 @@ public class GamePanel extends JPanel implements Runnable {
                     remainingTime = 0;
                 }
 
-                Thread.sleep((long) remainingTime);
+                Thread.sleep ((long) remainingTime);
                 nextDrawTime += drawInterval;
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -271,7 +271,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if (Main.topGameState().equals("Loading")){
-            if (currentMap.map_exchange_effect.isRunning() == false)
+            if (!currentMap.map_exchange_effect.isRunning())
                 Main.popGameState();
         }
     }
