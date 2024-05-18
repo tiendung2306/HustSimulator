@@ -15,7 +15,19 @@ import GUI.DirectionIndicator;
 import GUI.MissionDescription;
 import Inventory.Inventory;
 import Keyboard.KeyboardManager;
-import MainMenu.*;
+import LoadSaveGame.LoadSaveGameSystem;
+import MainMenu.AudioSetting;
+import MainMenu.KeySetting;
+import MainMenu.LoadGame;
+import MainMenu.LoadGame2;
+import MainMenu.Main_Menu;
+import MainMenu.MouseListener_Mainmenu;
+import MainMenu.MouseMotionListener_Mainmenu;
+import MainMenu.NextMainMenu;
+import MainMenu.PauseGame;
+import MainMenu.Setting;
+import MainMenu.Toturial;
+import MainMenu.VideoSetting;
 import Mouse.MouseManager;
 import area.ComputerRoom;
 import area.MyRoom;
@@ -120,6 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Chapter1 chapter1 = new Chapter1(this);
     public Chapter2 chapter2 = new Chapter2(this);
 
+    public LoadSaveGameSystem loadSaveGameSystem = new LoadSaveGameSystem(this);
     // =========================================================
 
     double FPS = 60;
@@ -158,19 +171,19 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void screenResize() {
         missionDescription.screenResize();
-        if(currentMap == myRoom) {
+        if (currentMap == myRoom) {
             myRoom.resetTile();
         }
-        if(currentMap == normalClassroom) {
+        if (currentMap == normalClassroom) {
             normalClassroom.resetTile();
         }
-        if(currentMap == computerRoom) {
+        if (currentMap == computerRoom) {
             computerRoom.resetTile();
         }
-        if(currentMap == library) {
+        if (currentMap == library) {
             library.resetTile();
         }
-        if(currentMap == stadium) {
+        if (currentMap == stadium) {
             stadium.resetTile();
         }
         currentMap.loadMap(this);
@@ -189,6 +202,7 @@ public class GamePanel extends JPanel implements Runnable {
         keyboardManager.init();
         keySetting.init();
     }
+
     private void stopThread() {
         SoundManager.stopAllSound();
     }
@@ -235,7 +249,7 @@ public class GamePanel extends JPanel implements Runnable {
                     remainingTime = 0;
                 }
 
-                Thread.sleep ((long) remainingTime);
+                Thread.sleep((long) remainingTime);
                 nextDrawTime += drawInterval;
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -297,8 +311,8 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        if (Main.topGameState().equals("Loading")){
-            if (!currentMap.map_exchange_effect.isRunning())
+        if (Main.topGameState().equals("Loading")) {
+            if (currentMap.map_exchange_effect.isRunning() == false)
                 Main.popGameState();
         }
     }
@@ -352,7 +366,7 @@ public class GamePanel extends JPanel implements Runnable {
             section_selection.operation(g);
         }
 
-        else if (Main.topGameState().equals("Loading")){
+        else if (Main.topGameState().equals("Loading")) {
             currentMap.map_exchange_effect.operation(g);
         }
 
@@ -409,5 +423,29 @@ public class GamePanel extends JPanel implements Runnable {
         chapter1.currentTimeline = 0;
         chapter1.IntroFinished = false;
         chapter1.completedAct = 0;
+    }
+
+    public void loadChapter(String chapter) {
+        if (chapter.equals("chap 1")) {
+            currentMap = myRoom;
+            currentChapter = chapter1;
+            chapter1.currentTimeline = 0;
+            chapter1.IntroFinished = false;
+            chapter1.completedAct = 0;
+        }
+        if (chapter.equals("chap 2")) {
+            currentMap = myRoom;
+            currentChapter = chapter2;
+            chapter2.currentTimeline = 0;
+            chapter2.completedAct = 0;
+        }
+        // if (chapter.equals("chap3")) {
+        //     currentMap = myRoom;
+        //     currentChapter = chapter3;
+        //     chapter3.currentTimeline = 0;
+        //     chapter3.IntroFinished = false;
+        //     chapter3.completedAct = 0;
+        // }
+        Main.GameState.push("GamePlay");
     }
 }
