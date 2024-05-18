@@ -48,6 +48,8 @@ public class C2_hall extends Map {
 
         spawn_point.resize(scale);
 
+        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
+
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
         }
@@ -115,6 +117,7 @@ public class C2_hall extends Map {
     }
 
     public void open(){
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * layer1.image.getHeight() / (50 * layer1.getHeight()));
         loadMap(gamePanel);
     }
 

@@ -18,7 +18,8 @@ import tile.Tile;
 
 
 public class Section_1 extends Map {
-    Tile background, C1, C2, C9, hall, hallway_entry;
+    Tile background, C1, C2, C9, hall;
+    public Tile hallway_entry;
     Tile spawn_point;
 
 
@@ -47,6 +48,8 @@ public class Section_1 extends Map {
         background.setHeight((int)(background.getHeight() * scale));
 
         spawn_point.resize(scale);
+
+        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
 
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
@@ -107,6 +110,7 @@ public class Section_1 extends Map {
     }
 
     public void open(){
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 2605 / (60 * background.getHeight()));
         loadMap(gamePanel);
     }
 

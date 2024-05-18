@@ -50,6 +50,9 @@ public class C2_hallway extends Map {
         spawn_point1.resize(scale);
         spawn_point2.resize(scale);
 
+        map_exchange_effect1.resize(GamePanel.screenWidth / (2 * map_exchange_effect1.getWidth()));
+        map_exchange_effect2.resize(GamePanel.screenWidth / (2 * map_exchange_effect2.getWidth()));
+
 
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
@@ -107,6 +110,8 @@ public class C2_hallway extends Map {
     }
 
     public void open(String type){
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * first_floor.image.getHeight() / (50 * first_floor.getHeight()));
+
         if(type == "enter_from_stair"){ 
             SetPlayerPos(spawn_point1);
             map_exchange_effect = map_exchange_effect1;

@@ -337,6 +337,7 @@ public class Player extends Entity {
             direction = "stand";
 
         }
+        
         boundingBox.x = min(screenX, mapX);
         boundingBox.y = min(screenY, mapY);
         boundingBox.x += (int) max(0, mapX - (gamepanel.currentMap.width - GamePanel.screenWidth / 2) + boundingBox.width);

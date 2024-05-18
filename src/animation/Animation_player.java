@@ -115,6 +115,14 @@ public class Animation_player{
             return false;
     }
 
+    public int getWidth(){
+        return play_area.width;
+    }
+
+    public int getHeight(){
+        return play_area.height;
+    }
+
     public void operation(Graphics graphics) {
         
         if(Switch){
