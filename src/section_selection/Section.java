@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import Mouse.MouseManager;
 import section_selection.shape.Point;
 import section_selection.shape.Shape;
+import sound.SoundManager;
 
 
 class Section {
@@ -93,14 +94,17 @@ class Section {
             switch (tag) {
                 case "Section1":
                     section_selection.gamePanel.section_1.open();
+                    SoundManager.playSound("foot_step");
                     break;
 
                 case "Section2":
                     section_selection.gamePanel.section_2.open();
+                    SoundManager.playSound("foot_step");
                     break;       
 
                 case "Section3":
                     section_selection.gamePanel.section_3.open();
+                    SoundManager.playSound("foot_step");
                     break;
                 default:
                     break;

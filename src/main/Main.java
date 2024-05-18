@@ -93,6 +93,10 @@ public class Main {
         JButton button10 = new JButton("Section_2");
         window1.add(button10);
         button10.addActionListener(new ButtonClicked(button10.getText(), gamePanel));
+
+        JButton button11 = new JButton("thuvien");
+        window1.add(button11);
+        button11.addActionListener(new ButtonClicked(button11.getText(), gamePanel));
         // window.add(gamePanel);
         // window.pack();
         // window.setSize(400, 400);
@@ -158,6 +162,11 @@ class ButtonClicked implements ActionListener {
             }
             case "Section_2": {
                 Main.nguoncode = 10;
+                break;
+            }
+            case "thuvien": {
+                Main.nguoncode = 11;
+                break;
             }
         }
         Main.window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

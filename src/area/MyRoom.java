@@ -4,11 +4,8 @@ import main.GamePanel;
 import map.Map;
 import tile.ExtraTile;
 import tile.Tile;
-import tile.TileSection;
 
 import java.awt.*;
-
-import animation.Animation_player;
 
 public class MyRoom extends Map {
     Tile background;
@@ -54,8 +51,6 @@ public class MyRoom extends Map {
     }
 
     public void setDefaultValues() {
-        width = (int) (29 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
         playerX = (int) (215 * GamePanel.scale);
         playerY = (int) (75 * GamePanel.scale);
         background.setWidth((int) (450 * GamePanel.scale));
