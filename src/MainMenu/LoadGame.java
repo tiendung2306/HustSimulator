@@ -160,7 +160,6 @@ public class LoadGame extends JPanel {
             rectengle_3 = rectengle1;
             inrec3 = null;
         }
-        readFileLoadGame();
     }
 
     public void draw(Graphics2D g2) {
