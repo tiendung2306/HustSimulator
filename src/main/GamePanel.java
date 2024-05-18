@@ -199,7 +199,8 @@ public class GamePanel extends JPanel implements Runnable {
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
         // SoundManager.loopSound("piano_music");
-
+        // long prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+        // Boolean isPause = false, isDone = false;
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
         Init();
@@ -210,6 +211,21 @@ public class GamePanel extends JPanel implements Runnable {
                 stopThread();
                 break;
             }
+            // //test
+            // if(true) {
+            //     if(TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 5500) {
+            //         prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+            //         SoundManager.pauseSound("piano_music");
+            //         isPause = true;
+            //     }
+            //     if(TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 3000 && isPause) {
+            //         System.out.println("panikkk");
+            //         SoundManager.resumeSound("piano_music");
+            //         isPause = false;
+            //         isDone = true;
+            //     }
+
+            // }
             update();
 
             repaint();
