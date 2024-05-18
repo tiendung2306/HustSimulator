@@ -11,6 +11,7 @@ import java.security.PublicKey;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
+import sound.SoundManager;
 import tile.Tile;
 import tile.TileManager;
 
@@ -19,7 +20,7 @@ public class Player extends Entity {
     GamePanel gamepanel;
     KeyHandler keyhandler;
     Collision collision;
-    public boolean collision_collect;
+    public boolean collision_collect ;
     UI ui;
     public int screenX, screenY;
     boolean leftBorder, rightBorder, topBorder, bottomBorder;
@@ -37,7 +38,7 @@ public class Player extends Entity {
 
     public Animation_player curr_animation_player;
     TileManager tileManager;
-    public String checkNameTile;
+    public String checkNameTile,checkSoundName;
 
     public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager, UI ui) {
         this.gamepanel = gamepanel;
@@ -122,8 +123,9 @@ public class Player extends Entity {
         if (countPressed > 0) {
             if (ButtonInteract)
                 ButtonInteract = false;
-                collision_collect =false;
+                collision_collect = false;
                 checkNameTile = "";
+                checkSoundName = "";
             if (countPressed == 1) {
                 if (keyhandler.upPressed) {
                     direction = "up";
@@ -347,12 +349,19 @@ public class Player extends Entity {
         rightBorder = (boundingBox.x >= GamePanel.screenWidth - boundingBox.width);
         topBorder = (boundingBox.y <= 0);
         bottomBorder = (boundingBox.y >= GamePanel.screenHeight - boundingBox.height);
+        //soundDoor();
     }
 
     public void draw(Graphics2D g2) {
         tileManager.drawRect(g2, hitArea.x, hitArea.y, hitArea.width, hitArea.height);
         curr_animation_player.operation(g2);
     }
-
-
+//    public void soundDoor() {
+//        if(collision_teleport) {
+//            if(checkSoundName.equals("Door") && gamepanel.keyH.isInteract) {
+//                //System.out.println("hehe");
+//                SoundManager.playSound("open_door");
+//            }
+//        }
+//    }
 }

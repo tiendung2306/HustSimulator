@@ -31,6 +31,9 @@ public class TileManager {
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(new FileInputStream("res/tile/KHU_VUC_3.png"));
 
+            tile[2] = new Tile();
+            tile[2].image = ImageIO.read(new FileInputStream("res/tile/background_thuvien.png"));
+
             tile[17] = new Tile();
             tile[17].image = ImageIO.read(new FileInputStream("res/tile/backgroud_classroom.png"));
 
@@ -80,7 +83,6 @@ public class TileManager {
            g2.drawImage(tile.image, screenX, screenY, width, height, null);
         }
         if(gamePanel.player.collision_collect && gamePanel.player.checkNameTile.equals(tile.Name)) {
-            // System.out.println(gamePanel.player.collision_collect + " " + gamePanel.player.checkNameTile);
             g2.drawImage(tile.imageEffcet, screenX, screenY, width, height, null);
         }
         if (tile.isMission)
