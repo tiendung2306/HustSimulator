@@ -18,7 +18,6 @@ import Keyboard.KeyboardManager;
 import MainMenu.*;
 import Mouse.MouseManager;
 import area.ComputerRoom;
-import area.Library;
 import area.MyRoom;
 import area.NormalClassroom;
 import area.Section_1;
@@ -30,6 +29,8 @@ import area.C2.C2_hallway;
 import area.D3.D3_hallway;
 import area.D3.D3_secondfloor_hallway;
 import area.D3_5.D3_5_hallway_secondfloor;
+import area.Library.Firstfloor_library;
+import area.Library.Library;
 import entity.Player;
 import map.Map;
 import phone.Phone;
@@ -51,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public TileManager tileManager = new TileManager(this);
     Thread gameThread;
-    SoundManager soundManager = new SoundManager();
+    public SoundManager soundManager = new SoundManager();
     public TimeSystem timeSystem = new TimeSystem();
 
     public static Main_Menu mainMenu = new Main_Menu();
@@ -74,7 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Library library = new Library(this);
     public Stadium stadium = new Stadium(this);
     public MyRoom myRoom = new MyRoom(this);
-    // public Section_3 section_3 = new Section_3(this);
+    public Firstfloor_library firstfloorLibrary = new Firstfloor_library(this);
 
     // =================================================================================================
     public static double next_screenWidth = 256 * scale;
@@ -146,6 +147,15 @@ public class GamePanel extends JPanel implements Runnable {
         isRunning = true;
     }
 
+    public void initSound() {
+        soundManager.addSound(new Sound("loot_item","res/sound/item-equip-6904.wav"));
+        soundManager.addSound(new Sound("open_door","res/sound/open-door-1-14550.wav"));
+        soundManager.addSound(new Sound("foot_step","res/sound/am_thanh_di_tren_duong.wav"));
+        soundManager.addSound(new Sound("footstep_down_stairs","res/sound/di_xuong_bac_thang.wav"));
+        soundManager.addSound(new Sound("footstep_up_stairs","res/sound/di_len_bac_thang.wav"));
+
+    }
+
     public void screenResize() {
         missionDescription.screenResize();
         if(currentMap == myRoom) {
@@ -173,6 +183,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void Init() {
         newGame();
+        initSound();
         currentChapter = chapter1;
         currentMap.loadMap(this);
         keyboardManager.init();
@@ -185,9 +196,10 @@ public class GamePanel extends JPanel implements Runnable {
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
         // SoundManager.loopSound("piano_music");
-
+        // long prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+        // Boolean isPause = false, isDone = false;
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
-        // soundManager.loopSound("guitar_music");
+        //soundManager.loopSound("guitar_music");
         Init();
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
@@ -196,6 +208,21 @@ public class GamePanel extends JPanel implements Runnable {
                 stopThread();
                 break;
             }
+            // //test
+            // if(true) {
+            //     if(TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 5500) {
+            //         prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+            //         SoundManager.pauseSound("piano_music");
+            //         isPause = true;
+            //     }
+            //     if(TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 3000 && isPause) {
+            //         System.out.println("panikkk");
+            //         SoundManager.resumeSound("piano_music");
+            //         isPause = false;
+            //         isDone = true;
+            //     }
+
+            // }
             update();
 
             repaint();
@@ -310,7 +337,7 @@ public class GamePanel extends JPanel implements Runnable {
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
                 || Main.topGameState().equals("Dialogue")) {
-            if (chapter1.IntroFinished) {
+            if (currentChapter != chapter1 || chapter1.IntroFinished) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
                 player.draw(g2);
@@ -370,6 +397,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (currentMap == d3_5_hallway_secondfloor) {
             d3_5_hallway_secondfloor.draw(g2);
+        }
+        if (currentMap == firstfloorLibrary) {
+           firstfloorLibrary.draw(g2);
         }
     }
 

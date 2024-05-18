@@ -77,6 +77,24 @@ public class SoundManager {
         }
     }
 
+    public static void pauseSound(String name) { // pause het nhung am thanh co ten la name
+        for (int i = 0; i < currRunningSounds.size(); i++) {
+            Sound s = currRunningSounds.get(i);
+            if (s.soundName.equals(name)) {
+                s.pause();
+            }
+        }
+    }
+
+    public static void resumeSound(String name) {
+        for (int i = 0; i < currRunningSounds.size(); i++) {
+            Sound s = currRunningSounds.get(i);
+            if (s.soundName.equals(name)) {
+                s.resume();
+            }
+        }
+    }
+
     public void update() {
         ArrayList<Sound> deleted_sound = new ArrayList<Sound>();
         for (int i = 0; i < currRunningSounds.size(); i++) {

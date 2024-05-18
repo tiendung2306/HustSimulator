@@ -3,7 +3,7 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
-import tile.TileSection;
+
 import java.awt.*;
 
 import animation.Animation_player;

@@ -3,6 +3,8 @@ package Inventory;
 import Mouse.MouseManager;
 import main.GamePanel;
 import main.Main;
+import sound.Sound;
+import sound.SoundManager;
 import tile.Tile;
 
 import javax.imageio.ImageIO;
@@ -270,6 +272,7 @@ public class Inventory implements ActionListener {
     }
 
     public void pushToInventory(Tile tile) {
+        SoundManager.playSound("loot_item");
         for (int pageIndex = 0; pageIndex < 3; ++pageIndex)
             for (int y = 0; y < 3; ++y)
                 for (int x = 0; x < 3; ++x) {
