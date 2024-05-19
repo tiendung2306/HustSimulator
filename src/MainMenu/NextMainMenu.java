@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class NextMainMenu extends JPanel {
+public class NextMainMenu {
     Thread gameThread;
     public BufferedImage exitImg, exitImg1, NextBackGround, tutorial, tutorial1, tutorial2, newgame, newgame1, newgame2,
             setting, setting1, setting2, playImg, player, back, tutorialicon, tutorialicon1, Continue, Continue1,
@@ -19,14 +19,6 @@ public class NextMainMenu extends JPanel {
     public NextMainMenu() {
         getImage();
     }
-
-    public void run() {
-        while (gameThread != null) {
-            update();
-            repaint();
-        }
-    }
-
     public String c_check;
 
     public void rollback() {
@@ -120,7 +112,6 @@ public class NextMainMenu extends JPanel {
         g2.drawImage(tutorialicon, (int) (520 * Main.ex), (int) (330 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         g2.drawImage(Continue, (int) (260 * Main.ex), (int) (270 * Main.ey), (int) (247 * Main.ex), (int) (45 * Main.ey), null);
         g2.drawImage(continueicon, (int) (520 * Main.ex), (int) (270 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
-        super.paintComponent(g2);
     }
 
 }

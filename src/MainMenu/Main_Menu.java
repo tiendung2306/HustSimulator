@@ -12,8 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Main_Menu extends JPanel {
-
+public class Main_Menu {
     Thread gameThread;
     public BufferedImage imgBackGround, HUST, simulator, play, exit, setting;
     public BufferedImage play1, exit1, playerImg, playImg, exitImg, setting1;
@@ -24,13 +23,6 @@ public class Main_Menu extends JPanel {
 
     public Main_Menu() {
         getImage();
-    }
-
-    public void run() {
-        while (gameThread != null) {
-            update();
-            repaint();
-        }
     }
 
     public String c_check;
@@ -106,7 +98,5 @@ public class Main_Menu extends JPanel {
         g2.drawImage(exit, (int) (340 * Main.ex), (int) (480 * Main.ey), (int) (80 * Main.ex), (int) (24 * Main.ey), null);
         g2.drawImage(playerImg, (int) x_player, (int) y_player, (int) x_size, (int) y_size, null);
         g2.drawImage(setting, (int) (710 * Main.ex), (int) (13 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
-        super.paintComponent(g2);
-
     }
 }

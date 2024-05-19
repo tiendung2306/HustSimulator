@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class PauseGame extends JPanel {
+public class PauseGame {
     Thread gameThread;
     private BufferedImage NextBackGround, tutorial, tutorial1, tutorial2,
             setting, setting1, setting2, tutorialicon, tutorialicon1, Continue, Continue1,
@@ -100,6 +100,5 @@ public class PauseGame extends JPanel {
         g2.drawImage(backiconimg, (int) (450 * Main.ex), (int) (390 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         g2.drawImage(save, (int) (324 * Main.ex), (int) (330 * Main.ey), (int) (110 * Main.ex), (int) (40 * Main.ey), null);
         g2.drawImage(saveimg, (int) (450 * Main.ex), (int) (330 * Main.ey), (int) (35 * Main.ex), (int) (35 * Main.ey), null);
-        super.paintComponent(g2);
     }
 }

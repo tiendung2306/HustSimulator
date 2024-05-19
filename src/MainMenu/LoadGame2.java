@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class LoadGame2 extends JPanel {
+public class LoadGame2 {
     private BufferedImage LoadGameBackGround, back, exitImg, exitImg1, select, rectengle_1, rectengle_2, rectengle_3, rectengle1, rectengle2, chap1, chap2, chap3, inrec1, inrec2, inrec3, inrecchap_1, inrecchap_2, inrecchap_3;
     private String date1 = "", time1 = "", date2 = "", time2 = "", date3 = "", time3 = "", playingtime2 = "", playingtime3 = "", playingtime1 = "";
     public LoadGame2() {
@@ -165,7 +165,6 @@ public class LoadGame2 extends JPanel {
         g2.drawString(time3, (float) (465 * Main.ex), (float) (437 * Main.ey));
         g2.drawString(date1, (float) (465 * Main.ex), (float) (452 * Main.ey));
         g2.drawString(playingtime3, (float) (465 * Main.ex), (float) (501 * Main.ey));
-        super.paintComponent(g2);
     }
 
 }

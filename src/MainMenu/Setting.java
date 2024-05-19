@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Setting extends JPanel {
+public class Setting {
 
     Thread gameThread;
     public BufferedImage exitImg, exitImg1, SettingBackGround, audio, audio1, audio2, video, video1, video2, key, key1,
@@ -19,14 +19,6 @@ public class Setting extends JPanel {
     public Setting() {
         getImage();
     }
-
-    public void run() {
-        while (gameThread != null) {
-            update();
-            repaint();
-        }
-    }
-
     public String c_check;
 
     public void rollback() {
@@ -110,6 +102,5 @@ public class Setting extends JPanel {
         g2.drawImage(keyicon, (int) (530 * Main.ex), (int) (305 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
         g2.drawImage(audioicon, (int) (580 * Main.ex), (int) (250 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
         g2.drawImage(videoicon, (int) (580 * Main.ex), (int) (190 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
-        super.paintComponent(g2);
     }
 }

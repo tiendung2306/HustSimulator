@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import Keyboard.KeyboardManager;
 import main.Main;
 
-public class KeySetting extends JPanel {
+public class KeySetting {
     private BufferedImage SettingBackGround, back, exitImg, exitImg1, keyboardimg, playerUP, playerDOWN, playerLEFT,
             playerRIGHT, square, enterkey, enterkey1;
     String upKeyName, leftKeyName, rightKeyName, downKeyName;
@@ -399,7 +399,6 @@ public class KeySetting extends JPanel {
         g2.drawImage(square, (int) (x_square), (int) (y_square), (int) (98 * Main.ex), (int) (38 * Main.ey), null);
         g2.drawImage(enterkey, (int) (150 * Main.ex), (int) (207 * Main.ey), (int) (468 * Main.ex),
                 (int) (200 * Main.ey), null);
-        super.paintComponent(g2);
     }
 
 }

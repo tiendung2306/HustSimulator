@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Toturial extends JPanel {
+public class Toturial {
 
     private BufferedImage background;
 
@@ -33,7 +33,5 @@ public class Toturial extends JPanel {
     }
     public void draw(Graphics2D g2) {
         g2.drawImage(background, 0, 0, (int) (768 * Main.ex), (int) (576 * Main.ey), null);
-
-        super.paintComponent(g2);
     }
 }

@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class VideoSetting extends JPanel {
+public class VideoSetting {
     private BufferedImage SettingBackGround, back, exitImg, exitImg1, resolution, down, right1, left1, right, left, save, save1, save2;
     private String check = "";
     public static boolean checkResolution = false;
@@ -131,7 +131,6 @@ public class VideoSetting extends JPanel {
         g2.drawString(x1280x960, (int) (485 * Main.ex), (int) (335 * Main.ey));
         g2.drawString(x1792x1344, (int) (485 * Main.ex), (int) (375 * Main.ey));
         g2.drawString(x2304x1728, (int) (485 * Main.ex), (int) (415 * Main.ey));
-        super.paintComponent(g2);
     }
 
 
