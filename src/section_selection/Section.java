@@ -7,10 +7,12 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
+import Collision.Collision;
 import Mouse.MouseManager;
 import section_selection.shape.Point;
 import section_selection.shape.Shape;
 import sound.SoundManager;
+import time.TimeSystem;
 
 
 class Section {
@@ -94,7 +96,11 @@ class Section {
             switch (tag) {
                 case "Section1":
                     section_selection.gamePanel.section_1.open();
+                    SoundManager.pauseSound("nhac_nen01");
                     SoundManager.playSound("foot_step");
+                    Collision.prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+                    System.out.println("STOP");
+                    Collision.resumeSound = true;
                     break;
 
                 case "Section2":

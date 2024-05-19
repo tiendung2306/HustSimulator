@@ -86,11 +86,11 @@ public class SoundManager {
         }
     }
 
-    public static void resumeSound(String name) {
+    public static void resumeSound(String name, Boolean isThisSoundLoop) {
         for (int i = 0; i < currRunningSounds.size(); i++) {
             Sound s = currRunningSounds.get(i);
             if (s.soundName.equals(name)) {
-                s.resume();
+                s.resume(isThisSoundLoop);
             }
         }
     }

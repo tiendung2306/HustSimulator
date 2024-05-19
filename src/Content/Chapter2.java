@@ -2,12 +2,14 @@ package Content;
 
 import main.GamePanel;
 import main.Main;
+import sound.SoundManager;
 import time.TimeSystem;
 
 public class Chapter2 extends Chapter{
 
     long prevTime = 0;
     boolean isAtClassMrsToan = true, isAtClassMrHoa = true, isAtBed = true;
+    public Boolean checkSound_chap2_01 = true,checkSound_chap2_02 = true;
     public Chapter2(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
@@ -24,7 +26,11 @@ public class Chapter2 extends Chapter{
         completedAct = 0;
     }
 
-    void Timeline0() {
+    void Timeline0() {// Cho nhạc vào đây
+        if(checkSound_chap2_01) {
+            SoundManager.loopSound("nhac_nen02");
+            checkSound_chap2_01 = false;
+        }
         if (completedAct == 0)
             Dialogue("Ngày thứ 2 kể từ khi ta chuyển sinh vào thế giới này.");
         if (completedAct == 1)
@@ -68,6 +74,11 @@ public class Chapter2 extends Chapter{
             ++completedAct;
         }
         if (completedAct == 1){
+            if(checkSound_chap2_02) {
+                SoundManager.pauseSound("nhac_nen02");
+                SoundManager.loopSound("gap_gv");
+                checkSound_chap2_02 = false;
+            }
             if (isAtClassMrsToan){
                 ui.setDialogueBackground("Classroom");
                 ui.setDialogueCharacter("Mrs Toan");
@@ -102,6 +113,10 @@ public class Chapter2 extends Chapter{
             Dialogue("Thưa cô, đáp án chính là 1/(1+x).");
         }
         if (completedAct == 9){
+            if(!checkSound_chap2_02) {
+                SoundManager.playSound("tra_loi_sai");
+                checkSound_chap2_02 = true;
+            }
             ui.setDialogueCharacter("Mrs Toan");
             Dialogue("Sai");
         }
@@ -126,6 +141,11 @@ public class Chapter2 extends Chapter{
     }
     void Timeline2(){
         if (completedAct == 0){
+            if(checkSound_chap2_02) {
+                SoundManager.resumeSound("nhac_nen02",true);
+                SoundManager.pauseSound("gap_gv");
+                checkSound_chap2_02 = false;
+            }
             ui.setDialogueBackground("Empty");
             ui.setDialogueCharacter("Empty");
             Dialogue("Nguy hiểm thật sự, quả là ma pháp tà đạo!");
@@ -133,6 +153,11 @@ public class Chapter2 extends Chapter{
         }
         if (completedAct == 1){
             if (isAtClassMrHoa){
+                if(!checkSound_chap2_02) {
+                    SoundManager.pauseSound("nhac_nen02");
+                    SoundManager.resumeSound("gap_gv",true);
+                    checkSound_chap2_02 = true;
+                }
                 ui.setDialogueBackground("Classroom");
                 ui.setDialogueCharacter("Mr Hoa");
                 Dialogue("Hạt lúa người ta gọi là cái khẳng định, nhưng khi hạt lúa nó được gieo nảy mầm và lên cây lúa, thì cây lúa là cái phủ định của hạt lúa...");
@@ -153,6 +178,11 @@ public class Chapter2 extends Chapter{
             Dialogue("Ngôn ngữ gì vậy?");
         }
         if (completedAct == 6){
+            if(checkSound_chap2_02) {
+                SoundManager.resumeSound("nhac_nen02",true);
+                SoundManager.stopSound("gap_gv");
+                checkSound_chap2_02 = false;
+            }
             Dialogue("Hôm nay tới đây là đủ rồi");
         }
         if (completedAct == 7){
@@ -166,6 +196,10 @@ public class Chapter2 extends Chapter{
         }
     }
     void Timeline3(){
+        if(!checkSound_chap2_01) {
+            SoundManager.loopSound("nhac_nen02");
+            checkSound_chap2_01 = true;
+        }
 
     }
     public void update() {
