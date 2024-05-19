@@ -2,6 +2,7 @@ package Content;
 
 import main.GamePanel;
 import main.Main;
+import sound.SoundManager;
 import time.TimeSystem;
 
 public class Chapter2 extends Chapter {
@@ -9,6 +10,7 @@ public class Chapter2 extends Chapter {
     long prevTime = 0;
     public boolean isAtClassMrsToan = false, isAtClassMrHoa = false;
     boolean isStart = false;
+    public Boolean checkSound_chap2_01 = true, checkSound_chap2_02 = true;
 
     public Chapter2(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -27,6 +29,10 @@ public class Chapter2 extends Chapter {
     }
 
     void Timeline0() {
+        if (checkSound_chap2_01) {
+            SoundManager.loopSound("nhac_nen02");
+            checkSound_chap2_01 = false;
+        }
         if (completedAct == 0) {
             if (!isStart) {
                 isStart = true;
@@ -79,7 +85,15 @@ public class Chapter2 extends Chapter {
             ++completedAct;
         }
         if (completedAct == 1) {
+            if (checkSound_chap2_02) {
+                SoundManager.pauseSound("nhac_nen02");
+                SoundManager.loopSound("gap_gv");
+                checkSound_chap2_02 = false;
+            }
             if (isAtClassMrsToan) {
+                ui.setDialogueBackground("Classroom");
+                ui.setDialogueCharacter("Mrs Toan");
+                Dialogue("Anh tê, dừ là buổi mô rồi anh mì mò mặt đến lớp? Tôi tích cho anh 1 dấu.");
                 isAtClassMrsToan = false;
                 ++completedAct;
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
@@ -123,6 +137,10 @@ public class Chapter2 extends Chapter {
             Dialogue("Thưa cô, đáp án chính là 1/(1+x).");
         }
         if (completedAct == 11) {
+            if (!checkSound_chap2_02) {
+                SoundManager.playSound("tra_loi_sai");
+                checkSound_chap2_02 = true;
+            }
             ui.setDialogueCharacter("Mrs Toan");
             Dialogue("Sai");
         }
@@ -148,6 +166,11 @@ public class Chapter2 extends Chapter {
 
     void Timeline2() {
         if (completedAct == 0) {
+            if (checkSound_chap2_02) {
+                SoundManager.resumeSound("nhac_nen02", true);
+                SoundManager.pauseSound("gap_gv");
+                checkSound_chap2_02 = false;
+            }
             ui.setDialogueBackground("Empty");
             ui.setDialogueCharacter("Empty");
             Dialogue("Nguy hiểm thật sự, quả là ma pháp tà đạo!");
@@ -156,6 +179,11 @@ public class Chapter2 extends Chapter {
         }
         if (completedAct == 1) {
             if (isAtClassMrHoa) {
+                if (!checkSound_chap2_02) {
+                    SoundManager.pauseSound("nhac_nen02");
+                    SoundManager.resumeSound("gap_gv", true);
+                    checkSound_chap2_02 = true;
+                }
                 ui.setDialogueBackground("Classroom");
                 ui.setDialogueCharacter("Mr Hoa");
                 Dialogue("qwertyuiopasdfghjklzxcvbnm");
@@ -176,7 +204,12 @@ public class Chapter2 extends Chapter {
             Dialogue("Thôi được rồi.");
         }
         if (completedAct == 6) {
-            Dialogue("Hôm nay tới đây là đủ rồi");
+            if (checkSound_chap2_02) {
+                SoundManager.resumeSound("nhac_nen02", true);
+                SoundManager.stopSound("gap_gv");
+                checkSound_chap2_02 = false;
+            }
+            Dialogue("Hôm nay tới đây là đủ rồi!");
         }
         if (completedAct == 7) {
             ui.setDialogueBackground("Empty");
@@ -194,6 +227,10 @@ public class Chapter2 extends Chapter {
     }
 
     void Timeline3() {
+        if (!checkSound_chap2_01) {
+            SoundManager.loopSound("nhac_nen02");
+            checkSound_chap2_01 = true;
+        }
         gamePanel.currentChapter = gamePanel.chapter3;
         gamePanel.chapter3.completedAct = 0;
     }

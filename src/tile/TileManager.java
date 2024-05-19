@@ -27,10 +27,6 @@ public class TileManager {
 
     public void getTileImage() {
         try {
-
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new FileInputStream("res/tile/KHU_VUC_3.png"));
-
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(new FileInputStream("res/tile/background_thuvien.png"));
 

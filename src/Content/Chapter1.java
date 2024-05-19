@@ -2,6 +2,7 @@ package Content;
 
 import main.GamePanel;
 import main.Main;
+import sound.SoundManager;
 import time.TimeSystem;
 
 public class Chapter1 extends Chapter {
@@ -9,6 +10,7 @@ public class Chapter1 extends Chapter {
             hoSoMission = false;
     long prevTime = 0;
     public Boolean isTeleportable = false;
+    public Boolean checkSound_chap1_01 = true, checkSound_chap1_02 = true;
 
     public Chapter1(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -27,7 +29,11 @@ public class Chapter1 extends Chapter {
         completedAct = 0;
     }
 
-    void Intro() {
+    void Intro() {// Cho nhạc vào đấy
+        if(checkSound_chap1_01) {
+            SoundManager.loopSound("nhac_nen01");
+            checkSound_chap1_01 = false;
+        }
         if (completedAct == 0)
             Dialogue("Chuyện gì vừa xảy ra vậy...");
         if (completedAct == 1)
@@ -107,6 +113,10 @@ public class Chapter1 extends Chapter {
             }
             if (collision.interactItem.Name.equals("Pan") && inventory.isUsingItem
                     && inventory.usingItem.Name.equals("Noodle")) {
+                if(checkSound_chap1_02) {
+                    SoundManager.playSound("an_mi");
+                    checkSound_chap1_01 = false;
+                }
                 gamePanel.myRoom.tileNoodle.isMission = false;
                 gamePanel.myRoom.tilePan.isMission = false;
                 gamePanel.inventory.deleteFromInventory(gamePanel.inventory.currentIndex, gamePanel.inventory.slotX,
@@ -248,12 +258,17 @@ public class Chapter1 extends Chapter {
         }
         if (completedAct == 20 && gamePanel.currentMap == gamePanel.myRoom) {
             Dialogue("Hoàn thành chapter 1");
+            System.out.println("hehe");
         }
         if (completedAct == 21)
             nextTimeline();
     }
 
     void Timeline4() {
+        if(!checkSound_chap1_01) {
+            SoundManager.stopSound("nhac_nen01");
+            checkSound_chap1_01 = true;
+        }
         gamePanel.currentChapter = gamePanel.chapter2;
         gamePanel.chapter2.completedAct = 0;
     }
