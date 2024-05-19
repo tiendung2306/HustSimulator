@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class AudioSetting extends JPanel {
+public class AudioSetting {
 
     Thread gameThread;
     private BufferedImage SettingBackGround, back, exitImg, exitImg1, line, player, comment, comment1, volume, volumeX,
@@ -74,8 +74,6 @@ public class AudioSetting extends JPanel {
     }
 
     public void Init() {
-        // System.out.println("123");
-        // System.out.println(check);
         check = "";
         comment = null;
         exitImg = null;
@@ -83,8 +81,6 @@ public class AudioSetting extends JPanel {
         mutestring = "";
         numbervolume = 999 * Main.ey;
         volumesliderpointX = 230 * Main.ex;
-        // g2.drawImage(exitImg, 60 * Main.ex, 12 * Main.ex, 40 * Main.ex, 40 * Main.ex,
-        // null);
     }
 
     public void update() {
@@ -169,8 +165,6 @@ public class AudioSetting extends JPanel {
         g2.drawImage(volume, (int) (170 * Main.ex), (int) (254 * Main.ey), (int) (50 * Main.ex), (int) (50 * Main.ey), null);
         g2.drawImage(mutecmt, (int) (153 * Main.ex), (int) (205 * Main.ey), (int) (60 * Main.ex), (int) (50 * Main.ey), null);
         g2.drawString(mutestring, (float) mute_unmutestring, (float) (229 * Main.ey));
-
-        super.paintComponent(g2);
     }
 
 }
