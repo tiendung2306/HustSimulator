@@ -310,7 +310,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         if (Main.topGameState().equals("Loading")) {
-            if (currentMap.map_exchange_effect.isRunning() == false)
+            if (!currentMap.map_exchange_effect.isRunning())
                 Main.popGameState();
         }
     }
@@ -352,7 +352,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (currentChapter != chapter1 || chapter1.IntroFinished) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
-                // player.draw(g2);
+                player.draw(g2);
                 inventory.draw(g2);
                 missionDescription.draw(g2);
                 phone.draw(g2);
