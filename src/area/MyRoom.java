@@ -22,7 +22,7 @@ public class MyRoom extends Map {
         extraTile = new ExtraTile[10];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;
-        // addExtraTile("src/txt/test.txt");
+        // addExtraTile("src/txt/cauthang1.txt");
         setDefaultValues();
     }
 
@@ -71,14 +71,14 @@ public class MyRoom extends Map {
                 "res/tile/door_my_room.png", 1);
         tilePan = new Tile(gamePanel,413, 155, 30, 20, "Pan", "Interact", "", "res/tile/chao.png", 1);
         tileWallMyRoom = new Tile(gamePanel,0, 0, 460, 91, "", "Obstacle", "", "res/tile/no_thing.png", 1);
-        tileNoodle = new Tile(gamePanel,60, 85, 36, 36, "Noodle", "Collected", "Mì tôm Omachi",
+        tileNoodle = new Tile(gamePanel,414, 130, 36, 36, "Noodle", "Collected", "Mì tôm Omachi",
                 "res/tile/mi_tom01.png", "res/tile/mi_tom02.png", (double) 1 / 3);
-        tileStudentCard = new Tile(gamePanel,50, 120, 39, 27, "Student ID", "Collected", "DCM 37 38 RACH",
+        tileStudentCard = new Tile(gamePanel,315, 158, 39, 27, "Student ID", "Collected", "DCM 37 38 RACH",
                 "res/tile/thehs01.png", "res/tile/thehs02.png", (double) 1 / 3);
         tileChair = new Tile[4];
-        tilehoso = new Tile(gamePanel,340, 160, 39, 60, "Hồ sơ", "Collected", "Hồ sơ dùng để nhập học",
+        tilehoso = new Tile(gamePanel,338, 160, 39, 60, "Hồ sơ", "Collected", "Hồ sơ dùng để nhập học",
                 "res/tile/hoso01.png", "res/tile/hoso02.png", (double) 1 / 3);
-        tileLaptop = new Tile(gamePanel,78, 100, 66, 45, "Acer Predator 21X", "Collected", "230.000.000 VNĐ",
+        tileLaptop = new Tile(gamePanel,92, 190, 66, 45, "Acer Predator 21X", "Collected", "230.000.000 VNĐ",
                 "res/tile/lap_top01.png", "res/tile/lap_top02.png", (double) 1 / 3);
         tilePhone = new Tile(gamePanel,162, 187, 24, 39, "Iphone 100 ProMax", "Collected",
                 "Vũ khí đánh bại Ma Vương", "res/tile/phone01.png", "res/tile/phone02.png", (double) 1 / 3);
@@ -114,8 +114,13 @@ public class MyRoom extends Map {
     public void resetTile() {
         width = (int) (29 * 16 * GamePanel.scale);
         height = (int) (16 * 16 * GamePanel.scale);
-        playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
-        playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
+        if(gamePanel.currentMap == this) {
+            playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
+            playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
+        } else {
+            playerX = (int) (215 * GamePanel.scale);
+            playerY = (int) (75 * GamePanel.scale);
+        }
         prevScale = (int) GamePanel.scale;
         background.setWidth((int) (450 * GamePanel.scale));
         background.setHeight((int) (242 * GamePanel.scale));

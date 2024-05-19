@@ -176,27 +176,18 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void screenResize() {
         missionDescription.screenResize();
-        if (currentMap == myRoom) {
-            myRoom.resetTile();
-        }
-        if (currentMap == normalClassroom) {
-            normalClassroom.resetTile();
-        }
-        if (currentMap == computerRoom) {
-            computerRoom.resetTile();
-        }
-        if (currentMap == library) {
-            library.resetTile();
-        }
-        if (currentMap == stadium) {
-            stadium.resetTile();
-        }
+        myRoom.resetTile();
+        normalClassroom.resetTile();
+//        computerRoom.resetTile();
+//        library.resetTile();
+//        stadium.resetTile();
         currentMap.loadMap(this);
         player.reSize();
         inventory.ScreenResize();
         phone.screenResize();
         ui.screenResize();
         section_selection.screenResize();
+        
     }
 
     public void Init() {
@@ -270,7 +261,7 @@ public class GamePanel extends JPanel implements Runnable {
         timeSystem.update();
         soundManager.update();
         tileManager.update();
-        currentChapter.update();
+        //currentChapter.update();
         phone.update();
         player.update();
         inventory.update();
@@ -358,7 +349,9 @@ public class GamePanel extends JPanel implements Runnable {
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
                 || Main.topGameState().equals("Dialogue")) {
-            if (chapter1.IntroFinished) {
+            if (//chapter1.IntroFinished)
+            true )
+                {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
                 player.draw(g2);
