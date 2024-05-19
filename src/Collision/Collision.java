@@ -154,7 +154,7 @@ public class Collision {
     public void pushDialog() {
         boolean checkPush = true;
         for (int i = 0; i < numCollision; ++i)
-            if (collisionTile[i].Type.equals("NPC")) {
+            if (collisionTile[i].Type.equals("Teleport") || collisionTile[i].Type.equals("NPC") || collisionTile[i].Type.equals("Obstacle")) {
                 checkPush = false;
                 break;
             }

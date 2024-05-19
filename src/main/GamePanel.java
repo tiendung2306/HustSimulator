@@ -220,7 +220,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
         }
-        currentChapter = chapter2;
+        currentChapter = chapter1;
         currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();
@@ -272,7 +272,7 @@ public class GamePanel extends JPanel implements Runnable {
         timeSystem.update();
         soundManager.update();
         tileManager.update();
-        //currentChapter.update();
+        currentChapter.update();
         phone.update();
         player.update();
         inventory.update();

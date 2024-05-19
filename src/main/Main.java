@@ -164,8 +164,6 @@ class ButtonClicked implements ActionListener {
         Main.window.setResizable(false);
         Main.window.setTitle("2D Adventure");
         Main.window.setLayout(new BoxLayout(Main.window.getContentPane(), BoxLayout.Y_AXIS));
-
-
         WindowListener listener = new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
                 // Frame frame = (Frame) evt.getSource();
