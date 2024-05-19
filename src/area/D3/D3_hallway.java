@@ -14,9 +14,7 @@ import java.io.*;
 
 
 public class D3_hallway extends Map {
-    Tile layer_1, layer_2, layer_3;
     Tile spawn_point1, spawn_point2, spawn_point3;
-    GamePanel gamePanel;
 
 
     public D3_hallway(GamePanel gamePanel) {
@@ -27,25 +25,20 @@ public class D3_hallway extends Map {
 
     private void SetDefaultValues(){
         TileLoad();
+        ObjectLoad("D3_hallway");
         SetOriginalSize();
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * layer_1.image.getHeight() / (50 * layer_1.getHeight()));
+        reSizeMap();
     }
     
     private void SetOriginalSize(){
 
-        width = layer_1.getWidth();
-        height = layer_1.getHeight();
+        width = background.getWidth();
+        height = background.getHeight();
     }
 
     private void ReSize(double scale){
-        layer_1.setWidth((int)(layer_1.getWidth() * scale));
-        layer_1.setHeight((int)(layer_1.getHeight() * scale));
-
-        layer_2.setWidth((int)(layer_2.getWidth() * scale));
-        layer_2.setHeight((int)(layer_2.getHeight() * scale));
-
-        layer_3.setWidth((int)(layer_3.getWidth() * scale));
-        layer_3.setHeight((int)(layer_3.getHeight() * scale));
+        background.setWidth((int)(background.getWidth() * scale));
+        background.setHeight((int)(background.getHeight() * scale));
 
         spawn_point1.resize(scale);
         spawn_point2.resize(scale);
@@ -57,8 +50,8 @@ public class D3_hallway extends Map {
 
         }
         
-        width = layer_1.getWidth();
-        height = layer_1.getHeight();
+        width = background.getWidth();
+        height = background.getHeight();
 
     }
 
@@ -71,12 +64,8 @@ public class D3_hallway extends Map {
         tileContainer = new Tile[50];
 
         try {
-            BufferedImage layer_1_Image = ImageIO.read(new FileInputStream("res/tile/D3_hallway_layer(1).png"));
-            layer_1 = new Tile(new Rectangle(0, 0, layer_1_Image.getWidth(), layer_1_Image.getHeight()), "layer_1", "", null, layer_1_Image);
-            BufferedImage layer_2_Image = ImageIO.read(new FileInputStream("res/tile/D3_hallway_layer(2).png"));
-            layer_2 = new Tile(new Rectangle(0, 0, layer_2_Image.getWidth(), layer_2_Image.getHeight()), "layer_2", "", null, layer_2_Image);
-            BufferedImage layer_3_Image = ImageIO.read(new FileInputStream("res/tile/D3_hallway_layer(3).png"));
-            layer_3 = new Tile(new Rectangle(0, 0, layer_3_Image.getWidth(), layer_3_Image.getHeight()), "layer_3", "", null, layer_3_Image);
+            BufferedImage background_Image = ImageIO.read(new FileInputStream("res/tile/D3_hallway_layer(1).png"));
+            background = new Tile(new Rectangle(0, 0, background_Image.getWidth(), background_Image.getHeight()), "background", "", null, background_Image);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -114,6 +103,7 @@ public class D3_hallway extends Map {
     }
 
     public void open(String type){
+        reSizeMap();
         if(type == "enter_from_stair1"){
             SetPlayerPos(spawn_point1);
         }
@@ -126,13 +116,17 @@ public class D3_hallway extends Map {
         loadMap(gamePanel);
     }
 
-    // Phương thức vẽ map
-    public void draw(Graphics2D g2) {
-        gamePanel.tileManager.draw(g2, layer_1);
-        gamePanel.tileManager.draw(g2, layer_2);
-        gamePanel.tileManager.draw(g2, layer_3);
-
-        // for (int i = 0; i < numTileContainer; ++i)
-        //     gamePanel.tileManager.draw(g2, tileContainer[i]);
+    @Override public void reSizeMap(){
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * background.image.getHeight() / (50 * background.getHeight()));
     }
+
+    // Phương thức vẽ map
+    // public void draw(Graphics2D g2) {
+    //     gamePanel.tileManager.draw(g2, layer_1);
+    //     gamePanel.tileManager.draw(g2, layer_2);
+    //     gamePanel.tileManager.draw(g2, layer_3);
+
+    //     // for (int i = 0; i < numTileContainer; ++i)
+    //     //     gamePanel.tileManager.draw(g2, tileContainer[i]);
+    // }
 }

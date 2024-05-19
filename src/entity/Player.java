@@ -110,6 +110,7 @@ public class Player extends Entity {
     public void update() {
         if (!(Main.topGameState().equals("GamePlay")) || gamepanel.phone.isDrawPhone)
             return;
+
         int countPressed = 0;
         if (keyhandler.upPressed)
             ++countPressed;
@@ -338,16 +339,31 @@ public class Player extends Entity {
             direction = "stand";
 
         }
+        posUpdate();
+
+    }
+
+    public void posUpdate(){
         boundingBox.x = min(screenX, mapX);
         boundingBox.y = min(screenY, mapY);
-        boundingBox.x += (int) max(0, mapX - (gamepanel.currentMap.width - GamePanel.screenWidth / 2) + boundingBox.width);
-        boundingBox.y += (int) max(0, mapY - (gamepanel.currentMap.height - GamePanel.screenHeight / 2) + boundingBox.height);
+        boundingBox.x += (int) max(0, mapX - (gamepanel.currentMap.width - GamePanel.screenWidth / 2) + boundingBox.width / 2);
+        boundingBox.y += (int) max(0, mapY - (gamepanel.currentMap.height - GamePanel.screenHeight / 2) + boundingBox.height / 2);
+
         hitArea.x = mapX + boundingBox.width / 4;
         hitArea.y = mapY + boundingBox.height / 3 * 2;
         leftBorder = (boundingBox.x <= 0);
         rightBorder = (boundingBox.x >= GamePanel.screenWidth - boundingBox.width);
         topBorder = (boundingBox.y <= 0);
         bottomBorder = (boundingBox.y >= GamePanel.screenHeight - boundingBox.height);
+    }
+
+    public Rectangle getImagebox(){
+        int x = (int)(mapX + (107.0 / 450) * boundingBox.width);
+        int y = (int)(mapY + (19.0 / 450) * boundingBox.height);
+        int width = (int)((223.0 / 450) * boundingBox.width);
+        int height = (int)((407.0 / 450) * boundingBox.width);
+
+        return new Rectangle(x, y , width, height);
     }
 
     public void draw(Graphics2D g2) {

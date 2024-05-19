@@ -115,6 +115,18 @@ public class Animation_player{
             return false;
     }
 
+    public int getWidth(){
+        return play_area.width;
+    }
+
+    public int getHeight(){
+        return play_area.height;
+    }
+
+    public void setPlayarea(Rectangle play_area){
+        this.play_area = play_area;
+    }
+
     public void operation(Graphics graphics) {
         
         if(Switch){

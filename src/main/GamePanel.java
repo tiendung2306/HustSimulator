@@ -153,6 +153,7 @@ public class GamePanel extends JPanel implements Runnable {
         currentMap.loadMap(this);
         missionDescription.screenResize();
         player.reSize();
+        currentMap.reSizeMap();
         inventory.ScreenResize();
         phone.screenResize();
         ui.screenResize();
@@ -317,7 +318,7 @@ public class GamePanel extends JPanel implements Runnable {
             else if (Main.topGameState().equals("PauseGame"))
                 pauseGame.update();
         }
-        if (Main.topGameState().equals("GamePlay")){
+        if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
                     collision.update();
@@ -338,7 +339,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        if (Main.topGameState().equals("Loading")){
+        if (Main.topGameState().equals("Loading")) {
             if (currentMap.map_exchange_effect.isRunning() == false)
                 Main.popGameState();
         }
@@ -406,7 +407,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (true) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
-                player.draw(g2);
+                // player.draw(g2);
                 inventory.draw(g2);
                 missionDescription.draw(g2);
                 phone.draw(g2);
@@ -418,7 +419,7 @@ public class GamePanel extends JPanel implements Runnable {
             section_selection.operation(g);
         }
 
-        else if (Main.topGameState().equals("Loading")){
+        else if (Main.topGameState().equals("Loading")) {
             currentMap.map_exchange_effect.operation(g);
         }
 

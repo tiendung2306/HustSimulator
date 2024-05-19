@@ -1,6 +1,5 @@
 package area.C2;
 
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
@@ -15,8 +14,6 @@ import tile.Tile;
 
 
 public class C2_hallway extends Map {
-    GamePanel gamePanel;
-    Tile first_floor, second_floor;
     Tile spawn_point1, spawn_point2;
     Animation_player map_exchange_effect1, map_exchange_effect2;
     public Tile c2_hallEntry1, c2_hallEntry2, c2_hallEntry3;
@@ -30,25 +27,28 @@ public class C2_hallway extends Map {
 
     private void SetDefaultValues(){
         TileLoad();
+        ObjectLoad("C2_Hallway");
         SetOriginalSize();
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * first_floor.image.getHeight() / (50 * first_floor.getHeight()));
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * background.image.getHeight() / (50 * background.getHeight()));
     }
     
     private void SetOriginalSize(){
 
-        width = first_floor.getWidth();
-        height = first_floor.getHeight();
+        width = background.getWidth();
+        height = background.getHeight();
     }
 
     private void ReSize(double scale){
-        first_floor.setWidth((int)(first_floor.getWidth() * scale));
-        first_floor.setHeight((int)(first_floor.getHeight() * scale));
-
-        second_floor.setWidth((int)(second_floor.getWidth() * scale));
-        second_floor.setHeight((int)(second_floor.getHeight() * scale));
+        background.setWidth((int)(background.getWidth() * scale));
+        background.setHeight((int)(background.getHeight() * scale));
 
         spawn_point1.resize(scale);
         spawn_point2.resize(scale);
+
+        map_exchange_effect1.resize(GamePanel.screenWidth / (2 * map_exchange_effect1.getWidth()));
+        map_exchange_effect2.resize(GamePanel.screenWidth / (2 * map_exchange_effect2.getWidth()));
+
+
 
 
         for(int i = 0; i < numTileContainer; i++){
@@ -56,8 +56,8 @@ public class C2_hallway extends Map {
 
         }
         
-        width = first_floor.getWidth();
-        height = first_floor.getHeight();
+        width = background.getWidth();
+        height = background.getHeight();
 
     }
 
@@ -67,13 +67,11 @@ public class C2_hallway extends Map {
     }
 
     private void TileLoad() {
-        tileContainer = new Tile[15];
+        tileContainer = new Tile[50];
 
         try {
-            BufferedImage first_floor_Image = ImageIO.read(new FileInputStream("res/tile/C2_hallway (1).png"));
-            first_floor = new Tile(new Rectangle(0, 0, first_floor_Image.getWidth(), first_floor_Image.getHeight()), "Background", "", null, first_floor_Image);
-            BufferedImage second_floor_Image = ImageIO.read(new FileInputStream("res/tile/C2_hallway (2).png"));
-            second_floor = new Tile(new Rectangle(0, 0, second_floor_Image.getWidth(), second_floor_Image.getHeight()), "Background", "", null, second_floor_Image);
+            BufferedImage background_Image = ImageIO.read(new FileInputStream("res/tile/C2_Hallway_background.png"));
+            background = new Tile(new Rectangle(0, 0, background_Image.getWidth(), background_Image.getHeight()), "Background", "", null, background_Image);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,6 +87,7 @@ public class C2_hallway extends Map {
         addTile(c2_hallEntry1);
         addTile(c2_hallEntry2);
         addTile(c2_hallEntry3);
+        addTile(new Tile(new Rectangle( 89 , 354 , 116 , 6 ), "fence", "Obstacle", null, null));
         addTile(new Tile(new Rectangle( 93 , 238 , 107 , 24 ), "fence", "Obstacle", null, null));
         addTile(new Tile(new Rectangle( 73 , 173 , 21 , 99 ), "pillar", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(491 , 605 , 159 , 34), "C2_Hallway_exit", "Teleport", null, null));
@@ -106,7 +105,13 @@ public class C2_hallway extends Map {
     
     }
 
+    @Override public void reSizeMap(){
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * background.image.getHeight() / (50 * background.getHeight()));
+    }
+
     public void open(String type){
+        reSizeMap();
+
         if(type == "enter_from_stair"){ 
             SetPlayerPos(spawn_point1);
             map_exchange_effect = map_exchange_effect1;
@@ -118,14 +123,6 @@ public class C2_hallway extends Map {
         loadMap(gamePanel);
     }
 
-    // Phương thức vẽ map
-    public void draw(Graphics2D g2) {
-        gamePanel.tileManager.draw(g2, first_floor);
-        // gamePanel.tileManager.draw(g2, second_floor);
-
-        // for (int i = 0; i < numTileContainer; ++i)
-        //     gamePanel.tileManager.draw(g2, tileContainer[i]);
-    }
 }
 
 

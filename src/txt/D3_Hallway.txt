@@ -1,0 +1,15 @@
+*
+Name D3_hallway_layer(2)
+Type non-animated
+Trans 1.0
+Image 0 0 2022 481
+Body 
+Foot 147 360 153 96 
+*
+Name D3_hallway_layer(3)
+Type non-animated
+Trans 1.0
+Image 0 0 2022 481
+Body 
+Foot 1200 399 569 12 379 400 564 10
+# 
