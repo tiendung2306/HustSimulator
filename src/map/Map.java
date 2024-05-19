@@ -23,7 +23,7 @@ public class Map {
     public int numTileContainer;
     public int playerX, playerY;
     public Tile [] tileContainer;
-    public int prevScale = (int) GamePanel.scale;
+    public static int prevScale = (int) GamePanel.scale;
     public ExtraTile[] extraTile;
     public Vector <Object> objectContainer =  new Vector <Object>();
     public Animation_player map_exchange_effect;

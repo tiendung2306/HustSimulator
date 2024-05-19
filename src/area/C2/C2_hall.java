@@ -51,7 +51,7 @@ public class C2_hall extends Map {
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
         }
-                
+
         width = layer1.getWidth();
         height = layer1.getHeight();
 
@@ -104,8 +104,8 @@ public class C2_hall extends Map {
 
         addTile(new Tile(new Rectangle(88 , 620 , 110 , 4), "C2_hall_exit", "Teleport", null, null));
 
-        teacher1 = new Npc(gamePanel, new Rectangle( 309 , 299 , 24 , 34), "teacher1");
-        security_man = new Npc(gamePanel, new Rectangle( 190 , 270 , 21 , 53), "security_man");
+        teacher1 = new Npc(gamePanel, new Rectangle( 309 , 299 , 24 , 34), "NPC", "teacher1");
+        security_man = new Npc(gamePanel, new Rectangle( 190 , 270 , 21 , 53), "NPC", "security_man");
 
         addTile(teacher1);
         addTile(security_man);

@@ -16,6 +16,7 @@ import java.io.*;
 
 public class Section_3 extends Map {
     Tile background, Library, BK_ALUMNI_HOUSE, Tien_Lake, Unknown;
+    public Tile npcGirl;
     GamePanel gamePanel;
 
 

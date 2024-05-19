@@ -40,10 +40,13 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         }
         if (code == KeyboardManager.getKey("PAUSE")) {
+
             if (Main.topGameState().equals("PauseGame")) {
                 Main.popGameState();
             } else if(Main.topGameState().equals("GamePlay") && !gamePanel.phone.isDrawPhone)
                 Main.pushGameState("PauseGame");
+            else if (Main.topGameState().equals("Inventory"))
+                Main.popGameState();
         }
         if (code == KeyboardManager.getKey("INVENTORY")) {
             if (Main.topGameState().equals("Inventory"))

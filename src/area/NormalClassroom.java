@@ -4,6 +4,7 @@ import main.GamePanel;
 import map.Map;
 import tile.Tile;
 import tile.TileSection;
+import npc.Npc;
 import java.awt.*;
 
 import animation.Animation_player;
@@ -13,6 +14,7 @@ public class NormalClassroom extends Map {
     Tile background;
     public Tile tileDoor01,tileDoor02,tileTableTeacher,tileWallNormalClassroom;
     public Tile [] tileTable;
+    public Npc mrsToan;
 
     public NormalClassroom(GamePanel gamePanel) {
         super();
@@ -36,6 +38,7 @@ public class NormalClassroom extends Map {
         tileDoor02 = new Tile(gamePanel,261,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png",1);
         tileTableTeacher = new Tile(gamePanel,273,177,30,62,"Table Teacher","Obstacle","","res/tile/ban_gv.png",1);
         tileWallNormalClassroom = new Tile(gamePanel,0,0,320,79,"","Obstacle","","res/tile/no_thing.png",1);
+        mrsToan = new Npc(gamePanel, new Rectangle( 760 , 560 , 60 , 90), "NPC", "Mrs Toan");
         setUpTable();
         setUpTileNormalClassroom();
     }
@@ -48,7 +51,7 @@ public class NormalClassroom extends Map {
         addTile(tileTableTeacher);
         for (int i = 0; i < 10; i++)
             addTile(tileTable[i]);
-
+        addTile(mrsToan);
         map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
     }
@@ -85,6 +88,7 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
+        mrsToan.resize(GamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {
@@ -92,5 +96,6 @@ public class NormalClassroom extends Map {
         gamePanel.tileManager.draw(g2, background);
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);
+        mrsToan.operation(g2);
     }
 }

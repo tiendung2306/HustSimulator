@@ -11,6 +11,7 @@ import java.security.PublicKey;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
+import map.Map;
 import tile.Tile;
 import tile.TileManager;
 
@@ -100,8 +101,8 @@ public class Player extends Entity {
         screenY = (int) (GamePanel.screenHeight / 2 - boundingBox.height / 2);
         boundingBox.x = screenX;
         boundingBox.y = screenY;
-        speed = 4;
-        speedSlant = 3;
+        speed =(int) (4 * GamePanel.scale / Map.prevScale);
+        speedSlant =(int) (GamePanel.scale);
     }
 
 

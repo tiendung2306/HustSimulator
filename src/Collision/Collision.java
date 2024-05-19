@@ -27,8 +27,8 @@ public class Collision {
         collisionTile = collisionCheck.collisionTile;
         tileIndex = collisionCheck.tileIndex;
         pushDialog();
-        Boolean isTeleport = false;
-        if (numCollision == 1 && collisionTile[0].Type.equals("Interact"))
+        boolean isTeleport = false;
+        if (numCollision == 1 && (collisionTile[0].Type.equals("Interact") || collisionTile[0].Type.equals("NPC")))
             interactItem = collisionTile[0];
         for (int i = 0; i < numCollision; ++i) {
             if (collisionTile[i].Type.equals("Collected"))
@@ -47,7 +47,7 @@ public class Collision {
                 break;
                 
             case "Door Classroom":
-                gamePanel.stadium.loadMap(gamePanel);
+                gamePanel.d3_5_hallway_secondfloor.open();
                 break;
             
             case "C2_Hallway_entry_stair":
@@ -133,8 +133,10 @@ public class Collision {
                 break;
                 
             case "D3-5_...01":
-                if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3)
+                if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3) {
                     gamePanel.normalClassroom.loadMap(gamePanel);
+                    gamePanel.chapter2.isAtClassMrsToan = true;
+                }
                 break;
 
             default:
@@ -150,13 +152,13 @@ public class Collision {
     }
 
     public void pushDialog() {
-        /*boolean checkDoor = false;
+        boolean checkPush = true;
         for (int i = 0; i < numCollision; ++i)
-            if (collisionTile[i].Type.equals("Teleport")) {
-                checkDoor = true;
+            if (collisionTile[i].Type.equals("NPC")) {
+                checkPush = false;
                 break;
-            }*/
-        if (!Main.topGameState().equals("Dialog") && !gamePanel.phone.isDrawPhone)
+            }
+        if (!Main.topGameState().equals("Dialog") && !gamePanel.phone.isDrawPhone && checkPush)
             Main.pushGameState("Dialog");
         switch (collisionTile[0].Type) {
             case "Teleport": {
@@ -177,9 +179,9 @@ public class Collision {
             }
         }
         for (int i = 0; i < numCollision; ++i) {
-            if (i > 0 && !collisionTile[i - 1].Name.equals("") && !collisionTile[i].Name.equals(""))
+            if (i > 0 && !collisionTile[i - 1].Name.equals("wall") && !collisionTile[i].Name.equals(""))
                 ui.currentDialog += " and ";
-            if (!collisionTile[i].Name.equals(""))
+            if (!collisionTile[i].Name.equals("wall") && !collisionTile[i].Name.equals(""))
             {
                 if (collisionTile[i].Name.equals("Door My Room"))
                     ui.currentDialog += "Hanoi University of Tạch Môn!";

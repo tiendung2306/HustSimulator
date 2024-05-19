@@ -14,10 +14,11 @@ public class Npc extends Tile{
 
 
 
-    public Npc(GamePanel gamePanel, Rectangle hitbox, String name){
+    public Npc(GamePanel gamePanel, Rectangle hitbox, String type, String name){
         this.gamePanel = gamePanel;
         this.displaybox = hitbox;
         Name = name;
+        Type = type;
         LeftX = hitbox.x;
         RightX = hitbox.x + hitbox.width;
         TopY = hitbox.y;
@@ -39,7 +40,8 @@ public class Npc extends Tile{
             case "security_man":
                 animation = new Animation_player(gamePanel, "res/NPC/security_man/frame ", 4, 0.8, displaybox);
                 break;
-                
+            case "Mrs Toan":
+                animation = new Animation_player(gamePanel,"res/NPC/MrsToan/Frame ", 14, 1.2, displaybox);
             default:
                 break;
         }

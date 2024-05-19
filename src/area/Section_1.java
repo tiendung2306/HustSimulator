@@ -18,7 +18,7 @@ import tile.Tile;
 
 
 public class Section_1 extends Map {
-    Tile background, C1, C2, C9, hall, hallway_entry;
+    public Tile background, C1, C2, C9, hall, hallway_entry;
     Tile spawn_point;
 
 
@@ -119,7 +119,7 @@ public class Section_1 extends Map {
         gamePanel.tileManager.draw(g2, background);
         boolean is_player_display = false;
         for(Object object : objectContainer){
-            if(is_player_display == false){
+            if(!is_player_display){
                 if(object.getTop() <= gamePanel.player.getHitArea().y + gamePanel.player.getHitArea().height){
                     // gamePanel.player.draw(g2);
                     is_player_display = true;
@@ -128,7 +128,7 @@ public class Section_1 extends Map {
             object.operation(g2);
         }
 
-        if(is_player_display == false)
+        if(!is_player_display)
             gamePanel.player.draw(g2);
 
         // for (int i = 0; i < numTileContainer; ++i)

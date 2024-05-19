@@ -11,7 +11,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.Timer;
+import javax.swing.*;
 
 public class UI {
     GamePanel gamePanel;
@@ -21,11 +21,13 @@ public class UI {
     public String text = "";
     public int i;
     BufferedImage nextIcon, skipIcon, skipWord, characterDialogue;
-    BufferedImage mainCharacter, mrsToan, mrHoa, catMeme, system, teacher1;
-    BufferedImage backgroundDialogue, backgroundClassroom;
+    BufferedImage mainCharacter, mrsToan, mrHoa, catMeme, system, teacher1, npcGirl, catGivingFlower;
+    BufferedImage backgroundDialogue, backgroundClassroom, backgroundLibrary, backgroundLake;
+    BufferedImage reelCharacter, surpriseMeme,girlReadingBook;
     public boolean isFinishDialogue;
     int iconX = (int) (207 * GamePanel.scale), iconY = (int) (170 * GamePanel.scale);
     int skipX = (int) (8 * GamePanel.scale), skipY = (int) (10 * GamePanel.scale);
+    int reelX = 0, reelY = 0, reelwidth = (int)(GamePanel.screenWidth), reelheight = (int)(GamePanel.screenHeight);
     int step = 0;
     boolean reverse;
 
@@ -46,8 +48,15 @@ public class UI {
             mrsToan = ImageIO.read(new FileInputStream("res/DialogueCharacter/MrsToan.png"));
             system = ImageIO.read(new FileInputStream("res/DialogueCharacter/System.png"));
             teacher1 = ImageIO.read(new FileInputStream("res/NPC/teacher1/Frame (1).png"));
+            npcGirl = ImageIO.read(new FileInputStream("res/DialogueCharacter/NPCGirl.png"));
+            surpriseMeme = ImageIO.read(new FileInputStream("res/DialogueCharacter/SurpriseMeme.png"));
+            catGivingFlower = ImageIO.read(new FileInputStream("res/DialogueCharacter/CatGivingFlower.png"));
+            girlReadingBook = ImageIO.read(new FileInputStream("res/DialogueCharacter/GirlReadingBook.png"));
 
             backgroundClassroom = ImageIO.read(new FileInputStream("res/DialogueBackground/BackgroundClassroom.png"));
+            backgroundLibrary = ImageIO.read(new FileInputStream("res/DialogueBackground/BackgroundLibrary.png"));
+            backgroundLake = ImageIO.read(new FileInputStream("res/DialogueBackground/BackgroundLake.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,9 +67,16 @@ public class UI {
         iconY = (int) (170 * GamePanel.scale);
         skipX = (int) (8 * GamePanel.scale);
         skipY = (int) (10 * GamePanel.scale);
+        reelwidth = (int) (GamePanel.screenWidth);
+        reelheight = (int) (GamePanel.screenHeight);
     }
 
     public void draw(Graphics2D g2) {
+        if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Dialog")
+                && !Main.topGameState().equals("GamePlay")
+                && !Main.topGameState().equals("Inventory")
+                && !Main.topGameState().equals("Dialogue") && !Main.topGameState().equals("Reels"))
+            return;
         this.g2 = g2;
         g2.setFont(arial_40);
         g2.setColor(Color.white);
@@ -77,6 +93,9 @@ public class UI {
             if (gamePanel.player.ButtonInteract && !gamePanel.phone.isDrawPhone) {
                 drawInteractButton();
             }
+        }
+        if (Main.topGameState().equals("Reels")) {
+            drawReels();
         }
     }
 
@@ -213,13 +232,43 @@ public class UI {
             characterDialogue = null;
         if (name.equals("Teacher1"))
             characterDialogue = teacher1;
+        if (name.equals("NPC Girl"))
+            characterDialogue = npcGirl;
     }
 
     public void setDialogueBackground(String name) {
         if (name.equals("Classroom"))
             backgroundDialogue = backgroundClassroom;
+        if (name.equals("Library"))
+            backgroundDialogue = backgroundLibrary;
+        if (name.equals("Lake"))
+            backgroundDialogue = backgroundLake;
         if (name.equals("Empty"))
             backgroundDialogue = null;
+    }
+    public void setReelsCharacter(String name){
+        step = 0;
+        if (name.equals("Surprise Meme")) {
+            reelX = 0;
+            reelY = 0;
+            reelwidth = (int)(GamePanel.screenWidth);
+            reelheight = (int)(GamePanel.screenHeight);
+            reelCharacter = surpriseMeme;
+        }
+        if (name.equals("Girl Reading Book")) {
+            reelX = (int)(30 * GamePanel.scale);
+            reelY = 0;
+            reelwidth = (int)(200 * GamePanel.scale);
+            reelheight = (int)(205 * GamePanel.scale);
+            reelCharacter = girlReadingBook;
+        }
+        if (name.equals("Cat Giving Flower")){
+            reelX = 0;
+            reelY = 0;
+            reelwidth = (int)(GamePanel.screenWidth);
+            reelheight = (int)(GamePanel.screenHeight);
+            reelCharacter = catGivingFlower;
+        }
     }
 
     public void drawCharacterDialogue() {
@@ -254,11 +303,28 @@ public class UI {
             width = (int) (110 * GamePanel.scale);
             height = (int) (150 * GamePanel.scale);
         }
+        if (characterDialogue == npcGirl){
+            leftX = (int) (70 * GamePanel.scale);
+            topY = (int) (15 * GamePanel.scale);
+            width = (int) (134 * GamePanel.scale);
+            height = (int) (200 * GamePanel.scale);
+        }
         if (characterDialogue != null) {
             g2.drawImage(characterDialogue, leftX, topY, width, height, null);
         }
         int screenX, screenY;
 
+    }
+    public void drawReels(){
+        ++step;
+        if (step >= 3){
+            step = 0;
+            reelX -= (int)(GamePanel.scale / 3);
+            reelY -= (int)(GamePanel.scale / 3);
+            reelwidth += 2 * (int)(GamePanel.scale / 3);
+            reelheight += 2 * (int)(GamePanel.scale / 3);
+        }
+        g2.drawImage(reelCharacter, reelX, reelY, reelwidth, reelheight, null);
     }
 
     public void drawBackground() {

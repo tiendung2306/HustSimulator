@@ -223,7 +223,7 @@ public class Chapter1 extends Chapter {
         }
         if (completedAct == 14) {
             if (collision.interactItem.Name.equals("Desk")) {
-                Dialogue("Em chào cô ạ, cho em nộp hồ sơ ạ");
+                Dialogue("Chào cô, em tới đây để đăng ký tân binh!");
             }
         }
         if (completedAct == 15) {
@@ -238,12 +238,12 @@ public class Chapter1 extends Chapter {
         }
         if (completedAct == 18) {
             ui.setDialogueCharacter("Main Character");
-            Dialogue("Dạ vâng ạ, em chào cô ạ");
+            Dialogue("Cảm ơn cô!");
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
         if (completedAct == 19 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 2500) {
             ui.setDialogueCharacter("Empty");
-            Dialogue("Mình xong việc trên trường rồi, bây giờ về nhà thôi nào");
+            Dialogue("Căn bản là xong, thôi về ngủ.");
             missionDescription.setMissionDescription("Mở điện thoại, dịch chuyển về nhà");
         }
         if (completedAct == 20 && gamePanel.currentMap == gamePanel.myRoom) {

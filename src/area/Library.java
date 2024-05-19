@@ -11,6 +11,7 @@ public class Library extends Map {
 
     public Tile tileBookcase01_1,tileBookcase01_2,tileBookcase02,tileBookcase03,tileDoorLibrary,tileWallLibrary;
     public Tile[] tileChairLibrary,tileTableLibrary;
+    public Tile npcGirl;
     Tile background;
 
     public Library(GamePanel gamePanel) {
@@ -36,6 +37,7 @@ public class Library extends Map {
         tileWallLibrary = new Tile(gamePanel,0,0,320,49,"","","","res/tile/no_thing.png",1);
         tileChairLibrary = new Tile[6];
         tileTableLibrary = new Tile[6];
+        npcGirl = new Tile(gamePanel, 100, 100, 16, 41, "NPC Girl", "NPC", "", "res/NPC/NPCGirl/NPCGirl (2).png",1);
         setUpTable();
         setUpTileLibrary();
     }

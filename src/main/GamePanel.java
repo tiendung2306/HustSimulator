@@ -11,6 +11,7 @@ import Collision.Collision;
 import Content.Chapter;
 import Content.Chapter1;
 import Content.Chapter2;
+import Content.Chapter3;
 import GUI.DirectionIndicator;
 import GUI.MissionDescription;
 import Inventory.Inventory;
@@ -67,12 +68,6 @@ public class GamePanel extends JPanel implements Runnable {
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
             nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame, pauseGame, loadGame2);
-    // Khai báo lớp NormalClassroom vào GamePanel
-    public NormalClassroom normalClassroom = new NormalClassroom(this);
-    public ComputerRoom computerRoom = new ComputerRoom(this);
-    public Library library = new Library(this);
-    public Stadium stadium = new Stadium(this);
-    public MyRoom myRoom = new MyRoom(this);
     // public Section_3 section_3 = new Section_3(this);
 
     // =================================================================================================
@@ -86,9 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
     // ==============================================================================================
 
     public MouseManager mouseManager = new MouseManager(this);
-    public Map currentMap = null; // map hien tai
-    // Section_2 section_2 = new Section_2(this);
-    // Section_1 section_1 = new Section_1(this);
+    public Map currentMap = null;
 
     KeyboardManager keyboardManager = new KeyboardManager();
     public UI ui = new UI(this);
@@ -105,6 +98,11 @@ public class GamePanel extends JPanel implements Runnable {
     public Section_2 section_2 = new Section_2(this);
     public Section_1 section_1 = new Section_1(this);
     public boolean isRunning = false;
+    public NormalClassroom normalClassroom = new NormalClassroom(this);
+    public ComputerRoom computerRoom = new ComputerRoom(this);
+    public Library library = new Library(this);
+    public Stadium stadium = new Stadium(this);
+    public MyRoom myRoom = new MyRoom(this);
     public C2_hall c2_hall = new C2_hall(this);
     public C2_hallway c2_hallway = new C2_hallway(this);
     public D3_hallway d3_hallway = new D3_hallway(this);
@@ -117,6 +115,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Chapter1 chapter1 = new Chapter1(this);
     public Chapter2 chapter2 = new Chapter2(this);
+    public Chapter3 chapter3 = new Chapter3(this);
 
     // =========================================================
 
@@ -146,23 +145,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void screenResize() {
-        missionDescription.screenResize();
-        if(currentMap == myRoom) {
-            myRoom.resetTile();
-        }
-        if(currentMap == normalClassroom) {
-            normalClassroom.resetTile();
-        }
-        if(currentMap == computerRoom) {
-            computerRoom.resetTile();
-        }
-        if(currentMap == library) {
-            library.resetTile();
-        }
-        if(currentMap == stadium) {
-            stadium.resetTile();
-        }
+        myRoom.resetTile();
+        normalClassroom.resetTile();
+        computerRoom.resetTile();
+        library.resetTile();
+        stadium.resetTile();
         currentMap.loadMap(this);
+        missionDescription.screenResize();
         player.reSize();
         inventory.ScreenResize();
         phone.screenResize();
@@ -231,7 +220,7 @@ public class GamePanel extends JPanel implements Runnable {
                 break;
             }
         }
-        currentChapter = chapter1;
+        currentChapter = chapter2;
         currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();
@@ -283,7 +272,7 @@ public class GamePanel extends JPanel implements Runnable {
         timeSystem.update();
         soundManager.update();
         tileManager.update();
-        currentChapter.update();
+        //currentChapter.update();
         phone.update();
         player.update();
         inventory.update();
@@ -336,7 +325,6 @@ public class GamePanel extends JPanel implements Runnable {
                     keyH.isInteract = false;
             }
             if (keyH.isPhonePressed) {
-                // System.out.println("phone-kun xin chao tat ca cac ban");
                 if (inventory.isExist("Iphone 100 ProMax")) {
                     KeyboardManager.resetReleasedKey();
                     phone.isDrawPhone = !phone.isDrawPhone;
@@ -415,7 +403,7 @@ public class GamePanel extends JPanel implements Runnable {
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
                 || Main.topGameState().equals("Dialogue")) {
-            if (chapter1.IntroFinished) {
+            if (true) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
                 player.draw(g2);
@@ -423,8 +411,8 @@ public class GamePanel extends JPanel implements Runnable {
                 missionDescription.draw(g2);
                 phone.draw(g2);
             }
-            ui.draw(g2);
         }
+        ui.draw(g2);
 
         if (Main.topGameState().equals("Map")) {
             section_selection.operation(g);
