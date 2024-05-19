@@ -14,8 +14,6 @@ import java.io.*;
 
 
 public class D3_5_hallway_secondfloor extends Map {
-    Tile layer_1, layer_2;
-    GamePanel gamePanel;
     public int curr_floor = 2;
     Tile[] floor_layer = new Tile[5];
 
@@ -29,22 +27,19 @@ public class D3_5_hallway_secondfloor extends Map {
     private void SetDefaultValues(){
         TileLoad();
         SetOriginalSize();
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * layer_1.image.getHeight(gamePanel) / (50 * layer_1.getHeight()));
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * background.image.getHeight(gamePanel) / (50 * background.getHeight()));
         SetPlayerPos();
     }
     
     private void SetOriginalSize(){
 
-        width = layer_1.getWidth();
-        height = layer_1.getHeight();
+        width = background.getWidth();
+        height = background.getHeight();
     }
 
     private void ReSize(double scale){
-        layer_1.setWidth((int)(layer_1.getWidth() * scale));
-        layer_1.setHeight((int)(layer_1.getHeight() * scale));
-
-        layer_2.setWidth((int)(layer_2.getWidth() * scale));
-        layer_2.setHeight((int)(layer_2.getHeight() * scale));
+        background.setWidth((int)(background.getWidth() * scale));
+        background.setHeight((int)(background.getHeight() * scale));
 
         for(int i = 1; i <= 4; i++){
             floor_layer[i].resize(scale);
@@ -55,8 +50,8 @@ public class D3_5_hallway_secondfloor extends Map {
 
         }
         
-        width = layer_1.getWidth();
-        height = layer_1.getHeight();
+        width = background.getWidth();
+        height = background.getHeight();
 
     }
 
@@ -69,11 +64,9 @@ public class D3_5_hallway_secondfloor extends Map {
         tileContainer = new Tile[50];
 
         try {
-            BufferedImage layer_1_Image = ImageIO.read(new FileInputStream("res/tile/D3_5_hallway_secondfloor_layer(1).png"));
-            layer_1 = new Tile(new Rectangle(0, 0, layer_1_Image.getWidth(), layer_1_Image.getHeight()), "layer_1", "", null, layer_1_Image);
-            BufferedImage layer_2_Image = ImageIO.read(new FileInputStream("res/tile/D3_5_hallway_secondfloor_layer(2).png"));
-            layer_2 = new Tile(new Rectangle(0, 0, layer_2_Image.getWidth(), layer_2_Image.getHeight()), "layer_2", "", null, layer_2_Image);
-            
+            BufferedImage background_Image = ImageIO.read(new FileInputStream("res/tile/D3_5_hallway_secondfloor_layer(1).png"));
+            background = new Tile(new Rectangle(0, 0, background_Image.getWidth(), background_Image.getHeight()), "background", "", null, background_Image);
+
             for(int i = 1; i <= 4; i++){
                 int floor_index = i + 1;
                 String path = "res/tile/D3-5_floor_layer(" + floor_index + ").png";
@@ -97,16 +90,20 @@ public class D3_5_hallway_secondfloor extends Map {
     }
 
     public void open(){
+        reSizeMap();
         loadMap(gamePanel);
     }
 
-    // Phương thức vẽ map
-    public void draw(Graphics2D g2) {
-        gamePanel.tileManager.draw(g2, layer_1);
+    @Override public void floorDisplay(Graphics2D g2){
         gamePanel.tileManager.draw(g2, floor_layer[curr_floor - 1]);
-        gamePanel.tileManager.draw(g2, layer_2);
-
-        // for (int i = 0; i < numTileContainer; ++i)
-        //     gamePanel.tileManager.draw(g2, tileContainer[i]);
     }
+
+    // Phương thức vẽ map
+    // @public void draw(Graphics2D g2) {
+    //     gamePanel.tileManager.draw(g2, layer_1);
+    //     gamePanel.tileManager.draw(g2, layer_2);
+
+    //     // for (int i = 0; i < numTileContainer; ++i)
+    //     //     gamePanel.tileManager.draw(g2, tileContainer[i]);
+    // }
 }

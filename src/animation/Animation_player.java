@@ -123,6 +123,10 @@ public class Animation_player{
         return play_area.height;
     }
 
+    public void setPlayarea(Rectangle play_area){
+        this.play_area = play_area;
+    }
+
     public void operation(Graphics graphics) {
         
         if(Switch){

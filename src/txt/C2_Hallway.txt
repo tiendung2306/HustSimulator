@@ -1,0 +1,23 @@
+*
+Name C2_Hallway_pillars
+Type non-animated
+Trans 1.0
+Image 64 266 718 129
+Body 
+Foot 67 351 21 10 204 351 22 9 343 351 21 9 481 351 21 9 619 351 21 9 758 351 21 9
+*
+Name C2_Hallway_2th_floor
+Type non-animated
+Trans 0.0
+Image -4 -4 971 356
+Body 0 0 966 305
+Foot
+
+*
+Name C2_Hallway_stair
+Type non-animated
+Trans 1.0
+Image 651 238 132 184
+Body
+Foot 657 375 27 60
+#

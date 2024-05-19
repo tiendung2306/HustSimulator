@@ -1,0 +1,15 @@
+*
+Name D3_secondfloor_hallway_layer(2)
+Type non-animated
+Trans 1.0
+Image 0 0 2021 476
+Body 
+Foot 150 384 119 73 222 385 87 16 
+*
+Name D3_secondfloor_hallway_layer(3)
+Type non-animated
+Trans 1.0
+Image 0 0 2021 476
+Body 
+Foot 380 400 1388 8
+# 

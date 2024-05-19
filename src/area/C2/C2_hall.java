@@ -30,7 +30,7 @@ public class C2_hall extends Map {
     private void SetDefaultValues(){
         TileLoad();
         SetOriginalSize();
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * layer1.image.getHeight() / (50 * layer1.getHeight()));
+        reSizeMap();
     }
     
     private void SetOriginalSize(){
@@ -83,6 +83,12 @@ public class C2_hall extends Map {
 
         spawn_point = new Tile(new Rectangle(120 , 569 , 35 , 53), "", "", null, null);
 
+        addTile(new Tile(new Rectangle(0 , 314 , 75 , 292), "Stage", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(0 , 4 , 819 , 245), "Wall", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(184 , 176 , 33 , 89), "Pillar", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(402 , 176 , 30 , 89), "Pillar", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(619 , 175 , 34 , 89), "Pillar", "Obstacle", null, null));
+        
         addTile(new Tile(new Rectangle(215 , 324 , 570 , 30), "Desk", "Interact", null, null));
         addTile(new Tile(new Rectangle(215 , 355 , 35 , 47), "Desk", "Interact", null, null));
         addTile(new Tile(new Rectangle(287 , 355 , 34 , 46), "Desk", "Interact", null, null));
@@ -104,7 +110,7 @@ public class C2_hall extends Map {
         addTile(new Tile(new Rectangle(710 , 391 , 5 , 179), "Barrier", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(780 , 391 , 6 , 177), "Barrier", "Obstacle", null, null));
 
-        addTile(new Tile(new Rectangle(88 , 620 , 110 , 4), "C2_hall_exit", "Teleport", null, null));
+        addTile(new Tile(new Rectangle(88 , 620 , 110 , 4), "C2_Hall_exit", "Teleport", null, null));
 
         teacher1 = new Npc(gamePanel, new Rectangle( 309 , 299 , 24 , 34), "teacher1");
         security_man = new Npc(gamePanel, new Rectangle( 190 , 270 , 21 , 53), "security_man");
@@ -117,8 +123,12 @@ public class C2_hall extends Map {
     }
 
     public void open(){
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * layer1.image.getHeight() / (50 * layer1.getHeight()));
+        reSizeMap();
         loadMap(gamePanel);
+    }
+
+    @Override public void reSizeMap(){
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * layer1.image.getHeight() / (50 * layer1.getHeight()));
     }
 
     // Phương thức vẽ map
@@ -127,6 +137,7 @@ public class C2_hall extends Map {
         teacher1.operation(g2);
         security_man.operation(g2);
         gamePanel.tileManager.draw(g2, layer2);
+        gamePanel.player.draw(g2);
 
         // for (int i = 0; i < numTileContainer; ++i)
         //     gamePanel.tileManager.draw(g2, tileContainer[i]);

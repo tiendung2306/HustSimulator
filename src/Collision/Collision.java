@@ -101,10 +101,12 @@ public class Collision {
                 break;
                 
             case "D3_1stfloor_stair1":
+                gamePanel.d3_secondfloor_hallway.curr_floor = 2;
                 gamePanel.d3_secondfloor_hallway.open("enter_from_stair1");
                 break;   
 
             case "D3_1stfloor_stair2":
+                gamePanel.d3_secondfloor_hallway.curr_floor = 2;
                 gamePanel.d3_secondfloor_hallway.open("enter_from_stair2");
                 break;  
                 
