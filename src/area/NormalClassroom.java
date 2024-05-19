@@ -12,16 +12,16 @@ import animation.Animation_player;
 public class NormalClassroom extends Map {
     GamePanel gamePanel;
     Tile background;
-    public Tile tileDoor01,tileDoor02,tileTableTeacher,tileWallNormalClassroom;
-    public Tile [] tileTable;
+    public Tile tileDoor01, tileDoor02, tileTableTeacher, tileWallNormalClassroom;
+    public Tile[] tileTable;
     public Npc mrsToan;
 
     public NormalClassroom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
 
-        width = (int)(21 * 16 * gamePanel.scale);
-        height = (int)(16 * 16 * gamePanel.scale);
+        width = (int) (21 * 16 * gamePanel.scale);
+        height = (int) (16 * 16 * gamePanel.scale);
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[17].image;
@@ -34,14 +34,18 @@ public class NormalClassroom extends Map {
         background.setWidth((int) (320 * GamePanel.scale));
         background.setHeight((int) (240 * GamePanel.scale));
         tileTable = new Tile[10];
-        tileDoor01 = new Tile(gamePanel,30,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png",1);
-        tileDoor02 = new Tile(gamePanel,261,28,41,51,"Door Classroom","Teleport","","res/tile/cua_ra_vao.png",1);
-        tileTableTeacher = new Tile(gamePanel,273,177,30,62,"Table Teacher","Obstacle","","res/tile/ban_gv.png",1);
-        tileWallNormalClassroom = new Tile(gamePanel,0,0,320,79,"","Obstacle","","res/tile/no_thing.png",1);
-        mrsToan = new Npc(gamePanel, new Rectangle( 760 , 560 , 60 , 90), "NPC", "Mrs Toan");
+        tileDoor01 = new Tile(gamePanel, 30, 28, 41, 51, "Door Classroom", "Teleport", "", "res/tile/cua_ra_vao.png",
+                1);
+        tileDoor02 = new Tile(gamePanel, 261, 28, 41, 51, "Door Classroom", "Teleport", "", "res/tile/cua_ra_vao.png",
+                1);
+        tileTableTeacher = new Tile(gamePanel, 273, 177, 30, 62, "Table Teacher", "Obstacle", "", "res/tile/ban_gv.png",
+                1);
+        tileWallNormalClassroom = new Tile(gamePanel, 0, 0, 320, 79, "", "Obstacle", "", "res/tile/no_thing.png", 1);
+        mrsToan = new Npc(gamePanel, new Rectangle(760, 560, 60, 90), "NPC", "Mrs Toan");
         setUpTable();
         setUpTileNormalClassroom();
     }
+
     public void setUpTileNormalClassroom() {
         numTileContainer = 0;
         mapIndex = 1;
@@ -52,7 +56,10 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < 10; i++)
             addTile(tileTable[i]);
         addTile(mrsToan);
-        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8,
+                new Rectangle((int) (GamePanel.screenWidth / 4),
+                        (int) (GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4),
+                        (int) (GamePanel.screenWidth / 2), (int) (GamePanel.screenWidth / 2)));
 
     }
 
@@ -63,7 +70,8 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < 10; i++) {
             count++;
             if (count <= 5) {
-                tileTable[i] = new Tile(gamePanel,x1,y1,20,46,"Table Student","Obstacle","","res/tile/ban_hs.png",1);
+                tileTable[i] = new Tile(gamePanel, x1, y1, 20, 46, "Table Student", "Obstacle", "",
+                        "res/tile/ban_hs.png", 1);
                 x1 += 42;
             }
             if (count == 5) {
@@ -71,13 +79,14 @@ public class NormalClassroom extends Map {
                 x1 = 33;
             }
             if (count > 5) {
-                tileTable[i] = new Tile(gamePanel,x1,y1,20,46,"Table Student","Obstacle","","res/tile/ban_hs.png",1);
+                tileTable[i] = new Tile(gamePanel, x1, y1, 20, 46, "Table Student", "Obstacle", "",
+                        "res/tile/ban_hs.png", 1);
                 x1 += 42;
             }
         }
     }
 
-    public void resetTile(){
+    public void resetTile() {
         width = (int) (21 * 16 * GamePanel.scale);
         height = (int) (16 * 16 * GamePanel.scale);
         playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);

@@ -3,14 +3,9 @@ package area;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
-import tile.TileSection;
 
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 public class ComputerRoom extends Map {
     GamePanel gamePanel;

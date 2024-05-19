@@ -115,34 +115,34 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                 if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
                         && (y_enter < 50 * Main.ey))
                     keySetting.buttonReturnEnter();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 87 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 87 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 125 * Main.ey))
                     keySetting.keysetting_squareup();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 175 * Main.ey))
                     keySetting.keysetting_squaredown();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 67 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 67 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 125 * Main.ey))
                     keySetting.keysetting_squareleft();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 137 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 175 * Main.ey))
                     keySetting.keysetting_squareright();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 435 * Main.ey))
                     keySetting.keysetting_square1();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 397 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 435 * Main.ey))
                     keySetting.keysetting_square2();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 485 * Main.ey))
                     keySetting.keysetting_square3();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 447 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 485 * Main.ey))
                     keySetting.keysetting_square4();
-                else if ((x_enter > 67 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 105 * Main.ex)
+                else if ((x_enter > 37 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 135 * Main.ex)
                         && (y_enter < 535 * Main.ey))
                     keySetting.keysetting_square5();
-                else if ((x_enter > 667 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 705 * Main.ex)
+                else if ((x_enter > 637 * Main.ex) && (y_enter > 497 * Main.ey) && (x_enter < 735 * Main.ex)
                         && (y_enter < 535 * Main.ey))
                     keySetting.keysetting_square6();
                 else keySetting.keysettingrollback();
@@ -184,8 +184,8 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
             if ((x_enter > 260 * Main.ex) && (y_enter > 270 * Main.ey) && (x_enter < 507 * Main.ex)
                     && (y_enter < 307 * Main.ey))
                 pauseGame.buttonTutorialEnterpause();
-            else if ((x_enter > 324 * Main.ex) && (y_enter > 330 * Main.ey) && (x_enter < 444 * Main.ex)
-                    && (y_enter < 357 * Main.ey))
+            else if ((x_enter > 324 * Main.ex) && (y_enter > 390 * Main.ey) && (x_enter < 444 * Main.ex)
+                    && (y_enter < 417 * Main.ey))
                 pauseGame.buttonBackEnterpause();
             else if ((x_enter > 710 * Main.ex) && (y_enter > 13 * Main.ey) && (x_enter < 750 * Main.ex)
                     && (y_enter < 53 * Main.ey))
@@ -193,6 +193,9 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
             else if ((x_enter > 260 * Main.ex) && (y_enter > 210 * Main.ey) && (x_enter < 507 * Main.ex)
                     && (y_enter < 250 * Main.ey))
                 pauseGame.buttonContinueEnterpause();
+            else if ((x_enter > 324 * Main.ex) && (y_enter > 330 * Main.ey) && (x_enter < 444 * Main.ex)
+                    && (y_enter < 357 * Main.ey))
+                pauseGame.buttonSaveEnterpause();
             else
                 pauseGame.rollbackpause();
         } else if (Main.topGameState().equals(Main.states[16])) {

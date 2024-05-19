@@ -71,7 +71,6 @@ public class Animation_player{
     private void update() {
 
         if((TimeSystem.getCurrentSystemTimeInMilliseconds() - pre_loop_time) / 1000 > one_loop_time)  {
-
             pre_loop_time = TimeSystem.getCurrentSystemTimeInMilliseconds() ;
             if(index == frames.length - 1)
                 index = 0;
@@ -135,8 +134,9 @@ public class Animation_player{
             Switch = false;
         }
 
-        if(pre_loop_time == -1.0)
+        if(pre_loop_time == -1.0) {
             pre_loop_time = TimeSystem.getCurrentSystemTimeInMilliseconds();
+        }
 
         update();
 

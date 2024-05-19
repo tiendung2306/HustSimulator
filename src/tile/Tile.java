@@ -75,6 +75,8 @@ public class Tile{
         }
         BoundingBox();
     }
+
+
     public void BoundingBox() {
         setLeftX((int) (x * GamePanel.scale));
         setTopY((int) (y * GamePanel.scale));

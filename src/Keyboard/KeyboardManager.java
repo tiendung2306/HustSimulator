@@ -5,15 +5,17 @@
 package Keyboard;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class KeyboardManager implements KeyListener {
     static ArrayList<Key> keys = new ArrayList<Key>();
     static int releasedKey = -1;
     static char releasedKeyName;
+    static String takenKeyName;
 
     public void init() { // tell me if you want add new key
+        takenKeyName = "";
         keys.add(new Key(KeyEvent.VK_W, "W", "UP"));
         keys.add(new Key(KeyEvent.VK_A, "A", "LEFT"));
         keys.add(new Key(KeyEvent.VK_S, "S", "DOWN"));
@@ -34,6 +36,7 @@ public class KeyboardManager implements KeyListener {
         }
         return -1; // chua khai bao phim nay`
     }
+
     static public String getTypeKey(int code) {
         for (Key k : keys) {
             if (k.getKey() == code) {
@@ -45,7 +48,13 @@ public class KeyboardManager implements KeyListener {
 
     static public String getKeyName(String keyTag) {
         // System.out.println(keyTag);
-        // if(keys.size() != 0)    System.out.println(keys.get(0).getKeyName());
+        // if(keys.size() != 0) System.out.println(keys.get(0).getKeyName());
+        for (Key k : keys) {
+            if (k.getKeyTag() == keyTag && takenKeyName != k.getKeyName()) {
+                takenKeyName = k.getKeyName();
+                return k.getKeyName();
+            }
+        }
         for (Key k : keys) {
             if (k.getKeyTag() == keyTag) {
                 return k.getKeyName();
@@ -67,10 +76,10 @@ public class KeyboardManager implements KeyListener {
     public void keyTyped(KeyEvent e) { // nay la nguoi dung an roi tha ra
 
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            //System.out.println("Right key typed");
+            // System.out.println("Right key typed");
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            //System.out.println("Left key typed");
+            // System.out.println("Left key typed");
         }
 
     }

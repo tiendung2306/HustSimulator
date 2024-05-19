@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import animation.Animation_player;
 import main.GamePanel;
 import map.Map;
+import sound.SoundManager;
 import tile.Tile;
 
 
@@ -119,6 +120,7 @@ public class C2_hallway extends Map {
         else if(type == "enter_from_door"){
             SetPlayerPos(spawn_point2);
             map_exchange_effect = map_exchange_effect2;
+
         }
         loadMap(gamePanel);
     }

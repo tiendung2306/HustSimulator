@@ -16,10 +16,21 @@ import GUI.DirectionIndicator;
 import GUI.MissionDescription;
 import Inventory.Inventory;
 import Keyboard.KeyboardManager;
-import MainMenu.*;
+import LoadSaveGame.LoadSaveGameSystem;
+import MainMenu.AudioSetting;
+import MainMenu.KeySetting;
+import MainMenu.LoadGame;
+import MainMenu.LoadGame2;
+import MainMenu.Main_Menu;
+import MainMenu.MouseListener_Mainmenu;
+import MainMenu.MouseMotionListener_Mainmenu;
+import MainMenu.NextMainMenu;
+import MainMenu.PauseGame;
+import MainMenu.Setting;
+import MainMenu.Toturial;
+import MainMenu.VideoSetting;
 import Mouse.MouseManager;
 import area.ComputerRoom;
-import area.Library;
 import area.MyRoom;
 import area.NormalClassroom;
 import area.Section_1;
@@ -31,6 +42,8 @@ import area.C2.C2_hallway;
 import area.D3.D3_hallway;
 import area.D3.D3_secondfloor_hallway;
 import area.D3_5.D3_5_hallway_secondfloor;
+import area.Library.Firstfloor_library;
+import area.Library.Library;
 import entity.Player;
 import map.Map;
 import phone.Phone;
@@ -52,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public TileManager tileManager = new TileManager(this);
     Thread gameThread;
-    SoundManager soundManager = new SoundManager();
+    public SoundManager soundManager = new SoundManager();
     public TimeSystem timeSystem = new TimeSystem();
 
     public static Main_Menu mainMenu = new Main_Menu();
@@ -64,6 +77,7 @@ public class GamePanel extends JPanel implements Runnable {
     public static LoadGame loadGame = new LoadGame();
     public static PauseGame pauseGame = new PauseGame();
     public static LoadGame2 loadGame2 = new LoadGame2();
+    public static Toturial toturial = new Toturial();
 
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
@@ -117,6 +131,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Chapter2 chapter2 = new Chapter2(this);
     public Chapter3 chapter3 = new Chapter3(this);
 
+    public LoadSaveGameSystem loadSaveGameSystem = new LoadSaveGameSystem(this);
     // =========================================================
 
     double FPS = 60;
@@ -144,6 +159,15 @@ public class GamePanel extends JPanel implements Runnable {
         isRunning = true;
     }
 
+    public void initSound() {
+        soundManager.addSound(new Sound("loot_item", "res/sound/item-equip-6904.wav"));
+        soundManager.addSound(new Sound("open_door", "res/sound/open-door-1-14550.wav"));
+        soundManager.addSound(new Sound("foot_step", "res/sound/am_thanh_di_tren_duong.wav"));
+        soundManager.addSound(new Sound("footstep_down_stairs", "res/sound/di_xuong_bac_thang.wav"));
+        soundManager.addSound(new Sound("footstep_up_stairs", "res/sound/di_len_bac_thang.wav"));
+
+    }
+
     public void screenResize() {
         myRoom.resetTile();
         normalClassroom.resetTile();
@@ -161,66 +185,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void Init() {
-        switch (Main.nguoncode) {
-            case 1: {
-                newGame();
-                break;
-            }
-            case 2: {
-                newGame();
-                break;
-            }
-
-            case 3: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = section_1;
-                break;
-            }
-
-            case 4: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = normalClassroom;
-                break;
-            }
-            case 5: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = computerRoom;
-                break;
-            }
-            case 6: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = stadium;
-                break;
-            }
-            case 7: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = library;
-                break;
-            }
-            case 8: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = myRoom;
-                break;
-            }
-            case 9: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = section_3;
-                break;
-            }
-            case 10: {
-                if (Main.GameState.empty() || !Main.topGameState().equals("GamePlay"))
-                    Main.pushGameState("GamePlay");
-                currentMap = section_2;
-                break;
-            }
-        }
+        newGame();
+        initSound();
         currentChapter = chapter1;
         currentMap.loadMap(this);
         keyboardManager.init();
@@ -234,11 +200,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void run() {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
         // SoundManager.loopSound("piano_music");
-
+        // long prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+        // Boolean isPause = false, isDone = false;
         soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
         // soundManager.loopSound("guitar_music");
         Init();
-
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
@@ -246,7 +212,22 @@ public class GamePanel extends JPanel implements Runnable {
                 stopThread();
                 break;
             }
+            // //test
+            // if(true) {
+            // if(TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 5500) {
+            // prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
+            // SoundManager.pauseSound("piano_music");
+            // isPause = true;
+            // }
+            // if(TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 3000 &&
+            // isPause) {
+            // System.out.println("panikkk");
+            // SoundManager.resumeSound("piano_music");
+            // isPause = false;
+            // isDone = true;
+            // }
 
+            // }
             update();
 
             repaint();
@@ -279,45 +260,26 @@ public class GamePanel extends JPanel implements Runnable {
         inventory.update();
         missionDescription.update();
         directionIndicator.update();
-        if (Main.nguoncode == 1) {
-            if (Main.topGameState().equals(Main.states[0])) {
-                mainMenu.update();
-            } else if (Main.topGameState().equals(Main.states[1])) {
-                nextMainMenu.update();
-            } else if (Main.topGameState().equals(Main.states[2])) {
-                setting.update();
-            } else if (Main.topGameState().equals(Main.states[3])) {
-                audioSetting.update();
-            } else if (Main.topGameState().equals(Main.states[4]))
-                keySetting.update();
-            else if (Main.topGameState().equals(Main.states[5]))
-                videoSetting.update();
-            else if (Main.topGameState().equals(Main.states[12]))
-                loadGame.update();
-            else if (Main.topGameState().equals("PauseGame"))
-                pauseGame.update();
-            else if (Main.topGameState().equals(Main.states[16]))
-                loadGame2.update();
-        } else if (Main.nguoncode == 2) {
-            if (Main.topGameState().equals(Main.states[0])) {
-                mainMenu.update();
-            } else if (Main.topGameState().equals(Main.states[1])) {
-                nextMainMenu.update();
-            } else if (Main.topGameState().equals(Main.states[2])) {
-                setting.update();
-            } else if (Main.topGameState().equals(Main.states[3])) {
-                audioSetting.update();
-            } else if (Main.topGameState().equals(Main.states[4]))
-                keySetting.update();
-            else if (Main.topGameState().equals(Main.states[5]))
-                videoSetting.update();
-            else if (Main.topGameState().equals(Main.states[12]))
-                loadGame.update();
-            else if (Main.topGameState().equals(Main.states[16]))
-                loadGame2.update();
-            else if (Main.topGameState().equals("PauseGame"))
-                pauseGame.update();
-        }
+        if (Main.topGameState().equals(Main.states[0])) {
+            mainMenu.update();
+        } else if (Main.topGameState().equals(Main.states[1])) {
+            nextMainMenu.update();
+        } else if (Main.topGameState().equals(Main.states[2])) {
+            setting.update();
+        } else if (Main.topGameState().equals(Main.states[3])) {
+            audioSetting.update();
+        } else if (Main.topGameState().equals(Main.states[4]))
+            keySetting.update();
+        else if (Main.topGameState().equals(Main.states[5]))
+            videoSetting.update();
+        else if (Main.topGameState().equals(Main.states[12]))
+            loadGame.update();
+        else if (Main.topGameState().equals("PauseGame"))
+            pauseGame.update();
+        else if (Main.topGameState().equals(Main.states[16]))
+            loadGame2.update();
+        else if (Main.topGameState().equals("Tutorial"))
+            toturial.update();
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
@@ -355,56 +317,31 @@ public class GamePanel extends JPanel implements Runnable {
         // RenderingHints.VALUE_RENDER_SPEED);
         // g2.setRenderingHints(rh1);
 
-        switch (Main.nguoncode) {
-            case 1: {
-                if (Main.topGameState().equals(Main.states[0]))
-                    mainMenu.draw(g2);
-                else if (Main.topGameState().equals(Main.states[1]))
-                    nextMainMenu.draw(g2);
-                else if (Main.topGameState().equals(Main.states[2]))
-                    setting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[3]))
-                    audioSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[4]))
-                    keySetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[5]))
-                    videoSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[12]))
-                    loadGame.draw(g2);
-                else if (Main.topGameState().equals("PauseGame"))
-                    pauseGame.draw(g2);
-                else if (Main.topGameState().equals(Main.states[16]))
-                    loadGame2.draw(g2);
-                break;
-            }
-            case 2: {
-                if (Main.topGameState().equals(Main.states[0])) {
-                    mainMenu.draw(g2);
-                } else if (Main.topGameState().equals(Main.states[1])) {
-                    nextMainMenu.draw(g2);
-                } else if (Main.topGameState().equals(Main.states[2]))
-                    setting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[3]))
-                    audioSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[4]))
-                    keySetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[5]))
-                    videoSetting.draw(g2);
-                else if (Main.topGameState().equals(Main.states[12]))
-                    loadGame.draw(g2);
-                else if (Main.topGameState().equals(Main.states[16]))
-                    loadGame2.draw(g2);
-                else if (Main.topGameState().equals("PauseGame"))
-                    pauseGame.draw(g2);
-                break;
-            }
-        }
-
+        if (Main.topGameState().equals(Main.states[0]))
+            mainMenu.draw(g2);
+        else if (Main.topGameState().equals(Main.states[1]))
+            nextMainMenu.draw(g2);
+        else if (Main.topGameState().equals(Main.states[2]))
+            setting.draw(g2);
+        else if (Main.topGameState().equals(Main.states[3]))
+            audioSetting.draw(g2);
+        else if (Main.topGameState().equals(Main.states[4]))
+            keySetting.draw(g2);
+        else if (Main.topGameState().equals(Main.states[5]))
+            videoSetting.draw(g2);
+        else if (Main.topGameState().equals(Main.states[12]))
+            loadGame.draw(g2);
+        else if (Main.topGameState().equals("PauseGame"))
+            pauseGame.draw(g2);
+        else if (Main.topGameState().equals(Main.states[16]))
+            loadGame2.draw(g2);
+        else if (Main.topGameState().equals("Tutorial"))
+            toturial.draw(g2);
         if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
                 || Main.topGameState().equals("Dialogue")) {
-            if (true) {
+            if (currentChapter != chapter1 || chapter1.IntroFinished) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
                 // player.draw(g2);
@@ -465,6 +402,9 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentMap == d3_5_hallway_secondfloor) {
             d3_5_hallway_secondfloor.draw(g2);
         }
+        if (currentMap == firstfloorLibrary) {
+            firstfloorLibrary.draw(g2);
+        }
     }
 
     public void newGame() {
@@ -473,5 +413,29 @@ public class GamePanel extends JPanel implements Runnable {
         chapter1.currentTimeline = 0;
         chapter1.IntroFinished = false;
         chapter1.completedAct = 0;
+    }
+
+    public void loadChapter(String chapter) {
+        if (chapter.equals("chap 1")) {
+            currentMap = myRoom;
+            currentChapter = chapter1;
+            chapter1.currentTimeline = 0;
+            chapter1.IntroFinished = false;
+            chapter1.completedAct = 0;
+        }
+        if (chapter.equals("chap 2")) {
+            currentMap = myRoom;
+            currentChapter = chapter2;
+            chapter2.currentTimeline = 0;
+            chapter2.completedAct = 0;
+        }
+        // if (chapter.equals("chap3")) {
+        // currentMap = myRoom;
+        // currentChapter = chapter3;
+        // chapter3.currentTimeline = 0;
+        // chapter3.IntroFinished = false;
+        // chapter3.completedAct = 0;
+        // }
+        Main.GameState.push("GamePlay");
     }
 }

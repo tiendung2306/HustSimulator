@@ -12,6 +12,7 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 import map.Map;
+import sound.SoundManager;
 import tile.Tile;
 import tile.TileManager;
 
@@ -25,7 +26,7 @@ public class Player extends Entity {
     public int screenX, screenY;
     boolean leftBorder, rightBorder, topBorder, bottomBorder;
     public boolean ButtonInteract;
-    
+
     public Animation_player animation_player_stand_RIGHT;
     public Animation_player animation_player_stand_LEFT;
     public Animation_player animation_player_stand_FRONT;
@@ -38,7 +39,7 @@ public class Player extends Entity {
 
     public Animation_player curr_animation_player;
     TileManager tileManager;
-    public String checkNameTile;
+    public String checkNameTile, checkSoundName;
 
     public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager, UI ui) {
         this.gamepanel = gamepanel;
@@ -101,10 +102,9 @@ public class Player extends Entity {
         screenY = (int) (GamePanel.screenHeight / 2 - boundingBox.height / 2);
         boundingBox.x = screenX;
         boundingBox.y = screenY;
-        speed =(int) (4 * GamePanel.scale / Map.prevScale);
-        speedSlant =(int) (GamePanel.scale);
+        speed = (int) (4 * GamePanel.scale / Map.prevScale);
+        speedSlant = (int) (GamePanel.scale);
     }
-
 
     // =============================================================================================================================================
     public void update() {
@@ -124,8 +124,9 @@ public class Player extends Entity {
         if (countPressed > 0) {
             if (ButtonInteract)
                 ButtonInteract = false;
-                collision_collect =false;
-                checkNameTile = "";
+            collision_collect = false;
+            checkNameTile = "";
+            checkSoundName = "";
             if (countPressed == 1) {
                 if (keyhandler.upPressed) {
                     direction = "up";
@@ -186,83 +187,83 @@ public class Player extends Entity {
                 hitArea.x = newMapX + boundingBox.width / 4;
                 hitArea.y = newMapY + boundingBox.height / 3 * 2;
                 collision.scanCollision(this, gamepanel.currentMap);
-                if (collision.getNumCollision() > 0){
-                        if (direction.equals("up-left")){
-                            newMapX = mapX - speed;
-                            newMapY = mapY;
+                if (collision.getNumCollision() > 0) {
+                    if (direction.equals("up-left")) {
+                        newMapX = mapX - speed;
+                        newMapY = mapY;
+                        hitArea.x = newMapX + boundingBox.width / 4;
+                        hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                        collision.scanCollision(this, gamepanel.currentMap);
+                        if (collision.getNumCollision() == 0)
+                            direction = "left";
+                        else {
+                            newMapX = mapX;
+                            newMapY = mapY - speed;
                             hitArea.x = newMapX + boundingBox.width / 4;
                             hitArea.y = newMapY + boundingBox.height / 3 * 2;
                             collision.scanCollision(this, gamepanel.currentMap);
                             if (collision.getNumCollision() == 0)
-                                direction = "left";
-                            else {
-                                newMapX = mapX;
-                                newMapY = mapY - speed;
-                                hitArea.x = newMapX + boundingBox.width / 4;
-                                hitArea.y = newMapY + boundingBox.height / 3 * 2;
-                                collision.scanCollision(this, gamepanel.currentMap);
-                                if (collision.getNumCollision() == 0)
-                                    direction = "up";
-                            }
+                                direction = "up";
                         }
+                    }
 
-                    if (direction.equals("up-right")){
-                            newMapX = mapX + speed;
-                            newMapY = mapY;
+                    if (direction.equals("up-right")) {
+                        newMapX = mapX + speed;
+                        newMapY = mapY;
+                        hitArea.x = newMapX + boundingBox.width / 4;
+                        hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                        collision.scanCollision(this, gamepanel.currentMap);
+                        if (collision.getNumCollision() == 0)
+                            direction = "right";
+                        else {
+                            newMapX = mapX;
+                            newMapY = mapY - speed;
                             hitArea.x = newMapX + boundingBox.width / 4;
                             hitArea.y = newMapY + boundingBox.height / 3 * 2;
                             collision.scanCollision(this, gamepanel.currentMap);
                             if (collision.getNumCollision() == 0)
-                                direction = "right";
-                            else {
-                                newMapX = mapX;
-                                newMapY = mapY - speed;
-                                hitArea.x = newMapX + boundingBox.width / 4;
-                                hitArea.y = newMapY + boundingBox.height / 3 * 2;
-                                collision.scanCollision(this, gamepanel.currentMap);
-                                if (collision.getNumCollision() == 0)
-                                    direction = "up";
-                            }
+                                direction = "up";
                         }
-                    if (direction.equals("down-left")){
-                            newMapX = mapX - speed;
-                            newMapY = mapY;
-                            hitArea.x = newMapX + boundingBox.width / 4;
-                            hitArea.y = newMapY + boundingBox.height / 3 * 2;
-                            collision.scanCollision(this, gamepanel.currentMap);
-                            if (collision.getNumCollision() == 0) {
-                                direction = "left";
-                            }
-                            else {
-                                newMapX = mapX;
-                                newMapY = mapY + speed;
-                                hitArea.x = newMapX + boundingBox.width / 4;
-                                hitArea.y = newMapY + boundingBox.height / 3 * 2;
-                                collision.scanCollision(this, gamepanel.currentMap);
-                                if (collision.getNumCollision() == 0)
-                                    direction = "down";
-                            }
-                        }
-                    if (direction.equals("down-right")){
-                            newMapX = mapX + speed;
-                            newMapY = mapY;
+                    }
+                    if (direction.equals("down-left")) {
+                        newMapX = mapX - speed;
+                        newMapY = mapY;
+                        hitArea.x = newMapX + boundingBox.width / 4;
+                        hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                        collision.scanCollision(this, gamepanel.currentMap);
+                        if (collision.getNumCollision() == 0) {
+                            direction = "left";
+                        } else {
+                            newMapX = mapX;
+                            newMapY = mapY + speed;
                             hitArea.x = newMapX + boundingBox.width / 4;
                             hitArea.y = newMapY + boundingBox.height / 3 * 2;
                             collision.scanCollision(this, gamepanel.currentMap);
                             if (collision.getNumCollision() == 0)
-                                direction = "right";
-                            else {
-                                newMapX = mapX;
-                                newMapY = mapY + speed;
-                                hitArea.x = newMapX + boundingBox.width / 4;
-                                hitArea.y = newMapY + boundingBox.height / 3 * 2;
-                                collision.scanCollision(this, gamepanel.currentMap);
-                                if (collision.getNumCollision() == 0)
-                                    direction = "down";
-                            }
+                                direction = "down";
                         }
+                    }
+                    if (direction.equals("down-right")) {
+                        newMapX = mapX + speed;
+                        newMapY = mapY;
+                        hitArea.x = newMapX + boundingBox.width / 4;
+                        hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                        collision.scanCollision(this, gamepanel.currentMap);
+                        if (collision.getNumCollision() == 0)
+                            direction = "right";
+                        else {
+                            newMapX = mapX;
+                            newMapY = mapY + speed;
+                            hitArea.x = newMapX + boundingBox.width / 4;
+                            hitArea.y = newMapY + boundingBox.height / 3 * 2;
+                            collision.scanCollision(this, gamepanel.currentMap);
+                            if (collision.getNumCollision() == 0)
+                                direction = "down";
+                        }
+                    }
                 }
-            } else checkBug = true;
+            } else
+                checkBug = true;
 
             if (checkBug || collision.getNumCollision() == 0) {
                 mapX = newMapX;
@@ -299,7 +300,7 @@ public class Player extends Entity {
                 for (int i = 0; i < collision.getNumCollision(); ++i) {
                     if (!tile[i].Type.equals("Obstacle")) {
                         ButtonInteract = true;
-                        if(tile[i].Type.equals("Collected")) {
+                        if (tile[i].Type.equals("Collected")) {
                             checkNameTile = tile[i].Name;
                             collision_collect = true;
                         }
@@ -343,11 +344,13 @@ public class Player extends Entity {
 
     }
 
-    public void posUpdate(){
+    public void posUpdate() {
         boundingBox.x = min(screenX, mapX);
         boundingBox.y = min(screenY, mapY);
-        boundingBox.x += (int) max(0, mapX - (gamepanel.currentMap.width - GamePanel.screenWidth / 2) + boundingBox.width / 2);
-        boundingBox.y += (int) max(0, mapY - (gamepanel.currentMap.height - GamePanel.screenHeight / 2) + boundingBox.height / 2);
+        boundingBox.x += (int) max(0,
+                mapX - (gamepanel.currentMap.width - GamePanel.screenWidth / 2) + boundingBox.width / 2);
+        boundingBox.y += (int) max(0,
+                mapY - (gamepanel.currentMap.height - GamePanel.screenHeight / 2) + boundingBox.height / 2);
 
         hitArea.x = mapX + boundingBox.width / 4;
         hitArea.y = mapY + boundingBox.height / 3 * 2;
@@ -355,21 +358,28 @@ public class Player extends Entity {
         rightBorder = (boundingBox.x >= GamePanel.screenWidth - boundingBox.width);
         topBorder = (boundingBox.y <= 0);
         bottomBorder = (boundingBox.y >= GamePanel.screenHeight - boundingBox.height);
+        // soundDoor();
     }
 
-    public Rectangle getImagebox(){
-        int x = (int)(mapX + (107.0 / 450) * boundingBox.width);
-        int y = (int)(mapY + (19.0 / 450) * boundingBox.height);
-        int width = (int)((223.0 / 450) * boundingBox.width);
-        int height = (int)((407.0 / 450) * boundingBox.width);
+    public Rectangle getImagebox() {
+        int x = (int) (mapX + (107.0 / 450) * boundingBox.width);
+        int y = (int) (mapY + (19.0 / 450) * boundingBox.height);
+        int width = (int) ((223.0 / 450) * boundingBox.width);
+        int height = (int) ((407.0 / 450) * boundingBox.width);
 
-        return new Rectangle(x, y , width, height);
+        return new Rectangle(x, y, width, height);
     }
 
     public void draw(Graphics2D g2) {
         tileManager.drawRect(g2, hitArea.x, hitArea.y, hitArea.width, hitArea.height);
         curr_animation_player.operation(g2);
     }
-
-
+    // public void soundDoor() {
+    // if(collision_teleport) {
+    // if(checkSoundName.equals("Door") && gamepanel.keyH.isInteract) {
+    // //System.out.println("hehe");
+    // SoundManager.playSound("open_door");
+    // }
+    // }
+    // }
 }

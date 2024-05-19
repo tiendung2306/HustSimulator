@@ -13,7 +13,7 @@ public class PauseGame extends JPanel {
     Thread gameThread;
     private BufferedImage NextBackGround, tutorial, tutorial1, tutorial2,
             setting, setting1, setting2, tutorialicon, tutorialicon1, Continue, Continue1,
-            Continue2, continueicon, continueicon1,Back, back1, back2, backiconimg, backiconimg1;
+            Continue2, continueicon, continueicon1,Back, back1, back2, backiconimg, backiconimg1, save, save1, save2, saveimg, saveimg1;
 
     private String check = null;
 
@@ -34,6 +34,9 @@ public class PauseGame extends JPanel {
             back1 = ImageIO.read(new FileInputStream("res/MainmenuImage/back1.png"));
             back2 = ImageIO.read(new FileInputStream("res/MainmenuImage/back2.png"));
             backiconimg1 = ImageIO.read(new FileInputStream("res/MainmenuImage/backiconimg.png"));
+            save1 = ImageIO.read(new FileInputStream("res/MainmenuImage/save1.png"));
+            save2 = ImageIO.read(new FileInputStream("res/MainmenuImage/save2.png"));
+            saveimg1 = ImageIO.read(new FileInputStream("res/MainmenuImage/saveimg1.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,6 +52,9 @@ public class PauseGame extends JPanel {
     }
     public void buttonBackEnterpause() {
         check = "buttonBackEnter";
+    }
+    public void buttonSaveEnterpause() {
+        check = "buttonSaveEnter";
     }
     public void rollbackpause() {
         check = null;
@@ -68,7 +74,12 @@ public class PauseGame extends JPanel {
         } else if (check == "buttonBackEnter") {
             Back = back2;
             backiconimg = backiconimg1;
+        } else if (check == "buttonSaveEnter") {
+            save = save2;
+            saveimg = saveimg1;
         } else {
+            saveimg = null;
+            save = save1;
             backiconimg = null;
             Back = back1;
             tutorial = tutorial1;
@@ -85,8 +96,10 @@ public class PauseGame extends JPanel {
         g2.drawImage(tutorialicon, (int) (520 * Main.ex), (int) (270 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         g2.drawImage(Continue, (int) (260 * Main.ex), (int) (210 * Main.ey), (int) (247 * Main.ex), (int) (45 * Main.ey), null);
         g2.drawImage(continueicon, (int) (520 * Main.ex), (int) (210 * Main.ey), (int) (45 * Main.ex), (int) (45 * Main.ey), null);
-        g2.drawImage(Back, (int) (324 * Main.ex), (int) (330 * Main.ey), (int) (120 * Main.ex), (int) (40 * Main.ey), null);
-        g2.drawImage(backiconimg, (int) (486 * Main.ex), (int) (330 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(Back, (int) (324 * Main.ex), (int) (390 * Main.ey), (int) (110 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(backiconimg, (int) (450 * Main.ex), (int) (390 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(save, (int) (324 * Main.ex), (int) (330 * Main.ey), (int) (110 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(saveimg, (int) (450 * Main.ex), (int) (330 * Main.ey), (int) (35 * Main.ex), (int) (35 * Main.ey), null);
         super.paintComponent(g2);
     }
 }

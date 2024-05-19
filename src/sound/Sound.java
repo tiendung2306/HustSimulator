@@ -1,8 +1,8 @@
 package sound;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.io.File;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -17,6 +17,8 @@ public class Sound {
     URL soundURL;
     FloatControl floatControl;
     boolean runned = false;
+    long pauseTime = 0;
+    Boolean isPause = false;
 
     public Sound() {
 
@@ -70,6 +72,8 @@ public class Sound {
     public void play() {
         setFile();
         clip.setFramePosition(0); // make sound play smoothly I guess xD
+        pauseTime = 0;
+        isPause = false;
         clip.start();
     }
 
@@ -85,13 +89,34 @@ public class Sound {
     }
 
     public boolean checkStop() {
-        if(this.clip != null) {
-            if(this.clip.isRunning())   this.runned = true;
-            if(this.runned && !this.clip.isRunning()) {
+        if (this.clip != null) {
+            if (this.clip.isRunning())
+                this.runned = true;
+            if (isPause)
+                return false;
+            if (this.runned && !this.clip.isRunning()) {
                 clip.close();
                 return true;
             }
         }
         return false;
     }
+
+    public void pause() {
+        if (this.clip != null) {
+            pauseTime = clip.getMicrosecondPosition();
+            isPause = true;
+            clip.stop();
+        }
+    }
+
+    public void resume(Boolean isThisSoundLoop) {
+        if (this.clip != null && isPause) {
+            clip.setMicrosecondPosition(pauseTime);
+            clip.start();
+            isPause = false;
+            if(isThisSoundLoop) loop();
+        }
+    }
+
 }
