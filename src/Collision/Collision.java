@@ -40,6 +40,7 @@ public class Collision {
             if (!isTeleport && collisionTile[i].Type.equals("Teleport")) {
                 teleport(collisionTile[i].Name);
                 isTeleport = true;
+                gamePanel.player.ButtonInteract = false;
             }
         }
     }
@@ -204,6 +205,7 @@ public class Collision {
             }
         if (!Main.topGameState().equals("Dialog") && !gamePanel.phone.isDrawPhone && checkPush)
             Main.pushGameState("Dialog");
+
         switch (collisionTile[0].Type) {
             case "Teleport": {
                 ui.currentDialog = "Bạn vừa dịch chuyển tới ";

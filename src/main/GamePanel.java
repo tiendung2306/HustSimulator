@@ -254,6 +254,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
+        
         if (TimeSystem.getCurrentSystemTimeInMilliseconds() - Collision.prevTime >= 1300 && Collision.resumeSound) {
             SoundManager.resumeSound("nhac_nen01", true);
             System.out.println("Meos chayj");
@@ -290,8 +291,9 @@ public class GamePanel extends JPanel implements Runnable {
             toturial.update();
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
-                if (player.ButtonInteract)
+                if (player.ButtonInteract){
                     collision.update();
+                }
                 else
                     keyH.isInteract = false;
             }
@@ -309,16 +311,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        if (Main.topGameState().equals("Loading")) {
-            if (!currentMap.map_exchange_effect.isRunning())
-                Main.popGameState();
-        }
     }
     // =================================================================================================================
 
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
+
         Graphics2D g2 = (Graphics2D) g;
         // RenderingHints rh1 = new RenderingHints(
         // RenderingHints.KEY_RENDERING,
@@ -366,6 +365,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         else if (Main.topGameState().equals("Loading")) {
             currentMap.map_exchange_effect.operation(g);
+            if (!currentMap.map_exchange_effect.isRunning()){
+                Main.popGameState();
+            }
         }
 
     }
