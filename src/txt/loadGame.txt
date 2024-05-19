@@ -1,7 +1,7 @@
 rec1
 chap 1
-time 00h02p
-date 04h49p 18/05/2024
+time 00h00p
+date 22h37p 18/05/2024
 end
 rec2
 chap 2
