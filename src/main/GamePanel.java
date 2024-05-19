@@ -262,7 +262,7 @@ public class GamePanel extends JPanel implements Runnable {
         timeSystem.update();
         soundManager.update();
         tileManager.update();
-        // currentChapter.update();
+        currentChapter.update();
         phone.update();
         player.update();
         inventory.update();
