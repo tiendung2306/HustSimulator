@@ -402,9 +402,6 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentMap == d3_5_hallway_secondfloor) {
             d3_5_hallway_secondfloor.draw(g2);
         }
-        if (currentMap == firstfloorLibrary) {
-            firstfloorLibrary.draw(g2);
-        }
     }
 
     public void newGame() {

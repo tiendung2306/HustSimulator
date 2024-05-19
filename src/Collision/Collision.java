@@ -154,7 +154,7 @@ public class Collision {
                 break;
                 
             case "D3-5_...01":
-                if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3)
+                if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3){
                     SoundManager.playSound("open_door");
                     gamePanel.normalClassroom.loadMap(gamePanel);
                     gamePanel.chapter2.isAtClassMrsToan = true;
