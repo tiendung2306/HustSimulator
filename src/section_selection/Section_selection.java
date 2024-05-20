@@ -162,21 +162,7 @@ public class Section_selection {
     private void display(Graphics graphics) {
         graphics.drawImage(background, bg_X, bg_Y, (int) (background.getWidth() * scale_X), (int) (background.getHeight() * scale_Y), null);
 
-        // Test(graphics);
-        // for(Section section : sections){
-        // section.display(graphics);
-        // }
     }
-
-    // boolean run = true;
-    // Text test = new Text("vpa", new Font("Ariel", Font.PLAIN, 30));
-
-    // private void Test(Graphics graphics){
-    // if(run){
-    // System.out.println(graphics.getFont().getName());
-    // }
-
-    // }
 
     public void operation(Graphics graphics) {
         display(graphics);
