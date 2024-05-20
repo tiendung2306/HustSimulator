@@ -65,8 +65,8 @@ public class LoadSaveGameSystem {
                 currChapterSlot1 = "chap 1";
             if (gamePanel.currentChapter == gamePanel.chapter2)
                 currChapterSlot1 = "chap 2";
-            // if (gamePanel.currentChapter == gamePanel.chapter3)
-            // currChapterSlot1 = "chap 3";
+            if (gamePanel.currentChapter == gamePanel.chapter3)
+            currChapterSlot1 = "chap 3";
 
             totalPlayTimeSlot1 = timeNormalization(
                     TimeSystem.currentSystemTime / 1000000000 + TimeSystem.savedElapsedTime);
@@ -84,8 +84,8 @@ public class LoadSaveGameSystem {
                 currChapterSlot2 = "chap 1";
             if (gamePanel.currentChapter == gamePanel.chapter2)
                 currChapterSlot2 = "chap 2";
-            // if (gamePanel.currentChapter == gamePanel.chapter3)
-            // currChapterSlot2 = "chap 3";
+            if (gamePanel.currentChapter == gamePanel.chapter3)
+            currChapterSlot2 = "chap 3";
             totalPlayTimeSlot2 = timeNormalization(
                     TimeSystem.currentSystemTime / 1000000000 + TimeSystem.savedElapsedTime);
             String tempDate = TimeSystem.getCurrentDate();
@@ -102,8 +102,8 @@ public class LoadSaveGameSystem {
                 currChapterSlot3 = "chap 1";
             if (gamePanel.currentChapter == gamePanel.chapter2)
                 currChapterSlot3 = "chap 2";
-            // if (gamePanel.currentChapter == gamePanel.chapter3)
-            // currChapterSlot3 = "chap 3";
+            if (gamePanel.currentChapter == gamePanel.chapter3)
+            currChapterSlot3 = "chap 3";
             totalPlayTimeSlot3 = timeNormalization(
                 TimeSystem.currentSystemTime / 1000000000 + TimeSystem.savedElapsedTime);
             String tempDate = TimeSystem.getCurrentDate();

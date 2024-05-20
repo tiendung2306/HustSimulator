@@ -42,7 +42,6 @@ import area.C2.C2_hallway;
 import area.D3.D3_hallway;
 import area.D3.D3_secondfloor_hallway;
 import area.D3_5.D3_5_hallway_secondfloor;
-import area.Library.Firstfloor_library;
 import area.Library.Library;
 import entity.Player;
 import map.Map;
@@ -122,6 +121,7 @@ public class GamePanel extends JPanel implements Runnable {
     public D3_hallway d3_hallway = new D3_hallway(this);
     public D3_secondfloor_hallway d3_secondfloor_hallway = new D3_secondfloor_hallway(this);
     public D3_5_hallway_secondfloor d3_5_hallway_secondfloor = new D3_5_hallway_secondfloor(this);
+    public Map tmpMap = null;
 
     // ==========================================================
 
@@ -254,7 +254,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
-        
+
         if (TimeSystem.getCurrentSystemTimeInMilliseconds() - Collision.prevTime >= 1300 && Collision.resumeSound) {
             SoundManager.resumeSound("nhac_nen01", true);
             System.out.println("Meos chayj");
@@ -291,10 +291,9 @@ public class GamePanel extends JPanel implements Runnable {
             toturial.update();
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
-                if (player.ButtonInteract){
+                if (player.ButtonInteract) {
                     collision.update();
-                }
-                else
+                } else
                     keyH.isInteract = false;
             }
             if (keyH.isPhonePressed) {
@@ -365,7 +364,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         else if (Main.topGameState().equals("Loading")) {
             currentMap.map_exchange_effect.operation(g);
-            if (!currentMap.map_exchange_effect.isRunning()){
+            if (!currentMap.map_exchange_effect.isRunning()) {
                 Main.popGameState();
             }
         }
@@ -436,13 +435,12 @@ public class GamePanel extends JPanel implements Runnable {
             chapter2.currentTimeline = 0;
             chapter2.completedAct = 0;
         }
-        // if (chapter.equals("chap3")) {
-        // currentMap = myRoom;
-        // currentChapter = chapter3;
-        // chapter3.currentTimeline = 0;
-        // chapter3.IntroFinished = false;
-        // chapter3.completedAct = 0;
-        // }
+        if (chapter.equals("chap 3")) {
+            currentMap = library;
+            currentChapter = chapter3;
+            chapter3.currentTimeline = 0;
+            chapter3.completedAct = 0;
+        }
         Main.GameState.push("GamePlay");
     }
 }

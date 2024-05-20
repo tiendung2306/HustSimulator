@@ -66,10 +66,14 @@ public class DirectionIndicator {
     }
 
     public void addArrow(int X, int Y) {
+        for(int i = 1; i <= arrowCount; i++) {
+            if(arrows[i].X == X && arrows[i].Y == Y)    return;
+        }
         arrows[++arrowCount] = new Arrow(X, Y, width, height);
     }
 
     public void resetArrow() {
+        System.out.println(gamePanel.d3_secondfloor_hallway.curr_floor);
         arrowCount = 0;
     }
 
