@@ -85,12 +85,12 @@ public class Chapter2 extends Chapter {
             ++completedAct;
         }
         if (completedAct == 1) {
-            if (checkSound_chap2_02) {
-                SoundManager.pauseSound("nhac_nen02");
-                SoundManager.loopSound("gap_gv");
-                checkSound_chap2_02 = false;
-            }
             if (isAtClassMrsToan) {
+                if (checkSound_chap2_02) {
+                    SoundManager.pauseSound("nhac_nen02");
+                    SoundManager.loopSound("gap_gv");
+                    checkSound_chap2_02 = false;
+                }
                 ui.setDialogueBackground("Classroom");
                 ui.setDialogueCharacter("Mrs Toan");
                 Dialogue("Anh tê, dừ là buổi mô rồi anh mì mò mặt đến lớp? Tôi tích cho anh 1 dấu.");

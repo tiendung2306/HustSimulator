@@ -202,8 +202,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void Init() {
         newGame();
-        initSound();
-        currentChapter = chapter1;
+        initSound();//=====================================
+        currentChapter = chapter2;
         currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();
@@ -272,7 +272,7 @@ public class GamePanel extends JPanel implements Runnable {
         timeSystem.update();
         soundManager.update();
         tileManager.update();
-        //currentChapter.update();
+        currentChapter.update();
         phone.update();
         player.update();
         inventory.update();
@@ -357,8 +357,8 @@ public class GamePanel extends JPanel implements Runnable {
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
                 || Main.topGameState().equals("Dialogue")) {
-            if (//currentChapter != chapter1 || chapter1.IntroFinished
-            true
+            if (currentChapter != chapter1 || chapter1.IntroFinished
+            //true
             ) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
