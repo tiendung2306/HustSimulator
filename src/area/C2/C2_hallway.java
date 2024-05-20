@@ -50,8 +50,6 @@ public class C2_hallway extends Map {
         map_exchange_effect2.resize(GamePanel.screenWidth / (2 * map_exchange_effect2.getWidth()));
 
 
-
-
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 

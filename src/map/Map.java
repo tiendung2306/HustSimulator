@@ -156,8 +156,6 @@ public class Map {
             map_exchange_effect.setTimer(1.0);
             Main.pushGameState("Loading");
         }
-        // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
-        // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
         gamePanel.player.setMapX(playerX);
         gamePanel.player.setMapY(playerY);
         gamePanel.player.posUpdate();
