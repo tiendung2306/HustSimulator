@@ -1,5 +1,7 @@
 package area.Library;
 
+import animation.Animation_player;
+import entity.Player;
 import main.GamePanel;
 import map.Map;
 import tile.ExtraTile;
@@ -9,12 +11,14 @@ import java.awt.*;
 
 public class Firstfloor_library extends Map {
     Tile background;
-    Tile wall01,wall02,wall03,wall04,wall05,wall06,tileColumn01,tileColumn02,wall07,wall08,wall09,wall10,wall11,wall12,tileTalbe;
+    Tile wall01,wall02,wall03,wall04,wall05,wall06,tileColumn01,tileColumn02,wall07,wall08,wall09,wall10,wall11,wall12,tileTalbe,tileStair01,tileStair02,tileStair03;
     GamePanel gamePanel;
+    Animation_player map_exchange_effect1, map_exchange_effect2,map_exchange_effect3;
+
     public Firstfloor_library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        width = (int) (63.5 * 16 * GamePanel.scale);
-        height = (int) (38.5 * 16 * GamePanel.scale);
+        width = (int) (62.5 * 16 * GamePanel.scale);
+        height = (int) (37.5 * 16 * GamePanel.scale);
         tileContainer = new Tile[50];
         extraTile = new ExtraTile[20];
         background = new Tile();
@@ -23,8 +27,6 @@ public class Firstfloor_library extends Map {
     }
 
     public void setDefaultValues() {
-        playerX = (int) (500 * GamePanel.scale);
-        playerY = (int) (555 * GamePanel.scale);
         background.setWidth((int) (1000 * GamePanel.scale));
         background.setHeight((int) (600 * GamePanel.scale));
         wall01 = new Tile(gamePanel,0, 0, 223, 113, "", "Obstacle", "", "res/tile/no_thing.png", 1);
@@ -39,10 +41,16 @@ public class Firstfloor_library extends Map {
         wall10 = new Tile(gamePanel,340, 522, 43, 42, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         wall11 = new Tile(gamePanel,435, 508, 42, 56, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         wall12 = new Tile(gamePanel,574, 510, 78, 54, "", "Obstacle", "", "res/tile/no_thing.png", 1);
+        tileStair01 = new Tile(gamePanel,357, 43, 5, 70, "Cau thang 1 -> 2", "Teleport", "Cau thang to 1 len", "res/tile/no_thing.png", 1);
+        tileStair02 = new Tile(gamePanel,643, 43, 5, 70, "Cau thang 1 -> 2", "Teleport", "Cau thang to 2 len", "res/tile/no_thing.png", 1);
+        tileStair03 = new Tile(gamePanel,905, 42, 53, 41, "Cau thang 1 -> 2", "Teleport", "Cau thang len tang 2", "res/tile/no_thing.png", 1);
+
         tileTalbe = new Tile(gamePanel,478, 522, 55, 42, "Bàn quét mã sinh viên", "Interact", "", "res/tile/no_thing.png", 1);
         tileColumn01 = new Tile(gamePanel,129, 44, 37, 140, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         tileColumn02 = new Tile(gamePanel,838, 44, 37, 140, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         setUpTileFirstfloor_library();
+        map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+
     }
 
     public void setUpTileFirstfloor_library() {
@@ -63,9 +71,57 @@ public class Firstfloor_library extends Map {
         addTile(tileTalbe);
         addTile(tileColumn01);
         addTile(tileColumn02);
-        addExtraTile("src/txt/cauthang1.txt");
+        addTile(tileStair01);
+        addTile(tileStair02);
+        addTile(tileStair03);
+        addExtraTile("src/txt/tvtang1.txt");
     }
 
+    public void open(String type){
+        if(type.equals("Cau thang xuong tang 1")) {
+            playerX = (int) (918 * GamePanel.scale);
+            playerY = (int) (72 * GamePanel.scale);
+        }
+        if(type.equals("Cau thang to 1 xuong")) {
+            playerX = (int) (330 * GamePanel.scale);
+            playerY = (int) (57 * GamePanel.scale);
+        }
+        if(type.equals("Cau thang to 2 xuong")) {
+            playerX = (int) (651 * GamePanel.scale);
+            playerY = (int) (58 * GamePanel.scale);
+        }
+        if(type.equals("Di vao thu vien 1")) {
+            playerX = (int) (450 * GamePanel.scale);
+            playerY = (int) (560 * GamePanel.scale);
+            // map_exchange_effect = map_exchange_effect3;
+            System.out.println("hehe");
+        }
+        if(type.equals("Di vao thu vien 2")) {
+            playerX = (int) (520 * GamePanel.scale);
+            playerY = (int) (560 * GamePanel.scale);
+            if(checkMap_exchange_effect) {
+                map_exchange_effect = map_exchange_effect3;
+                checkMap_exchange_effect = false;
+            }
+            System.out.println(checkMap_exchange_effect);
+        }
+        loadMap(gamePanel);
+    }
+
+    public void resetTile(){
+        width = (int) (62.5 * 16 * GamePanel.scale);
+        height = (int) (37.5 * 16 * GamePanel.scale);
+        if (gamePanel.currentMap == this) {
+            playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
+            playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
+        }
+        prevScale = (int) GamePanel.scale;
+        background.setWidth((int) (1000 * GamePanel.scale));
+        background.setHeight((int) (600 * GamePanel.scale));
+        for (int i = 0; i < numTileContainer; ++i) {
+            tileContainer[i].reSizeTile();
+        }
+    }
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {

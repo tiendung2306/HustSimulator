@@ -66,6 +66,7 @@ public class Tile{
         this.type = type;
         this.name_path = name_path;
         this.description = description;
+        Description = description;
         Name = name;
         Type = type;
         try {

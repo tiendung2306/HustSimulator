@@ -1,6 +1,7 @@
 package Collision;
 
 import entity.Entity;
+import entity.Player;
 import main.GamePanel;
 import main.Main;
 import main.UI;
@@ -173,12 +174,52 @@ public class Collision {
                 gamePanel.d3_secondfloor_hallway.open("enter_from_D3_5");
                 break;
                 
-            case "D3-5_...01":
-                if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3){
-                    SoundManager.playSound("open_door");
-                    gamePanel.normalClassroom.loadMap(gamePanel);
-                    gamePanel.chapter2.isAtClassMrsToan = true;
-                }
+            case "Cau thang 1 -> 2":
+                gamePanel.secondfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 2 -> 1":
+               gamePanel.firstfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 2 -> 3":
+                gamePanel.thirdfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 3 -> 2":
+                gamePanel.secondfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 3 -> 4":
+                gamePanel.fourthfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 4 -> 3":
+                gamePanel.thirdfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 4 -> 5":
+                gamePanel.fifthfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 5 -> 4":
+                gamePanel.fourthfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Door Thirdfloor":
+                gamePanel.library.open(Player.checkTile);
+                break;
+
+            case "Door Library":
+                gamePanel.thirdfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Library_entry 1":
+                gamePanel.firstfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Library_entry 2":
+                gamePanel.firstfloorLibrary.open(Player.checkTile);
                 break;
 
             default:

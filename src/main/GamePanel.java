@@ -31,6 +31,7 @@ import MainMenu.Toturial;
 import MainMenu.VideoSetting;
 import Mouse.MouseManager;
 import area.ComputerRoom;
+import area.Library.*;
 import area.MyRoom;
 import area.NormalClassroom;
 import area.Section_1;
@@ -42,8 +43,6 @@ import area.C2.C2_hallway;
 import area.D3.D3_hallway;
 import area.D3.D3_secondfloor_hallway;
 import area.D3_5.D3_5_hallway_secondfloor;
-import area.Library.Firstfloor_library;
-import area.Library.Library;
 import entity.Player;
 import map.Map;
 import phone.Phone;
@@ -122,6 +121,11 @@ public class GamePanel extends JPanel implements Runnable {
     public D3_hallway d3_hallway = new D3_hallway(this);
     public D3_secondfloor_hallway d3_secondfloor_hallway = new D3_secondfloor_hallway(this);
     public D3_5_hallway_secondfloor d3_5_hallway_secondfloor = new D3_5_hallway_secondfloor(this);
+    public Firstfloor_library firstfloorLibrary = new Firstfloor_library(this);
+    public Secondfloor_library secondfloorLibrary = new Secondfloor_library(this);
+    public Thirdfloor_library thirdfloorLibrary = new Thirdfloor_library(this);
+    public Fourthfloor_library fourthfloorLibrary = new Fourthfloor_library(this);
+    public Fifthfloor_library fifthfloorLibrary = new Fifthfloor_library(this);
 
     // ==========================================================
 
@@ -180,6 +184,11 @@ public class GamePanel extends JPanel implements Runnable {
         computerRoom.resetTile();
         library.resetTile();
         stadium.resetTile();
+        firstfloorLibrary.resetTile();
+        secondfloorLibrary.resetTile();
+        thirdfloorLibrary.resetTile();
+        fourthfloorLibrary.resetTile();
+        fifthfloorLibrary.resetTile();
         currentMap.loadMap(this);
         missionDescription.screenResize();
         player.reSize();
@@ -262,7 +271,7 @@ public class GamePanel extends JPanel implements Runnable {
         timeSystem.update();
         soundManager.update();
         tileManager.update();
-        currentChapter.update();
+        //currentChapter.update();
         phone.update();
         player.update();
         inventory.update();
@@ -349,7 +358,9 @@ public class GamePanel extends JPanel implements Runnable {
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
                 || Main.topGameState().equals("Dialogue")) {
-            if (currentChapter != chapter1 || chapter1.IntroFinished) {
+            if (//currentChapter != chapter1 || chapter1.IntroFinished
+            true
+            ) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
                 player.draw(g2);
@@ -409,6 +420,21 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (currentMap == d3_5_hallway_secondfloor) {
             d3_5_hallway_secondfloor.draw(g2);
+        }
+        if (currentMap == firstfloorLibrary) {
+            firstfloorLibrary.draw(g2);
+        }
+        if (currentMap == secondfloorLibrary) {
+            secondfloorLibrary.draw(g2);
+        }
+        if (currentMap == thirdfloorLibrary) {
+            thirdfloorLibrary.draw(g2);
+        }
+        if (currentMap == fourthfloorLibrary) {
+            fourthfloorLibrary.draw(g2);
+        }
+        if (currentMap == fifthfloorLibrary) {
+            fifthfloorLibrary.draw(g2);
         }
     }
 

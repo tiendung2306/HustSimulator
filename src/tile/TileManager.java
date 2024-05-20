@@ -27,8 +27,20 @@ public class TileManager {
 
     public void getTileImage() {
         try {
+            tile[1] = new Tile();
+            tile[1].image = ImageIO.read(new FileInputStream("res/tile/background tang 2.png"));
+
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(new FileInputStream("res/tile/background_thuvien.png"));
+
+            tile[3] = new Tile();
+            tile[3].image = ImageIO.read(new FileInputStream("res/tile/background tang 3.png"));
+
+            tile[4] = new Tile();
+            tile[4].image = ImageIO.read(new FileInputStream("res/tile/background tang 4.png"));
+
+            tile[5] = new Tile();
+            tile[5].image = ImageIO.read(new FileInputStream("res/tile/background tang 5.png"));
 
             tile[17] = new Tile();
             tile[17].image = ImageIO.read(new FileInputStream("res/tile/backgroud_classroom.png"));

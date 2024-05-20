@@ -39,7 +39,8 @@ public class Player extends Entity {
 
     public Animation_player curr_animation_player;
     TileManager tileManager;
-    public String checkNameTile, checkSoundName;
+    public String checkNameTile, checkDescriptionTile;
+    public static String checkTile = "0";
 
     public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager, UI ui) {
         this.gamepanel = gamepanel;
@@ -126,7 +127,7 @@ public class Player extends Entity {
                 ButtonInteract = false;
             collision_collect = false;
             checkNameTile = "";
-            checkSoundName = "";
+            checkDescriptionTile = "";
             if (countPressed == 1) {
                 if (keyhandler.upPressed) {
                     direction = "up";
@@ -303,6 +304,11 @@ public class Player extends Entity {
                         if (tile[i].Type.equals("Collected")) {
                             checkNameTile = tile[i].Name;
                             collision_collect = true;
+                        }
+                        if (tile[i].Type.equals("Teleport")) {
+                            checkDescriptionTile = tile[i].Description;
+                            checkTile = checkDescriptionTile;
+                            Map.checkMap_exchange_effect = true;
                         }
                         break;
 

@@ -16,13 +16,13 @@ public class MyRoom extends Map {
 
     public MyRoom(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        width = (int) (29 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
+        width = (int) (28 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         tileContainer = new Tile[50];
         extraTile = new ExtraTile[10];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;
-        // addExtraTile("src/txt/cauthang1.txt");
+        // addExtraTile("src/txt/tvtang1.txt");
         setDefaultValues();
     }
 
@@ -113,16 +113,13 @@ public class MyRoom extends Map {
     }
 
     public void resetTile() {
-        width = (int) (29 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
+        width = (int) (28 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         if (gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
-        } else {
-            playerX = (int) (215 * GamePanel.scale);
-            playerY = (int) (75 * GamePanel.scale);
+            prevScale = (int) GamePanel.scale;
         }
-        prevScale = (int) GamePanel.scale;
         background.setWidth((int) (450 * GamePanel.scale));
         background.setHeight((int) (242 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {

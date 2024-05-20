@@ -52,11 +52,8 @@ public class Stadium extends Map {
         if(gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
-        } else {
-            playerX = (int) (10 * GamePanel.scale);
-            playerY = (int) (115 * GamePanel.scale);
+            prevScale = (int) GamePanel.scale;
         }
-        prevScale = (int) GamePanel.scale;
         background.setWidth((int) (320 * GamePanel.scale));
         background.setHeight((int) (240 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {

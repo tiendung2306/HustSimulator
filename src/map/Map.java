@@ -17,7 +17,7 @@ import tile.Tile;
 public class Map {
     public GamePanel gamePanel;
     public int mapIndex;
-    public int maxMapCol, maxMapRow;
+    public static Boolean checkMap_exchange_effect = false;
     public int numExtraTile;
     public int width, height;
     public int org_width, org_height;
