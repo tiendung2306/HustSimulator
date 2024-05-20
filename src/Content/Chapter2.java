@@ -38,8 +38,11 @@ public class Chapter2 extends Chapter {
                 isStart = true;
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             }
-            if (TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 100)
+            if (TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 100) {
+                TimeSystem.goNextDay();
+                System.out.println(TimeSystem.day);
                 completedAct++;
+            }
         }
         if (completedAct == 1)
             Dialogue("Ngày thứ 2 kể từ khi ta chuyển sinh vào thế giới này.");
@@ -54,7 +57,6 @@ public class Chapter2 extends Chapter {
             missionDescription.setMissionDescription("Kiểm tra lịch học ở trong app Fhust.");
             gamePanel.myRoom.tilePhone.isMission = true;
             phone.isOpenFhust = false;
-            TimeSystem.goNextDay();
         }
         if (completedAct == 6) {
             if (phone.isOpenFhust && !phone.isDrawPhone) {
@@ -81,6 +83,10 @@ public class Chapter2 extends Chapter {
         if (completedAct == 0) {
             missionDescription.setMissionDescription(
                     "Di chuyển tới tòa D3-5 tại Section 2, tham gia lớp học cô Nguyễn Thị Toàn tại phòng 301.");
+            gamePanel.directionIndicator.addArrow(
+                    (gamePanel.myRoom.tileDoorMyRoom.getLeftX() + gamePanel.myRoom.tileDoorMyRoom.getRightX()) / 2
+                            - gamePanel.directionIndicator.width / 2,
+                    gamePanel.myRoom.tileDoorMyRoom.getBottomY() - gamePanel.directionIndicator.height);
             isAtClassMrsToan = false;
             ++completedAct;
         }

@@ -359,9 +359,9 @@ public class Phone {
 
                 drawAppLogo(g2, logoFhust, "fHUST", firstLogoX, firstLogoY, 2);
                 drawAppLogo(g2, logoMessager, "Messager", firstLogoX + logoSize + spaceSizeBetween2Logo, firstLogoY,
-                        -4);
+                        -8);
                 drawAppLogo(g2, logoSetting, "Settings", firstLogoX + 2 * logoSize + 2 * spaceSizeBetween2Logo,
-                        firstLogoY, 0);
+                        firstLogoY, -2);
                 drawAppLogo(g2, mapIcon, "Map", firstLogoX,
                         firstLogoY + logoSize + spaceSizeBetweenLogoAndName * 2, logoSize / 5);
                 break;
