@@ -1,7 +1,9 @@
 package area.Library;
 
+import animation.Animation_player;
 import main.GamePanel;
 import map.Map;
+import sound.SoundManager;
 import tile.Tile;
 
 import java.awt.*;
@@ -12,12 +14,13 @@ public class Library extends Map {
     public Tile tileBookcase01_1,tileBookcase01_2,tileBookcase02,tileBookcase03,tileDoorLibrary,tileWallLibrary;
     public Tile[] tileChairLibrary,tileTableLibrary;
     public Tile npcGirl;
+    Animation_player map_exchange_effect3;
     Tile background;
 
     public Library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        width = (int)(21 * 16 * gamePanel.scale);
-        height = (int)(16 * 16 * gamePanel.scale);
+        width = (int)(20 * 16 * gamePanel.scale);
+        height = (int)(15 * 16 * gamePanel.scale);
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[19].image;
@@ -35,6 +38,8 @@ public class Library extends Map {
         tileWallLibrary = new Tile(gamePanel,0,0,320,49,"","","","res/tile/no_thing.png",1);
         tileChairLibrary = new Tile[6];
         tileTableLibrary = new Tile[6];
+        map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+
         npcGirl = new Tile(gamePanel, 100, 100, 16, 41, "NPC Girl", "NPC", "", "res/NPC/NPCGirl/NPCGirl (2).png",1);
         setUpTable();
         setUpTileLibrary();
@@ -60,6 +65,8 @@ public class Library extends Map {
         if(type.equals("Vao phong doc")) {
             playerX = (int) (160 * GamePanel.scale);
             playerY = (int) (34 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect3;
+            SoundManager.playSound("open_door");
         }
         loadMap(gamePanel);
     }
@@ -95,8 +102,8 @@ public class Library extends Map {
     }
 
     public void resetTile(){
-        width = (int) (21 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
+        width = (int) (20 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         if (gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
@@ -107,6 +114,7 @@ public class Library extends Map {
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
+        map_exchange_effect3.resize(GamePanel.screenWidth / (2 * map_exchange_effect3.getWidth()));
     }
 
 

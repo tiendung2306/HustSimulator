@@ -308,7 +308,6 @@ public class Player extends Entity {
                         if (tile[i].Type.equals("Teleport")) {
                             checkDescriptionTile = tile[i].Description;
                             checkTile = checkDescriptionTile;
-                            Map.checkMap_exchange_effect = true;
                         }
                         break;
 

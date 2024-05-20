@@ -18,6 +18,7 @@ public class Section_3 extends Map {
     Tile background, Library, BK_ALUMNI_HOUSE, Tien_Lake, Unknown;
     public Tile npcGirl;
     GamePanel gamePanel;
+    Tile spawn_point;
 
 
     public Section_3(GamePanel gamePanel) {
@@ -46,7 +47,7 @@ public class Section_3 extends Map {
         background.setHeight((int)(background.getHeight() * scale));
 
 
-
+        spawn_point.resize(scale);
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 
@@ -58,8 +59,8 @@ public class Section_3 extends Map {
     }
 
     private void SetPlayerPos(){
-        playerX = (int) (width * 1.0 / 2);
-        playerY = (int) (height * 1.0 / 2);
+        playerX = spawn_point.getLeftX();
+        playerY = spawn_point.getTopY();
     }
 
     private void TileLoad() {
@@ -74,6 +75,7 @@ public class Section_3 extends Map {
         }
 
 
+        spawn_point = new Tile(new Rectangle(850 , 1800 , 23 , 44), "", "", null, null);
         Tien_Lake = new Tile(new Rectangle(231, 789, 1227, 903), "Tien_Lake", "Obstacle", null, null);
         BK_ALUMNI_HOUSE = new Tile(new Rectangle(1836, 1335, 699, 675), "BK_ALUMNI_HOUSE", "Obstacle", null, null);
         Unknown = new Tile(new Rectangle(2685, 1161, 309, 942), "Unknown", "Obstacle", null, null);

@@ -1,7 +1,9 @@
 package area.Library;
 
+import animation.Animation_player;
 import main.GamePanel;
 import map.Map;
+import sound.SoundManager;
 import tile.ExtraTile;
 import tile.Tile;
 
@@ -11,6 +13,7 @@ public class Thirdfloor_library extends Map {
     Tile background;
     Tile wall01,wall02,wall03,wall04,wall05,tileStair01,tileStair02,tileTable01,tileTable02,tileTable03,tileTable04,tileTable05,tileTable06,
             tileDoorThirdfloor;
+    Animation_player map_exchange_effect2,map_exchange_effect3;
     GamePanel gamePanel;
     public Thirdfloor_library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -43,6 +46,9 @@ public class Thirdfloor_library extends Map {
         tileTable06 = new Tile(gamePanel, 792, 375, 120, 198, "", "Obstacle", "", "res/tile/ban ghe thu vien 3.png", (double) 1 /3);
         tileDoorThirdfloor = new Tile(gamePanel, 658, 33, 108, 73, "Door Thirdfloor", "Teleport", "Vao phong doc", "res/tile/no_thing.png",1);
 
+        map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+        map_exchange_effect2 = new Animation_player(gamePanel, "res/effect/Map_exchange/type2/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+
         setUpTileThirdfloor_library();
     }
 
@@ -71,14 +77,20 @@ public class Thirdfloor_library extends Map {
         if(type.equals("Cau thang xuong tang 3")) {
             playerX = (int) (918 * GamePanel.scale);
             playerY = (int) (72 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect2;
+            SoundManager.playSound("footstep_down_stairs");
         }
         if(type.equals("Cau thang len tang 3")) {
             playerX = (int) (965 * GamePanel.scale);
             playerY = (int) (72 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect2;
+            SoundManager.playSound("footstep_up_stairs");
         }
         if(type.equals("Ra khoi phong doc")) {
             playerX = (int) (702 * GamePanel.scale);
             playerY = (int) (92 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect3;
+            SoundManager.playSound("open_door");
         }
         loadMap(gamePanel);
     }
@@ -89,13 +101,15 @@ public class Thirdfloor_library extends Map {
         if (gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
+            prevScale = (int) GamePanel.scale;
         }
-        prevScale = (int) GamePanel.scale;
         background.setWidth((int) (1000 * GamePanel.scale));
         background.setHeight((int) (600 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
+        map_exchange_effect2.resize(GamePanel.screenWidth / (2 * map_exchange_effect2.getWidth()));
+        map_exchange_effect3.resize(GamePanel.screenWidth / (2 * map_exchange_effect3.getWidth()));
     }
 
     // Phương thức vẽ map

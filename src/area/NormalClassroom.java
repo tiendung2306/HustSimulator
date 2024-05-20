@@ -2,6 +2,7 @@ package area;
 
 import main.GamePanel;
 import map.Map;
+import sound.SoundManager;
 import tile.Tile;
 import npc.Npc;
 import java.awt.*;
@@ -19,8 +20,8 @@ public class NormalClassroom extends Map {
         super();
         this.gamePanel = gamePanel;
 
-        width = (int) (21 * 16 * gamePanel.scale);
-        height = (int) (16 * 16 * gamePanel.scale);
+        width = (int) (20 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[17].image;
@@ -86,20 +87,27 @@ public class NormalClassroom extends Map {
     }
 
     public void resetTile() {
-        width = (int) (21 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
+        width = (int) (20 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         if(gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
             prevScale = (int) GamePanel.scale;
         }
-
         background.setWidth((int) (320 * GamePanel.scale));
         background.setHeight((int) (240 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
         mrsToan.resize(GamePanel.scale);
+    }
+
+    public void open(String type){
+        if(type.equals("Vao phong hoc")) {
+            playerX = (int) (35 * GamePanel.scale);
+            playerY = (int) (64 * GamePanel.scale);
+        }
+        loadMap(gamePanel);
     }
 
     public void draw(Graphics2D g2) {

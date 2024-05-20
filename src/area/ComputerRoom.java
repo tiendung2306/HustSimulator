@@ -19,8 +19,8 @@ public class ComputerRoom extends Map {
     public ComputerRoom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
-        width = (int)(21 * 16 * gamePanel.scale);
-        height = (int)(16 * 16 * gamePanel.scale);
+        width = (int)(20 * 16 * GamePanel.scale);
+        height = (int)(15 * 16 * GamePanel.scale);
         // maxMapCol = 21;
         // maxMapRow = 18;
         tileContainer = new Tile[50];
@@ -93,8 +93,8 @@ public class ComputerRoom extends Map {
     }
 
     public void resetTile(){
-        width = (int) (21 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
+        width = (int) (20 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         if(gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);

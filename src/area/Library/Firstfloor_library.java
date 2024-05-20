@@ -4,6 +4,7 @@ import animation.Animation_player;
 import entity.Player;
 import main.GamePanel;
 import map.Map;
+import sound.SoundManager;
 import tile.ExtraTile;
 import tile.Tile;
 
@@ -50,6 +51,8 @@ public class Firstfloor_library extends Map {
         tileColumn02 = new Tile(gamePanel,838, 44, 37, 140, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         setUpTileFirstfloor_library();
         map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+        map_exchange_effect2 = new Animation_player(gamePanel, "res/effect/Map_exchange/type2/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+        map_exchange_effect1 = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
     }
 
@@ -81,29 +84,32 @@ public class Firstfloor_library extends Map {
         if(type.equals("Cau thang xuong tang 1")) {
             playerX = (int) (918 * GamePanel.scale);
             playerY = (int) (72 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect2;
+            SoundManager.playSound("footstep_down_stairs");
         }
         if(type.equals("Cau thang to 1 xuong")) {
             playerX = (int) (330 * GamePanel.scale);
             playerY = (int) (57 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect1;
+            SoundManager.playSound("foot_step");
         }
         if(type.equals("Cau thang to 2 xuong")) {
             playerX = (int) (651 * GamePanel.scale);
             playerY = (int) (58 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect1;
+            SoundManager.playSound("foot_step");
         }
         if(type.equals("Di vao thu vien 1")) {
             playerX = (int) (450 * GamePanel.scale);
             playerY = (int) (560 * GamePanel.scale);
-            // map_exchange_effect = map_exchange_effect3;
-            System.out.println("hehe");
+            map_exchange_effect = map_exchange_effect3;
+            SoundManager.playSound("open_door");
         }
         if(type.equals("Di vao thu vien 2")) {
             playerX = (int) (520 * GamePanel.scale);
             playerY = (int) (560 * GamePanel.scale);
-            if(checkMap_exchange_effect) {
-                map_exchange_effect = map_exchange_effect3;
-                checkMap_exchange_effect = false;
-            }
-            System.out.println(checkMap_exchange_effect);
+            map_exchange_effect = map_exchange_effect3;
+            SoundManager.playSound("open_door");
         }
         loadMap(gamePanel);
     }
@@ -114,13 +120,16 @@ public class Firstfloor_library extends Map {
         if (gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
+            prevScale = (int) GamePanel.scale;
         }
-        prevScale = (int) GamePanel.scale;
         background.setWidth((int) (1000 * GamePanel.scale));
         background.setHeight((int) (600 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
+        map_exchange_effect1.resize(GamePanel.screenWidth / (2 * map_exchange_effect1.getWidth()));
+        map_exchange_effect2.resize(GamePanel.screenWidth / (2 * map_exchange_effect2.getWidth()));
+        map_exchange_effect3.resize(GamePanel.screenWidth / (2 * map_exchange_effect3.getWidth()));
     }
 
     // Phương thức vẽ map

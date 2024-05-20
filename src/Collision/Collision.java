@@ -61,37 +61,22 @@ public class Collision {
             
             case "C2_Hallway_entry_stair":
                 gamePanel.c2_hallway.open("enter_from_stair");
-                SoundManager.pauseSound("nhac_nen01");
                 SoundManager.playSound("footstep_up_stairs");
-                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
-                System.out.println("STOP");
-                resumeSound = true;
                 break;    
             
             case "C2_Hall_entry":
                 gamePanel.c2_hall.open();
-                SoundManager.pauseSound("nhac_nen01");
                 SoundManager.playSound("open_door");
-                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
-                System.out.println("STOP");
-                resumeSound = true;
                 break;
 
             case "C2_Hall_exit":
                 gamePanel.c2_hallway.open("enter_from_door");
-                SoundManager.pauseSound("nhac_nen01");
-                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
-                System.out.println("STOP");
-                resumeSound = true;
+                SoundManager.playSound("open_door");
                 break;
 
             case "C2_Hallway_exit":
                 gamePanel.section_1.open();
-                SoundManager.pauseSound("nhac_nen01");
                 SoundManager.playSound("foot_step");
-                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
-                System.out.println("STOP");
-                resumeSound = true;
                 break; 
 
             case "D3_Hallway_entry_stair1":
@@ -173,6 +158,15 @@ public class Collision {
                 SoundManager.playSound("foot_step");
                 gamePanel.d3_secondfloor_hallway.curr_floor = gamePanel.d3_5_hallway_secondfloor.curr_floor;
                 gamePanel.d3_secondfloor_hallway.open("enter_from_D3_5");
+                break;
+
+            case "D3-5_...01":
+                if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3){
+                    SoundManager.playSound("open_door");
+                    //gamePanel.normalClassroom.loadMap(gamePanel);
+                    gamePanel.normalClassroom.open("Vao phong hoc");
+                    gamePanel.chapter2.isAtClassMrsToan = true;
+                }
                 break;
                 
             case "Cau thang 1 -> 2":

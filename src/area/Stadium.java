@@ -15,8 +15,8 @@ public class Stadium extends Map {
     int x_car_red = 218;
     public Stadium(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        width = (int)(21 * 16 * GamePanel.scale);
-        height = (int)(16 * 16 * GamePanel.scale);
+        width = (int)(20 * 16 * GamePanel.scale);
+        height = (int)(15 * 16 * GamePanel.scale);
         tileContainer = new Tile[50];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[18].image;
@@ -47,8 +47,8 @@ public class Stadium extends Map {
     }
 
     public void resetTile(){
-        width = (int) (21 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
+        width = (int) (20 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         if(gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
