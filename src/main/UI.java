@@ -22,12 +22,12 @@ public class UI {
     public int i;
     BufferedImage nextIcon, skipIcon, skipWord, characterDialogue;
     BufferedImage mainCharacter, mrsToan, mrHoa, catMeme, system, teacher1, npcGirl, catGivingFlower;
-    BufferedImage backgroundDialogue, backgroundClassroom, backgroundLibrary, backgroundLake;
-    BufferedImage reelCharacter, surpriseMeme,girlReadingBook;
+    public BufferedImage backgroundDialogue, backgroundClassroom, backgroundLibrary, backgroundLake;
+    BufferedImage reelCharacter, surpriseMeme, girlReadingBook;
     public boolean isFinishDialogue;
     int iconX = (int) (207 * GamePanel.scale), iconY = (int) (170 * GamePanel.scale);
     int skipX = (int) (8 * GamePanel.scale), skipY = (int) (10 * GamePanel.scale);
-    int reelX = 0, reelY = 0, reelwidth = (int)(GamePanel.screenWidth), reelheight = (int)(GamePanel.screenHeight);
+    int reelX = 0, reelY = 0, reelwidth = (int) (GamePanel.screenWidth), reelheight = (int) (GamePanel.screenHeight);
     int step = 0;
     boolean reverse;
 
@@ -157,6 +157,7 @@ public class UI {
     });
 
     public void drawDialogueScreen() {
+        if(gamePanel.question.isDisplayQuestion)    return;
         int x = 32 * (int) GamePanel.scale;
         int width = (int) (GamePanel.screenWidth - 64 * GamePanel.scale);
         int height = (int) (64 * GamePanel.scale);
@@ -208,13 +209,16 @@ public class UI {
             }
             step = 0;
         }
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) (GamePanel.scale * 4)));
-        g2.drawString("Press Space", (int) (182 * GamePanel.scale), (int) (175 * GamePanel.scale));
-        g2.drawImage(nextIcon, iconX, iconY, (int) (10 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) (GamePanel.scale * 7)));
-        g2.drawImage(skipWord, (int) (27 * GamePanel.scale), (int) (11 * GamePanel.scale), (int) (15 * GamePanel.scale),
-                (int) (5 * GamePanel.scale), null);
-        g2.drawImage(skipIcon, skipX, skipY, (int) (17 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
+        if (!gamePanel.question.isDisplayQuestion) {
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) (GamePanel.scale * 4)));
+            g2.drawString("Press Space", (int) (182 * GamePanel.scale), (int) (175 * GamePanel.scale));
+            g2.drawImage(nextIcon, iconX, iconY, (int) (10 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) (GamePanel.scale * 7)));
+            g2.drawImage(skipWord, (int) (27 * GamePanel.scale), (int) (11 * GamePanel.scale),
+                    (int) (15 * GamePanel.scale),
+                    (int) (5 * GamePanel.scale), null);
+            g2.drawImage(skipIcon, skipX, skipY, (int) (17 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
+        }
     }
 
     public void setDialogueCharacter(String name) {
@@ -246,27 +250,28 @@ public class UI {
         if (name.equals("Empty"))
             backgroundDialogue = null;
     }
-    public void setReelsCharacter(String name){
+
+    public void setReelsCharacter(String name) {
         step = 0;
         if (name.equals("Surprise Meme")) {
             reelX = 0;
             reelY = 0;
-            reelwidth = (int)(GamePanel.screenWidth);
-            reelheight = (int)(GamePanel.screenHeight);
+            reelwidth = (int) (GamePanel.screenWidth);
+            reelheight = (int) (GamePanel.screenHeight);
             reelCharacter = surpriseMeme;
         }
         if (name.equals("Girl Reading Book")) {
-            reelX = (int)(30 * GamePanel.scale);
+            reelX = (int) (30 * GamePanel.scale);
             reelY = 0;
-            reelwidth = (int)(200 * GamePanel.scale);
-            reelheight = (int)(205 * GamePanel.scale);
+            reelwidth = (int) (200 * GamePanel.scale);
+            reelheight = (int) (205 * GamePanel.scale);
             reelCharacter = girlReadingBook;
         }
-        if (name.equals("Cat Giving Flower")){
+        if (name.equals("Cat Giving Flower")) {
             reelX = 0;
             reelY = 0;
-            reelwidth = (int)(GamePanel.screenWidth);
-            reelheight = (int)(GamePanel.screenHeight);
+            reelwidth = (int) (GamePanel.screenWidth);
+            reelheight = (int) (GamePanel.screenHeight);
             reelCharacter = catGivingFlower;
         }
     }
@@ -303,7 +308,7 @@ public class UI {
             width = (int) (110 * GamePanel.scale);
             height = (int) (150 * GamePanel.scale);
         }
-        if (characterDialogue == npcGirl){
+        if (characterDialogue == npcGirl) {
             leftX = (int) (70 * GamePanel.scale);
             topY = (int) (15 * GamePanel.scale);
             width = (int) (134 * GamePanel.scale);
@@ -315,14 +320,15 @@ public class UI {
         int screenX, screenY;
 
     }
-    public void drawReels(){
+
+    public void drawReels() {
         ++step;
-        if (step >= 3){
+        if (step >= 3) {
             step = 0;
-            reelX -= (int)(GamePanel.scale / 3);
-            reelY -= (int)(GamePanel.scale / 3);
-            reelwidth += 2 * (int)(GamePanel.scale / 3);
-            reelheight += 2 * (int)(GamePanel.scale / 3);
+            reelX -= (int) (GamePanel.scale / 3);
+            reelY -= (int) (GamePanel.scale / 3);
+            reelwidth += 2 * (int) (GamePanel.scale / 3);
+            reelheight += 2 * (int) (GamePanel.scale / 3);
         }
         g2.drawImage(reelCharacter, reelX, reelY, reelwidth, reelheight, null);
     }

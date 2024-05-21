@@ -30,7 +30,7 @@ public class Chapter1 extends Chapter {
     }
 
     void Intro() {// Cho nhạc vào đấy
-        if(checkSound_chap1_01) {
+        if (checkSound_chap1_01) {
             SoundManager.loopSound("nhac_nen01");
             checkSound_chap1_01 = false;
         }
@@ -63,7 +63,8 @@ public class Chapter1 extends Chapter {
         IntroFinished = true;
         if (completedAct == 0) {
             TimeSystem.setCurrentTime("07:00");
-            Dialogue("Đây là căn phòng của ta sao?");
+            Question("Đạo hàm của arctan(x) là cái ci???", "1/(1+x)", "1/(1-x)");
+            // Dialogue("Đây là căn phòng của ta sao?");
         }
         if (completedAct == 1)
             Dialogue("Nó khá nhỏ so với tòa lâu đài ở kiếp trước. Nhưng nó chứa khá là nhiều thứ thú vị!");
@@ -113,7 +114,7 @@ public class Chapter1 extends Chapter {
             }
             if (collision.interactItem.Name.equals("Pan") && inventory.isUsingItem
                     && inventory.usingItem.Name.equals("Noodle")) {
-                if(checkSound_chap1_02) {
+                if (checkSound_chap1_02) {
                     SoundManager.playSound("an_mi");
                     checkSound_chap1_01 = false;
                 }
@@ -265,7 +266,7 @@ public class Chapter1 extends Chapter {
     }
 
     void Timeline4() {
-        if(!checkSound_chap1_01) {
+        if (!checkSound_chap1_01) {
             SoundManager.stopSound("nhac_nen01");
             checkSound_chap1_01 = true;
         }
@@ -310,5 +311,11 @@ public class Chapter1 extends Chapter {
             ui.isFinishDialogue = false;
             ui.timer.start();
         }
+    }
+
+    void Question(String question, String answer1, String answer2) {
+        gamePanel.question.setQuestion(question, answer1, answer2);
+        if (Main.topGameState().equals("GamePlay"))
+            Main.pushGameState("Dialogue");
     }
 }

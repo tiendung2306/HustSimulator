@@ -14,6 +14,7 @@ import Content.Chapter2;
 import Content.Chapter3;
 import GUI.DirectionIndicator;
 import GUI.MissionDescription;
+import GUI.Question;
 import Inventory.Inventory;
 import Keyboard.KeyboardManager;
 import LoadSaveGame.LoadSaveGameSystem;
@@ -101,6 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Phone phone = new Phone(this);
     public MissionDescription missionDescription = new MissionDescription(this);
     public DirectionIndicator directionIndicator = new DirectionIndicator(this);
+    public Question question = new Question(this);
     public KeyHandler keyH = new KeyHandler(this);
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
@@ -187,6 +189,7 @@ public class GamePanel extends JPanel implements Runnable {
         inventory.ScreenResize();
         phone.screenResize();
         ui.screenResize();
+        question.screenResize();
         section_selection.screenResize();
 
     }
@@ -254,7 +257,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
-
         if (TimeSystem.getCurrentSystemTimeInMilliseconds() - Collision.prevTime >= 1300 && Collision.resumeSound) {
             SoundManager.resumeSound("nhac_nen01", true);
             System.out.println("Meos chayj");
@@ -357,6 +359,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         ui.draw(g2);
+        question.draw(g2);
 
         if (Main.topGameState().equals("Map")) {
             section_selection.operation(g);

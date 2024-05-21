@@ -15,7 +15,7 @@ public class Main {
     public static Stack<String> GameState = new Stack<>();
     public static String[] states = { "MainMenu", "PlayMenu", "Setting", "AudioSetting", "KeySetting", "VideoSetting",
             "Tutorial", "GamePlay", "GamePause", "Dialogue", "Inventory", "Dialog", "LoadGame", "Map", "Section",
-            "PauseGame", "LoadGame2", "Reels" };
+            "PauseGame", "LoadGame2", "Reels"};
 
     public static void pushGameState(String a) {
         GameState.push(a);
