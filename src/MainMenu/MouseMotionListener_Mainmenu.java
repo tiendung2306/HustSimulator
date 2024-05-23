@@ -17,9 +17,10 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
     LoadGame loadGame;
     PauseGame pauseGame;
     LoadGame2 loadGame2;
+    Tutorial tutorial;
 
     public MouseMotionListener_Mainmenu(GamePanel gamePanel, Main_Menu mainMenu, NextMainMenu nextMainMenu,
-            Setting setting, AudioSetting audioSetting, KeySetting keySetting, VideoSetting videoSetting, LoadGame loadGame, PauseGame pauseGame, LoadGame2 loadGame2) {
+            Setting setting, AudioSetting audioSetting, KeySetting keySetting, VideoSetting videoSetting, LoadGame loadGame, PauseGame pauseGame, LoadGame2 loadGame2, Tutorial tutorial) {
         this.gamePanel = gamePanel;
         this.mainMenu = mainMenu;
         this.nextMainMenu = nextMainMenu;
@@ -30,6 +31,7 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
         this.loadGame = loadGame;
         this.pauseGame = pauseGame;
         this.loadGame2 = loadGame2;
+        this.tutorial = tutorial;
     }
 
     @Override
@@ -203,6 +205,11 @@ public class MouseMotionListener_Mainmenu implements java.awt.event.MouseMotionL
                     && (y_enter < 50 * Main.ey))
                 loadGame2.buttonLoadGameReturnEnter();
             else loadGame2.LoadGamerollback();
+        } else if (Main.topGameState().equals(Main.states[6])) {
+            if ((x_enter > 10 * Main.ex) && (y_enter > 10 * Main.ey) && (x_enter < 50 * Main.ex)
+                    && (y_enter < 50 * Main.ey))
+                tutorial.tutorialreturn();
+            else tutorial.tutorialrollback();
         }
     }
 }

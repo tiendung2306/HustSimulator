@@ -16,6 +16,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     LoadGame loadGame = GamePanel.loadGame;
     PauseGame pauseGame = GamePanel.pauseGame;
     LoadGame2 loadGame2 = GamePanel.loadGame2;
+    Tutorial tutorial = GamePanel.tutorial;
 
     public MouseListener_Mainmenu(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -24,92 +25,6 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     public void mouseClicked(MouseEvent e) {
         System.out.println(e.getPoint().getX());
         System.out.println(e.getPoint().getY());
-        // int x_click = (int) e.getPoint().getX();
-        // int y_click = (int) ;
-        // if (Main.topGameState().equals(Main.states[0])) {
-        // if ((x_click > 340 * Main.ex) && (y_click > 478 * Main.ex) && (x_click < 420
-        // * Main.ex)
-        // && (y_click < 501 * Main.ex)) {
-        // System.exit(0);
-        // } else if ((x_click > 311 * Main.ex) && (y_click > 425 * Main.ex) && (x_click
-        // < 456 * Main.ex)
-        // && (y_click < 464 * Main.ex)) {
-        // Main.pushGameState(Main.states[1]);
-        // nextMainMenu.Init();
-        // } else if ((x_click > 710 * Main.ex) && (y_click > 13 * Main.ex) && (x_click
-        // < 750 * Main.ex)
-        // && (y_click < 53 * Main.ex)) {
-        // Main.pushGameState(Main.states[2]);
-        // setting.Init();
-        // }
-        // } else if (Main.topGameState().equals(Main.states[1])) {
-        // if ((x_click > 710 * Main.ex) && (y_click > 13 * Main.ex) && (x_click < 750 *
-        // Main.ex)
-        // && (y_click < 53 * Main.ex)) {
-        // Main.pushGameState(Main.states[2]);
-        // setting.Init();
-        // } else if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click <
-        // 50 * Main.ex)
-        // && (y_click < 50 * Main.ex))
-        // Main.popGameState();
-        // else if ((x_click > 262 * Main.ex) && (y_click > 331 * Main.ex) && (x_click <
-        // 504 * Main.ex)
-        // && (y_click < 366 * Main.ex))
-        // Main.pushGameState(Main.states[6]);
-        // else if ((x_click > 260 * Main.ex) && (y_click > 299 * Main.ex) && (x_click <
-        // 507 * Main.ex)
-        // && (y_click < 337 * Main.ex)) {
-        // Main.pushGameState(Main.states[6]);
-        // } else if ((x_click > 244 * Main.ex) && (y_click > 237 * Main.ex) && (x_click
-        // < 527 * Main.ex)
-        // && (y_click < 276 * Main.ex)) {
-        // Main.pushGameState(Main.states[7]);
-        // }
-        // } else if (Main.topGameState().equals(Main.states[2])) {
-        // if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 *
-        // Main.ex) // neu an back
-        // && (y_click < 50 * Main.ex))
-        // Main.popGameState();
-        // else if ((x_click > 200 * Main.ex) && (y_click > 192 * Main.ex) && (x_click <
-        // 565 * Main.ex)
-        // && (y_click < 226 * Main.ex)) {
-        // Main.pushGameState(Main.states[5]);
-        // videoSetting.Init();
-        // } else if ((x_click > 201 * Main.ex) && (y_click > 253 * Main.ex) && (x_click
-        // < 566 * Main.ex)
-        // && (y_click < 287 * Main.ex)) {
-        // Main.pushGameState(Main.states[3]);
-        // audioSetting.Init();
-        // } else if ((x_click > 251 * Main.ex) && (y_click > 313 * Main.ex) && (x_click
-        // < 514 * Main.ex)
-        // && (y_click < 345 * Main.ex)) {
-        // Main.pushGameState(Main.states[4]);
-        // keySetting.Init();
-        // }
-        // } else if (Main.topGameState().equals(Main.states[3])) {
-        // if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 *
-        // Main.ex)
-        // && (y_click < 50 * Main.ex))
-        // Main.popGameState();
-        // else if ((x_click > 240 * Main.ex) && (y_click > 251 * Main.ex) && (x_click <
-        // 600 * Main.ex)
-        // && (y_click < 297 * Main.ex))
-        // AudioSetting.volumesliderpointX = (x_click - 23 * Main.ex);
-        // else if ((x_click > 169 * Main.ex) && (y_click > 260 * Main.ex) && (x_click <
-        // 204 * Main.ex)
-        // && (y_click < 296 * Main.ex))
-        // AudioSetting.checkmute = (-1) * AudioSetting.checkmute;
-        // } else if (Main.topGameState().equals(Main.states[4])) {
-        // if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 *
-        // Main.ex)
-        // && (y_click < 50 * Main.ex))
-        // Main.popGameState();
-        // } else if (Main.topGameState().equals(Main.states[5])) {
-        // if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ex) && (x_click < 50 *
-        // Main.ex)
-        // && (y_click < 50 * Main.ex))
-        // Main.popGameState();
-        // }
     }
 
     public void mousePressed(MouseEvent e) {
@@ -409,6 +324,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             } else if ((x_click > 324 * Main.ex) && (y_click > 390 * Main.ey) && (x_click < 444 * Main.ex)
                     && (y_click < 417 * Main.ey)) {
                 Main.pushGameState(Main.states[0]);
+                gamePanel.exitgame();
                 pauseGame.Init();
             } else if ((x_click > 710 * Main.ex) && (y_click > 13 * Main.ey) && (x_click < 750 * Main.ex)
                     && (y_click < 53 * Main.ey)) {
@@ -447,6 +363,18 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 Main.pushGameState(Main.states[0]);
                 loadGame.readFileLoadGame();
                 pauseGame.Init();
+            }
+        } else if (Main.topGameState().equals(Main.states[6])) {
+            if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ey) && (x_click < 50 * Main.ex)
+                    && (y_click < 50 * Main.ey)) {
+                Main.popGameState();
+                tutorial.Init();
+            } else if ((x_click > 689 * Main.ex) && (y_click > 261 * Main.ey) && (x_click < 721 * Main.ex)
+                    && (y_click < 301 * Main.ey)) {
+                Tutorial.isIntro = !(Tutorial.isIntro);
+            } else if ((x_click > 44 * Main.ex) && (y_click > 261 * Main.ey) && (x_click < 76 * Main.ex)
+                    && (y_click < 301 * Main.ey)) {
+                Tutorial.isIntro = !(Tutorial.isIntro);
             }
         }
     }

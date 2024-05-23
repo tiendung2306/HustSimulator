@@ -10,19 +10,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class NextMainMenu {
-    Thread gameThread;
-    public BufferedImage exitImg, exitImg1, NextBackGround, tutorial, tutorial1, tutorial2, newgame, newgame1, newgame2,
+    private BufferedImage exitImg, exitImg1, NextBackGround, tutorial, tutorial1, tutorial2, newgame, newgame1, newgame2,
             setting, setting1, setting2, playImg, player, back, tutorialicon, tutorialicon1, Continue, Continue1,
             Continue2, continueicon, continueicon1;
     private String check = null;
 
     public NextMainMenu() {
         getImage();
-    }
-    public String c_check;
-
-    public void rollback() {
-        c_check = null;
     }
 
     public void getImage() {

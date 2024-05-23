@@ -10,7 +10,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class PauseGame {
-    Thread gameThread;
     private BufferedImage NextBackGround, tutorial, tutorial1, tutorial2,
             setting, setting1, setting2, tutorialicon, tutorialicon1, Continue, Continue1,
             Continue2, continueicon, continueicon1,Back, back1, back2, backiconimg, backiconimg1, save, save1, save2, saveimg, saveimg1;

@@ -14,9 +14,9 @@ import java.io.IOException;
 
 public class Main_Menu {
     Thread gameThread;
-    public BufferedImage imgBackGround, HUST, simulator, play, exit, setting;
-    public BufferedImage play1, exit1, playerImg, playImg, exitImg, setting1;
-    public BufferedImage play2, exit2, setting2;
+    private BufferedImage imgBackGround, HUST, simulator, play, exit, setting;
+    private BufferedImage play1, exit1, playerImg, playImg, exitImg, setting1;
+    private BufferedImage play2, exit2, setting2;
     private double x_player = 999 * Main.ex;
     private double y_player = 999 * Main.ey;
     private double x_size = 48 * Main.ex, y_size = 48 * Main.ey;

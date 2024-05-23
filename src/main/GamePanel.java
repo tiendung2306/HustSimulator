@@ -17,18 +17,8 @@ import GUI.MissionDescription;
 import Inventory.Inventory;
 import Keyboard.KeyboardManager;
 import LoadSaveGame.LoadSaveGameSystem;
-import MainMenu.AudioSetting;
-import MainMenu.KeySetting;
-import MainMenu.LoadGame;
-import MainMenu.LoadGame2;
-import MainMenu.Main_Menu;
-import MainMenu.MouseListener_Mainmenu;
-import MainMenu.MouseMotionListener_Mainmenu;
-import MainMenu.NextMainMenu;
-import MainMenu.PauseGame;
-import MainMenu.Setting;
-import MainMenu.Toturial;
-import MainMenu.VideoSetting;
+import MainMenu.*;
+import MainMenu.Tutorial;
 import Mouse.MouseManager;
 import area.ComputerRoom;
 import area.MyRoom;
@@ -77,11 +67,11 @@ public class GamePanel extends JPanel implements Runnable {
     public static LoadGame loadGame = new LoadGame();
     public static PauseGame pauseGame = new PauseGame();
     public static LoadGame2 loadGame2 = new LoadGame2();
-    public static Toturial toturial = new Toturial();
+    public static Tutorial tutorial = new Tutorial();
 
     MouseListener_Mainmenu mouseListenerMainmenu = new MouseListener_Mainmenu(this);
     MouseMotionListener_Mainmenu mouseMotionListenerMainmenu = new MouseMotionListener_Mainmenu(this, mainMenu,
-            nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame, pauseGame, loadGame2);
+            nextMainMenu, setting, audioSetting, keySetting, videoSetting, loadGame, pauseGame, loadGame2, tutorial);
     // public Section_3 section_3 = new Section_3(this);
 
     // =================================================================================================
@@ -190,6 +180,10 @@ public class GamePanel extends JPanel implements Runnable {
         section_selection.screenResize();
 
     }
+    public void exitgame(){
+        newGame();
+        currentMap.loadMap(this);
+    }
 
     public void Init() {
         newGame();
@@ -287,7 +281,7 @@ public class GamePanel extends JPanel implements Runnable {
         else if (Main.topGameState().equals(Main.states[16]))
             loadGame2.update();
         else if (Main.topGameState().equals("Tutorial"))
-            toturial.update();
+            tutorial.update();
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
                 if (player.ButtonInteract)
@@ -344,7 +338,7 @@ public class GamePanel extends JPanel implements Runnable {
         else if (Main.topGameState().equals(Main.states[16]))
             loadGame2.draw(g2);
         else if (Main.topGameState().equals("Tutorial"))
-            toturial.draw(g2);
+            tutorial.draw(g2);
         if (Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")

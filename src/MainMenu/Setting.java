@@ -19,12 +19,6 @@ public class Setting {
     public Setting() {
         getImage();
     }
-    public String c_check;
-
-    public void rollback() {
-        c_check = null;
-    }
-
     public void getImage() {
         try {
             SettingBackGround = ImageIO.read(new FileInputStream("res/MainmenuImage/settingbackground.png"));

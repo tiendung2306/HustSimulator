@@ -60,10 +60,8 @@ public class KeySetting {
             e.printStackTrace();
         }
     }
-
     int inputKey = -1;
     char inputKeyName;
-
     Boolean isFirstTimePressAKey = false;
     private String check = "null";
     String prevCheck = "null";
