@@ -271,6 +271,7 @@ public class GamePanel extends JPanel implements Runnable {
         inventory.update();
         missionDescription.update();
         directionIndicator.update();
+        question.update();
         if (Main.topGameState().equals(Main.states[0])) {
             mainMenu.update();
         } else if (Main.topGameState().equals(Main.states[1])) {

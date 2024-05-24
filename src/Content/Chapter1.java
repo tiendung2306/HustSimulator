@@ -64,10 +64,15 @@ public class Chapter1 extends Chapter {
         if (completedAct == 0) {
             TimeSystem.setCurrentTime("07:00");
             Question("Đạo hàm của arctan(x) là cái ci???", "1/(1+x)", "1/(1-x)");
+            if(gamePanel.question.getAnswer() != 0) {
+                completedAct++;
+            }
             // Dialogue("Đây là căn phòng của ta sao?");
         }
-        if (completedAct == 1)
+        if (completedAct == 1){
+            gamePanel.question.resetAnswer();
             Dialogue("Nó khá nhỏ so với tòa lâu đài ở kiếp trước. Nhưng nó chứa khá là nhiều thứ thú vị!");
+        }
         if (completedAct == 2)
             Dialogue("Thế giới này chứa những đồ vật hoạt động bằng một thứ người ta gọi là Khoa Học.");
         if (completedAct == 3)
@@ -314,6 +319,7 @@ public class Chapter1 extends Chapter {
     }
 
     void Question(String question, String answer1, String answer2) {
+        if(gamePanel.question.getAnswer() != 0) return;
         gamePanel.question.setQuestion(question, answer1, answer2);
         if (Main.topGameState().equals("GamePlay"))
             Main.pushGameState("Dialogue");

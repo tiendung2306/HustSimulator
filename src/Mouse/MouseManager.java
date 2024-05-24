@@ -1,13 +1,10 @@
 package Mouse;
 
-// import javafx.scene.paint.Color;
-import javax.swing.*;
+// import javafx.util.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import main.GamePanel;
-
-import java.awt.*;
-import java.awt.event.*;
-// import javafx.util.*;
 
 public class MouseManager implements MouseListener {
     private GamePanel gamePanel;
@@ -49,6 +46,11 @@ public class MouseManager implements MouseListener {
     public static void resetLastReleasedPos() {
         lastReleasedX = -1;
         lastReleasedY = -1;
+    }
+
+    public static void resetLastClickedPos() {
+        lastClickedX = -1;
+        lastClickedY = -1;
     }
 
     public void mouseClicked(MouseEvent e) {
