@@ -111,7 +111,9 @@ public class Player extends Entity {
     public void update() {
         if (!(Main.topGameState().equals("GamePlay")) || gamepanel.phone.isDrawPhone)
             return;
-
+        System.out.print(mapX);
+        System.out.print(" ");
+        System.out.println(mapY);
         int countPressed = 0;
         if (keyhandler.upPressed)
             ++countPressed;

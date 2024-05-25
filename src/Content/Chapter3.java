@@ -7,7 +7,7 @@ import time.TimeSystem;
 public class Chapter3 extends Chapter{
 
     long prevTime = 0;
-    boolean isAtLibrary = false, isAtLake = false;
+    public boolean isAtLibrary = false, isAtLake = false;
     public Chapter3(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
@@ -30,7 +30,7 @@ public class Chapter3 extends Chapter{
         if (completedAct == 1) {
             Dialogue("Practice makes perfect");
             missionDescription.setMissionDescription("Tới thư viện");
-            isAtLibrary = true;
+            isAtLibrary = false;
         }
         if (completedAct == 2){
             if (isAtLibrary){
