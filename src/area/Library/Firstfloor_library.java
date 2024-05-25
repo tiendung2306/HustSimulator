@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class Firstfloor_library extends Map {
     Tile background;
-    Tile wall01,wall02,wall03,wall04,wall05,wall06,tileColumn01,tileColumn02,wall07,wall08,wall09,wall10,wall11,wall12,tileTalbe,tileStair01,tileStair02,tileStair03;
+    Tile wall01,wall02,wall03,wall04,wall05,wall06,tileColumn01,tileColumn02,wall07,wall08,wall09,wall10,wall11,wall12,door,tileTalbe,tileStair01,tileStair02,tileStair03;
     GamePanel gamePanel;
     Animation_player map_exchange_effect1, map_exchange_effect2,map_exchange_effect3;
 
@@ -20,6 +20,8 @@ public class Firstfloor_library extends Map {
         this.gamePanel = gamePanel;
         width = (int) (62.5 * 16 * GamePanel.scale);
         height = (int) (37.5 * 16 * GamePanel.scale);
+        width = (int) (1000 * GamePanel.scale);
+        height = (int) (600 * GamePanel.scale);
         tileContainer = new Tile[50];
         extraTile = new ExtraTile[20];
         background = new Tile();
@@ -42,6 +44,7 @@ public class Firstfloor_library extends Map {
         wall10 = new Tile(gamePanel,340, 522, 43, 42, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         wall11 = new Tile(gamePanel,435, 508, 42, 56, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         wall12 = new Tile(gamePanel,574, 510, 78, 54, "", "Obstacle", "", "res/tile/no_thing.png", 1);
+        door = new Tile(gamePanel,337, 598, 315, 2, "Cua ra thu vien", "Teleport", "Cua ra tu thu vien", "res/tile/no_thing.png", 1);
         tileStair01 = new Tile(gamePanel,357, 43, 5, 70, "Cau thang 1 -> 2", "Teleport", "Cau thang to 1 len", "res/tile/no_thing.png", 1);
         tileStair02 = new Tile(gamePanel,643, 43, 5, 70, "Cau thang 1 -> 2", "Teleport", "Cau thang to 2 len", "res/tile/no_thing.png", 1);
         tileStair03 = new Tile(gamePanel,905, 42, 53, 41, "Cau thang 1 -> 2", "Teleport", "Cau thang len tang 2", "res/tile/no_thing.png", 1);
@@ -77,6 +80,7 @@ public class Firstfloor_library extends Map {
         addTile(tileStair01);
         addTile(tileStair02);
         addTile(tileStair03);
+        addTile(door);
         addExtraTile("src/txt/tvtang1.txt");
     }
 

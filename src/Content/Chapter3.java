@@ -2,12 +2,14 @@ package Content;
 
 import main.GamePanel;
 import main.Main;
+import sound.SoundManager;
 import time.TimeSystem;
 
 public class Chapter3 extends Chapter{
 
     long prevTime = 0;
     boolean isAtLibrary = false, isAtLake = false;
+    public Boolean checkSound_chap3_01 = true, checkSound_chap3_02 = true, checkEndChapter = true;
     public Chapter3(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
@@ -25,6 +27,10 @@ public class Chapter3 extends Chapter{
     }
 
     void Timeline0() {
+        if (checkSound_chap3_01) {
+            SoundManager.loopSound("nhac_nen03");
+            checkSound_chap3_01 = false;
+        }
         if (completedAct == 0)
             Dialogue("Great day to go to the library");
         if (completedAct == 1) {
@@ -189,6 +195,13 @@ public class Chapter3 extends Chapter{
     }
     void Timeline3(){
         Dialogue("Hoàn thành Chapter 3");
+        if (checkEndChapter) {
+            Main.pushGameState("EndChapter");
+            SoundManager.stopSound("nhac_nen03");
+            SoundManager.playSound("xong_chapter");
+            EndChapter.checkChapter = "3";
+            checkEndChapter = false;
+        }
     }
     public void update() {
         if (!Main.topGameState().equals("GamePlay") && !Main.topGameState().equals("Inventory")

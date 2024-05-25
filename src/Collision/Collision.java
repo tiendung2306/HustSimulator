@@ -217,6 +217,11 @@ public class Collision {
                 gamePanel.firstfloorLibrary.open(Player.checkTile);
                 break;
 
+            case "Cua ra thu vien":
+                gamePanel.section_3.open(Player.checkTile);
+                break;
+
+
             default:
                 break;
         }

@@ -359,6 +359,7 @@ public class Inventory implements ActionListener {
                 && MouseManager.lastReleasedX <= comp.BoundingBox.x + comp.BoundingBox.width
                 && MouseManager.lastReleasedY >= comp.BoundingBox.y
                 && MouseManager.lastReleasedY <= comp.BoundingBox.y + comp.BoundingBox.height) {
+            SoundManager.playSound("click");
             MouseManager.isLeftMouseClick = false;
             return true;
         }
@@ -371,6 +372,7 @@ public class Inventory implements ActionListener {
         switch (command) {
             case "Use": {
                 isUsingItem = true;
+                SoundManager.playSound("click");
                 usingItem.copyTile(pages[currentIndex].slot[slotX][slotY]);
                 break;
             }
@@ -379,6 +381,7 @@ public class Inventory implements ActionListener {
                 break;
             }
             case "Info": {
+                SoundManager.playSound("click");
                 isGettingInformation = true;
                 infoItem = pages[currentIndex].slot[slotX][slotY];
                 break;

@@ -107,6 +107,5 @@ public class Main_Menu extends JPanel {
         g2.drawImage(playerImg, (int) x_player, (int) y_player, (int) x_size, (int) y_size, null);
         g2.drawImage(setting, (int) (710 * Main.ex), (int) (13 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
         super.paintComponent(g2);
-
     }
 }

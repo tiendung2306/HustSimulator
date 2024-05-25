@@ -73,7 +73,7 @@ public class MyRoom extends Map {
         tileWallMyRoom = new Tile(gamePanel, 0, 0, 460, 91, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         tileNoodle = new Tile(gamePanel, 414, 130, 36, 36, "Noodle", "Collected", "Mì tôm Omachi",
                 "res/tile/mi_tom01.png", "res/tile/mi_tom02.png", (double) 1 / 3);
-        tileStudentCard = new Tile(gamePanel, 315, 158, 39, 27, "Student ID", "Collected",
+        tileStudentCard = new Tile(gamePanel, 314, 159, 39, 27, "Student ID", "Collected",
                 "Đại học Bách Khoa Hà Nội, S+ hữu hạn Giải Tích, 5.0 GPA.",
                 "res/tile/thehs01.png", "res/tile/thehs02.png", (double) 1 / 3);
         tileChair = new Tile[4];

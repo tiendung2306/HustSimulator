@@ -3,6 +3,7 @@ package area;
 import main.GamePanel;
 import main.Main;
 import map.Map;
+import sound.SoundManager;
 import tile.Tile;
 
 import java.awt.*;
@@ -18,6 +19,7 @@ public class Section_3 extends Map {
     Tile background, Library, BK_ALUMNI_HOUSE, Tien_Lake, Unknown;
     public Tile npcGirl;
     GamePanel gamePanel;
+    Animation_player map_exchange_effect3;
     Tile spawn_point;
 
 
@@ -90,11 +92,20 @@ public class Section_3 extends Map {
         addTile(Library);
 
         map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
-
+        map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
     }
 
     public void open(){
+        loadMap(gamePanel);
+    }
+
+    public void open(String type){
+        if(type.equals("Cua ra tu thu vien")) {
+            SetPlayerPos();
+            map_exchange_effect = map_exchange_effect3;
+            SoundManager.playSound("open_door");
+        }
         loadMap(gamePanel);
     }
 

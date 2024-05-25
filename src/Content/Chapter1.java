@@ -11,6 +11,7 @@ public class Chapter1 extends Chapter {
     long prevTime = 0;
     public Boolean isTeleportable = false;
     public Boolean checkSound_chap1_01 = true, checkSound_chap1_02 = true;
+    public static Boolean checkEndChapter = true;
 
     public Chapter1(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -71,8 +72,9 @@ public class Chapter1 extends Chapter {
             Dialogue("Thế giới này chứa những đồ vật hoạt động bằng một thứ người ta gọi là Khoa Học.");
         if (completedAct == 3)
             Dialogue("Cái thứ Khoa học này so với Ma Pháp tồn tại ở thế giới cũ khá là giống nhau.");
-        if (completedAct == 4)
+        if (completedAct == 4) {
             Dialogue("Biết tìm kiếm thông tin ở đâu đây?");
+        }
         missionDescription
                 .setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng(Ấn B để mở balo)");
         if (completedAct == 5) {
@@ -93,6 +95,7 @@ public class Chapter1 extends Chapter {
         }
         if (completedAct == 6)
             Dialogue("Đại khái thì ta đã nắm bắt được mọi thứ xung quanh.");
+
         if (completedAct == 7)
             Dialogue("Ọc ọc ọc");
         if (completedAct == 8)
@@ -257,18 +260,20 @@ public class Chapter1 extends Chapter {
             missionDescription.setMissionDescription("Mở điện thoại, dịch chuyển về nhà");
         }
         if (completedAct == 20 && gamePanel.currentMap == gamePanel.myRoom) {
+            if (checkEndChapter) {
+                Main.pushGameState("EndChapter");
+                SoundManager.stopSound("nhac_nen01");
+                SoundManager.playSound("xong_chapter");
+                EndChapter.checkChapter = "1";
+                checkEndChapter = false;
+            }
             Dialogue("Hoàn thành chapter 1");
-            System.out.println("hehe");
         }
         if (completedAct == 21)
             nextTimeline();
     }
 
     void Timeline4() {
-        if(!checkSound_chap1_01) {
-            SoundManager.stopSound("nhac_nen01");
-            checkSound_chap1_01 = true;
-        }
         gamePanel.currentChapter = gamePanel.chapter2;
         gamePanel.chapter2.completedAct = 0;
     }

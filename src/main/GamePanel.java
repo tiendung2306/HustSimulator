@@ -8,10 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import Collision.Collision;
-import Content.Chapter;
-import Content.Chapter1;
-import Content.Chapter2;
-import Content.Chapter3;
+import Content.*;
 import GUI.DirectionIndicator;
 import GUI.MissionDescription;
 import Inventory.Inventory;
@@ -134,6 +131,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Chapter1 chapter1 = new Chapter1(this);
     public Chapter2 chapter2 = new Chapter2(this);
     public Chapter3 chapter3 = new Chapter3(this);
+    public EndChapter endChapter = new EndChapter(this);
+    public EndGame endGame = new EndGame(this);
 
     public LoadSaveGameSystem loadSaveGameSystem = new LoadSaveGameSystem(this);
     // =========================================================
@@ -172,9 +171,14 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
         soundManager.addSound(new Sound("nhac_nen01", "res/sound/nhac_nen_1.wav"));
         soundManager.addSound(new Sound("nhac_nen02", "res/sound/nhac_nen_2.wav"));
+        soundManager.addSound(new Sound("nhac_nen03", "res/sound/nhac_nen03.wav"));
         soundManager.addSound(new Sound("gap_gv", "res/sound/am_thanh_chap2.wav"));
         soundManager.addSound(new Sound("tra_loi_sai", "res/sound/nhac_tra_loi_sai.wav"));
         soundManager.addSound(new Sound("an_mi", "res/sound/an_mi.wav"));
+        soundManager.addSound(new Sound("xong_chapter", "res/sound/xong_chapter.wav"));
+        soundManager.addSound(new Sound("click", "res/sound/click.wav"));
+        soundManager.addSound(new Sound("meme_meo", "res/sound/meme_con_meo.wav"));
+        soundManager.addSound(new Sound("end_game", "res/sound/am_thanh_end_game.wav"));
     }
 
     public void screenResize() {
@@ -203,7 +207,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void Init() {
         newGame();
         initSound();//=====================================
-        currentChapter = chapter2;
+        currentChapter = chapter3;
         currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();
@@ -214,8 +218,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void run() {
-        soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
-        // soundManager.loopSound("guitar_music");
         Init();
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
@@ -264,11 +266,10 @@ public class GamePanel extends JPanel implements Runnable {
     // =================================================================================================================
     public void update() {
         
-        if (TimeSystem.getCurrentSystemTimeInMilliseconds() - Collision.prevTime >= 1300 && Collision.resumeSound) {
-            SoundManager.resumeSound("nhac_nen01", true);
-            System.out.println("Meos chayj");
-            Collision.resumeSound = false;
-        }
+//        if (TimeSystem.getCurrentSystemTimeInMilliseconds() - Collision.prevTime >= 1300 && Collision.resumeSound) {
+//            SoundManager.resumeSound("nhac_nen01", true);
+//            Collision.resumeSound = false;
+//        }
         timeSystem.update();
         soundManager.update();
         tileManager.update();
@@ -379,6 +380,20 @@ public class GamePanel extends JPanel implements Runnable {
             if (!currentMap.map_exchange_effect.isRunning()){
                 Main.popGameState();
             }
+        }
+        if(Main.topGameState().equals("EndChapter")) {
+            endChapter.draw(g2,EndChapter.checkChapter);
+            endChapter.MouseClick();
+            endChapter.HoverCheck();
+        }
+        if(Main.topGameState().equals("EndGame")) {
+            endGame.draw(g2);
+            if(endGame.checkSoundEndGame) {
+                SoundManager.playSound("end_game");
+                endGame.checkSoundEndGame = false;
+            }
+            endGame.MouseClick();
+            endGame.HoverCheck();
         }
 
     }

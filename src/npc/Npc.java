@@ -19,6 +19,8 @@ public class Npc extends Tile{
         this.displaybox = hitbox;
         Name = name;
         Type = type;
+        x = hitbox.x;
+        y = hitbox.y;
         LeftX = hitbox.x;
         RightX = hitbox.x + hitbox.width;
         TopY = hitbox.y;
@@ -50,23 +52,16 @@ public class Npc extends Tile{
     private void update(){
         displaybox.x = LeftX - gamePanel.player.getMapX() + gamePanel.player.getBoundingBoxX();
         displaybox.y = TopY - gamePanel.player.getMapY() + gamePanel.player.getBoundingBoxY();
+        displaybox.width = width;
+        displaybox.height = height;
     }
 
     private void draw(Graphics graphics){
         animation.operation(graphics);
     }
 
-    public void resize(double scale){
-        super.resize(scale); 
-
-        displaybox.x *= scale;
-        displaybox.y *= scale;
-        displaybox.width *= scale;
-        displaybox.height *= scale;
-
-    }
-
     public void operation(Graphics graphics){
+        System.out.println(getLeftX());
         update();
         draw(graphics);
     }
