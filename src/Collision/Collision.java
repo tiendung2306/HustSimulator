@@ -202,6 +202,7 @@ public class Collision {
                 break;
 
             case "Door Thirdfloor":
+                gamePanel.chapter3.isAtLibrary = true;
                 gamePanel.library.open(Player.checkTile);
                 break;
 

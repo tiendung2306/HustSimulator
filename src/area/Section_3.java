@@ -82,6 +82,7 @@ public class Section_3 extends Map {
         BK_ALUMNI_HOUSE = new Tile(new Rectangle(1836, 1335, 699, 675), "BK_ALUMNI_HOUSE", "Obstacle", null, null);
         Unknown = new Tile(new Rectangle(2685, 1161, 309, 942), "Unknown", "Obstacle", null, null);
         Library = new Tile(new Rectangle(1662, 186, 1644, 807), "Library", "Obstacle", null, null);
+        npcGirl = new Tile(gamePanel, 100, 100, 16, 41, "NPC Girl", "NPC", "", "res/NPC/NPCGirl/NPCGirl (2).png",1);
         addTile(new Tile(new Rectangle(765,1662,55,69),"Library_entry 1","Teleport","Di vao thu vien 1",null));
         addTile(new Tile(new Rectangle(870,1662,55,72),"Library_entry 2","Teleport","Di vao thu vien 2",null));
 
@@ -90,7 +91,7 @@ public class Section_3 extends Map {
         addTile(BK_ALUMNI_HOUSE);
         addTile(Unknown);
         addTile(Library);
-
+        addTile(npcGirl);
         map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
         map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
@@ -117,7 +118,7 @@ public class Section_3 extends Map {
     public void draw(Graphics2D g2) {
 
         gamePanel.tileManager.draw(g2, background);
-        // for (int i = 0; i < numTileContainer; ++i)
-        //     gamePanel.tileManager.draw(g2, tileContainer[i]);
+        for (int i = 0; i < numTileContainer; ++i)
+            gamePanel.tileManager.draw(g2, tileContainer[i]);
     }
 }
