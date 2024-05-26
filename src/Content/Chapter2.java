@@ -100,6 +100,7 @@ public class Chapter2 extends Chapter {
             }
         }
         if (completedAct == 2 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 500) {
+            checkSound_chap2_02 = true;
             ui.setDialogueBackground("Classroom");
             ui.setDialogueCharacter("Mrs Toan");
             Dialogue("Anh tê, dừ là buổi mô rồi anh mì mò mặt đến lớp? Tôi tích cho anh 1 dấu.");
@@ -137,18 +138,18 @@ public class Chapter2 extends Chapter {
             Dialogue("Thưa cô, đáp án chính là 1/(1+x).");
         }
         if (completedAct == 11) {
-            if (!checkSound_chap2_02) {
+            if (checkSound_chap2_02) {
                 SoundManager.playSound("tra_loi_sai");
-                checkSound_chap2_02 = true;
+                checkSound_chap2_02 = false;
             }
             ui.setDialogueCharacter("Mrs Toan");
             Dialogue("Sai");
         }
         if (completedAct == 12) {
             ui.setDialogueCharacter("Cat Meme");
-            if (checkSound_chap2_02) {
+            if (!checkSound_chap2_02) {
                 SoundManager.playSound("meme_meo");
-                checkSound_chap2_02 = false;
+                checkSound_chap2_02 = true;
             }
             Dialogue("...");
         }
@@ -170,10 +171,10 @@ public class Chapter2 extends Chapter {
 
     void Timeline2() {
         if (completedAct == 0) {
-            if (!checkSound_chap2_02) {
+            if (checkSound_chap2_02) {
                 SoundManager.resumeSound("nhac_nen02", true);
                 SoundManager.pauseSound("gap_gv");
-                checkSound_chap2_02 = true;
+                checkSound_chap2_02 = false;
             }
             ui.setDialogueBackground("Empty");
             ui.setDialogueCharacter("Empty");
@@ -183,10 +184,10 @@ public class Chapter2 extends Chapter {
         }
         if (completedAct == 1) {
             if (isAtClassMrHoa) {
-                if (checkSound_chap2_02) {
+                if (!checkSound_chap2_02) {
                     SoundManager.pauseSound("nhac_nen02");
                     SoundManager.resumeSound("gap_gv", true);
-                    checkSound_chap2_02 = false;
+                    checkSound_chap2_02 = true;
                 }
                 ui.setDialogueBackground("Classroom");
                 ui.setDialogueCharacter("Mr Hoa");
@@ -208,14 +209,15 @@ public class Chapter2 extends Chapter {
             Dialogue("Thôi được rồi.");
         }
         if (completedAct == 6) {
-            if (!checkSound_chap2_02) {
+            if (checkSound_chap2_02) {
                 SoundManager.resumeSound("nhac_nen02", true);
                 SoundManager.stopSound("gap_gv");
-                checkSound_chap2_02 = true;
+                checkSound_chap2_02 = false;
             }
             Dialogue("Hôm nay tới đây là đủ rồi!");
         }
         if (completedAct == 7) {
+            checkSound_chap2_02 = true;
             ui.setDialogueBackground("Empty");
             missionDescription.setMissionDescription("Di chuyển về nhà và ngủ đi");
             gamePanel.myRoom.tileBed.isMission = true;

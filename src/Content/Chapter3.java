@@ -47,23 +47,37 @@ public class Chapter3 extends Chapter{
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
         if (completedAct == 3 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 500){
+            if(checkSound_chap3_02) {
+                SoundManager.playSound("wow");
+                SoundManager.pauseSound("nhac_nen03");
+                checkSound_chap3_02 = false;
+            }
             ui.setReelsCharacter("Surprise Meme");
             Main.pushGameState("Reels");
             ++completedAct;
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
-        if (completedAct == 4 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 3000){
+        if (completedAct == 4 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 2300){
+            checkSound_chap3_02 = true;
             if (Main.topGameState().equals("Reels"))
                 Main.popGameState();
             ++completedAct;
         }
         if (completedAct == 5){
+            if(checkSound_chap3_02) {
+                SoundManager.playSound("tim_dap");
+                checkSound_chap3_02 = false;
+            }
             ui.setReelsCharacter("Girl Reading Book");
             Main.pushGameState("Reels");
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             ++completedAct;
         }
-        if (completedAct == 6 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 3000){
+        if (completedAct == 6 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 4400){
+            if(!checkSound_chap3_02) {
+                SoundManager.resumeSound("nhac_nen03",true);
+                checkSound_chap3_02 = true;
+            }
             if (Main.topGameState().equals("Reels"))
                 Main.popGameState();
             ++completedAct;

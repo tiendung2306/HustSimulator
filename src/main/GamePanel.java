@@ -179,6 +179,9 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.addSound(new Sound("click", "res/sound/click.wav"));
         soundManager.addSound(new Sound("meme_meo", "res/sound/meme_con_meo.wav"));
         soundManager.addSound(new Sound("end_game", "res/sound/am_thanh_end_game.wav"));
+        soundManager.addSound(new Sound("wow", "res/sound/wowww.wav"));
+        soundManager.addSound(new Sound("pewpew", "res/sound/o_cai_tam_chat.wav"));
+        soundManager.addSound(new Sound("tim_dap", "res/sound/tim_dap.wav"));
     }
 
     public void screenResize() {

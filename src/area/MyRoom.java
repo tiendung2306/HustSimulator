@@ -57,7 +57,7 @@ public class MyRoom extends Map {
         background.setHeight((int) (242 * GamePanel.scale));
         tileBed = new Tile(gamePanel, 26, 176, 87, 54, "My Bed", "Interact", "", "res/tile/my_bed.png", 1);
         tilePC = new Tile(gamePanel, 164, 159, 102, 61, "My PC", "Interact", "", "res/tile/dan_pc.png", 1);
-        tileTable = new Tile(gamePanel, 315, 145, 34, 62, "My Table", "Interact", "",
+        tileTable = new Tile(gamePanel, 315, 145, 34, 62, "My Table", "Obstacle", "",
                 "res/tile/table_my_room.png", 1);
         tileFridge = new Tile(gamePanel, 378, 23, 55, 74, "My Fridge", "Interact", "", "res/tile/tu_lanh.png",
                 1);
@@ -65,7 +65,7 @@ public class MyRoom extends Map {
                 "res/tile/tu_do_my_room.png", 1);
         tileWardrobe = new Tile(gamePanel, 0, 30, 55, 70, "My Wardrobe", "Interact", "",
                 "res/tile/tu_quan_ao.png", 1);
-        tileKitchen = new Tile(gamePanel, 416, 108, 34, 135, "My Kitchen", "Interact", "",
+        tileKitchen = new Tile(gamePanel, 416, 108, 34, 135, "My Kitchen", "Obstacle", "",
                 "res/tile/cho_nau_an.png", 1);
         tileDoorMyRoom = new Tile(gamePanel, 205, 29, 49, 62, "Door My Room", "Teleport", "",
                 "res/tile/door_my_room.png", 1);
