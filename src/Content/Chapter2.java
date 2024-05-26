@@ -196,18 +196,20 @@ public class Chapter2 extends Chapter {
                 Dialogue("Trả lời, đạo hàm của arctan là?");
         }
         if (completedAct == 5) {
-            ui.setDialogueCharacter("Empty");
-            Dialogue("Hệ thống, giúp ta trả lời câu hỏi này.");
+            Question("Đạo hàm của arctan(x) là cái ci???", "1/(1+x)", "1/(1-x^2)");
+            if(gamePanel.question.getAnswer() != 0) {
+            completedAct++;
+            }
         }
         if (completedAct == 6) {
-            ui.setDialogueCharacter("System");
-            Dialogue("Câu trả lời là 1/(1+x).");
+            ui.setDialogueCharacter("Main Character");
+            String str = "Đáp án chính là ";
+            if(gamePanel.question.getAnswer() == 1)
+                str += gamePanel.question.answer1;
+            else str += gamePanel.question.answer2;
+            Dialogue(str);
         }
         if (completedAct == 7) {
-            ui.setDialogueCharacter("Main Character");
-            Dialogue("Đáp án chính là 1/(1+x).");
-        }
-        if (completedAct == 8) {
             if (checkSound_chap2_02) {
                 SoundManager.playSound("tra_loi_sai");
                 checkSound_chap2_02 = false;
@@ -215,7 +217,7 @@ public class Chapter2 extends Chapter {
             ui.setDialogueCharacter("Mrs Toan");
             Dialogue("Sai");
         }
-        if (completedAct == 9) {
+        if (completedAct == 8) {
             ui.setDialogueCharacter("Cat Meme");
             if (!checkSound_chap2_02) {
                 SoundManager.playSound("meme_meo");
@@ -223,15 +225,11 @@ public class Chapter2 extends Chapter {
             }
             Dialogue("...");
         }
-        if (completedAct == 10) {
-            ui.setDialogueCharacter("System");
-            Dialogue("...");
-        }
-        if (completedAct == 11) {
+        if (completedAct == 9) {
             ui.setDialogueCharacter("Mrs Toan");
             Dialogue("Về chộ đi, trớp trớp thật. Nỏ mần được cấy chi nên hồn.");
         }
-        if (completedAct == 12)
+        if (completedAct == 10)
             nextTimeline();
     }
 

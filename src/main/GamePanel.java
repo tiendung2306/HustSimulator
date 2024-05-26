@@ -215,7 +215,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void Init() {
         newGame();
         initSound();// =====================================
-        currentChapter = chapter3;
+        currentChapter = chapter1;
         currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();
@@ -481,7 +481,7 @@ public class GamePanel extends JPanel implements Runnable {
             chapter2.currentTimeline = 0;
             chapter2.completedAct = 0;
         }
-        if (chapter.equals("chap3")) {
+        if (chapter.equals("chap 3")) {
             currentMap = myRoom;
             currentChapter = chapter3;
             chapter3.currentTimeline = 0;
