@@ -18,7 +18,7 @@ public class Firstfloor_library extends Map {
             tileStair01,tileStair02,tileStair03,wall13,wall14,tileIn,tileOut;
     GamePanel gamePanel;
     Animation_player map_exchange_effect1, map_exchange_effect2,map_exchange_effect3;
-    public static Boolean checkStudent = false,checkDialogue = true,checkStudentOut = false;
+    public static Boolean checkStudent = false,checkDialogue = true;
 
     public Firstfloor_library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -55,7 +55,7 @@ public class Firstfloor_library extends Map {
         tileStair02 = new Tile(gamePanel,643, 43, 5, 70, "Cau thang 1 -> 2", "Teleport", "Cau thang to 2 len", "res/tile/no_thing.png", 1);
         tileStair03 = new Tile(gamePanel,905, 42, 53, 41, "Cau thang 1 -> 2", "Teleport", "Cau thang len tang 2", "res/tile/no_thing.png", 1);
 
-        tileTalbe = new Tile(gamePanel,478, 522, 55, 42, "Bàn quét mã sinh viên", "Interact", "", "res/tile/no_thing.png", 1);
+        tileTalbe = new Tile(gamePanel,478, 522, 55, 42, "Bàn quét mã sinh viên", "Interact", "Bàn quét mã", "res/tile/no_thing.png", 1);
         tileColumn01 = new Tile(gamePanel,129, 44, 37, 140, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         tileColumn02 = new Tile(gamePanel,838, 44, 37, 140, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         setUpTileFirstfloor_library();
@@ -136,6 +136,8 @@ public class Firstfloor_library extends Map {
             playerY = (int) (490 * GamePanel.scale);
             map_exchange_effect = map_exchange_effect1;
             SoundManager.playSound("foot_step");
+            gamePanel.inventory.isUsingItem = false;
+            Player.checkTile2 = "0";
         }
         if(type.equals("Di ra")) {
             playerX = (int) (396 * GamePanel.scale);
@@ -144,7 +146,6 @@ public class Firstfloor_library extends Map {
             SoundManager.playSound("foot_step");
             checkStudent = false;
             checkDialogue = true;
-//            checkStudentOut = true;
         }
         loadMap(gamePanel);
     }
@@ -171,9 +172,11 @@ public class Firstfloor_library extends Map {
     public void update() {
         if (gamePanel.collision.interactItem.Name.equals("Bàn quét mã sinh viên") && gamePanel.inventory.isUsingItem  &&
                 gamePanel.inventory.usingItem.Name.equals("Student ID")) {
-            if(!Player.checkTile.equals("Di ra")) {
-                if (checkDialogue && !checkStudentOut) {
-                    Main.popGameState();
+            if(Player.checkTile2.equals("Bàn quét mã")) {
+                if (checkDialogue) {
+                    if(Main.topGameState().equals("Inventory")) {
+                        Main.popGameState();
+                    }
                     Dialog("Bạn đã nạp thẻ sinh viên thành công");
                     checkDialogue = false;
                     checkStudent = true;
@@ -195,7 +198,7 @@ public class Firstfloor_library extends Map {
 
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
-        System.out.println(checkStudent);
+        System.out.println(checkStudent + " " + Player.checkTile2);
         gamePanel.tileManager.draw(g2, background);
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);

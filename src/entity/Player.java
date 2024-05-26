@@ -39,8 +39,8 @@ public class Player extends Entity {
 
     public Animation_player curr_animation_player;
     TileManager tileManager;
-    public String checkNameTile, checkDescriptionTile;
-    public static String checkTile = "0";
+    public String checkNameTile, checkDescriptionTile,checkInteractTile;
+    public static String checkTile = "0", checkTile2 = "0";
 
     public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager, UI ui) {
         this.gamepanel = gamepanel;
@@ -130,6 +130,7 @@ public class Player extends Entity {
             collision_collect = false;
             checkNameTile = "";
             checkDescriptionTile = "";
+            checkInteractTile = "";
             if (countPressed == 1) {
                 if (keyhandler.upPressed) {
                     direction = "up";
@@ -310,6 +311,10 @@ public class Player extends Entity {
                         if (tile[i].Type.equals("Teleport")) {
                             checkDescriptionTile = tile[i].Description;
                             checkTile = checkDescriptionTile;
+                        }
+                        if (tile[i].Type.equals("Interact")) {
+                            checkInteractTile = tile[i].Description;
+                            checkTile2 = checkInteractTile;
                         }
                         break;
 
