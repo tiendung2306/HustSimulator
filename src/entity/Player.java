@@ -61,8 +61,8 @@ public class Player extends Entity {
 
         hitArea = new Rectangle();
         boundingBox = new Rectangle();
-        boundingBox.width = (int) (32 * GamePanel.scale);
-        boundingBox.height = (int) (32 * GamePanel.scale);
+        boundingBox.width = (int) (10 * GamePanel.scale);
+        boundingBox.height = (int) (10 * GamePanel.scale);
         hitArea.x = boundingBox.width / 4;
         hitArea.y = boundingBox.height / 3 * 2;
         hitArea.width = boundingBox.width / 2;
@@ -94,8 +94,8 @@ public class Player extends Entity {
 
     public void reSize() {
         int prev_bound_width = boundingBox.width;
-        boundingBox.width = (int) (32 * GamePanel.scale);
-        boundingBox.height = (int) (32 * GamePanel.scale);
+        boundingBox.width = (int) (10 * GamePanel.scale);
+        boundingBox.height = (int) (10 * GamePanel.scale);
         hitArea.x = boundingBox.width / 4;
         hitArea.y = boundingBox.height / 3 * 2;
         hitArea.width = boundingBox.width / 2;
