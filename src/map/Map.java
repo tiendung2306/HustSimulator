@@ -17,7 +17,6 @@ import tile.Tile;
 public class Map {
     public GamePanel gamePanel;
     public int mapIndex;
-    public int maxMapCol, maxMapRow;
     public int numExtraTile;
     public int width, height;
     public int org_width, org_height;
@@ -156,11 +155,10 @@ public class Map {
             map_exchange_effect.setTimer(1.0);
             Main.pushGameState("Loading");
         }
-        // gamePanel.mapWidth = (int) (maxMapCol * 16 * GamePanel.scale);
-        // gamePanel.mapHeight = (int) (maxMapRow * 16 * GamePanel.scale);
         gamePanel.player.setMapX(playerX);
         gamePanel.player.setMapY(playerY);
         gamePanel.player.posUpdate();
+        gamePanel.directionIndicator.resetArrow();
     }
 
     public void reSizeMap(){}
@@ -190,11 +188,12 @@ public class Map {
             else
                 object.operation(g2);
         }
+        
+        floorDisplay(g2);
 
         if(is_player_display == false)
             gamePanel.player.draw(g2);
             
-        floorDisplay(g2);
     }
 
 

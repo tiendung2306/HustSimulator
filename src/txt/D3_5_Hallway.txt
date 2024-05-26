@@ -1,0 +1,8 @@
+*
+Name D3_5_hallway_secondfloor_layer(2)
+Type non-animated
+Trans 1.0
+Image 0 0 796 197
+Body 
+Foot 0 176 797 20
+# 

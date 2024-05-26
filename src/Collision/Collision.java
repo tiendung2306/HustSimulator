@@ -1,6 +1,7 @@
 package Collision;
 
 import entity.Entity;
+import entity.Player;
 import main.GamePanel;
 import main.Main;
 import main.UI;
@@ -40,6 +41,7 @@ public class Collision {
             if (!isTeleport && collisionTile[i].Type.equals("Teleport")) {
                 teleport(collisionTile[i].Name);
                 isTeleport = true;
+                gamePanel.player.ButtonInteract = false;
             }
         }
     }
@@ -59,37 +61,22 @@ public class Collision {
             
             case "C2_Hallway_entry_stair":
                 gamePanel.c2_hallway.open("enter_from_stair");
-                SoundManager.pauseSound("nhac_nen01");
                 SoundManager.playSound("footstep_up_stairs");
-                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
-                System.out.println("STOP");
-                resumeSound = true;
                 break;    
             
             case "C2_Hall_entry":
                 gamePanel.c2_hall.open();
-                SoundManager.pauseSound("nhac_nen01");
                 SoundManager.playSound("open_door");
-                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
-                System.out.println("STOP");
-                resumeSound = true;
                 break;
 
             case "C2_Hall_exit":
                 gamePanel.c2_hallway.open("enter_from_door");
-                SoundManager.pauseSound("nhac_nen01");
-                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
-                System.out.println("STOP");
-                resumeSound = true;
+                SoundManager.playSound("open_door");
                 break;
 
             case "C2_Hallway_exit":
                 gamePanel.section_1.open();
-                SoundManager.pauseSound("nhac_nen01");
                 SoundManager.playSound("foot_step");
-                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
-                System.out.println("STOP");
-                resumeSound = true;
                 break; 
 
             case "D3_Hallway_entry_stair1":
@@ -172,12 +159,74 @@ public class Collision {
                 gamePanel.d3_secondfloor_hallway.curr_floor = gamePanel.d3_5_hallway_secondfloor.curr_floor;
                 gamePanel.d3_secondfloor_hallway.open("enter_from_D3_5");
                 break;
-                
+
             case "D3-5_...01":
                 if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3){
                     SoundManager.playSound("open_door");
-                    gamePanel.normalClassroom.loadMap(gamePanel);
+                    //gamePanel.normalClassroom.loadMap(gamePanel);
+                    gamePanel.normalClassroom.open("Vao phong hoc");
                     gamePanel.chapter2.isAtClassMrsToan = true;
+                }
+                break;
+                
+            case "Cau thang 1 -> 2":
+                gamePanel.secondfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 2 -> 1":
+               gamePanel.firstfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 2 -> 3":
+                gamePanel.thirdfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 3 -> 2":
+                gamePanel.secondfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 3 -> 4":
+                gamePanel.fourthfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 4 -> 3":
+                gamePanel.thirdfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 4 -> 5":
+                gamePanel.fifthfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cau thang 5 -> 4":
+                gamePanel.fourthfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Door Thirdfloor":
+                gamePanel.chapter3.isAtLibrary = true;
+                gamePanel.library.open(Player.checkTile);
+                break;
+
+            case "Door Library":
+                gamePanel.thirdfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Library_entry 1":
+                gamePanel.firstfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Library_entry 2":
+                gamePanel.firstfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Cua ra thu vien":
+                gamePanel.section_3.open(Player.checkTile);
+                break;
+
+
+            case "D3-5_...02":
+                if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3){
+                    SoundManager.playSound("open_door");
+                    gamePanel.normalClassroom_302.loadMap(gamePanel);
                 }
                 break;
 
@@ -198,12 +247,14 @@ public class Collision {
         boolean checkPush = true;
         for (int i = 0; i < numCollision; ++i)
             if (collisionTile[i].Type.equals("Teleport") || collisionTile[i].Type.equals("NPC")
-                    || collisionTile[i].Type.equals("Obstacle")) {
+                    || collisionTile[i].Type.equals("Obstacle")
+                    || collisionTile[i].Name.equals("Desk") || collisionTile[i].Name.equals("My Bed")) {
                 checkPush = false;
                 break;
             }
         if (!Main.topGameState().equals("Dialog") && !gamePanel.phone.isDrawPhone && checkPush)
             Main.pushGameState("Dialog");
+
         switch (collisionTile[0].Type) {
             case "Teleport": {
                 ui.currentDialog = "Bạn vừa dịch chuyển tới ";

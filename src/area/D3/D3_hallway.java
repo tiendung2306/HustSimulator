@@ -1,21 +1,21 @@
 package area.D3;
 
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import animation.Animation_player;
 import main.GamePanel;
 import map.Map;
 import tile.Tile;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-
-import animation.Animation_player;
-
-import java.io.*;
-
 
 public class D3_hallway extends Map {
     Tile spawn_point1, spawn_point2, spawn_point3;
-
+    public Tile D3_1stfloor_stair1, D3_1stfloor_stair2;
 
     public D3_hallway(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -43,12 +43,14 @@ public class D3_hallway extends Map {
         spawn_point1.resize(scale);
         spawn_point2.resize(scale);
         spawn_point3.resize(scale);
-
-
+        
+        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
+        
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 
         }
+
         
         width = background.getWidth();
         height = background.getHeight();
@@ -75,8 +77,11 @@ public class D3_hallway extends Map {
         spawn_point2 = new Tile(new Rectangle(1048 , 398 , 32 , 50), "", "", null, null);
         spawn_point3 = new Tile(new Rectangle(1780 , 388 , 35 , 54), "", "", null, null);
 
-        addTile(new Tile(new Rectangle(299 , 358 , 9 , 44), "D3_1stfloor_stair1", "Teleport", null, null));
-        addTile(new Tile(new Rectangle(1890 , 429 , 7 , 28), "D3_1stfloor_stair2", "Teleport", null, null));
+        D3_1stfloor_stair1 = new Tile(new Rectangle(299 , 358 , 9 , 44), "D3_1stfloor_stair1", "Teleport", null, null);
+        D3_1stfloor_stair2 = new Tile(new Rectangle(1890 , 429 , 7 , 28), "D3_1stfloor_stair2", "Teleport", null, null);
+
+        addTile(D3_1stfloor_stair1);
+        addTile(D3_1stfloor_stair2);
         addTile(new Tile(new Rectangle(243 , 33 , 157 , 27), "D3_exit", "Teleport", null, null));
         addTile(new Tile(new Rectangle(378 , 410 , 24 , 47), "D3_exit", "Teleport", null, null));
         addTile(new Tile(new Rectangle(914 , 410 , 26 , 73), "D3_exit", "Teleport", null, null));

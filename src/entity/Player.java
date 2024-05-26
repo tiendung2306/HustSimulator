@@ -39,7 +39,8 @@ public class Player extends Entity {
 
     public Animation_player curr_animation_player;
     TileManager tileManager;
-    public String checkNameTile, checkSoundName;
+    public String checkNameTile, checkDescriptionTile;
+    public static String checkTile = "0";
 
     public Player(GamePanel gamepanel, KeyHandler keyhandler, TileManager tilemanager, UI ui) {
         this.gamepanel = gamepanel;
@@ -70,9 +71,9 @@ public class Player extends Entity {
         screenY = (int) (GamePanel.screenHeight / 2 - boundingBox.height / 2);
         boundingBox.x = screenX;
         boundingBox.y = screenY;
-        speed = 4;
+        speed = 5;
         direction = "stand";
-        speedSlant = 3;
+        speedSlant = 4;
 
         animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5,
                 boundingBox);
@@ -92,6 +93,7 @@ public class Player extends Entity {
     }
 
     public void reSize() {
+        int prev_bound_width = boundingBox.width;
         boundingBox.width = (int) (32 * GamePanel.scale);
         boundingBox.height = (int) (32 * GamePanel.scale);
         hitArea.x = boundingBox.width / 4;
@@ -102,15 +104,16 @@ public class Player extends Entity {
         screenY = (int) (GamePanel.screenHeight / 2 - boundingBox.height / 2);
         boundingBox.x = screenX;
         boundingBox.y = screenY;
-        speed = (int) (4 * GamePanel.scale / Map.prevScale);
-        speedSlant = (int) (GamePanel.scale);
+        speed = (int) (5 * GamePanel.scale / Map.prevScale);
+        speedSlant = (int) (4 * GamePanel.scale / Map.prevScale);
+        mapX = (int) (mapX * boundingBox.width * 1.0 / prev_bound_width);
+        mapY = (int) (mapY * boundingBox.width * 1.0 / prev_bound_width);
     }
 
     // =============================================================================================================================================
     public void update() {
         if (!(Main.topGameState().equals("GamePlay")) || gamepanel.phone.isDrawPhone)
             return;
-
         int countPressed = 0;
         if (keyhandler.upPressed)
             ++countPressed;
@@ -126,7 +129,7 @@ public class Player extends Entity {
                 ButtonInteract = false;
             collision_collect = false;
             checkNameTile = "";
-            checkSoundName = "";
+            checkDescriptionTile = "";
             if (countPressed == 1) {
                 if (keyhandler.upPressed) {
                     direction = "up";
@@ -303,6 +306,10 @@ public class Player extends Entity {
                         if (tile[i].Type.equals("Collected")) {
                             checkNameTile = tile[i].Name;
                             collision_collect = true;
+                        }
+                        if (tile[i].Type.equals("Teleport")) {
+                            checkDescriptionTile = tile[i].Description;
+                            checkTile = checkDescriptionTile;
                         }
                         break;
 

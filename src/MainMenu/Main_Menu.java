@@ -90,13 +90,18 @@ public class Main_Menu {
     }
 
     public void draw(Graphics2D g2) {
-        g2.scale(1,1);
+        g2.scale(1, 1);
         g2.drawImage(imgBackGround, 0, 0, (int) (768 * Main.ex), (int) (576 * Main.ey), null);
-        g2.drawImage(HUST, (int) (281 * Main.ex), (int) (20 * Main.ey), (int) (200 * Main.ex), (int) (50 * Main.ey), null);
-        g2.drawImage(simulator, (int) (350 * Main.ex), (int) (65 * Main.ey), (int) (233 * Main.ex), (int) (82 * Main.ey), null);
-        g2.drawImage(play, (int) (311 * Main.ex), (int) (425 * Main.ey), (int) (145 * Main.ex), (int) (40 * Main.ey), null);
-        g2.drawImage(exit, (int) (340 * Main.ex), (int) (480 * Main.ey), (int) (80 * Main.ex), (int) (24 * Main.ey), null);
+        g2.drawImage(HUST, (int) (281 * Main.ex), (int) (20 * Main.ey), (int) (200 * Main.ex), (int) (50 * Main.ey),
+                null);
+        g2.drawImage(simulator, (int) (350 * Main.ex), (int) (65 * Main.ey), (int) (233 * Main.ex),
+                (int) (82 * Main.ey), null);
+        g2.drawImage(play, (int) (311 * Main.ex), (int) (425 * Main.ey), (int) (145 * Main.ex), (int) (40 * Main.ey),
+                null);
+        g2.drawImage(exit, (int) (340 * Main.ex), (int) (480 * Main.ey), (int) (80 * Main.ex), (int) (24 * Main.ey),
+                null);
         g2.drawImage(playerImg, (int) x_player, (int) y_player, (int) x_size, (int) y_size, null);
-        g2.drawImage(setting, (int) (710 * Main.ex), (int) (13 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey), null);
+        g2.drawImage(setting, (int) (710 * Main.ex), (int) (13 * Main.ey), (int) (40 * Main.ex), (int) (40 * Main.ey),
+                null);
     }
 }

@@ -1,5 +1,4 @@
 package animation;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,6 +8,7 @@ import java.awt.*;
 
 import entity.Player;
 import main.GamePanel;
+import main.Main;
 import time.TimeSystem;
 
 public class Animation_player{
@@ -29,7 +29,7 @@ public class Animation_player{
     boolean Switch = true;
     Player player;
 
-    String state = "run";
+    public String state = "run";
     
     /**
      * Create a animation player that will play your animation, to use this, your have to call 
@@ -81,14 +81,13 @@ public class Animation_player{
         if (lasted_time > 0){
 
             if((TimeSystem.getCurrentSystemTimeInMilliseconds() - start_time) / 1000 > lasted_time)  {
-                
+
                 state = "stop";
                 Switch = true;
                 lasted_time = -1.0;
-
-                
             }
         }
+
     }
 
     public void resize(double scale){
@@ -107,7 +106,7 @@ public class Animation_player{
     }
 
     public boolean isRunning(){
-        if(state == "run")
+        if(state.equals("run"))
             return true;
 
         else
@@ -132,6 +131,7 @@ public class Animation_player{
             state = "run";
             start_time = TimeSystem.getCurrentSystemTimeInMilliseconds();
             Switch = false;
+
         }
 
         if(pre_loop_time == -1.0) {

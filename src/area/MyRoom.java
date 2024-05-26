@@ -16,13 +16,13 @@ public class MyRoom extends Map {
 
     public MyRoom(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        width = (int) (29 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
+        width = (int) (28 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         tileContainer = new Tile[50];
         extraTile = new ExtraTile[10];
         background = new Tile();
         background.image = gamePanel.tileManager.tile[20].image;
-        // addExtraTile("src/txt/cauthang1.txt");
+        // addExtraTile("src/txt/tvtang1.txt");
         setDefaultValues();
     }
 
@@ -57,7 +57,7 @@ public class MyRoom extends Map {
         background.setHeight((int) (242 * GamePanel.scale));
         tileBed = new Tile(gamePanel, 26, 176, 87, 54, "My Bed", "Interact", "", "res/tile/my_bed.png", 1);
         tilePC = new Tile(gamePanel, 164, 159, 102, 61, "My PC", "Interact", "", "res/tile/dan_pc.png", 1);
-        tileTable = new Tile(gamePanel, 315, 145, 34, 62, "My Table", "Interact", "",
+        tileTable = new Tile(gamePanel, 315, 145, 34, 62, "My Table", "Obstacle", "",
                 "res/tile/table_my_room.png", 1);
         tileFridge = new Tile(gamePanel, 378, 23, 55, 74, "My Fridge", "Interact", "", "res/tile/tu_lanh.png",
                 1);
@@ -65,7 +65,7 @@ public class MyRoom extends Map {
                 "res/tile/tu_do_my_room.png", 1);
         tileWardrobe = new Tile(gamePanel, 0, 30, 55, 70, "My Wardrobe", "Interact", "",
                 "res/tile/tu_quan_ao.png", 1);
-        tileKitchen = new Tile(gamePanel, 416, 108, 34, 135, "My Kitchen", "Interact", "",
+        tileKitchen = new Tile(gamePanel, 416, 108, 34, 135, "My Kitchen", "Obstacle", "",
                 "res/tile/cho_nau_an.png", 1);
         tileDoorMyRoom = new Tile(gamePanel, 205, 29, 49, 62, "Door My Room", "Teleport", "",
                 "res/tile/door_my_room.png", 1);
@@ -73,7 +73,7 @@ public class MyRoom extends Map {
         tileWallMyRoom = new Tile(gamePanel, 0, 0, 460, 91, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         tileNoodle = new Tile(gamePanel, 414, 130, 36, 36, "Noodle", "Collected", "Mì tôm Omachi",
                 "res/tile/mi_tom01.png", "res/tile/mi_tom02.png", (double) 1 / 3);
-        tileStudentCard = new Tile(gamePanel, 315, 158, 39, 27, "Student ID", "Collected",
+        tileStudentCard = new Tile(gamePanel, 314, 159, 39, 27, "Student ID", "Collected",
                 "Đại học Bách Khoa Hà Nội, S+ hữu hạn Giải Tích, 5.0 GPA.",
                 "res/tile/thehs01.png", "res/tile/thehs02.png", (double) 1 / 3);
         tileChair = new Tile[4];
@@ -113,16 +113,13 @@ public class MyRoom extends Map {
     }
 
     public void resetTile() {
-        width = (int) (29 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
+        width = (int) (28 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         if (gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
-        } else {
-            playerX = (int) (215 * GamePanel.scale);
-            playerY = (int) (75 * GamePanel.scale);
+            prevScale = (int) GamePanel.scale;
         }
-        prevScale = (int) GamePanel.scale;
         background.setWidth((int) (450 * GamePanel.scale));
         background.setHeight((int) (242 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {

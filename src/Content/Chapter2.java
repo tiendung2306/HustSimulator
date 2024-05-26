@@ -10,7 +10,7 @@ public class Chapter2 extends Chapter {
     long prevTime = 0;
     public boolean isAtClassMrsToan = false, isAtClassMrHoa = false;
     boolean isStart = false;
-    public Boolean checkSound_chap2_01 = true, checkSound_chap2_02 = true;
+    public Boolean checkSound_chap2_01 = true, checkSound_chap2_02 = true, checkEndChapter = true;
 
     public Chapter2(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -38,42 +38,36 @@ public class Chapter2 extends Chapter {
                 isStart = true;
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             }
-            if (TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 100)
+            if (TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 100) {
+                TimeSystem.goNextDay();
+                System.out.println(TimeSystem.day);
                 completedAct++;
+            }
         }
         if (completedAct == 1)
             Dialogue("Ngày thứ 2 kể từ khi ta chuyển sinh vào thế giới này.");
         if (completedAct == 2)
-            Dialogue("Sự yên bình này, cũng khá là tuyệt vời đấy chứ.");
-        if (completedAct == 3)
-            Dialogue("Ta đã chính thức trở thành thợ săn kể từ hôm nay.");
-        if (completedAct == 4)
             Dialogue("Từng là Anh Hùng mà nay lại phải cày cuốc như một tân binh. Trớ trêu thật!");
-        if (completedAct == 5) {
+        if (completedAct == 3) {
             Dialogue("Thôi thì hết cách rồi, để xem nhiệm vụ đầu tiên hội đưa ra cho ta là gì.");
             missionDescription.setMissionDescription("Kiểm tra lịch học ở trong app Fhust.");
             gamePanel.myRoom.tilePhone.isMission = true;
             phone.isOpenFhust = false;
-            TimeSystem.goNextDay();
         }
-        if (completedAct == 6) {
+        if (completedAct == 4) {
             if (phone.isOpenFhust && !phone.isDrawPhone) {
                 Dialogue("Nhiệm vụ đầu tiên đã phải đối đầu với Boss Nguyễn Thị Toàn và Lê Quang Hòa sao?");
                 missionDescription.setMissionDescription("");
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             }
         }
-        if (completedAct == 7)
+        if (completedAct == 5)
             Dialogue("Theo thông tin tình báo thì Nguyễn Thị Toàn là Boss của khu vực 37,...");
-        if (completedAct == 8)
+        if (completedAct == 6)
             Dialogue("Đã có biết bao thợ săn phải nằm lại dưới lưỡi bút của cô.");
-        if (completedAct == 9)
+        if (completedAct == 7)
             Dialogue("Còn Boss Lê Quang Hòa vẫn luôn là một ẩn số mà đến nay hội vẫn chưa khai phá được.");
-        if (completedAct == 10)
-            Dialogue("Nhưng đối với anh hùng như ta, nhiệm vụ này đánh giá là hơi dễ.");
-        if (completedAct == 11)
-            Dialogue("Nhưng đối với vị anh hùng như ta, nhiệm vụ này cũng chỉ là Piece of Cake!");
-        if (completedAct == 12)
+        if (completedAct == 8)
             nextTimeline();
     }
 
@@ -85,15 +79,99 @@ public class Chapter2 extends Chapter {
             ++completedAct;
         }
         if (completedAct == 1) {
-            if (checkSound_chap2_02) {
-                SoundManager.pauseSound("nhac_nen02");
-                SoundManager.loopSound("gap_gv");
-                checkSound_chap2_02 = false;
+            if (gamePanel.currentMap == gamePanel.myRoom) {
+                gamePanel.directionIndicator.addArrow(
+                        (gamePanel.myRoom.tileDoorMyRoom.getLeftX() + gamePanel.myRoom.tileDoorMyRoom.getRightX()) / 2
+                                - gamePanel.directionIndicator.width / 2,
+                        gamePanel.myRoom.tileDoorMyRoom.getBottomY() - gamePanel.directionIndicator.height);
+            }
+            if (gamePanel.currentMap == gamePanel.section_2) {
+                gamePanel.directionIndicator.addArrow(
+                        (gamePanel.section_2.hallway_entry_1.getLeftX()
+                                + gamePanel.section_2.hallway_entry_1.getRightX()) / 2
+                                - gamePanel.directionIndicator.width / 2,
+                        gamePanel.section_2.hallway_entry_1.getBottomY() - gamePanel.directionIndicator.height);
+                gamePanel.directionIndicator.addArrow(
+                        (gamePanel.section_2.hallway_entry_2.getLeftX()
+                                + gamePanel.section_2.hallway_entry_2.getRightX()) / 2
+                                - gamePanel.directionIndicator.width / 2,
+                        gamePanel.section_2.hallway_entry_2.getBottomY() - gamePanel.directionIndicator.height);
+                gamePanel.directionIndicator.addArrow(
+                        (gamePanel.section_2.hallway_entry_3.getLeftX()
+                                + gamePanel.section_2.hallway_entry_3.getRightX()) / 2
+                                - gamePanel.directionIndicator.width / 2,
+                        gamePanel.section_2.hallway_entry_3.getBottomY() - gamePanel.directionIndicator.height);
+            }
+            if (gamePanel.currentMap == gamePanel.d3_hallway) {
+                gamePanel.directionIndicator.addArrow(
+                        gamePanel.d3_hallway.D3_1stfloor_stair1.getRightX()
+                                - gamePanel.directionIndicator.width / 2,
+                        (gamePanel.d3_hallway.D3_1stfloor_stair1.getTopY()
+                                + gamePanel.d3_hallway.D3_1stfloor_stair1.getBottomY()) / 2
+                                - gamePanel.directionIndicator.height);
+                gamePanel.directionIndicator.addArrow(
+                        gamePanel.d3_hallway.D3_1stfloor_stair2.getLeftX()
+                                - gamePanel.directionIndicator.width / 2,
+                        (gamePanel.d3_hallway.D3_1stfloor_stair2.getTopY()
+                                + gamePanel.d3_hallway.D3_1stfloor_stair2.getBottomY()) / 2
+                                - gamePanel.directionIndicator.height);
+            }
+            if (gamePanel.currentMap == gamePanel.d3_secondfloor_hallway) {
+                if (gamePanel.d3_secondfloor_hallway.curr_floor < 3) {
+                    gamePanel.directionIndicator.addArrow(
+                            gamePanel.d3_secondfloor_hallway.d3_stair_up1.getRightX()
+                                    - gamePanel.directionIndicator.width / 2,
+                            (gamePanel.d3_secondfloor_hallway.d3_stair_up1.getTopY()
+                                    + gamePanel.d3_secondfloor_hallway.d3_stair_up1.getBottomY()) / 2
+                                    - gamePanel.directionIndicator.height);
+                    gamePanel.directionIndicator.addArrow(
+                            gamePanel.d3_secondfloor_hallway.d3_stair_up2.getLeftX()
+                                    - gamePanel.directionIndicator.width / 2,
+                            (gamePanel.d3_secondfloor_hallway.d3_stair_up2.getTopY()
+                                    + gamePanel.d3_secondfloor_hallway.d3_stair_up2.getBottomY()) / 2
+                                    - gamePanel.directionIndicator.height);
+                } else if (gamePanel.d3_secondfloor_hallway.curr_floor == 3) {
+                    gamePanel.directionIndicator.addArrow(
+                            (gamePanel.d3_secondfloor_hallway.d3_5_secondfloor_entry.getLeftX()
+                                    + gamePanel.d3_secondfloor_hallway.d3_5_secondfloor_entry.getRightX())
+                                    / 2
+                                    - gamePanel.directionIndicator.width / 2,
+                            gamePanel.d3_secondfloor_hallway.d3_5_secondfloor_entry.getBottomY()
+                                    - gamePanel.directionIndicator.height);
+                } else {
+                    gamePanel.directionIndicator.addArrow(
+                            gamePanel.d3_secondfloor_hallway.d3_stair_down1.getRightX()
+                                    - gamePanel.directionIndicator.width / 2,
+                            (gamePanel.d3_secondfloor_hallway.d3_stair_down1.getTopY()
+                                    + gamePanel.d3_secondfloor_hallway.d3_stair_down1.getBottomY()) / 2
+                                    - gamePanel.directionIndicator.height);
+                    gamePanel.directionIndicator.addArrow(
+                            gamePanel.d3_secondfloor_hallway.d3_stair_down2.getLeftX()
+                                    - gamePanel.directionIndicator.width / 2,
+                            (gamePanel.d3_secondfloor_hallway.d3_stair_down2.getTopY()
+                                    + gamePanel.d3_secondfloor_hallway.d3_stair_down2.getBottomY()) / 2
+                                    - gamePanel.directionIndicator.height);
+                }
+            }
+            if (gamePanel.currentMap == gamePanel.d3_5_hallway_secondfloor) {
+                if (gamePanel.d3_5_hallway_secondfloor.curr_floor == 3) {
+                    gamePanel.directionIndicator.addArrow(
+                            (gamePanel.d3_5_hallway_secondfloor.d3_5_301_door.getLeftX()
+                                    + gamePanel.d3_5_hallway_secondfloor.d3_5_301_door.getRightX())
+                                    / 2
+                                    - gamePanel.directionIndicator.width / 2,
+                            gamePanel.d3_5_hallway_secondfloor.d3_5_301_door.getBottomY()
+                                    - gamePanel.directionIndicator.height);
+                }
             }
             if (isAtClassMrsToan) {
-                ui.setDialogueBackground("Classroom");
-                ui.setDialogueCharacter("Mrs Toan");
-                Dialogue("Anh tê, dừ là buổi mô rồi anh mì mò mặt đến lớp? Tôi tích cho anh 1 dấu.");
+                gamePanel.directionIndicator.resetArrow();
+                if (checkSound_chap2_02) {
+                    SoundManager.pauseSound("nhac_nen02");
+                    SoundManager.loopSound("gap_gv");
+                    checkSound_chap2_02 = false;
+                }
+                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
                 isAtClassMrsToan = false;
                 ++completedAct;
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
@@ -102,65 +180,57 @@ public class Chapter2 extends Chapter {
         if (completedAct == 2 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 500) {
             ui.setDialogueBackground("Classroom");
             ui.setDialogueCharacter("Mrs Toan");
-            Dialogue("Anh tê, dừ là buổi mô rồi anh mì mò mặt đến lớp? Tôi tích cho anh 1 dấu.");
+            Dialogue("Eng tê, dừ buổi mô rồi eng mì mò mặt đến lớp?");
         }
         if (completedAct == 3) {
-            ui.setDialogueCharacter("Empty");
-            Dialogue("Aiss, chưa gì đã dính tuyệt chiêu của Boss, mình phải cẩn thận hơn!");
+            checkSound_chap2_02 = true;
+            Dialogue("Eng lên bảng giải câu ni cho tui.");
         }
         if (completedAct == 4) {
-            ui.setDialogueCharacter("Mrs Toan");
-            Dialogue("Anh vừa mới tới mô rồi, anh lên bảng giải câu ni được thì tha cho anh.");
-        }
-        if (completedAct == 5) {
             gamePanel.normalClassroom.addTile(gamePanel.normalClassroom.mrsToan);
+            missionDescription.setMissionDescription("Innova cô Toàn đi");
             ++completedAct;
         }
-        if (completedAct == 6) {
+        if (completedAct == 5) {
             if (collision.interactItem.Name.equals("Mrs Toan"))
-                Dialogue("Đạo hàm của arctan là cấy chi?");
+                Dialogue("Trả lời, đạo hàm của arctan là?");
+        }
+        if (completedAct == 6) {
+            Question("Đạo hàm của arctan(x) là cái chi???", "1/(1+x)", "1/(1-x^2)");
+            if (gamePanel.question.getAnswer() != 0) {
+                completedAct++;
+            }
         }
         if (completedAct == 7) {
-            ui.setDialogueCharacter("Empty");
-            Dialogue(
-                    "Mình có nghe nhầm không? Câu hỏi này ở thế giới mình đến cả đứa trẻ 5 tuổi cũng trả lời được mà.");
+            ui.setDialogueCharacter("Main Character");
+            String str = "Đáp án chính là ";
+            if (gamePanel.question.getAnswer() == 1)
+                str += gamePanel.question.answer1;
+            else
+                str += gamePanel.question.answer2;
+            Dialogue(str);
         }
         if (completedAct == 8) {
-            Dialogue("Hệ thống, giúp ta trả lời câu hỏi này.");
-        }
-        if (completedAct == 9) {
-            ui.setDialogueCharacter("System");
-            Dialogue("Đã rõ! Câu trả lời là 1/(1+x).");
-        }
-        if (completedAct == 10) {
-            ui.setDialogueCharacter("Main Character");
-            Dialogue("Thưa cô, đáp án chính là 1/(1+x).");
-        }
-        if (completedAct == 11) {
-            if (!checkSound_chap2_02) {
+            if (checkSound_chap2_02) {
                 SoundManager.playSound("tra_loi_sai");
-                checkSound_chap2_02 = true;
+                checkSound_chap2_02 = false;
             }
             ui.setDialogueCharacter("Mrs Toan");
             Dialogue("Sai");
         }
-        if (completedAct == 12) {
+        if (completedAct == 9) {
             ui.setDialogueCharacter("Cat Meme");
+            if (!checkSound_chap2_02) {
+                SoundManager.playSound("meme_meo");
+                checkSound_chap2_02 = true;
+            }
             Dialogue("...");
         }
-        if (completedAct == 13) {
-            ui.setDialogueCharacter("System");
-            Dialogue("...");
-        }
-        if (completedAct == 14) {
+        if (completedAct == 10) {
             ui.setDialogueCharacter("Mrs Toan");
-            Dialogue("Anh về chộ đi, trớp trớp thật. Nỏ mần được cấy ci nên hồn.");
+            Dialogue("Về chộ đi, trớp trớp thật. Nỏ mần được cấy chi nên hồn.");
         }
-        if (completedAct == 15) {
-            ui.setDialogueCharacter("Mrs Toan");
-            Dialogue("Học hành cho nên thân buổi sau tui gọi anh tiếp.");
-        }
-        if (completedAct == 16)
+        if (completedAct == 11)
             nextTimeline();
     }
 
@@ -212,14 +282,24 @@ public class Chapter2 extends Chapter {
             Dialogue("Hôm nay tới đây là đủ rồi!");
         }
         if (completedAct == 7) {
+            checkSound_chap2_02 = true;
             ui.setDialogueBackground("Empty");
             missionDescription.setMissionDescription("Di chuyển về nhà và ngủ đi");
             gamePanel.myRoom.tileBed.isMission = true;
             ++completedAct;
         }
         if (completedAct == 8) {
-            if (collision.interactItem.Name.equals("My Bed"))
+            if (collision.interactItem.Name.equals("My Bed")) {
+                gamePanel.myRoom.tileBed.isMission = false;
+                if (checkEndChapter) {
+                    Main.pushGameState("EndChapter");
+                    SoundManager.stopSound("nhac_nen02");
+                    SoundManager.playSound("xong_chapter");
+                    EndChapter.checkChapter = "2";
+                    checkEndChapter = false;
+                }
                 Dialogue("Hoàn thành Chapter 2");
+            }
         }
         if (completedAct == 9) {
             nextTimeline();
@@ -227,10 +307,6 @@ public class Chapter2 extends Chapter {
     }
 
     void Timeline3() {
-        if (!checkSound_chap2_01) {
-            SoundManager.loopSound("nhac_nen02");
-            checkSound_chap2_01 = true;
-        }
         gamePanel.currentChapter = gamePanel.chapter3;
         gamePanel.chapter3.completedAct = 0;
     }
@@ -268,5 +344,13 @@ public class Chapter2 extends Chapter {
             ui.isFinishDialogue = false;
             ui.timer.start();
         }
+    }
+
+    void Question(String question, String answer1, String answer2) {
+        if (gamePanel.question.getAnswer() != 0)
+            return;
+        gamePanel.question.setQuestion(question, answer1, answer2);
+        if (Main.topGameState().equals("GamePlay"))
+            Main.pushGameState("Dialogue");
     }
 }

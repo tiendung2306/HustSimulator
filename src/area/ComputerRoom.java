@@ -19,8 +19,8 @@ public class ComputerRoom extends Map {
     public ComputerRoom(GamePanel gamePanel) {
         super();
         this.gamePanel = gamePanel;
-        width = (int)(21 * 16 * gamePanel.scale);
-        height = (int)(16 * 16 * gamePanel.scale);
+        width = (int)(20 * 16 * GamePanel.scale);
+        height = (int)(15 * 16 * GamePanel.scale);
         // maxMapCol = 21;
         // maxMapRow = 18;
         tileContainer = new Tile[50];
@@ -93,16 +93,13 @@ public class ComputerRoom extends Map {
     }
 
     public void resetTile(){
-        width = (int) (21 * 16 * GamePanel.scale);
-        height = (int) (16 * 16 * GamePanel.scale);
+        width = (int) (20 * 16 * GamePanel.scale);
+        height = (int) (15 * 16 * GamePanel.scale);
         if(gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
-        } else {
-            playerX = (int) (35 * GamePanel.scale);
-            playerY = (int) (64 * GamePanel.scale);
+            prevScale = (int) GamePanel.scale;
         }
-        prevScale = (int) GamePanel.scale;
         background.setWidth((int) (320 * GamePanel.scale));
         background.setHeight((int) (240 * GamePanel.scale));
         for (int i = 0; i < numTileContainer; ++i) {
@@ -116,5 +113,8 @@ public class ComputerRoom extends Map {
         gamePanel.tileManager.draw(g2, background);
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);
+
+        gamePanel.player.draw(g2);
+        
     }
 }

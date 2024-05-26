@@ -8,12 +8,10 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import Collision.Collision;
-import Content.Chapter;
-import Content.Chapter1;
-import Content.Chapter2;
-import Content.Chapter3;
+import Content.*;
 import GUI.DirectionIndicator;
 import GUI.MissionDescription;
+import GUI.Question;
 import Inventory.Inventory;
 import Keyboard.KeyboardManager;
 import LoadSaveGame.LoadSaveGameSystem;
@@ -21,6 +19,7 @@ import MainMenu.*;
 import MainMenu.Tutorial;
 import Mouse.MouseManager;
 import area.ComputerRoom;
+import area.Library.*;
 import area.MyRoom;
 import area.NormalClassroom;
 import area.Section_1;
@@ -32,7 +31,6 @@ import area.C2.C2_hallway;
 import area.D3.D3_hallway;
 import area.D3.D3_secondfloor_hallway;
 import area.D3_5.D3_5_hallway_secondfloor;
-import area.Library.Firstfloor_library;
 import area.Library.Library;
 import entity.Player;
 import map.Map;
@@ -92,6 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Phone phone = new Phone(this);
     public MissionDescription missionDescription = new MissionDescription(this);
     public DirectionIndicator directionIndicator = new DirectionIndicator(this);
+    public Question question = new Question(this);
     public KeyHandler keyH = new KeyHandler(this);
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
@@ -103,6 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Section_1 section_1 = new Section_1(this);
     public boolean isRunning = false;
     public NormalClassroom normalClassroom = new NormalClassroom(this);
+    public NormalClassroom normalClassroom_302 = new NormalClassroom(this);
     public ComputerRoom computerRoom = new ComputerRoom(this);
     public Library library = new Library(this);
     public Stadium stadium = new Stadium(this);
@@ -112,6 +112,11 @@ public class GamePanel extends JPanel implements Runnable {
     public D3_hallway d3_hallway = new D3_hallway(this);
     public D3_secondfloor_hallway d3_secondfloor_hallway = new D3_secondfloor_hallway(this);
     public D3_5_hallway_secondfloor d3_5_hallway_secondfloor = new D3_5_hallway_secondfloor(this);
+    public Firstfloor_library firstfloorLibrary = new Firstfloor_library(this);
+    public Secondfloor_library secondfloorLibrary = new Secondfloor_library(this);
+    public Thirdfloor_library thirdfloorLibrary = new Thirdfloor_library(this);
+    public Fourthfloor_library fourthfloorLibrary = new Fourthfloor_library(this);
+    public Fifthfloor_library fifthfloorLibrary = new Fifthfloor_library(this);
 
     // ==========================================================
 
@@ -120,6 +125,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Chapter1 chapter1 = new Chapter1(this);
     public Chapter2 chapter2 = new Chapter2(this);
     public Chapter3 chapter3 = new Chapter3(this);
+    public EndChapter endChapter = new EndChapter(this);
+    public EndGame endGame = new EndGame(this);
 
     public LoadSaveGameSystem loadSaveGameSystem = new LoadSaveGameSystem(this);
     // =========================================================
@@ -158,25 +165,43 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.addSound(new Sound("piano_music", "res/sound/pianos-by-jtwayne-7-174717.wav"));
         soundManager.addSound(new Sound("nhac_nen01", "res/sound/nhac_nen_1.wav"));
         soundManager.addSound(new Sound("nhac_nen02", "res/sound/nhac_nen_2.wav"));
+        soundManager.addSound(new Sound("nhac_nen03", "res/sound/nhac_nen03.wav"));
         soundManager.addSound(new Sound("gap_gv", "res/sound/am_thanh_chap2.wav"));
         soundManager.addSound(new Sound("tra_loi_sai", "res/sound/nhac_tra_loi_sai.wav"));
         soundManager.addSound(new Sound("an_mi", "res/sound/an_mi.wav"));
+        soundManager.addSound(new Sound("xong_chapter", "res/sound/xong_chapter.wav"));
+        soundManager.addSound(new Sound("click", "res/sound/click.wav"));
+        soundManager.addSound(new Sound("meme_meo", "res/sound/meme_con_meo.wav"));
+        soundManager.addSound(new Sound("end_game", "res/sound/am_thanh_end_game.wav"));
+        soundManager.addSound(new Sound("wow", "res/sound/wowww.wav"));
+        soundManager.addSound(new Sound("pewpew", "res/sound/o_cai_tam_chat.wav"));
+        soundManager.addSound(new Sound("tim_dap", "res/sound/tim_dap.wav"));
+        soundManager.addSound(new Sound("tan_gai", "res/sound/nhac_tan_gai.wav"));
+        soundManager.addSound(new Sound("tang_hoa", "res/sound/tang_hoa_meme.wav"));
+        soundManager.addSound(new Sound("puon_cuoi", "res/sound/puon.wav"));
     }
 
     public void screenResize() {
         missionDescription.screenResize();
         myRoom.resetTile();
         normalClassroom.resetTile();
+        normalClassroom_302.resetTile();
         computerRoom.resetTile();
         library.resetTile();
         stadium.resetTile();
-        currentMap.loadMap(this);
+        firstfloorLibrary.resetTile();
+        secondfloorLibrary.resetTile();
+        thirdfloorLibrary.resetTile();
+        fourthfloorLibrary.resetTile();
+        fifthfloorLibrary.resetTile();
+        // currentMap.loadMap(this);
         missionDescription.screenResize();
         player.reSize();
         currentMap.reSizeMap();
         inventory.ScreenResize();
         phone.screenResize();
         ui.screenResize();
+        question.screenResize();
         section_selection.screenResize();
 
     }
@@ -187,8 +212,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void Init() {
         newGame();
-        initSound();
-        currentChapter = chapter1;
+        initSound();// =====================================
         currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();
@@ -199,8 +223,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void run() {
-        soundManager.addSound(new Sound("guitar_music", "res/sound/acoustic-guitar-loop-f-91bpm-132687.wav"));
-        // soundManager.loopSound("guitar_music");
         Init();
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
@@ -248,11 +270,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
-        if (TimeSystem.getCurrentSystemTimeInMilliseconds() - Collision.prevTime >= 1300 && Collision.resumeSound) {
-            SoundManager.resumeSound("nhac_nen01", true);
-            System.out.println("Meos chayj");
-            Collision.resumeSound = false;
-        }
         timeSystem.update();
         soundManager.update();
         tileManager.update();
@@ -262,6 +279,7 @@ public class GamePanel extends JPanel implements Runnable {
         inventory.update();
         missionDescription.update();
         directionIndicator.update();
+        question.update();
         if (Main.topGameState().equals(Main.states[0])) {
             mainMenu.update();
         } else if (Main.topGameState().equals(Main.states[1])) {
@@ -284,9 +302,9 @@ public class GamePanel extends JPanel implements Runnable {
             tutorial.update();
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
-                if (player.ButtonInteract)
+                if (player.ButtonInteract) {
                     collision.update();
-                else
+                } else
                     keyH.isInteract = false;
             }
             if (keyH.isPhonePressed) {
@@ -303,16 +321,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
-        if (Main.topGameState().equals("Loading")) {
-            if (!currentMap.map_exchange_effect.isRunning())
-                Main.popGameState();
-        }
     }
     // =================================================================================================================
 
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
+
         Graphics2D g2 = (Graphics2D) g;
         // RenderingHints rh1 = new RenderingHints(
         // RenderingHints.KEY_RENDERING,
@@ -343,16 +358,18 @@ public class GamePanel extends JPanel implements Runnable {
                 || Main.topGameState().equals("GamePlay")
                 || Main.topGameState().equals("Inventory")
                 || Main.topGameState().equals("Dialogue")) {
-            if (currentChapter != chapter1 || chapter1.IntroFinished) {
+            if (currentChapter != chapter1 || chapter1.IntroFinished
+            // true
+            ) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
-                player.draw(g2);
                 inventory.draw(g2);
                 missionDescription.draw(g2);
                 phone.draw(g2);
             }
         }
         ui.draw(g2);
+        question.draw(g2);
 
         if (Main.topGameState().equals("Map")) {
             section_selection.operation(g);
@@ -360,6 +377,23 @@ public class GamePanel extends JPanel implements Runnable {
 
         else if (Main.topGameState().equals("Loading")) {
             currentMap.map_exchange_effect.operation(g);
+            if (!currentMap.map_exchange_effect.isRunning()) {
+                Main.popGameState();
+            }
+        }
+        if (Main.topGameState().equals("EndChapter")) {
+            endChapter.draw(g2, EndChapter.checkChapter);
+            endChapter.MouseClick();
+            endChapter.HoverCheck();
+        }
+        if (Main.topGameState().equals("EndGame")) {
+            endGame.draw(g2);
+            if (endGame.checkSoundEndGame) {
+                SoundManager.playSound("end_game");
+                endGame.checkSoundEndGame = false;
+            }
+            endGame.MouseClick();
+            endGame.HoverCheck();
         }
 
     }
@@ -404,6 +438,24 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentMap == d3_5_hallway_secondfloor) {
             d3_5_hallway_secondfloor.draw(g2);
         }
+        if (currentMap == firstfloorLibrary) {
+            firstfloorLibrary.draw(g2);
+        }
+        if (currentMap == secondfloorLibrary) {
+            secondfloorLibrary.draw(g2);
+        }
+        if (currentMap == thirdfloorLibrary) {
+            thirdfloorLibrary.draw(g2);
+        }
+        if (currentMap == fourthfloorLibrary) {
+            fourthfloorLibrary.draw(g2);
+        }
+        if (currentMap == fifthfloorLibrary)
+            fifthfloorLibrary.draw(g2);
+
+        if (currentMap == normalClassroom_302) {
+            normalClassroom_302.draw(g2);
+        }
     }
 
     public void newGame() {
@@ -428,13 +480,12 @@ public class GamePanel extends JPanel implements Runnable {
             chapter2.currentTimeline = 0;
             chapter2.completedAct = 0;
         }
-        // if (chapter.equals("chap3")) {
-        // currentMap = myRoom;
-        // currentChapter = chapter3;
-        // chapter3.currentTimeline = 0;
-        // chapter3.IntroFinished = false;
-        // chapter3.completedAct = 0;
-        // }
+        if (chapter.equals("chap 3")) {
+            currentMap = myRoom;
+            currentChapter = chapter3;
+            chapter3.currentTimeline = 0;
+            chapter3.completedAct = 0;
+        }
         Main.GameState.push("GamePlay");
     }
 }

@@ -96,11 +96,7 @@ class Section {
             switch (tag) {
                 case "Section1":
                     section_selection.gamePanel.section_1.open();
-                    SoundManager.pauseSound("nhac_nen01");
                     SoundManager.playSound("foot_step");
-                    Collision.prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
-                    System.out.println("STOP");
-                    Collision.resumeSound = true;
                     break;
 
                 case "Section2":
@@ -109,7 +105,7 @@ class Section {
                     break;       
 
                 case "Section3":
-                    section_selection.gamePanel.section_3.open();
+                    section_selection.gamePanel.section_3.open("");
                     SoundManager.playSound("foot_step");
                     break;
                 default:

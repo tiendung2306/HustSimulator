@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 public class Tile{
     GamePanel gamePanel;
-    int x,y;
+    public int x,y;
     public int width_tile,height_tile;
     public double scale_collect;
     public String name_path,name_path2;
@@ -66,6 +66,7 @@ public class Tile{
         this.type = type;
         this.name_path = name_path;
         this.description = description;
+        Description = description;
         Name = name;
         Type = type;
         try {
@@ -103,6 +104,8 @@ public class Tile{
 
 
     public Tile(Rectangle box, String name, String type, String description, BufferedImage image) {
+        x = box.x;
+        y = box.y;
         LeftX = box.x;
         RightX = box.x + box.width;
         TopY = box.y;

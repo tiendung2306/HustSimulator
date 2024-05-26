@@ -1,21 +1,21 @@
 package area;
 
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import animation.Animation_player;
 import main.GamePanel;
 import main.Main;
 import map.Map;
 import tile.Tile;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-
-import animation.Animation_player;
-
-import java.io.*;
-
 public class Section_2 extends Map {
     Tile D3, D5, D3_5, D7, D9;
-    Tile hallway_entry_1, hallway_entry_2, hallway_entry_3;
+    public Tile hallway_entry_1, hallway_entry_2, hallway_entry_3;
     Tile spawn_point;
 
 
@@ -45,6 +45,9 @@ public class Section_2 extends Map {
         background.setHeight((int)(background.getHeight() * scale));
 
         spawn_point.resize(scale);
+
+        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
+
 
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
