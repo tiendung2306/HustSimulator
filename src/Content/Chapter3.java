@@ -2,12 +2,13 @@ package Content;
 
 import main.GamePanel;
 import main.Main;
+import tile.Tile;
 import time.TimeSystem;
 
 public class Chapter3 extends Chapter{
 
     long prevTime = 0;
-    public boolean isAtLibrary = false, isAtLake = false;
+    public boolean isAtLibrary = false;
     public Chapter3(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
@@ -118,26 +119,18 @@ public class Chapter3 extends Chapter{
             Dialogue("Nàng ấy ở đâu được nhỉ?");
         }
         if (completedAct == 2){
-            isAtLake = false;
+            collision.interactItem = new Tile();
             missionDescription.setMissionDescription("Tìm cô ấy đi, tình yêu cuộc đời đấy! (Có thể là ở Hồ Tiền)");
+            //gamePanel.section_3.addTile(gamePanel.section_3.npcGirl);
             ++completedAct;
         }
         if (completedAct == 3){
-            if (isAtLake){
-                isAtLake = false;
-                ++completedAct;
-            }
-        }
-        if (completedAct == 4){
             nextTimeline();
         }
     }
     void Timeline2(){
         if (completedAct == 0){
-            Dialogue("Nàng đây rồii");
-        }
-        if (completedAct == 1){
-            //if (collision.interactItem.Name.equals("NPC Girl"))
+            if (collision.interactItem.Name.equals("NPC Girl"))
             {
                 ui.setReelsCharacter("Cat Giving Flower");
                 Main.pushGameState("Reels");
@@ -145,44 +138,44 @@ public class Chapter3 extends Chapter{
                 ++completedAct;
             }
         }
-        if (completedAct == 2 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 3000){
+        if (completedAct == 1 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 3000){
             if (Main.topGameState().equals("Reels"))
                 Main.popGameState();
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             ++completedAct;
         }
-        if (completedAct == 3 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 300){
+        if (completedAct == 2 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 300){
             ui.setDialogueCharacter("Main Character");
             ui.setDialogueBackground("Lake");
             Dialogue("Nàng thì đẹp tựa đóa hoa");
         }
-        if (completedAct == 4){
+        if (completedAct == 3){
             Dialogue("Ta A Giải tích thật là hợp nhau!");
         }
-        if (completedAct == 5){
+        if (completedAct == 4){
             Dialogue("Cho ta làm quen nhé.");
         }
-        if (completedAct == 6){
+        if (completedAct == 5){
             ui.setDialogueCharacter("NPC Girl");
             Dialogue("Không.");
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
-        if (completedAct == 7 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 300){
+        if (completedAct == 6 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 300){
             ui.setDialogueCharacter("Empty");
             Dialogue("Ta biết nàng ấy thích ta, nhưng lại cố tỏ ra vô tình. Quả là cô gái thú vị!");
         }
-        if (completedAct == 8){
+        if (completedAct == 7){
             Dialogue("Thôi được rồi.");
         }
-        if (completedAct == 9){
+        if (completedAct == 8){
             Dialogue("Hôm nay tới đây là đủ rồi");
         }
-        if (completedAct == 10){
+        if (completedAct == 9){
             ui.setDialogueBackground("Empty");
             missionDescription.setMissionDescription("Di chuyển về nhà và ngủ đi");
             ++completedAct;
         }
-        if (completedAct == 11){
+        if (completedAct == 10){
             if (collision.interactItem.Name.equals("My Bed"))
                 nextTimeline();
         }

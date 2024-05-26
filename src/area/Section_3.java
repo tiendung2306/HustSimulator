@@ -80,7 +80,7 @@ public class Section_3 extends Map {
         BK_ALUMNI_HOUSE = new Tile(new Rectangle(1836, 1335, 699, 675), "BK_ALUMNI_HOUSE", "Obstacle", null, null);
         Unknown = new Tile(new Rectangle(2685, 1161, 309, 942), "Unknown", "Obstacle", null, null);
         Library = new Tile(new Rectangle(1662, 186, 1644, 807), "Library", "Obstacle", null, null);
-        npcGirl = new Tile(gamePanel, 100, 100, 16, 41, "NPC Girl", "NPC", "", "res/NPC/NPCGirl/NPCGirl (2).png",1);
+        npcGirl = new Tile(gamePanel, 1120, 80, 8, 20, "NPC Girl", "NPC", "", "res/NPC/NPCGirl/NPCGirl (2).png",1);
         addTile(new Tile(new Rectangle(765,1662,55,69),"Library_entry 1","Teleport","Di vao thu vien 1",null));
         addTile(new Tile(new Rectangle(870,1662,55,72),"Library_entry 2","Teleport","Di vao thu vien 2",null));
 
