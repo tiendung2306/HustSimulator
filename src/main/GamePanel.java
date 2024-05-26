@@ -196,6 +196,7 @@ public class GamePanel extends JPanel implements Runnable {
         fifthfloorLibrary.resetTile();
         // currentMap.loadMap(this);
         missionDescription.screenResize();
+        directionIndicator.screenResize();
         player.reSize();
         currentMap.reSizeMap();
         inventory.ScreenResize();
@@ -362,7 +363,7 @@ public class GamePanel extends JPanel implements Runnable {
             // true
             ) {
                 drawMap(g2);
-                directionIndicator.drawArrow(g2);
+                // directionIndicator.drawArrow(g2);
                 inventory.draw(g2);
                 missionDescription.draw(g2);
                 phone.draw(g2);

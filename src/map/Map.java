@@ -22,10 +22,10 @@ public class Map {
     public int org_width, org_height;
     public int numTileContainer;
     public int playerX, playerY;
-    public Tile [] tileContainer;
+    public Tile[] tileContainer;
     public static int prevScale = (int) GamePanel.scale;
     public ExtraTile[] extraTile;
-    public Vector <Object> objectContainer =  new Vector <Object>();
+    public Vector<Object> objectContainer = new Vector<Object>();
     public Animation_player map_exchange_effect;
     public Tile background;
 
@@ -33,22 +33,22 @@ public class Map {
         tileContainer[numTileContainer++] = tile;
     }
 
-    public void addObject(Object object){
+    public void addObject(Object object) {
         objectContainer.add(object);
     }
 
-    public void ObjectLoad(String name){
-        try{
+    public void ObjectLoad(String name) {
+        try {
             String path = "src/txt/" + name + ".txt";
             BufferedReader source = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
             while (true) {
-                
+
                 String line = source.readLine();
 
-                if(line.equals("#"))
+                if (line.equals("#"))
                     break;
 
-                else if(line.equals("*")){
+                else if (line.equals("*")) {
 
                     Object object = new Object(this);
 
@@ -60,7 +60,7 @@ public class Map {
                             case "Name":
                                 object.setName(values[1]);
                                 break;
-                            
+
                             case "Type":
                                 object.setType(values[1]);
                                 break;
@@ -72,28 +72,38 @@ public class Map {
                             case "Image":
                                 switch (object.getType()) {
                                     case "non-animated":
-                                        object.setImageBox(new Rectangle(Integer.parseInt(values[1]), Integer.parseInt(values[2]), Integer.parseInt(values[3]), Integer.parseInt(values[4])), 0, 0);
+                                        object.setImageBox(
+                                                new Rectangle(Integer.parseInt(values[1]), Integer.parseInt(values[2]),
+                                                        Integer.parseInt(values[3]), Integer.parseInt(values[4])),
+                                                0, 0);
                                         break;
 
                                     case "animated":
-                                        object.setImageBox(new Rectangle(Integer.parseInt(values[1]), Integer.parseInt(values[2]), Integer.parseInt(values[3]), Integer.parseInt(values[4])), Integer.parseInt(values[5]), Double.parseDouble(values[6]));
+                                        object.setImageBox(
+                                                new Rectangle(Integer.parseInt(values[1]), Integer.parseInt(values[2]),
+                                                        Integer.parseInt(values[3]), Integer.parseInt(values[4])),
+                                                Integer.parseInt(values[5]), Double.parseDouble(values[6]));
                                         break;
 
                                     default:
                                         break;
                                 }
                                 break;
-                                
+
                             case "Body":
-                                for(int i = 1; i < values.length; i += 4)
-                                    object.addBodyHitbox(new Rectangle(Integer.parseInt(values[i]), Integer.parseInt(values[i + 1]), Integer.parseInt(values[i + 2]), Integer.parseInt(values[i + 3])));
+                                for (int i = 1; i < values.length; i += 4)
+                                    object.addBodyHitbox(
+                                            new Rectangle(Integer.parseInt(values[i]), Integer.parseInt(values[i + 1]),
+                                                    Integer.parseInt(values[i + 2]), Integer.parseInt(values[i + 3])));
                                 break;
-                            
+
                             case "Foot":
-                                for(int i = 1; i < values.length; i += 4)
-                                    object.addFootHitbox(new Rectangle(Integer.parseInt(values[i]), Integer.parseInt(values[i + 1]), Integer.parseInt(values[i + 2]), Integer.parseInt(values[i + 3])));
+                                for (int i = 1; i < values.length; i += 4)
+                                    object.addFootHitbox(
+                                            new Rectangle(Integer.parseInt(values[i]), Integer.parseInt(values[i + 1]),
+                                                    Integer.parseInt(values[i + 2]), Integer.parseInt(values[i + 3])));
                                 next = false;
-                                break;                  
+                                break;
 
                             default:
                                 break;
@@ -104,14 +114,13 @@ public class Map {
             }
             source.close();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // TODO: handle exception
         }
 
     }
 
-    public void addExtraTile(String src){
+    public void addExtraTile(String src) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(src)));
             String line = "";
@@ -161,24 +170,28 @@ public class Map {
         gamePanel.directionIndicator.resetArrow();
     }
 
-    public void reSizeMap(){}
+    public void reSizeMap() {
+    }
 
-    public void floorDisplay(Graphics2D g2){}
+    public void floorDisplay(Graphics2D g2) {
+    }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2) {
         gamePanel.tileManager.draw(g2, background);
 
         boolean is_player_display = false;
-        for(Object object : objectContainer){
+        for (Object object : objectContainer) {
             // System.out.println(object.name);
-            if(is_player_display == false){
+            if (is_player_display == false) {
                 boolean is_player_behind = true;
-                for(Tile footbox : object.getFoot())
-                    if(footbox.getBottomY() <= gamePanel.player.getHitArea().y + gamePanel.player.getHitArea().height){
+                for (Tile footbox : object.getFoot())
+                    if (footbox.getBottomY() <= gamePanel.player.getHitArea().y
+                            + gamePanel.player.getHitArea().height) {
                         is_player_behind = false;
                         break;
                     }
-                if(is_player_behind == true){
+                if (is_player_behind == true) {
+                    gamePanel.directionIndicator.drawArrow(g2);
                     gamePanel.player.draw(g2);
                     is_player_display = true;
                 }
@@ -188,13 +201,13 @@ public class Map {
             else
                 object.operation(g2);
         }
-        
+
         floorDisplay(g2);
 
-        if(is_player_display == false)
+        if (is_player_display == false) {
+            gamePanel.directionIndicator.drawArrow(g2);
             gamePanel.player.draw(g2);
-            
+        }
     }
-
 
 }
