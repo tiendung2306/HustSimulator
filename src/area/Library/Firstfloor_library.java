@@ -177,7 +177,7 @@ public class Firstfloor_library extends Map {
                     if(Main.topGameState().equals("Inventory")) {
                         Main.popGameState();
                     }
-                    Dialog("Bạn đã nạp thẻ sinh viên thành công");
+                    Dialog("Bạn đã quét thẻ sinh viên thành công");
                     checkDialogue = false;
                     checkStudent = true;
                 }
@@ -187,6 +187,7 @@ public class Firstfloor_library extends Map {
 
     void Dialog(String str) {
         if (Main.topGameState().equals("GamePlay")) {
+            gamePanel.ui.text = "";
             gamePanel.ui.currentDialog = str;
             Main.pushGameState("Dialog");
             gamePanel.ui.i = 0;

@@ -290,6 +290,7 @@ public class Chapter1 extends Chapter {
 
     void Dialogue(String str) {
         if (Main.topGameState().equals("GamePlay")) {
+            gamePanel.ui.text = "";
             ui.currentDialog = str;
             Main.pushGameState("Dialogue");
             ui.i = 0;

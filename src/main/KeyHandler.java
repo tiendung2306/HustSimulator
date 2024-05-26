@@ -87,6 +87,7 @@ public class KeyHandler implements KeyListener {
                 || KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE") || MouseManager.isLeftMouseClick)
                 && !gamePanel.phone.isDrawPhone) {
             if (Main.topGameState().equals("Dialog")) {
+                gamePanel.ui.text = "";
                 Main.popGameState();
                 isInteract = false;
             } else if (KeyboardManager.getTypeKey(code).equals("INTERACT"))
