@@ -11,12 +11,14 @@ public class Npc extends Tile{
     GamePanel gamePanel;
     Rectangle displaybox = new Rectangle();
     Animation_player animation;
+    int curr_scale;
 
 
 
     public Npc(GamePanel gamePanel, Rectangle hitbox, String type, String name){
         this.gamePanel = gamePanel;
         this.displaybox = hitbox;
+        curr_scale = (int)(GamePanel.scale);
         Name = name;
         Type = type;
         LeftX = hitbox.x;
@@ -54,6 +56,11 @@ public class Npc extends Tile{
 
     private void draw(Graphics graphics){
         animation.operation(graphics);
+    }
+
+    @Override public void reSizeTile(){
+        resize(GamePanel.scale * 1.0 / curr_scale);
+        curr_scale = (int)(GamePanel.scale);
     }
 
     public void resize(double scale){

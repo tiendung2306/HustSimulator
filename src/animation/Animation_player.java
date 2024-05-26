@@ -128,7 +128,6 @@ public class Animation_player{
     public void operation(Graphics graphics) {
         
         if(Switch){
-            System.out.println("vpaa");
             state = "run";
             start_time = TimeSystem.getCurrentSystemTimeInMilliseconds();
             Switch = false;

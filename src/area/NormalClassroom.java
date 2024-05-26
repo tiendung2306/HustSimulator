@@ -102,7 +102,6 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
-        mrsToan.resize(GamePanel.scale);
     }
 
     public void draw(Graphics2D g2) {
@@ -111,5 +110,8 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);
         mrsToan.operation(g2);
+
+        gamePanel.player.draw(g2);
+
     }
 }

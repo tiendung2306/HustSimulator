@@ -42,6 +42,8 @@ public class D3_5_hallway_secondfloor extends Map {
         background.setWidth((int)(background.getWidth() * scale));
         background.setHeight((int)(background.getHeight() * scale));
 
+        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
+
         for(int i = 1; i <= 4; i++){
             floor_layer[i].resize(scale);
         }

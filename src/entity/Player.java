@@ -92,6 +92,7 @@ public class Player extends Entity {
     }
 
     public void reSize() {
+        int prev_bound_width = boundingBox.width;
         boundingBox.width = (int) (32 * GamePanel.scale);
         boundingBox.height = (int) (32 * GamePanel.scale);
         hitArea.x = boundingBox.width / 4;
@@ -104,6 +105,8 @@ public class Player extends Entity {
         boundingBox.y = screenY;
         speed = (int) (4 * GamePanel.scale / Map.prevScale);
         speedSlant = (int) (GamePanel.scale);
+        mapX = (int)(mapX * boundingBox.width * 1.0 / prev_bound_width);
+        mapY = (int)(mapY * boundingBox.width * 1.0 / prev_bound_width);
     }
 
     // =============================================================================================================================================
