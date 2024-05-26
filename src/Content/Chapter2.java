@@ -79,12 +79,14 @@ public class Chapter2 extends Chapter {
         }
         if (completedAct == 1) {
             if (gamePanel.currentMap == gamePanel.myRoom) {
+                gamePanel.directionIndicator.resetArrow();
                 gamePanel.directionIndicator.addArrow(
                         (gamePanel.myRoom.tileDoorMyRoom.getLeftX() + gamePanel.myRoom.tileDoorMyRoom.getRightX()) / 2
                                 - gamePanel.directionIndicator.width / 2,
                         gamePanel.myRoom.tileDoorMyRoom.getBottomY() - gamePanel.directionIndicator.height);
             }
             if (gamePanel.currentMap == gamePanel.section_2) {
+                gamePanel.directionIndicator.resetArrow();
                 gamePanel.directionIndicator.addArrow(
                         (gamePanel.section_2.hallway_entry_1.getLeftX()
                                 + gamePanel.section_2.hallway_entry_1.getRightX()) / 2
@@ -102,6 +104,7 @@ public class Chapter2 extends Chapter {
                         gamePanel.section_2.hallway_entry_3.getBottomY() - gamePanel.directionIndicator.height);
             }
             if (gamePanel.currentMap == gamePanel.d3_hallway) {
+                gamePanel.directionIndicator.resetArrow();
                 gamePanel.directionIndicator.addArrow(
                         gamePanel.d3_hallway.D3_1stfloor_stair1.getRightX()
                                 - gamePanel.directionIndicator.width / 2,
@@ -116,6 +119,7 @@ public class Chapter2 extends Chapter {
                                 - gamePanel.directionIndicator.height);
             }
             if (gamePanel.currentMap == gamePanel.d3_secondfloor_hallway) {
+                gamePanel.directionIndicator.resetArrow();
                 if (gamePanel.d3_secondfloor_hallway.curr_floor < 3) {
                     gamePanel.directionIndicator.addArrow(
                             gamePanel.d3_secondfloor_hallway.d3_stair_up1.getRightX()
@@ -153,6 +157,7 @@ public class Chapter2 extends Chapter {
                 }
             }
             if (gamePanel.currentMap == gamePanel.d3_5_hallway_secondfloor) {
+                gamePanel.directionIndicator.resetArrow();
                 if (gamePanel.d3_5_hallway_secondfloor.curr_floor == 3) {
                     gamePanel.directionIndicator.addArrow(
                             (gamePanel.d3_5_hallway_secondfloor.d3_5_301_door.getLeftX()
@@ -248,6 +253,7 @@ public class Chapter2 extends Chapter {
         }
         if (completedAct == 1) {
             if (isAtClassMrHoa) {
+                gamePanel.normalClassroom.deleteTile(gamePanel.normalClassroom.numTileContainer - 1);
                 if (!checkSound_chap2_02) {
                     SoundManager.pauseSound("nhac_nen02");
                     SoundManager.resumeSound("gap_gv", true);
@@ -292,6 +298,7 @@ public class Chapter2 extends Chapter {
             ++completedAct;
         }
         if (completedAct == 9) {
+            checkSound_chap2_02 = true;
             if (collision.interactItem.Name.equals("My Bed")) {
                 gamePanel.myRoom.tileBed.isMission = false;
                 if (checkEndChapter) {

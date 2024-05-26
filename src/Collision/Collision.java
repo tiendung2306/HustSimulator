@@ -1,5 +1,6 @@
 package Collision;
 
+import area.Library.Firstfloor_library;
 import entity.Entity;
 import entity.Player;
 import main.GamePanel;
@@ -18,9 +19,7 @@ public class Collision {
     int numCollision;
     public Tile interactItem = new Tile();
     Tile[] collisionTile;
-    public static long prevTime = 0;
-    public static Boolean resumeSound = false;
-
+    public Boolean checkDialogue = true;
     public Collision(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.ui = gamePanel.ui;
@@ -50,8 +49,14 @@ public class Collision {
     void teleport(String name) {
         switch (name) {
             case "Door My Room":
-                gamePanel.section_selection.open(true);
-                SoundManager.playSound("open_door");
+                if (!gamePanel.inventory.isExist("Iphone 100 ProMax")){
+                    ui.currentDialog = "Không có điện thoại mà đòi ra ngoài?";
+                    Main.pushGameState("Dialog");
+                }
+                else {
+                    gamePanel.section_selection.open(true);
+                    SoundManager.playSound("open_door");
+                }
                 break;
                 
             case "Door Classroom":
@@ -222,6 +227,20 @@ public class Collision {
                 gamePanel.section_3.open(Player.checkTile);
                 break;
 
+            case "Di ra":
+                gamePanel.firstfloorLibrary.open(Player.checkTile);
+                break;
+
+            case "Di vao":
+               if(!Firstfloor_library.checkStudent) {
+                    Dialog("Bạn cần quét thẻ sinh viên tại bàn quét mã");
+               }
+
+                if(Firstfloor_library.checkStudent) {
+                    gamePanel.firstfloorLibrary.open(Player.checkTile);
+                }
+                break;
+
 
             case "D3-5_...02":
                 if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3){
@@ -235,6 +254,18 @@ public class Collision {
                 break;
         }
 
+    }
+
+
+    void Dialog(String str) {
+        if (Main.topGameState().equals("GamePlay")) {
+            gamePanel.ui.currentDialog = str;
+            Main.pushGameState("Dialog");
+            gamePanel.ui.i = 0;
+            gamePanel.ui.timer.setDelay(30);
+            gamePanel.ui.isFinishDialogue = false;
+            gamePanel.ui.timer.start();
+        }
     }
 
     public boolean isCollision(String str) {

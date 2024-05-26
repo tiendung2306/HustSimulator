@@ -31,7 +31,12 @@ public class DirectionIndicator {
     public DirectionIndicator(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         getImage();
-        width = 40;
+        width = (int)GamePanel.screenWidth / 19;
+        height = width * arrow.getHeight() / arrow.getWidth();
+    }
+
+    public void screenResize() {
+        width = (int)GamePanel.screenWidth / 19;
         height = width * arrow.getHeight() / arrow.getWidth();
     }
 
@@ -66,14 +71,15 @@ public class DirectionIndicator {
     }
 
     public void addArrow(int X, int Y) {
-        for(int i = 1; i <= arrowCount; i++) {
-            if(arrows[i].X == X && arrows[i].Y == Y)    return;
+        for (int i = 1; i <= arrowCount; i++) {
+            if (arrows[i].X == X && arrows[i].Y == Y)
+                return;
         }
         arrows[++arrowCount] = new Arrow(X, Y, width, height);
     }
 
     public void resetArrow() {
-        System.out.println(gamePanel.d3_secondfloor_hallway.curr_floor);
+        //System.out.println(gamePanel.d3_secondfloor_hallway.curr_floor);
         arrowCount = 0;
     }
 

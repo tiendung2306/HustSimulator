@@ -45,6 +45,7 @@ public class UI {
 
             catMeme = ImageIO.read(new FileInputStream("res/DialogueCharacter/CatMeme.png"));
             mainCharacter = ImageIO.read(new FileInputStream("res/DialogueCharacter/MainCharacter.png"));
+            mrHoa = ImageIO.read(new FileInputStream("res/DialogueCharacter/MrHoa.png"));
             mrsToan = ImageIO.read(new FileInputStream("res/DialogueCharacter/MrsToan.png"));
             system = ImageIO.read(new FileInputStream("res/DialogueCharacter/System.png"));
             teacher1 = ImageIO.read(new FileInputStream("res/NPC/teacher1/Frame (1).png"));
@@ -283,6 +284,12 @@ public class UI {
             topY = (int) (30 * GamePanel.scale);
             width = (int) (110 * GamePanel.scale);
             height = (int) (165 * GamePanel.scale);
+        }
+        if (characterDialogue == mrHoa) {
+            leftX = (int) (50 * GamePanel.scale);
+            topY = (int) (35 * GamePanel.scale);
+            width = (int) (160 * GamePanel.scale);
+            height = (int) (160 * GamePanel.scale);
         }
         if (characterDialogue == mainCharacter) {
             leftX = (int) (75 * GamePanel.scale);

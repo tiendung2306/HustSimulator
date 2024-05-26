@@ -24,8 +24,8 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getPoint().getX());
-        System.out.println(e.getPoint().getY());
+        //System.out.println(e.getPoint().getX());
+        //System.out.println(e.getPoint().getY());
     }
 
     public void mousePressed(MouseEvent e) {

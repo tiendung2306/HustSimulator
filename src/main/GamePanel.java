@@ -196,6 +196,7 @@ public class GamePanel extends JPanel implements Runnable {
         fifthfloorLibrary.resetTile();
         // currentMap.loadMap(this);
         missionDescription.screenResize();
+        directionIndicator.screenResize();
         player.reSize();
         currentMap.reSizeMap();
         inventory.ScreenResize();
@@ -272,6 +273,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
+        firstfloorLibrary.update();
         timeSystem.update();
         soundManager.update();
         tileManager.update();
@@ -362,7 +364,7 @@ public class GamePanel extends JPanel implements Runnable {
                 || Main.topGameState().equals("Dialogue")) {
             if (currentChapter != chapter1 || chapter1.IntroFinished) {
                 drawMap(g2);
-                directionIndicator.drawArrow(g2);
+                // directionIndicator.drawArrow(g2);
                 inventory.draw(g2);
                 missionDescription.draw(g2);
                 phone.draw(g2);

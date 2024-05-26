@@ -56,7 +56,7 @@ public class MyRoom extends Map {
         background.setWidth((int) (450 * GamePanel.scale));
         background.setHeight((int) (242 * GamePanel.scale));
         tileBed = new Tile(gamePanel, 26, 176, 87, 54, "My Bed", "Interact", "", "res/tile/my_bed.png", 1);
-        tilePC = new Tile(gamePanel, 164, 159, 102, 61, "My PC", "Interact", "", "res/tile/dan_pc.png", 1);
+        tilePC = new Tile(gamePanel, 164, 159, 102, 61, "My PC", "Obstacle", "", "res/tile/dan_pc.png", 1);
         tileTable = new Tile(gamePanel, 315, 145, 34, 62, "My Table", "Obstacle", "",
                 "res/tile/table_my_room.png", 1);
         tileFridge = new Tile(gamePanel, 378, 23, 55, 74, "My Fridge", "Interact", "", "res/tile/tu_lanh.png",
@@ -73,13 +73,13 @@ public class MyRoom extends Map {
         tileWallMyRoom = new Tile(gamePanel, 0, 0, 460, 91, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         tileNoodle = new Tile(gamePanel, 414, 130, 36, 36, "Noodle", "Collected", "Mì tôm Omachi",
                 "res/tile/mi_tom01.png", "res/tile/mi_tom02.png", (double) 1 / 3);
-        tileStudentCard = new Tile(gamePanel, 314, 159, 39, 27, "Student ID", "Collected",
+        tileStudentCard = new Tile(gamePanel, 313, 161, 39, 27, "Student ID", "Collected",
                 "Đại học Bách Khoa Hà Nội, S+ hữu hạn Giải Tích, 5.0 GPA.",
                 "res/tile/thehs01.png", "res/tile/thehs02.png", (double) 1 / 3);
         tileChair = new Tile[4];
-        tilehoso = new Tile(gamePanel, 338, 160, 39, 60, "Hồ sơ", "Collected", "Hồ sơ dùng để nhập học",
+        tilehoso = new Tile(gamePanel, 338, 160, 39, 60, "Hồ sơ", "Collected", "Hồ sơ đăng ký thợ săn",
                 "res/tile/hoso01.png", "res/tile/hoso02.png", (double) 1 / 3);
-        tileLaptop = new Tile(gamePanel, 92, 190, 66, 45, "Acer Predator 21X", "Collected", "230.000.000 VNĐ",
+        tileLaptop = new Tile(gamePanel, 93, 190, 66, 45, "Acer Predator 21X", "Collected", "230.000.000 VNĐ",
                 "res/tile/lap_top01.png", "res/tile/lap_top02.png", (double) 1 / 3);
         tilePhone = new Tile(gamePanel, 162, 187, 24, 39, "Iphone 100 ProMax", "Collected",
                 "Vũ khí đánh bại Ma Vương", "res/tile/phone01.png", "res/tile/phone02.png", (double) 1 / 3);
@@ -133,6 +133,7 @@ public class MyRoom extends Map {
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);
 
+        gamePanel.directionIndicator.drawArrow(g2);
         gamePanel.player.draw(g2);
 
     }

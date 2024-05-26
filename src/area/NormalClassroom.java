@@ -126,6 +126,7 @@ public class NormalClassroom extends Map {
             gamePanel.tileManager.draw(g2, tileContainer[i]);
         mrsToan.operation(g2);
 
+        gamePanel.directionIndicator.drawArrow(g2);
         gamePanel.player.draw(g2);
 
     }
