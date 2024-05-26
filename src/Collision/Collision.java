@@ -50,8 +50,14 @@ public class Collision {
     void teleport(String name) {
         switch (name) {
             case "Door My Room":
-                gamePanel.section_selection.open(true);
-                SoundManager.playSound("open_door");
+                if (!gamePanel.inventory.isExist("Iphone 100 ProMax")){
+                    ui.currentDialog = "Không có điện thoại mà đòi ra ngoài?";
+                    Main.pushGameState("Dialog");
+                }
+                else {
+                    gamePanel.section_selection.open(true);
+                    SoundManager.playSound("open_door");
+                }
                 break;
                 
             case "Door Classroom":

@@ -44,7 +44,6 @@ public class Question {
         isDisplayQuestion = false;
         isResetMouse = false;
         Main.popGameState();
-        System.out.println(Main.topGameState());
     }
 
     public void resetAnswer() {

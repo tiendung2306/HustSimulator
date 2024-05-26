@@ -232,7 +232,7 @@ public class Chapter1 extends Chapter {
             Dialogue("Đa tạ!");
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
-        if (completedAct == 17 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 2500) {
+        if (completedAct == 17 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 1500) {
             ui.setDialogueCharacter("Empty");
             Dialogue("Căn bản là xong, thôi về ngủ.");
             missionDescription.setMissionDescription("Mở điện thoại, dịch chuyển về nhà");

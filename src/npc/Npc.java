@@ -28,8 +28,6 @@ public class Npc extends Tile {
         width = hitbox.width;
         height = hitbox.height;
 
-        Type = "Interact";
-
         Load_animation();
     }
 

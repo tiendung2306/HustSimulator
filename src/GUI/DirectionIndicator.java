@@ -73,7 +73,7 @@ public class DirectionIndicator {
     }
 
     public void resetArrow() {
-        System.out.println(gamePanel.d3_secondfloor_hallway.curr_floor);
+        //System.out.println(gamePanel.d3_secondfloor_hallway.curr_floor);
         arrowCount = 0;
     }
 

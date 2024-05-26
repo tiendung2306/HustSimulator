@@ -248,6 +248,7 @@ public class Chapter2 extends Chapter {
         }
         if (completedAct == 1) {
             if (isAtClassMrHoa) {
+                gamePanel.normalClassroom.deleteTile(gamePanel.normalClassroom.numTileContainer - 1);
                 if (!checkSound_chap2_02) {
                     SoundManager.pauseSound("nhac_nen02");
                     SoundManager.resumeSound("gap_gv", true);
