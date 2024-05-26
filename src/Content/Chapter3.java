@@ -281,14 +281,15 @@ public class Chapter3 extends Chapter {
             if (gamePanel.currentMap == gamePanel.library) {
                 gamePanel.directionIndicator.resetArrow();
                 gamePanel.directionIndicator.addArrow(
-                        (gamePanel.library.tileDoorLibrary.getLeftX() + gamePanel.library.tileDoorLibrary.getRightX()) / 2
+                        (gamePanel.library.tileDoorLibrary.getLeftX() + gamePanel.library.tileDoorLibrary.getRightX())
+                                / 2
                                 - gamePanel.directionIndicator.width / 2,
                         gamePanel.library.tileDoorLibrary.getBottomY() - gamePanel.directionIndicator.height);
             }
             if (collision.interactItem.Name.equals("NPC Girl")) {
                 if (checkSound_chap3_02) {
                     SoundManager.stopSound("nhac_nen03");
-                    SoundManager.playSound("tang_hoa");
+                    SoundManager.loopSound("tang_hoa");
                     checkSound_chap3_02 = false;
                 }
                 ui.setReelsCharacter("Cat Giving Flower");
@@ -297,7 +298,7 @@ public class Chapter3 extends Chapter {
                 ++completedAct;
             }
         }
-        if (completedAct == 1 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 8000) {
+        if (completedAct == 1 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 6000) {
             checkSound_chap3_02 = true;
             if (Main.topGameState().equals("Reels"))
                 Main.popGameState();
@@ -307,14 +308,9 @@ public class Chapter3 extends Chapter {
         if (completedAct == 2 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 300) {
             ui.setDialogueCharacter("Main Character");
             ui.setDialogueBackground("Lake");
-            if (checkSound_chap3_02) {
-                SoundManager.loopSound("puon_cuoi");
-                checkSound_chap3_02 = false;
-            }
             Dialogue("Nàng thì đẹp tựa đóa hoa");
         }
         if (completedAct == 3) {
-            checkSound_chap3_02 = true;
             Dialogue("Ta A Giải tích thật là hợp nhau!");
         }
         if (completedAct == 4) {
@@ -322,10 +318,16 @@ public class Chapter3 extends Chapter {
         }
         if (completedAct == 5) {
             ui.setDialogueCharacter("NPC Girl");
+            if (checkSound_chap3_02) {
+                SoundManager.stopSound("tang_hoa");
+                SoundManager.loopSound("puon_cuoi");
+                checkSound_chap3_02 = false;
+            }
             Dialogue("Không.");
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
         }
         if (completedAct == 6 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 300) {
+            checkSound_chap3_02 = true;
             ui.setDialogueCharacter("Empty");
             Dialogue("Ta biết nàng ấy thích ta, nhưng lại cố tỏ ra vô tình. Quả là cô gái thú vị!");
         }

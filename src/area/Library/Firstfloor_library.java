@@ -3,6 +3,8 @@ package area.Library;
 import animation.Animation_player;
 import entity.Player;
 import main.GamePanel;
+import main.Main;
+import main.UI;
 import map.Map;
 import sound.SoundManager;
 import tile.ExtraTile;
@@ -13,15 +15,14 @@ import java.awt.*;
 public class Firstfloor_library extends Map {
     Tile background;
     Tile wall01, wall02, wall03, wall04, wall05, wall06, tileColumn01, tileColumn02, wall07, wall08, wall09, wall10,
-            wall11, wall12, tileTalbe;
-    public Tile tileStair01, tileStair02, tileStair03, door;
+            wall11, wall12, door, tileTalbe,
+            tileStair01, tileStair02, tileStair03, wall13, wall14, tileIn, tileOut;
     GamePanel gamePanel;
     Animation_player map_exchange_effect1, map_exchange_effect2, map_exchange_effect3;
+    public static Boolean checkStudent = false, checkDialogue = true, checkStudentOut = false;
 
     public Firstfloor_library(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        width = (int) (62.5 * 16 * GamePanel.scale);
-        height = (int) (37.5 * 16 * GamePanel.scale);
         width = (int) (1000 * GamePanel.scale);
         height = (int) (600 * GamePanel.scale);
         tileContainer = new Tile[50];
@@ -46,6 +47,10 @@ public class Firstfloor_library extends Map {
         wall10 = new Tile(gamePanel, 340, 522, 43, 42, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         wall11 = new Tile(gamePanel, 435, 508, 42, 56, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         wall12 = new Tile(gamePanel, 574, 510, 78, 54, "", "Obstacle", "", "res/tile/no_thing.png", 1);
+        wall13 = new Tile(gamePanel, 372, 545, 78, 15, "Khong cho di vao", "Obstacle", "", "res/tile/no_thing.png", 1);
+        wall14 = new Tile(gamePanel, 531, 524, 56, 10, "Khong cho di ra", "Obstacle", "", "res/tile/no_thing.png", 1);
+        tileIn = new Tile(gamePanel, 529, 542, 56, 16, "Di vao", "Teleport", "Di vao", "res/tile/no_thing.png", 1);
+        tileOut = new Tile(gamePanel, 379, 527, 69, 16, "Di ra", "Teleport", "Di ra", "res/tile/no_thing.png", 1);
         door = new Tile(gamePanel, 337, 598, 315, 2, "Cua ra thu vien", "Teleport", "Cua ra tu thu vien",
                 "res/tile/no_thing.png", 1);
         tileStair01 = new Tile(gamePanel, 357, 43, 5, 70, "Cau thang 1 -> 2", "Teleport", "Cau thang to 1 len",
@@ -90,6 +95,10 @@ public class Firstfloor_library extends Map {
         addTile(wall10);
         addTile(wall11);
         addTile(wall12);
+        addTile(wall13);
+        addTile(wall14);
+        addTile(tileIn);
+        addTile(tileOut);
         addTile(tileTalbe);
         addTile(tileColumn01);
         addTile(tileColumn02);
@@ -131,6 +140,27 @@ public class Firstfloor_library extends Map {
             map_exchange_effect = map_exchange_effect3;
             SoundManager.playSound("open_door");
         }
+        if (type.equals("Di vao thu vien 2")) {
+            playerX = (int) (520 * GamePanel.scale);
+            playerY = (int) (560 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect3;
+            SoundManager.playSound("open_door");
+        }
+        if (type.equals("Di vao")) {
+            playerX = (int) (546 * GamePanel.scale);
+            playerY = (int) (490 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect1;
+            SoundManager.playSound("foot_step");
+        }
+        if (type.equals("Di ra")) {
+            playerX = (int) (396 * GamePanel.scale);
+            playerY = (int) (555 * GamePanel.scale);
+            map_exchange_effect = map_exchange_effect1;
+            SoundManager.playSound("foot_step");
+            checkStudent = false;
+            checkDialogue = true;
+            // checkStudentOut = true;
+        }
         loadMap(gamePanel);
     }
 
@@ -153,8 +183,34 @@ public class Firstfloor_library extends Map {
         map_exchange_effect3.resize(GamePanel.screenWidth / (2 * map_exchange_effect3.getWidth()));
     }
 
+    public void update() {
+        if (gamePanel.collision.interactItem.Name.equals("Bàn quét mã sinh viên") && gamePanel.inventory.isUsingItem &&
+                gamePanel.inventory.usingItem.Name.equals("Student ID")) {
+            if (!Player.checkTile.equals("Di ra")) {
+                if (checkDialogue && !checkStudentOut) {
+                    Main.popGameState();
+                    Dialog("Bạn đã nạp thẻ sinh viên thành công");
+                    checkDialogue = false;
+                    checkStudent = true;
+                }
+            }
+        }
+    }
+
+    void Dialog(String str) {
+        if (Main.topGameState().equals("GamePlay")) {
+            gamePanel.ui.currentDialog = str;
+            Main.pushGameState("Dialog");
+            gamePanel.ui.i = 0;
+            gamePanel.ui.timer.setDelay(30);
+            gamePanel.ui.isFinishDialogue = false;
+            gamePanel.ui.timer.start();
+        }
+    }
+
     // Phương thức vẽ map
     public void draw(Graphics2D g2) {
+        System.out.println(checkStudent);
         gamePanel.tileManager.draw(g2, background);
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);

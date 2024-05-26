@@ -298,6 +298,7 @@ public class Chapter2 extends Chapter {
             ++completedAct;
         }
         if (completedAct == 9) {
+            checkSound_chap2_02 = true;
             if (collision.interactItem.Name.equals("My Bed")) {
                 gamePanel.myRoom.tileBed.isMission = false;
                 if (checkEndChapter) {
