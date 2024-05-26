@@ -42,7 +42,7 @@ public class Main {
         Main.window = new JFrame();
         Main.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Main.window.setResizable(false);
-        Main.window.setTitle("2D Adventure");
+        Main.window.setTitle("HUST Simulator");
         Main.window.setLayout(new BoxLayout(Main.window.getContentPane(), BoxLayout.Y_AXIS));
         Main.window.add(gamePanel);
         Main.window.pack();
