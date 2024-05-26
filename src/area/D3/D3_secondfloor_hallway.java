@@ -1,6 +1,6 @@
 package area.D3;
 
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
