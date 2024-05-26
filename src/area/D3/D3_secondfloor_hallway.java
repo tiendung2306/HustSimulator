@@ -20,6 +20,8 @@ public class D3_secondfloor_hallway extends Map {
     public Tile d3_stair_down1, d3_stair_down2;
     public Tile d3_5_secondfloor_entry;
 
+    Tile[] floor_layer_left = new Tile[5];
+    Tile[] floor_layer_right = new Tile[5];
 
     public D3_secondfloor_hallway(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -48,12 +50,22 @@ public class D3_secondfloor_hallway extends Map {
         spawn_point2.resize(scale);
         spawn_point3.resize(scale);
 
-
+        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
+        
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 
         }
-        
+
+        for(int i = 1; i <= 4; i++){
+            floor_layer_left[i].resize(scale);
+        }
+
+        for(int i = 1; i <= 4; i++){
+            floor_layer_right[i].resize(scale);
+        }
+
+                
         width = background.getWidth();
         height = background.getHeight();
 
@@ -70,6 +82,14 @@ public class D3_secondfloor_hallway extends Map {
         try {
             BufferedImage background_Image = ImageIO.read(new FileInputStream("res/tile/D3_secondfloor_hallway_layer(1).png"));
             background = new Tile(new Rectangle(0, 0, background_Image.getWidth(), background_Image.getHeight()), "background", "", null, background_Image);
+            
+            for(int i = 1; i <= 4; i++){
+                int floor_index = i + 1;
+                String path = "res/tile/D3_floor_layer(" + floor_index + ").png";
+                BufferedImage floor_layer_left_Image = ImageIO.read(new FileInputStream(path));
+                floor_layer_left[i] = new Tile(new Rectangle(-261, -86, 1000, 1000), "floor_layer_left", "", null, floor_layer_left_Image);
+                floor_layer_right[i] = new Tile(new Rectangle(1333, -93, 1000, 1000), "floor_layer_right", "", null, floor_layer_left_Image);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -125,6 +145,11 @@ public class D3_secondfloor_hallway extends Map {
 
     @Override public void reSizeMap(){
         ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * background.image.getHeight() / (50 * background.getHeight()));
+    }
+
+    @Override public void floorDisplay(Graphics2D g2){
+        gamePanel.tileManager.draw(g2, floor_layer_left[curr_floor - 1]);
+        gamePanel.tileManager.draw(g2, floor_layer_right[curr_floor - 1]);
     }
 
     // // Phương thức vẽ map

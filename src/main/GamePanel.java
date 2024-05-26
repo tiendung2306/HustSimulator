@@ -112,6 +112,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Section_1 section_1 = new Section_1(this);
     public boolean isRunning = false;
     public NormalClassroom normalClassroom = new NormalClassroom(this);
+    public NormalClassroom normalClassroom_302 = new NormalClassroom(this);
     public ComputerRoom computerRoom = new ComputerRoom(this);
     public Library library = new Library(this);
     public Stadium stadium = new Stadium(this);
@@ -194,6 +195,7 @@ public class GamePanel extends JPanel implements Runnable {
         missionDescription.screenResize();
         myRoom.resetTile();
         normalClassroom.resetTile();
+        normalClassroom_302.resetTile();
         computerRoom.resetTile();
         library.resetTile();
         stadium.resetTile();
@@ -202,7 +204,7 @@ public class GamePanel extends JPanel implements Runnable {
         thirdfloorLibrary.resetTile();
         fourthfloorLibrary.resetTile();
         fifthfloorLibrary.resetTile();
-        currentMap.loadMap(this);
+        // currentMap.loadMap(this);
         missionDescription.screenResize();
         player.reSize();
         currentMap.reSizeMap();
@@ -367,7 +369,6 @@ public class GamePanel extends JPanel implements Runnable {
             ) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
-                player.draw(g2);
                 inventory.draw(g2);
                 missionDescription.draw(g2);
                 phone.draw(g2);
@@ -455,8 +456,11 @@ public class GamePanel extends JPanel implements Runnable {
         if (currentMap == fourthfloorLibrary) {
             fourthfloorLibrary.draw(g2);
         }
-        if (currentMap == fifthfloorLibrary) {
+        if (currentMap == fifthfloorLibrary)
             fifthfloorLibrary.draw(g2);
+
+        if (currentMap == normalClassroom_302) {
+            normalClassroom_302.draw(g2);
         }
     }
 

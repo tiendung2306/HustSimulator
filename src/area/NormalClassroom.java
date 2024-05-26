@@ -43,7 +43,10 @@ public class NormalClassroom extends Map {
                 1);
         tileWallNormalClassroom = new Tile(gamePanel, 0, 0, 320, 79, "", "Obstacle", "", "res/tile/no_thing.png", 1);
         mrsToan = new Npc(gamePanel, new Rectangle(760, 560, 60, 90), "NPC", "Mrs Toan");
-        map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+        map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8,
+                new Rectangle((int) (GamePanel.screenWidth / 4),
+                        (int) (GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4),
+                        (int) (GamePanel.screenWidth / 2), (int) (GamePanel.screenWidth / 2)));
 
         setUpTable();
         setUpTileNormalClassroom();
@@ -91,7 +94,7 @@ public class NormalClassroom extends Map {
     public void resetTile() {
         width = (int) (20 * 16 * GamePanel.scale);
         height = (int) (15 * 16 * GamePanel.scale);
-        if(gamePanel.currentMap == this) {
+        if (gamePanel.currentMap == this) {
             playerX = (int) ((gamePanel.player.getMapX() / prevScale) * GamePanel.scale);
             playerY = (int) ((gamePanel.player.getMapY() / prevScale) * GamePanel.scale);
             prevScale = (int) GamePanel.scale;
@@ -101,12 +104,11 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
-        mrsToan.resize(GamePanel.scale);
         map_exchange_effect3.resize(GamePanel.screenWidth / (2 * map_exchange_effect3.getWidth()));
     }
 
-    public void open(String type){
-        if(type.equals("Vao phong hoc")) {
+    public void open(String type) {
+        if (type.equals("Vao phong hoc")) {
             playerX = (int) (35 * GamePanel.scale);
             playerY = (int) (64 * GamePanel.scale);
             map_exchange_effect = map_exchange_effect3;
@@ -120,5 +122,8 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);
         mrsToan.operation(g2);
+
+        gamePanel.player.draw(g2);
+
     }
 }

@@ -188,11 +188,12 @@ public class Map {
             else
                 object.operation(g2);
         }
+        
+        floorDisplay(g2);
 
         if(is_player_display == false)
             gamePanel.player.draw(g2);
             
-        floorDisplay(g2);
     }
 
 

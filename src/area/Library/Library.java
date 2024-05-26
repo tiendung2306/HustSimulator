@@ -127,5 +127,8 @@ public class Library extends Map {
         gamePanel.tileManager.draw(g2, background);
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);
+
+        gamePanel.player.draw(g2);
+        
     }
 }

@@ -43,12 +43,14 @@ public class D3_hallway extends Map {
         spawn_point1.resize(scale);
         spawn_point2.resize(scale);
         spawn_point3.resize(scale);
-
-
+        
+        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
+        
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 
         }
+
         
         width = background.getWidth();
         height = background.getHeight();
