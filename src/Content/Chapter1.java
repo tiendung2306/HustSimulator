@@ -40,8 +40,7 @@ public class Chapter1 extends Chapter {
         if (completedAct == 1)
             Dialogue("Ta đang là anh hùng trong cuộc chiến chống lại quỷ vương mà. Đây là đâu?");
         if (completedAct == 2)
-            Dialogue(
-                    "Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
+            Dialogue("Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
         if (completedAct == 3)
             Dialogue("Eimi, Yua, không biết 2 cô ấy có ổn không?");
         if (completedAct == 4)
@@ -153,9 +152,12 @@ public class Chapter1 extends Chapter {
         if (completedAct == 5 && phone.isOpenMessager && !phone.isDrawPhone) {
             if (!inventory.isExist("Hồ sơ")) {
                 Dialogue("Bắt đầu hành trình làm anh hùng của thế giới mới thôi!");
+                gamePanel.myRoom.tilehoso.isMission = true;
                 missionDescription.setMissionDescription("Nhặt bộ hồ sơ nhập học");
-            } else
-                completedAct++;
+            } else {
+                gamePanel.myRoom.tilehoso.isMission = false;
+                ++completedAct;
+            }
             phone.clearMessage();
         }
         if (completedAct == 6 && inventory.isExist("Hồ sơ")) {

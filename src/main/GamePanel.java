@@ -215,7 +215,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void Init() {
         newGame();
         initSound();// =====================================
-        currentChapter = chapter3;
         currentMap.loadMap(this);
         keyboardManager.init();
         keySetting.init();

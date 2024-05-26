@@ -68,8 +68,6 @@ public class Chapter2 extends Chapter {
         if (completedAct == 7)
             Dialogue("Còn Boss Lê Quang Hòa vẫn luôn là một ẩn số mà đến nay hội vẫn chưa khai phá được.");
         if (completedAct == 8)
-            Dialogue("Nhưng đối với anh hùng như ta, nhiệm vụ này đánh giá là hơi dễ.");
-        if (completedAct == 9)
             nextTimeline();
     }
 
@@ -173,41 +171,43 @@ public class Chapter2 extends Chapter {
                     SoundManager.loopSound("gap_gv");
                     checkSound_chap2_02 = false;
                 }
-                ui.setDialogueBackground("Classroom");
-                ui.setDialogueCharacter("Mrs Toan");
-                Dialogue("Eng tê, dừ buổi mô rồi Eng mì mò mặt đến lớp?");
+                prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
                 isAtClassMrsToan = false;
                 ++completedAct;
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             }
         }
-        if (completedAct == 2) {
-            checkSound_chap2_02 = true;
+        if (completedAct == 2 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 500){
             ui.setDialogueBackground("Classroom");
             ui.setDialogueCharacter("Mrs Toan");
-            Dialogue("Eng lên bảng giải câu ni cho tui.");
+            Dialogue("Eng tê, dừ buổi mô rồi eng mì mò mặt đến lớp?");
         }
         if (completedAct == 3) {
-            gamePanel.normalClassroom.addTile(gamePanel.normalClassroom.mrsToan);
-            ++completedAct;
+            checkSound_chap2_02 = true;
+            Dialogue("Eng lên bảng giải câu ni cho tui.");
         }
         if (completedAct == 4) {
+            gamePanel.normalClassroom.addTile(gamePanel.normalClassroom.mrsToan);
+            missionDescription.setMissionDescription("Innova cô Toàn đi");
+            ++completedAct;
+        }
+        if (completedAct == 5) {
             if (collision.interactItem.Name.equals("Mrs Toan"))
                 Dialogue("Trả lời, đạo hàm của arctan là?");
         }
-        if (completedAct == 5) {
+        if (completedAct == 6) {
             ui.setDialogueCharacter("Empty");
             Dialogue("Hệ thống, giúp ta trả lời câu hỏi này.");
         }
-        if (completedAct == 6) {
+        if (completedAct == 7) {
             ui.setDialogueCharacter("System");
             Dialogue("Câu trả lời là 1/(1+x).");
         }
-        if (completedAct == 7) {
+        if (completedAct == 8) {
             ui.setDialogueCharacter("Main Character");
             Dialogue("Đáp án chính là 1/(1+x).");
         }
-        if (completedAct == 8) {
+        if (completedAct == 9) {
             if (checkSound_chap2_02) {
                 SoundManager.playSound("tra_loi_sai");
                 checkSound_chap2_02 = false;
@@ -215,7 +215,7 @@ public class Chapter2 extends Chapter {
             ui.setDialogueCharacter("Mrs Toan");
             Dialogue("Sai");
         }
-        if (completedAct == 9) {
+        if (completedAct == 10) {
             ui.setDialogueCharacter("Cat Meme");
             if (!checkSound_chap2_02) {
                 SoundManager.playSound("meme_meo");
@@ -223,15 +223,15 @@ public class Chapter2 extends Chapter {
             }
             Dialogue("...");
         }
-        if (completedAct == 10) {
+        if (completedAct == 11) {
             ui.setDialogueCharacter("System");
             Dialogue("...");
         }
-        if (completedAct == 11) {
+        if (completedAct == 12) {
             ui.setDialogueCharacter("Mrs Toan");
             Dialogue("Về chộ đi, trớp trớp thật. Nỏ mần được cấy chi nên hồn.");
         }
-        if (completedAct == 12)
+        if (completedAct == 13)
             nextTimeline();
     }
 

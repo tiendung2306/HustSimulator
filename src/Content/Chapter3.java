@@ -36,7 +36,7 @@ public class Chapter3 extends Chapter{
             Dialogue("Great day to go to the library");
         if (completedAct == 1) {
             Dialogue("Practice makes perfect");
-            missionDescription.setMissionDescription("Tới thư viện");
+            missionDescription.setMissionDescription("Tới phòng tự học tại tầng 3 thư viện!");
             isAtLibrary = false;
         }
         if (completedAct == 2){

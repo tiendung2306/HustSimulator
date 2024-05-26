@@ -114,6 +114,8 @@ public class Library extends Map {
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
+        if (tileContainer[numTileContainer - 1] != npcGirl)
+            npcGirl.reSizeTile();
         map_exchange_effect3.resize(GamePanel.screenWidth / (2 * map_exchange_effect3.getWidth()));
     }
 

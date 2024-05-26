@@ -71,9 +71,9 @@ public class Player extends Entity {
         screenY = (int) (GamePanel.screenHeight / 2 - boundingBox.height / 2);
         boundingBox.x = screenX;
         boundingBox.y = screenY;
-        speed = 4;
+        speed = 5;
         direction = "stand";
-        speedSlant = 3;
+        speedSlant = 4;
 
         animation_player_stand_RIGHT = new Animation_player(gamepanel, "res/player/character_stand_right ", 3, 0.5,
                 boundingBox);
@@ -103,17 +103,14 @@ public class Player extends Entity {
         screenY = (int) (GamePanel.screenHeight / 2 - boundingBox.height / 2);
         boundingBox.x = screenX;
         boundingBox.y = screenY;
-        speed = (int) (4 * GamePanel.scale / Map.prevScale);
-        speedSlant = (int) (GamePanel.scale);
+        speed = (int) (5 * GamePanel.scale / Map.prevScale);
+        speedSlant = (int) (4 * GamePanel.scale / Map.prevScale);
     }
 
     // =============================================================================================================================================
     public void update() {
         if (!(Main.topGameState().equals("GamePlay")) || gamepanel.phone.isDrawPhone)
             return;
-        System.out.print(mapX);
-        System.out.print(" ");
-        System.out.println(mapY);
         int countPressed = 0;
         if (keyhandler.upPressed)
             ++countPressed;
