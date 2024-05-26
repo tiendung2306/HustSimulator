@@ -1,17 +1,17 @@
 Section1
-Des Mo ta section 1
+Des Khu vực nhập học
 Rec 154 590 432 108
 Rec 247 381 336 206 
 Rec 247 283 472 107
 Boder 152 285 568 413
 Section2
-Des Mo ta section 2
+Des Khu vực phòng học
 Poly 633 1041 635 1125 851 1126 821 1043
 Poly 821 1041 850 1126 1089 914 851 1015
 Poly 851 1017 1089 914 1089 798 851 797
 Boder 633 799 461 333
 Section3
-Des Mo ta section 3
+Des Khu vực thư viện
 Rec 472 801 355 217
 Rec 473 1010 152 111
 Boder 472 797 361 325

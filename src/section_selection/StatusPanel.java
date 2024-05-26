@@ -14,7 +14,7 @@ public class StatusPanel {
     public StatusPanel(Section_selection section_selection){
         this.section_selection = section_selection;
 
-        defaut = new Text("NO SECTION SELECTED", new Font("Dialog", Font.BOLD, 90), section_selection);
+        defaut = new Text("CHƯA CHỈ ĐỊNH", new Font("Dialog", Font.BOLD, 90), section_selection);
         sectionTag = new Text("", new Font("Dialog", Font.BOLD, 120), section_selection);
         sectionStatus = new Text("", new Font("Dialog", Font.BOLD, 80), section_selection);
         sectionDescription = new Text("", new Font("Dialog", Font.BOLD, 80), section_selection);
@@ -43,12 +43,27 @@ public class StatusPanel {
 
     protected void setHoverOn(Section section){
         onhover = true;
-        sectionTag.setText(section.tag);
+        switch (section.tag) {
+            case "Section1":
+                sectionTag.setText("KHU VỰC 1");
+                break;
+
+            case "Section2":
+                sectionTag.setText("KHU VỰC 2");
+                break;
+            
+            case "Section3":
+                sectionTag.setText("KHU VỰC 3");
+                break;
+        
+            default:
+                break;
+        }
         if(section.unlock == true)
-            sectionStatus.setText("Status: Avaiable");
+            sectionStatus.setText("Trạng thái : Khóa");
         else
-            sectionStatus.setText("Status: Unavaiable");
-        sectionDescription.setText("Description: " + section.description);
+            sectionStatus.setText("Trạng thái : Mở");
+        sectionDescription.setText("Mô tả: " + section.description);
 
     }
 
