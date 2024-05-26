@@ -182,6 +182,7 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.addSound(new Sound("wow", "res/sound/wowww.wav"));
         soundManager.addSound(new Sound("pewpew", "res/sound/o_cai_tam_chat.wav"));
         soundManager.addSound(new Sound("tim_dap", "res/sound/tim_dap.wav"));
+        soundManager.addSound(new Sound("tan_gai", "res/sound/nhac_tan_gai.wav"));
     }
 
     public void screenResize() {

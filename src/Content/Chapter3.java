@@ -94,12 +94,18 @@ public class Chapter3 extends Chapter{
         if (completedAct == 9){
             if (collision.interactItem.Name.equals("NPC Girl"))
             {
+                if(checkSound_chap3_02) {
+                    SoundManager.loopSound("tan_gai");
+                    SoundManager.pauseSound("nhac_nen03");
+                    checkSound_chap3_02 = false;
+                }
                 ui.setDialogueCharacter("Main Character");
                 ui.setDialogueBackground("Library");
                 Dialogue("N...nàng ăn cơm chưa?");
             }
         }
         if (completedAct == 10) {
+            checkSound_chap3_02 = true;
             ui.setDialogueCharacter("NPC Girl");
             Dialogue("???");
         }
@@ -139,12 +145,18 @@ public class Chapter3 extends Chapter{
             Dialogue("Nàng ấy ở đâu được nhỉ?");
         }
         if (completedAct == 2){
+            if(checkSound_chap3_02) {
+                SoundManager.stopSound("tan_gai");
+                SoundManager.resumeSound("nhac_nen03",true);
+                checkSound_chap3_02 = false;
+            }
             collision.interactItem = new Tile();
             missionDescription.setMissionDescription("Tìm cô ấy đi, tình yêu cuộc đời đấy! (Có thể là ở Hồ Tiền)");
             //gamePanel.section_3.addTile(gamePanel.section_3.npcGirl);
             ++completedAct;
         }
         if (completedAct == 3){
+            checkSound_chap3_02 = true;
             nextTimeline();
         }
     }
