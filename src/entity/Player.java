@@ -103,7 +103,7 @@ public class Player extends Entity {
         screenY = (int) (GamePanel.screenHeight / 2 - boundingBox.height / 2);
         boundingBox.x = screenX;
         boundingBox.y = screenY;
-        speed = (int) (4 * GamePanel.scale / Map.prevScale);
+        speed = (int) (20 * GamePanel.scale / Map.prevScale);
         speedSlant = (int) (GamePanel.scale);
     }
 
