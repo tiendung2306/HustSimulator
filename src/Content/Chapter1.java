@@ -32,7 +32,7 @@ public class Chapter1 extends Chapter {
 
     void Intro() {// Cho nhạc vào đấy
         if (checkSound_chap1_01) {
-            SoundManager.loopSound("nhac_nen01");
+//            SoundManager.loopSound("nhac_nen01");
             checkSound_chap1_01 = false;
         }
         if (completedAct == 0)

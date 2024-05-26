@@ -223,6 +223,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void run() {
+        soundManager.addSound(new Sound("nhac_nen01", "res/sound/nhac_nen_1.wav"));
+        SoundManager.loopSound("nhac_nen01");
         Init();
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;

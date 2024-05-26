@@ -378,7 +378,6 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D g2) {
-        tileManager.drawRect(g2, hitArea.x, hitArea.y, hitArea.width, hitArea.height);
         curr_animation_player.operation(g2);
     }
     // public void soundDoor() {
