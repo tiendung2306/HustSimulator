@@ -79,6 +79,7 @@ public class Fourthfloor_library extends Map {
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
+        addExtraTile("src/txt/tvtang3.txt");
         map_exchange_effect2.resize(GamePanel.screenWidth / (2 * map_exchange_effect2.getWidth()));
     }
 

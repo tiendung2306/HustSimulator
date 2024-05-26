@@ -164,13 +164,19 @@ public class Chapter3 extends Chapter{
         if (completedAct == 0){
             if (collision.interactItem.Name.equals("NPC Girl"))
             {
+                if(checkSound_chap3_02) {
+                    SoundManager.stopSound("nhac_nen03");
+                    SoundManager.playSound("tang_hoa");
+                    checkSound_chap3_02 = false;
+                }
                 ui.setReelsCharacter("Cat Giving Flower");
                 Main.pushGameState("Reels");
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
                 ++completedAct;
             }
         }
-        if (completedAct == 1 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 3000){
+        if (completedAct == 1 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 8000){
+            checkSound_chap3_02 = true;
             if (Main.topGameState().equals("Reels"))
                 Main.popGameState();
             prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
@@ -179,9 +185,14 @@ public class Chapter3 extends Chapter{
         if (completedAct == 2 && TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 300){
             ui.setDialogueCharacter("Main Character");
             ui.setDialogueBackground("Lake");
+            if(checkSound_chap3_02) {
+                SoundManager.loopSound("puon_cuoi");
+                checkSound_chap3_02 = false;
+            }
             Dialogue("Nàng thì đẹp tựa đóa hoa");
         }
         if (completedAct == 3){
+            checkSound_chap3_02 = true;
             Dialogue("Ta A Giải tích thật là hợp nhau!");
         }
         if (completedAct == 4){
@@ -203,6 +214,11 @@ public class Chapter3 extends Chapter{
             Dialogue("Hôm nay tới đây là đủ rồi");
         }
         if (completedAct == 9){
+            if(checkSound_chap3_02) {
+                SoundManager.stopSound("puon_cuoi");
+                SoundManager.resumeSound("nhac_nen03",true);
+                checkSound_chap3_02 = false;
+            }
             ui.setDialogueBackground("Empty");
             missionDescription.setMissionDescription("Di chuyển về nhà và ngủ đi");
             ++completedAct;
