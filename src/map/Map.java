@@ -158,6 +158,7 @@ public class Map {
         gamePanel.player.setMapX(playerX);
         gamePanel.player.setMapY(playerY);
         gamePanel.player.posUpdate();
+        gamePanel.directionIndicator.resetArrow();
     }
 
     public void reSizeMap(){}

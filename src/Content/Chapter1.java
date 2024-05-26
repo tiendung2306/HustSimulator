@@ -31,7 +31,7 @@ public class Chapter1 extends Chapter {
     }
 
     void Intro() {// Cho nhạc vào đấy
-        if(checkSound_chap1_01) {
+        if (checkSound_chap1_01) {
             SoundManager.loopSound("nhac_nen01");
             checkSound_chap1_01 = false;
         }
@@ -40,7 +40,8 @@ public class Chapter1 extends Chapter {
         if (completedAct == 1)
             Dialogue("Ta đang là anh hùng trong cuộc chiến chống lại quỷ vương mà. Đây là đâu?");
         if (completedAct == 2)
-            Dialogue("Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
+            Dialogue(
+                    "Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
         if (completedAct == 3)
             Dialogue("Eimi, Yua, không biết 2 cô ấy có ổn không?");
         if (completedAct == 4)
@@ -55,11 +56,16 @@ public class Chapter1 extends Chapter {
         IntroFinished = true;
         if (completedAct == 0) {
             TimeSystem.setCurrentTime("07:00");
+            // Question("Đạo hàm của arctan(x) là cái ci???", "1/(1+x)", "1/(1-x)");
+            // if(gamePanel.question.getAnswer() != 0) {
+            // completedAct++;
+            // }
             Dialogue("Đây là căn phòng của ta sao?");
         }
         if (completedAct == 1)
             Dialogue("Nó khá nhỏ so với tòa lâu đài của ta ở kiếp trước. Nhưng nó chứa khá là nhiều thứ thú vị!");
-        missionDescription.setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng(Ấn B để mở balo)");
+        missionDescription
+                .setMissionDescription("Tìm Laptop, thẻ sinh viên và đọc thông tin của chúng(Ấn B để mở balo)");
         if (completedAct == 2) {
             if (!studentIDMission)
                 gamePanel.myRoom.tileStudentCard.isMission = true;
@@ -94,7 +100,7 @@ public class Chapter1 extends Chapter {
             }
             if (collision.interactItem.Name.equals("Pan") && inventory.isUsingItem
                     && inventory.usingItem.Name.equals("Noodle")) {
-                if(checkSound_chap1_02) {
+                if (checkSound_chap1_02) {
                     SoundManager.playSound("an_mi");
                     checkSound_chap1_01 = false;
                 }
@@ -124,12 +130,14 @@ public class Chapter1 extends Chapter {
             if (!inventory.isExist("Iphone 100 ProMax")) { // phai co dien thoai trong balo
                 missionDescription.setMissionDescription("Tìm kiếm điện thoại");
                 gamePanel.myRoom.tilePhone.isMission = true;
-            } else completedAct++;
+            } else
+                completedAct++;
         }
         if (completedAct == 3) {
             if (inventory.isExist("Iphone 100 ProMax")) {
                 if (Main.topGameState().equals("GamePlay"))
-                    Dialogue("Quả là một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này đúng là một thiên tài.");
+                    Dialogue(
+                            "Quả là một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này đúng là một thiên tài.");
                 gamePanel.myRoom.tilePhone.isMission = false;
             }
         }
@@ -198,7 +206,8 @@ public class Chapter1 extends Chapter {
         }
         if (completedAct == 11) {
             Dialogue("Ta muốn trở thành chúa tể bóng tối, thì đăng ký ở quầy nào đây.");
-            missionDescription.setMissionDescription("Đến hàng thứ 2 từ trái sang để nộp hồ sơ(Sử dụng tập tài liệu sau khi tương tác với cô giáo)");
+            missionDescription.setMissionDescription(
+                    "Đến hàng thứ 2 từ trái sang để nộp hồ sơ(Sử dụng tập tài liệu sau khi tương tác với cô giáo)");
         }
         if (completedAct == 12) {
             if (collision.interactItem.Name.equals("Desk")) {
@@ -241,6 +250,10 @@ public class Chapter1 extends Chapter {
     }
 
     void Timeline4() {
+        if (!checkSound_chap1_01) {
+            SoundManager.stopSound("nhac_nen01");
+            checkSound_chap1_01 = true;
+        }
         gamePanel.currentChapter = gamePanel.chapter2;
         gamePanel.chapter2.completedAct = 0;
     }
@@ -282,5 +295,13 @@ public class Chapter1 extends Chapter {
             ui.isFinishDialogue = false;
             ui.timer.start();
         }
+    }
+
+    void Question(String question, String answer1, String answer2) {
+        if (gamePanel.question.getAnswer() != 0)
+            return;
+        gamePanel.question.setQuestion(question, answer1, answer2);
+        if (Main.topGameState().equals("GamePlay"))
+            Main.pushGameState("Dialogue");
     }
 }

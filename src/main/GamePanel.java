@@ -11,6 +11,7 @@ import Collision.Collision;
 import Content.*;
 import GUI.DirectionIndicator;
 import GUI.MissionDescription;
+import GUI.Question;
 import Inventory.Inventory;
 import Keyboard.KeyboardManager;
 import LoadSaveGame.LoadSaveGameSystem;
@@ -40,6 +41,7 @@ import area.C2.C2_hallway;
 import area.D3.D3_hallway;
 import area.D3.D3_secondfloor_hallway;
 import area.D3_5.D3_5_hallway_secondfloor;
+import area.Library.Library;
 import entity.Player;
 import map.Map;
 import phone.Phone;
@@ -98,6 +100,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Phone phone = new Phone(this);
     public MissionDescription missionDescription = new MissionDescription(this);
     public DirectionIndicator directionIndicator = new DirectionIndicator(this);
+    public Question question = new Question(this);
     public KeyHandler keyH = new KeyHandler(this);
     public Collision collision = new Collision(this);
     public Player player = new Player(this, keyH, tileManager, ui);
@@ -204,13 +207,14 @@ public class GamePanel extends JPanel implements Runnable {
         inventory.ScreenResize();
         phone.screenResize();
         ui.screenResize();
+        question.screenResize();
         section_selection.screenResize();
 
     }
 
     public void Init() {
         newGame();
-        initSound();//=====================================
+        initSound();// =====================================
         currentChapter = chapter3;
         currentMap.loadMap(this);
         keyboardManager.init();
@@ -269,11 +273,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     // =================================================================================================================
     public void update() {
-        
-//        if (TimeSystem.getCurrentSystemTimeInMilliseconds() - Collision.prevTime >= 1300 && Collision.resumeSound) {
-//            SoundManager.resumeSound("nhac_nen01", true);
-//            Collision.resumeSound = false;
-//        }
         timeSystem.update();
         soundManager.update();
         tileManager.update();
@@ -283,6 +282,7 @@ public class GamePanel extends JPanel implements Runnable {
         inventory.update();
         missionDescription.update();
         directionIndicator.update();
+        question.update();
         if (Main.topGameState().equals(Main.states[0])) {
             mainMenu.update();
         } else if (Main.topGameState().equals(Main.states[1])) {
@@ -305,10 +305,9 @@ public class GamePanel extends JPanel implements Runnable {
             toturial.update();
         if (Main.topGameState().equals("GamePlay")) {
             if (keyH.isInteract) {
-                if (player.ButtonInteract){
+                if (player.ButtonInteract) {
                     collision.update();
-                }
-                else
+                } else
                     keyH.isInteract = false;
             }
             if (keyH.isPhonePressed) {
@@ -363,7 +362,7 @@ public class GamePanel extends JPanel implements Runnable {
                 || Main.topGameState().equals("Inventory")
                 || Main.topGameState().equals("Dialogue")) {
             if (currentChapter != chapter1 || chapter1.IntroFinished
-            //true
+            // true
             ) {
                 drawMap(g2);
                 directionIndicator.drawArrow(g2);
@@ -374,6 +373,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         ui.draw(g2);
+        question.draw(g2);
 
         if (Main.topGameState().equals("Map")) {
             section_selection.operation(g);
@@ -381,18 +381,18 @@ public class GamePanel extends JPanel implements Runnable {
 
         else if (Main.topGameState().equals("Loading")) {
             currentMap.map_exchange_effect.operation(g);
-            if (!currentMap.map_exchange_effect.isRunning()){
+            if (!currentMap.map_exchange_effect.isRunning()) {
                 Main.popGameState();
             }
         }
-        if(Main.topGameState().equals("EndChapter")) {
-            endChapter.draw(g2,EndChapter.checkChapter);
+        if (Main.topGameState().equals("EndChapter")) {
+            endChapter.draw(g2, EndChapter.checkChapter);
             endChapter.MouseClick();
             endChapter.HoverCheck();
         }
-        if(Main.topGameState().equals("EndGame")) {
+        if (Main.topGameState().equals("EndGame")) {
             endGame.draw(g2);
-            if(endGame.checkSoundEndGame) {
+            if (endGame.checkSoundEndGame) {
                 SoundManager.playSound("end_game");
                 endGame.checkSoundEndGame = false;
             }
@@ -481,13 +481,12 @@ public class GamePanel extends JPanel implements Runnable {
             chapter2.currentTimeline = 0;
             chapter2.completedAct = 0;
         }
-         if (chapter.equals("chap3")) {
-         currentMap = myRoom;
-         currentChapter = chapter3;
-         chapter3.currentTimeline = 0;
-         //chapter3.IntroFinished = false;
-         chapter3.completedAct = 0;
-         }
+        if (chapter.equals("chap3")) {
+            currentMap = myRoom;
+            currentChapter = chapter3;
+            chapter3.currentTimeline = 0;
+            chapter3.completedAct = 0;
+        }
         Main.GameState.push("GamePlay");
     }
 }

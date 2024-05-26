@@ -43,7 +43,7 @@ public class KeyHandler implements KeyListener {
 
             if (Main.topGameState().equals("PauseGame")) {
                 Main.popGameState();
-            } else if(Main.topGameState().equals("GamePlay") && !gamePanel.phone.isDrawPhone)
+            } else if (Main.topGameState().equals("GamePlay") && !gamePanel.phone.isDrawPhone)
                 Main.pushGameState("PauseGame");
             else if (Main.topGameState().equals("Inventory"))
                 Main.popGameState();
@@ -83,26 +83,31 @@ public class KeyHandler implements KeyListener {
         if (code == KeyboardManager.getKey("PHONE")) {
             isPhonePressed = true;
         }
-        if ((KeyboardManager.getTypeKey(code).equals("INTERACT") || KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE") || MouseManager.isLeftMouseClick) && !gamePanel.phone.isDrawPhone) {
+        if ((KeyboardManager.getTypeKey(code).equals("INTERACT")
+                || KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE") || MouseManager.isLeftMouseClick)
+                && !gamePanel.phone.isDrawPhone) {
             if (Main.topGameState().equals("Dialog")) {
                 Main.popGameState();
                 isInteract = false;
-            } else if (KeyboardManager.getTypeKey(code).equals("INTERACT")) isInteract = true;
+            } else if (KeyboardManager.getTypeKey(code).equals("INTERACT"))
+                isInteract = true;
         }
         if (KeyboardManager.getTypeKey(code).equals("NEXTDIALOGUE")) {
             if (Main.topGameState().equals("Dialogue")) {
-                if (!gamePanel.ui.isFinishDialogue){
-                    gamePanel.ui.timer.setDelay(0);
-                    gamePanel.ui.isFinishDialogue = true;
-                }
-                else {
-                    Main.popGameState();
-                    gamePanel.ui.text = "";
-                    gamePanel.ui.timer.stop();
-                    if (this.missionDescription != null && this.missionDescription.isMissionDescriptionDrawing) {
-                        this.missionDescription.isMissionDescriptionDrawing = false;
-                    } else ++gamePanel.currentChapter.completedAct;
+                if (!gamePanel.question.isDisplayQuestion) {
+                    if (!gamePanel.ui.isFinishDialogue) {
+                        gamePanel.ui.timer.setDelay(0);
+                        gamePanel.ui.isFinishDialogue = true;
+                    } else {
+                        Main.popGameState();
+                        gamePanel.ui.text = "";
+                        gamePanel.ui.timer.stop();
+                        if (this.missionDescription != null && this.missionDescription.isMissionDescriptionDrawing) {
+                            this.missionDescription.isMissionDescriptionDrawing = false;
+                        } else
+                            ++gamePanel.currentChapter.completedAct;
 
+                    }
                 }
             }
         }

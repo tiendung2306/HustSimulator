@@ -38,8 +38,11 @@ public class Chapter2 extends Chapter {
                 isStart = true;
                 prevTime = TimeSystem.getCurrentSystemTimeInMilliseconds();
             }
-            if (TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 100)
+            if (TimeSystem.getCurrentSystemTimeInMilliseconds() - prevTime >= 100) {
+                TimeSystem.goNextDay();
+                System.out.println(TimeSystem.day);
                 completedAct++;
+            }
         }
         if (completedAct == 1)
             Dialogue("Ngày thứ 2 kể từ khi ta chuyển sinh vào thế giới này.");
@@ -50,7 +53,6 @@ public class Chapter2 extends Chapter {
             missionDescription.setMissionDescription("Kiểm tra lịch học ở trong app Fhust.");
             gamePanel.myRoom.tilePhone.isMission = true;
             phone.isOpenFhust = false;
-            TimeSystem.goNextDay();
         }
         if (completedAct == 4) {
             if (phone.isOpenFhust && !phone.isDrawPhone) {
@@ -79,7 +81,93 @@ public class Chapter2 extends Chapter {
             ++completedAct;
         }
         if (completedAct == 1) {
+            if (gamePanel.currentMap == gamePanel.myRoom) {
+                gamePanel.directionIndicator.addArrow(
+                        (gamePanel.myRoom.tileDoorMyRoom.getLeftX() + gamePanel.myRoom.tileDoorMyRoom.getRightX()) / 2
+                                - gamePanel.directionIndicator.width / 2,
+                        gamePanel.myRoom.tileDoorMyRoom.getBottomY() - gamePanel.directionIndicator.height);
+            }
+            if (gamePanel.currentMap == gamePanel.section_2) {
+                gamePanel.directionIndicator.addArrow(
+                        (gamePanel.section_2.hallway_entry_1.getLeftX()
+                                + gamePanel.section_2.hallway_entry_1.getRightX()) / 2
+                                - gamePanel.directionIndicator.width / 2,
+                        gamePanel.section_2.hallway_entry_1.getBottomY() - gamePanel.directionIndicator.height);
+                gamePanel.directionIndicator.addArrow(
+                        (gamePanel.section_2.hallway_entry_2.getLeftX()
+                                + gamePanel.section_2.hallway_entry_2.getRightX()) / 2
+                                - gamePanel.directionIndicator.width / 2,
+                        gamePanel.section_2.hallway_entry_2.getBottomY() - gamePanel.directionIndicator.height);
+                gamePanel.directionIndicator.addArrow(
+                        (gamePanel.section_2.hallway_entry_3.getLeftX()
+                                + gamePanel.section_2.hallway_entry_3.getRightX()) / 2
+                                - gamePanel.directionIndicator.width / 2,
+                        gamePanel.section_2.hallway_entry_3.getBottomY() - gamePanel.directionIndicator.height);
+            }
+            if (gamePanel.currentMap == gamePanel.d3_hallway) {
+                gamePanel.directionIndicator.addArrow(
+                        gamePanel.d3_hallway.D3_1stfloor_stair1.getRightX()
+                                - gamePanel.directionIndicator.width / 2,
+                        (gamePanel.d3_hallway.D3_1stfloor_stair1.getTopY()
+                                + gamePanel.d3_hallway.D3_1stfloor_stair1.getBottomY()) / 2
+                                - gamePanel.directionIndicator.height);
+                gamePanel.directionIndicator.addArrow(
+                        gamePanel.d3_hallway.D3_1stfloor_stair2.getLeftX()
+                                - gamePanel.directionIndicator.width / 2,
+                        (gamePanel.d3_hallway.D3_1stfloor_stair2.getTopY()
+                                + gamePanel.d3_hallway.D3_1stfloor_stair2.getBottomY()) / 2
+                                - gamePanel.directionIndicator.height);
+            }
+            if (gamePanel.currentMap == gamePanel.d3_secondfloor_hallway) {
+                if (gamePanel.d3_secondfloor_hallway.curr_floor < 3) {
+                    gamePanel.directionIndicator.addArrow(
+                            gamePanel.d3_secondfloor_hallway.d3_stair_up1.getRightX()
+                                    - gamePanel.directionIndicator.width / 2,
+                            (gamePanel.d3_secondfloor_hallway.d3_stair_up1.getTopY()
+                                    + gamePanel.d3_secondfloor_hallway.d3_stair_up1.getBottomY()) / 2
+                                    - gamePanel.directionIndicator.height);
+                    gamePanel.directionIndicator.addArrow(
+                            gamePanel.d3_secondfloor_hallway.d3_stair_up2.getLeftX()
+                                    - gamePanel.directionIndicator.width / 2,
+                            (gamePanel.d3_secondfloor_hallway.d3_stair_up2.getTopY()
+                                    + gamePanel.d3_secondfloor_hallway.d3_stair_up2.getBottomY()) / 2
+                                    - gamePanel.directionIndicator.height);
+                } else if (gamePanel.d3_secondfloor_hallway.curr_floor == 3) {
+                    gamePanel.directionIndicator.addArrow(
+                            (gamePanel.d3_secondfloor_hallway.d3_5_secondfloor_entry.getLeftX()
+                                    + gamePanel.d3_secondfloor_hallway.d3_5_secondfloor_entry.getRightX())
+                                    / 2
+                                    - gamePanel.directionIndicator.width / 2,
+                            gamePanel.d3_secondfloor_hallway.d3_5_secondfloor_entry.getBottomY()
+                                    - gamePanel.directionIndicator.height);
+                } else {
+                    gamePanel.directionIndicator.addArrow(
+                            gamePanel.d3_secondfloor_hallway.d3_stair_down1.getRightX()
+                                    - gamePanel.directionIndicator.width / 2,
+                            (gamePanel.d3_secondfloor_hallway.d3_stair_down1.getTopY()
+                                    + gamePanel.d3_secondfloor_hallway.d3_stair_down1.getBottomY()) / 2
+                                    - gamePanel.directionIndicator.height);
+                    gamePanel.directionIndicator.addArrow(
+                            gamePanel.d3_secondfloor_hallway.d3_stair_down2.getLeftX()
+                                    - gamePanel.directionIndicator.width / 2,
+                            (gamePanel.d3_secondfloor_hallway.d3_stair_down2.getTopY()
+                                    + gamePanel.d3_secondfloor_hallway.d3_stair_down2.getBottomY()) / 2
+                                    - gamePanel.directionIndicator.height);
+                }
+            }
+            if (gamePanel.currentMap == gamePanel.d3_5_hallway_secondfloor) {
+                if (gamePanel.d3_5_hallway_secondfloor.curr_floor == 3) {
+                    gamePanel.directionIndicator.addArrow(
+                            (gamePanel.d3_5_hallway_secondfloor.d3_5_301_door.getLeftX()
+                                    + gamePanel.d3_5_hallway_secondfloor.d3_5_301_door.getRightX())
+                                    / 2
+                                    - gamePanel.directionIndicator.width / 2,
+                            gamePanel.d3_5_hallway_secondfloor.d3_5_301_door.getBottomY()
+                                    - gamePanel.directionIndicator.height);
+                }
+            }
             if (isAtClassMrsToan) {
+                gamePanel.directionIndicator.resetArrow();
                 if (checkSound_chap2_02) {
                     SoundManager.pauseSound("nhac_nen02");
                     SoundManager.loopSound("gap_gv");
@@ -257,5 +345,13 @@ public class Chapter2 extends Chapter {
             ui.isFinishDialogue = false;
             ui.timer.start();
         }
+    }
+
+    void Question(String question, String answer1, String answer2) {
+        if (gamePanel.question.getAnswer() != 0)
+            return;
+        gamePanel.question.setQuestion(question, answer1, answer2);
+        if (Main.topGameState().equals("GamePlay"))
+            Main.pushGameState("Dialogue");
     }
 }

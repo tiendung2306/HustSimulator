@@ -1,21 +1,24 @@
 package area.D3;
 
-import main.GamePanel;
-import map.Map;
-import tile.Tile;
-
-import java.awt.*;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 import animation.Animation_player;
-
-import java.io.*;
+import main.GamePanel;
+import map.Map;
+import tile.Tile;
 
 
 public class D3_secondfloor_hallway extends Map {
     Tile spawn_point1, spawn_point2, spawn_point3;
     public int curr_floor = 2;
+    public Tile d3_stair_up1, d3_stair_up2;
+    public Tile d3_stair_down1, d3_stair_down2;
+    public Tile d3_5_secondfloor_entry;
 
 
     public D3_secondfloor_hallway(GamePanel gamePanel) {
@@ -76,11 +79,16 @@ public class D3_secondfloor_hallway extends Map {
         spawn_point2 = new Tile(new Rectangle(327 , 399 , 30 , 47), "", "", null, null);
         spawn_point3 = new Tile(new Rectangle(1832 , 400 , 27 , 42), "", "", null, null);
         
-        addTile(new Tile(new Rectangle(273 , 402 , 8 , 17), "D3_stair_up1", "Teleport", null, null));
-        addTile(new Tile(new Rectangle(1891 , 387 , 6 , 40), "D3_stair_down2", "Teleport", null, null));
-        addTile(new Tile(new Rectangle(1891 , 427 , 7 , 27), "D3_stair_up2", "Teleport", null, null));
-        addTile(new Tile(new Rectangle(273 , 420 , 8 , 36), "D3_stair_down1", "Teleport", null, null));
-        addTile(new Tile(new Rectangle(244 , 60 , 157 , 142), "D3->D3-5_secondfloor_link", "Teleport", null, null));
+        d3_stair_up1 = new Tile(new Rectangle(273 , 402 , 8 , 17), "D3_stair_up1", "Teleport", null, null);
+        d3_stair_up2 = new Tile(new Rectangle(1891 , 427 , 7 , 27), "D3_stair_up2", "Teleport", null, null);
+        d3_stair_down1 = new Tile(new Rectangle(1891 , 387 , 6 , 40), "D3_stair_down2", "Teleport", null, null);
+        d3_stair_down2 = new Tile(new Rectangle(273 , 420 , 8 , 36), "D3_stair_down1", "Teleport", null, null);
+        d3_5_secondfloor_entry = new Tile(new Rectangle(244 , 60 , 157 , 142), "D3->D3-5_secondfloor_link", "Teleport", null, null);
+        addTile(d3_stair_up1);
+        addTile(d3_stair_down1);
+        addTile(d3_stair_up2);
+        addTile(d3_stair_down2);
+        addTile(d3_5_secondfloor_entry);
 
 
         addTile(new Tile(new Rectangle(388 , 225 , 1357 , 126), "wall", "Obstacle", null, null));

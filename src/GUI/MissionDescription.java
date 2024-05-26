@@ -90,8 +90,11 @@ public class MissionDescription {
                 && MouseManager.lastReleasedY >= (int) (GamePanel.screenHeight / 20)
                 && MouseManager.lastReleasedY <= (int) (GamePanel.screenHeight / 20) + height) {
             isNewMission = false;
-            if (!missionDescriptionText.equals(""))
+            if (!missionDescriptionText.equals("")) {
+                ui.setDialogueCharacter("Empty");
+                ui.setDialogueBackground("Empty");
                 Dialogue("Hệ thống: " + missionDescriptionText);
+            }
         }
         MouseManager.resetLastReleasedPos();
     }
