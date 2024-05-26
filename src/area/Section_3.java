@@ -16,10 +16,9 @@ import java.io.*;
 
 
 public class Section_3 extends Map {
-    Tile background, Library, BK_ALUMNI_HOUSE, Tien_Lake, Unknown;
+    Tile Library, BK_ALUMNI_HOUSE, Tien_Lake, Unknown;
     public Tile library_entry_1, library_entry_2;
     public Tile npcGirl;
-    GamePanel gamePanel;
     Animation_player map_exchange_effect3;
     Tile spawn_point;
 
@@ -33,7 +32,7 @@ public class Section_3 extends Map {
     private void SetDefaultValues(){
         TileLoad();
         SetOriginalSize();
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 2605 / (40 * background.getHeight()));
+        reSizeMap();
         SetPlayerPos();
     }
     
@@ -49,6 +48,7 @@ public class Section_3 extends Map {
         background.setWidth((int)(background.getWidth() * scale));
         background.setHeight((int)(background.getHeight() * scale));
 
+        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
 
         spawn_point.resize(scale);
         for(int i = 0; i < numTileContainer; i++){
@@ -102,16 +102,17 @@ public class Section_3 extends Map {
 
     }
 
-    public void open(){
-        loadMap(gamePanel);
+    @Override public void reSizeMap(){
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * 2605 / (40 * background.getHeight()));
     }
+
 
     public void open(String type){
         if(type.equals("Cua ra tu thu vien")) {
-            SetPlayerPos();
             map_exchange_effect = map_exchange_effect3;
             SoundManager.playSound("open_door");
         }
+        SetPlayerPos();
         loadMap(gamePanel);
     }
 
@@ -120,10 +121,10 @@ public class Section_3 extends Map {
     }
 
     // Phương thức vẽ map
-    public void draw(Graphics2D g2) {
+    // public void draw(Graphics2D g2) {
 
-        gamePanel.tileManager.draw(g2, background);
-        for (int i = 0; i < numTileContainer; ++i)
-            gamePanel.tileManager.draw(g2, tileContainer[i]);
-    }
+    //     gamePanel.tileManager.draw(g2, background);
+    //     for (int i = 0; i < numTileContainer; ++i)
+    //         gamePanel.tileManager.draw(g2, tileContainer[i]);
+    // }
 }

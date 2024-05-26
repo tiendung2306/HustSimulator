@@ -46,6 +46,9 @@ public class Section_2 extends Map {
 
         spawn_point.resize(scale);
 
+        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
+
+
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 

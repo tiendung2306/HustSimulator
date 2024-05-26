@@ -105,7 +105,7 @@ class Section {
                     break;       
 
                 case "Section3":
-                    section_selection.gamePanel.section_3.open();
+                    section_selection.gamePanel.section_3.open("");
                     SoundManager.playSound("foot_step");
                     break;
                 default:
