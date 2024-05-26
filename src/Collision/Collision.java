@@ -227,6 +227,7 @@ public class Collision {
                 if(gamePanel.d3_5_hallway_secondfloor.curr_floor == 3){
                     SoundManager.playSound("open_door");
                     gamePanel.normalClassroom_302.loadMap(gamePanel);
+                    gamePanel.chapter2.isAtClassMrHoa = true;
                 }
                 break;
 

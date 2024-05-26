@@ -15,8 +15,6 @@ public class Question {
     String question = "";
     public String answer1 = "", answer2 = "";
 
-    BufferedImage backgroundDialogue;
-
     int step = 0;
     boolean reverse;
     int iconX = (int) (207 * GamePanel.scale), iconY = (int) (170 * GamePanel.scale);
@@ -28,7 +26,6 @@ public class Question {
     public Question(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         isResetMouse = false;
-        backgroundDialogue = gamePanel.ui.backgroundDialogue;
         answer = 0;
     }
 
@@ -74,9 +71,9 @@ public class Question {
     }
 
     public void drawBackground(Graphics2D g2) {
-        if (backgroundDialogue == null)
+        if (gamePanel.ui.backgroundDialogue == null)
             return;
-        g2.drawImage(backgroundDialogue, 0, 0, (int) GamePanel.screenWidth, (int) GamePanel.screenHeight, null);
+        g2.drawImage(gamePanel.ui.backgroundDialogue, 0, 0, (int) GamePanel.screenWidth, (int) GamePanel.screenHeight, null);
         Color myColor = new Color(45, 39, 39, 190);
         g2.setColor(myColor);
         g2.fillRect(0, 0, (int) GamePanel.screenWidth, (int) GamePanel.screenHeight);
@@ -158,7 +155,7 @@ public class Question {
             y = (int) (GamePanel.screenHeight - 39 * GamePanel.scale);
         int FontSize = (int) (GamePanel.scale * 9);
         int FontPixel = (int) (GamePanel.scale * 4);
-        drawBackground(g2);
+//        drawBackground(g2);
         // drawCharacterDialogue();
         drawSubWindow(g2, x, y, width, height);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, FontSize));

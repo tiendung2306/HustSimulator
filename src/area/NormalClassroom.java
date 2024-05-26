@@ -104,6 +104,9 @@ public class NormalClassroom extends Map {
         for (int i = 0; i < numTileContainer; ++i) {
             tileContainer[i].reSizeTile();
         }
+        if (tileContainer[numTileContainer - 1] != mrsToan)
+            mrsToan.reSizeTile();
+
         map_exchange_effect3.resize(GamePanel.screenWidth / (2 * map_exchange_effect3.getWidth()));
     }
 

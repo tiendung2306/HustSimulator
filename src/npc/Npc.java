@@ -77,7 +77,6 @@ public class Npc extends Tile {
     }
 
     public void operation(Graphics graphics) {
-        System.out.println(getLeftX());
         update();
         draw(graphics);
     }
