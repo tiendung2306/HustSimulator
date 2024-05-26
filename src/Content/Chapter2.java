@@ -353,4 +353,11 @@ public class Chapter2 extends Chapter {
             ui.timer.start();
         }
     }
+
+    void Question(String question, String answer1, String answer2) {
+        if(gamePanel.question.getAnswer() != 0) return;
+        gamePanel.question.setQuestion(question, answer1, answer2);
+        if (Main.topGameState().equals("GamePlay"))
+            Main.pushGameState("Dialogue");
+    }
 }

@@ -63,11 +63,11 @@ public class Chapter1 extends Chapter {
         IntroFinished = true;
         if (completedAct == 0) {
             TimeSystem.setCurrentTime("07:00");
-            Question("Đạo hàm của arctan(x) là cái ci???", "1/(1+x)", "1/(1-x)");
-            if(gamePanel.question.getAnswer() != 0) {
-                completedAct++;
-            }
-            // Dialogue("Đây là căn phòng của ta sao?");
+            // Question("Đạo hàm của arctan(x) là cái ci???", "1/(1+x)", "1/(1-x)");
+            // if(gamePanel.question.getAnswer() != 0) {
+            //     completedAct++;
+            // }
+            Dialogue("Đây là căn phòng của ta sao?");
         }
         if (completedAct == 1){
             gamePanel.question.resetAnswer();
