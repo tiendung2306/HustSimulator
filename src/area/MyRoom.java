@@ -133,6 +133,7 @@ public class MyRoom extends Map {
         for (int i = 0; i < numTileContainer; ++i)
             gamePanel.tileManager.draw(g2, tileContainer[i]);
 
+        gamePanel.directionIndicator.drawArrow(g2);
         gamePanel.player.draw(g2);
 
     }
