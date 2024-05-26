@@ -52,7 +52,7 @@ public class KeyHandler implements KeyListener {
             if (Main.topGameState().equals("Inventory"))
                 Main.popGameState();
             else {
-                if ((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog")) && !gamePanel.phone.isDrawPhone) {
+                if ((Main.topGameState().equals("GamePlay") || Main.topGameState().equals("Dialog") || Main.topGameState().equals("Dialogue")) && !gamePanel.phone.isDrawPhone) {
                     MouseManager.isRightMouseClick = false;
                     MouseManager.isLeftMouseClick = false;
                     if (Main.topGameState().equals("Dialog")) {

@@ -105,6 +105,8 @@ public class Chapter1 extends Chapter {
                 }
                 gamePanel.myRoom.tileNoodle.isMission = false;
                 gamePanel.myRoom.tilePan.isMission = false;
+                if (Main.topGameState().equals("Inventory"))
+                    Main.popGameState();
                 gamePanel.inventory.deleteFromInventory(gamePanel.inventory.currentIndex, gamePanel.inventory.slotX,
                         gamePanel.inventory.slotY);
                 noodleMission = true;
@@ -135,8 +137,7 @@ public class Chapter1 extends Chapter {
         if (completedAct == 3) {
             if (inventory.isExist("Iphone 100 ProMax")) {
                 if (Main.topGameState().equals("GamePlay"))
-                    Dialogue(
-                            "Quả là một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này đúng là một thiên tài.");
+                    Dialogue("Quả là một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này đúng là một thiên tài.");
                 gamePanel.myRoom.tilePhone.isMission = false;
             }
         }
@@ -225,7 +226,11 @@ public class Chapter1 extends Chapter {
             Dialogue("Tên, tuổi, địa chỉ, ... ");
         }
         if (completedAct == 15) {
-            Dialogue("Oke đủ rồi, cô nhận hồ sơ của em rồi nhé. Em về đi");
+            if (inventory.isUsingItem && inventory.usingItem.Name.equals("Hồ sơ")){
+                if (Main.topGameState().equals("Inventory"))
+                    Main.popGameState();
+                Dialogue("Oke đủ rồi, cô nhận hồ sơ của em rồi nhé. Em về đi");
+            }
         }
         if (completedAct == 16) {
             ui.setDialogueCharacter("Main Character");

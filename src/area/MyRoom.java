@@ -77,7 +77,7 @@ public class MyRoom extends Map {
                 "Đại học Bách Khoa Hà Nội, S+ hữu hạn Giải Tích, 5.0 GPA.",
                 "res/tile/thehs01.png", "res/tile/thehs02.png", (double) 1 / 3);
         tileChair = new Tile[4];
-        tilehoso = new Tile(gamePanel, 338, 160, 39, 60, "Hồ sơ", "Collected", "Hồ sơ dùng để nhập học",
+        tilehoso = new Tile(gamePanel, 338, 160, 39, 60, "Hồ sơ", "Collected", "Hồ sơ đăng ký thợ săn",
                 "res/tile/hoso01.png", "res/tile/hoso02.png", (double) 1 / 3);
         tileLaptop = new Tile(gamePanel, 93, 190, 66, 45, "Acer Predator 21X", "Collected", "230.000.000 VNĐ",
                 "res/tile/lap_top01.png", "res/tile/lap_top02.png", (double) 1 / 3);
