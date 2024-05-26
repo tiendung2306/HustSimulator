@@ -65,7 +65,6 @@ public class C2_hall extends Map {
         playerX = spawn_point.getLeftX();
         playerY = spawn_point.getTopY();
 
-
     }
 
     private void TileLoad() {

@@ -103,11 +103,12 @@ public class Section_2 extends Map {
         addTile(new Tile(new Rectangle(1691 , 0 , 263 , 574), "D9", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(1952 , 73 , 1000 , 404), "D9", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(2952 , 73 , 228 , 421), "D9", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1586 , 519 , 80 , 44), "D9", "Obstacle", null, null));
 
-        addTile(new Tile(new Rectangle(3177 , 168 , 143 , 153), "D9", "Obstacle", null, null));
-        addTile(new Tile(new Rectangle(3297 , 322 , 258 , 456), "D9", "Obstacle", null, null));
-        addTile(new Tile(new Rectangle(2046 , 771 , 1683 , 1776), "D9", "Obstacle", null, null));
-        addTile(new Tile(new Rectangle(-84 , 2346 , 2559 , 591), "D9", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(3177 , 168 , 143 , 153), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(3297 , 322 , 258 , 456), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(2046 , 771 , 1683 , 1776), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(-84 , 2346 , 2559 , 591), "Barrier", "Obstacle", null, null));
 
         addExtraTile("src/txt/D7.txt");
         

@@ -19,7 +19,7 @@ public class Section_3 extends Map {
     Tile Library, BK_ALUMNI_HOUSE, Tien_Lake, Unknown;
     public Tile library_entry_1, library_entry_2;
     public Tile npcGirl;
-    Animation_player map_exchange_effect3;
+    Animation_player map_exchange_effect1, map_exchange_effect3;
     Tile spawn_point;
 
 
@@ -34,7 +34,6 @@ public class Section_3 extends Map {
         ObjectLoad("Section3");
         SetOriginalSize();
         reSizeMap();
-        SetPlayerPos();
     }
     
     private void SetOriginalSize(){
@@ -49,7 +48,9 @@ public class Section_3 extends Map {
         background.setWidth((int)(background.getWidth() * scale));
         background.setHeight((int)(background.getHeight() * scale));
 
-        map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
+        map_exchange_effect1.resize(GamePanel.screenWidth / (2 * map_exchange_effect1.getWidth()));
+        map_exchange_effect3.resize(GamePanel.screenWidth / (2 * map_exchange_effect3.getWidth()));
+
 
         spawn_point.resize(scale);
         for(int i = 0; i < numTileContainer; i++){
@@ -59,6 +60,8 @@ public class Section_3 extends Map {
         
         width = background.getWidth();
         height = background.getHeight();
+
+        SetPlayerPos();
 
     }
 
@@ -98,7 +101,7 @@ public class Section_3 extends Map {
         // addTile(Unknown);
         // addTile(Library);
         addTile(npcGirl);
-        map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
+        map_exchange_effect1 = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
         map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
 
     }
@@ -109,11 +112,16 @@ public class Section_3 extends Map {
 
 
     public void open(String type){
+        reSizeMap();
         if(type.equals("Cua ra tu thu vien")) {
             map_exchange_effect = map_exchange_effect3;
             SoundManager.playSound("open_door");
         }
-        SetPlayerPos();
+
+        else{
+            map_exchange_effect = map_exchange_effect1;
+            SoundManager.playSound("foot_step");
+        }
         loadMap(gamePanel);
     }
 

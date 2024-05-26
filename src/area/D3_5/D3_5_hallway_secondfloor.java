@@ -17,6 +17,7 @@ import tile.Tile;
 public class D3_5_hallway_secondfloor extends Map {
     public int curr_floor = 2;
     Tile[] floor_layer = new Tile[5];
+    Tile spawn_point;
     public Tile d3_5_301_door;
 
 
@@ -31,7 +32,6 @@ public class D3_5_hallway_secondfloor extends Map {
         ObjectLoad("D3_5_Hallway");
         SetOriginalSize();
         reSizeMap();
-        SetPlayerPos();
     }
     
     private void SetOriginalSize(){
@@ -43,6 +43,8 @@ public class D3_5_hallway_secondfloor extends Map {
     private void ReSize(double scale){
         background.setWidth((int)(background.getWidth() * scale));
         background.setHeight((int)(background.getHeight() * scale));
+
+        spawn_point.resize(scale);
 
         map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
 
@@ -58,11 +60,14 @@ public class D3_5_hallway_secondfloor extends Map {
         width = background.getWidth();
         height = background.getHeight();
 
+        SetPos();
+
     }
 
-    private void SetPlayerPos(){
-        playerX = (int) (width * 1.0 / 2);
-        playerY = (int) (height * 1.0 / 2);
+    private void SetPos(){
+        playerX = spawn_point.getLeftX();
+        playerY = spawn_point.getTopY();
+
     }
 
     private void TileLoad() {
@@ -92,6 +97,8 @@ public class D3_5_hallway_secondfloor extends Map {
         addTile(new Tile(new Rectangle(588 , 69 , 37 , 53), "D3-5_...03", "Teleport", null, null));
         addTile(new Tile(new Rectangle(721 , 70 , 36 , 54), "D3-5_...04", "Teleport", null, null));
     
+        spawn_point = new Tile(new Rectangle( 380 , 107 , 28 , 46), "", "", null, null);
+
         map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
     
     }
