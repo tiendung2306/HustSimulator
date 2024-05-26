@@ -240,7 +240,7 @@ public class Collision {
         boolean checkPush = true;
         for (int i = 0; i < numCollision; ++i)
             if (collisionTile[i].Type.equals("Teleport") || collisionTile[i].Type.equals("NPC")
-                    || collisionTile[i].Type.equals("Obstacle")) {
+                    || collisionTile[i].Type.equals("Obstacle") || collisionTile[i].Name.equals("Desk")) {
                 checkPush = false;
                 break;
             }

@@ -480,13 +480,13 @@ public class GamePanel extends JPanel implements Runnable {
             chapter2.currentTimeline = 0;
             chapter2.completedAct = 0;
         }
-        // if (chapter.equals("chap3")) {
-        // currentMap = myRoom;
-        // currentChapter = chapter3;
-        // chapter3.currentTimeline = 0;
-        // chapter3.IntroFinished = false;
-        // chapter3.completedAct = 0;
-        // }
+         if (chapter.equals("chap3")) {
+         currentMap = myRoom;
+         currentChapter = chapter3;
+         chapter3.currentTimeline = 0;
+         //chapter3.IntroFinished = false;
+         chapter3.completedAct = 0;
+         }
         Main.GameState.push("GamePlay");
     }
 }
