@@ -13,7 +13,7 @@ import main.Main;
 public class Question {
     GamePanel gamePanel;
     String question = "";
-    String answer1 = "", answer2 = "";
+    public String answer1 = "", answer2 = "";
 
     BufferedImage backgroundDialogue;
 
