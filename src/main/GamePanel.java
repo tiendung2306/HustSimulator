@@ -183,6 +183,8 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.addSound(new Sound("pewpew", "res/sound/o_cai_tam_chat.wav"));
         soundManager.addSound(new Sound("tim_dap", "res/sound/tim_dap.wav"));
         soundManager.addSound(new Sound("tan_gai", "res/sound/nhac_tan_gai.wav"));
+        soundManager.addSound(new Sound("tang_hoa", "res/sound/tang_hoa_meme.wav"));
+        soundManager.addSound(new Sound("puon_cuoi", "res/sound/puon.wav"));
     }
 
     public void screenResize() {
@@ -481,7 +483,7 @@ public class GamePanel extends JPanel implements Runnable {
             chapter2.currentTimeline = 0;
             chapter2.completedAct = 0;
         }
-         if (chapter.equals("chap3")) {
+         if (chapter.equals("chap 3")) {
          currentMap = myRoom;
          currentChapter = chapter3;
          chapter3.currentTimeline = 0;
