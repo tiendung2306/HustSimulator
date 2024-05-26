@@ -26,8 +26,9 @@ public class D3_5_hallway_secondfloor extends Map {
 
     private void SetDefaultValues(){
         TileLoad();
+        ObjectLoad("D3_5_Hallway");
         SetOriginalSize();
-        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * background.image.getHeight(gamePanel) / (50 * background.getHeight()));
+        reSizeMap();
         SetPlayerPos();
     }
     
@@ -92,6 +93,11 @@ public class D3_5_hallway_secondfloor extends Map {
     public void open(){
         reSizeMap();
         loadMap(gamePanel);
+    }
+
+    @Override public void reSizeMap(){
+        ReSize(gamePanel.player.getBoundingBoxHeight() * 1.0 * background.image.getHeight(gamePanel) / (50 * background.getHeight()));
+        
     }
 
     @Override public void floorDisplay(Graphics2D g2){
