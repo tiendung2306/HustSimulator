@@ -45,7 +45,7 @@ public class Tutorial {
         check = "";
     }
     public void update() {
-        if(isIntro)
+        if(!isIntro)
         {
             intro1 = intro;
             wasd = null;
