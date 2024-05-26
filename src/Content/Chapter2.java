@@ -274,21 +274,21 @@ public class Chapter2 extends Chapter {
             Dialogue("Thôi được rồi.");
         }
         if (completedAct == 6) {
+            Dialogue("Hôm nay tới đây là đủ rồi!");
+        }
+        if (completedAct == 7) {
             if (checkSound_chap2_02) {
                 SoundManager.resumeSound("nhac_nen02", true);
                 SoundManager.stopSound("gap_gv");
                 checkSound_chap2_02 = false;
             }
-            Dialogue("Hôm nay tới đây là đủ rồi!");
-        }
-        if (completedAct == 7) {
-            checkSound_chap2_02 = true;
             ui.setDialogueBackground("Empty");
             missionDescription.setMissionDescription("Di chuyển về nhà và ngủ đi");
             gamePanel.myRoom.tileBed.isMission = true;
             ++completedAct;
         }
         if (completedAct == 8) {
+            checkSound_chap2_02 = true;
             if (collision.interactItem.Name.equals("My Bed")) {
                 gamePanel.myRoom.tileBed.isMission = false;
                 if (checkEndChapter) {
