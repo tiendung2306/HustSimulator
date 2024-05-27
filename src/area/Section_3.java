@@ -84,9 +84,6 @@ public class Section_3 extends Map {
 
 
         spawn_point = new Tile(new Rectangle(850 , 1800 , 23 , 44), "", "", null, null);
-        // Library = new Tile(new Rectangle(231, 789, 1227, 903), "Library", "Obstacle", null, null);
-        // BK_ALUMNI_HOUSE = new Tile(new Rectangle(1836, 1335, 699, 675), "BK_ALUMNI_HOUSE", "Obstacle", null, null);
-        // Unknown = new Tile(new Rectangle(2685, 1161, 309, 942), "Unknown", "Obstacle", null, null);
         Tien_Lake = new Tile(new Rectangle(1662, 186, 1644, 807), "Tien_Lake", "Obstacle", null, null);
         npcGirl = new Tile(gamePanel, 1120, 80, 8, 20, "NPC Girl", "NPC", "", "res/NPC/NPCGirl/NPCGirl (2).png",1);
 
@@ -98,9 +95,6 @@ public class Section_3 extends Map {
 
 
         addTile(Tien_Lake);
-        // addTile(BK_ALUMNI_HOUSE);
-        // addTile(Unknown);
-        // addTile(Library);
         addTile(npcGirl);
         map_exchange_effect1 = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
         map_exchange_effect3 = new Animation_player(gamePanel, "res/effect/Map_exchange/type3/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
@@ -127,6 +121,10 @@ public class Section_3 extends Map {
     }
     public void close(){
         Main.popGameState();
+    }
+
+    @Override public void TileDisplay(Graphics2D g2){
+        gamePanel.tileManager.draw(g2, npcGirl);
     }
 
     // Phương thức vẽ map

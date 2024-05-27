@@ -123,18 +123,6 @@ public class Map {
             // TODO: handle exception
         }
 
-
-        // java.util.Collections.sort(tmp, new Comparator<Object>(
-        //     public boolean compare(Object object1, Object object2){
-        //         if(object1.getBot() > object2.getBot())
-        //             return true;
-        //         else
-        //             return false;
-        //     }
-        // ) {
-            
-        // });
-
     }
 
     public void objectSort(){
@@ -201,11 +189,11 @@ public class Map {
 
     }
 
-    public void reSizeMap() {
-    }
+    public void reSizeMap() {}
 
-    public void floorDisplay(Graphics2D g2) {
-    }
+    public void floorDisplay(Graphics2D g2) {}
+
+    public void TileDisplay(Graphics2D g2){}
 
     public void draw(Graphics2D g2) {
         gamePanel.tileManager.draw(g2, background);
@@ -222,6 +210,7 @@ public class Map {
                         break;
                     }
                 if (is_player_behind == true) {
+                    TileDisplay(g2);
                     gamePanel.directionIndicator.drawArrow(g2);
                     gamePanel.player.draw(g2);
                     is_player_display = true;
@@ -236,6 +225,7 @@ public class Map {
         floorDisplay(g2);
 
         if (is_player_display == false) {
+            TileDisplay(g2);
             gamePanel.directionIndicator.drawArrow(g2);
             gamePanel.player.draw(g2);
         }
