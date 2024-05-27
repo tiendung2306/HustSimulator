@@ -477,18 +477,43 @@ public class GamePanel extends JPanel implements Runnable {
             chapter1.currentTimeline = 0;
             chapter1.IntroFinished = false;
             chapter1.completedAct = 0;
+            inventory.resetInventory();
+            myRoom.setUpTileMyRoom();
         }
         if (chapter.equals("chap 2")) {
             currentMap = myRoom;
             currentChapter = chapter2;
             chapter2.currentTimeline = 0;
             chapter2.completedAct = 0;
+            inventory.resetInventory();
+            myRoom.setUpTileMyRoom();
+            inventory.pushToInventory(myRoom.tileLaptop);
+            inventory.pushToInventory(myRoom.tileStudentCard);
+            inventory.pushToInventory(myRoom.tilePhone);
+            inventory.pushToInventory(myRoom.tilehoso);
+            myRoom.deleteTile(14);
+            myRoom.deleteTile(15);
+            myRoom.deleteTile(16);
+            myRoom.deleteTile(17);
+            myRoom.deleteTile(18);
         }
         if (chapter.equals("chap 3")) {
             currentMap = myRoom;
             currentChapter = chapter3;
             chapter3.currentTimeline = 0;
             chapter3.completedAct = 0;
+            inventory.resetInventory();
+            myRoom.setUpTileMyRoom();
+            myRoom.setUpTileMyRoom();
+            inventory.pushToInventory(myRoom.tileLaptop);
+            inventory.pushToInventory(myRoom.tileStudentCard);
+            inventory.pushToInventory(myRoom.tilePhone);
+            inventory.pushToInventory(myRoom.tilehoso);
+            myRoom.deleteTile(14);
+            myRoom.deleteTile(15);
+            myRoom.deleteTile(16);
+            myRoom.deleteTile(17);
+            myRoom.deleteTile(18);
         }
         Main.GameState.push("GamePlay");
     }

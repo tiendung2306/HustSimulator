@@ -68,7 +68,12 @@ public class Inventory implements ActionListener {
         item3.setActionCommand("Info");
         popMenu.add(item3);
     }
-
+    public void resetInventory(){
+        for (int pageIndex = 0; pageIndex < 3; ++pageIndex)
+            for (int y = 0; y < 3; ++y)
+                for (int x = 0; x < 3; ++x)
+                    pages[pageIndex].slot[x][y] = new Tile();
+    }
     public void ScreenResize() {
         GetInventoryInfo();
         setBoundingBox();
