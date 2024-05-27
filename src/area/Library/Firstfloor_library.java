@@ -15,8 +15,8 @@ import java.awt.*;
 public class Firstfloor_library extends Map {
     Tile background;
     Tile wall01, wall02, wall03, wall04, wall05, wall06, tileColumn01, tileColumn02, wall07, wall08, wall09, wall10,
-            wall11, wall12, door, tileTalbe,
-            tileStair01, tileStair02, tileStair03, wall13, wall14, tileIn, tileOut;
+            wall11, wall12, tileTalbe;
+    public Tile tileStair01, tileStair02, tileStair03, wall13, wall14, tileIn, tileOut, door;
     GamePanel gamePanel;
     Animation_player map_exchange_effect1, map_exchange_effect2, map_exchange_effect3;
     public static Boolean checkStudent = false, checkDialogue = true;
