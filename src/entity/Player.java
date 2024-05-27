@@ -193,7 +193,9 @@ public class Player extends Entity {
                 collision.scanCollision(this, gamepanel.currentMap);
                 if (collision.getNumCollision() > 0) {
                     if (direction.equals("up-left")) {
-                        newMapX = mapX - speed;
+                        if (!leftBorder)
+                            newMapX = mapX - speed;
+                        else newMapX = mapX;
                         newMapY = mapY;
                         hitArea.x = newMapX + boundingBox.width / 4;
                         hitArea.y = newMapY + boundingBox.height / 3 * 2;
@@ -202,7 +204,9 @@ public class Player extends Entity {
                             direction = "left";
                         else {
                             newMapX = mapX;
-                            newMapY = mapY - speed;
+                            if (!topBorder)
+                                newMapY = mapY - speed;
+                            else newMapY = mapY;
                             hitArea.x = newMapX + boundingBox.width / 4;
                             hitArea.y = newMapY + boundingBox.height / 3 * 2;
                             collision.scanCollision(this, gamepanel.currentMap);
@@ -212,7 +216,9 @@ public class Player extends Entity {
                     }
 
                     if (direction.equals("up-right")) {
-                        newMapX = mapX + speed;
+                        if (!rightBorder)
+                            newMapX = mapX + speed;
+                        else newMapX = mapX;
                         newMapY = mapY;
                         hitArea.x = newMapX + boundingBox.width / 4;
                         hitArea.y = newMapY + boundingBox.height / 3 * 2;
@@ -221,7 +227,9 @@ public class Player extends Entity {
                             direction = "right";
                         else {
                             newMapX = mapX;
-                            newMapY = mapY - speed;
+                            if (!topBorder)
+                                newMapY = mapY - speed;
+                            else newMapY = mapY;
                             hitArea.x = newMapX + boundingBox.width / 4;
                             hitArea.y = newMapY + boundingBox.height / 3 * 2;
                             collision.scanCollision(this, gamepanel.currentMap);
@@ -230,7 +238,9 @@ public class Player extends Entity {
                         }
                     }
                     if (direction.equals("down-left")) {
-                        newMapX = mapX - speed;
+                        if (!leftBorder)
+                            newMapX = mapX - speed;
+                        else newMapX = mapX;
                         newMapY = mapY;
                         hitArea.x = newMapX + boundingBox.width / 4;
                         hitArea.y = newMapY + boundingBox.height / 3 * 2;
@@ -239,7 +249,9 @@ public class Player extends Entity {
                             direction = "left";
                         } else {
                             newMapX = mapX;
-                            newMapY = mapY + speed;
+                            if (!bottomBorder)
+                                newMapY += speed;
+                            else newMapY = mapY;
                             hitArea.x = newMapX + boundingBox.width / 4;
                             hitArea.y = newMapY + boundingBox.height / 3 * 2;
                             collision.scanCollision(this, gamepanel.currentMap);
@@ -248,7 +260,9 @@ public class Player extends Entity {
                         }
                     }
                     if (direction.equals("down-right")) {
-                        newMapX = mapX + speed;
+                        if (!rightBorder)
+                            newMapX = mapX + speed;
+                        else newMapX = mapX;
                         newMapY = mapY;
                         hitArea.x = newMapX + boundingBox.width / 4;
                         hitArea.y = newMapY + boundingBox.height / 3 * 2;
@@ -257,7 +271,9 @@ public class Player extends Entity {
                             direction = "right";
                         else {
                             newMapX = mapX;
-                            newMapY = mapY + speed;
+                            if (!bottomBorder)
+                                newMapY += speed;
+                            else newMapY = mapY;
                             hitArea.x = newMapX + boundingBox.width / 4;
                             hitArea.y = newMapY + boundingBox.height / 3 * 2;
                             collision.scanCollision(this, gamepanel.currentMap);
