@@ -42,6 +42,7 @@ public class EndGame {
             Main.pushGameState("MainMenu");
             SoundManager.playSound("click");
             SoundManager.stopAllSound();
+            SoundManager.loopSound("main_menu");
         }
     }
 
