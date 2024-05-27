@@ -34,6 +34,7 @@ public class SoundManager {
                 String url = s.getUrl_str();
                 Sound tmp = new Sound(name, url);
                 currRunningSounds.add(tmp);
+                tmp.setCurrVolume(currVolume);
                 tmp.play();
             }
         }
@@ -45,6 +46,7 @@ public class SoundManager {
                 String url = s.getUrl_str();
                 Sound tmp = new Sound(name, url);
                 currRunningSounds.add(tmp);
+                tmp.setCurrVolume(currVolume);
                 tmp.play();
                 tmp.loop();
             }
@@ -61,7 +63,11 @@ public class SoundManager {
             }
         }
         for (Sound s : deleted_sound) {
-            currRunningSounds.remove(s);
+            try {
+                currRunningSounds.remove(s);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
 
@@ -73,7 +79,11 @@ public class SoundManager {
             deleted_sound.add(s);
         }
         for (Sound s : deleted_sound) {
-            currRunningSounds.remove(s);
+            try {
+                currRunningSounds.remove(s);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
 
