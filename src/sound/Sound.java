@@ -19,6 +19,7 @@ public class Sound {
     boolean runned = false;
     long pauseTime = 0;
     Boolean isPause = false;
+    float currVolume = 0;
 
     public Sound() {
 
@@ -56,6 +57,10 @@ public class Sound {
         return soundURL;
     }
 
+    public void setCurrVolume(float currVolume) {
+        this.currVolume = currVolume;
+    }
+
     public void setFile() {
         try {
 
@@ -71,6 +76,11 @@ public class Sound {
 
     public void play() {
         setFile();
+        try {
+            floatControl.setValue(currVolume);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         clip.setFramePosition(0); // make sound play smoothly I guess xD
         pauseTime = 0;
         isPause = false;
@@ -115,7 +125,8 @@ public class Sound {
             clip.setMicrosecondPosition(pauseTime);
             clip.start();
             isPause = false;
-            if(isThisSoundLoop) loop();
+            if (isThisSoundLoop)
+                loop();
         }
     }
 
