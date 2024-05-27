@@ -227,7 +227,7 @@ public class Chapter3 extends Chapter {
                 checkSound_chap3_02 = false;
             }
             collision.interactItem = new Tile();
-            missionDescription.setMissionDescription("Tìm cô ấy đi, tình yêu cuộc đời đấy! (Có thể là ở Hồ Tiền)");
+            missionDescription.setMissionDescription("Tìm cô ấy đi, tình yêu cuộc đời đấy! (Có thể là ở góc phải trên Hồ Tiền)");
             // gamePanel.section_3.addTile(gamePanel.section_3.npcGirl);
             ++completedAct;
         }
