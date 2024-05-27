@@ -14,7 +14,7 @@ import tile.Tile;
 
 
 public class D3_hallway extends Map {
-    Tile spawn_point1, spawn_point2, spawn_point3;
+    Tile spawn_point0, spawn_point1, spawn_point2, spawn_point3;
     public Tile D3_1stfloor_stair1, D3_1stfloor_stair2;
 
     public D3_hallway(GamePanel gamePanel) {
@@ -40,6 +40,7 @@ public class D3_hallway extends Map {
         background.setWidth((int)(background.getWidth() * scale));
         background.setHeight((int)(background.getHeight() * scale));
 
+        spawn_point0.resize(scale);
         spawn_point1.resize(scale);
         spawn_point2.resize(scale);
         spawn_point3.resize(scale);
@@ -72,7 +73,8 @@ public class D3_hallway extends Map {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
+        spawn_point0 = new Tile(new Rectangle(16 , 390 , 35 , 50  ), "", "", null, null);
         spawn_point1 = new Tile(new Rectangle(335 , 399 , 32 , 49 ), "", "", null, null);
         spawn_point2 = new Tile(new Rectangle(1048 , 398 , 32 , 50), "", "", null, null);
         spawn_point3 = new Tile(new Rectangle(1780 , 388 , 35 , 54), "", "", null, null);
@@ -83,7 +85,7 @@ public class D3_hallway extends Map {
         addTile(D3_1stfloor_stair1);
         addTile(D3_1stfloor_stair2);
         addTile(new Tile(new Rectangle(243 , 33 , 157 , 27), "D3_exit", "Teleport", null, null));
-        addTile(new Tile(new Rectangle(378 , 410 , 24 , 47), "D3_exit", "Teleport", null, null));
+        addTile(new Tile(new Rectangle(0 , 452 , 77 , 29), "D3_exit", "Teleport", null, null));
         addTile(new Tile(new Rectangle(914 , 410 , 26 , 73), "D3_exit", "Teleport", null, null));
         addTile(new Tile(new Rectangle(940 , 453 , 261 , 44), "D3_exit", "Teleport", null, null));
         addTile(new Tile(new Rectangle(1201 , 410 , 30 , 74), "D3_exit", "Teleport", null, null));
@@ -91,6 +93,7 @@ public class D3_hallway extends Map {
         addTile(new Tile(new Rectangle(1743 , 176 , 120 , 27), "D3_exit", "Teleport", null, null));
         addTile(new Tile(new Rectangle(1744 , 410 , 24 , 47), "D3_exit", "Teleport", null, null));
 
+        addTile(new Tile(new Rectangle(378 , 410 , 24 , 47), "wall", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(1220 , 174 , 522 , 175), "wall", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(386 , 225 , 538 , 123), "wall", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(148 , 359 , 151 , 99), "wall", "Obstacle", null, null));
@@ -110,13 +113,16 @@ public class D3_hallway extends Map {
     public void open(String type){
         reSizeMap();
         if(type == "enter_from_stair1"){
-            SetPlayerPos(spawn_point1);
+            SetPlayerPos(spawn_point0);
         }
         else if(type == "enter_from_stair2"){
             SetPlayerPos(spawn_point2);
         }
         else if(type == "enter_from_stair3"){
             SetPlayerPos(spawn_point3);
+        }
+        else if(type == "enter_from_2nd_floor"){
+            SetPlayerPos(spawn_point1);
         }
         loadMap(gamePanel);
     }

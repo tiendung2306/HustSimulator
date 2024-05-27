@@ -76,7 +76,7 @@ public class C2_hallway extends Map {
             e.printStackTrace();
         }
         
-        spawn_point1 = new Tile(new Rectangle(555 , 586 , 32 , 46), "", "", null, null);
+        spawn_point1 = new Tile(new Rectangle(555 , 550 , 32 , 46), "", "", null, null);
         spawn_point2 = new Tile(new Rectangle(447 , 251 , 32 , 46), "", "", null, null);
 
         c2_hallEntry1 = new Tile(new Rectangle( 369 , 192 , 191 , 83 ), "C2_Hall_entry", "Teleport", null, null);

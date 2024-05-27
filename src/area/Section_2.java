@@ -11,6 +11,7 @@ import animation.Animation_player;
 import main.GamePanel;
 import main.Main;
 import map.Map;
+import tile.ExtraTile;
 import tile.Tile;
 
 public class Section_2 extends Map {
@@ -53,6 +54,10 @@ public class Section_2 extends Map {
             tileContainer[i].resize(scale);
 
         }
+
+        for(int i = 0; i < numExtraTile; i++){
+            extraTile[i].resize(scale);
+        }
         
         width = background.getWidth();
         height = background.getHeight();
@@ -67,7 +72,8 @@ public class Section_2 extends Map {
     }
 
     private void TileLoad() {
-        tileContainer = new Tile[60];
+        tileContainer = new Tile[150];
+        extraTile = new ExtraTile[20];
 
         try {
             BufferedImage bacImage = ImageIO.read(new FileInputStream("res/tile/Section2_demo.png"));
@@ -93,9 +99,29 @@ public class Section_2 extends Map {
         addTile(new Tile(new Rectangle(229 , 2204 , 76 , 10), "park_entry_machine", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(253 , 2179 , 30 , 49), "park_entry_machine", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(256 , 2229 , 25 , 9), "park_entry_machine", "Obstacle", null, null));
+        
+        addTile(new Tile(new Rectangle(1505 , 59 , 81 , 563), "D9", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1586 , 58 , 84 , 469), "D9", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1668 , 60 , 83 , 568), "D9", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1691 , 0 , 263 , 574), "D9", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1952 , 73 , 1000 , 404), "D9", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(2952 , 73 , 228 , 421), "D9", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1586 , 519 , 80 , 44), "D9", "Obstacle", null, null));
 
+        addTile(new Tile(new Rectangle(307 , 1348 , 208 , 312), "D7", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(289 , 1230 , 227 , 119), "D7", "Obstacle", null, null));
+
+        addTile(new Tile(new Rectangle(1 , 1566 , 60 , 787), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1709 , 599 , 18 , 162), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1713 , 726 , 92 , 35), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1806 , 699 , 158 , 226), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1826 , 925 , 121 , 69), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1831 , 993 , 13 , 189), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1791 , 1074 , 195 , 1293), "Barrier", "Obstacle", null, null));
+
+        addExtraTile("src/txt/D7.txt");
+        
         map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
-
 
     }
     

@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -13,7 +14,7 @@ import javax.imageio.ImageIO;
 import animation.Animation_player;
 import map.Map;
 
-public class Object {
+public class Object implements Comparator<Object>{
     String type;
     String name;
     
@@ -135,6 +136,20 @@ public class Object {
 
     public Vector<Tile> getFoot(){
         return foot;
+    }
+
+    public int getBot(){
+        if(foot.size() != 0)
+            return foot.firstElement().getBottomY();
+        else{
+            System.out.println(name);
+            return 0;
+        }    
+    }
+
+    @Override
+    public int compare(Object object1, Object object2) {
+        return object1.getBot() - object2.getBot();
     }
 
     public void operation(Graphics2D graphics2d){

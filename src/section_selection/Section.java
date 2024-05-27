@@ -7,12 +7,10 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
-import Collision.Collision;
 import Mouse.MouseManager;
 import section_selection.shape.Point;
 import section_selection.shape.Shape;
 import sound.SoundManager;
-import time.TimeSystem;
 
 
 class Section {
@@ -22,7 +20,7 @@ class Section {
     Shape boder;
     BufferedImage HoverImg;
 
-    Boolean unlock = false;
+    Boolean unlock = true;
     String description;
 
     public Section(Section_selection section_selection)  {

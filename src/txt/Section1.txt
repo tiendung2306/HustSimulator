@@ -13,12 +13,168 @@ Image 987 594 21 55
 Body 988 596 17 42
 Foot 990 627 15 20
 *
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 829 662 70 66
+Foot 843 695 36 12 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 830 724 70 66
+Foot 846 752 34 15 
+*
+Name benchs
+Type non-animated
+Trans 1.0
+Image 1028 759 219 54
+Foot 1042 788 185 9 
+*
+Name benchs
+Type non-animated
+Trans 1.0
+Image 1357 760 219 54
+Foot 1373 788 183 9 
+*
 Name I_love_BK
 Type non-animated
 Trans 1.0
 Image 1283 747 44 52
 Body 1285 749 40 41
 Foot 1285 786 40 12
+*
+Name small_tree
+Type non-animated
+Trans 1.0
+Image 1007 673 110 161
+Foot 1050 802 15 10 
+*
+Name small_tree
+Type non-animated
+Trans 1.0
+Image 1491 673 110 161
+Foot 1534 804 11 13 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 829 789 70 66
+Foot 843 819 38 15 
+*
+Name chair_left_side
+Type non-animated
+Trans 1.0
+Image 1010 811 20 53
+Foot 1013 831 16 32 
+*
+Name chair_right_side
+Type non-animated
+Trans 1.0
+Image 1566 818 21 55
+Foot 1567 838 21 33 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 831 847 70 66
+Foot 844 877 38 18 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 831 909 70 66
+Foot 844 939 36 15 
+*
+Name chair_right_side
+Type non-animated
+Trans 1.0
+Image 1565 917 21 55
+Foot 1568 939 17 33 
+*
+Name chair_left_side
+Type non-animated
+Trans 1.0
+Image 1011 916 20 53
+Foot 1011 934 18 33 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1170 929 70 66
+Foot 1184 960 39 16 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1099 931 70 66
+Foot 1111 961 39 18 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1031 931 70 66
+Foot 1044 960 40 15 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1359 931 70 66
+Foot 1372 961 36 15 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1433 930 70 66
+Foot 1446 959 39 16 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1504 931 70 66
+Foot 1514 957 45 18 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1032 996 70 66
+Foot 1045 1024 37 15 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1104 996 70 66
+Foot 1116 1029 40 15 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1187 996 70 66
+Foot 1200 1023 39 17
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1350 996 70 66
+Foot 1364 1027 37 15 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1429 996 70 66
+Foot 1441 1025 42 17
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1508 998 70 66
+Foot 1518 1023 39 17 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 831 975 70 66
+Foot 841 1005 41 16 
 *
 Name Fountain
 Type animated
@@ -27,12 +183,197 @@ Image 1215 1130 173 142 16 1.0
 Body 1215 1137 171 88
 Foot 1274 1225 54 45 1241 1225 126 38 1215 1219 171 32
 *
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1033 1239 70 66
+Foot 1046 1266 36 18 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1088 1240 70 66
+Foot 1098 1268 41 18 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1451 1236 70 66
+Foot 1463 1266 39 15 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1512 1235 70 66
+Foot 1525 1264 36 17 
+*
+Name chair_left_side
+Type non-animated
+Trans 1.0
+Image 1014 1268 20 53
+Foot 1014 1287 17 34 
+*
+Name chair_right_side
+Type non-animated
+Trans 1.0
+Image 1569 1266 21 55
+Foot 1573 1281 15 38 
+*
+Name medium_tree
+Type non-animated
+Trans 0.1
+Image 1052 1146 152 191
+Body 1052 1146 152 191
+Foot 1113 1299 20 18 
+*
+Name medium_tree
+Type non-animated
+Trans 0.1
+Image 1395 1143 152 191
+Body 1395 1143 152 191
+Foot 1458 1294 20 21 
+*
+Name medium_tree
+Type non-animated
+Trans 0.1
+Image 1338 1209 152 191
+Body 1338 1209 152 191
+Foot 1404 1360 14 18 
+*
+Name medium_tree
+Type non-animated
+Trans 0.1
+Image 1114 1205 152 191
+Body 1114 1205 152 191
+Foot 1174 1357 24 24 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 830 1306 70 66
+Foot 842 1332 39 19 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 830 1374 70 66
+Foot 841 1407 39 15 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 828 1431 70 66
+Foot 843 1462 33 14 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 829 1494 70 66
+Foot 841 1524 40 16 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 833 1675 70 66
+Foot 845 1708 38 15 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 831 1736 70 66
+Foot 843 1764 39 18 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 832 1798 70 66
+Foot 846 1834 35 12 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 828 1857 70 66
+Foot 840 1885 39 19 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 829 1955 70 66
+Foot 840 1987 43 15 
+*
+Name great_tree_4
+Type non-animated
+Trans 0.1
+Image 1375 1046 294 402
+Body 1375 1046 294 402
+Foot 1511 1398 30 26 
+*
+Name great_tree_1
+Type non-animated
+Trans 0.1
+Image 973 1108 216 340
+Body 973 1108 216 340
+Foot 1062 1394 24 26 
+*
+Name great_tree_3
+Type non-animated
+Trans 0.1
+Image 1036 1227 304 345
+Body 1036 1227 304 345
+Foot 1166 1530 31 15 
+*
+Name great_tree_2
+Type non-animated
+Trans 0.1
+Image 1318 1250 291 337
+Body 1318 1250 291 337
+Foot 1443 1539 48 20 
+*
+Name medium_tree
+Type non-animated
+Trans 0.1
+Image 1000 1369 152 191
+Body 1000 1369 152 191
+Foot 1061 1524 21 19 
+*
 Name Rock
 Type non-animated
 Trans 1.0
 Image 1248 1520 108 72
-Body 1272 1524 69 12
 Foot 1254 1536 100 51
+*
+Name small_tree
+Type non-animated
+Trans 0.1
+Image 1347 1463 110 161
+Body 1347 1463 110 161
+Foot 1390 1592 14 15 
+*
+Name big_tree
+Type non-animated
+Trans 0.1
+Image 1094 1389 177 273
+Body 1094 1389 177 273
+Foot 1166 1620 44 24 
+*
+Name big_tree
+Type non-animated
+Trans 0.1
+Image 1419 1386 177 273
+Body 1419 1386 177 273
+Foot 1495 1624 39 17 
+*
+Name bush
+Type non-animated
+Trans 1.0
+Image 1352 1568 130 101
+Foot 1390 1627 48 18 
+*
+Name cafe
+Type non-animated
+Trans 1.0
+Image 960 1497 223 209
+Foot 980 1602 178 49 1012 1650 130 20 1072 1668 53 13 
 *
 Name C9
 Type non-animated
@@ -40,4 +381,125 @@ Trans 0.0
 Image 9 1619 855 462
 Body 32 1757 795 165 172 1649 690 111 12 1624 161 151
 Foot 537 2037 167 39 31 2036 141 8 30 2019 794 20 30 1920 797 101
+*
+Name great_tree_2
+Type non-animated
+Trans 0.1
+Image 633 1005 291 337
+Body 633 1005 291 337
+Foot 757 1284 52 36 
+*
+Name great_tree_3
+Type non-animated
+Trans 0.1
+Image 648 724 304 345
+Body 648 724 304 345
+Foot 775 1019 36 24 
+*
+Name triagle_tree
+Type non-animated
+Trans 0.1
+Image 700 468 146 280
+Body 700 468 146 280
+Foot 760 717 23 15 
+*
+Name triagle_tree
+Type non-animated
+Trans 0.1
+Image 690 555 146 280
+Body 690 555 146 280
+Foot 758 801 18 15 
+*
+Name triagle_tree
+Type non-animated
+Trans 0.1
+Image 680 647 146 280
+Body 680 647 146 280
+Foot 745 885 21 24 
+*
+Name triagle_tree
+Type non-animated
+Trans 0.1
+Image 703 1143 146 280
+Body 703 1143 146 280
+Foot 769 1383 20 21 
+*
+Name triagle_tree
+Type non-animated
+Trans 0.1
+Image 709 1205 146 280
+Body 709 1205 146 280
+Foot 775 1452 20 19 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 901 628 70 66
+Foot 915 654 37 18 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1494 628 70 66
+Foot 1504 657 41 15 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1627 628 70 66
+Foot 1641 662 40 13 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1758 626 70 66
+Foot 1766 658 42 12 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 1894 627 70 66
+Foot 1905 661 40 13 
+*
+Name bush_2
+Type non-animated
+Trans 1.0
+Image 2020 625 70 66
+Foot 2032 652 37 21 
+*
+Name great_tree_2
+Type non-animated
+Trans 1.0
+Image 780 303 291 337
+Foot 904 593 45 18 
+*
+Name great_tree_3
+Type non-animated
+Trans 1.0
+Image 1329 288 304 345
+Foot 1456 583 36 23 
+*
+Name triagle_tree
+Type non-animated
+Trans 1.0
+Image 1519 366 146 280
+Foot 1584 611 22 19 
+*
+Name triagle_tree
+Type non-animated
+Trans 1.0
+Image 1647 361 146 280
+Foot 1713 606 19 15 
+*
+Name triagle_tree
+Type non-animated
+Trans 1.0
+Image 1782 359 146 280
+Foot 1848 600 18 20 
+*
+Name triagle_tree
+Type non-animated
+Trans 1.0
+Image 1912 366 146 280
+Foot 1977 613 19 15 
 #

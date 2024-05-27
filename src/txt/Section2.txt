@@ -1,4 +1,25 @@
 *
+Name big_tree
+Type non-animated
+Trans 1.0
+Image 1302 675 177 273
+Body 1305 683 178 249 
+Foot 1378 915 39 17 
+*
+Name chairs
+Type non-animated
+Trans 1.0
+Image 1486 990 59 284
+Body 1494 995 36 22 
+Foot 1494 1012 36 253 
+*
+Name long_bushes
+Type non-animated
+Trans 1.0
+Image 643 1454 872 121
+Body 651 1476 849 40  
+Foot 649 1521 857 48 
+*
 Name D5
 Type non-animated
 Trans 0.0
@@ -13,12 +34,40 @@ Image 1430 1716 116 322
 Body 
 Foot 1437 2025 99 5 1532 1746 4 284 1437 1747 99 3
 *
-Name D35
+Name triagle_tree
 Type non-animated
-Trans 0.0
-Image 448 1420 185 382
-Body 453 1420 173 373 
-Foot 0 0 0 0
+Trans 1.0
+Image 668 1488 146 280
+Body 684 1498 116 253 
+Foot 734 1732 19 18 
+*
+Name medium_tree
+Type non-animated
+Trans 1.0
+Image 1082 1576 152 191
+Body 1091 1586 132 149 
+Foot 1143 1730 21 20 
+*
+Name small_tree
+Type non-animated
+Trans 1.0
+Image 543 1722 110 161
+Body 550 1730 97 126 
+Foot 583 1853 18 12 
+*
+Name big_tree
+Type non-animated
+Trans 1.0
+Image 648 1739 177 273
+Body 654 1753 171 228 
+Foot 726 1980 39 15 
+*
+Name small_tree
+Type non-animated
+Trans 1.0
+Image 1101 1838 110 161
+Body 1109 1843 94 130 
+Foot 1143 1970 15 12 
 *
 Name roof
 Type non-animated
@@ -34,10 +83,52 @@ Image 370 1760 1123 432
 Body 390 1862 1086 191 374 1766 1119 98 
 Foot 390 2139 225 36 615 2139 608 16 1223 2158 252 17 1250 2138 226 23 390 2052 1086 88 388 1971 171 95 639 1971 12 111 639 2029 631 78 
 *
+Name bushes
+Type non-animated
+Trans 1.0
+Image 590 2086 669 186
+Body 622 2144 207 45 1047 2144 160 43 
+Foot 640 2179 164 20 1066 2179 122 20 
+*
 Name park_area
 Type non-animated
 Trans 1.0
 Image 55 2104 366 169
 Body 
 Foot 61 2253 66 5 210 2253 18 5 305 2253 107 5 408 2145 4 113 
+*
+Name great_tree_1
+Type non-animated
+Trans 0.2
+Image 642 1996 216 340
+Body 639 2006 204 285 
+Foot 730 2290 24 15 
+*
+Name great_tree_1
+Type non-animated
+Trans 0.2
+Image 1053 1990 216 340
+Body 1056 2006 197 272 
+Foot 1140 2286 26 19 
+*
+Name great_tree_2
+Type non-animated
+Trans 0.2
+Image 793 1997 291 337
+Body 797 2005 286 285 
+Foot 916 2281 54 27 
+*
+Name great_tree_3
+Type non-animated
+Trans 0.2
+Image 381 1989 304 345
+Body 387 1999 273 287 
+Foot 510 2286 34 21 
+*
+Name great_tree_4
+Type non-animated
+Trans 0.2
+Image 1233 1933 294 402
+Body 1241 1944 277 335 
+Foot 1373 2286 24 21 
 #

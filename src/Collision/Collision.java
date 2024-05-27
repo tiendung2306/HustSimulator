@@ -107,7 +107,7 @@ public class Collision {
             case "D3_stair_down1":
                 SoundManager.playSound("footstep_down_stairs");
                 if(gamePanel.d3_secondfloor_hallway.curr_floor == 2)
-                    gamePanel.d3_hallway.open("enter_from_stair1");
+                    gamePanel.d3_hallway.open("enter_from_2nd_floor");
 
                 else{
                     gamePanel.d3_secondfloor_hallway.curr_floor -= 1;
