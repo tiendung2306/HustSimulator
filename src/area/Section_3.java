@@ -19,6 +19,7 @@ public class Section_3 extends Map {
     Tile Library, BK_ALUMNI_HOUSE, Tien_Lake, Unknown;
     public Tile library_entry_1, library_entry_2;
     public Tile npcGirl;
+    public boolean isDrawNPCGirl = false;
     Animation_player map_exchange_effect1, map_exchange_effect3;
     Tile spawn_point;
 
@@ -85,15 +86,13 @@ public class Section_3 extends Map {
 
         spawn_point = new Tile(new Rectangle(850 , 1800 , 23 , 44), "", "", null, null);
         Tien_Lake = new Tile(new Rectangle(1662, 186, 1644, 807), "Tien_Lake", "Obstacle", null, null);
-        npcGirl = new Tile(gamePanel, 1120, 80, 8, 20, "NPC Girl", "NPC", "", "res/NPC/NPCGirl/NPCGirl (2).png",1);
+        npcGirl = new Tile(gamePanel, 1120, 80, 6, 16, "NPC Girl", "NPC", "", "res/NPC/NPCGirl/NPCGirl.png",1);
 
 
         library_entry_1 = new Tile(new Rectangle(765,1662,55,69),"Library_entry 1","Teleport","Di vao thu vien 1",null);
         library_entry_2 = new Tile(new Rectangle(870,1662,55,72),"Library_entry 2","Teleport","Di vao thu vien 2",null);
         addTile(library_entry_1);
         addTile(library_entry_2);
-
-
         addTile(Tien_Lake);
         addTile(npcGirl);
         map_exchange_effect1 = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8, new Rectangle((int)(GamePanel.screenWidth / 4), (int)(GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4), (int)(GamePanel.screenWidth / 2), (int)(GamePanel.screenWidth / 2)));
@@ -124,7 +123,8 @@ public class Section_3 extends Map {
     }
 
     @Override public void TileDisplay(Graphics2D g2){
-        gamePanel.tileManager.draw(g2, npcGirl);
+        if (isDrawNPCGirl)
+            gamePanel.tileManager.draw(g2, npcGirl);
     }
 
     // Phương thức vẽ map

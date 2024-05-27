@@ -228,7 +228,7 @@ public class Chapter3 extends Chapter {
             }
             collision.interactItem = new Tile();
             missionDescription.setMissionDescription("Tìm cô ấy đi, tình yêu cuộc đời đấy! (Có thể là ở góc phải trên Hồ Tiền)");
-            // gamePanel.section_3.addTile(gamePanel.section_3.npcGirl);
+            gamePanel.section_3.isDrawNPCGirl = true;
             ++completedAct;
         }
         if (completedAct == 3) {
@@ -288,6 +288,7 @@ public class Chapter3 extends Chapter {
                         gamePanel.library.tileDoorLibrary.getBottomY() - gamePanel.directionIndicator.height);
             }
             if (collision.interactItem.Name.equals("NPC Girl")) {
+                gamePanel.section_3.isDrawNPCGirl = false;
                 if (checkSound_chap3_02) {
                     SoundManager.stopSound("nhac_nen03");
                     SoundManager.loopSound("tang_hoa");

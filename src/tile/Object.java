@@ -142,7 +142,6 @@ public class Object implements Comparator<Object>{
         if(foot.size() != 0)
             return foot.firstElement().getBottomY();
         else{
-            System.out.println(name);
             return 0;
         }    
     }
