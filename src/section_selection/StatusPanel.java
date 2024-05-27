@@ -60,9 +60,9 @@ public class StatusPanel {
                 break;
         }
         if(section.unlock == true)
-            sectionStatus.setText("Trạng thái : Khóa");
-        else
             sectionStatus.setText("Trạng thái : Mở");
+        else
+            sectionStatus.setText("Trạng thái : Khóa");
         sectionDescription.setText("Mô tả: " + section.description);
 
     }
