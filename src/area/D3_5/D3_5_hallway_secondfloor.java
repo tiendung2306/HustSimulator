@@ -18,7 +18,7 @@ public class D3_5_hallway_secondfloor extends Map {
     public int curr_floor = 2;
     Tile[] floor_layer = new Tile[5];
     Tile spawn_point;
-    public Tile d3_5_301_door;
+    public Tile d3_5_301_door, d3_5_302_door;
 
 
     public D3_5_hallway_secondfloor(GamePanel gamePanel) {
@@ -89,11 +89,12 @@ public class D3_5_hallway_secondfloor extends Map {
         }
 
         d3_5_301_door = new Tile(new Rectangle(318 , 72 , 36 , 52), "D3-5_...01", "Teleport", null, null);
+        d3_5_302_door = new Tile(new Rectangle(451 , 70 , 36 , 54), "D3-5_...02", "Teleport", null, null);
 
         addTile(new Tile(new Rectangle( 0 , 124 , 258 , 49 ), "D3<-D3_5_secondfloor_link", "Teleport", null, null));
         addTile(new Tile(new Rectangle(0 , 0 , 796 , 122), "wall", "Obstacle", null, null));
         addTile(d3_5_301_door);
-        addTile(new Tile(new Rectangle(451 , 70 , 36 , 54), "D3-5_...02", "Teleport", null, null));
+        addTile(d3_5_302_door);
         addTile(new Tile(new Rectangle(588 , 69 , 37 , 53), "D3-5_...03", "Teleport", null, null));
         addTile(new Tile(new Rectangle(721 , 70 , 36 , 54), "D3-5_...04", "Teleport", null, null));
     

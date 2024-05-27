@@ -253,6 +253,18 @@ public class Chapter2 extends Chapter {
             isAtClassMrHoa = false;
         }
         if (completedAct == 1) {
+            if (gamePanel.currentMap == gamePanel.d3_5_hallway_secondfloor) {
+                gamePanel.directionIndicator.resetArrow();
+                if (gamePanel.d3_5_hallway_secondfloor.curr_floor == 3) {
+                    gamePanel.directionIndicator.addArrow(
+                            (gamePanel.d3_5_hallway_secondfloor.d3_5_302_door.getLeftX()
+                                    + gamePanel.d3_5_hallway_secondfloor.d3_5_302_door.getRightX())
+                                    / 2
+                                    - gamePanel.directionIndicator.width / 2,
+                            gamePanel.d3_5_hallway_secondfloor.d3_5_302_door.getBottomY()
+                                    - gamePanel.directionIndicator.height);
+                }
+            }
             if (isAtClassMrHoa) {
                 gamePanel.normalClassroom.deleteTile(gamePanel.normalClassroom.numTileContainer - 1);
                 if (!checkSound_chap2_02) {
