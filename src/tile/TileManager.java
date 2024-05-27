@@ -95,7 +95,6 @@ public class TileManager {
         }
         if (tile.isMission)
             g2.drawImage(warningIcon, screenX + width, screenY - (int)(12 * GamePanel.scale) + extraY, (int) (3 * GamePanel.scale), (int) (9 * GamePanel.scale), null);
-        g2.drawRect(screenX, screenY, width, height);
     }
 
 
