@@ -49,11 +49,14 @@ public class Section_2 extends Map {
 
         map_exchange_effect.resize(GamePanel.screenWidth / (2 * map_exchange_effect.getWidth()));
 
-        extraTile[0].resize(scale);
 
         for(int i = 0; i < numTileContainer; i++){
             tileContainer[i].resize(scale);
 
+        }
+
+        for(int i = 0; i < numExtraTile; i++){
+            extraTile[i].resize(scale);
         }
         
         width = background.getWidth();
@@ -69,7 +72,7 @@ public class Section_2 extends Map {
     }
 
     private void TileLoad() {
-        tileContainer = new Tile[70];
+        tileContainer = new Tile[150];
         extraTile = new ExtraTile[20];
 
         try {
@@ -105,10 +108,16 @@ public class Section_2 extends Map {
         addTile(new Tile(new Rectangle(2952 , 73 , 228 , 421), "D9", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(1586 , 519 , 80 , 44), "D9", "Obstacle", null, null));
 
-        addTile(new Tile(new Rectangle(3177 , 168 , 143 , 153), "Barrier", "Obstacle", null, null));
-        addTile(new Tile(new Rectangle(3297 , 322 , 258 , 456), "Barrier", "Obstacle", null, null));
-        addTile(new Tile(new Rectangle(2046 , 771 , 1683 , 1776), "Barrier", "Obstacle", null, null));
-        addTile(new Tile(new Rectangle(-84 , 2346 , 2559 , 591), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(307 , 1348 , 208 , 312), "D7", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(289 , 1230 , 227 , 119), "D7", "Obstacle", null, null));
+
+        addTile(new Tile(new Rectangle(1 , 1566 , 60 , 787), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1709 , 599 , 18 , 162), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1713 , 726 , 92 , 35), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1806 , 699 , 158 , 226), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1826 , 925 , 121 , 69), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1831 , 993 , 13 , 189), "Barrier", "Obstacle", null, null));
+        addTile(new Tile(new Rectangle(1791 , 1074 , 195 , 1293), "Barrier", "Obstacle", null, null));
 
         addExtraTile("src/txt/D7.txt");
         
