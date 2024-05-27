@@ -207,7 +207,8 @@ public class GamePanel extends JPanel implements Runnable {
         section_selection.screenResize();
 
     }
-    public void exitgame(){
+
+    public void exitgame() {
         newGame();
         currentMap.loadMap(this);
     }
@@ -388,7 +389,7 @@ public class GamePanel extends JPanel implements Runnable {
         else if (Main.topGameState().equals("Loading")) {
             currentMap.map_exchange_effect.operation(g);
         }
-        
+
         if (Main.topGameState().equals("EndChapter")) {
             endChapter.draw(g2, EndChapter.checkChapter);
             endChapter.MouseClick();

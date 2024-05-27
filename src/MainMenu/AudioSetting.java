@@ -11,8 +11,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class AudioSetting {
-
-    Thread gameThread;
     private BufferedImage SettingBackGround, back, exitImg, exitImg1, line, player, comment, comment1, volume, volumeX,
             volume0, volume1, volume2, volume3, mutecmt, mutecmt1;
     private int i;
@@ -24,7 +22,7 @@ public class AudioSetting {
     private String check = "", mutestring = "", mutestring1 = "";
     private double numbervolume = 999 * Main.ey;
 
-    int currVolume = 100;
+    static int currVolume = 100;
     Boolean isVolumeChanged = false;
 
     public AudioSetting() {
@@ -80,12 +78,9 @@ public class AudioSetting {
         mutecmt = null;
         mutestring = "";
         numbervolume = 999 * Main.ey;
-        volumesliderpointX = 230 * Main.ex;
     }
 
     public void update() {
-        // System.out.println("456");
-        // System.out.println(check);
         if (check == "volumesliderpointclick") {
             volumesliderpointX = i;
         } else if (check == "checkcomment") {

@@ -79,7 +79,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
                 setting.Init();
             } else if ((x_click > 201 * Main.ex) && (y_click > 253 * Main.ey) && (x_click < 566 * Main.ex)
                     && (y_click < 287 * Main.ey)) {
-                AudioSetting.volumesliderpointX = 542 * Main.ex;
+                AudioSetting.volumesliderpointX = (AudioSetting.currVolume * 3.6 * Main.ex + 217 * Main.ex);
                 Main.pushGameState(Main.states[3]);
                 setting.Init();
             } else if ((x_click > 251 * Main.ex) && (y_click > 313 * Main.ey) && (x_click < 514 * Main.ex)
@@ -91,7 +91,7 @@ public class MouseListener_Mainmenu implements java.awt.event.MouseListener {
             if ((x_click > 10 * Main.ex) && (y_click > 10 * Main.ey) && (x_click < 50 * Main.ex)
                     && (y_click < 50 * Main.ey)) {
                 Main.popGameState();
-                audioSetting.audiorollback();
+                audioSetting.Init();
             } else if ((x_click > 240 * Main.ex) && (y_click > 251 * Main.ey) && (x_click < 600 * Main.ex)
                     && (y_click < 297 * Main.ey))
                 AudioSetting.volumesliderpointX = (x_click - 23 * Main.ex);

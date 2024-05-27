@@ -41,7 +41,8 @@ public class Chapter1 extends Chapter {
         if (completedAct == 1)
             Dialogue("Ta đang là anh hùng trong cuộc chiến chống lại quỷ vương mà. Đây là đâu?");
         if (completedAct == 2)
-            Dialogue("Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
+            Dialogue(
+                    "Đúng rồi, mình đã bị quỷ vương đánh bại và chuyển sinh vào cơ thể cậu sinh viên này ở một thế giới kì lạ");
         if (completedAct == 3)
             Dialogue("Eimi, Yua, không biết 2 cô ấy có ổn không?");
         if (completedAct == 4)
@@ -138,7 +139,8 @@ public class Chapter1 extends Chapter {
         if (completedAct == 3) {
             if (inventory.isExist("Iphone 100 ProMax")) {
                 if (Main.topGameState().equals("GamePlay"))
-                    Dialogue("Quả là một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này đúng là một thiên tài.");
+                    Dialogue(
+                            "Quả là một thiết bị tinh vi được tích hợp ma pháp điện. Kẻ sáng chế ra thứ này đúng là một thiên tài.");
                 gamePanel.myRoom.tilePhone.isMission = false;
             }
         }
@@ -227,7 +229,7 @@ public class Chapter1 extends Chapter {
             Dialogue("Tên, tuổi, địa chỉ, ... ");
         }
         if (completedAct == 15) {
-            if (inventory.isUsingItem && inventory.usingItem.Name.equals("Hồ sơ")){
+            if (inventory.isUsingItem && inventory.usingItem.Name.equals("Hồ sơ")) {
                 if (Main.topGameState().equals("Inventory"))
                     Main.popGameState();
                 Dialogue("Oke đủ rồi, cô nhận hồ sơ của em rồi nhé. Em về đi");

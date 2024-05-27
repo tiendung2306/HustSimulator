@@ -39,6 +39,7 @@ public class Tutorial {
     public void Init() {
         isIntro = true;
         check = "";
+
     }
     public void tutorialreturn() {check = "return";}
     public void tutorialrollback() {
