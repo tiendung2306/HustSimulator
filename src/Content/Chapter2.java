@@ -31,6 +31,7 @@ public class Chapter2 extends Chapter {
     void Timeline0() {
         if (checkSound_chap2_01) {
             SoundManager.loopSound("nhac_nen02");
+            SoundManager.stopSound("main_menu");
             checkSound_chap2_01 = false;
         }
         if (completedAct == 0) {

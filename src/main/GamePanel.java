@@ -179,6 +179,7 @@ public class GamePanel extends JPanel implements Runnable {
         soundManager.addSound(new Sound("tan_gai", "res/sound/nhac_tan_gai.wav"));
         soundManager.addSound(new Sound("tang_hoa", "res/sound/tang_hoa_meme.wav"));
         soundManager.addSound(new Sound("puon_cuoi", "res/sound/puon.wav"));
+        soundManager.addSound(new Sound("main_menu", "res/sound/nhac_nen_mainmenu.wav"));
     }
 
     public void screenResize() {
@@ -224,6 +225,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void run() {
+        soundManager.addSound(new Sound("main_menu", "res/sound/nhac_nen_mainmenu.wav"));
+        SoundManager.loopSound("main_menu");
+
         Init();
         double drawInterval = 1000000000 / FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
