@@ -323,6 +323,12 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
+        if (Main.topGameState().equals("Loading")) {
+            if (!currentMap.map_exchange_effect.isRunning()) {
+                Main.popGameState();
+            }
+        }
+
     }
     // =================================================================================================================
 
@@ -377,10 +383,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         else if (Main.topGameState().equals("Loading")) {
             currentMap.map_exchange_effect.operation(g);
-            if (!currentMap.map_exchange_effect.isRunning()) {
-                Main.popGameState();
-            }
         }
+        
         if (Main.topGameState().equals("EndChapter")) {
             endChapter.draw(g2, EndChapter.checkChapter);
             endChapter.MouseClick();

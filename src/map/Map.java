@@ -5,6 +5,11 @@ import java.awt.Rectangle;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Vector;
 
 import animation.Animation_player;
@@ -118,6 +123,31 @@ public class Map {
             // TODO: handle exception
         }
 
+
+        // java.util.Collections.sort(tmp, new Comparator<Object>(
+        //     public boolean compare(Object object1, Object object2){
+        //         if(object1.getBot() > object2.getBot())
+        //             return true;
+        //         else
+        //             return false;
+        //     }
+        // ) {
+            
+        // });
+
+    }
+
+    public void objectSort(){
+        Collections.sort(objectContainer, new Comparator<Object>() {
+            @Override public int compare(Object object1, Object object2){
+                if(object1.getBot() > object2.getBot())
+                    return 1;
+                else if (object1.getBot() == object2.getBot())
+                    return 0;
+                else 
+                    return -1;
+            }
+        });
     }
 
     public void addExtraTile(String src) {
@@ -168,6 +198,7 @@ public class Map {
         gamePanel.player.setMapY(playerY);
         gamePanel.player.posUpdate();
         gamePanel.directionIndicator.resetArrow();
+
     }
 
     public void reSizeMap() {

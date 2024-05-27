@@ -26,6 +26,7 @@ public class Section_1 extends Map {
     private void SetDefaultValues() {
         TileLoad();
         ObjectLoad("Section1");
+        objectSort();
         SetOriginalSize();
         reSizeMap();
     }
@@ -64,7 +65,7 @@ public class Section_1 extends Map {
     }
 
     private void TileLoad() {
-        tileContainer = new Tile[50];
+        tileContainer = new Tile[250];
 
         try {
             BufferedImage bacImage = ImageIO.read(new FileInputStream("res/tile/Section1_demo.png"));
@@ -106,6 +107,8 @@ public class Section_1 extends Map {
         addTile(new Tile(new Rectangle(851, 1063, 78, 29), "Block", "Obstacle", null, null));
         addTile(new Tile(new Rectangle(844, 1251, 84, 31), "Block", "Obstacle", null, null));
 
+        addTile(new Tile(new Rectangle(1842 , 675 , 531 , 1557), "Barrier", "Obstacle", null, null));
+        
         map_exchange_effect = new Animation_player(gamePanel, "res/effect/Map_exchange/type1/frame ", 4, 0.8,
                 new Rectangle((int) (GamePanel.screenWidth / 4),
                         (int) (GamePanel.screenHeight / 2 - GamePanel.screenWidth / 4),
