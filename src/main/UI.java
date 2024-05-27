@@ -20,13 +20,12 @@ public class UI {
     public String currentDialog = "";
     public String text = "";
     public int i;
-    BufferedImage nextIcon, skipIcon, skipWord, characterDialogue;
+    BufferedImage nextIcon, characterDialogue;
     BufferedImage mainCharacter, mrsToan, mrHoa, catMeme, system, teacher1, npcGirl, catGivingFlower;
     public BufferedImage backgroundDialogue, backgroundClassroom, backgroundLibrary, backgroundLake;
     BufferedImage reelCharacter, surpriseMeme, girlReadingBook;
     public boolean isFinishDialogue;
     int iconX = (int) (207 * GamePanel.scale), iconY = (int) (170 * GamePanel.scale);
-    int skipX = (int) (8 * GamePanel.scale), skipY = (int) (10 * GamePanel.scale);
     int reelX = 0, reelY = 0, reelwidth = (int) (GamePanel.screenWidth), reelheight = (int) (GamePanel.screenHeight);
     int step = 0;
     boolean reverse;
@@ -40,8 +39,6 @@ public class UI {
     void getImage() {
         try {
             nextIcon = ImageIO.read(new FileInputStream("res/Dialogue/nextIcon.png"));
-            skipIcon = ImageIO.read(new FileInputStream("res/Dialogue/skipIcon.png"));
-            skipWord = ImageIO.read(new FileInputStream("res/Dialogue/skipWord.png"));
 
             catMeme = ImageIO.read(new FileInputStream("res/DialogueCharacter/CatMeme.png"));
             mainCharacter = ImageIO.read(new FileInputStream("res/DialogueCharacter/MainCharacter.png"));
@@ -66,8 +63,6 @@ public class UI {
     public void screenResize() {
         iconX = (int) (207 * GamePanel.scale);
         iconY = (int) (170 * GamePanel.scale);
-        skipX = (int) (8 * GamePanel.scale);
-        skipY = (int) (10 * GamePanel.scale);
         reelwidth = (int) (GamePanel.screenWidth);
         reelheight = (int) (GamePanel.screenHeight);
     }
@@ -197,13 +192,11 @@ public class UI {
         if (step == 8) {
             if (!reverse) {
                 iconX += (int) GamePanel.scale;
-                // skipX += (int) GamePanel.scale;
                 if (iconX >= 209 * GamePanel.scale) {
                     reverse = true;
                 }
             } else {
                 iconX -= (int) GamePanel.scale;
-                // skipX -= (int) GamePanel.scale;
                 if (iconX <= 207 * GamePanel.scale) {
                     reverse = false;
                 }
@@ -215,10 +208,6 @@ public class UI {
             g2.drawString("Press Space", (int) (182 * GamePanel.scale), (int) (175 * GamePanel.scale));
             g2.drawImage(nextIcon, iconX, iconY, (int) (10 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, (int) (GamePanel.scale * 7)));
-            g2.drawImage(skipWord, (int) (27 * GamePanel.scale), (int) (11 * GamePanel.scale),
-                    (int) (15 * GamePanel.scale),
-                    (int) (5 * GamePanel.scale), null);
-            g2.drawImage(skipIcon, skipX, skipY, (int) (17 * GamePanel.scale), (int) (7 * GamePanel.scale), null);
         }
     }
 
