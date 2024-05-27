@@ -1,0 +1,18 @@
+
+
+Version:	3.50
+CmdLine:	D:\TinHoc\ProjectGit\My2DGame\HustSimulator.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	D:\TinHoc\ProjectGit\My2DGame\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	
+Java max ver:	
+JRE paths:	C:\Program Files\Eclipse Adoptium\jdk-21.0.3.9-hotspot\bin
+Check launcher:	C:\Program Files\Eclipse Adoptium\jdk-21.0.3.9-hotspot\bin\javaw.exe (OK)
+Version string: 1.021.000_003 / 64-Bit (OK)
+Launcher:	C:\Program Files\Eclipse Adoptium\jdk-21.0.3.9-hotspot\bin\javaw.exe
+Launcher args:	-jar "D:\TinHoc\ProjectGit\My2DGame\HustSimulator.exe"
+Args length:	54/32768 chars
+Exit code:	0
